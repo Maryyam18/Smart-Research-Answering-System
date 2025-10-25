@@ -1,0 +1,2933 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">ORPO: Monolithic Preference Optimization without Reference Model</title>
+				<funder ref="#_t2xY3GX">
+					<orgName type="full">Generative AI)</orgName>
+				</funder>
+				<funder>
+					<orgName type="full">Artificial Intelligence Graduate School Program(KAIST)</orgName>
+				</funder>
+				<funder>
+					<orgName type="full">Institute for Information &amp; communications Technology Promotion</orgName>
+					<orgName type="abbreviated">IITP</orgName>
+				</funder>
+				<funder ref="#_7nmar6x">
+					<orgName type="full">Korea government(MSIT)</orgName>
+				</funder>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Jiwoo</forename><surname>Hong</surname></persName>
+							<email>jiwoo_hong@kaist.ac.kr</email>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Noah</forename><surname>Lee</surname></persName>
+							<email>noah.lee@kaist.ac.kr</email>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">James</forename><surname>Thorne</surname></persName>
+							<email>thorne@kaist.ac.kr</email>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Ebtesam</forename><surname>Almazrouei</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Hamza</forename><surname>Alobeidli</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Abdulaziz</forename><surname>Al- Shamsi</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Alessandro</forename><surname>Cappelli</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Ruxandra</forename><surname>Cojocaru</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Mérouane</forename><surname>Debbah</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Étienne</forename><surname>Goffinet</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Daniel</forename><surname>Hesslow</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Julien</forename><surname>Launay</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Quentin</forename><surname>Malartic</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Daniele</forename><surname>Mazzotta</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Mohammad</forename><forename type="middle">Gheshlaghi</forename><surname>Azar</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Mark</forename><surname>Rowland</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Bilal</forename><surname>Piot</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Daniel</forename><surname>Guo</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Daniele</forename><surname>Calandriello</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Michal</forename><surname>Valko</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Rémi</forename><forename type="middle">2023</forename><surname>Munos</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Yuntao</forename><surname>Bai</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Andy</forename><surname>Jones</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Kamal</forename><surname>Ndousse</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Amanda</forename><surname>Askell</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Anna</forename><surname>Chen</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Nova</forename><surname>Dassarma</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Dawn</forename><surname>Drain</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Stanislav</forename><surname>Fort</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Deep</forename><surname>Ganguli</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Tom</forename><surname>Henighan</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Nicholas</forename><surname>Joseph</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Saurav</forename><surname>Kadavath</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Jackson</forename><surname>Kernion</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><roleName>Sheer</roleName><forename type="first">Tom</forename><surname>Conerly</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Nelson</forename><surname>Elhage</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Zac</forename><surname>Hatfield-Dodds</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Danny</forename><surname>Hernandez</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Tristan</forename><surname>Hume</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Scott</forename><surname>Johnston</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><roleName>Sheer</roleName><forename type="first">Shauna</forename><surname>Kravec</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Liane</forename><surname>Lovitt</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Neel</forename><surname>Nanda</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Catherine</forename><surname>Olsson</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Dario</forename><surname>Amodei</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Tom</forename><surname>Brown</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Jack</forename><surname>Clark</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Sam</forename><surname>Mccandlish</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Christo- Pher</forename><surname>Olah</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Ben</forename><surname>Mann</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Jared</forename><forename type="middle">2022a</forename><surname>Kaplan</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Sandipan</forename><surname>Kundu</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Anna</forename><surname>Goldie</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Azalia</forename><surname>Mirhoseini</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Cameron</forename><surname>Mckinnon</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Carol</forename><surname>Chen</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Dustin</forename><surname>Li</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Eli</forename><surname>Tran-Johnson</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Ethan</forename><surname>Perez</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Jamie</forename><surname>Kerr</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Jared</forename><surname>Mueller</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Jeffrey</forename><surname>Ladish</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Joshua</forename><surname>Landau</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Kamile</forename><surname>Lukosuite</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Michael</forename><surname>Sellitto</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Nicholas</forename><surname>Schiefer</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Noemi</forename><surname>Mercado</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Robert</forename><surname>Lasenby</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Robin</forename><surname>Larson</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Sam</forename><surname>Ringer</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Scott</forename><surname>John- Ston</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">El</forename><surname>Showk</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Tamera</forename><surname>Lanham</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Timothy</forename><surname>Telleen-Lawton</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Tom</forename><surname>Con- Erly</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Samuel</forename><forename type="middle">R</forename><surname>Bow- Man</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Jared</forename><forename type="middle">2022b</forename><surname>Kaplan</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">KAIST AI</orgName>
+							</affiliation>
+						</author>
+						<title level="a" type="main">ORPO: Monolithic Preference Optimization without Reference Model</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date/>
+						</imprint>
+					</monogr>
+					<idno type="MD5">907FC138534E7206FC926A00CD68DD27</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-10-24T16:23+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>While recent preference alignment algorithms for language models have demonstrated promising results, supervised fine-tuning (SFT) remains imperative for achieving successful convergence. In this paper, we revisit SFT in the context of preference alignment, emphasizing that a minor penalty for the disfavored style is sufficient for preference alignment. Building on this foundation, we introduce a straightforward reference model-free monolithic odds ratio preference optimization algorithm, ORPO, eliminating the need for an additional preference alignment phase. We demonstrate, both empirically and theoretically, that the odds ratio is a sensible choice for contrasting favored and disfavored styles during SFT across diverse sizes from 125M to 7B. Specifically, finetuning Phi-2 (2.7B), Llama-2 (7B), and Mistral (7B) with ORPO on the UltraFeedback alone surpasses the performance of state-of-the-art language models including Llama-2 Chat and Zephyr with more than 7B and 13B parameters: achieving up to 12.20% on AlpacaEval 2.0 (Figure <ref type="figure">1</ref>), and 7.32 in MT-Bench (Table <ref type="table">2</ref>). We release code 1 and model checkpoints 2 for Mistral-ORPO-α and Mistral-ORPO-β.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>Pre-trained language models (PLMs) with vast training corpora such as web texts <ref type="bibr" target="#b15">(Gokaslan and Cohen, 2019;</ref><ref type="bibr">Penedo et al., 2023)</ref> or textbooks <ref type="bibr">(Li et al., 2023c)</ref> have shown remarkable abilities in diverse natural language processing (NLP) tasks <ref type="bibr" target="#b3">(Brown et al., 2020;</ref><ref type="bibr" target="#b57">Zhang et al., 2022;</ref><ref type="bibr" target="#b45">Touvron et al., 2023;</ref><ref type="bibr" target="#b4">Jiang et al., 2023;</ref><ref type="bibr">Almazrouei et al., 2023)</ref>. However, the models must undergo further tuning to be usable in downstream applications, typically through processes such as instruction tuning and preference alignment.</p><p>Instruction-tuning <ref type="bibr" target="#b50">(Wei et al., 2022;</ref><ref type="bibr" target="#b44">Taori et al., 2023;</ref><ref type="bibr" target="#b49">Wang et al., 2023;</ref><ref type="bibr">Zhou et al., 2023a</ref>) trains 1 GitHub: <ref type="url" target="https://github.com/xfactlab/orpo">https://github.com/xfactlab/orpo</ref> 2 Models: ORPO collection models to follow task descriptions given in natural language, which enables models to generalize well to previously unseen tasks. However, despite the ability to follow instructions, models may generate harmful or unethical outputs <ref type="bibr">(Carlini et al., 2021;</ref><ref type="bibr" target="#b13">Gehman et al., 2020;</ref><ref type="bibr" target="#b34">Pryzant et al., 2023)</ref>.</p><p>To further align these models with human values, additional training is required with pairwise preference data using techniques such as reinforcement learning with human feedback <ref type="bibr" target="#b3">(Ziegler et al., 2020;</ref><ref type="bibr">Stiennon et al., 2022, RLHF)</ref> and direct preference optimization <ref type="bibr">(Rafailov et al., 2023, DPO)</ref>. Existing preference alignment methods typically consist of a multi-stage process, as shown in Figure <ref type="figure" target="#fig_1">2</ref>, typically requiring a second reference model and a separate warm-up phase with supervised fine-tuning (SFT) <ref type="bibr" target="#b3">(Ziegler et al., 2020;</ref><ref type="bibr" target="#b35">Rafailov et al., 2023;</ref><ref type="bibr" target="#b52">Wu et al., 2023)</ref>, which adds additional resource overheads.</p><p>We propose a novel alignment method, Odds Ratio Preference Optimization (ORPO), which adds a penalization term that steers the model away from learning undesired generation styles during SFT. In evaluation, fine-tuning Phi-2 (2.7B), Llama-2 (7B), and Mistral (7B) with ORPO results in higher win rates in AlpacaEval 2.0 , when compared to DPO with Phi-2 (2.7B) (+5.57%), and official checkpoints for Llama-2 (7B) Chat (+4.48%) and Llama-2 (13B) Chat (+1.74%), and Zephyrα (7B) (+2.98%), respectively. In our analyses, we demonstrate empirical superiority by comparing ORPO against established methods for model alignment, RLHF, and DPO for different datasets and model sizes. Further analysis from theoretical, empirical, and efficiency perspectives offers the following enhancements over previous methods: (1) requiring neither a reference model nor SFT stage and (2) less than half of the computational load in actual training. We release the training code and the checkpoints for Mistral-ORPO-α (7B) and Mistral-ORPO-β (7B), which achieve 7.24 and 7.32 in MT-Bench and 11.33% and 12.20% on AlpacaEval 2.0 , as shown in Figure <ref type="figure" target="#fig_0">1</ref> and Table <ref type="table">2</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Related Works</head><p>Alignment with reinforcement learning Reinforcement learning with human feedback (RLHF) commonly applies the Bradley-Terry model (Bradley and <ref type="bibr" target="#b2">Terry, 1952)</ref> to estimate the probability of a pairwise competition between two independently evaluated instances. An additional reward model is trained to score instances. Reinforcement learning algorithms such as proximal policy optimization (PPO) <ref type="bibr" target="#b40">(Schulman et al., 2017)</ref> are employed to train the model to maximize the score of the reward model for the chosen response, resulting in language models that are trained with human preferences <ref type="bibr" target="#b3">(Ziegler et al., 2020;</ref><ref type="bibr" target="#b43">Stiennon et al., 2022;</ref><ref type="bibr" target="#b31">Ouyang et al., 2022)</ref>. However, RLHF faces challenges of extensive hyperparameter searching due to the instability of PPO <ref type="bibr" target="#b35">(Rafailov et al., 2023;</ref><ref type="bibr" target="#b52">Wu et al., 2023)</ref> and the sensitivity of the reward models <ref type="bibr" target="#b11">(Gao et al., 2022;</ref><ref type="bibr" target="#b48">Wang et al., 2024)</ref>. Therefore, there is a demanding need for stabler preference alignment algorithms.</p><p>Alignment without reward model Recently proposed techniques for preference alignment mitigate the need for reinforcement learning <ref type="bibr" target="#b35">(Rafailov et al., 2023;</ref><ref type="bibr" target="#b42">Song et al., 2023;</ref><ref type="bibr">Azar et al., 2023;</ref><ref type="bibr" target="#b10">Ethayarajh et al., 2024;</ref><ref type="bibr" target="#b53">Xu et al., 2024;</ref><ref type="bibr" target="#b38">Rosset et al., 2024)</ref>. <ref type="bibr" target="#b35">Rafailov et al. (2023)</ref> introduce direct preference optimization (DPO), which removes the reward modeling stage. <ref type="bibr">Azar et al. (2023)</ref> prevented potential overfitting problems in DPO through identity preference optimization (IPO). <ref type="bibr" target="#b10">Ethayarajh et al. (2024)</ref> and <ref type="bibr" target="#b4">Cai et al. (2023)</ref> proposed Kahneman-Tversky Optimization (KTO) and Unified Language Model Alignment (ULMA) that does not require the pair-wise preference dataset, unlike RLHF and DPO. <ref type="bibr" target="#b42">Song et al. (2023)</ref> and <ref type="bibr" target="#b53">Xu et al. (2024)</ref> further suggest incorporation of the softmax value of the reference response set in the negative log-likelihood loss to merge the supervised finetuning and preference alignment.</p><p>Alignment with supervised fine-tuning There have been approaches to build human-aligned language models by conducting supervised finetuning (SFT) only with filtered datasets <ref type="bibr">(Zhou et al., 2023a;</ref><ref type="bibr">Li et al., 2023a;</ref><ref type="bibr" target="#b18">Haggerty and Chandra, 2024;</ref><ref type="bibr">Zhou et al., 2023b;</ref><ref type="bibr" target="#b9">Dong et al., 2023;</ref><ref type="bibr" target="#b55">Yuan et al., 2023;</ref><ref type="bibr" target="#b17">Gulcehre et al., 2023)</ref>. <ref type="bibr">Zhou et al. (2023a)</ref> demonstrated that SFT with a small amount of data with fine-grained curation could be sufficient for building helpful language model assistants. Furthermore, <ref type="bibr">Li et al. (2023a)</ref> and <ref type="bibr" target="#b18">Haggerty and Chandra (2024)</ref> proposed an iterative process of fine-tuning the supervised fine-tuned language models with their own generations after fine-grained selection of aligned generations and <ref type="bibr">Zhou et al. (2023b)</ref> suggested that a curated subset of preference dataset is sufficient for alignment.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">Odds Ratio Preference Optimization</head><p>We introduce a novel preference alignment algorithm, Odds Ratio Preference Optimization (ORPO), which incorporates an odds ratio-based penalty to the conventional supervised fine-tuning (SFT) loss (i.e., negative log-likelihood (NLL)) for differentiating the generation styles between favored and disfavored responses. We discuss the effects of SFT on preference alignment in Section 3.2 and explain the mechanism of ORPO in Section 3.3.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1">Preliminaries</head><p>Given a language model π θ and an input sequence x, the average log-likelihood of π θ generating the output sequence y is computed as:</p><formula xml:id="formula_0">log P θ (y|x) = 1 |y| m t=1 log π θ (y t |x, y &lt;t ).</formula><p>And the odds of generating the output sequence y given an input sequence x is defined as:</p><formula xml:id="formula_1">odds θ (y|x) = P θ (y|x) 1 -P θ (y|x)</formula><p>,</p><p>where we use exponentiated average log-likelihood P θ (y|x) to represent the likelihood of response y given prompt x in the form of probability.</p><p>We adopt the odds to model the preference given the likelihood of binary outcomes, preferred and dispreferred responses <ref type="bibr" target="#b35">(Rafailov et al., 2023)</ref>. While this is due to model a binary aspect of preferences, setting in which the odds ratio is applied, the use of average log-likelihood in alignment methods is widely studied for length regularization <ref type="bibr" target="#b55">(Yuan et al., 2023;</ref><ref type="bibr" target="#b32">Park et al., 2024;</ref><ref type="bibr" target="#b16">Grinsztajn et al., 2024;</ref><ref type="bibr" target="#b30">Meng et al., 2024)</ref>.</p><p>Intuitively, odds θ (y|x) = k implies that it is k times more likely for the model π θ to generate the output sequence y than not generating it. Thus, the odds ratio of the chosen response y w over the rejected response y l , OR θ (x, y w , y l ),</p><formula xml:id="formula_2">OR θ (x, y w , y l ) = odds θ (y w |x) odds θ (y l |x) ,<label>(1)</label></formula><p>indicates how much more likely it is for the model θ to generate y w than y l given input x.</p><p>-2.5 -2.4 -2.3 -2.2 0 5000 10000 15000 Training Step Log Probability Response Type Chosen Rejected Figure 3: Log probabilities for chosen and rejected responses during OPT-350M model fine-tuning on HH-RLHF dataset. Despite only chosen responses being used for supervision, rejected responses show a comparable likelihood of generation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2">Revisiting Supervised Fine-tuning</head><p>Methods in RLHF often leverage SFT to ensure the stable update of the active policy <ref type="bibr" target="#b40">(Schulman et al., 2017)</ref>, using the SFT model as a reference policy. Even in non-RL alignment methods, empirical findings indicate that the SFT is crucial for achieving convergence to desired results <ref type="bibr" target="#b35">(Rafailov et al., 2023;</ref><ref type="bibr" target="#b46">Tunstall et al., 2023)</ref>. In detail, SFT uses cross-entropy loss to penalize the model if the predicted logits for the reference answers are low:</p><formula xml:id="formula_3">L SFT (x, y) = - 1 m m k=1 log P (x (k) , y (k) ) (2) = - 1 m m k=1 |V | i=1 y (k) i • log(p (k) i ),<label>(3)</label></formula><p>where y i is a boolean value that indicates if ith token in the vocabulary set V is a label token, p i refers to the probability of ith token, and m is the length of sequence. Cross-entropy alone gives no direct penalty or compensation for the logits of nonanswer tokens <ref type="bibr" target="#b27">(Lin et al., 2017)</ref> as y i will be set to 0. While cross-entropy is generally effective for domain adaptation <ref type="bibr" target="#b29">(Mao et al., 2023)</ref>, there are no mechanisms to penalize rejected responses when compensating for the chosen responses. Therefore, the log probabilities of the tokens in the rejected responses increase along with the chosen responses, which is not desired from the viewpoint of preference alignment.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Generalization over both response styles</head><p>We conduct a pilot study to empirically demonstrate the miscalibration of chosen and rejected responses with supervised fine-tuning alone. We fine-tune OPT-350M <ref type="bibr" target="#b57">(Zhang et al., 2022)</ref> on the chosen responses only from the HH-RLHF dataset <ref type="bibr">(Bai et al., 2022b)</ref>. Throughout the training, we monitor the log probability of rejected responses for each batch and report this in Figure <ref type="figure">3</ref>. Both the log probability of chosen and rejected responses exhibited a simultaneous increase. This can be interpreted from two different perspectives. First, the cross-entropy loss effectively guides the model toward the intended domain (e.g., dialogue). However, the absence of a penalty for unwanted generations results in rejected responses sometimes having even higher log probabilities than the chosen ones.</p><p>Penalizing undesired generations Appending an unlikelihood penalty to the loss has successfully reduced unwanted degenerative traits in models <ref type="bibr" target="#b51">(Welleck et al., 2019;</ref><ref type="bibr" target="#b23">Li et al., 2020)</ref>. For example, to prevent repetitions, an unwanted token set of previous contexts, k ∈ C recent , is disfavored by adding the following term to (1p</p><p>i ) to the loss which penalizes the model for assigning high probabilities to recent tokens. Motivated by SFT ascribing high probabilities to rejected tokens (Figure <ref type="figure">3</ref>) and the effectiveness of appending penalizing unwanted traits, we design a monolithic preference alignment method that dynamically penalizes the disfavored response for each query without the need for crafting sets of rejected tokens.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3">Objective Function of ORPO</head><p>The objective function of ORPO in Equation 4 consists of two components: 1) supervised fine-tuning (SFT) loss (L SF T ); 2) odd ratio loss (L OR ) for the tuple d = (x, y l , y w ) ∼ D:</p><formula xml:id="formula_5">L(d; θ) = L SF T (x, y w ; θ) + λL OR (d; θ). (4)</formula><p>L SF T follows the conventional NLL loss formulation in Equation (3) to maximize the likelihood of generating the reference tokens as previously discussed in Section 3.2. L OR maximizes the odds ratio between the likelihood of generating the favored response y w and the disfavored response y l :</p><formula xml:id="formula_6">L OR (d; θ) = -log σ log odds θ (y w |x) odds θ (y l |x) .<label>(5)</label></formula><p>We wrap the log odds ratio with the log sigmoid function so that L OR could be minimized by increasing the log odds ratio between y w and y l .</p><p>Weighting the L OR term with λ tailors the pretrained language model to adapt to the specific subset of the desired domain and disfavor generations in the rejected response sets. We further discuss the role of the odds ratio in learning the preference in Appendix D, showing that a simple probability ratio could lead to an excessive likelihood margin between the chosen and rejected responses.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.4">Gradient Analysis</head><p>We provide the derivation of ∇ θ L OR in Appendix A. Analysis of the gradient of L OR justifies using the odds ratio loss. Where the two terms,</p><formula xml:id="formula_7">∇ θ L OR = δ(d) • h(d),<label>(6)</label></formula><p>have complementary roles: δ(d) penalizes the wrong predictions of the model and h(d) contrasts between chosen and rejected responses:</p><formula xml:id="formula_8">δ(d) = 1 + odds θ P (y w |x) odds θ P (y l |x) -1 (7) h(d) = ∇ θ log P θ (y w |x) 1 -P θ (y w |x) - ∇ θ log P θ (y l |x) 1 -P θ (y l |x) .<label>(8)</label></formula><p>When the odds of the favored responses are relatively higher than the disfavored responses, δ(d) in Equation <ref type="formula">7</ref>will converge to 0. This indicates that the δ(d) will play the role of a penalty term, accelerating the parameter updates if the model is more likely to generate the rejected responses.</p><p>In equation 8, h(d) implies a weighted contrast between the gradients from the chosen and rejected responses. Specifically, the term 1 -P (y|x) in the denominators amplifies the gradients when the corresponding side of the likelihood, P (y|x), is high. For chosen responses, this will accelerate the model's adaptation toward the distribution of chosen responses as the likelihood increases.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">Experimental Settings</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1">Training Configurations</head><p>Models and datasets We finetune state-of-theart pre-trained language models with ORPO by different scales, Phi-2 (2.7B) <ref type="bibr" target="#b20">(Javaheripi and Bubeck, 2023)</ref>, Llama-2 (7B) <ref type="bibr" target="#b45">(Touvron et al., 2023)</ref> and Mistral (7B) <ref type="bibr" target="#b4">(Jiang et al., 2023)</ref> on Binarized Ultra-Feedback <ref type="bibr" target="#b46">(Tunstall et al., 2023)</ref>. Furthermore, to assess the controlled scalability of ORPO, we finetune a series of OPT models <ref type="bibr">(Zhang et al.,</ref>   <ref type="bibr">(2023)</ref>. We notate this by prepending "+" to each algorithm (e.g., +DPO). Further training details are in Appendix C. We filtered out instances where y w = y l or where y w = ∅, or y l = ∅.</p><p>Reward models We train OPT-350M and OPT-1.3B on each dataset for a single epoch for reward modeling with the objective function in Equation 9 <ref type="bibr" target="#b3">(Ziegler et al., 2020)</ref>. The OPT-350M reward model was used for PPO, and OPT-1.3B reward model was used to assess the generations of finetuned models. We refer to these reward models as RM-350M and RM-1.3B in Section 5.</p><p>-E (x,y l ,yw) [log σ (r(x, y w )r(x, y l ))] (9)</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Leaderboard Evaluation</head><p>In Section 5.1, we evaluate the models using the AlpacaEval 1.0 and AlpacaEval 2.0 <ref type="bibr">(Li et al., 2023b)</ref> benchmarks, comparing ORPO to other instructiontuned models reported in the official leaderboard, 3 including Llama-2 Chat (7B) and (13B) <ref type="bibr" target="#b45">(Touvron et al., 2023)</ref>, and Zephyr α and β <ref type="bibr" target="#b46">(Tunstall et al., 2023)</ref>. Similarly, in Section 5.2, we evaluate the models with MT-Bench <ref type="bibr" target="#b55">(Zheng et al., 2023</ref>) and 3 <ref type="url" target="https://tatsu-lab.github.io/alpaca_eval/">https://tatsu-lab.github.io/alpaca_eval/</ref> report the results and the scores of the same models reported in the official leaderboard. <ref type="foot" target="#foot_0">4</ref> Using GPT-4 <ref type="bibr">(Achiam et al., 2023)</ref> as an evaluator in AlpacaEval 1.0 , we assess if the trained model can be preferred over the responses generated from text-davinci-003. For AlpacaEval 2.0 , we used GPT-4-turbo<ref type="foot" target="#foot_1">foot_1</ref> as an evaluator following the default setting. We assess if the generated responses are favored over those generated from GPT-4. Finally, using GPT-4 as an evaluator in MT-Bench, we check if the models can follow the instructions with hard answers in a multi-turn conversation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">Experimental Results</head><p>First, we assess the general instruction-following abilities of the models by comparing the preference alignment algorithms in single-turn (Section 5.1) and multi-turn (Section 5.2) instruction following benchmarks. Then, we compare ORPO against other alignment methods in the controlled setting, using OPT with various model sizes (Section 5.3).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1">Single-turn Instruction Following</head><p>Phi-2 (2.7B) ORPO improved pre-trained Phi-2 to exceed the performance of the Llama-2 Chat instruction-following language model by only using UltraFeedback as the instruction-tuning dataset, as shown in Table <ref type="table" target="#tab_1">1</ref>. λ of 0.25 was applied for Phi-2, resulting in 71.80% and 6.35% in AlpacaEval.</p><p>Llama-2 (7B) Notably, UltraFeedback and ORPO with λ of 0.2 on Llama-2 (7B) resulted in higher AlpacaEval scores than the chat versions of both 7B and 13B scale trained with RLHF, eventually showing 81.26% and 9.44% in both AlpacaEvals. In contrast, in our controlled experimental setting of conducting one epoch of SFT and three epochs of DPO following <ref type="bibr" target="#b46">Tunstall et al. (2023)</ref> and <ref type="bibr" target="#b35">Rafailov et al. (2023)</ref>, Llama-2 + SFT and Llama-2 + SFT + DPO yielded models with outputs that could not be evaluated. This supports the efficacy of ORPO, in which the model can rapidly learn the desired domain and the preference with limited data. This aligns with the h(d) examination in the gradient of our method studied in Section 3.4.</p><p>Mistral-ORPO-α (7B) Furthermore, fine-tuning Mistral (7B) with single-turn conversation dataset, UltraFeedback, and ORPO with λ of 0.1 outperforms Zephyr series, which are the Mistral (7B) models fine-tuned with SFT on 200K UltraChat <ref type="bibr" target="#b8">(Ding et al., 2023)</ref> and DPO on the full Ultra-Feedback. As shown in Table <ref type="table" target="#tab_1">1</ref>, Mistral-ORPO-α (7B) achieves 87.92% and 11.33%, which exceeds Zephyr α by 1.98% and Zephyr β by 0.34% in AlpacaEval 2.0 . The sample responses and corresponding references from GPT-4 can be found in Appendix I.</p><p>Mistral-ORPO-β (7B) Using the same configuration of Mistral-ORPO-α (7B), we additionally compare fine-tuning Mistral on the cleaned version of the UltraFeedback <ref type="bibr" target="#b1">(Bartolome et al., 2023)</ref> to demonstrate the effect of the data quality. While the sizes of datasets are similar, ORPO gains further advantages from the dataset quality by scoring over 91% and 12% on AlpacaEval, as shown in Table 1. Further evaluations on instruction-following with IFEval <ref type="bibr">(Zhou et al., 2023c)</ref> and four different benchmarks are in the Appendices E and F.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2">Multi-turn Instruction Following</head><p>With our best model, Mistral-ORPO-α (7B) and Mistral-ORPO-β (7B), we also assess the multi-turn instruction-following skills with deterministic answers (e.g., math) through MT-Bench.</p><p>As shown in Table <ref type="table">2</ref>, Mistral-ORPO series exceeds larger instruction-following chat models, especially Llama-2-Chat (70B). Eventually, Mistral-ORPO-α (7B) and Mistral-ORPO-β (7B) scored 7.23 and 7.32 in MT-Bench without being exposed to the multi-turn conversation dataset during training, while Zephyr-β was trained on 200k multi-turn conversations during SFT.</p><p>MT-Bench 1 st Turn 2 nd Turn Average Llama-2-7B Chat 6.41 6.13 6.27 Llama-2-13B Chat 7.06 6.24 6.65 Llama-2-70B Chat 6.99 6.73 6.86 Mistral-ORPO-α 7.49 6.96 7.23 Zephyr-β 7.68 6.98 7.33 Mistral-ORPO-β 7.64 7.00 7.32 Table 2: MT-Bench results of instruction-following language models. Mistral-ORPO-β surpasses or is on par with the models trained on more data.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.3">Case Study with Smaller Models</head><p>We assess the win rate of ORPO over other preference alignment methods using different scales of OPT models, including supervised fine-tuning (SFT), PPO, and DPO, using RM-1.3B to understand the effectiveness of ORPO in Tables <ref type="table" target="#tab_3">3</ref> and <ref type="table">4</ref>. Additionally, we visually verify that ORPO can effectively enhance the expected reward compared to SFT in Figure <ref type="figure" target="#fig_2">4</ref>. OPT-1.3B 78.0 (0.16) 70.9 (0.52) 65.9 (0.33) Table <ref type="table" target="#tab_3">3</ref>: Average win rate (%) and its standard deviation of ORPO and standard deviation over other methods on HH-RLHF dataset for three rounds. Sampling decoding with a temperature of 1.0 was used on the test set. ORPO vs SFT +DPO +PPO OPT-125M 73.2 (0.12) 48.8 (0.29) 71.4 (0.28) OPT-350M 80.5 (0.54) 50.5 (0.17) 85.8 (0.62) OPT-1.3B 69.4 (0.57) 57.8 (0.73) 65.7 (1.07) Table <ref type="table">4</ref>: Average win rate (%) and its standard deviation of ORPO and standard deviation over other methods on UltraFeedback dataset for three rounds. Sampling decoding with a temperature of 1.0 was used. computational costs of DPO and ORPO in Section 6.1. Then, we analyze ORPO from the reward maximization objective in Section 6.2. Furthermore, we measure the lexical diversity of the models trained with ORPO and DPO in Section 6.3.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>HH-RLHF In</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.1">Computational Efficiency</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>DPO</head><p>ORPO Training Time (hours) (↓) 12.6 5.5 Max Batch (↑) 1 4</p><p>Table 5: Computational costs of DPO and ORPO for 1 epoch on UltraFeedback using 2 NVIDIA A100 GPUs with AdamW and DeepSpeed ZeRO 3. We exclude SFT training time for DPO.</p><p>As depicted in Figure <ref type="figure" target="#fig_1">2</ref>, ORPO's efficiency de-rives from two aspects: 1) no reference model and 2) no separate SFT stage. In that sense, ORPO is computationally more efficient than RLHF and DPO in both time and memory.</p><p>We demonstrate this through controlled training on DPO and ORPO with 2 NVIDIA A100 GPUs using DeepSpeed ZeRO 3 <ref type="bibr">(Rajbhandari et al., 2021)</ref> and AdamW <ref type="bibr" target="#b28">(Loshchilov and Hutter, 2019)</ref> on Mistral (7B). As shown in Table <ref type="table">5</ref>, ORPO reduces 56.3% of training time compared to that of DPO and was able to fit a four times larger batch size per device. Furthermore, as DPO typically requires a pre-supervised fine-tuning (SFT) stage, the actual computational efficiency difference becomes more drastic as the SFT datasets are quite large<ref type="foot" target="#foot_3">foot_3</ref> . The reference model (π SF T ) in the context of RLHF and DPO denotes the model trained with SFT, which will be the base model for updating the parameters with PPO or DPO <ref type="bibr" target="#b3">(Ziegler et al., 2020;</ref><ref type="bibr" target="#b35">Rafailov et al., 2023)</ref>. Thus, two π SF T s, a frozen reference model and the model undergoing tuning, are required during training. Furthermore, in theory, two forward passes should be calculated for each model to acquire the logits for the chosen and rejected responses. In other words, four forward passes happen for a single batch. On the other hand, a reference model is not required in ORPO as π SF T is directly updated. This leads to half the number of forward passes required for each batch.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.2">Overall Reward Distribution</head><p>In addition to the reward model win rate discussed in Section 5.3, we compare the reward distribution of the responses generated with respect to the test set of the UltraFeedback and HH-RLHF in Figure <ref type="figure" target="#fig_2">4</ref>. Regarding the SFT reward distribution as a default, PPO, DPO, and ORPO shift it in both datasets. However, the magnitude of reward shifts for each algorithm differs.</p><p>In Figure <ref type="figure" target="#fig_2">4</ref>, RLHF (i.e., SFT + PPO) has some abnormal properties of the distribution with a low expected reward. We attribute this to empirical evidence of the instability and reward mismatch problem <ref type="bibr" target="#b35">(Rafailov et al., 2023;</ref><ref type="bibr" target="#b11">Gao et al., 2022;</ref><ref type="bibr" target="#b41">Shen et al., 2023)</ref> as the RLHF models were trained with RM-350M and assessed with RM-1.3B. Meanwhile, it is notable that the ORPO distribution (red) is mainly located on the very right side of each subplot, indicating higher expected rewards. Recalling the intent of preference alignment, the distributions in Figure <ref type="figure" target="#fig_2">4</ref> indicate that ORPO tends to fulfill the aim of preference alignment for all model sizes.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.3">Lexical Diversity</head><p>The lexical diversity of the preference-aligned language models was studied in previous works <ref type="bibr" target="#b22">(Kirk et al., 2024)</ref>. We expand the concept of per-input and across-input diversity introduced in <ref type="bibr" target="#b22">Kirk et al. (2024)</ref> by using Gemini-Pro <ref type="bibr" target="#b14">(Gemini Team et al., 2023)</ref> as an embedding model, which is suitable for assessing the diversity of instruction-following language models by encoding a maximum of 2048 tokens. The diversity metric with the given set of sampled responses is defined as: </p><formula xml:id="formula_9">O i θ := {y j ∼ θ(y|x i )|j = 1, 2, ..., K}<label>(10)</label></formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D(O</head><formula xml:id="formula_10">i θ ) = 1 2 • N -1 i=1 N j=i+1 cos(h i , h j ) N • (N -1)<label>(11)</label></formula><p>where cos(h i , h j ) refers to the cosine similarity between the embedding h i and h j . 5 different responses are sampled with a temperature of 1.0 to 160 queries in AlpacaEval (i.e., K = 5, N = 160) using Phi-2 and Llama-2 trained with ORPO and DPO. We report the results in Table <ref type="table" target="#tab_5">6</ref>.</p><p>Per Input Diversity (PID) We average the inputwise average cosine similarity between the generated samples with Equation <ref type="formula" target="#formula_11">12</ref>to assess the perinput diversity. In Table <ref type="table" target="#tab_5">6</ref>, ORPO models have the highest average cosine similarity in the first column for both models, which implies the lowest diversity per input. This indicates that ORPO generally assigns high probabilities to the desired tokens, while DPO has a relatively smoother logit distribution.</p><formula xml:id="formula_11">PID D (θ) = 1 N N i=1 D(O i θ )<label>(12)</label></formula><p>Across Input Diversity (AID) Using 8 samples generated per input, we sample the first item for each input and examine their inter cosine similarity with Equation <ref type="formula" target="#formula_12">13</ref>for across-input diversity. Unlike per-input diversity, it is noteworthy that Phi-2 (ORPO) has lower average cosine similarity in the second row of Table <ref type="table" target="#tab_5">6</ref>. We can infer that ORPO triggers the model to generate more instructionspecific responses than DPO.</p><formula xml:id="formula_12">AID D (θ) = D N i=1 O i , θ,j=1<label>(13)</label></formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.4">Minimizing L OR</head><p>We demonstrate that models trained with ORPO learned to reflect the preference throughout the training process. We monitored the log probabilities of the chosen and rejected responses and the log odds ratio with λ = 1.0. With the same dataset and model as Figure <ref type="figure">3</ref>, Figure <ref type="figure" target="#fig_3">5</ref> shows that the log probability of rejected responses is diminishing while that of chosen responses is on par with Figure <ref type="figure">3</ref> as the log odds ratio increases. This indicates that ORPO is successfully preserving the domain adaptation of SFT while the penalty term L OR induces the model to lower the likelihood of unwanted generations. We discuss the effect of λ in Equation <ref type="formula">4</ref>in Appendix G, studying the proclivity of the log probability margin between the favored and disfavored responses with respect to λ.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7">Conclusion</head><p>In this paper, we introduced a reference-free monolithic preference alignment method, odds ratio preference optimization (ORPO), by revisiting and understanding the value of the supervised fine-tuning (SFT) phase in the context of preference alignment. ORPO was consistently preferred by the fine-tuned reward model against SFT and RLHF across the scale, and the win rate against DPO increased as the model size increased. Furthermore, we validate the scalability of ORPO with 2.7B and 7B pre-trained language models by exceeding the larger state-of-the-art instruction-following language models in AlpacaEval. Specifically, Mistral-ORPO-α and Mistral-ORPO-β achieved 11.33% and 12.20% in AlpacaEval 2.0 , 7.23 and 7.32 in MT-Bench, thereby underscoring the efficiency and effectiveness of ORPO.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Limitations</head><p>While conducting a comprehensive analysis of the diverse preference alignment methods, including DPO and RLHF, we did not incorporate a more comprehensive range of preference alignment algorithms. We leave the broader range of comparison against other methods as future work, along with scaling our method to over 7B models. In addition, we will expand the fine-tuning datasets into diverse domains and qualities, thereby verifying the generalizability of our method in various NLP downstream tasks. Finally, we would like to study the internal impact of our method on the pre-trained language model, expanding the understanding of preference alignment procedure to not only the supervised fine-tuning stage but also consecutive preference alignment algorithms.</p><p>A Derivation of ∇ θ L OR with Odds Ratio Suppose that g(x, y l , y w ) = odds θ P (yw|x)</p><formula xml:id="formula_13">odds θ P (y l |x) ∇ θ L OR = ∇ θ log σ log odds θ P (y w |x) odds θ P (y l |x)<label>(14)</label></formula><p>= σ ′ (log g(x, y l , y w )) σ (log g(x, y l , y w ))</p><p>= σ (-log g(x, y l , y w )) g(x, y l , y w )</p><p>• ∇ θ g(x, y l , y w )</p><p>= σ (-log g(x, y l , y w )) • ∇ θ log g(x, y l , y w )</p><p>= 1 + odds θ P (y w |x) odds θ P (y l |x)</p><p>-1</p><p>• ∇ θ log odds θ P (y w |x)</p><formula xml:id="formula_17">odds θ P (y l |x)<label>(18)</label></formula><p>In Equation <ref type="formula" target="#formula_17">18</ref>, the remaining derivative can be further simplified by replacing 1 -P θ (y|x) terms where P (y|x) = N N t P θ (y t |x, y &lt;t ) in odds θ (y|x) as follows.</p><formula xml:id="formula_18">∇ θ log (1 -P θ (y|x)) = ∇ θ (1 -P θ (y|x)) 1 -P θ (y|x) (19) = -∇ θ P θ (y|x) 1 -P θ (y|x)<label>(20)</label></formula><p>= -P θ (y|x) 1 -P θ (y|x)</p><p>• ∇ θ log P θ (y|x) As an AI developed by OpenAI, I don't have personal opinions. However, I can share that ChatGPT is an advanced language model that has received considerable attention for its ability to generate human-like text. It's designed to assist users in a wide range of tasks, from answering questions to creating content and engaging in conversation.</p><p>ChatGPT has been praised for its fluency and versatility in handling various topics and for its potential to streamline and enhance communication in both personal and professional settings. However, like any technology, it also faces challenges and criticisms, such as ensuring the accuracy of information, preventing misuse, and managing ethical considerations surrounding AI-generated content.</p><p>Overall, ChatGPT represents a significant achievement in natural language processing and has sparked discussions about the future of AI in our daily lives.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">Mistral-ORPO-β:</head><p>As an AI language model, I am an example of the technology used in ChatGPT. I can provide a personal opinion, but please keep in mind that I am designed to be socially unbiased and positive in nature.</p><p>ChatGPT is an impressive advancement in artificial intelligence and natural language processing. It has the ability to understand and generate human-like text, making it possible for users to have engaging and informative conversations with the AI. This technology has the potential to revolutionize various industries, including customer support, education, content creation, and more.</p><p>However, it's important to recognize that ChatGPT, like any AI technology, is not perfect. It may sometimes provide inaccurate or biased information due to the limitations of its training data or the complexity of human language. It's crucial to verify the facts and use critical thinking when interacting with AI systems like ChatGPT.</p><p>Overall, ChatGPT represents a significant step forward in the field of AI, and its potential applications are vast. As a responsible user, it's important to approach this technology with a critical and respectful mindset, recognizing its strengths and limitations.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Figure 1 :</head><label>1</label><figDesc>Figure 1: AlpacaEval 2.0 result of Llama-2 (7B) and Mistral (7B) fine-tuned with ORPO (blue) in comparison to the state-of-the-art models. Notably, Mistral-ORPO-α &amp; β surpasses Zephyr β and Llama-2-Chat (13B) with a single epoch training exclusively on the UltraFeedback.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Figure 2 :</head><label>2</label><figDesc>Figure 2: Comparison of model alignment techniques. ORPO aligns the language model without a reference model in a single-step manner by assigning a weak penalty to the rejected responses and a strong adaptation signal to the chosen responses with a simple log odds ratio term appended to the negative log-likelihood loss.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>Figure 4 :</head><label>4</label><figDesc>Figure 4: Reward distribution comparison between OPT-125M (left), OPT-350M (middle), and OPT-1.3B (right) trained with SFT (blue), RLHF (green), DPO (orange), and ORPO (red) on the test set of UltraFeedback (top) and HH-RLHF (bottom) using the RM-1.3B. While the rewards of the trained models are roughly normal and preference optimization algorithms (RLHF, DPO, and ORPO) tend to move the reward distribution in the positive direction, ORPO is on par or better than RLHF and DPO in increasing the expected reward.</figDesc><graphic coords="7,70.86,203.84,453.09,117.93" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>Figure 5 :</head><label>5</label><figDesc>Figure 5: Average log-likelihood for chosen and rejected responses and log odds ratio per batch. The odds consistently increase during training with ORPO.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head>=</head><figDesc>-odds θ (y|x) • ∇ θ log P θ (y|x)(22)∇ θ log odds θ P (y w |x)odds θ P (y l |x) = ∇ θ log P θ (y w |x) P θ (y l |x) -∇ θ log(1 -P θ (y w |x)) -∇ θ log(1 -P θ (y l |x)) (23) = (1 + odds θ P (y w |x)) ∇ θ log P θ (y w |x) -(1 + odds θ P (y l |x)) ∇ θ log P θ (y l |x)(24)Therefore, the final form of ∇ θ L OR would be∇ θ L OR = 1 + odds θ P (y w |x) 1 + odds θ P (yw|x)odds θ P (y l |x)• ∇ θ log P θ (y w |x) -1 + odds θ P (y l |x)1 + odds θ P (yw|x)odds θ P (y l |x) • ∇ θ log P θ (y l |x)(25)= 1 + odds θ P (y w |x)odds θ P (y l |x) -1 • ∇ θ log P θ (y w |x) 1 -P (y w |x) -∇ θ log P θ (y l |x) 1 -P (y l |x)(26)Query 2 (Mistral-ORPO-β Win): What do you think about ChatGPT?1. GPT-4:</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1"><head>Table 1 :</head><label>1</label><figDesc>2022)Table of instruction-following abilities of each checkpoint measured through AlpacaEval. While clearly showing the improvements in instruction-following abilities after training with ORPO, it is notable that ORPO models exceed RLHF or DPO models of Llama-2 and Mistral (* indicates the results from the official leaderboard.)</figDesc><table><row><cell>Model Name Phi-2 + SFT</cell><cell>Size 2.7B</cell><cell>AlpacaEval 1.0 48.37% (1.77)</cell><cell>AlpacaEval 2.0 0.11% (0.06)</cell></row><row><cell>Phi-2 + SFT + DPO</cell><cell>2.7B</cell><cell>50.63% (1.77)</cell><cell>0.78% (0.22)</cell></row><row><cell>Phi-2 + ORPO (Ours)</cell><cell>2.7B</cell><cell>71.80% (1.59)</cell><cell>6.35% (0.74)</cell></row><row><cell>Llama-2 Chat *</cell><cell>7B</cell><cell>71.34% (1.59)</cell><cell>4.96% (0.67)</cell></row><row><cell>Llama-2 Chat *</cell><cell>13B</cell><cell>81.09% (1.38)</cell><cell>7.70% (0.83)</cell></row><row><cell>Llama-2 + ORPO (Ours)</cell><cell>7B</cell><cell>81.26% (1.37)</cell><cell>9.44% (0.85)</cell></row><row><cell>Zephyr (α) *</cell><cell>7B</cell><cell>85.76% (1.23)</cell><cell>8.35% (0.87)</cell></row><row><cell>Zephyr (β) *</cell><cell>7B</cell><cell>90.60% (1.03)</cell><cell>10.99% (0.96)</cell></row><row><cell>Mistral-ORPO-α (Ours)</cell><cell>7B</cell><cell>87.92% (1.14)</cell><cell>11.33% (0.97)</cell></row><row><cell>Mistral-ORPO-β (Ours)</cell><cell>7B</cell><cell>91.41% (1.15)</cell><cell>12.20% (0.98)</cell></row></table><note><p>scaling from 125M to 1.3B parameters on Anthropic's HH-RLHF(Bai et al., 2022a)  </p><p>and Ultra-Feedback, comparing supervised fine-tuning (SFT), proximal policy optimization (PPO), direct preference optimization (DPO), and compare these to ORPO. PPO and DPO models were fine-tuned with TRL (von Werra et al., 2020) on SFT models trained for a single epoch on the chosen responses following<ref type="bibr" target="#b35">Rafailov et al. (2023)</ref> </p><p>andTunstall et al.   </p></note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3"><head>Table 3 ,</head><label>3</label><figDesc>ORPO outperforms SFT and PPO across all model scales. The highest win rate against SFT and PPO across the size of the model was 78.0% and 79.4%, respectively. Meanwhile, the win rate over DPO correlated to the model's size, with the largest model having the highest win rate: 70.9%.</figDesc><table><row><cell>ORPO vs OPT-125M 84.0 (0.62) 41.7 (0.77) 66.1 (0.26) SFT +DPO +PPO OPT-350M 82.7 (0.56) 49.4 (0.54) 79.4 (0.29)</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_5"><head>Table 6 :</head><label>6</label><figDesc>Lexical diversity of Phi-2 and Llama-2 finetuned with DPO and ORPO. Lower cosine similarity is equivalent to higher diversity. The highest value in each column within the same model family is bolded.</figDesc><table><row><cell>Phi-2 + SFT + DPO Phi-2 + ORPO Llama-2 + SFT + DPO Llama-2 + ORPO</cell><cell>Per Input↓ Across Input↓ 0.6019 0.8012 0.8909 0.5173 0.5658 0.8889 0.9008 0.5091</cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="4" xml:id="foot_0"><p>https://huggingface.co/spaces/lmsys/ chatbot-arena-leaderboard</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="5" xml:id="foot_1"><p>https://platform.openai.com/docs/models/ gpt-4-and-gpt-4-turbo</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_2"><p>UltraFeedback The win rate in UltraFeedback followed similar trends to what was reported in HH-RLHF, as shown in Table4. ORPO was preferred over SFT and PPO for maximum 80.5% and 85.8%, respectively. While consistently preferring ORPO over SFT and PPO, the win rate over DPO gradually increases as the model size increases. The scale-wise trend exceeding DPO will be further shown through 2.7B models in Section 5.1.6 AnalysisIn this section, we study the advantages of ORPO from different perspectives. We first compare the</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="6" xml:id="foot_3"><p>UltraChat dataset consists of 200k instances</p></note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div><head>Acknowledgements</head><p>This work was supported by <rs type="funder">Institute for Information &amp; communications Technology Promotion(IITP)</rs> grants funded by the <rs type="funder">Korea government(MSIT)</rs> (<rs type="grantNumber">RS-2024-00398115</rs>, Research on the reliability and coherence of outcomes produced by <rs type="funder">Generative AI)</rs>, and (<rs type="grantNumber">RS-2019-II190075</rs>, <rs type="funder">Artificial Intelligence Graduate School Program(KAIST)</rs>).</p></div>
+			</div>
+			<listOrg type="funding">
+				<org type="funding" xml:id="_7nmar6x">
+					<idno type="grant-number">RS-2024-00398115</idno>
+				</org>
+				<org type="funding" xml:id="_t2xY3GX">
+					<idno type="grant-number">RS-2019-II190075</idno>
+				</org>
+			</listOrg>
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B Ablation on Probability Ratio and Odds Ratio</head><p>In this section, we continue the discussion in Appendix D through empirical results comparing the log probabilities of chosen and rejected responses in UltraFeedback when trained with probability and odds ratios. Recalling the sensitivity of each ratio discussed in Appendix D, it is expected for the probability ratio to lower the log probabilities of the rejected responses with a larger scale than the odds ratio. This is well-shown in Figure <ref type="figure">6</ref>, which is the log probabilities of each batch while fine-tuning with probability ratio (left) rapidly reaches under -4, while the same phenomenon happens after the over-fitting occurs in the case of odds ratio (right).</p><p>Figure <ref type="figure">6</ref>: The log probability trace when the model is trained with the probability ratio (left) and the odds ratio (right) given the same hyperparameters. The probability ratio leads the rejected responses to have relatively lower log probabilities.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C Experimental Details</head><p>Flash-Attention 2 <ref type="bibr" target="#b6">(Dao, 2023)</ref> is applied for all the pre-trained models for computational efficiency. In particular, the OPT series and Phi-2 (2.7B) were trained with DeepSpeed ZeRO 2 <ref type="bibr" target="#b37">(Rasley et al., 2020)</ref>, Llama-2 (7B) and Mistral (7B) were trained with Fully Sharded Data Parallel(FSDP) <ref type="bibr" target="#b58">(Zhao et al., 2023)</ref>. 7B and 2.7B models were trained with four and two NVIDIA A100, and the rest were trained on four NVIDIA A6000. For optimizer, AdamW optimizer <ref type="bibr" target="#b28">(Loshchilov and Hutter, 2019)</ref> and paged AdamW <ref type="bibr" target="#b7">(Dettmers et al., 2023)</ref> were used, and the linear warmup with cosine decay was applied for the learning rate. For input length, every instance was truncated and padded to 1,024 tokens and 2,048 tokens for HH-RLHF and UltraFeedback, respectively. To guarantee that the models can sufficiently learn to generate the proper response to the conversation history or the complex instruction, we filtered instances with prompts with more than 1,024 tokens. Supervised Fine-tuning (SFT) For SFT, the maximum learning rate was set to 1e-5. Following <ref type="bibr" target="#b3">Ziegler et al. (2020)</ref> and <ref type="bibr" target="#b35">Rafailov et al. (2023)</ref>, the training epoch is set to 1.</p><p>Reinforcement Learning with Human Feedback (RLHF) For RLHF, the hyperparameters were set as Table <ref type="table">7</ref> for UltraFeedback. For the HH-RLHF dataset, the output_min_length and output_max_length were set to 64 and 256.</p><p>Direct Preference Optimization (DPO) For DPO, β was set to 0.1 for every case. The learning rate was set to 5e-6, and the model was trained for three epochs to select the best model by evaluation loss in each epoch. However, in most cases, the first or the second checkpoint was selected as the best model as the evaluation loss increased from the third epoch. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D Comparison to Probability Ratio</head><p>The rationale for selecting the odds ratio instead of the probability ratio lies in its stability. The probability ratio for generating the favored response y w over the disfavored response y l given an input sequence x can be defined as:</p><p>While this formulation has been used in previous preference alignment methods that precede SFT <ref type="bibr" target="#b35">(Rafailov et al., 2023;</ref><ref type="bibr">Azar et al., 2023)</ref>, the odds ratio is a better choice in the setting where the preference alignment is incorporated in SFT as the odds ratio is more sensitive to the model's preference understanding. In other words, the probability ratio leads to more extreme discrimination of the disfavored responses than the odds ratio.</p><p>We visualize this through the sample distributions of the log probability ratio log PR(X 2 |X 1 ) and log odds ratio log OR(X 2 |X 1 ). We sample 50,000 samples each with Equation 28 and plot the log probability ratio and log odds ratio in Figure <ref type="figure">7</ref>. We multiply β for the probability ratio as it is practiced in the probability ratio-based methods and report the cases where β = 0.2 and β = 1.0.</p><p>Recalling that the log sigmoid function is applied to the log probability ratio and log odds ratio, each ratio's scale determines the expected margin between the likelihood of the favored and disfavored styles when the loss is minimized. In that sense, the contrast should be relatively extreme to minimize the log sigmoid loss when PR(X 2 |X 1 ) is inputted instead of OR(X 2 |X 1 ) to the log sigmoid function, regarding the sharp distribution of log PR(X 2 |X 1 ) in Figure <ref type="figure">7</ref>. This results in overly suppressing the logits for the tokens in the disfavored responses in the setting where SFT and preference alignment are incorporated, as the model is not adapted to the domain. We empirically support this analysis through the ablation study in Appendix B. Therefore, the odds ratio is a better choice when the preference alignment is done with SFT due to the mild discrimination of disfavored responses and the prioritizing of the favored responses to be generated.</p><p>Throughout fine-tuning, minimizing the log sigmoid loss leads to either PR(X 2 |X 1 ) or OR(X 2 |X 1 ) to be larger. This is equivalent to the rejected responses' token-wise likelihood, which will generally get smaller. In this context, it is essential to avoid an overly extreme contrast. This precaution is especially important given the sharp distribution of log PR(X 2 |X 1 ) depicted in Figure <ref type="figure">7</ref>. The excessive margin could lead to the unwarranted suppression of logits for tokens in disfavored responses within the incorporated setting, potentially resulting in degeneration issues.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>E IFEval Result for Mistral-ORPO-α and Mistral-ORPO-β</head><p>Along with the AlpacaEval results reported in Section 5.1, we report the results of Mistral-ORPO-α and Mistral-ORPO-β on IFEval <ref type="bibr">(Zhou et al., 2023c)</ref>, calculated with the codes from <ref type="bibr">Gao et al. (2023)</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Model Type</head><p>Prompt </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>F Benchmark Evaluation Result for Mistral-ORPO-β and Zephyr-β</head><p>We report the benchmark evaluation results of Mistral-ORPO-β and Zephyr-β on ARC <ref type="bibr" target="#b54">(Yadav et al., 2019)</ref>, MMLU <ref type="bibr" target="#b19">(Hendrycks et al., 2021)</ref>, HellaSwag <ref type="bibr" target="#b56">(Zellers et al., 2019)</ref>, and Winogrande <ref type="bibr" target="#b39">(Sakaguchi et al., 2021)</ref>. While Zephyr-β was trained on 200k multi-turn conversations with supervised fine-tuning and 61k single-turn conversations with DPO, Mistral-ORPO-β was trained on 61k single-turn with ORPO, highlighting the data efficiency of ORPO by being on par.</p><p>Model Name ARC (25) MMLU ( <ref type="formula">5</ref>) HellaSwag ( <ref type="formula">10</ref> </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>G Ablation on the Weighting Value (λ)</head><p>For the weighting value λ in Equation <ref type="formula">4</ref>, we conduct an ablation study with {0.1, 0.5, 1.0}. Mistral (7B) and UltraFeedback were used for the base model and dataset. In Section G.1, we compare the log probability trends by the value of λ, and we assess the downstream effect of λ in Section G.2. In Figure <ref type="figure">8</ref>, we find that larger λ leads to stronger discrimination of the rejected responses in general. With λ = 0.1, the average log probability of the chosen and the rejected responses stay close as the fine-tuning proceeds. Also, unlike other settings, the log probabilities for the rejected responses do not decrease, but rather, the log probabilities of the chosen responses increase to minimize L OR term.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>G.1 Log Probability</head><p>Moreover, in λ = 0.5, there exists a similar trend of further increasing the log probabilities of the chosen responses, but the log probabilities of the rejected responses are diminishing simultaneously. Lastly, in λ = 1.0, the chosen responses diminish along with the rejected responses while enlarging the margin between them. However, this does not mean smaller λ is always the better. It will depend on the specific need and model. 11186</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>G.2 MT-Bench</head><p>The downstream impact of λ stands out in the MT-Bench result. In comparison to λ = 0.1, Mis-tral+ORPO (7B) with λ = 1.0 performs worse in extraction, math, and reasoning, which are the categories that generally require deterministic answers. On the other hand, it performs better in STEM, humanities, and roleplay, which ask the generations without hard answers. Along with the amount of discrepancy between the trend in the logits of chosen and rejected responses, we can infer that making a more significant margin between the chosen and the rejected responses through higher λ in ORPO leads to overly adapting to the chosen responses set in the training dataset. This proclivity results in open-ended generations generally being preferred by the annotator while showing weaker performance in the hard-answered questions.</p><p>H MT-Bench Result of Mistral-ORPO-α (7B) and Mistral-ORPO-β (7B)</p><p>For the MT-Bench result in Section 5.2, we report the category-wise scores of Mistral-ORPO-α (7B) and Mistral-ORPO-β (7B) in Figure <ref type="figure">10</ref>. While surpassing Llama-2 Chat (13B) and Llama-2 Chat (70B) in most cases, Mistral-ORPO-β (7B) is comparable to GPT-3.5-turbo in the categories that require descriptive generations. However, it lacks coding and math skills, which we speculate is due to the lack of training data, as we used 61k instances in UltraFeedback.  </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I Generation Samples from Mistral-ORPO-α (7B)</head><p>In this section, we two sample generations from Mistral-ORPO-α (7B) on AlpacaEval, including the one which is preferred over the response of GPT-4 and the one in which GPT-4 was preferred. For readability, the instances with short responses are selected for both cases. Additionally, the responses for Mistral-ORPO-α (7B) were sampled with a temperature of 0.7. Matilda discovers that she possesses a unique telekinetic ability, which she learns to control and use to her advantage. With her wit, intelligence, and special powers, Matilda sets out to defend her friends from Miss Trunchbull's abuses and to help Miss Honey overcome her own difficult past.</p><p>The book is a tale of good triumphing over evil, and it celebrates the power of knowledge, kindness, and standing up for what is right. It has been adapted into a successful film, stage musical, and has remained a beloved classic in children's literature.</p><p>2. Mistral-ORPO-β: "Matilda" is a children's book written by Roald Dahl, published in 1988. The story revolves around the life of Matilda Wormwood, a brilliant and gifted five-year-old girl who has telekinetic powers. The story explores themes of education, family, and the importance of reading and intellectual curiosity. The book has been praised for its wit, humor, and powerful message, making it a classic and beloved children's book.</p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<monogr>
+		<author>
+			<persName><forename type="first">Josh</forename><surname>Achiam</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Steven</forename><surname>Adler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sandhini</forename><surname>Agarwal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lama</forename><surname>Ahmad</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ilge</forename><surname>Akkaya</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Florencia</forename><surname>Leoni Aleman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Diogo</forename><surname>Almeida</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Janko</forename><surname>Altenschmidt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sam</forename><surname>Altman</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2303.08774</idno>
+		<title level="m">Shyamal Anadkat, et al. 2023. Gpt-4 technical report</title>
+		<imprint/>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">Alvaro</forename><surname>Bartolome</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Gabriel</forename><surname>Martin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Daniel</forename><surname>Vila</surname></persName>
+		</author>
+		<ptr target="https://github.com/argilla-io/notus" />
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<pubPlace>Notus</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Rank analysis of incomplete block designs: I. the method of paired comparisons</title>
+		<author>
+			<persName><forename type="first">Ralph</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Allan</forename><surname>Bradley</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Milton</forename><forename type="middle">E</forename><surname>Terry</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Biometrika</title>
+		<imprint>
+			<biblScope unit="volume">39</biblScope>
+			<biblScope unit="issue">3/4</biblScope>
+			<biblScope unit="page" from="324" to="345" />
+			<date type="published" when="1952">1952</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Alec Radford, Ilya Sutskever, and Dario Amodei</title>
+		<author>
+			<persName><forename type="first">Tom</forename><surname>Brown</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Benjamin</forename><surname>Mann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nick</forename><surname>Ryder</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Melanie</forename><surname>Subbiah</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jared</forename><forename type="middle">D</forename><surname>Kaplan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Prafulla</forename><surname>Dhariwal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Arvind</forename><surname>Neelakantan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pranav</forename><surname>Shyam</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Girish</forename><surname>Sastry</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Amanda</forename><surname>Askell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sandhini</forename><surname>Agarwal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ariel</forename><surname>Herbert-Voss</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Gretchen</forename><surname>Krueger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tom</forename><surname>Henighan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rewon</forename><surname>Child</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Aditya</forename><surname>Ramesh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Daniel</forename><surname>Ziegler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jeffrey</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Clemens</forename><surname>Winter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chris</forename><surname>Hesse</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mark</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Eric</forename><surname>Sigler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mateusz</forename><surname>Litwin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Scott</forename><surname>Gray</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Benjamin</forename><surname>Chess</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jack</forename><surname>Clark</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christopher</forename><surname>Berner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sam</forename><surname>Mccandlish</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Neural Information Processing Systems</title>
+		<imprint>
+			<publisher>Curran Associates, Inc</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="volume">33</biblScope>
+			<biblScope unit="page" from="1877" to="1901" />
+		</imprint>
+	</monogr>
+	<note>Language models are few-shot learners</note>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<monogr>
+		<title level="m" type="main">Ulma: Unified language model alignment with demonstration and pointwise human preference</title>
+		<author>
+			<persName><forename type="first">Tianchi</forename><surname>Cai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xierui</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jiyan</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Fei</forename><surname>Teng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jinjie</forename><surname>Gu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Guannan</forename><surname>Zhang</surname></persName>
+		</author>
+		<idno>ArXiv, abs/2312.02554</idno>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<monogr>
+		<title level="m" type="main">Ulfar Erlingsson, Alina Oprea, and Colin Raffel. 2021. Extracting training data from large language models</title>
+		<author>
+			<persName><forename type="first">Nicholas</forename><surname>Carlini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Florian</forename><surname>Tramer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Eric</forename><surname>Wallace</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Matthew</forename><surname>Jagielski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ariel</forename><surname>Herbert-Voss</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Katherine</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Adam</forename><surname>Roberts</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tom</forename><surname>Brown</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dawn</forename><surname>Song</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<monogr>
+		<title level="m" type="main">Flashattention-2: Faster attention with better parallelism and work partitioning</title>
+		<author>
+			<persName><forename type="first">Tri</forename><surname>Dao</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<monogr>
+		<title level="m" type="main">Qlora: Efficient finetuning of quantized llms</title>
+		<author>
+			<persName><forename type="first">Tim</forename><surname>Dettmers</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Artidoro</forename><surname>Pagnoni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ari</forename><surname>Holtzman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Luke</forename><surname>Zettlemoyer</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<monogr>
+		<title level="m" type="main">Enhancing chat language models by scaling high-quality instructional conversations</title>
+		<author>
+			<persName><forename type="first">Ning</forename><surname>Ding</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yulin</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Bokai</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yujia</forename><surname>Qin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhi</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shengding</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhiyuan</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Maosong</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Bowen</forename><surname>Zhou</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<monogr>
+		<title level="m" type="main">Raft: Reward ranked finetuning for generative foundation model alignment</title>
+		<author>
+			<persName><forename type="first">Hanze</forename><surname>Dong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Wei</forename><surname>Xiong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Deepanshu</forename><surname>Goyal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yihan</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Winnie</forename><surname>Chow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rui</forename><surname>Pan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shizhe</forename><surname>Diao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jipeng</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kashun</forename><surname>Shum</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tong</forename><surname>Zhang</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<monogr>
+		<author>
+			<persName><forename type="first">Kawin</forename><surname>Ethayarajh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Winnie</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Niklas</forename><surname>Muennighoff</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dan</forename><surname>Jurafsky</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Douwe</forename><surname>Kiela</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2402.01306</idno>
+		<title level="m">Kto: Model alignment as prospect theoretic optimization</title>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<monogr>
+		<author>
+			<persName><forename type="first">Leo</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">John</forename><surname>Schulman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jacob</forename><surname>Hilton</surname></persName>
+		</author>
+		<title level="m">Scaling laws for reward model overoptimization</title>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">Leo</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jonathan</forename><surname>Tow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Stella</forename><surname>Baber Abbasi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sid</forename><surname>Biderman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Anthony</forename><surname>Black</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Charles</forename><surname>Dipofi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Laurence</forename><surname>Foster</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jeffrey</forename><surname>Golding</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alain</forename><surname>Hsu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Haonan</forename><surname>Le Noac'h</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kyle</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Niklas</forename><surname>Mcdonell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chris</forename><surname>Muennighoff</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jason</forename><surname>Ociepa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Laria</forename><surname>Phang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hailey</forename><surname>Reynolds</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Aviya</forename><surname>Schoelkopf</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lintang</forename><surname>Skowron</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Eric</forename><surname>Sutawika</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Tang</surname></persName>
+		</author>
+		<idno type="DOI">10.5281/zenodo.10256836</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Anish Thite</title>
+		<imprint/>
+	</monogr>
+	<note>and Andy Zou. 2023. A framework for few-shot language model evaluation</note>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">RealToxi-cityPrompts: Evaluating neural toxic degeneration in language models</title>
+		<author>
+			<persName><forename type="first">Suchin</forename><surname>Samuel Gehman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Maarten</forename><surname>Gururangan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yejin</forename><surname>Sap</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Noah</forename><forename type="middle">A</forename><surname>Choi</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Smith</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/2020.findings-emnlp.301</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Findings of the Association for Computational Linguistics: EMNLP 2020</title>
+		<imprint>
+			<publisher>Online. Association for Computational Linguistics</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="3356" to="3369" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<monogr>
+		<author>
+			<persName><forename type="first">Gemini</forename><surname>Team</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rohan</forename><surname>Anil</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sebastian</forename><surname>Borgeaud</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yonghui</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jean-Baptiste</forename><surname>Alayrac</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jiahui</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Radu</forename><surname>Soricut</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Johan</forename><surname>Schalkwyk</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andrew</forename><forename type="middle">M</forename><surname>Dai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Anja</forename><surname>Hauth</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2312.11805</idno>
+		<title level="m">Gemini: a family of highly capable multimodal models</title>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<monogr>
+		<author>
+			<persName><forename type="first">Aaron</forename><surname>Gokaslan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Vanya</forename><surname>Cohen</surname></persName>
+		</author>
+		<ptr target="http://Skylion007.github.io/OpenWebTextCorpus" />
+		<title level="m">Openwebtext corpus</title>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">Nathan</forename><surname>Grinsztajn</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yannis</forename><surname>Flet-Berliac</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mohammad</forename><forename type="middle">Gheshlaghi</forename><surname>Azar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Florian</forename><surname>Strub</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Bill</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Eugene</forename><surname>Choi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chris</forename><surname>Cremer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Arash</forename><surname>Ahmadian</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yash</forename><surname>Chandak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Olivier</forename><surname>Pietquin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Matthieu</forename><surname>Geist</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">Caglar</forename><surname>Gulcehre</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tom</forename><forename type="middle">Le</forename><surname>Paine</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Srivatsan</forename><surname>Srinivasan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ksenia</forename><surname>Konyushkova</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lotte</forename><surname>Weerts</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Abhishek</forename><surname>Sharma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Aditya</forename><surname>Siddhant</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alex</forename><surname>Ahern</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Miaosen</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chenjie</forename><surname>Gu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Wolfgang</forename><surname>Macherey</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Arnaud</forename><surname>Doucet</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Orhan</forename><surname>Firat</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nando</forename><surname>De Freitas</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+	<note>Reinforced self-training (rest) for language modeling</note>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<monogr>
+		<title level="m" type="main">Selfsupervised learning for skin cancer diagnosis with limited training data</title>
+		<author>
+			<persName><forename type="first">Hamish</forename><surname>Haggerty</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rohitash</forename><surname>Chandra</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Measuring massive multitask language understanding</title>
+		<author>
+			<persName><forename type="first">Dan</forename><surname>Hendrycks</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Collin</forename><surname>Burns</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Steven</forename><surname>Basart</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andy</forename><surname>Zou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mantas</forename><surname>Mazeika</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dawn</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jacob</forename><surname>Steinhardt</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference on Learning Representations (ICLR)</title>
+		<meeting>the International Conference on Learning Representations (ICLR)</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<monogr>
+		<title level="m" type="main">Phi-2: The surprising power of small language models</title>
+		<author>
+			<persName><forename type="first">Mojan</forename><surname>Javaheripi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sébastien</forename><surname>Bubeck</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">Albert</forename><forename type="middle">Q</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alexandre</forename><surname>Sablayrolles</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Arthur</forename><surname>Mensch</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chris</forename><surname>Bamford</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Devendra</forename><surname>Singh Chaplot</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Diego</forename><surname>De Las Casas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Florian</forename><surname>Bressand</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Gianna</forename><surname>Lengyel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Guillaume</forename><surname>Lample</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lucile</forename><surname>Saulnier</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Renard</forename><surname>Lélio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Marie-Anne</forename><surname>Lavaud</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pierre</forename><surname>Lachaux</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Teven</forename><surname>Stock</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Thibaut</forename><surname>Le Scao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Thomas</forename><surname>Lavril</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Timothée</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Lacroix</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+	<note>and William El Sayed. 2023. Mistral 7b</note>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<monogr>
+		<title level="m" type="main">Understanding the effects of rlhf on llm generalisation and diversity</title>
+		<author>
+			<persName><forename type="first">Robert</forename><surname>Kirk</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ishita</forename><surname>Mediratta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christoforos</forename><surname>Nalmpantis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jelena</forename><surname>Luketina</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Eric</forename><surname>Hambro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Edward</forename><surname>Grefenstette</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Roberta</forename><surname>Raileanu</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Don&apos;t say that! making inconsistent dialogue unlikely with unlikelihood training</title>
+		<author>
+			<persName><forename type="first">Margaret</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Stephen</forename><surname>Roller</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ilia</forename><surname>Kulikov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sean</forename><surname>Welleck</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y-Lan</forename><surname>Boureau</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kyunghyun</forename><surname>Cho</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jason</forename><surname>Weston</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/2020.acl-main.428</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics</title>
+		<meeting>the 58th Annual Meeting of the Association for Computational Linguistics</meeting>
+		<imprint>
+			<publisher>Online. Association for Computational Linguistics</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="4715" to="4728" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">Xian</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ping</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chunting</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Timo</forename><surname>Schick</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Luke</forename><surname>Zettlemoyer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Omer</forename><surname>Levy</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jason</forename><surname>Weston</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+	<note>and Mike Lewis. 2023a. Self-alignment with instruction backtranslation</note>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<monogr>
+		<title level="m" type="main">2023b. Alpacaeval: An automatic evaluator of instruction-following models</title>
+		<author>
+			<persName><forename type="first">Xuechen</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tianyi</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yann</forename><surname>Dubois</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rohan</forename><surname>Taori</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ishaan</forename><surname>Gulrajani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Carlos</forename><surname>Guestrin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Percy</forename><surname>Liang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tatsunori</forename><forename type="middle">B</forename><surname>Hashimoto</surname></persName>
+		</author>
+		<ptr target="https://github.com/tatsu-lab/alpaca_eval" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<monogr>
+		<title level="m" type="main">Allie Del Giorno, Suriya Gunasekar, and Yin Tat Lee. 2023c. Textbooks are all you need ii: phi-1</title>
+		<author>
+			<persName><forename type="first">Yuanzhi</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sébastien</forename><surname>Bubeck</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ronen</forename><surname>Eldan</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+	<note>5 technical report</note>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Focal loss for dense object detection</title>
+		<author>
+			<persName><forename type="first">Tsung-Yi</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Priya</forename><surname>Goyal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ross</forename><surname>Girshick</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kaiming</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Piotr</forename><surname>Dollár</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE international conference on computer vision</title>
+		<meeting>the IEEE international conference on computer vision</meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="2980" to="2988" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<monogr>
+		<author>
+			<persName><forename type="first">Ilya</forename><surname>Loshchilov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Frank</forename><surname>Hutter</surname></persName>
+		</author>
+		<title level="m">Decoupled weight decay regularization</title>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<monogr>
+		<title level="m" type="main">Cross-entropy loss functions: Theoretical analysis and applications</title>
+		<author>
+			<persName><forename type="first">Anqi</forename><surname>Mao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mehryar</forename><surname>Mohri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yutao</forename><surname>Zhong</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<monogr>
+		<title level="m" type="main">Simpo: Simple preference optimization with a reference-free reward</title>
+		<author>
+			<persName><forename type="first">Yu</forename><surname>Meng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mengzhou</forename><surname>Xia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Danqi</forename><surname>Chen</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">Long</forename><surname>Ouyang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jeff</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xu</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Diogo</forename><surname>Almeida</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Carroll</forename><forename type="middle">L</forename><surname>Wainwright</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pamela</forename><surname>Mishkin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chong</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sandhini</forename><surname>Agarwal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Katarina</forename><surname>Slama</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alex</forename><surname>Ray</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">John</forename><surname>Schulman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jacob</forename><surname>Hilton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Fraser</forename><surname>Kelton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Luke</forename><surname>Miller</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Maddie</forename><surname>Simens</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Amanda</forename><surname>Askell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Peter</forename><surname>Welinder</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Paul</forename><surname>Christiano</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jan</forename><surname>Leike</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ryan</forename><surname>Lowe</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+	<note>Training language models to follow instructions with human feedback</note>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Disentangling length from quality in direct preference optimization</title>
+		<author>
+			<persName><forename type="first">Ryan</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rafael</forename><surname>Rafailov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Stefano</forename><surname>Ermon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chelsea</forename><surname>Finn</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/2024.findings-acl.297</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Findings of the Association for Computational Linguistics ACL 2024</title>
+		<meeting><address><addrLine>Bangkok, Thailand</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+			<biblScope unit="page" from="4998" to="5017" />
+		</imprint>
+	</monogr>
+	<note>and virtual meeting Association for Computational Linguistics</note>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<monogr>
+		<title level="m" type="main">Ebtesam Almazrouei, and Julien Launay. 2023. The refinedweb dataset for falcon llm: Outperforming curated corpora with web data</title>
+		<author>
+			<persName><forename type="first">Guilherme</forename><surname>Penedo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Quentin</forename><surname>Malartic</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Daniel</forename><surname>Hesslow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ruxandra</forename><surname>Cojocaru</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alessandro</forename><surname>Cappelli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hamza</forename><surname>Alobeidli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Baptiste</forename><surname>Pannier</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+	<note>and web data only</note>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Automatic prompt optimization with &quot;gradient descent&quot; and beam search</title>
+		<author>
+			<persName><forename type="first">Reid</forename><surname>Pryzant</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dan</forename><surname>Iter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jerry</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yin</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chenguang</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michael</forename><surname>Zeng</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/2023.emnlp-main.494</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing</title>
+		<meeting>the 2023 Conference on Empirical Methods in Natural Language Processing<address><addrLine>Singapore</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="7957" to="7968" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<monogr>
+		<title level="m" type="main">Direct preference optimization: Your language model is secretly a reward model</title>
+		<author>
+			<persName><forename type="first">Rafael</forename><surname>Rafailov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Archit</forename><surname>Sharma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Eric</forename><surname>Mitchell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Stefano</forename><surname>Ermon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christopher</forename><forename type="middle">D</forename><surname>Manning</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chelsea</forename><surname>Finn</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<monogr>
+		<title level="m" type="main">Shaden Smith, and Yuxiong He. 2021. Zero-infinity: Breaking the gpu memory wall for extreme scale deep learning</title>
+		<author>
+			<persName><forename type="first">Samyam</forename><surname>Rajbhandari</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Olatunji</forename><surname>Ruwase</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jeff</forename><surname>Rasley</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Deepspeed: System optimizations enable training deep learning models with over 100 billion parameters</title>
+		<author>
+			<persName><forename type="first">Jeff</forename><surname>Rasley</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Samyam</forename><surname>Rajbhandari</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Olatunji</forename><surname>Ruwase</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuxiong</forename><surname>He</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3394486.3406703</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining, KDD &apos;20</title>
+		<meeting>the 26th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining, KDD &apos;20<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="3505" to="3506" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<monogr>
+		<title level="m" type="main">Direct nash optimization: Teaching language models to self-improve with general preferences</title>
+		<author>
+			<persName><forename type="first">Corby</forename><surname>Rosset</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ching-An</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Arindam</forename><surname>Mitra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michael</forename><surname>Santacroce</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ahmed</forename><surname>Awadallah</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tengyang</forename><surname>Xie</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<monogr>
+		<title level="m" type="main">Winogrande: An adversarial winograd schema challenge at scale. Communications of the</title>
+		<author>
+			<persName><forename type="first">Keisuke</forename><surname>Sakaguchi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Le</forename><surname>Ronan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chandra</forename><surname>Bras</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yejin</forename><surname>Bhagavatula</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Choi</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<publisher>ACM</publisher>
+			<biblScope unit="volume">64</biblScope>
+			<biblScope unit="page" from="99" to="106" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<monogr>
+		<author>
+			<persName><forename type="first">John</forename><surname>Schulman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Filip</forename><surname>Wolski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Prafulla</forename><surname>Dhariwal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alec</forename><surname>Radford</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Oleg</forename><surname>Klimov</surname></persName>
+		</author>
+		<title level="m">Proximal policy optimization algorithms</title>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Loose lips sink ships: Mitigating length bias in reinforcement learning from human feedback</title>
+		<author>
+			<persName><forename type="first">Wei</forename><surname>Shen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rui</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Wenyu</forename><surname>Zhan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jun</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shihan</forename><surname>Dou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tao</forename><surname>Gui</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Qi</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xuanjing</forename><surname>Huang</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/2023.findings-emnlp.188</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Findings of the Association for Computational Linguistics: EMNLP 2023</title>
+		<meeting><address><addrLine>Singapore</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="2859" to="2873" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b42">
+	<monogr>
+		<title level="m" type="main">Preference ranking optimization for human alignment</title>
+		<author>
+			<persName><forename type="first">Feifan</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Bowen</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Minghao</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Haiyang</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Fei</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yongbin</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Houfeng</forename><surname>Wang</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b43">
+	<monogr>
+		<author>
+			<persName><forename type="first">Nisan</forename><surname>Stiennon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Long</forename><surname>Ouyang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jeff</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Daniel</forename><forename type="middle">M</forename><surname>Ziegler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ryan</forename><surname>Lowe</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chelsea</forename><surname>Voss</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alec</forename><surname>Radford</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dario</forename><surname>Amodei</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Paul</forename><surname>Christiano</surname></persName>
+		</author>
+		<title level="m">Learning to summarize from human feedback</title>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b44">
+	<monogr>
+		<author>
+			<persName><forename type="first">Rohan</forename><surname>Taori</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ishaan</forename><surname>Gulrajani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tianyi</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yann</forename><surname>Dubois</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xuechen</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Carlos</forename><surname>Guestrin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Percy</forename><surname>Liang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tatsunori</forename><forename type="middle">B</forename><surname>Hashimoto</surname></persName>
+		</author>
+		<ptr target="https://github.com/tatsu-lab/stanford_alpaca" />
+		<title level="m">Stanford alpaca: An instruction-following llama model</title>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b45">
+	<monogr>
+		<author>
+			<persName><forename type="first">Hugo</forename><surname>Touvron</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Thibaut</forename><surname>Lavril</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Gautier</forename><surname>Izacard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xavier</forename><surname>Martinet</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Marie-Anne</forename><surname>Lachaux</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Timothée</forename><surname>Lacroix</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Baptiste</forename><surname>Rozière</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Naman</forename><surname>Goyal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Eric</forename><surname>Hambro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Faisal</forename><surname>Azhar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Aurelien</forename><surname>Rodriguez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Armand</forename><surname>Joulin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Edouard</forename><surname>Grave</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Guillaume</forename><surname>Lample</surname></persName>
+		</author>
+		<title level="m">Llama: Open and efficient foundation language models</title>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b46">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">Lewis</forename><surname>Tunstall</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Edward</forename><surname>Beeching</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nathan</forename><surname>Lambert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nazneen</forename><surname>Rajani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kashif</forename><surname>Rasul</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Younes</forename><surname>Belkada</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shengyi</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Leandro</forename><surname>Von Werra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Clémentine</forename><surname>Fourrier</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nathan</forename><surname>Habib</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nathan</forename><surname>Sarrazin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Omar</forename><surname>Sanseviero</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alexander</forename><forename type="middle">M</forename><surname>Rush</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Thomas</forename><surname>Wolf</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<pubPlace>Zephyr</pubPlace>
+		</imprint>
+	</monogr>
+	<note>Direct distillation of lm alignment</note>
+</biblStruct>
+
+<biblStruct xml:id="b47">
+	<monogr>
+		<author>
+			<persName><forename type="first">Younes</forename><surname>Leandro Von Werra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lewis</forename><surname>Belkada</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Edward</forename><surname>Tunstall</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tristan</forename><surname>Beeching</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nathan</forename><surname>Thrush</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shengyi</forename><surname>Lambert</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Huang</surname></persName>
+		</author>
+		<ptr target="https://github.com/huggingface/trl" />
+		<title level="m">Trl: Transformer reinforcement learning</title>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b48">
+	<monogr>
+		<author>
+			<persName><forename type="first">Binghai</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rui</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lu</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yan</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shihan</forename><surname>Dou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Caishuang</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Wei</forename><surname>Shen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Senjie</forename><surname>Jin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Enyu</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chenyu</forename><surname>Shi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Songyang</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nuo</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuhao</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xiaoran</forename><surname>Fan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhiheng</forename><surname>Xi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jun</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xiao</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tao</forename><surname>Ji</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hang</forename><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lixing</forename><surname>Shen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhan</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tao</forename><surname>Gui</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Qi</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xipeng</forename><surname>Qiu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xuanjing</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zuxuan</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yu-Gang</forename><surname>Jiang</surname></persName>
+		</author>
+		<title level="m">Secrets of rlhf in large language models part ii: Reward modeling</title>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b49">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">Yizhong</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hamish</forename><surname>Ivison</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pradeep</forename><surname>Dasigi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jack</forename><surname>Hessel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tushar</forename><surname>Khot</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Raghavi</forename><surname>Khyathi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">David</forename><surname>Chandu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kelsey</forename><surname>Wadden</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Noah</forename><forename type="middle">A</forename><surname>Macmillan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Iz</forename><surname>Smith</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hannaneh</forename><surname>Beltagy</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Hajishirzi</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+	<note>How far can camels go? exploring the state of instruction tuning on open resources</note>
+</biblStruct>
+
+<biblStruct xml:id="b50">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">Jason</forename><surname>Wei</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Maarten</forename><surname>Bosma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Vincent</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kelvin</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Adams</forename><forename type="middle">Wei</forename><surname>Guu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Brian</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nan</forename><surname>Lester</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andrew</forename><forename type="middle">M</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Dai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Quoc</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Le</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+	<note>Finetuned language models are zero-shot learners</note>
+</biblStruct>
+
+<biblStruct xml:id="b51">
+	<monogr>
+		<author>
+			<persName><forename type="first">Sean</forename><surname>Welleck</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ilia</forename><surname>Kulikov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Stephen</forename><surname>Roller</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Emily</forename><surname>Dinan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kyunghyun</forename><surname>Cho</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jason</forename><surname>Weston</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1908.04319</idno>
+		<title level="m">Neural text generation with unlikelihood training</title>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b52">
+	<monogr>
+		<title level="m" type="main">Pairwise proximal policy optimization: Harnessing relative feedback for llm alignment</title>
+		<author>
+			<persName><forename type="first">Tianhao</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Banghua</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ruoyu</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhaojin</forename><surname>Wen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kannan</forename><surname>Ramchandran</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jiantao</forename><surname>Jiao</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b53">
+	<monogr>
+		<title level="m" type="main">Contrastive preference optimization: Pushing the boundaries of llm performance in machine translation</title>
+		<author>
+			<persName><forename type="first">Haoran</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Amr</forename><surname>Sharaf</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yunmo</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Weiting</forename><surname>Tan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lingfeng</forename><surname>Shen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Benjamin</forename><surname>Van Durme</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kenton</forename><surname>Murray</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Young</forename><forename type="middle">Jin</forename><surname>Kim</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2401.08417</idno>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b54">
+	<analytic>
+		<title level="a" type="main">Quick and (not so) dirty: Unsupervised selection of justification sentences for multi-hop question answering</title>
+		<author>
+			<persName><forename type="first">Vikas</forename><surname>Yadav</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Steven</forename><surname>Bethard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mihai</forename><surname>Surdeanu</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/D19-1260</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)</title>
+		<meeting>the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)<address><addrLine>Hong Kong, China</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="2578" to="2589" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b55">
+	<monogr>
+		<title level="m" type="main">Rrhf: Rank responses to align language models with human feedback without tears</title>
+		<author>
+			<persName><forename type="first">Zheng</forename><surname>Yuan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hongyi</forename><surname>Yuan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chuanqi</forename><surname>Tan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Wei</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Songfang</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Fei</forename><surname>Huang</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b56">
+	<analytic>
+		<title level="a" type="main">HellaSwag: Can a machine really finish your sentence?</title>
+		<author>
+			<persName><forename type="first">Rowan</forename><surname>Zellers</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ari</forename><surname>Holtzman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yonatan</forename><surname>Bisk</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ali</forename><surname>Farhadi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yejin</forename><surname>Choi</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/P19-1472</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics</title>
+		<meeting>the 57th Annual Meeting of the Association for Computational Linguistics<address><addrLine>Florence, Italy</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="4791" to="4800" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b57">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">Susan</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Stephen</forename><surname>Roller</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Naman</forename><surname>Goyal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mikel</forename><surname>Artetxe</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Moya</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shuohui</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christopher</forename><surname>Dewan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mona</forename><surname>Diab</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xian</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xi</forename><surname>Victoria Lin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Todor</forename><surname>Mihaylov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Myle</forename><surname>Ott</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sam</forename><surname>Shleifer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kurt</forename><surname>Shuster</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Daniel</forename><surname>Simig</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Punit</forename><surname>Singh Koura</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Anjali</forename><surname>Sridhar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tianlu</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Luke</forename><surname>Zettlemoyer</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+	<note>Opt: Open pretrained transformer language models</note>
+</biblStruct>
+
+<biblStruct xml:id="b58">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">Yanli</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andrew</forename><surname>Gu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rohan</forename><surname>Varma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Liang</forename><surname>Luo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chien-Chin</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Min</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Less</forename><surname>Wright</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hamid</forename><surname>Shojanazeri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Myle</forename><surname>Ott</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sam</forename><surname>Shleifer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alban</forename><surname>Desmaison</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Can</forename><surname>Balioglu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pritam</forename><surname>Damania</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Bernard</forename><surname>Nguyen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Geeta</forename><surname>Chauhan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuchen</forename><surname>Hao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ajit</forename><surname>Mathews</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shen</forename><surname>Li</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+	<note>Pytorch fsdp: Experiences on scaling fully sharded data parallel</note>
+</biblStruct>
+
+<biblStruct xml:id="b59">
+	<monogr>
+		<title level="m" type="main">Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena</title>
+		<author>
+			<persName><forename type="first">Lianmin</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Wei-Lin</forename><surname>Chiang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ying</forename><surname>Sheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Siyuan</forename><surname>Zhuang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhanghao</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yonghao</forename><surname>Zhuang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zi</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhuohan</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dacheng</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Eric</forename><forename type="middle">P</forename><surname>Xing</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hao</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Joseph</forename><forename type="middle">E</forename><surname>Gonzalez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ion</forename><surname>Stoica</surname></persName>
+		</author>
+		<idno type="DOI">10.48550/arXiv.2306.05685</idno>
+		<idno>ArXiv:2306.05685</idno>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+	<note>cs</note>
+</biblStruct>
+
+<biblStruct xml:id="b60">
+	<monogr>
+		<author>
+			<persName><forename type="first">Chunting</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pengfei</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Puxin</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Srini</forename><surname>Iyer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jiao</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuning</forename><surname>Mao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xuezhe</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Avia</forename><surname>Efrat</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ping</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lili</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Susan</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Gargi</forename><surname>Ghosh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mike</forename><surname>Lewis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Luke</forename><surname>Zettlemoyer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Omer</forename><surname>Levy</surname></persName>
+		</author>
+		<title level="m">Less is more for alignment</title>
+		<meeting><address><addrLine>Lima</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b61">
+	<monogr>
+		<title level="m" type="main">2023b. Lobass: Gauging learnability in supervised finetuning data</title>
+		<author>
+			<persName><forename type="first">Haotian</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tingkai</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Qianli</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jianbo</forename><surname>Yuan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pengfei</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yang</forename><surname>You</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hongxia</forename><surname>Yang</surname></persName>
+		</author>
+		<idno>ArXiv, abs/2310.13008</idno>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b62">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">Jeffrey</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tianjian</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Swaroop</forename><surname>Mishra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Siddhartha</forename><surname>Brahma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sujoy</forename><surname>Basu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yi</forename><surname>Luan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Denny</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Le</forename><surname>Hou</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b63">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">M</forename><surname>Daniel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nisan</forename><surname>Ziegler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jeffrey</forename><surname>Stiennon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tom</forename><forename type="middle">B</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alec</forename><surname>Brown</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dario</forename><surname>Radford</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Amodei</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+	<note>Paul Christiano, and Geoffrey Irving. 2020. Fine-tuning language models from human preferences</note>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>
