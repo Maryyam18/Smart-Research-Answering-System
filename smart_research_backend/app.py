@@ -38,7 +38,7 @@ def retrieve_contexts(query: str):
         query_emb = retrieval_model.encode(query, normalize_embeddings=True)
 
         cur.execute("""
-            SELECT paperid, title, authors, year, section_text,
+            SELECT paperid, title, authors, year, section_heading, section_text,
                    embedding <=> %s AS distance
             FROM papers
             WHERE embedding IS NOT NULL
@@ -53,44 +53,34 @@ def retrieve_contexts(query: str):
         if not results:
             return None, None
 
-        best_distance = results[0][5]
+        best_distance = results[0][6]
         if best_distance > SIMILARITY_THRESHOLD:
             return None, None
 
-        # Combine top 2 sections for summarization
         contexts = []
-        for row in results[:2]:
-            contexts.append(row[4][:400])  # first 400 chars of section_text
+        for row in results:
+            context_text = f"Section '{row[4]}': {row[5][:400]}..."
+            contexts.append(context_text)
 
+        best_paper_info = f"{results[0][1]} by {results[0][2]}, {results[0][3]}"
         combined_context = "\n\n".join(contexts)
-
-        # Format reference: title, first 3 authors, year
-        authors_list = [a.strip() for a in results[0][2].split(",")][:4]
-        best_paper_info = f"{results[0][1]} by {', '.join(authors_list)}, {results[0][3]}"
-
         return combined_context, best_paper_info
 
     except Exception as e:
         print(f"❌ Error in retrieve_contexts: {e}")
         return None, None
 
-### answer####
+# === LOCAL ANSWER GENERATION FUNCTION ===
 def generate_answer(query, contexts, best_paper):
     if contexts is None:
+        # No relevant paper found
         return "Sorry, no relevant research found in your database.", None
 
-    prompt = (
-        f"Read the research context below and answer the question in a **friendly, concise paragraph** of 3-4 lines. "
-        f"Use only the research content provided. End with a reference including title, first 3-4 authors, and year.\n\n"
-        f"Question: {query}\n\n"
-        f"Context:\n{contexts}\n\n"
-        f"Reference: {best_paper}"
-    )
+    prompt = f"Answer the question in 3-4 concise lines using ONLY the research context below. Include the reference at the end.\n\nQuestion: {query}\n\nContext:\n{contexts}\n\nReference: {best_paper}"
 
-    result = summarizer(prompt, max_length=120, min_length=80, do_sample=False)
-    answer = result[0]['generated_text'].strip()
+    result = summarizer(prompt, max_length=200, do_sample=False)
+    answer = result[0]['generated_text']
     return answer, best_paper
-
 
 # === FASTAPI APP ===
 app = FastAPI(title="Smart Research Answering System", version="1.0.0")
