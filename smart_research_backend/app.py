@@ -5,18 +5,22 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from pgvector.psycopg2 import register_vector
 from groq import Groq
+from dotenv import load_dotenv
+import os
+import re
 
 # === CONFIG ===
 DB_CONFIG = {
-    "host": "localhost", "port": 5433, "user": "postgres",
+    "host": "localhost", "port": 5432, "user": "postgres",
     "password": "hello098", "dbname": "smart_research"
 }
-EMBED_MODEL = "all-MiniLM-L6-v2"
+EMBED_MODEL = "all-MiniLM-L6-v2"  # Reverted to match your database embeddings
 TOP_K = 1
-SIMILARITY_THRESHOLD = 0.40  # ← Fixed for your data
+SIMILARITY_THRESHOLD = 0.40  # Fixed for your data
+GREETING_KEYWORDS = ["hi", "hello", "aoa", "assalam", "how r u", "hey", "salaam", "how are you"]
 
 # === GROQ API SETUP ===
-GROQ_API_KEY = "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"  # ← PUT YOUR GROQ KEY HERE
+GROQ_API_KEY = "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"  # Your Groq key
 groq_client = Groq(api_key=GROQ_API_KEY)
 
 # === MODELS ===
@@ -26,10 +30,30 @@ print("Loaded.")
 print("Using Groq API (Llama 3) - Fast & Free!")
 print("Ready in 2 seconds!")
 
+# === QUERY VALIDATION ===
+def is_valid_query(query: str) -> tuple[bool, str]:
+    query = query.strip().lower()
+    # Check for greetings
+    if any(greeting in query for greeting in GREETING_KEYWORDS):
+        return False, "Hello! I'm ready to answer your questions about NLP research. What would you like to know?"
+    # Check for vague or incomplete queries
+    if len(query) < 3 or re.match(r"^[^\w\s]+$", query) or query in ["wh", "what", "?", ""]:
+        return False, "Your query seems unclear. Could you provide more details about what you're asking?"
+    # Check for single-word queries
+    if len(query.split()) == 1:
+        return False, f"Could you clarify what you mean by '{query}'? Are you asking about an NLP topic like language models?"
+    return True, ""
+
 # === RETRIEVAL: Get BEST matching section ===
 def get_paper_context(query: str):
     try:
         print(f"Query: '{query}'")  # Debug
+
+        # Validate query
+        is_valid, error_message = is_valid_query(query)
+        if not is_valid:
+            print(f"Invalid query: {error_message}")
+            return None, None, error_message
 
         conn = psycopg2.connect(**DB_CONFIG)
         register_vector(conn)
@@ -63,7 +87,7 @@ def get_paper_context(query: str):
 
         if not row or row[5] < SIMILARITY_THRESHOLD:
             print(f"Threshold failed: {row[5] if row else 'N/A'} < {SIMILARITY_THRESHOLD}")
-            return None, None
+            return None, None, "Sorry, I can only answer questions about NLP research. Try asking about language models or text processing!"
 
         # Clean context
         text = row[4].strip()
@@ -75,20 +99,24 @@ def get_paper_context(query: str):
         ref = f"{row[0]} by {authors}, {row[2]}"
 
         print(f"Context ready: {context[:100]}...")
-        return context, ref
+        return context, ref, None
 
     except Exception as e:
         print(f"DB Error: {e}")
-        return None, None
+        return None, None, "Sorry, there was a database error. Please try again!"
 
 # === ANSWER: Use Groq (Llama 3) to rephrase ===
-def generate_answer(query: str, context: str, ref: str):
+def generate_answer(query: str, context: str, ref: str, error_message: str):
+    if error_message:
+        return error_message, "No paper"
+
     if not context:
-        return "Sorry, I couldn't find relevant research for your question.", "No paper"
+        return "Sorry, I can only answer questions about NLP research. Try asking about language models or text processing!", "No paper"
 
     prompt = f"""
 Answer in 3-4 short, simple sentences for a high school student.
-Use ONLY the context below. Do NOT add extra information.
+Use ONLY the context below to answer the question.
+If the context doesn’t have enough information, say: "I couldn’t find a clear answer about this in our NLP research."
 End with: Reference: {ref}
 
 Question: {query}
@@ -124,8 +152,8 @@ class Query(BaseModel):
 
 @app.post("/answer")
 async def answer(q: Query):
-    context, ref = get_paper_context(q.query)
-    answer_text, source = generate_answer(q.query, context, ref)
+    context, ref, error_message = get_paper_context(q.query)
+    answer_text, source = generate_answer(q.query, context, ref, error_message)
     return {
         "query": q.query,
         "answer": answer_text,

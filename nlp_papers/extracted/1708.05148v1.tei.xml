@@ -1,0 +1,2565 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Natural Language Processing: State of The Art, Current Trends and Challenges</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Diksha</forename><surname>Khurana</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Computer Science and Engineering Manav</orgName>
+								<orgName type="institution">Rachna International University</orgName>
+								<address>
+									<addrLine>Faridabad-121004</addrLine>
+									<country key="IN">India</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Aditya</forename><surname>Koli</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Computer Science and Engineering Manav</orgName>
+								<orgName type="institution">Rachna International University</orgName>
+								<address>
+									<addrLine>Faridabad-121004</addrLine>
+									<country key="IN">India</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Kiran</forename><surname>Khatter</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Computer Science and Engineering Manav</orgName>
+								<orgName type="institution">Rachna International University</orgName>
+								<address>
+									<addrLine>Faridabad-121004</addrLine>
+									<country key="IN">India</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="institution">Accendere Knowledge Management Services Pvt. Ltd</orgName>
+								<address>
+									<country key="IN">India</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Sukhdev</forename><surname>Singh</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Computer Science and Engineering Manav</orgName>
+								<orgName type="institution">Rachna International University</orgName>
+								<address>
+									<addrLine>Faridabad-121004</addrLine>
+									<country key="IN">India</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="institution">Accendere Knowledge Management Services Pvt. Ltd</orgName>
+								<address>
+									<country key="IN">India</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Natural Language Processing: State of The Art, Current Trends and Challenges</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date/>
+						</imprint>
+					</monogr>
+					<idno type="MD5">86704B191C37A61C9C50E83017DA27B3</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-01T08:52+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Natural language processing (NLP) has recently gained much attention for representing and analysing human language computationally. It has spread its applications in various fields such as machine translation, email spam detection, information extraction, summarization, medical, and question answering etc. The paper distinguishes four phases by discussing different levels of NLP and components of Natural Language Generation (NLG) followed by presenting the history and evolution of NLP, state of the art presenting the various applications of NLP and current trends and challenges.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.">Introduction</head><p>Natural Language Processing (NLP) is a tract of Artificial Intelligence and Linguistics, devoted to make computers understand the statements or words written in human languages. Natural language processing came into existence to ease the user's work and to satisfy the wish to communicate with the computer in natural language. Since all the users may not be well-versed in machine specific language, NLP caters those users who do not have enough time to learn new languages or get perfection in it.</p><p>A language can be defined as a set of rules or set of symbol. Symbol are combined and used for conveying information or broadcasting the information. Symbols are tyrannized by the Rules. Natural Language Processing basically can be classified into two parts i.e. Natural Language Understanding and Natural Language Generation which evolves the task to understand and generate the text (Figure <ref type="figure" target="#fig_0">1</ref>). Linguistics is the science of language which includes Phonology that refers to sound, Morphology word formation, Syntax sentence structure, Semantics syntax and Pragmatics which refers to understanding.</p><p>Noah Chomsky, one of the first linguists of twelfth century that started syntactic theories, marked a unique position in the field of theoretical linguistics because he revolutionised the area of syntax <ref type="bibr" target="#b0">(Chomsky, 1965)</ref>  <ref type="bibr" target="#b0">[1]</ref>. Which can be broadly categorized into two levels Higher Level which include speech recognition and Lower Level which corresponds to natural language. Few of the researched tasks of NLP are Automatic Summarization, Co-Reference Resolution, Discourse Analysis, Machine Translation, Morphological Segmentation, Named Entity Recognition, Optical Character Recognition, Part Of Speech Tagging etc. Some of these tasks have direct real world applications such as Machine translation, Named entity recognition, Optical character recognition etc. Automatic summarization produces an understandable summary of a set of text and provides summaries or detailed information of text of a known type. Co-reference resolution it refers to a sentence or larger set of text that determines which word refer to the same object. Discourse analysis refers to the task of identifying the discourse structure of connected text. Machine translation which refers to automatic translation of text from one human language to another. Morphological segmentation which refers to separate word into individual morphemes and identify the class of the morphemes. Named entity recognition (NER) it describes a stream of text, determine which items in the text relates to proper names. Optical character recognition (OCR) it gives an image representing printed text, which help in determining the corresponding or related text. Part of speech tagging it describes a sentence, determines the part of speech for each word. Though NLP tasks are obviously very closely interweaved but they are used frequently, for convenience. Some of the task such as automatic summarisation, co-reference analysis etc. act as subtask that are used in solving larger tasks.</p><p>The goal of Natural Language Processing is to accommodate one or more specialities of an algorithm or system. The metric of NLP assess on an algorithmic system allows for the integration of language understanding and language generation. It is even used in multilingual event detection Rospocher et al. <ref type="bibr" target="#b1">[2]</ref> purposed a novel modular system for crosslingual event extraction for English, Dutch and Italian texts by using different pipelines for different languages. The system incorporates a modular set of foremost multilingual Natural Language Processing (NLP) tools. The pipeline integrates modules for basic NLP processing as well as more advanced tasks such as cross-lingual named entity linking, semantic role labelling and time normalization. Thus, the cross-lingual framework allows for the interpretation of events, participants, locations and time, as well as the relations between them. Output of these individual pipelines is intended to be used as input for a system that obtains event centric knowledge graphs. All modules behave like UNIX pipes: they all take standard input, to do some annotation, and produce standard output which in turn is the input for the next module pipelines are built as a data centric architecture so that modules can be adapted and replaced. Furthermore, modular architecture allows for different configurations and for dynamic distribution.</p><p>Most of the work in Natural Language Processing is conducted by computer scientists while various other professionals have also shown interest such as linguistics, psychologist and philosophers etc. One of the most ironical aspect of NLP is that it adds up to the knowledge of human language. The field of Natural Language Processing is related with different theories and techniques that deal with the problem of natural language of communicating with the computers. Ambiguity is one of the major problem of natural language which is usually faced in syntactic level which has subtask as lexical and morphology which are concerned with the study of words and word formation. Each of these levels can produce ambiguities that can be solved by the knowledge of the complete sentence. The ambiguity can be solved by various methods such as Minimising Ambiguity, Preserving Ambiguity, Interactive Disambiguity and Weighting Ambiguity <ref type="bibr" target="#b2">[3]</ref>. Some of the methods proposed by researchers to remove ambiguity is preserving ambiguity, e.g. <ref type="bibr" target="#b2">(Shemtov 1997</ref> <ref type="bibr" target="#b4">[5]</ref> Their objectives are closely in line with the last of these: they cover a wide range of ambiguities and there is a statistical element implicit in their approach.</p><formula xml:id="formula_0">; Emele &amp; Dorna 1998; Knight &amp; Langkilde 2000) [3][4]</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">Levels of NLP</head><p>The 'levels of language' are one of the most explanatory method for representing the Natural Language processing which helps to generate the NLP text by realising Content Planning, Sentence Planning and Surface Realization phases (Figure <ref type="figure" target="#fig_1">2</ref>). Linguistic is the science which involves meaning of language, language context and various forms of the language. The various important terminologies of Natural Language Processing are: -</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.">Phonology</head><p>Phonology is the part of Linguistics which refers to the systematic arrangement of sound. The term phonology comes from Ancient Greek and the term phono-which means voice or sound, and the suffix -logy refers to word or speech. In 1993 Nikolai Trubetzkoy stated that Phonology is "the study of sound pertaining to the system of language". Whereas Lass in 1998 wrote that phonology refers broadly with the sounds of language, concerned with the to lathe sub discipline of linguistics, whereas it could be explained as, "phonology proper is concerned with the function, behaviour and organization of sounds as linguistic items. Phonology include semantic use of sound to encode meaning of any Human language. <ref type="bibr">(Clark et al.,2007)</ref>  <ref type="bibr" target="#b5">[6]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">Morphology</head><p>The different parts of the word represent the smallest units of meaning known as Morphemes. Morphology which comprise of Nature of words, are initiated by morphemes. An example of Morpheme could be, the word precancellation can be morphologically scrutinized into three separate morphemes: the prefix pre, the root cancella, and the suffix -tion. The interpretation of morpheme stays same across all the words, just to understand the meaning humans can break any unknown word into morphemes. For example, adding the suffix -ed to a verb, conveys that the action of the verb took place in the past. The words that cannot be divided and have meaning by themselves are called Lexical morpheme (e.g.: table, chair) The words (e.g. -ed, -ing, -est, -ly, -ful) that are combined with the lexical morpheme are known as Grammatical morphemes (eg. Worked, Consulting, Smallest, Likely, Use). Those grammatical morphemes that occurs in combination called bound morphemes( eg. -ed, -ing) Grammatical morphemes can be divided into bound morphemes and derivational morphemes.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.">Lexical</head><p>In Lexical, humans, as well as NLP systems, interpret the meaning of individual words. Sundry types of processing bestow to word-level understandingthe first of these being a part-of-speech tag to each word. In this processing, words that can act as more than one partof-speech are assigned the most probable part-of speech tag based on the context in which they occur. At the lexical level, Semantic representations can be replaced by the words that have one meaning. In NLP system, the nature of the representation varies according to the semantic theory deployed.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.">Syntactic</head><p>This level emphasis to scrutinize the words in a sentence so as to uncover the grammatical structure of the sentence. Both grammar and parser are required in this level. The output of this level of processing is representation of the sentence that divulge the structural dependency relationships between the words. There are various grammars that can be impeded, and which in twirl, whack the option of a parser. Not all NLP applications require a full parse of sentences, therefore the abide challenges in parsing of prepositional phrase attachment and conjunction audit no longer impede that plea for which phrasal and clausal dependencies are adequate <ref type="bibr" target="#b6">[7]</ref>. Syntax conveys meaning in most languages because order and dependency contribute to connotation. For example, the two sentences: 'The cat chased the mouse.' and 'The mouse chased the cat.' differ only in terms of syntax, yet convey quite different meanings.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.">Semantic</head><p>In semantic most people think that meaning is determined, however, this is not it is all the levels that bestow to meaning. Semantic processing determines the possible meanings of a sentence by pivoting on the interactions among word-level meanings in the sentence. This level of processing can incorporate the semantic disambiguation of words with multiple senses; in a cognate way to how syntactic disambiguation of words that can errand as multiple parts-of-speech is adroit at the syntactic level. For example, amongst other meanings, 'file' as a noun can mean either a binder for gathering papers, or a tool to form one's fingernails, or a line of individuals in a queue (Elizabeth D. <ref type="bibr">Liddy,2001)</ref>  <ref type="bibr" target="#b6">[7]</ref>. The semantic level scrutinizes words for their dictionary elucidation, but also for the elucidation they derive from the milieu of the sentence. Semantics milieu that most words have more than one elucidation but that we can spot the appropriate one by looking at the rest of the sentence. <ref type="bibr" target="#b7">[8]</ref> </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.">Discourse</head><p>While syntax and semantics travail with sentence-length units, the discourse level of NLP travail with units of text longer than a sentence i.e, it does not interpret multi sentence texts as just sequence sentences, apiece of which can be elucidated singly. Rather, discourse focuses on the properties of the text as a whole that convey meaning by making connections between component sentences (Elizabeth D. <ref type="bibr">Liddy,2001)</ref>  <ref type="bibr" target="#b6">[7]</ref>. The two of the most common levels are Anaphora Resolution -Anaphora resolution is the replacing of words such as pronouns, which are semantically stranded, with the pertinent entity to which they refer. Discourse/Text Structure Recognition -Discourse/text structure recognition sway the functions of sentences in the text, which, in turn, adds to the meaningful representation of the text.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.">Pragmatic:</head><p>Pragmatic is concerned with the firm use of language in situations and utilizes nub over and above the nub of the text for understanding the goal and to explain how extra meaning is read into texts without literally being encoded in them. This requisite much world knowledge, including the understanding of intentions, plans, and goals. For example, the following two sentences need aspiration of the anaphoric term 'they', but this aspiration requires pragmatic or world knowledge (Elizabeth D. <ref type="bibr">Liddy,2001)</ref>  <ref type="bibr" target="#b6">[7]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.">Natural Language Generation</head><p>Natural Language Generation (NLG) is the process of producing phrases, sentences and paragraphs that are meaningful from an internal representation. It is a part of Natural Language Processing and happens in four phases: identifying the goals, planning on how goals maybe achieved by evaluating the situation and available communicative sources and realizing the plans as a text [Figure <ref type="figure" target="#fig_2">3</ref>]. It is opposite to Understanding. Components of NLG are as follows: Speaker and Generator -To generate a text we need to have a speaker or an application and a generator or a program that renders the application's intentions into fluent phrase relevant to the situation.</p><p>Components and Levels of Representation -The process of language generation involves the following interweaved tasks. Content selection: Information should be selected and included in the set. Depending on how this information is parsed into representational units, parts of the units may have to be removed while some others may be added by default. Textual Organization: The information must be textually organized according the grammar, it must be ordered both sequentially and in terms of linguistic relations like modifications. Linguistic Resources: To support the information's realization, linguistic resources must be chosen. In the end these resources will come down to choices of particular words, idioms, syntactic constructs etc. Realization: The selected and organized resources must be realized as an actual text or voice output.</p><p>Application or Speaker -This is only for maintaining the model of the situation. Here the speaker just initiates the process doesn't take part in the language generation. It stores the history, structures the content that is potentially relevant and deploys a representation of what it actually knows. All these form the situation, while selecting subset of propositions that speaker has. The only requirement is the speaker has to make sense of the situation. <ref type="bibr" target="#b8">[9]</ref> </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.">History of NLP</head><p>In late 1940s the term wasn't even in existence, but the work regarding machine translation (MT) had started. Research in this period was not completely localised. Russian and English were the dominant languages for MT, but others, like Chinese were used for MT (Booth ,1967) <ref type="bibr" target="#b9">[10]</ref>. MT/NLP research was almost died in 1966 according to ALPAC report, which concluded that MT is going nowhere. But later on some MT production systems were providing output to their customers <ref type="bibr" target="#b9">(Hutchins, 1986)</ref>  <ref type="bibr" target="#b10">[11]</ref>. By this time, work on the use of computers for literary and linguistic studies had also started.</p><p>As early as 1960 signature work influenced by AI began, with the BASEBALL Q-A systems <ref type="bibr" target="#b11">(Green et al., 1961)</ref>  <ref type="bibr" target="#b11">[12]</ref>. LUNAR <ref type="bibr" target="#b12">(Woods ,1978)</ref>  <ref type="bibr" target="#b12">[13]</ref> and Winograd SHRDLU were natural successors of these systems but they were seen as stepped up sophistication, in terms of their linguistic and their task processing capabilities. There was a widespread belief that progress could only be made on the two sides, one is ARPA Speech Understanding Research (SUR) project <ref type="bibr" target="#b16">(Lea, 1980</ref>) and other in some major system developments projects building database front ends. The front-end projects <ref type="bibr" target="#b13">(Hendrix et al., 1978)</ref>  <ref type="bibr" target="#b13">[14]</ref> were intended to go beyond LUNAR in interfacing the large databases.</p><p>In early 1980s computational grammar theory became a very active area of research linked with logics for meaning and knowledge's ability to deal with the user's beliefs and intentions and with functions like emphasis and themes.</p><p>By the end of the decade the powerful general purpose sentence processors like SRI's Core Language Engine <ref type="bibr">(Alshawi,1992)</ref>  <ref type="bibr" target="#b14">[15]</ref> and Discourse Representation Theory <ref type="bibr">(Kamp and Reyle,1993)</ref>  <ref type="bibr" target="#b15">[16]</ref> offered a means of tackling more extended discourse within the grammatico-logical framework. This period was one of the growing community. Practical resources, grammars, and tools and parsers became available (e.g the Alvey Natural Language Tools (Briscoe et al., 1987) <ref type="bibr" target="#b16">[17]</ref>. The (D)ARPA speech recognition and message understanding (information extraction) conferences were not only for the tasks they addressed but for the emphasis on heavy evaluation, starting a trend that became a major feature in 1990s (Young and Chase, 1998; Sundheim and Chinchor ,1993) <ref type="bibr" target="#b17">[18]</ref> <ref type="bibr" target="#b18">[19]</ref>. Work on user modelling (Kobsa and <ref type="bibr" target="#b19">Wahlster , 1989)</ref>  <ref type="bibr" target="#b19">[20]</ref> was one strand in research paper and on discourse structure serving this <ref type="bibr">(Cohen et al., 1990)</ref>  <ref type="bibr" target="#b20">[21]</ref>. At the same time, as McKeown (1985) <ref type="bibr" target="#b21">[22]</ref> showed, rhetorical schemas could be used for producing both linguistically coherent and communicatively effective text. Some researches in NLP marked important topics for future like word sense disambiguation <ref type="bibr" target="#b21">(Small et al., 1988)</ref>  <ref type="bibr" target="#b22">[23]</ref> and probabilistic networks, statistically coloured NLP, the work on the lexicon, also pointed in this direction.</p><p>Statistical language processing was a major thing in 90s (Manning and Schuetze,1999) <ref type="bibr" target="#b23">[24]</ref>, because this not only involves data analysts. Information extraction and automatic summarising (Mani and Maybury ,1999) <ref type="bibr" target="#b24">[25]</ref> was also a point of focus.</p><p>Recent researches are mainly focused on unsupervised and semi-supervised learning algorithms.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.">Related Work</head><p>Many researchers worked on NLP, building tools and systems which makes NLP what it is today. Tools like Sentiment Analyser, Parts of Speech (POS)Taggers, Chunking, Named Entity Recognitions (NER), Emotion detection, Semantic Role Labelling made NLP a good topic for research.</p><p>Sentiment analyser (Jeonghee etal.,2003) <ref type="bibr" target="#b25">[26]</ref> works by extracting sentiments about given topic. Sentiment analysis consists of a topic specific feature term extraction, sentiment extraction, and association by relationship analysis. Sentiment Analysis utilizes two linguistic resources for the analysis: the sentiment lexicon and the sentiment pattern database. It analyses the documents for positive and negative words and try to give ratings on scale -5 to +5.</p><p>Parts of speech taggers for the languages like European languages, research is being done on making parts of speech taggers for other languages like Arabic, Sanskrit (Namrata Tapswi , Suresh Jain ., 2012) <ref type="bibr" target="#b26">[27]</ref>, Hindi (Pradipta Ranjan Ray et al., 2003 ) <ref type="bibr" target="#b27">[28]</ref> etc. It can efficiently tag and classify words as nouns, adjectives, verbs etc. The most procedures for part of speech can work efficiently on European languages, but it won't on Asian languages or middle eastern languages. Sanskrit part of speech tagger is specifically uses treebank technique. Arabic uses Support Vector Machine (SVM) (Mona <ref type="bibr">Diab etal.,2004)</ref>  <ref type="bibr" target="#b28">[29]</ref>  Usage of Named Entity Recognition in places such as Internet is a problem as people don't use traditional or standard English. This degrades the performance of standard natural language processing tools substantially. By annotating the phrases or tweets and building tools trained on unlabelled, in domain and out domain data (Alan Ritter., 2011) <ref type="bibr" target="#b32">[33]</ref>. It improves the performance as compared to standard natural language processing tools.</p><p>Emotion Detection (Shashank Sharma, 2016) <ref type="bibr" target="#b33">[34]</ref> is similar to sentiment analysis, but it works on social media platforms on mixing of two languages (English + Any other Indian Language). It categorizes statements into six groups based on emotions. During this process, they were able to identify the language of ambiguous words which were common in Hindi and English and tag lexical category or parts of speech in mixed script by identifying the base language of the speaker.</p><p>Sematic Role Labelling -SRL works by giving a semantic role to a sentence. For example in the PropBank <ref type="bibr" target="#b34">(Palmer et al., 2005)</ref>  <ref type="bibr" target="#b34">[35]</ref> formalism, one assigns roles to words that are arguments of a verb in the sentence. The precise arguments depend on verb frame and if there exists multiple verbs in a sentence, it might have multiple tags. State-of-the-art SRL systems comprise of several stages: creating a parse tree, identifying which parse tree nodes represent the arguments of a given verb, and finally classifying these nodes to compute the corresponding SRL tags.</p><p>Event discovery in social media feeds (Edward <ref type="bibr" target="#b35">Benson et al.,2011)</ref>  <ref type="bibr" target="#b35">[36]</ref>, using a graphical model to analyse any social media feeds to determine whether it contains name of a person or name of a venue, place, time etc. The model operates on noisy feeds of data to extract records of events by aggregating multiple information across multiple messages, despite the noise of irrelevant noisy messages and very irregular message language, this model was able to extract records with high accuracy. However, there is some scope for improvement using broader array of features on factors.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.">Applications of NLP</head><p>Natural Language Processing can be applied into various areas like Machine Translation, Email Spam detection, Information Extraction, Summarization, Question Answering etc.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.1">Machine Translation</head><p>As most of the world is online, the task of making data accessible and available to all is a challenge. Major challenge in making data accessible is the language barrier. There are multitude of languages with different sentence structure and grammar. Machine Translation is generally translating phrases from one language to another with the help of a statistical engine like Google Translate. The challenge with machine translation technologies is not directly translating words but keeping the meaning of sentences intact along with grammar and tenses. The statistical machine learning gathers as many data as they can find that seems to be parallel between two languages and they crunch their data to find the likelihood that something in Language A corresponds to something in Language B. As for Google, in September 2016, announced a new machine translation system based on Artificial neural networks and Deep learning . In recent years, various methods have been proposed to automatically evaluate machine translation quality by comparing hypothesis translations with reference translations. Examples of such methods are word error rate, position-independent word error rate <ref type="bibr" target="#b36">(Tillmann et al., 1997)</ref>  <ref type="bibr" target="#b36">[37]</ref>, generation string accuracy <ref type="bibr" target="#b37">(Bangalore et al., 2000)</ref>  <ref type="bibr" target="#b37">[38]</ref>, multi-reference word error rate <ref type="bibr" target="#b38">(Nießen et al., 2000)</ref>  <ref type="bibr" target="#b38">[39]</ref>, BLEU score <ref type="bibr">(Papineni et al., 2002)</ref>  <ref type="bibr" target="#b39">[40]</ref>, NIST score <ref type="bibr">(Doddington, 2002)</ref>  <ref type="bibr" target="#b40">[41]</ref> All these criteria try to approximate human assessment and often achieve an astonishing degree of correlation to human subjective evaluation of fluency and adequacy <ref type="bibr">(Papineni et al., 2001;</ref><ref type="bibr">Doddington, 2002)</ref>  <ref type="bibr" target="#b41">[42]</ref>[43].</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.2">Text Categorization</head><p>Categorization systems inputs a large flow of data like official documents, military casualty reports, market data, newswires etc. and assign them to predefined categories or indices. For example, The Carnegie Group's Construe system (Hayes PJ ,Westein ; 1991) <ref type="bibr" target="#b43">[44]</ref> , inputs Reuters articles and saves much time by doing the work that is to be done by staff or human indexers. Some companies have been using categorization systems to categorize trouble tickets or complaint requests and routing to the appropriate desks. Another application of text categorization is email spam filters. Spam filters is becoming important as the first line of defence against the unwanted emails. A false negative and false positive issues of spam filters are at the heart of NLP technology, its brought down to the challenge of extracting meaning from strings of text. A filtering solution that is applied to an email system uses a set of protocols to determine which of the incoming messages are spam and which are not. There are several types of spam filters available. Content filters: Review the content within the message to determine whether it is a spam or not. Header filters: Review the email header looking for fake information. General Blacklist filters: Stopes all emails from blacklisted recipients. Rules Based Filters: It uses user-defined criteria. Such as stopping mails from specific person or stopping mail including a specific word. Permission Filters: Require anyone sending a message to be pre-approved by the recipient. Challenge Response Filters: Requires anyone sending a message to enter a code in order to gain permission to send email.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.3">Spam Filtering</head><p>It works using text categorization and in recent times, various machine learning techniques have been applied to text categorization or Anti-Spam Filtering like Rule Learning <ref type="bibr" target="#b44">(Cohen 1996)</ref> <ref type="bibr" target="#b44">[45]</ref>, Naïve Bayes <ref type="bibr">(Sahami et</ref> al., 1998 ;Androutsopoulos et al.,2000b ;Rennie .,2000)[46][47][48],Memory based Learning (Androutsopoulos et al.,2000b)[47], Support vector machines (Druker et al., 1999)[49], Decision Trees (Carreras and Marquez , 2001)[50] Maximum Entropy Model <ref type="bibr" target="#b50">(Berger et al. 1996)</ref> <ref type="bibr" target="#b50">[51]</ref>. Sometimes combining different learners <ref type="bibr" target="#b51">(Sakkis et al., 2001)</ref>  <ref type="bibr" target="#b51">[52]</ref>. Using these approaches is better as classifier is learned from training data rather than making by hand. The naïve bayes is preferred because of its performance despite its simplicity <ref type="bibr" target="#b52">(Lewis, 1998)</ref>  <ref type="bibr" target="#b52">[53]</ref> In Text Categorization two types of models have been used (McCallum and Nigam, 1998) <ref type="bibr" target="#b53">[54]</ref>. Both modules assume that a fixed vocabulary is present. But in first model a document is generated by first choosing a subset of vocabulary and then using the selected words any number of times, at least once irrespective of order. This is called Multi-variate Bernoulli model. It takes the information of which words are used in a document irrespective of number of words and order. In second model, a document is generated by choosing a set of word occurrences and arranging them in any order. this model is called multi-nomial model, in addition to the Multi-variate Bernoulli model, it also captures information on how many times a word is used in a document. Most text categorization approaches to anti spam Email filtering have used multi variate Bernoulli model <ref type="bibr">(Androutsopoulos et al.,2000b)</ref>  <ref type="bibr" target="#b46">[47]</ref> </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.4">Information Extraction</head><p>Information extraction is concerned with identifying phrases of interest of textual data. For many applications, extracting entities such as names, places, events, dates, times and prices is a powerful way of summarize the information relevant to a user's needs. In the case of a domain specific search engine, the automatic identification of important information can increase accuracy and efficiency of a directed search. There is use of hidden Markov models (HMMs) to extract the relevant fields of research papers. These extracted text segments are used to allow searched over specific fields and to provide effective presentation of search results and to match references to papers. For example, noticing the pop up ads on any websites showing the recent items you might have looked on an online store with discounts. In Information Retrieval two types of models have been used (McCallum and Nigam, 1998) <ref type="bibr" target="#b54">[55]</ref>. Both modules assume that a fixed vocabulary is present. But in first model a document is generated by first choosing a subset of vocabulary and then using the selected words any number of times, at least once without any order. This is called Multi-variate Bernoulli model. It takes the information of which words are used in a document irrespective of number of words and order. In second model, a document is generated by choosing a set of word occurrences and arranging them in any order. this model is called multi-nomial model, in addition to the Multi-variate Bernoulli model , it also captures information on how many times a word is used in a document Discovery of knowledge is becoming important areas of research over the recent years. Knowledge discovery research use a variety of techniques in order to extract useful information from source documents like Parts of Speech (POS) tagging, Chunking or Shadow Parsing, Stop-words (Keywords that are used and must be removed before processing documents), Stemming (Mapping words to some base for, it has two methods, dictionary based stemming and Porter style stemming <ref type="bibr" target="#b55">(Porter, 1980)</ref>  <ref type="bibr" target="#b54">[55]</ref>. Former one has higher accuracy but higher cost of implementation while latter has lower implementation cost and is usually insufficient for IR). Compound or Statistical Phrases (Compounds and statistical phrases index multi token units instead of single tokens.) Word Sense Disambiguation (Word sense disambiguation is the task of understanding the correct sense of a word in context. When used for information retrieval, terms are replaced by their senses in the document vector.) Its extracted information can be applied on a variety of purpose, for example to prepare a summary, to build databases, identify keywords, classifying text items according to some predefined categories etc. For example CONSTRUE, it was developed for Reuters, that is used in classifying news stories <ref type="bibr">(Hayes, 1992)</ref>  <ref type="bibr" target="#b56">[57]</ref>. It has been suggested that many IE systems can successfully extract terms from documents, acquiring relations between the terms is still a difficulty. PROMETHEE is a system that extracts lexico-syntactic patterns relative to a specific conceptual relation <ref type="bibr">(Morin,1999)</ref>  <ref type="bibr" target="#b57">[58]</ref>. IE systems should work at many levels, from word recognition to discourse analysis at the level of the complete document. An application of the Blank Slate Language Processor (BSLP) (Bondale et al., 1999) <ref type="bibr" target="#b58">[59]</ref> approach for the analysis of a real life natural language corpus that consists of responses to open-ended questionnaires in the field of advertising.</p><p>There's a system called MITA (Metlife's Intelligent Text Analyzer) (Glasgow et al. (1998) <ref type="bibr" target="#b59">[60]</ref>) that extracts information from life insurance applications. <ref type="bibr" target="#b60">Ahonen et al. (1998)</ref>  <ref type="bibr" target="#b60">[61]</ref> suggested a mainstream framework for text mining that uses pragmatic and discourse level analyses of text.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.5">Summarization</head><p>Overload of information is the real thing in this digital age, and already our reach and access to knowledge and information exceeds our capacity to understand it. This trend is not slowing down, so an ability to summarize the data while keeping the meaning intact is highly required. This is important not just allowing us the ability to recognize the understand the important information for a large set of data, it is used to understand the deeper emotional meanings; For example, a company determine the general sentiment on social media and use it on their latest product offering. This application is useful as a valuable marketing asset.</p><p>The types of text summarization depends on the basis of the number of documents and the two important categories are single document summarization and multi document summarization <ref type="bibr">(Zajic et al. 2008 [62]</ref>; Fattah and Ren 2009 <ref type="bibr" target="#b62">[63]</ref>). Summaries can also be of two types: generic or query-focused <ref type="bibr">(Gong and Liu 2001 [64]</ref>; <ref type="bibr">Dunlavy et al. 2007 [65]</ref>; <ref type="bibr">Wan 2008 [66]</ref>; <ref type="bibr">Ouyang et al. 2011 [67]</ref>). Summarization task can be either supervised or unsupervised (Mani and Maybury 1999 <ref type="bibr" target="#b67">[68]</ref>; Fattah and Ren 2009 <ref type="bibr" target="#b62">[63]</ref>; Riedhammer et al. 2010 <ref type="bibr" target="#b68">[69]</ref>). Training data is required in a supervised system for selecting relevant material from the documents. Large amount of annotated data is needed for learning techniques. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.6">Dialogue System</head><p>Perhaps the most desirable application of the future, in the systems envisioned by large providers of end user applications, Dialogue systems, which focuses on a narrowly defined applications (like refrigerator or home theater systems) currently uses the phonetic and lexical levels of language. It is believed that these dialogue systems when utilizing all levels of language processing offer potential for fully automated dialog systems. (Elizabeth D. Liddy, 2001) <ref type="bibr" target="#b6">[7]</ref>. Whether on text or via voice. This could lead to produce systems that can enable robots to interact with humans in natural languages. Examples like Google's assistant, Windows Cortana, Apple's Siri and Amazon's Alexa are the software and devices that follow Dialogue systems.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.7">Medicine</head><p>NLP is applied in medicine field as well. The Linguistic String Project-Medical Language Processor is one the large scale projects of NLP in the field of medicine <ref type="bibr" target="#b73">[74]</ref>[75] <ref type="bibr" target="#b75">[76]</ref>[77] <ref type="bibr" target="#b77">[78]</ref>.</p><p>The LSP-MLP helps enabling physicians to extract and summarize information of any signs or symptoms, drug dosage and response data with aim of identifying possible side effects of any medicine while highlighting or flagging data items <ref type="bibr" target="#b73">[74]</ref>.</p><p>The National Library of Medicine is developing The Specialist System [79][80][81][82][83]. It is expected to function as Information Extraction tool for Biomedical Knowledge Bases, particularly Medline abstracts. The lexicon was created using MeSH (Medical Subject Headings), Dorland's Illustrated Medical Dictionary and general English Dictionaries. The Centre d'Informatique Hospitaliere of the Hopital Cantonal de Geneve is working on an electronic archiving environment with NLP features [84][85]. In first phase, patient records were archived . At later stage the LSP-MLP has been adapted for French [86][87][88][89] , and finally , a proper NLP system called RECIT [90][91][92][93] has been developed using a method called Proximity Processing [94]. It's task was to implement a robust and multilingual system able to analyze/comprehend medical sentences, and to preserve a knowledge of free text into a language independent knowledge representation [95][96]. The Columbia university of New York has developed an NLP system called MEDLEE (MEDical Language Extraction and Encoding System) that identifies clinical information in narrative reports and transforms the textual information into structured representation [97].</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.">Approaches</head><p>Rationalist approach or symbolic approach assume that crucial part of the knowledge in the human mind is not derived by the sense but is firm in advance, probably by genetic in heritance. Noam Chomsky was the strongest advocate of this approach. It was trusted that machine can be made to function like human brain by giving some fundamental knowledge and reasoning mechanism linguistics knowledge is directly encoded in rule or other forms of representation. This helps automatic process of natural languages. <ref type="bibr" target="#b97">[98]</ref> Statistical and machine learning entail evolution of algorithms that allow a program to infer patterns. An iterative process is used to characterize a given algorithm's underlying algorithm that are optimised by a numerical measure that characterize numerical parameters and learning phase. Machine-learning models can be predominantly categorized as either generative or discriminative. Generative methods can generate synthetic data because of which they create rich models of probability distributions. Discriminative methods are more functional and have right estimating posterior probabilities and are based on observations.</p><p>Srihari <ref type="bibr" target="#b98">[99]</ref> explains the different generative models as one with a resemblance that is used to spot an unknown speaker's language and would bid the deep knowledge of numerous language to perform the match. Whereas discriminative methods rely on a less knowledgeintensive approach and using distinction between language. Whereas generative models, can become troublesome when many features are used and discriminative models allow use of more features. <ref type="bibr" target="#b99">[100]</ref> Few of the examples of discriminative methods are Logistic regression and conditional random fields (CRFs), generative methods are Naive Bayes classifiers and hidden Markov models (HMMs).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.1">Hidden Markov Model (HMM)</head><p>An HMM is a system where a shifting takes place between several states, generating feasible output symbols with each switch. The sets of viable states and unique symbols may be large, but finite and known. We can descry the outputs, but the system's internals are hidden.</p><p>Few of the problem could be solved are by Inference A certain sequence of output symbols, compute the probabilities of one or more candidate states with sequences. Pattern matching the state-switch sequence is realised are most likely to have generated a particular output-symbol sequence. Training the output-symbol chain data, reckon the state-switch/output probabilities that fit this data best. Hidden Markov Models are extensively used for speech recognition, where the output sequence is matched to the sequence of individual phonemes. Frederick Jelinek, a statistical-NLP advocate who first instigated HMMs at IBM's Speech Recognition Group, reportedly joked, every time a linguist leaves my group, the speech recognizer's performance improves. [101] HMM is not restricted to this application it has several others such as bioinformatics problems, for example, multiple sequence alignment [102]. Sonnhammer mentioned that Pfam hold multiple alignments and hidden Markov model based profiles (HMM-profiles) of entire protein domains. The cue of domain boundaries, family members and alignment is done semi-automatically found on expert knowledge, sequence similarity, other protein family databases and the capability of HMM-profiles to correctly identify and align the members. [103]</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.2">Naive Bayes Classifiers</head><p>The choice of area is wide ranging covering usual items like word segmentation and translation but also unusual areas like segmentation for infant learning and identifying documents for opinions and facts. In addition, exclusive article was selected for its use of Bayesian methods to aid the research in designing algorithms for their investigation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8.">NLP in Talk</head><p>This section discusses the recent developments in the NLP projects implemented by various companies and these are as follows:</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8.1">ACE Powered GDPR Robot Launched by RAVN Systems [104]</head><p>RAVN Systems, an leading expert in Artificial Intelligence (AI), Search and Knowledge Management Solutions, announced the launch of a RAVN ("Applied Cognitive Engine") i.e powered software Robot to help and facilitate the GDPR ("General Data Protection Regulation") compliance.</p><p>The Robot uses AI techniques to automatically analyse documents and other types of data in any business system which is subject to GDPR rules. It allows users to quickly and easily search, retrieve, flag, classify and report on data mediated to be supersensitive under GDPR. Users also have the ability to identify personal data from documents, view feeds on the latest personal data that requires attention and provide reports on the data suggested to be deleted or secured. RAVN's GDPR Robot is also able to hasten requests for information (Data Subject Access Requests -"DSAR") in a simple and efficient way, removing the need for a physical approach to these requests which tends to be very labour thorough. Peter Wallqvist, CSO at RAVN Systems commented, "GDPR compliance is of universal paramountcy as it will exploit to any organisation that control and process data concerning EU citizens.</p><p>LINK:<ref type="url" target="http://markets.financialcontent.com/stocks/news/read/33888795/RAVN_Systems_Launch_the_ACE_Powered_GDPR_Robot">http://markets.financialcontent.com/stocks/news/read/33888795/RAVN_Systems_Launch_the_ACE_Po  wered_GDPR_Robot</ref> </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8.2">Eno A Natural Language Chatbot Launched by Capital One [105]</head><p>Capital one announces chatbot for customers called Eno. Eno is a natural language chatbot that people socialize through texting. Capital one claims that Eno is First natural language SMS chatbot from a U.S. bank that allows customer to ask questions using natural language. Customers can interact with Eno asking questions about their savings and others using a text interface. Eno makes such an environment that it feels that a human is interacting.</p><p>Ken Dodelin, Capital One's vice president of digital product development, said "We kind of launched a chatbot and didn't know it." This provides a different platform than other brands that launch chatbots like Facebook Messenger and Skype. They believed that Facebook has too much access of private information of a person, which could get them into trouble with privacy laws of U.S. financial institutions work under. Like any Facebook Page admin can access full transcripts of the bot's conversations. If that would be the case then the admins could easily view the personal banking information of customers with is not correct LINK: <ref type="url" target="https://www.macobserver.com/analysis/capital-one-natural-language-chatbot-eno/">https://www.macobserver.com/analysis/capital-one-natural-language-chatbot-eno/</ref> 8.3 Future of BI in Natural Language Processing [106]</p><p>Several companies in Bi spaces are trying to get with the trend and trying hard to ensure that data becomes more friendly and easily accessible. But still there is long way for this.BI will also make it easier to access as GUI is not needed. Because now a days the queries are made by text or voice command on smartphones.one of the most common example is Google might tell you today what will be the tomorrows weather. But soon enough, we will be able to ask our personal data chatbot about customer sentiment today, and how do we feel about their brand next week; all while walking down the street. Today, NLP tends to be based on turning natural language into machine language. But with time the technology maturesespecially the AI component -the computer will get better at "understanding" the query and start to deliver answers rather than search results.</p><p>Initially, the data chatbot will probably ask the question as how have revenues changed over the last three-quarters?' and then return pages of data for you to analyse. But once it learns the semantic relations and inferences of the question, it will be able to automatically perform the filtering and formulation necessary to provide an intelligible answer, rather than simply showing you data.</p><p>Link: <ref type="url" target="http://www.smartdatacollective.com/eran-levy/489410/here-s-why-natural-language-processing-future-bi">http://www.smartdatacollective.com/eran-levy/489410/here-s-why-natural-language-processing-future-bi</ref> </p><p>8.4 Using Natural Language Processing and Network Analysis to Develop a Conceptual Framework for Medication Therapy Management Research [107] Natural Language Processing and Network Analysis to Develop a Conceptual Framework for Medication Therapy Management Research describes a theory derivation process that is used to develop conceptual framework for medication therapy management (MTM) research. The MTM service model and chronic care model are selected as parent theories. Review article abstracts target medication therapy management in chronic disease care that were retrieved from Ovid Medline (2000-2016). Unique concepts in each abstract are extracted using Meta Map and their pairwise cooccurrence are determined. Then the information is used to construct a network graph of concept co-occurrence that is further analysed to identify content for the new conceptual model. 142 abstracts are analysed. Medication adherence is the most studied drug therapy problem and co-occurred with concepts related to patient-centred interventions targeting selfmanagement. The enhanced model consists of 65 concepts clustered into 14 constructs. The framework requires additional refinement and evaluation to determine its relevance and applicability across a broad audience including underserved settings. Link: <ref type="url" target="https://www.ncbi.nlm.nih.gov/pubmed/28269895?dopt=Abstract">https://www.ncbi.nlm.nih.gov/pubmed/28269895?dopt=Abstract</ref> 8.5 Meet the Pilot, world's first language translating earbuds [108]</p><p>The world's first smart earpiece Pilot will soon be transcribed over 15 languages. According to Spring wise, Waverly Labs' Pilot can already transliterate five spoken languages, English, French, Italian, Portuguese and Spanish, and seven written affixed languages, German, Hindi, Russian, Japanese, Arabic, Korean and Mandarin Chinese. The Pilot earpiece is connected via Bluetooth to the Pilot speech translation app, which uses speech recognition, machine translation and machine learning and speech synthesis technology.</p><p>Simultaneously, the user will hear the translated version of the speech on the second earpiece. Moreover, it is not necessary that conversation would be taking place between two people only the users can join in and discuss as a group. As if now the user may experience a few second lag interpolated the speech and translation, which Waverly Labs pursue to reduce.</p><p>The Pilot earpiece will be available from September, but can be pre-ordered now for $249.</p><p>The earpieces can also be used for streaming music, answering voice calls and getting audio notifications.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Figure 1 .</head><label>1</label><figDesc>Figure 1. Broad Classification of NLP</figDesc><graphic coords="2,72.00,72.00,432.25,246.45" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Figure 2 .</head><label>2</label><figDesc>Figure 2. Phases of NLP architecture</figDesc><graphic coords="4,73.50,72.00,451.30,254.80" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>Figure 3 .</head><label>3</label><figDesc>Figure 3. Components of NLG</figDesc><graphic coords="6,73.50,275.51,419.02,255.64" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><figDesc>approach to automatically tokenize, parts of speech tag and annotate base phrases in Arabic text.Chunkingit is also known as Shadow Parsing, it works by labelling segments of sentences with syntactic correlated keywords like Noun Phrase and Verb Phrase (NP or VP). Every word has a unique tag often marked as Begin Chunk (B-NP) tag or Inside Chunk (I-NP) tag. Chunking is often evaluated using the CoNLL 2000 shared task. CoNLL 2000 provides test data for Chunking. Since then, a certain number of systems arised<ref type="bibr" target="#b29">(Sha and Pereira, 2003;</ref><ref type="bibr" target="#b30">McDonald et al., 2005;</ref><ref type="bibr" target="#b31">Sun et al., 2008)</ref> <ref type="bibr" target="#b29">[30]</ref> [31]<ref type="bibr" target="#b31">[32]</ref>, all reporting around 94.3% F1 score. These systems use features composed of words, POS tags, and tags.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><figDesc>Few techniques are as follows--Bayesian Sentence based Topic Model (BSTM) uses both term-sentences and term document associations for summarizing multiple documents. (Wang et al. 2009 [70]) -Factorization with Given Bases (FGB) is a language model where sentence bases are the given bases and it utilizes document-term and sentence term matrices. This approach groups and summarizes the documents simultaneously. (Wang et al. 2011) [71]) -Topic Aspect-Oriented Summarization (TAOS) is based on topic factors. These topic factors are various features that describe topics such as capital words are used to represent entity. Various topics can have various aspects and various preferences of features are used to represent various aspects. (Fang et al. 2015 [72])</figDesc></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0"><p>Link:https://www.indiegogo.com/projects/meet-the-pilot-smart-earpiece-language-translatorheadphones-travel#/</p></note>
+		</body>
+		<back>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<monogr>
+		<author>
+			<persName><forename type="first">Noam</forename><surname>Chomsky</surname></persName>
+		</author>
+		<title level="m">Aspects of the Theory of Syntax</title>
+		<meeting><address><addrLine>Cambridge, Massachusetts</addrLine></address></meeting>
+		<imprint>
+			<publisher>MIT Press</publisher>
+			<date type="published" when="1965">1965</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Building event-centric knowledge graphs from news</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Rospocher</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Van Erp</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Vossen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Fokkens</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Aldabe</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Rigau</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Soroa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Ploeger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Bogaard</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Web Semantics: Science, Services and Agents on the World Wide Web</title>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+			<publisher>In Press</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<monogr>
+		<title level="m" type="main">Ambiguity management in natural language generation</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Shemtov</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1997">1997</date>
+			<pubPlace>Stanford University</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Ambiguity preserving machine translation using packed representations</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">C</forename><surname>Emele</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Dorna</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 36th Annual Meeting of the Association for Computational Linguistics and 17th International Conference on Computational Linguistics</title>
+		<meeting>the 36th Annual Meeting of the Association for Computational Linguistics and 17th International Conference on Computational Linguistics</meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="1998-08">1998. August</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="365" to="371" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Preserving ambiguities in generation via automata intersection</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Knight</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Langkilde</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">AAAI/IAAI</title>
+		<imprint>
+			<date type="published" when="2000-07">2000, July</date>
+			<biblScope unit="page" from="697" to="702" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Dissecting the relationship between language skills and learning to read: Semantic and phonological contributions to new vocabulary learning in children with poor reading comprehension</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Nation</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">J</forename><surname>Snowling</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Clarke</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Advances in Speech Language Pathology</title>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="131" to="139" />
+			<date type="published" when="2007">2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<monogr>
+		<title level="m" type="main">Natural language processing</title>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">D</forename><surname>Liddy</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2001">2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<monogr>
+		<author>
+			<persName><forename type="first">S</forename><surname>Feldman</surname></persName>
+		</author>
+		<title level="m">NLP Meets the Jabberwocky: Natural Language Processing in Information Retrieval. ONLINE-WESTON THEN WILTON</title>
+		<imprint>
+			<date type="published" when="1999">1999</date>
+			<biblScope unit="volume">23</biblScope>
+			<biblScope unit="page" from="62" to="73" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Natural Language Processing</title>
+	</analytic>
+	<monogr>
+		<title level="m">Natural Language Processing RSS</title>
+		<imprint>
+			<date type="published" when="2017-03-25">25 Mar. 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<monogr>
+		<title level="m" type="main">Machine translation: past, present, future</title>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">J</forename><surname>Hutchins</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1986">1986</date>
+			<publisher>Ellis Horwood</publisher>
+			<biblScope unit="page">66</biblScope>
+			<pubPlace>Chichester</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<monogr>
+		<title level="m" type="main">Early years in machine translation: memoirs and biographies of pioneers</title>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">J</forename><surname>Hutchins</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2000">2000</date>
+			<publisher>John Benjamins Publishing</publisher>
+			<biblScope unit="volume">97</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Baseball: an automatic question-answerer</title>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">F</forename><surname>Green</surname><genName>Jr</genName></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">K</forename><surname>Wolf</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Chomsky</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Laughery</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">western joint IRE-AIEE-ACM computer conference</title>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="1961-05">1961. May. May 9-11, 1961</date>
+			<biblScope unit="page" from="219" to="224" />
+		</imprint>
+	</monogr>
+	<note>In Papers presented at the</note>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Semantics and quantification in natural language question answering</title>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">A</forename><surname>Woods</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Advances in computers</title>
+		<imprint>
+			<biblScope unit="volume">17</biblScope>
+			<biblScope unit="page" from="1" to="87" />
+			<date type="published" when="1978">1978</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Developing a natural language interface to complex data</title>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">G</forename><surname>Hendrix</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">D</forename><surname>Sacerdoti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Sagalowicz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Slocum</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Database Systems (TODS)</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="105" to="147" />
+			<date type="published" when="1978">1978</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<monogr>
+		<title level="m" type="main">The core language engine</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Alshawi</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1992">1992</date>
+			<publisher>MIT press</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Tense and Aspect</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Kamp</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">U</forename><surname>Reyle</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">From Discourse to Logic</title>
+		<meeting><address><addrLine>Netherlands</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="1993">1993</date>
+			<biblScope unit="page" from="483" to="689" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<monogr>
+		<title level="m" type="main">A Trends in speech recognition</title>
+		<author>
+			<persName><forename type="first">W</forename><surname>Lea</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1980">1980</date>
+			<publisher>Prentice Hall</publisher>
+			<pubPlace>Englewoods Cliffs , NJ</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Speech recognition evaluation: a review of the US CSR and LVCSR programmes</title>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">J</forename><surname>Young</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">L</forename><surname>Chase</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Computer Speech &amp; Language</title>
+		<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="263" to="279" />
+			<date type="published" when="1998">1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Survey of the message understanding conferences</title>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">M</forename><surname>Sundheim</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">A</forename><surname>Chinchor</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the workshop on Human Language Technology</title>
+		<meeting>the workshop on Human Language Technology</meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="1993-03">1993. March</date>
+			<biblScope unit="page" from="56" to="60" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">User models in dialog systems</title>
+		<author>
+			<persName><forename type="first">W</forename><surname>Wahlster</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kobsa</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">User models in dialog systems</title>
+		<meeting><address><addrLine>Berlin Heidelberg</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="1989">1989</date>
+			<biblScope unit="page" from="4" to="34" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<monogr>
+		<title level="m" type="main">Text generation</title>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">R</forename><surname>Mckeown</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1985">1985</date>
+			<publisher>Cambridge University Press</publisher>
+			<pubPlace>Cambridge</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<monogr>
+		<title level="m" type="main">Lexical Ambiguity Resolutions</title>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">L</forename><surname>Small</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">W</forename><surname>Cortell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">K</forename><surname>Tanenhaus</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1988">1988</date>
+			<publisher>Morgan Kauffman</publisher>
+			<pubPlace>San Mateo , CA</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<monogr>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">D</forename><surname>Manning</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Schütze</surname></persName>
+		</author>
+		<title level="m">Foundations of statistical natural language processing</title>
+		<meeting><address><addrLine>Cambridge</addrLine></address></meeting>
+		<imprint>
+			<publisher>MIT press</publisher>
+			<date type="published" when="1999">1999</date>
+			<biblScope unit="volume">999</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<monogr>
+		<title level="m">Advances in automatic text summarization</title>
+		<editor>
+			<persName><forename type="first">I</forename><surname>Mani</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">M</forename><forename type="middle">T</forename><surname>Maybury</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Cambridge, MA</addrLine></address></meeting>
+		<imprint>
+			<publisher>MIT press</publisher>
+			<date type="published" when="1999">1999</date>
+			<biblScope unit="volume">293</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Sentiment analyzer: Extracting sentiments about a given topic using natural language processing techniques</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Yi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Nasukawa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Bunescu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Niblack</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Data Mining, 2003. ICDM 2003. Third IEEE International Conference on</title>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2003-11">2003, November</date>
+			<biblScope unit="page" from="427" to="434" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Sentiment analyzer: Extracting sentiments about a given topic using natural language processing techniques</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Yi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Nasukawa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Bunescu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Niblack</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Data Mining, 2003. ICDM 2003. Third IEEE International Conference on</title>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2003-11">2003, November</date>
+			<biblScope unit="page" from="427" to="434" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Treebank based deep grammar acquisition and Part-Of-Speech Tagging for Sanskrit sentences</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Tapaswi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Jain</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Software Engineering (CONSEG), 2012 CSI Sixth International Conference on</title>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2012-09">2012, September)</date>
+			<biblScope unit="page" from="1" to="4" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Part of speech tagging and local word grouping techniques for natural language parsing in Hindi</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Ranjan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">V S S A</forename><surname>Basu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 1st International Conference on Natural Language Processing</title>
+		<meeting>the 1st International Conference on Natural Language Processing</meeting>
+		<imprint>
+			<date type="published" when="2003">2003. 2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Automatic tagging of Arabic text: From raw text to base phrase chunks</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Diab</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Hacioglu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Jurafsky</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of HLT-NAACL 2004: Short papers</title>
+		<meeting>HLT-NAACL 2004: Short papers</meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2004-05">2004. May</date>
+			<biblScope unit="page" from="149" to="152" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Shallow parsing with conditional random fields</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Sha</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Pereira</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2003 Conference of the North American Chapter</title>
+		<meeting>the 2003 Conference of the North American Chapter</meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2003-05">2003. May</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="134" to="141" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Flexible text segmentation with structured multilabel classification</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Mcdonald</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Crammer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Pereira</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the conference on Human Language Technology and Empirical Methods in Natural Language Processing</title>
+		<meeting>the conference on Human Language Technology and Empirical Methods in Natural Language Processing</meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2005-10">2005, October</date>
+			<biblScope unit="page" from="987" to="994" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Modeling latentdynamic in shallow parsing: a latent conditional model with improved inference</title>
+		<author>
+			<persName><forename type="first">X</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">P</forename><surname>Morency</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Okanohara</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">I</forename><surname>Tsujii</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 22nd International Conference on Computational Linguistics</title>
+		<meeting>the 22nd International Conference on Computational Linguistics</meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2008-08">2008. August</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="841" to="848" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Named entity recognition in tweets: an experimental study</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ritter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Clark</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Etzioni</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Conference on Empirical Methods in Natural Language Processing</title>
+		<meeting>the Conference on Empirical Methods in Natural Language Processing</meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2011-07">2011, July</date>
+			<biblScope unit="page" from="1524" to="1534" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Emotion Detection using Online Machine Learning Method and TLBO on Mixed Script</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Sharma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pykl</forename><surname>Srinivas</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Balabantaray</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Rc</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of Language Resources and Evaluation Conference</title>
+		<meeting>Language Resources and Evaluation Conference</meeting>
+		<imprint>
+			<date type="published" when="2016">2016. 2016</date>
+			<biblScope unit="page" from="47" to="51" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<analytic>
+		<title level="a" type="main">The proposition bank: An annotated corpus of semantic roles</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Palmer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Gildea</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Kingsbury</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Computational linguistics</title>
+		<imprint>
+			<biblScope unit="volume">31</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="71" to="106" />
+			<date type="published" when="2005">2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Event discovery in social media feeds</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Benson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Haghighi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Barzilay</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 49th Annual Meeting of the Association for Computational Linguistics: Human Language Technologies</title>
+		<meeting>the 49th Annual Meeting of the Association for Computational Linguistics: Human Language Technologies</meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2011-06">2011. June</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="389" to="398" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<monogr>
+		<title level="m" type="main">Accelerated DP based search for statistical translation</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Tillmann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Vogel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Ney</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Zubiaga</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Sawaf</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1997-09">1997. September</date>
+		</imprint>
+	</monogr>
+	<note>Eurospeech</note>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Evaluation metrics for generation</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bangalore</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Rambow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Whittaker</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the first international conference on Natural language generation</title>
+		<meeting>the first international conference on Natural language generation</meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2000-06">2000. June</date>
+			<biblScope unit="volume">14</biblScope>
+			<biblScope unit="page" from="1" to="8" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<analytic>
+		<title level="a" type="main">An Evaluation Tool for Machine Translation: Fast Evaluation for MT Research</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Nießen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><forename type="middle">J</forename><surname>Och</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Leusch</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Ney</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">LREC</title>
+		<imprint>
+			<date type="published" when="2000-05">2000, May</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<analytic>
+		<title level="a" type="main">BLEU: a method for automatic evaluation of machine translation</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Papineni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Roukos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Ward</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">J</forename><surname>Zhu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 40th annual meeting on association for computational linguistics</title>
+		<meeting>the 40th annual meeting on association for computational linguistics</meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2002-07">2002, July</date>
+			<biblScope unit="page" from="311" to="318" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<analytic>
+		<title level="a" type="main">Automatic evaluation of machine translation quality using n-gram co-occurrence statistics</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Doddington</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the second international conference on Human Language Technology Research</title>
+		<meeting>the second international conference on Human Language Technology Research</meeting>
+		<imprint>
+			<publisher>Morgan Kaufmann Publishers Inc</publisher>
+			<date type="published" when="2002-03">2002. March</date>
+			<biblScope unit="page" from="138" to="145" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b41">
+	<analytic>
+		<title level="a" type="main">BLEU: a method for automatic evaluation of machine translation</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Papineni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Roukos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Ward</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">J</forename><surname>Zhu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 40th annual meeting on association for computational linguistics</title>
+		<meeting>the 40th annual meeting on association for computational linguistics</meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2002-07">2002, July</date>
+			<biblScope unit="page" from="311" to="318" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b42">
+	<analytic>
+		<title level="a" type="main">Automatic evaluation of machine translation quality using n-gram co-occurrence statistics</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Doddington</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the second international conference on Human Language Technology Research</title>
+		<meeting>the second international conference on Human Language Technology Research</meeting>
+		<imprint>
+			<publisher>Morgan Kaufmann Publishers Inc</publisher>
+			<date type="published" when="2002-03">2002. March</date>
+			<biblScope unit="page" from="138" to="145" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b43">
+	<monogr>
+		<title level="m" type="main">Intelligent high-volume text processing using shallow, domainspecific techniques. Text-based intelligent systems: Current research and practice in information extraction and retrieval</title>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">J</forename><surname>Hayes</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1992">1992</date>
+			<biblScope unit="page" from="227" to="242" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b44">
+	<analytic>
+		<title level="a" type="main">Learning rules that classify e-mail</title>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">W</forename><surname>Cohen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">AAAI spring symposium on machine learning in information access</title>
+		<imprint>
+			<date type="published" when="1996-03">1996. March</date>
+			<biblScope unit="volume">18</biblScope>
+			<biblScope unit="page">25</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b45">
+	<analytic>
+		<title level="a" type="main">A Bayesian approach to filtering junk e-mail</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Sahami</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Dumais</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Heckerman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Horvitz</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Learning for Text Categorization: Papers from the 1998 workshop</title>
+		<imprint>
+			<date type="published" when="1998-07">1998, July</date>
+			<biblScope unit="volume">62</biblScope>
+			<biblScope unit="page" from="98" to="105" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b46">
+	<monogr>
+		<title level="m" type="main">Learning to filter spam e-mail: A comparison of a naive bayesian and a memory-based approach</title>
+		<author>
+			<persName><forename type="first">I</forename><surname>Androutsopoulos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Paliouras</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Karkaletsis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Sakkis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">D</forename><surname>Spyropoulos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Stamatopoulos</surname></persName>
+		</author>
+		<idno>arXiv preprint cs/0009009</idno>
+		<imprint>
+			<date type="published" when="2000">2000</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b47">
+	<analytic>
+		<title level="a" type="main">ifile: An application of machine learning to e-mail filtering</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Rennie</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. KDD 2000 Workshop on Text Mining</title>
+		<meeting>KDD 2000 Workshop on Text Mining<address><addrLine>Boston, MA</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2000-08">2000. August</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b48">
+	<analytic>
+		<title level="a" type="main">Support vector machines for spam categorization</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Drucker</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><forename type="middle">N</forename><surname>Vapnik</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Neural networks</title>
+		<imprint>
+			<biblScope unit="volume">10</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="1048" to="1054" />
+			<date type="published" when="1999">1999</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b49">
+	<monogr>
+		<title level="m" type="main">Boosting trees for anti-spam email filtering</title>
+		<author>
+			<persName><forename type="first">X</forename><surname>Carreras</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Marquez</surname></persName>
+		</author>
+		<idno>arXiv preprint cs/0109015</idno>
+		<imprint>
+			<date type="published" when="2001">2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b50">
+	<analytic>
+		<title level="a" type="main">A maximum entropy approach to natural language processing</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">L</forename><surname>Berger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">A</forename><surname>Della Pietra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><forename type="middle">J</forename><surname>Della Pietra</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Computational Linguistics</title>
+		<imprint>
+			<biblScope unit="volume">22</biblScope>
+			<biblScope unit="page" from="39" to="71" />
+			<date type="published" when="1996">1996</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b51">
+	<monogr>
+		<title level="m" type="main">Stacking classifiers for anti-spam filtering of e-mail</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Sakkis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Androutsopoulos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Paliouras</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Karkaletsis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">D</forename><surname>Spyropoulos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Stamatopoulos</surname></persName>
+		</author>
+		<idno>arXiv preprint cs/0106040.</idno>
+		<imprint>
+			<date type="published" when="2001">2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b52">
+	<analytic>
+		<title level="a" type="main">Naive (Bayes) at forty: The independence assumption in information retrieval</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">D</forename><surname>Lewis</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">European conference on machine learning</title>
+		<meeting><address><addrLine>Berlin Heidelberg</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="1998-04">1998, April</date>
+			<biblScope unit="page" from="4" to="15" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b53">
+	<analytic>
+		<title level="a" type="main">A comparison of event models for naive bayes text classification</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Mccallum</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Nigam</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">AAAI-98 workshop on learning for text categorization</title>
+		<imprint>
+			<date type="published" when="1998-07">1998, July</date>
+			<biblScope unit="volume">752</biblScope>
+			<biblScope unit="page" from="41" to="48" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b54">
+	<analytic>
+		<title level="a" type="main">A comparison of event models for naive bayes text classification</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Mccallum</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Nigam</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">AAAI-98 workshop on learning for text categorization</title>
+		<imprint>
+			<date type="published" when="1998-07">1998, July</date>
+			<biblScope unit="volume">752</biblScope>
+			<biblScope unit="page" from="41" to="48" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b55">
+	<analytic>
+		<title level="a" type="main">An algorithm for suffix stripping</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">F</forename><surname>Porter</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Program</title>
+		<imprint>
+			<biblScope unit="volume">14</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="130" to="137" />
+			<date type="published" when="1980">1980</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b56">
+	<monogr>
+		<title level="m" type="main">Intelligent high-volume text processing using shallow, domainspecific techniques. Text-based intelligent systems: Current research and practice in information extraction and retrieval</title>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">J</forename><surname>Hayes</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1992">1992</date>
+			<biblScope unit="page" from="227" to="242" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b57">
+	<analytic>
+		<title level="a" type="main">Automatic acquisition of semantic relations between terms from technical corpora</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Morin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the Fifth International Congress on Terminology and Knowledge Engineering-TKE&apos;99</title>
+		<meeting>of the Fifth International Congress on Terminology and Knowledge Engineering-TKE&apos;99</meeting>
+		<imprint>
+			<date type="published" when="1999-08">1999. August</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b58">
+	<analytic>
+		<title level="a" type="main">Extraction of information from open-ended questionnaires using natural language processing techniques</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Bondale</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Maloor</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Vaidyanathan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Sengupta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">V</forename><surname>Rao</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Computer Science and Informatics</title>
+		<imprint>
+			<biblScope unit="volume">29</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="15" to="22" />
+			<date type="published" when="1999">1999</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b59">
+	<analytic>
+		<title level="a" type="main">MITA: An information-extraction approach to the analysis of free-form text in life insurance applications</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Glasgow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Mandell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Binney</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Ghemri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Fisher</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">AI magazine</title>
+		<imprint>
+			<biblScope unit="volume">19</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page">59</biblScope>
+			<date type="published" when="1998">1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b60">
+	<analytic>
+		<title level="a" type="main">Applying data mining techniques for descriptive phrase extraction in digital document collections</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Ahonen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Heinonen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Klemettinen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">I</forename><surname>Verkamo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Research and Technology Advances in Digital Libraries</title>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="1998-04">1998. April. 1998</date>
+			<biblScope unit="page" from="2" to="11" />
+		</imprint>
+	</monogr>
+	<note>ADL 98. Proceedings. IEEE International Forum on</note>
+</biblStruct>
+
+<biblStruct xml:id="b61">
+	<analytic>
+		<title level="a" type="main">Single-document and multi-document summarization techniques for email threads using sentence compression</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">M</forename><surname>Zajic</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">J</forename><surname>Dorr</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Lin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Information Processing &amp; Management</title>
+		<imprint>
+			<biblScope unit="volume">44</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="1600" to="1610" />
+			<date type="published" when="2008">2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b62">
+	<analytic>
+		<title level="a" type="main">GA, MR, FFNN, PNN and GMM based models for automatic text summarization</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">A</forename><surname>Fattah</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Ren</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Computer Speech &amp; Language</title>
+		<imprint>
+			<biblScope unit="volume">23</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="126" to="144" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b63">
+	<analytic>
+		<title level="a" type="main">Generic text summarization using relevance measure and latent semantic analysis</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Gong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Liu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 24th annual international ACM SIGIR conference on Research and development in information retrieval</title>
+		<meeting>the 24th annual international ACM SIGIR conference on Research and development in information retrieval</meeting>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2001-09">2001. September</date>
+			<biblScope unit="page" from="19" to="25" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b64">
+	<analytic>
+		<title level="a" type="main">QCS: A system for querying, clustering and summarizing documents</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">M</forename><surname>Dunlavy</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">P</forename><surname>O'leary</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Conroy</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">D</forename><surname>Schlesinger</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Information processing &amp; management</title>
+		<imprint>
+			<biblScope unit="volume">43</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="1588" to="1605" />
+			<date type="published" when="2007">2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b65">
+	<analytic>
+		<title level="a" type="main">Using only cross-document relationships for both generic and topicfocused multi-document summarizations</title>
+		<author>
+			<persName><forename type="first">X</forename><surname>Wan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Information Retrieval</title>
+		<imprint>
+			<biblScope unit="volume">11</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="25" to="49" />
+			<date type="published" when="2008">2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b66">
+	<analytic>
+		<title level="a" type="main">Applying regression models to queryfocused multi-document summarization</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Ouyang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Lu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Information Processing &amp; Management</title>
+		<imprint>
+			<biblScope unit="volume">47</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="227" to="237" />
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b67">
+	<monogr>
+		<title level="m">Advances in automatic text summarization</title>
+		<editor>
+			<persName><forename type="first">I</forename><surname>Mani</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">M</forename><forename type="middle">T</forename><surname>Maybury</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Cambridge, MA</addrLine></address></meeting>
+		<imprint>
+			<publisher>MIT press</publisher>
+			<date type="published" when="1999">1999</date>
+			<biblScope unit="volume">293</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b68">
+	<analytic>
+		<title level="a" type="main">Long story short-global unsupervised models for keyphrase based meeting summarization</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Riedhammer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Favre</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Hakkani-Tür</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Speech Communication</title>
+		<imprint>
+			<biblScope unit="volume">52</biblScope>
+			<biblScope unit="issue">10</biblScope>
+			<biblScope unit="page" from="801" to="815" />
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b69">
+	<analytic>
+		<title level="a" type="main">Multi-document summarization using sentence-based topic models</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Gong</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the ACL-IJCNLP 2009 Conference Short Papers</title>
+		<meeting>the ACL-IJCNLP 2009 Conference Short Papers</meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2009-08">2009. August</date>
+			<biblScope unit="page" from="297" to="300" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b70">
+	<analytic>
+		<title level="a" type="main">Integrating document clustering and multidocument summarization</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Chi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Gong</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Knowledge Discovery from Data (TKDD)</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page">14</biblScope>
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b71">
+	<analytic>
+		<title level="a" type="main">Topic aspect-oriented summarization via group selection</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Fang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Shang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Shao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zhuang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Neurocomputing</title>
+		<imprint>
+			<biblScope unit="volume">149</biblScope>
+			<biblScope unit="page" from="1613" to="1619" />
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b72">
+	<analytic>
+		<title level="a" type="main">Medical language processing: applications to patient data representation and automatic encoding</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Sager</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lyman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">T</forename><surname>Nhan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">J</forename><surname>Tick</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Methods of information in medicine</title>
+		<imprint>
+			<biblScope unit="volume">34</biblScope>
+			<biblScope unit="issue">1-2</biblScope>
+			<biblScope unit="page" from="140" to="146" />
+			<date type="published" when="1995">1995</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b73">
+	<analytic>
+		<title level="a" type="main">A database of computer-structured narrative: methods of computing complex relations</title>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">C</forename><surname>Chi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">S</forename><surname>Lyman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Sager</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Friedman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Macleod</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Annual Symposium on Computer Application in Medical Care</title>
+		<meeting>the Annual Symposium on Computer Application in Medical Care</meeting>
+		<imprint>
+			<publisher>American Medical Informatics Association</publisher>
+			<date type="published" when="1985-11">1985, November</date>
+			<biblScope unit="page">221</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b74">
+	<analytic>
+		<title level="a" type="main">The linguistic string parser</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Grishman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Sager</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Raze</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Bookchin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the</title>
+		<meeting>the</meeting>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="1973-06">1973. June. June 4-8, 1973</date>
+			<biblScope unit="page" from="427" to="434" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b75">
+	<analytic>
+		<title level="a" type="main">From text to structured information: automatic processing of medical reports</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Hirschman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Grishman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Sager</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the</title>
+		<meeting>the</meeting>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="1976-06">1976. June. June 7-10, 1976</date>
+			<biblScope unit="page" from="267" to="275" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b76">
+	<monogr>
+		<title level="m" type="main">Natural language information processing</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Sager</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1981">1981</date>
+			<publisher>Addison-Wesley Publishing Company, Advanced Book Program</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b77">
+	<analytic>
+		<title level="a" type="main">Computer-structured narrative in ambulatory care: its use in longitudinal review of clinical data</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lyman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Sager</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Friedman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Chi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Annual Symposium on Computer Application in Medical Care</title>
+		<meeting>the Annual Symposium on Computer Application in Medical Care</meeting>
+		<imprint>
+			<publisher>American Medical Informatics Association</publisher>
+			<date type="published" when="1985-11">1985, November</date>
+			<biblScope unit="page">82</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b78">
+	<analytic>
+		<title level="a" type="main">The representation of meaning in the UMLS</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">T</forename><surname>Mccray</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">J</forename><surname>Nelson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Methods of information in medicine</title>
+		<imprint>
+			<biblScope unit="volume">34</biblScope>
+			<biblScope unit="issue">1-2</biblScope>
+			<biblScope unit="page" from="193" to="201" />
+			<date type="published" when="1995">1995</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b79">
+	<analytic>
+		<title level="a" type="main">The role of lexical knowledge in biomedical text understanding</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">T</forename><surname>Mcgray</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">L</forename><surname>Sponsler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Brylawski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">C</forename><surname>Browne</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Annual Symposium on Computer Application in Medical Care</title>
+		<meeting>the Annual Symposium on Computer Application in Medical Care</meeting>
+		<imprint>
+			<publisher>American Medical Informatics Association</publisher>
+			<date type="published" when="1987-11">1987, November</date>
+			<biblScope unit="page">103</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b80">
+	<analytic>
+		<title level="a" type="main">Natural language processing for intelligent information retrieval</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">T</forename><surname>Mccray</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Annual International Conference of the IEEE</title>
+		<meeting>the Annual International Conference of the IEEE</meeting>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="1991">1991. 1991. 1991</date>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="page" from="1160" to="1161" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b81">
+	<analytic>
+		<title level="a" type="main">Extending a natural language parser with UMLS knowledge</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">T</forename><surname>Mccray</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Annual Symposium on Computer Application in Medical Care</title>
+		<meeting>the Annual Symposium on Computer Application in Medical Care</meeting>
+		<imprint>
+			<publisher>American Medical Informatics Association</publisher>
+			<date type="published" when="1991">1991</date>
+			<biblScope unit="page">194</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b82">
+	<analytic>
+		<title level="a" type="main">Lexical methods for managing variation in biomedical terminologies</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">T</forename><surname>Mccray</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Srinivasan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">C</forename><surname>Browne</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Annual Symposium on Computer Application in Medical Care</title>
+		<meeting>the Annual Symposium on Computer Application in Medical Care</meeting>
+		<imprint>
+			<publisher>American Medical Informatics Association</publisher>
+			<date type="published" when="1994">1994</date>
+			<biblScope unit="page">235</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b83">
+	<analytic>
+		<title level="a" type="main">The UMLS Knowledge Source server</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">T</forename><surname>Mccray</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Razi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Medinfo. MEDINFO</title>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="page" from="144" to="147" />
+			<date type="published" when="1994">1994</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b84">
+	<analytic>
+		<title level="a" type="main">Medical office automation integrated into the distributed architecture of a hospital information system</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">R</forename><surname>Scherrer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Revillard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Borst</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Berthoud</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Lovis</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Methods of information in medicine</title>
+		<imprint>
+			<biblScope unit="volume">33</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="174" to="179" />
+			<date type="published" when="1994">1994</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b85">
+	<analytic>
+		<title level="a" type="main">Natural language processing and semantical representation of medical texts</title>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">H</forename><surname>Baud</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">M</forename><surname>Rassinoux</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">R</forename><surname>Scherrer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Methods of information in medicine</title>
+		<imprint>
+			<biblScope unit="volume">31</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="117" to="125" />
+			<date type="published" when="1992">1992</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b86">
+	<analytic>
+		<title level="a" type="main">Medical Language Processing for Knowledge Representation and Retrievals</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lyman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Sager</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">C</forename><surname>Chi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">J</forename><surname>Tick</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">T</forename><surname>Nhan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Su</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">.</forename><forename type="middle">.</forename><surname>Scherrer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings. Symposium on Computer Applications in Medical Care</title>
+		<meeting>Symposium on Computer Applications in Medical Care</meeting>
+		<imprint>
+			<publisher>American Medical Informatics Association</publisher>
+			<date type="published" when="1989-11">1989, November</date>
+			<biblScope unit="page" from="548" to="553" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b87">
+	<analytic>
+		<title level="a" type="main">A Medical Language Processor for Two Indo-European Languages</title>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">T</forename><surname>Nhàn</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Sager</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lyman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">J</forename><surname>Tick</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Borst</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Su</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings. Symposium on Computer Applications in Medical Care</title>
+		<meeting>Symposium on Computer Applications in Medical Care</meeting>
+		<imprint>
+			<date type="published" when="1989-11">1989. November</date>
+			<biblScope unit="page" from="554" to="558" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b88">
+	<analytic>
+		<title level="a" type="main">Adapting a medical language processor from English to French</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Sager</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lyman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">J</forename><surname>Tick</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Borst</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">T</forename><surname>Nhan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Revillard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">.</forename><forename type="middle">.</forename><surname>Scherrer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">R</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Medinfo</title>
+		<imprint>
+			<biblScope unit="volume">89</biblScope>
+			<biblScope unit="page" from="795" to="799" />
+			<date type="published" when="1989">1989</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b89">
+	<analytic>
+		<title level="a" type="main">Analyse automatique de comptes rendus d&apos;hospitalisation</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Borst</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Sager</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">T</forename><surname>Nhàn</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Su</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lyman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">J</forename><surname>Tick</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">.</forename><forename type="middle">.</forename><surname>Scherrer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">R</forename><surname>Degoulet</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Stephan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">C</forename><surname>Venot</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Yvon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">J</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Informatique et Gestion des Unités de Soins</title>
+		<imprint>
+			<biblScope unit="page" from="246" to="256" />
+			<date type="published" when="1989">1989</date>
+			<pubPlace>Paris</pubPlace>
+		</imprint>
+	</monogr>
+	<note>Comptes Rendus du Colloque AIM-IF</note>
+</biblStruct>
+
+<biblStruct xml:id="b90">
+	<analytic>
+		<title level="a" type="main">Knowledge representation of discharge summaries</title>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">H</forename><surname>Baud</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">M</forename><surname>Rassinoux</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">R</forename><surname>Scherrer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">AIME 91</title>
+		<meeting><address><addrLine>Berlin Heidelberg</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="1991">1991</date>
+			<biblScope unit="page" from="173" to="182" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b91">
+	<monogr>
+		<title level="m" type="main">Let&apos;s Meet the Users with Natural Language Understanding. Knowledge and Decisions in Health Telematics: The Next Decade</title>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">H</forename><surname>Baud</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Alpay</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Lovis</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1994">1994</date>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="page">103</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b92">
+	<analytic>
+		<title level="a" type="main">Conceptual graphs model extension for knowledge representation of medical texts</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">M</forename><surname>Rassinoux</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">H</forename><surname>Baud</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">R</forename><surname>Scherrer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">MEDINFO</title>
+		<imprint>
+			<biblScope unit="volume">92</biblScope>
+			<biblScope unit="page" from="1368" to="1374" />
+			<date type="published" when="1992">1992</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b93">
+	<analytic>
+		<title level="a" type="main">Proximity Processing of Medical Text</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">M</forename><surname>Morel-Guillemaz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">H</forename><surname>Baud</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">R</forename><surname>Scherrer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Medical Informatics Europe&apos;90</title>
+		<meeting><address><addrLine>Berlin Heidelberg</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="1990">1990</date>
+			<biblScope unit="page" from="625" to="630" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b94">
+	<analytic>
+		<title level="a" type="main">Natural language processing of medical texts within the HELIOS environment</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">M</forename><surname>Rassinoux</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">A</forename><surname>Michel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Juge</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Baud</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">R</forename><surname>Scherrer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Computer methods and programs in biomedicine</title>
+		<imprint>
+			<biblScope unit="volume">45</biblScope>
+			<biblScope unit="page" from="79" to="96" />
+			<date type="published" when="1994">1994</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b95">
+	<analytic>
+		<title level="a" type="main">Analysis of medical jargon: The RECIT system</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">M</forename><surname>Rassinoux</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Juge</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">A</forename><surname>Michel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">H</forename><surname>Baud</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Lemaitre</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><forename type="middle">C</forename><surname>Jean</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">.</forename><forename type="middle">.</forename><surname>Scherrer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">R</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Conference on Artificial Intelligence in Medicine in Europe</title>
+		<meeting><address><addrLine>Berlin Heidelberg</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="1995-06">1995. June</date>
+			<biblScope unit="page" from="42" to="52" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b96">
+	<analytic>
+		<title level="a" type="main">A conceptual model for clinical radiology reports</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Friedman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">J</forename><surname>Cimino</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">B</forename><surname>Johnson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Annual Symposium on Computer Application in Medical Care</title>
+		<meeting>the Annual Symposium on Computer Application in Medical Care</meeting>
+		<imprint>
+			<publisher>American Medical Informatics Association</publisher>
+			<date type="published" when="1993">1993</date>
+			<biblScope unit="page">829</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b97">
+	<analytic>
+		<title level="a" type="main">Natural Language Processing</title>
+	</analytic>
+	<monogr>
+		<title level="m">Natural Language Processing RSS</title>
+		<imprint>
+			<date type="published" when="2017-03-23">23 Mar. 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b98">
+	<monogr>
+		<author>
+			<persName><forename type="first">S</forename><surname>Srihari</surname></persName>
+		</author>
+		<ptr target="http://www.cedar.buffalo.edu/wsrihari/CSE574/Discriminative-Generative.pdf" />
+		<title level="m">Machine Learning: Generative and Discriminative Models</title>
+		<imprint>
+			<date type="published" when="2010-05">2010. May 2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b99">
+	<monogr>
+		<title level="m" type="main">Log-Linear Models and Conditional Random Fields</title>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">;</forename><surname>Elkan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">A</forename><surname>Hearst</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">T</forename><surname>Dumais</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Osman</surname></persName>
+		</author>
+		<ptr target="http://cseweb.ucsd.edu/welkan/250B/cikmtutorial.pdf" />
+		<imprint>
+			<date type="published" when="2008-06">2008. Jun 2011</date>
+			<biblScope unit="volume">62</biblScope>
+			<biblScope unit="page">28</biblScope>
+		</imprint>
+	</monogr>
+	<note>Support vector machines</note>
+</biblStruct>
+
+<biblStruct xml:id="b100">
+	<monogr>
+		<author>
+			<persName><forename type="first">D</forename><surname>Jurafsky</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">H</forename><surname>Martin</surname></persName>
+		</author>
+		<title level="m">Speech and Language Processing</title>
+		<meeting><address><addrLine>Englewood Cliffs, NJ</addrLine></address></meeting>
+		<imprint>
+			<publisher>Prentice-Hall</publisher>
+			<date type="published" when="2008">2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b101">
+	<analytic>
+		<title level="a" type="main">Pfam: Multiple sequence alignments and HMM-profiles of protein domains</title>
+		<author>
+			<persName><forename type="first">Ell</forename><surname>Sonnhammer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">R</forename><surname>Eddy</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Birney</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nucleic Acids Res</title>
+		<imprint>
+			<biblScope unit="volume">26</biblScope>
+			<biblScope unit="page">320</biblScope>
+			<date type="published" when="1998">1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b102">
+	<analytic>
+		<title level="a" type="main">Pfam: multiple sequence alignments and HMM-profiles of protein domains</title>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">L</forename><surname>Sonnhammer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">R</forename><surname>Eddy</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Birney</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Bateman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Durbin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nucleic acids research</title>
+		<imprint>
+			<biblScope unit="volume">26</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="320" to="322" />
+			<date type="published" when="1998">1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b103">
+	<analytic>
+		<title level="a" type="main">RAVN Systems Launch the ACE Powered GDPR Robot -Artificial Intelligence to Expedite GDPR Compliance</title>
+		<author>
+			<persName><forename type="first">Ravn</forename><surname>Systems</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Stock Market. PR Newswire</title>
+		<imprint>
+			<date type="published" when="2017-03-19">19 Mar. 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b104">
+	<analytic>
+		<title level="a" type="main">Here&apos;s Why Natural Language Processing is the Future of BI</title>
+	</analytic>
+	<monogr>
+		<title level="m">SmartData Collective</title>
+		<imprint>
+			<date type="published" when="2017-03-19">19 Mar. 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b105">
+	<analytic>
+		<title level="a" type="main">Using Natural Language Processing and Network Analysis to Develop a Conceptual Framework for Medication Therapy Management Research</title>
+	</analytic>
+	<monogr>
+		<title level="m">Annual Symposium proceedings. AMIA Symposium. U.S. National Library of Medicine</title>
+		<imprint>
+			<date type="published" when="2017-03-19">19 Mar. 2017</date>
+		</imprint>
+	</monogr>
+	<note>AMIA</note>
+</biblStruct>
+
+<biblStruct xml:id="b106">
+	<monogr>
+		<title level="m" type="main">Using Natural Language Processing and Network Analysis to Develop a Conceptual Framework for Medication Therapy Management Research</title>
+		<author>
+			<persName><forename type="first">W</forename><surname>Ogallo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">S</forename><surname>Kanter</surname></persName>
+		</author>
+		<ptr target="https://www.ncbi.nlm.nih.gov/pubmed/28269895?dopt=Abstract" />
+		<imprint>
+			<date type="published" when="2017-02-10">2017, February 10. April 10, 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b107">
+	<monogr>
+		<title level="m" type="main">Meet the Pilot: Smart Earpiece Language Translator</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ochoa</surname></persName>
+		</author>
+		<ptr target="https://www.indiegogo.com/projects/meet-the-pilot-smart-earpiece-language-translator-headphones-travel" />
+		<imprint>
+			<date type="published" when="2016-05-25">2016. May 25. April 10, 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

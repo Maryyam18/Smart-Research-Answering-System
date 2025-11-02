@@ -11,7 +11,7 @@ log = logging.getLogger()
 JSON_FOLDER = "E:/5th_Semester/SPM/Smart_Research_Answering_System/nlp_papers/json_clean"
 DB_CONFIG = {
     "host": "localhost",
-    "port": 5433,
+    "port": 5432,
     "user": "postgres",
     "password": "hello098",  # CHANGE THIS!
     "dbname": "smart_research"

@@ -15,12 +15,19 @@ os.makedirs(XML_OUTPUT_FOLDER, exist_ok=True)
 
 # Your 6 EMNLP 2024 papers
 pdf_files = [
-    "2024.emnlp-main.342.pdf",
-    "2024.emnlp-main.64.pdf",
-    "2024.emnlp-main.992.pdf",
-    "2024.emnlp-main.626.pdf",
-    "2024.emnlp-main.248.pdf",
-    "2024.emnlp-main.15.pdf"
+    # "2024.emnlp-main.342.pdf",
+    # "2024.emnlp-main.64.pdf",
+    # "2024.emnlp-main.992.pdf",
+    # "2024.emnlp-main.626.pdf",
+    # "2024.emnlp-main.248.pdf",
+    # "2024.emnlp-main.15.pdf",
+    # "1708.05148v1.pdf",
+    # "1807.10854v3.pdf",
+    # "2301.00234v6.pdf",
+    # "2301.06756v1.pdf",
+    # "2303.14725v2.pdf",
+    "2305.14671v2.pdf"
+
 ]
 
 def process_pdf(pdf_path):

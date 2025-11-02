@@ -12,7 +12,7 @@ log = logging.getLogger()
 # === CONFIG ===
 DB_CONFIG = {
     "host": "localhost",
-    "port": 5433,
+    "port": 5432,
     "user": "postgres",
     "password": "hello098",
     "dbname": "smart_research"

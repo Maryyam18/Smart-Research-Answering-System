@@ -1,4 +1,4 @@
-# parse_xml_to_json.py — FIXED VERSION
+# parse_xml_to_json.py — FIXED VERSION (YEAR EXTRACTION FIXED)
 import os
 import json
 from lxml import etree
@@ -98,6 +98,22 @@ def extract_equations(root):
                 equations.append(tex)
     return equations[:50]
 
+# === NEW FUNCTION TO FIX YEAR EXTRACTION ===
+def extract_year(root):
+    # Try to find <date when="YYYY-MM-DD"> or <date>YYYY</date>
+    date_elem = root.find(".//tei:teiHeader//tei:date", NS)
+    if date_elem is not None:
+        year_attr = date_elem.get("when")
+        if year_attr and len(year_attr) >= 4 and year_attr[:4].isdigit():
+            return int(year_attr[:4])
+        if date_elem.text:
+            text = date_elem.text.strip()
+            for token in text.split():
+                if token.isdigit() and len(token) == 4:
+                    return int(token)
+    # fallback if not found
+    return None
+
 # === MAIN LOOP ===
 xml_files = [f for f in os.listdir(XML_FOLDER) if f.endswith(".tei.xml")]
 
@@ -111,7 +127,7 @@ for xml_file in xml_files:
         "paperid": Path(xml_file).stem.replace(".tei", ""),
         "title": (root.find(".//tei:titleStmt/tei:title", NS).text or "").strip(),
         "authors": extract_authors(root),
-        "year": 2024,
+        "year": extract_year(root) or 2024,  # ✅ FIXED: dynamic year extraction
         "abstract": extract_abstract(root),
         "sections": extract_sections(root),
         "figures": extract_figures(root),
