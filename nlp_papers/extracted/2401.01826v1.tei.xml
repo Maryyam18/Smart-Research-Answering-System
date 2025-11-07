@@ -1,0 +1,1194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Data-Driven Power Modeling and Monitoring via Hardware Performance Counters Tracking</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability  status="unknown">
+					<licence/>
+				</availability>
+				<date type="published" when="2024-01-03">3 Jan 2024</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Sergio</forename><surname>Mazzola</surname></persName>
+							<idno type="ORCID">0000-0001-8705-8990</idno>
+						</author>
+						<author>
+							<persName><forename type="first">Gabriele</forename><surname>Ara</surname></persName>
+							<idno type="ORCID">0000-0001-5663-4713</idno>
+						</author>
+						<author>
+							<persName><roleName>Student Member, IEEE</roleName><forename type="first">Thomas</forename><surname>Benz</surname></persName>
+							<idno type="ORCID">0000-0002-0326-9676</idno>
+						</author>
+						<author>
+							<persName><forename type="first">Björn</forename><surname>Forsberg</surname></persName>
+						</author>
+						<author>
+							<persName><roleName>Member, IEEE</roleName><forename type="first">Tommaso</forename><surname>Cucinotta</surname></persName>
+							<idno type="ORCID">0000-0002-0362-0657</idno>
+						</author>
+						<author>
+							<persName><roleName>Fellow, IEEE</roleName><forename type="first">Luca</forename><surname>Benini</surname></persName>
+							<idno type="ORCID">0000-0001-8068-3806</idno>
+						</author>
+						<title level="a" type="main">Data-Driven Power Modeling and Monitoring via Hardware Performance Counters Tracking</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2024-01-03">3 Jan 2024</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">11046859ED49649DBC5BB8F0EAD17FC8</idno>
+					<idno type="arXiv">arXiv:2401.01826v1[cs.PF]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-07T10:20+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Power modeling</term>
+					<term>runtime power estimation</term>
+					<term>embedded systems</term>
+					<term>operating systems</term>
+					<term>Linux kernel</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>In the current high-performance and embedded computing era, full-stack energy-centric design is paramount. Use cases require increasingly high performance at an affordable power budget, often under real-time constraints. Extreme heterogeneity and parallelism address these issues but greatly complicate online power consumption assessment, which is essential for dynamic hardware and software stack adaptations. We introduce a novel architecture-agnostic power modeling methodology with state-of-the-art accuracy, low overhead, and high responsiveness. Our methodology identifies the best Performance Monitoring Counters (PMCs) to model the power consumption of each hardware sub-system at each Dynamic Voltage and Frequency Scaling (DVFS) state. The individual linear models are combined into a complete model that effectively describes the power consumption of the whole system, achieving high accuracy and low overhead. Our evaluation reports an average estimation error of 7.5 % for power consumption and 1.3 % for energy. Furthermore, we propose Runmeter, an open-source, PMC-based monitoring framework integrated into the Linux kernel. Runmeter manages PMC samples collection and manipulation, efficiently evaluating our power models at runtime. With a time overhead of only 0.7 % in the worst case, Runmeter provides responsive and accurate power measurements directly in the kernel, which can be employed for actuation policies such as Dynamic Power Management (DPM) and power-aware task scheduling.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>R ECENT years have seen a dramatic evolution in the embedded and real-time computing landscape, with increasingly demanding requirements. Applications striving for ever-higher computing capabilities and energy efficiency are shifting toward heterogeneous computing platforms <ref type="bibr" target="#b0">[1]</ref>, <ref type="bibr" target="#b1">[2]</ref>. Embedded High Performance Computing applications <ref type="bibr" target="#b2">[3]</ref> include soft real-time use cases (such as media streaming, This work has received funding from the European Commission through the EU H2020 research project AMPERE (A Model-driven development framework for highly Parallel and EneRgy-Efficient computation supporting multi-criteria optimization) under grant agreement no. 871669.</p><p>Sergio Mazzola and Gabriele Ara contributed equally to this work. Sergio Mazzola and Thomas Benz are with the Integrated Systems Laboratory (IIS), ETH Zürich, 8092 Zürich, Switzerland (e-mail: smazzola@iis.ee.ethz.ch; tbenz@iis.ee.ethz.ch).</p><p>Björn Forsberg is with the Department of Computer Science, RISE Research Institutes of Sweden, 164 40 Kista, Sweden (e-mail: bjorn.forsberg@ri.se).</p><p>Gabriele Ara and Tommaso Cucinotta are with the Real-Time Systems Laboratory, Scuola Superiore Sant'Anna, 56124 Pisa, Italy (email: gabriele.ara@santannapisa.it; tommaso.cucinotta@santannapisa.it).</p><p>Luca Benini is with the Integrated Systems Laboratory (IIS), ETH Zürich, 8092 Zürich, Switzerland, and also with the Department of Electrical, Electronic and Information Engineering (DEI), University of Bologna, 40136 Bologna, Italy (e-mail: lbenini@iis.ee.ethz.ch).</p><p>virtual and augmented reality) as well as hard real-time ones (Industry 4.0 and connected factories, modern automotive and aerospace with self-driving, autonomous vehicles). These areas often demand embedded systems with enhanced sensing, control, and actuation. To achieve this, embedded devices are typically equipped with hardware accelerators to execute complex, real-time machine-learning models, as well as 5G communication pipelines <ref type="bibr" target="#b3">[4]</ref>.</p><p>Heterogeneity and massive parallelism are leveraged by hardware designers to integrate increasingly higher computing capabilities on a single die at an affordable energy budget <ref type="bibr" target="#b4">[5]</ref>. However, since the end of Dennard's scaling, it has been increasingly challenging to match Moore's predictions <ref type="bibr" target="#b4">[5]</ref>, due to several walls, from power consumption to memory to hardware overspecialization <ref type="bibr" target="#b5">[6]</ref>. In current computer architectures, transistor miniaturization causes increased power density and thermal dissipation issues. With the limits of current silicon technology exposed, pushing for maximum energy efficiency in a dynamic, workload-and operating-condition-aware fashion is paramount to meet the widespread need for high performance within sustainable power budgets <ref type="bibr" target="#b6">[7]</ref>.</p><p>The de-facto standard to address power efficiency is Dynamic Power Management (DPM), integrated even in today's simplest embedded systems in the form of Dynamic Voltage and Frequency Scaling (DVFS) and clock gating. To exploit the full potential of power-manageable designs, the software stack must also be able to perform intelligent adaptation of the powerrelated knobs based on the available power-related metrics. This information must be provided at the lowest levels of the software stack, i.e., the OS kernel. As a matter of fact, this allows the task scheduler to perform informed decisions as to the assignment of computing resources to the running processes based on two factors: the current status of the hardware and accurate estimates of the power consumption and its variations <ref type="bibr" target="#b7">[8]</ref>, <ref type="bibr" target="#b8">[9]</ref>.</p><p>For such full-stack, energy-aware dynamic adaptations to be effective, however, accurate, fine-grain, and responsive online power measurements are required. The fine-granularity property is twofold: a fine-granularity power measurement has decomposability properties, i.e., it is able to provide insights into the power consumption of individual hardware sub-systems <ref type="bibr" target="#b9">[10]</ref>. This is essential for DPM. Additionally, a fine-granularity measurement provides information about task-level power consumption, useful for task scheduling. The responsiveness of a power measurement technique refers to its ability to reflect the actual profile of the hardware activity with negligible latency, which requires a low power gauging overhead. This is necessary for the stability of any actuation control loop. The most commonly adopted solution in this regard consists of analog power sensors. However, as discussed in Section II-C, they do not typically satisfy such requirements <ref type="bibr" target="#b10">[11]</ref>.</p><p>As an alternative to power sensing, power models have been extensively researched to obtain power measurements better suited for dynamic, online adaptations of hardware and software. It is well-known that Performance Monitoring Counter (PMC) activity effectively correlates to power consumption <ref type="bibr" target="#b11">[12]</ref>, enabling accurate power modeling for fast, responsive, and finegrain indirect power gauging <ref type="bibr" target="#b9">[10]</ref>. However, the complexity of selecting appropriate PMCs and understanding the underlying hardware architecture, coupled with the modeling challenges of DVFS, complicates their broader application in heterogeneous parallel systems.</p><p>This paper introduces a performance-counter-based approach to power consumption estimation for modern, DVFS-enabled, heterogeneous, embedded computing systems, extending our previous work on the topic <ref type="bibr" target="#b12">[13]</ref>. We outline a simple yet effective data-driven statistical model for the power consumption of a generalized system by decomposing it into smaller and more easily approachable sub-systems, focusing on individual DVFS states. Each sub-system is modeled separately, and, in a later step, the sub-models are re-composed into a single Lookup Table (LUT) of models efficiently and accurately describing the system in its entirety. In particular, we target heterogeneous systems composed of CPU hosts and hardware accelerators, like GPUs and FPGAs, that expose PMCs. The generality of this approach makes it capable of supporting any additional sub-system that exposes meaningful hardware counters.</p><p>We also propose Runmeter, an architecture-agnostic implementation of the model within the Linux kernel that automatizes the collection of PMC samples and the online evaluation of the power model in a lightweight and responsive fashion.</p><p>The approach is demonstrated and validated on a modern, heterogeneous, DVFS-enabled target platform, the NVIDIA Jetson AGX Xavier board. Considering its CPU and GPU subsystems, our combined, system-level power model achieves an instantaneous power Mean Absolute Percentage Error (MAPE) of 7.5 % and an energy estimation error of 1.3 %. On this platform, the run-time implementation in Linux exhibits worstcase overheads of 0.7%.</p><p>With respect to our previously published work <ref type="bibr" target="#b12">[13]</ref>, in this paper, we generalize the way sub-systems are treated, abandoning any specificity related to CPU and GPU subsystems, and we present its actual implementation on Linux, evaluating its accuracy, measurement delay, and run-time overheads.</p><p>The rest of this paper is organized as follows. Section II introduces essential background knowledge and justifications for the approach described in this paper. Section III frames our contributions into the context of the related work in this field. Section IV describes the data-driven approach to the modeling of power consumption of a system, as a generalization of <ref type="bibr" target="#b12">[13]</ref>. Section V describes the architecture of our novel power monitoring framework integrated within the Linux kernel. Section VI showcases the evaluation of our power model as a result of both the model construction, offline validation, and online evaluation. Section VII contains final remarks and discusses possible future directions in this topic.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. BACKGROUND</head><p>An energy-centric design flow addresses energy efficiency from the point of view of the whole system stack, which is fundamental for complex parallel and heterogeneous systems. To motivate our proposal, we present two main use cases of power-aware dynamic adaptations of the hardware and software, namely DPM and power-aware task scheduling, requiring robust online power measurements. In the following, we also discuss why typical implementations of analog power gauges are not suitable for such hardware and software dynamic adaptations, motivating the choice of PMC-based power models.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Dynamic Power Management</head><p>Dynamic Power Management (DPM) is an essential feature when it comes to increasing performance and energy efficiency through parallelism and heterogeneity <ref type="bibr" target="#b13">[14]</ref>. Having multiple processing elements or computing islands enables fine-grained control of their power status through clock gating and DVFS. In this way, hardware portions can be independently turned off or slowed down based on the phase of the running workload. This mechanism allows modern architectures to keep enough logic on the same die such that hardware overspecialization is prevented while still achieving high energy efficiency.</p><p>However, DPM-enabled hardware alone is not enough. Actuation policies that are aware of the current power consumption of the hardware must be in place, and they must leverage robust power measurements to close the control loop <ref type="bibr" target="#b14">[15]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Power-Aware Task Scheduling</head><p>Power-aware task scheduling integrates DPM techniques, such as DVFS, with the task scheduler <ref type="bibr" target="#b15">[16]</ref>. Augmenting the process scheduler with intimate knowledge on the tasks that it is managing is paramount for developing intelligent scheduling techniques <ref type="bibr" target="#b16">[17]</ref>, <ref type="bibr" target="#b17">[18]</ref>. This is especially true for applications characterized by real-time constraints running on embedded systems, where power awareness within the task scheduler is essential <ref type="bibr" target="#b7">[8]</ref>, <ref type="bibr" target="#b18">[19]</ref>.</p><p>As a first-order approximation, task execution time scales with the CPU frequency, therefore not all the available DVFS states might be suitable for meeting the timing constraints of the real-time tasks <ref type="bibr" target="#b19">[20]</ref>. In addition, by managing the migration of tasks among computational units, the scheduler is an important tool to regulate the thermal behavior of the platform. This is a ubiquitous issue of embedded devices, which can rarely afford an external cooling mechanism <ref type="bibr" target="#b20">[21]</ref>.</p><p>Furthermore, the scheduler decisions are based on currently known system conditions (e.g., its power consumption or expected task finishing time), but their impact might extend for a long time <ref type="bibr" target="#b15">[16]</ref>. A prediction may indeed lead to unrecoverable situations if it is later proved wrong. This problem is exacerbated by the slow reaction time and high access overhead typical of traditional analog power monitors <ref type="bibr" target="#b21">[22]</ref>, the de facto standard for many embedded systems, critically hindering the capability of the scheduler to make well-informed decisions.</p><p>To address these issues and enable future exploitation of effective power-aware scheduling techniques, in Sections IV and V, we propose a methodology to provide the scheduler with accurate power estimates characterized by fast reaction times and lower access overhead compared to analog power monitors.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. On the Shortcomings of Analog Power Measurements</head><p>For power-aware dynamic hardware adaptations to be possible, online power measurement is a requirement. To effectively leverage techniques such as DPM and power-aware task scheduling, the online power measurement approach must possess the following properties:</p><p>1) accuracy: accurate measurements with high enough resolution and sensitivity are required to feed the actuation control loop properly; 2) fine granularity, both in terms of introspection into hardware sub-system power consumption (i.e., decomposability) and task-level power budgeting; 3) responsiveness: promptly reflect the activity profile of the hardware platform to provide the control loop with minimal-latency power measurements. Several off-the-shelf system-on-chips (SoCs) come equipped with built-in power sensors; their typical implementation consists of analog current and voltage meters, an analog-todigital converter (ADC), and some additional circuitry that implements communication with the host system.</p><p>The reliability of analog power sensors for power-aware dynamic adaptations depends on a large number of factors, which typically do not satisfy the mentioned requirements <ref type="bibr" target="#b10">[11]</ref>. The accuracy of analog power measurements is heavily affected by the platform's printed circuit board configuration and further conditioned by the ADC in terms of resolution. As an example, for the NVIDIA Jetson AXG Xavier board, the two built-in INA3221 power monitors have a resolution of approximately 200 mW only <ref type="bibr" target="#b22">[23]</ref>, <ref type="bibr" target="#b23">[24]</ref>.</p><p>Due to their nature, analog sensors are not integrated on the same die of the SoC, hence can rarely provide the level of introspection of individual hardware sub-systems. For the same reason, off-chip parasitics pollute their measurements with longer transients, impacting the responsiveness of their power measures <ref type="bibr" target="#b21">[22]</ref>. Their latency is further affected by the communication channel with the host, usually implemented by a serial protocol such as I2C, which does not match the speed of the digital domain.</p><p>Moreover, due to their physical size and deployment costs, analog gauges usually showcase inadequate scalability. Several additional solutions concern the adoption of external, high-accuracy, dedicated measurement devices <ref type="bibr" target="#b10">[11]</ref>. However, despite the more precise measurements, such solutions are obviously unsuitable for final deployment due to their cost and even worse integration issues, scalability, and introspection capabilities.</p><p>Although unsuitable for direct power measurements, built-in analog sensors do not require external equipment, and they can be programmatically and reliably driven. Therefore, they prove useful to build accurate, fine-grain, and responsive PMC-based power models through the approach showcased in Section IV. This is demonstrated in Section VI-D.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D. PMC-based Power Estimation</head><p>Prior work shows that PMCs activity correlates with the power consumption of diverse hardware components <ref type="bibr" target="#b11">[12]</ref>, <ref type="bibr" target="#b24">[25]</ref>, <ref type="bibr" target="#b25">[26]</ref>. Being typically accessible via control and status registers, their usage is cheap, and their readings are fast and reliable. As part of the digital domain, PMC activity promptly reflects the current state of the hardware resources, exposing desirable responsiveness properties. PMCs also provide a high degree of introspection into individual hardware sub-systems <ref type="bibr" target="#b26">[27]</ref>, which empowers PMC-based models with a degree of decomposability exactly equivalent to the availability of PMCs <ref type="bibr" target="#b9">[10]</ref>. Therefore, accurate, fine-grain, and responsive power models, such as the one we propose in Section IV, can be derived from them.</p><p>While PMC-based power models can achieve the accuracy, fine granularity, and responsiveness required by power-aware dynamic adaptations, a model-based approach poses further challenges to the power estimation. Modern computer architectures, even those shipped as part of embedded systems, expose hundreds of countable performance events <ref type="bibr" target="#b22">[23]</ref>, <ref type="bibr" target="#b27">[28]</ref>. Hence, the parameter selection for a robust statistical power model often requires considerable knowledge of the underlying hardware. Growing parallelism and heterogeneity, together with the frequent lack of open documentation, further raise the challenge. A careful choice of the model parameters is necessary for several additional factors: first, Performance Monitor Units (PMUs) can simultaneously track only a limited number of performance counters <ref type="bibr" target="#b27">[28]</ref>, <ref type="bibr" target="#b28">[29]</ref>. Second, the amount of model predictors directly impacts its evaluation overhead, which must be small for practical DPM strategies and minimal interference of the scheduler with regular system operation. DVFS determines an additional layer of modeling complexity, as hardware behavior at varying frequencies has to be considered.</p><p>To the best of our knowledge, our approach, proposed in Sections IV and V, is the first one to holistically address all the mentioned challenges. III. RELATED WORK <ref type="bibr" target="#b10">[11]</ref>, <ref type="bibr" target="#b32">[33]</ref>, <ref type="bibr" target="#b33">[34]</ref> present a comprehensive taxonomy and comparison of different modeling approaches and runtime power monitors, ranging from embedded and edge devices to data centers.</p><p>In the following, we mainly focus on the research works related to PMC-based power modeling and online, modelbased power monitoring, comparing them with our approach. We summarize the key characteristics in Table <ref type="table">I</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. PMC-Based Power Modeling</head><p>PMC-based statistical power models have been a hot research topic for the last 20 years, spanning all computing domains from embedded computing devices at the edge to data centers in the cloud.</p><p>Table I: Comparison between representative works in the literature of PMC-based power modeling. H e t e r o g e n e i t y G e n e r a l i t y A u t o m a t i o n A r c h i t e c t u r ea g n o s t i c L i g h t w e i g h t m o d e l D V F S s u p p o r t D e c o m p o s a b i l i t y R u n t i m e m o n i t o r i n g A c c u r a c y ( M A P E ) Bertran et al. (2012) [10] CPU only</p><formula xml:id="formula_0">≈ ≈ ≈ ≈ ≈ ≈ × × × × × × ✓ ✓ ✓ ✓ ✓ ✓ × × × power 6-20% Walker et al. (2016) [30] CPU only ARM cores ✓ ✓ ✓ × × × ✓ ✓ ✓ ✓ ✓ ✓ × × × × × × power 3-4% Wang et al. (2019) [26] iGPU only × × × × × × × × × ✓ ✓ ✓ × × × × × × × × × power 3% Mammeri et al. (2019) [31] ✓ ✓ ✓ mobile ≈ ≈ ≈ ≈ ≈ ≈ × × × × × × × × × × × × power 4.5% Tarafdar et al. (2023) [32] × × × data centers ? × × × ✓ ✓ ✓ ? × × × ✓ ✓ ✓ power 4.7% This work ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ power 7.5% energy 1.3%</formula><p>Bertran et al. <ref type="bibr" target="#b34">[35]</ref> identify two families of PMC-based power models, based on their construction: bottom-up and top-down. Bottom-up approaches rely on extensive knowledge of the underlying architecture to estimate the power consumption of individual hardware sub-systems. While the pioneering works of this field fall in this category <ref type="bibr" target="#b9">[10]</ref>, <ref type="bibr" target="#b26">[27]</ref>, their results highlight the strict dependency between the accuracy of bottomup models and architectural knowledge of the platform, which jeopardizes the generality of this approach. Even more recent works in this category lack in general applicability. A notable example of these works is Phung et al. <ref type="bibr" target="#b35">[36]</ref>, which derive a very accurate power model based on a combination of event counters, CPU operating frequencies and even CPU temperature. The general applicability of this approach is hindered by the fact that it requires extensive knowledge of the selected Intel architecture, achieving the best results only leveraging Intel Running Average Power Limit (RAPL) <ref type="bibr" target="#b36">[37]</ref>.</p><p>Top-down approaches target simple, low-overhead, and more generally applicable models. They commonly assume a linear correlation between generic activity metrics and power consumption. Among the first attempts in the field, Bellosa <ref type="bibr" target="#b11">[12]</ref> models the power consumption of a Pentium II processor with a few manually selected PMCs. Subsequent works <ref type="bibr" target="#b37">[38]</ref>, <ref type="bibr" target="#b38">[39]</ref> refine the idea with a more elaborate procedure for PMC selection and multi-core support. Bircher and John <ref type="bibr" target="#b24">[25]</ref> are the first to go towards a thorough system-level power model, tackling the issue from a top-down perspective for each subsystem. No past research investigates a combination of accurate and lightweight models addressing DVFS without requiring expert architectural knowledge, which is instead the subject of this paper.</p><p>More recent works target CPU power modeling in mobile and embedded platforms. Walker et al. <ref type="bibr" target="#b29">[30]</ref> employ a systematic and statistically sound technique for PMC selection and train power models for the ARM A7 and A15 embedded processors. However, only one trained weight is used to predict the power consumption at any DVFS state, which can lead to large inaccuracies. In contrast to their work, we target a broad range of platforms by composing simpler statistical models, nevertheless carefully dealing with DVFS and reaching comparable accuracy numbers.</p><p>Top-down power modeling approaches are also applied to GPUs. Wang et al. <ref type="bibr" target="#b25">[26]</ref> analyze the power consumption of an AMD Integrated GPU, carefully studying its architecture and selecting the best PMCs to build a linear power model. Redundant counters are discarded to reduce the model overhead, with power MAPE below 3 %. However, the generated model is not generally applicable and requires expert knowledge. Recent works also resort to deep learning for creating accurate blackbox power models: Mammeri et al. <ref type="bibr" target="#b30">[31]</ref> train an Artificial Neural Network (ANN) with several manually chosen CPU and GPU PMCs. With an average power estimation error of 4.5 %, they report power estimates 3× more accurate than a corresponding linear model; however, the overhead of evaluating a neural network at runtime is not negligible, as it requires a number of multiply-accumulate operations two orders of magnitude higher than for a linear model. Potentially long training time, complex manual selection of the neural network topology, risk of overfitting, and lack of decomposability are additional drawbacks of this approach.</p><p>Tarafdar et al. <ref type="bibr" target="#b31">[32]</ref> also propose several power modeling techniques based on multi-variable linear regression, Support Vector Regression, and ANN. While their approach is statistically sound and, in theory, applicable to any generic computing platform, they conceive it as a solution for data centers. Therefore, no fine-grain power information about the computing platform is made available. Moreover, the model parameter selection happens a priori and is not correlated to the modeled platform. Their best power model, which features an evaluation overhead in the order of the microseconds, shows an average power estimation error of at most 4.7%.</p><p>Our proposed model shares its decomposability and responsiveness with bottom-up approaches but resorts to top-down modeling for individual sub-systems: we trade a lower percomponent introspection for a systematic modeling procedure requiring very little architectural knowledge and minimal human intervention, targeting broad applicability. We indeed refine the approaches in <ref type="bibr" target="#b24">[25]</ref>, <ref type="bibr" target="#b28">[29]</ref>, <ref type="bibr" target="#b37">[38]</ref> to allow the selection of a minimal set of best PMCs for accurate and lightweight power models. In addition, we address the platform heterogeneity and DVFS capabilities by introducing a LUT-based approach that employs individual, lightweight linear models for each subsystem and for each DVFS state. This is particularly suitable for implementation as part of an Operating System (OS) kernel, thanks to its low overhead when evaluated at runtime.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Online Model-based Power Monitoring</head><p>Various tools have been proposed for online, model-based estimation of power consumption through PMC sampling. Most of them implement runtime monitoring by simply sampling the PMCs with a fixed periodicity <ref type="bibr" target="#b29">[30]</ref>, <ref type="bibr" target="#b39">[40]</ref>, <ref type="bibr" target="#b40">[41]</ref>. Some authors highlight that a careful choice of the sampling period is critical to achieving appropriate trade-offs between accuracy and responsiveness <ref type="bibr" target="#b40">[41]</ref>. Other works deal with the constraint that only a limited number of counters can be activated at any given time, thus resorting to counter multiplexing <ref type="bibr" target="#b41">[42]</ref>. Additionally, some works attempt to use the PMCs to attach fine-grain power consumption estimates to CPU sub-components <ref type="bibr" target="#b26">[27]</ref>.</p><p>One of the most popular open-source tools for online PMC sampling is PMCTrack, developed by Saez et al. <ref type="bibr" target="#b16">[17]</ref>. It replaces the |perf| utility provided by mainline Linux, which can be accessed both from user space and from the Linux kernel, in particular from the task scheduler. PMCTrack can monitor per-system, per-CPU, and per-process PMCs. However, it focuses on providing access to PMC-based statistics for general-purpose use cases. Therefore, some aspects of its implementation are not suited for real-time tasks, that may possess different requirements from those of SCHED_OTHER tasks. As an example, PMCTrack may delay the generation of a PMC sample related to a task until it is chosen again by the task scheduler for being executed. This delay could be detrimental to the responsiveness of a power-monitoring tool.</p><p>The implementation of our modeling technique in the Linux kernel, presented in Section V, is a fork of the PMCTrack codebase, re-engineered with the goal of providing a responsive and reliable mechanism to monitor the evolution of PMCs and, consequently, the power consumption of the platform, in usecases that include real-time tasks. Our implementation employs a mechanism based on a moving sampling window, that does not suffer from the above-mentioned low responsiveness of PMCTrack as estimates are updated at a configurable periodicity. This results in responsive power readings that do not sacrifice the accuracy of the estimates, which depends on the window size <ref type="bibr" target="#b40">[41]</ref>.</p><p>Our modeling approach includes an offline optimal selection of the counters to be employed, which are then set up in the online monitor to get accurate power estimations without requiring counter multiplexing <ref type="bibr" target="#b41">[42]</ref>. Through the described sampling of PMCs, our online monitoring framework allows the collection of power estimates with sub-systemlevel introspection, such as individual CPU islands, and at the granularity of individual tasks.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. DATA-DRIVEN POWER MODELING</head><p>This section describes our proposed automated, data-driven pipeline for the training of a DVFS-aware power estimation model for heterogeneous platforms. While mostly based on the approach presented in <ref type="bibr" target="#b12">[13]</ref>, this work introduces a further generalization that expands its applicability from systems composed of only a CPU and a GPU subsystem to any system decomposable into multiple sub-systems.</p><p>Given a generic target platform composed of one or multiple sub-systems, we provide a systematic and architecture-agnostic approach to its characterization (i.e., to model parameter selection) based on extensive profiling of the exposed PMCs. This results in an accurate, responsive, and low-overhead power model for the entire platform and its individual sub-systems.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. The systematic, data-driven methodology</head><p>For the purpose of this section, we consider a generic computing platform composed of a set D of individual sub-systems d. Each sub-system d has a set F d of possible DVFS states, each one characterized by an operating frequency f d . We define D * ⊆ D as the subset of sub-systems that we target for power modeling. Furthermore, for each d ∈ D * , we define F * d ⊆ F d as the subset of d's DVFS states that we consider. Both D * and F * d are user-defined parameters that might vary based on the use-case.</p><p>In addition, within a single sub-system d, there might be multiple units i running at the same frequency f d , that we would like to track and model individually (e.g., different CPU cores of the same CPU). For the purpose of this discussion, we assume that, for each sub-system's units, up to N d distinct PMCs can be tracked at the same time. For example, typical ARM CPUs simultaneously expose up to four or six individual counters, some of which may be freely selectable by the OS, while others are fixed. In the following, we refer to an individual counter exposed by the unit i of the sub-system d with x ij , with j = 1 .. N d . In general, the set of all x ij of a sub-system d operating at f d represents the set of input independent variables, or the predictors, of our models.</p><p>Given our focus on heterogeneity and DVFS capabilities, we deem it impractical to obtain a single mathematical model that would accurately describe the relationship between the power consumption of the platform and PMC samples in each possible DVFS state, for any hardware sub-system. For this reason, our power modeling approach relies on the construction of a Lookup Table (LUT) able to describe the power consumption of the entire system with high accuracy and low overhead, effectively grasping the different platform behaviors at varying operating frequencies. The LUT comprises several simpler linear models, one per sub-system d and DVFS state f d that the sub-system can select. Each entry of the LUT is a linear power model </p><formula xml:id="formula_1">P d (X d,f d , W d,f d ).</formula><formula xml:id="formula_2">LU T [d, f d ] = P d (X d,f d , W d,f d ) for d ∈ D * , f d ∈ F * d<label>(1)</label></formula><p>The goal of our approach, depicted in Figure <ref type="figure" target="#fig_1">1</ref>, is to obtain all the parameters and weights necessary to construct the set of individual models of the LU T . This starts from the definition of a mathematical expression for a PMC-based linear model for each sub-system d. Extensive profiling of the platform is then carried out to define the set of model parameters for each sub-system at each frequency. The models obtained in such a way are trained and validated individually and subsequently composed into the final LUT. Note that the whole procedure can be easily automated and architecture-agnostic, as long as access to representative PMCs for each sub-system is granted.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Analytical Model Building &amp; Benchmarks Selection</head><p>Before the offline modeling phase (Figure <ref type="figure" target="#fig_1">1</ref>, 3 ), two initial steps are required. Each sub-system d is associated with a linear power model, which will be trained using linear regression. In the analytical model building step (Figure <ref type="figure" target="#fig_1">1</ref>, 1 ), we define such an expression P d for each sub-system d. Thanks to the LUT-based approach, the frequency f d is factored out. Therefore, the individual power models are reduced to linear combinations of the PMC samples and the trained weights.</p><formula xml:id="formula_3">P d (X d,f d , W d,f d ) = L d + #units i=1 Ni j=1 1 T • x ij • w ij (2) for d ∈ D * , f d ∈ F * d and L d , w ij ∈ W d,f d , x ij ∈ X d,f d</formula><p>The weight L d is used to capture the constant component of the power consumption, i.e., the leakage, while the PMCdependent terms vary based on the hardware activity, modeling the dynamic power. The factor 1 /T normalizes the raw PMC samples x ij with respect to the sampling period T of the dataset traces: training the model on PMC rates rather than absolute values solves sampling jitter and simplifies time-rescaling.</p><p>All subsequent steps of the procedure are also based on the careful choice of a representative set of workloads for the heterogeneous platform (Figure <ref type="figure" target="#fig_1">1</ref>, 2 ). To obtain a proper input dataset, complete coverage of all targeted sub-systems is required to address the heterogeneity of the platform fully. Knowledge of the specific target architecture is nonetheless not required, as high-level considerations about any generic computer architecture suffice for this step.</p><p>Secondly, for each sub-system, the workloads should be diverse enough to induce a broad range of different behaviors for a dataset-independent result. The selected benchmarks are employed to build a dataset (Figure <ref type="figure" target="#fig_1">1</ref>, <ref type="figure">6</ref> ) for platform characterization, model training, and model validation. Such a dataset contains the activity traces of the workloads (i.e., the PMC traces), each with its associated instantaneous power consumption. The decomposability of the final power model can extend only as in-depth as the available PMCs and power measurements.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Platform Characterization</head><p>Given the P d mathematical model for each sub-system d, we define platform characterization the process of model parameter selection (Figure <ref type="figure" target="#fig_1">1</ref>, <ref type="figure" target="#fig_6">4</ref> ). In other words, with the platform characterization, we define the set X d,f d of PMCs, which will be used to model the dynamic power of each sub-system d at each frequency f d .</p><p>Individually for each sub-system d and frequency f d , we perform a one-time correlation analysis between all of its local PMCs and the sub-system power consumption, looking for the optimal X d,f d set in terms of model accuracy, overhead and compliance with PMU limitations. This characterization process is meant as an automatic, architecture-agnostic, and data-driven alternative to manual PMC selection, which typically requires architecture-specific considerations. Given the sub-system d, its characterization involves the following steps:</p><p>1) for each DVFS state f d ∈ F * d , profile all performance events exposed by d while tracing d's power; to track all events despite the PMU limitations, we make use of multiple passes 1 <ref type="bibr" target="#b42">[43]</ref> (Figure <ref type="figure" target="#fig_1">1</ref>, <ref type="figure" target="#fig_10">5</ref> ); 2) normalize the PMC samples with respect to the sampling periods; 3) compute a Linear Least Squares (LLS) regression of each PMC's activity trace over its related power measurements, for each f d ; events with a p-value above 0.05 are discarded as not reliable for a linear correlation; 4) individually for each f d , sort the remaining events by their Pearson Correlation Coefficient (PCC) and select the best ones that can be profiled simultaneously, i.e., compose X d,f d for all f d ∈ F * d (Figure <ref type="figure" target="#fig_1">1</ref>, 7 and 8 ). While multiple passes are used to profile all available events during the offline platform characterization, with an online deployment in mind for our models, we require X d,f d only to contain events that can be tracked simultaneously by the PMU. To this end, it is usually enough to select, for each frequency f d , the desired number of best counters up to the PMU limit. Finally, the optimal number of performance counters with respect to model accuracy can be found by iteratively employing the estimation error results from the model evaluation step (Figure <ref type="figure" target="#fig_1">1</ref>, <ref type="figure" target="#fig_1">11</ref> ).</p><p>On the other hand, some platforms <ref type="bibr" target="#b42">[43]</ref> might have stricter PMU constraints. Not only are PMCs limited in number, but some of them might be mutually exclusive: compatibility must also be considered. As documentation about performance events compatibility is not usually available, we tackle this issue with a PMU-aware iterative algorithm based on the profiling application-programming interface (API) provided by the vendor. Given the sub-system d, its frequency f d and the list of PMCs, we heuristically group the PMCs with highest 1 Given a set of performance events that cannot be thoroughly profiled simultaneously, we replay the same workload (i.e., we induce the same power consumption profile) until all events have been tracked. This is in contrast to counter multiplexing, where the PMCs are round-robin time-multiplexed. Counter multiplexing increases overhead and decreases accuracy, therefore, it is not optimal for online usage.</p><p>PCC one by one, adding to X d,f d only events that, based on the provided API, can be counted in a single pass.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D. Training, Validation, and System-level Model</head><p>With the sets of counters X d,f d from platform characterization, we compose the LUT of Equation ( <ref type="formula" target="#formula_2">1</ref>) by individually training the linear power model <ref type="figure" target="#fig_1">1</ref>, <ref type="figure">9</ref> ). The output of each training is a set of weights W d,f d 10 . To train each individual P d (X d,f d , W d,f d ), we perform a Non-Negative Least Squares (NNLS) linear regression of the PMCs rates over the power measurements, obtaining the set of nonnegative weights W d,f d . Compared to unconstrained LLS, nonnegative weights are physically meaningful and prove to be robust to multicollinearity, which makes our simple models less prone to overfitting. We subsequently validate each individual</p><formula xml:id="formula_4">P d (X d,f d , W d,f d ) of each sub-system d ∈ D * for each f d ∈ F * d (Figure</formula><formula xml:id="formula_5">P d (X d,f d , W d,f d ).</formula><p>After individual training and validation, we combine all the individual sub-system models (Figure <ref type="figure" target="#fig_1">1</ref>, 10 ) into a systemlevel power model (Figure <ref type="figure" target="#fig_1">1</ref>, 12 ) defined as:</p><formula xml:id="formula_6">P SY S = d∈D * P d (X d,f d , W d,f d )<label>(3)</label></formula><p>In other words, we fix a f d for the model of each subsystem d. The system-level power model is then the reduction sum of the LUT from Equation ( <ref type="formula" target="#formula_2">1</ref>) along the sub-systems dimension d. Modeling the sub-systems individually until this step relieves us from profiling all possible combinations of sub-systems' frequencies, which is simpler, faster, and more robust to overfitting. The final model is decomposable, accurate, and, due to its linearity, computationally lightweight. The complete model can finally be used online (Figure <ref type="figure" target="#fig_1">1</ref>, 13 ) to monitor the instantaneous power consumption of the entire system. In order to do so, it is enough to keep available at runtime the weights W d,f d for each (d, f d ) combination of interest, acquire the PMC measures for the set of model parameters X d,f d , and compute the few required multiply-accumulate operations to evaluate the model. A proposed framework for this operation is the object of the next section.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. ONLINE MONITORING AND KERNEL SUPPORT</head><p>The modeling approach discussed in Section IV results in a fast and thorough power model that can provide accurate and introspective power estimates with low overhead. These features are ideal for applications requiring power awareness and real-time capabilities, such as resource allocation and task scheduling. To demonstrate the applicability of the proposed power modeling methodology, we implement an integrated power monitoring framework for the Linux kernel, which we name Runmeter. As a case study for such a framework, we implement power estimation and monitoring of the CPU sub-system. However, the implementation can be extended to support additional sub-systems, such as the GPU.</p><p>Runmeter is a framework designed to support the runtime estimation of platform-and task-level metrics, including power and energy consumption, through PMC tracking. As such, it provides the actual means to feed the PMC values to the model presented in Section IV, forwarding its energy estimation to the Linux scheduler. Runmeter's modular design makes it highly architecture-agnostic. Only a minimal subset of its components must be re-implemented to support different target platforms. In addition, its flexibility allows easy extension for further relevant metrics to be collected at runtime, transparently to the target architecture.</p><p>The Runmeter Framework consists of two main components: 1) Runmeter Kernel Patch, a patch for the Linux kernel that enables the dynamic loading of the framework into the kernel at runtime; 2) Runmeter Kernel Module, a dynamically loadable Linux kernel module that implements the bulk of Runmeter functionality. Additionally, a set of user-space tools is provided to simplify the interaction with the kernel module for configuration and periodical monitoring purposes. In the following, we focus on the description of the in-kernel components.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Runmeter Kernel Components</head><p>The Runmeter Kernel Patch applies minimal changes to the Linux kernel internals, which are otherwise inaccessible from loadable modules. The patch injects callbacks to Runmeter in key moments of task execution (namely during the context switch and the scheduler tick callbacks), which allows for collecting PMCs information as required.</p><p>Once loaded into the kernel, the Runmeter Kernel Module attaches to the callbacks to trace and collect running statistics on a selection of the available PMCs. It does so by taking over PMCs management from the Linux kernel and configuring the platform to track the counters according to the result of the platform characterization (Section IV-C). Since a different set of counters X CPU,fCPU can be selected to model the evolution of the platform depending on the DVFS state f CPU , the module selects the correct PMCs to track accordingly to the model LUT. The module also subscribes to the CPU frequency governor (CPUFreq) to be notified of each change of frequency so that it can dynamically reconfigure the set of tracked PMCs for each CPU core.</p><p>When tracking is enabled, the kernel module generates a new PMC sample on each CPU core whenever one of the following events occurs:</p><p>• a context switch, in which case a new sample is always generated, or • a user-configurable number of scheduler ticks since the last sample was produced on that core. The first trigger is necessary so that the PMC statistics of each individual task can be queried. This allows Runmeter to collect PMC information and derive metrics with task-level granularity. The second trigger, on the other hand, provides an upper bound to the inter-arrival time between two consecutive PMC samples. This guarantees that tasks hogging the CPU do not interfere with the monitoring. Since this bound is expressed in terms of scheduler ticks, its granularity depends on the CONFIG_HZ Linux kernel option.</p><p>Proper selection of this upper bound is key to ensuring the desired responsiveness when monitoring CPU counters evolving over time. The basic PMC sampling mechanism provides the accumulated value of the event counter since its last reading. Therefore, a small sampling window might negatively impact the information collected by the PMCs: since each sample is tied to a single task, it is difficult to derive any meaningful data about the overall platform status by considering exclusively a single PMC sample. On the other hand, if such an interval is long, the read-out value is not updated often. This is detrimental for actuation policies requiring high responsiveness <ref type="bibr" target="#b40">[41]</ref>.</p><p>As a trade-off, we devise a moving-window approach that decouples the PMC sampling period from their observation window. The moving window allows us to obtain PMC statistics accumulated over an arbitrarily long window and updated at an arbitrarily fine time granularity. To implement the movingwindow approach, we instantiate a window buffer for each PMC. Each buffer stores a user-configurable number of PMC samples. Whenever a new sample is produced, the window shifts forward. The value of each PMC over the whole window is tracked by summing up all samples in the buffer. This information is updated each time the window moves forward (i.e., a new sample is available). We refer to this value as synthetic PMC sample.</p><p>Consuming synthetic samples provides more meaningful PMC data for the metrics to be estimated. However, it comes at the cost of the additional processing for the update of each PMC's moving window. Nevertheless, in Section VI, we report a negligible overhead.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. In-Kernel CPU Power Model</head><p>Given the dense stream of synthetic PMC samples generated by the core of the Runmeter Framework, components like an online CPU power (or energy) monitor are required to reevaluate their estimates at each update of the corresponding synthetic samples. A high degree of responsiveness in the monitoring, useful for prompt actuation, is achieved when the model evaluation time can keep up with the stream of synthetic samples. In Section IV, we present a power modeling approach devised with online usage in mind, which retains high accuracy despite its low computational complexity.</p><p>As a case study, the Runmeter Framework implements support for online monitoring of the instantaneous power consumption of the CPU sub-system. The CPU power monitor in Runmeter implements, for each CPU DVFS state, the following model, based on Equation (2):</p><formula xml:id="formula_7">P CPU = L CPU + #cores i=1 NCPU j=1 1 T ′ • x ij • w ij<label>(4)</label></formula><p>The weights L CPU and w ij are fractional values. Therefore, the estimation of the instantaneous power P CPU at each query of the monitoring framework encompasses fractional additions and multiplications. However, using floating-point arithmetic within the Linux kernel is problematic and expensive. For this reason, we use fixed-point arithmetic to implement the in-kernel power model. This decision is supported by the negligible loss of dynamic range and precision with respect to floating-point data type, which we evaluate in Section VI-D.</p><p>The factor 1 /T ′ normalizes the value of each synthetic sample with respect to the width of the user-configured observation window T ′ . T ′ might indeed differ from the sampling period T of the model training dataset (Equation ( <ref type="formula">2</ref>)). Thanks to the linearity of our models, we can perform the normalization by multiplying only once the result of the summations. This achieves arbitrary time-rescaling with negligible overhead.</p><formula xml:id="formula_8">P CPU = L CPU + 1 T • #cores i=1 NCPU j=1 x ij • w ij VI. EVALUATION</formula><p>In this section, we evaluate the holistic power modeling approach discussed in Section IV, and its in-kernel implementation within the Runmeter online monitoring framework described in Section V.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Experimental methodology</head><p>The target platform for our experiments is an NVIDIA Jetson AGX Xavier, powered by the Xavier SoC <ref type="bibr" target="#b22">[23]</ref>. It is a highly parallel and heterogeneous SoC provided with an 8-core 64-bit ARMv8.2 CPU, a 512-core NVIDIA Volta GPU, and several additional accelerators for deep-learning, computer vision, and video encoding/decoding. With many DVFS power profiles available for its sub-systems, this platform represents a challenging state-of-the-art target to explore our approach. In particular, the single CPU island on the platform can be clocked at 29 different discrete frequencies between 115 MHz and 2.3 GHz, while the GPU has 14 available DVFS states between 115 MHz and 1.4 GHz.</p><p>For the evaluation of our power modeling approach, we target the CPU and GPU sub-systems, D * = {CP U, GP U } considering the following DVFS states:</p><formula xml:id="formula_9">F * CPU = {730 MHz, 1.2 GHz, 2.3 GHz} F * GP U = F GP U = {all 14 from 115 MHz to 1.4 GHz}</formula><p>To build the input dataset, we profile several workloads on the target platform based on the considerations of Section IV-B.</p><p>For the CPU, we employ 17 different OpenMP benchmarks from the Rodinia 3.1 heterogeneous benchmark suite <ref type="bibr" target="#b43">[44]</ref> in several multi-thread configurations and five additional synthetic benchmarks. For the GPU, we employ ten different CUDA benchmarks from Rodinia. To average out possible interference in our measurements, such as unpredictable OS activity on the CPU, each workload is profiled 3 times. PMC samples are acquired in a continuous, periodical mode with a sampling period of 100 ms. During each sampling period, power measures of the CPU and GPU sub-systems are also acquired from the INA3221 built-in power monitors <ref type="bibr" target="#b23">[24]</ref>. This grants the time correlation needed for an effective correlation analysis and training <ref type="bibr" target="#b44">[45]</ref>. We find that collecting more than one sample per 100 ms does not capture any additional information due to the electrical inertia of the built-in current sensors.</p><p>As mentioned in Section II, built-in power monitors are typically not robust tools for online, power-aware actuation policies. This is mainly due to their speed, coarse granularity, and low resolution, which for the Xavier is limited to about 200 mW. However, they are helpful for building datasets to achieve higher introspection, time granularity, and responsiveness enabled by PMC-based power models, as proved in Section VI.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Offline Platform Characterization and Modeling</head><p>This section discusses the result of the platform characterization and power modeling (Section IV) of the individual CPU and GPU sub-systems for the NVIDIA Jetson AGX Xavier case study. In the interest of conciseness, in the following, we only analyze the main results to support our subsequent discussion. A thorough report is available in <ref type="bibr" target="#b12">[13]</ref>.</p><p>1) Sub-system Characterization: For the CPU sub-system, the results of the platform characterization suggest that the power consumption of the cores is highly correlated, depending on the selected DVFS state, with the number of cycles of activity, the number of retired instructions, the floating point activity, and various cache-related events. From our experiments, the counters that correlate best with the measured power consumption results are all cross-compatible. Therefore, for the power model parameter selection, we consider the three best counters for each frequency as the maximum allowed by the ARM PMU. In addition, the ARM PMU always exposes a CPU cycle counter, which we include in the final power model.</p><p>For the GPU sub-system of the Xavier SoC, our results expose multiple incompatibilities among the counters that would best correlate with the power profile. To be able to simultaneously track the optimal model parameters at runtime, we employ the PMU-aware algorithm described in Section IV-C, which automatically selects the subset of cross-compatible counters that best correlate with the power consumption. We find that counters related to L2 cache utilization and warp execution best correlate with the power consumption of the GPU. By enhancing the counter selection with feedback from the GPU model validation, we find that eight PMCs per frequency is the optimal trade-off between the number of independent variables, affecting the model evaluation time and the model accuracy.</p><p>2) Sub-system Modeling and Validation: For the CPU, we train a linear model based on Equation (1) individually for each frequency, with a NNLS regression. We employ four independent variables per core, i.e., the three configurable PMCs for each frequency and the cycle counter. Out of our input dataset, we use a random selection of 70 % of the total data for training and the remaining 30 % for validation. In terms of instantaneous power accuracy, the model achieves a Mean Absolute Percentage Error (MAPE) between 3 % and 4.4 % based on the frequency, with a standard deviation of approximately 5 %. When employed to estimate the energy over the full validation set, our model achieves a maximum error of 4 %, delivering an equal or superior accuracy with respect to the state of the art.</p><p>For the GPU, we likewise train the Equation (1) for each of the 14 GPU frequencies with a NNLS linear regression. We use the same 70% and 30% ratio for the training and validation set. Comparing the instantaneous power consumption estimation with the data measured on the real platform, we obtain a MAPE between 6 % and 8 %, depending on the frequency. The standard deviation over all frequencies is approximately 8 %. The maximum energy estimation error over the full validation set is 5.5 % over all frequencies, with an average of 2.2 %.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Combined Model Evaluation</head><p>After building, training, and validating the CPU and GPU power models individually, we combine them to obtain a system-level power model for every possible combination of f CPU ∈ F * CPU and f GPU ∈ F * GPU , corresponding to the LUT of Equation <ref type="bibr" target="#b0">(1)</ref>.</p><p>Figure <ref type="figure" target="#fig_3">2</ref> shows how our decomposable power model can effectively track the instantaneous power consumption of the system over time. The achieved instantaneous power MAPE of the final, combined model has an average of 8.6 % over all CPU and GPU frequency combinations. Regarding energy, the model reaches an average estimation error of 2.5 %. However, our results highlight that the energy estimation error of the combined model is higher when f CP U and f GP U diverge from each other. In particular, when f GP U is very low compared to f CP U , the CPU may stall waiting for the offloaded computation. While our power model does not capture this behavior, a real scenario where this occurs is highly unlikely due to its inefficiency.</p><p>Therefore, by considering all CPU and GPU frequencies combinations such that f GPU &gt; 600 MHz, we report an instantaneous power MAPE of 7.5 % and energy estimation error of 1.3 %, with a maximum of 3.1 %.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D. CPU Power Monitoring with Runmeter</head><p>This section discusses the evaluation of our online monitoring framework, Runmeter. To evaluate Runmeter, as a case study, we integrate it in the kernel of the Linux distribution running on the NVIDIA Jetson AGX Xavier. Then, through Runmeter, we implement the power monitor discussed in Section V with support for the CPU sub-system. First, we discuss the impact of porting models such as the one derived in Section V-B from floating-point to fixed-point arithmetic, which is necessary for their in-kernel implementation. Then, we deploy the CPU sub-system model on the target platform and compare the online power estimation provided by Runmeter with the measures from the onboard analog sensors. Finally, we include an analysis of the overhead introduced to the system by Runmeter, proving that both our power modeling methodology and our monitoring framework are ideal for online policy actuation such as DPM and power-aware task scheduling.</p><p>1) Fixed-point Approximation Error: In this section, we evaluate the approximation error introduced by our fixed-point implementation of the power model described in Section V, necessary to integrate it as part of a kernel module. For the fixed-point implementation, we use 64-bit integers, assigning the 29 less significant bits to the fractional part.</p><p>To analyze the approximation error, we implement the power model in user space as a generic C++ procedure, which can</p><p>0 50 100 150 200 250 300 Time [s] 2 4 6 Power [W] Measured total Estimated total 0 50 100 150 200 250 300 Time [s] 2 4 6 Measured CPU Measured GPU Estimated CPU Estimated GPU Power [W] be applied to any numeric type. From user space, we collect the data published by the Runmeter Kernel Module and feed them to the C++ power model, which evaluates it through the floating-point and the fixed-point power models to compute the approximation error. For this evaluation, we use the same validation set discussed in Section VI-B. Figure <ref type="figure" target="#fig_5">3</ref> shows the distribution of the approximation error between the floating-point and the fixed-point implementation. From our extensive evaluation, the maximum absolute approximation error is about 17 mW; the mean error, however, is only of about 0.17 mW. The maximum percentage error is always below 0.8 % of the power consumption estimated using floatingpoint arithmetic, with a mean error of about 0.015 %. Given the negligible magnitude of the error introduced by the fixed-point implementation, we conclude that this approximation does not impact the accuracy of the model in any meaningful way.</p><p>2) Online Power Estimation Accuracy: Employing the fixedpoint implementation of the CPU power model analyzed in the previous section, we integrate the power monitor in the Runmeter Framework. We then log the data advertised at runtime by the power model in Runmeter to later perform postmortem analysis. Therefore, differently from the discussion so far, the power estimates analyzed in this section are computed directly at runtime as soon as new PMC samples are available.</p><p>Figure <ref type="figure" target="#fig_6">4</ref> shows the Absolute Percentage Error (APE) distribution of the energy estimation provided by the in-kernel model when compared against the value collected from the onboard analog sensor for all benchmarks. In general, the maximum APE registered over all our experiments is around 29 %, the error at 90th percentile is around 20.8 %, and the MAPE is around 9 %. The input dataset is the same as the validation set discussed in Section VI-B.</p><p>It must be noted, however, that most of the estimation error accounted for during such an evaluation can be attributed to very specific time frames when the phase of the workload abruptly changes. Such behavior is visible in the example CPU power profiles depicted in Figure <ref type="figure" target="#fig_10">5</ref>. On sharp changes of the system activity, corresponding to rapid switches of the power consumption, the power estimated by the PMCbased power model has faster rising and falling edges than the power measured by the analog sensor. This is especially visible at higher CPU frequencies, where the inertia of the analog current sensors has an increasingly higher impact on the measurements due to the faster CPU activity. On the other</p><p>0.2 0.4 0.6 0.8 16 18 0.0 0.1 0.2 0.3 0.4 0.5 Approximation Error [mW] Probability 0.1 0.2 0.3 0.4 0.5 0.02 0.04 0.08 0.0 Approximation Error [%]  hand, PMCs are embedded in the digital domain, and their values instantly reflect the dynamic behavior of the profiled workloads. Nevertheless, our power modeling approach uses the onboard power sensor to build the input dataset for training and validation. While this makes the procedure automatic, easier, and less error-prone, the error on the estimation provided by our model over time is unavoidably high during transients in which the power sensor is too slow to react. As a matter of fact, the occasionally high estimation error is strictly limited to these transient conditions, where the high responsiveness of our PMC-based model can accurately track even brief fluctuations in the power profile.</p><p>Therefore, the problem emerges of how to make sure that the power values estimated during transient by our PMC-based model are actually reliable, if they have been trained with the INA3221 measurements themselves. As a solution, during the training phase, we deliberately bias the training set towards workloads with more stable activity: this means that the power model is trained, on average, with power values matching</p><p>10 20 30 40 50 60 0 0.5 1.0 1.5 2.0 Time [s] Power [mW] Measured CPU Estimated CPU (a) 730 MHz</p><p>10 20 30 40 0 1 2 3 Time [s] Power [mW] Measured CPU Estimated CPU (b) 1.2 GHz</p><p>5 10 15 20 0 5 10 15 Time [s] Power [mW] Measured CPU Estimated CPU (c) 2.3 GHz the actual consumption of the platform. This decouples the trained weights of the model from the low sensibility and time granularity of the input power data used for training. Once trained, the power model can scale and interpolate those values accordingly to the PMC samples collected at runtime, providing faster power estimation and higher responsiveness.</p><p>3) Monitoring Overhead: Being integrated with callbacks triggered at specific times during the Linux kernel execution, the Runmeter Framework imposes a certain processing overhead mainly due to PMC data collection and manipulation, including model estimation.</p><p>To measure this overhead, we profile the execution of the Runmeter Kernel Module callbacks, which are the only additional components with respect to a vanilla Linux kernel. We perform these measurements in various working conditions, ranging from an "idle" state to the execution of multiple parallel applications from the set of benchmarks described in <ref type="bibr" target="#b12">[13]</ref>. We use the same frequencies employed for the CPU model evaluation. The maximum overhead is reported when many applications execute concurrently on the system, as the number of invocations of Runmeter's callbacks increases with the number of context switches performed by the system. In the worst-case condition of intense context switching, the time spent executing all of the framework's callbacks never exceeds 7 ms per second (i.e., 0.7 % overhead). Moreover, the execution of all framework's callbacks significantly speeds up when increasing the CPU frequency, reducing to less than 2 ms per second in the worst case (0.2 % overhead) when operating at 2.3 GHz. In idle conditions, the overhead of the framework at 2.3 GHz is always less than 0.4 ms per second (0.04 %).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VII. CONCLUSIONS AND FUTURE WORK</head><p>With this work, we propose a systematic, data-driven, and architecture-agnostic approach to DVFS-aware statistical power modeling of heterogeneous computing systems. Our approach individually models each sub-system through its local PMCs, autonomously selecting the best ones to represent its power consumption. The sub-system models are later re-composed in a LUT-based system-level power model, able to grasp the complex behaviors of DVFS-enabled hardware with simple, linear models. This approach achieves an unprecedented combination of general applicability, automated model construction, lightweight model evaluation, and high accuracy.</p><p>In addition, we propose Runmeter, a novel integrated framework for the evaluation of the generated models online from within the Linux kernel. Runmeter is a substantial improvement over existing mechanisms based on PMC tracking as it focused on minimizing the response time between PMC observation and the evaluation of the model, without introducing any substantial overhead.</p><p>The validation of our power modeling approach on the stateof-the-art NVIDIA Jetson AGX Xavier embedded platform results in power and energy estimation accuracies aligned or superior with respect to state-of-the-art works. Additionally, the model shows desirable properties of responsiveness and decomposability. By integrating the Runmeter framework in the Linux kernel of the same platform, we also prove the viability of our modeling and monitoring approach for online power tracking, a key prerequisite for implementing power-aware control loops in DPM and power-aware task scheduling.</p><p>These results pave the way for further work to bring the benefits of this modeling approach to additional components in the Linux kernel, through the Runmeter framework. In particular, we plan to investigate the possible integration of our monitoring framework with the Linux real-time task scheduler (SCHED_DEADLINE), together with the CPU frequency governor, with the aim to improve the effectiveness and correctness of energy-aware real-time task scheduling within Linux.</p><p>Further directions of work also include going beyond the estimation of the current hardware status through predictive models. As of now, the Linux kernel contains very simple linear models for estimating the power consumed at each frequency, used to make decisions when selecting the appropriate frequency at which the CPU should execute. Models based on online PMC data, like that collected by the Runmeter framework, may prove to be more effective from an energy-saving perspective while maintaining a very low overhead.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><figDesc>The model is driven by the set of PMCs X d,f d tracked when operating at f d , weighted by the set of trained weights W d,f d :</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Figure 1 :</head><label>1</label><figDesc>Figure1: Scheme of the proposed data-driven, automatic power modeling approach for DVFS-enabled heterogeneous platforms.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>Figure 2 :</head><label>2</label><figDesc>Figure 2: Instantaneous power estimate for the system-level power model (on the left) and its breakdown to the individual sub-systems (on the right), with f CPU = 1.2 GHz, f GPU = 830 MHz.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><head>Figure 3 :</head><label>3</label><figDesc>Figure 3: Distribution of approximation error between floatingpoint and fixed-point implementations of the CPU power model. The distribution is shown in terms of both absolute power approximation error and percentage error.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><head>Figure 4 :</head><label>4</label><figDesc>Figure 4: Distribution of the APE of the online energy estimates over the duration of each benchmark.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10"><head>Figure 5 :</head><label>5</label><figDesc>Figure 5: Comparison of the instantaneous CPU power consumption measurement provided by the onboard INA3221 sensor and the estimation computed at runtime by the in-kernel power model. Each plot represents the same sequential execution of several workloads over time at different frequencies.</figDesc></figure>
+		</body>
+		<back>
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Sergio Mazzola received his M.Sc. degree in Electrical Engineering and Information Technology at the Polytechnic University of Turin (Italy) in 2021. Currently, he is pursuing a Ph.D. degree with the Digital Circuits and Systems group of Luca Benini at ETH Zürich (Switzerland). His research interests include high-performance computer architecture, focusing on massively parallel systems and low-power design. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Gabriele</head></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">The AMPERE project: : A model-driven development framework for highly parallel and energy-efficient computation supporting multi-criteria optimization</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Quiñones</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Royuela</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Scordino</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Gai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">M</forename><surname>Pinho</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Nogueira</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Rollo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Cucinotta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Biondi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Hamann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Ziegenbein</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Saoud</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Soulat</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Forsberg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Benini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Mando</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Rucher</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2020 IEEE 23rd International Symposium on Real-Time Distributed Computing (ISORC)</title>
+		<imprint>
+			<date type="published" when="2020-05">May 2020</date>
+			<biblScope unit="page" from="201" to="206" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Multicriteria optimization of real-time DAGs on heterogeneous platforms under P-EDF</title>
+		<author>
+			<persName><forename type="first">T</forename><surname>Cucinotta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Amory</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Ara</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Paladino</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">Di</forename><surname>Natale</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Embedded Computing Systems</title>
+		<imprint>
+			<biblScope unit="page">2023</biblScope>
+		</imprint>
+	</monogr>
+	<note>To appear in</note>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Software-only based Diverse Redundancy for ASIL-D Automotive Applications on Embedded HPC Platforms</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Alcaide</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Kosmidis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Hernandez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Abella</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE International Symposium on Defect and Fault Tolerance in VLSI and Nanotechnology Systems (DFT)</title>
+		<imprint>
+			<date type="published" when="2020-10">Oct 2020</date>
+			<biblScope unit="page" from="1" to="4" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<monogr>
+		<title level="m" type="main">Benchmarking tpu, gpu, and cpu platforms for deep learning</title>
+		<author>
+			<persName><forename type="first">Y</forename><forename type="middle">E</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G.-Y</forename><surname>Wei</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Brooks</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1907.10701</idno>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">A new golden age for computer architecture</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">L</forename><surname>Hennessy</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">A</forename><surname>Patterson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Communications of the ACM</title>
+		<imprint>
+			<biblScope unit="volume">62</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="48" to="60" />
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">The accelerator wall: Limits of chip specialization</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Fuchs</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Wentzlaff</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2019 IEEE International Symposium on High Performance Computer Architecture (HPCA)</title>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="1" to="14" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<monogr>
+		<title level="m" type="main">Hipeac vision 2021: high performance embedded architecture and compilation</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Duranton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>De Bosschere</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Coppens</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Gamrat</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Hoberg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Munk</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Roderick</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Vardanega</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Zendra</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Dynamic partitioned scheduling of real-time tasks on ARM big.LITTLE architectures</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Mascitti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Cucinotta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Marinoni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Abeni</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Systems Software</title>
+		<imprint>
+			<biblScope unit="page">110886</biblScope>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Dynamic partitioned scheduling of real-time DAG tasks on ARM big.LITTLE architectures*</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Mascitti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Cucinotta</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">29th International Conference on Real-Time Networks and Systems, ser. RTNS&apos;2021</title>
+		<meeting><address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="1" to="11" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">A systematic methodology to generate decomposable and responsive power models for CMPs</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Bertran</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Gonzalez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Martorell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Navarro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Ayguade</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Computers</title>
+		<imprint>
+			<biblScope unit="volume">62</biblScope>
+			<biblScope unit="issue">7</biblScope>
+			<biblScope unit="page" from="1289" to="1302" />
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">A taxonomy and survey of power models and power modeling for cloud servers</title>
+		<author>
+			<persName><forename type="first">W</forename><surname>Lin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Computing Surveys (CSUR)</title>
+		<imprint>
+			<biblScope unit="volume">53</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="1" to="41" />
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">The benefits of event: driven energy accounting in powersensitive systems</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Bellosa</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 9th workshop on ACM SIGOPS European workshop: beyond the PC: new challenges for the operating system</title>
+		<meeting>the 9th workshop on ACM SIGOPS European workshop: beyond the PC: new challenges for the operating system</meeting>
+		<imprint>
+			<date type="published" when="2000">2000</date>
+			<biblScope unit="page" from="37" to="42" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">A data-driven approach to lightweight DVFS-aware counter-based power modeling for heterogeneous platforms</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Mazzola</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Benz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Forsberg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Benini</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="s">Lecture Notes in Computer Science</title>
+		<imprint>
+			<biblScope unit="page" from="346" to="361" />
+			<date type="published" when="2022">2022</date>
+			<publisher>Springer International Publishing</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Is dark silicon useful? harnessing the four horsemen of the coming dark silicon apocalypse</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">B</forename><surname>Taylor</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">DAC Design Automation Conference</title>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2012">2012. 2012</date>
+			<biblScope unit="page" from="1131" to="1136" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Energy efficient job scheduling with dvfs for cpu-gpu heterogeneous systems</title>
+		<author>
+			<persName><forename type="first">V</forename><surname>Chau</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Chu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y.-W</forename><surname>Leung</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Eighth International Conference on Future Energy Systems</title>
+		<meeting>the Eighth International Conference on Future Energy Systems</meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="1" to="11" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Energyaware scheduling for real-time systems: A survey</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Bambagini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Marinoni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Aydin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Buttazzo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Embedded Computing Systems (TECS)</title>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="1" to="34" />
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">PMCTrack: Delivering performance monitoring counter support to the OS scheduler</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">C</forename><surname>Saez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Pousa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Rodriíguez-Rodriíguez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Castro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Prieto-Matias</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">The Computer Journal</title>
+		<imprint>
+			<biblScope unit="volume">60</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="60" to="85" />
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Powerand cache-aware task mapping with dynamic power budgeting for manycores</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Rapp</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Sagi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Pathania</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Herkersdorf</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Henkel</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Computers</title>
+		<imprint>
+			<biblScope unit="volume">69</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="1" to="13" />
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Energy-efficient low-latency audio on android</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Balsini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Cucinotta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Abeni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Fernandes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Burk</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Bellasi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Rasmussen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Systems and Software</title>
+		<imprint>
+			<biblScope unit="volume">152</biblScope>
+			<biblScope unit="page" from="182" to="195" />
+			<date type="published" when="2019-06">Jun. 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Modeling and simulation of power consumption and execution times for real-time tasks on embedded heterogeneous architectures</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Balsini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Pannocchi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Cucinotta</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM SIGBED Review</title>
+		<imprint>
+			<biblScope unit="volume">16</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="51" to="56" />
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Simulating execution time and power consumption of real-time tasks on embedded platforms</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Ara</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Cucinotta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Mascitti</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 37th ACM/SIGAPP Symposium on Applied Computing</title>
+		<meeting>the 37th ACM/SIGAPP Symposium on Applied Computing</meeting>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2022-04">Apr. 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<monogr>
+		<title level="m" type="main">Texas Instruments, 2023, ch. Increase Measurement Accuracy Using High-Speed Amplifiers for Low-Side Shunt Current Monitoring</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Castro</surname></persName>
+		</author>
+		<imprint>
+			<biblScope unit="page" from="44" to="45" />
+		</imprint>
+	</monogr>
+	<note>An Engineer&apos;s Guide to Current Sensing (Rev. B)</note>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<monogr>
+		<title level="m" type="main">Jetson AGX Xavier developer kit</title>
+		<ptr target="https://developer.nvidia.com/embedded/jetson-agx-xavier-developer-kit" />
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+		<respStmt>
+			<orgName>NVIDIA Corporation</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<monogr>
+		<title level="m" type="main">High-Side Measurement, Shunt and Bus Voltage Monitor with I 2 C-and SMBUS-Compatible Interface</title>
+		<imprint>
+			<date type="published" when="2012-05">May 2012</date>
+			<publisher>INA3221 Triple-Channel</publisher>
+		</imprint>
+	</monogr>
+	<note type="report_type">Texas Instruments</note>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Complete system power estimation using processor performance events</title>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">L</forename><surname>Bircher</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">K</forename><surname>John</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Computers</title>
+		<imprint>
+			<biblScope unit="volume">61</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="563" to="577" />
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">A statistic approach for power analysis of integrated GPU</title>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Shen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Soft Computing</title>
+		<imprint>
+			<biblScope unit="volume">23</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="827" to="836" />
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Runtime power monitoring in high-end processors: Methodology and empirical data</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Isci</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Martonosi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings. 36th Annual IEEE/ACM International Symposium on Microarchitecture</title>
+		<meeting>36th Annual IEEE/ACM International Symposium on Microarchitecture</meeting>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2003">2003. 2003</date>
+			<biblScope unit="page" from="93" to="104" />
+		</imprint>
+	</monogr>
+	<note type="report_type">MICRO-36</note>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<monogr>
+		<title level="m" type="main">ARM Cortex-A57 MPCore processor technical reference manual</title>
+		<author>
+			<persName><surname>Holdings</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2016-02">feb 2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">A study of hardware performance counters selection for cross architectural GPU power modeling</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Pi Puig</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">C</forename><surname>De Giusti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Naiouf</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">E</forename><surname>De Giusti</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">XXV Congreso Argentino de Ciencias de la Computación (CACIC)</title>
+		<meeting><address><addrLine>Universidad Nacional de Río Cuarto, Córdoba</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2019">14 al 18 de octubre de 2019. 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Accurate and stable run-time power modeling for mobile and embedded CPUs</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">J</forename><surname>Walker</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems</title>
+		<imprint>
+			<biblScope unit="volume">36</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="106" to="119" />
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Performance counters based power modeling of mobile GPUs using deep learning</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Mammeri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Neu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Lal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Juurlink</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2019 International Conference on High Performance Computing &amp; Simulation (HPCS)</title>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="193" to="200" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Power modeling for energy-efficient resource management in a cloud data center</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Tarafdar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Sarkar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">K</forename><surname>Das</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Khatua</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Grid Computing</title>
+		<imprint>
+			<biblScope unit="volume">21</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page">10</biblScope>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<analytic>
+		<title level="a" type="main">A survey on energy estimation and power modeling schemes for smartphone applications</title>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">W</forename><surname>Ahmad</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">International Journal of Communication Systems</title>
+		<imprint>
+			<biblScope unit="volume">30</biblScope>
+			<biblScope unit="issue">11</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title level="a" type="main">A survey on run-time power monitors at the edge</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Zoni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Galimberti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Fornaciari</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3593044</idno>
+		<ptr target="https://doi.org/10.1145/3593044" />
+	</analytic>
+	<monogr>
+		<title level="j">ACM Comput. Surv</title>
+		<imprint>
+			<biblScope unit="volume">55</biblScope>
+			<biblScope unit="issue">14s</biblScope>
+			<date type="published" when="2023-07">jul 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Counter-based power modeling methods: Top-down vs. bottom-up</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Bertran</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Gonzalez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Martorell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Navarro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Ayguadé</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">The Computer Journal</title>
+		<imprint>
+			<biblScope unit="volume">56</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="198" to="213" />
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Lightweight power monitoring framework for virtualized computing environments</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Phung</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><forename type="middle">C</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">Y</forename><surname>Zomaya</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Computers</title>
+		<imprint>
+			<biblScope unit="volume">69</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="14" to="25" />
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<analytic>
+		<title level="a" type="main">RAPL: Memory power estimation and capping</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>David</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Gorbatov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">U</forename><forename type="middle">R</forename><surname>Hanebutte</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Khanna</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Le</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2010 ACM/IEEE International Symposium on Low-Power Electronics and Design (ISLPED)</title>
+		<imprint>
+			<date type="published" when="2010">2010</date>
+			<biblScope unit="page" from="189" to="194" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<analytic>
+		<title level="a" type="main">A methodology for developing simple and robust power models using performance monitoring events</title>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">K</forename><surname>Pusukuri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Vengerov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Fedorova</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">proceedings of WIOSCA</title>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Real time power estimation and thread scheduling via performance counters</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Singh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Bhadauria</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">A</forename><surname>Mckee</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM SIGARCH Computer Architecture News</title>
+		<imprint>
+			<biblScope unit="volume">37</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="46" to="55" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<analytic>
+		<title level="a" type="main">Power-performance modeling on asymmetric multi-cores</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Pricopi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">S</forename><surname>Muthukaruppan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Venkataramani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Mitra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Vishin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2013 International Conference on Compilers, Architecture and Synthesis for Embedded Systems (CASES)</title>
+		<imprint>
+			<date type="published" when="2013">2013</date>
+			<biblScope unit="page" from="1" to="10" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<analytic>
+		<title level="a" type="main">A study on the use of performance counters to estimate power in microprocessors</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Rodrigues</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Annamalai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Koren</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Kundu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Circuits and Systems II: Express Briefs</title>
+		<imprint>
+			<biblScope unit="volume">60</biblScope>
+			<biblScope unit="issue">12</biblScope>
+			<biblScope unit="page" from="882" to="886" />
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Run-time power estimation in high performance microprocessors</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Joseph</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Martonosi</surname></persName>
+		</author>
+		<idno>01TH8581</idno>
+	</analytic>
+	<monogr>
+		<title level="m">ISLPED&apos;01: Proceedings of the 2001 International Symposium on Low Power Electronics and Design</title>
+		<imprint>
+			<publisher>IEEE Cat</publisher>
+			<date type="published" when="2001">2001</date>
+			<biblScope unit="page" from="135" to="140" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b42">
+	<analytic>
+		<title level="a" type="main">MPX: Software for multiplexing hardware performance counters in multithreaded programs</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>May</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings 15th International Parallel and Distributed Processing Symposium. IPDPS</title>
+		<meeting>15th International Parallel and Distributed Processing Symposium. IPDPS</meeting>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2001">2001. 2001</date>
+			<biblScope unit="page">8</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b43">
+	<analytic>
+		<title level="a" type="main">Rodinia: A benchmark suite for heterogeneous computing</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Che</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2009 IEEE international symposium on workload characterization (IISWC)</title>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2009">2009</date>
+			<biblScope unit="page" from="44" to="54" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b44">
+	<monogr>
+		<title level="m" type="main">Parallel performance measurement of heterogeneous parallel systems with GPUs</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">D</forename><surname>Malony</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2011">2011</date>
+			<publisher>IEEE</publisher>
+			<biblScope unit="page" from="176" to="185" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

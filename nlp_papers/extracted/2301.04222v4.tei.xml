@@ -1,0 +1,2528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Geometric phases along quantum trajectories</title>
+				<funder>
+					<orgName type="full">Consejo Nacional de Investigaciones Científicas y Técnicas (CONICET)</orgName>
+				</funder>
+				<funder>
+					<orgName type="full">European Research Council</orgName>
+					<orgName type="abbreviated">ERC</orgName>
+				</funder>
+				<funder>
+					<orgName type="full">Google Quantum Research Award</orgName>
+				</funder>
+				<funder>
+					<orgName type="full">ICTP-Trieste Associate Program</orgName>
+				</funder>
+				<funder>
+					<orgName type="full">Agencia Nacional de Promoción Científica y Tecnológica (ANPCyT)</orgName>
+				</funder>
+				<funder>
+					<orgName type="full">Universidad de Buenos Aires</orgName>
+					<orgName type="abbreviated">UBA</orgName>
+				</funder>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability  status="unknown">
+					<licence/>
+				</availability>
+				<date type="published" when="2023-05-28">28 May 2023</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Ludmila</forename><surname>Viotti</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Departamento de Física Juan José Giambiagi</orgName>
+								<orgName type="institution">FCEyN UBA Ciudad Universitaria</orgName>
+								<address>
+									<addrLine>Pabellón I</addrLine>
+									<postCode>1428</postCode>
+									<settlement>Buenos Aires</settlement>
+									<country key="AR">Argentina</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="department">The Abdus Salam International Center for Theoretical Physics</orgName>
+								<address>
+									<addrLine>Strada Costiera 11</addrLine>
+									<postCode>34151</postCode>
+									<settlement>Trieste</settlement>
+									<country key="IT">Italy</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Ana</forename><forename type="middle">Laura</forename><surname>Gramajo</surname></persName>
+							<affiliation key="aff1">
+								<orgName type="department">The Abdus Salam International Center for Theoretical Physics</orgName>
+								<address>
+									<addrLine>Strada Costiera 11</addrLine>
+									<postCode>34151</postCode>
+									<settlement>Trieste</settlement>
+									<country key="IT">Italy</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Paula</forename><forename type="middle">I</forename><surname>Villar</surname></persName>
+							<affiliation key="aff2">
+								<orgName type="department" key="dep1">Departamento de Física Juan José Giambiagi</orgName>
+								<orgName type="department" key="dep2">Facultad de Ciencias Exactas y Naturales</orgName>
+								<orgName type="laboratory">FCEyN UBA and IFIBA CONICET-UBA</orgName>
+								<address>
+									<addrLine>Ciudad Universitaria Pabellón I</addrLine>
+									<postCode>1428</postCode>
+									<settlement>Buenos Aires</settlement>
+									<country key="AR">Argentina</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Fernando</forename><forename type="middle">C</forename><surname>Lombardo</surname></persName>
+							<affiliation key="aff2">
+								<orgName type="department" key="dep1">Departamento de Física Juan José Giambiagi</orgName>
+								<orgName type="department" key="dep2">Facultad de Ciencias Exactas y Naturales</orgName>
+								<orgName type="laboratory">FCEyN UBA and IFIBA CONICET-UBA</orgName>
+								<address>
+									<addrLine>Ciudad Universitaria Pabellón I</addrLine>
+									<postCode>1428</postCode>
+									<settlement>Buenos Aires</settlement>
+									<country key="AR">Argentina</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Rosario</forename><surname>Fazio</surname></persName>
+							<affiliation key="aff1">
+								<orgName type="department">The Abdus Salam International Center for Theoretical Physics</orgName>
+								<address>
+									<addrLine>Strada Costiera 11</addrLine>
+									<postCode>34151</postCode>
+									<settlement>Trieste</settlement>
+									<country key="IT">Italy</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff3">
+								<orgName type="department">Dipartimento di Fisica</orgName>
+								<orgName type="institution">Università di Napoli &quot;Federico II&quot;</orgName>
+								<address>
+									<addrLine>Monte S. Angelo</addrLine>
+									<postCode>I-80126</postCode>
+									<settlement>Napoli</settlement>
+									<country key="IT">Italy</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Geometric phases along quantum trajectories</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2023-05-28">28 May 2023</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">95C2EA258BEA4FE007AD05595FB2DB4D</idno>
+					<idno type="arXiv">arXiv:2301.04222v4[quant-ph]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-07T10:19+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract/>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>A monitored quantum system undergoing a cyclic evolution of the parameters governing its Hamiltonian accumulates a geometric phase that depends on the quantum trajectory followed by the system on its evolution. The phase value will be determined both by the unitary dynamics and by the interaction of the system with the environment. Consequently, the geometric phase will acquire a stochastic character due to the occurrence of random quantum jumps. Here we study the distribution function of geometric phases in monitored quantum systems and discuss when/if different quantities, proposed to measure geometric phases in open quantum systems, are representative of the distribution. We also consider a monitored echo protocol and discuss in which cases the distribution of the interference pattern extracted in the experiment is linked to the geometric phase. Furthermore, we unveil, for the single trajectory exhibiting no quantum jumps, a topological transition in the phase acquired after a cycle and show how this critical behavior can be observed in an echo protocol. For the same parameters, the density matrix does not show any singularity. We illustrate all our main results by considering a paradigmatic case, a spin-1/2 immersed in time-varying a magnetic field in the presence of an external environment. The major outcomes of our analysis are however quite general and do not depend, in their qualitative features, on the choice of the model studied.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>As Berry first stated in his seminal work <ref type="bibr" target="#b0">[1]</ref>, when a quantum system is prepared in an energy eigenstate and adiabatically driven in a cycle, it acquires, in addition to the dynamical phase, a phase that depends solely on the path traced in the ray space. Being independent of the specific dynamics giving rise to the path, this phase is of geometrical nature. Following Berry's breakthrough, consistent generalizations of the Geometric Phase (GP) have been found for unitary evolutions which are kept cyclic while they are not required to be adiabatic <ref type="bibr" target="#b1">[2]</ref>, in the presence of degenerate subspaces <ref type="bibr" target="#b2">[3]</ref>, and for the case in which both the adiabaticity and the cyclicity conditions are removed <ref type="bibr" target="#b3">[4,</ref><ref type="bibr" target="#b4">5]</ref>. Further generalizations include the definitions of GPs for mixed states <ref type="bibr" target="#b5">[6]</ref><ref type="bibr" target="#b6">[7]</ref><ref type="bibr" target="#b7">[8]</ref><ref type="bibr" target="#b8">[9]</ref><ref type="bibr" target="#b9">[10]</ref> and the socalled off-diagonal GPs <ref type="bibr" target="#b10">[11,</ref><ref type="bibr" target="#b12">12]</ref>, which apply in the case where the initial and final states are orthogonal.</p><p>GPs are profoundly linked to the theory of fiber bundles and holonomies, bridging geometrical concepts like parallel transport over curved spaces with physics <ref type="bibr" target="#b13">[13]</ref><ref type="bibr" target="#b14">[14]</ref><ref type="bibr" target="#b15">[15]</ref>, and contributing in this way to the understanding of quantum mechanics at the foundational level. Since their discovery, GPs have also emerged in most diverse physical systems <ref type="bibr" target="#b16">[16,</ref><ref type="bibr" target="#b17">17]</ref>, deepening the comprehension of numerous phenomena such as integer quantum Hall effect <ref type="bibr" target="#b18">[18]</ref>, topological insulators and superconductors <ref type="bibr" target="#b19">[19,</ref><ref type="bibr" target="#b20">20]</ref>, as well as playing a pivotal role in quantum information processing <ref type="bibr" target="#b21">[21]</ref><ref type="bibr" target="#b22">[22]</ref><ref type="bibr" target="#b23">[23]</ref>.</p><p>The quest for implementations of geometric quantum information processing has also spurred the search for geometric interferometry in several different setups. The first proposal of this kind was realized in NMR <ref type="bibr" target="#b22">[22]</ref>. Thereafter, Berry phases in superconducting qubits were both studied theoretically in <ref type="bibr" target="#b26">[24]</ref> and observed experimentally for different regimes of couplings in circuit-QED arrangements <ref type="bibr" target="#b27">[25]</ref><ref type="bibr" target="#b28">[26]</ref><ref type="bibr" target="#b29">[27]</ref><ref type="bibr" target="#b30">[28]</ref><ref type="bibr" target="#b31">[29]</ref><ref type="bibr" target="#b32">[30]</ref>. In this direction, high-fidelity quantum gates were demonstrated with trapped ions <ref type="bibr" target="#b33">[31]</ref>. The need to improve the performance of quantum information processing devices against the exposure to external environment has led to the suggestion of non-adiabatic geometric gates schemes <ref type="bibr" target="#b34">[32]</ref><ref type="bibr" target="#b35">[33]</ref><ref type="bibr" target="#b36">[34]</ref><ref type="bibr" target="#b37">[35]</ref><ref type="bibr" target="#b38">[36]</ref><ref type="bibr" target="#b39">[37]</ref>. In this context, it becomes of fundamental importance to understand how geometric interferometry is affected by the presence of an external environment. Consequently, GPs need to be generalized to deal with the systems subject to nonunitary quantum evolution. The effect of fluctuations in the classical control parameters of a quantum cyclic evolution may average out mitigating their effect on the accumulated Berry phase <ref type="bibr" target="#b40">[38]</ref>. The presence of an external bath was found to give rise to new geomet-ric contributions to decoherence <ref type="bibr" target="#b41">[39,</ref><ref type="bibr" target="#b42">40]</ref>, as experimentally detected in <ref type="bibr" target="#b43">[41,</ref><ref type="bibr" target="#b44">42]</ref>. Different definitions of GPs applicable in the non-unitary case have been put forward. Tong et al. <ref type="bibr" target="#b45">[43]</ref> introduced a purificationindependent formula computed over the reduced density matrix while an average over different histories (trajectories) taking into account system-bath interaction was discussed in Carollo et al. <ref type="bibr" target="#b46">[44,</ref><ref type="bibr" target="#b47">45]</ref> and further analyzed in <ref type="bibr" target="#b48">[46]</ref><ref type="bibr">[47]</ref><ref type="bibr" target="#b49">[48]</ref>. Additional work along these lines can be found in <ref type="bibr" target="#b50">[49]</ref><ref type="bibr" target="#b51">[50]</ref><ref type="bibr" target="#b52">[51]</ref><ref type="bibr" target="#b53">[52]</ref>.</p><p>There is, however, a different level of description of open quantum systems which may capture features that are washed out by simply looking at the properties of density matrices. This level is accessed, for example, when the state of the system is continuously monitored. In this case, the quantum system is described by a wave function whose smooth evolution is interrupted by random quantum jumps induced by the coupling with the environment <ref type="bibr" target="#b54">[53]</ref>. This sequence of smooth evolutions interrupted by jumps is named a quantum trajectory (see <ref type="bibr" target="#b56">[54]</ref> for a recent review on the subject). There are also formal connections between this setting and that emerging in monitored quantum circuits <ref type="bibr" target="#b57">[55]</ref>, a tractable setting to explore universal collective phenomena as dynamics of quantum information and entanglement <ref type="bibr" target="#b58">[56,</ref><ref type="bibr" target="#b59">57]</ref>.</p><p>Goal of the present work is to describe the properties of accumulated GP along quantum trajectories. In this approach we are inspired by the work of Gebarth et al. <ref type="bibr" target="#b60">[58]</ref> where the GPs induced by a sequence of weak measurements stirring the system along a path in a parameter space were analyzed. The randomness introduced by the occurrence of jumps in a given trajectory is reflected in the fact that the GPs inherit a stochastic nature. By random sampling over the trajectories, the entire distribution can be reconstructed. Since the Berry phase is not an observable, the average value does not correspond to the phase accumulated by the average state (this is, the density matrix). Previous works, with the notable exception of <ref type="bibr" target="#b60">[58]</ref>, either restrict the study of the dynamics of smoothly evolving pure states with no jumps or define average quantities. Understanding the fluctuations of GPs induced by random jumps is to a large extent unexplored. We would like to fill this gap by studying this distribution and whether it is related to the corresponding distribution in the interference fringes in a spin-echo experiment. Finally, with regard to the topological transition discussed in <ref type="bibr" target="#b60">[58]</ref>, further investigated theoretically in <ref type="bibr" target="#b61">[59,</ref><ref type="bibr" target="#b62">60]</ref> and experimentally observed in <ref type="bibr" target="#b63">[61,</ref><ref type="bibr" target="#b65">62]</ref>, we will argue that despite the different dynamical settings it is a generic feature present in adiabatically driven monitored systems. We will show that depending on the coupling to the external environment, the monitored quantum system will show a topological transition in the phase accumulated in a cycle and we will argue that this transition is visible in echo dynamics.</p><p>The paper is organized as follows. In the next Section, we will define the dynamical setting we are interested in: A quantum system subject to a timeperiodic Hamiltonian and coupled to an external bath. With the intention to highlight the essence of our results, we will consider the paradigmatic case of a twolevel system that evolves in presence of an externally varied magnetic field. The associated density matrix is governed by the Lindblad equation. In order to follow the dynamics of the system along its quantum trajectories, we introduce a specific unravelling of the Lindblad equation which relays on microscopic considerations, these aspects are introduced in Section 2. In Section 3 the model and its coupling to the environment are introduced. In Section 4 we define the GP that will be the founding block of all our analysis. For an isolated system and sufficiently slow driving, this reduces to the Berry phase <ref type="bibr" target="#b0">[1]</ref>. The presence of the environment induces both a smooth drift and random jumps in the dynamics, so the evolution of the state is generically neither adiabatic nor cyclic. To keep the presentation self-consistent, we further include in this same Section other definitions of GPs present in the literature. These will be employed for comparison in the posterior Section 5.1, where we discuss the distribution of the GPs accumulated along quantum trajectories and analyze reference GP values in order to account for differences with other definitions of GPs proposed in the context of open quantum systems. Due to the intrinsic randomness of the quantum trajectory, a monitored echo experiment might be altered. In Section 5.2 we discuss the probability distributions of the interference fringes and detail whether/when they relate to the corresponding distribution of the GPs. Our analysis of GPs in monitored systems is completed in Section 5.3 where we will show that the topological transition discovered in <ref type="bibr" target="#b60">[58]</ref> for a specific setting is actually a generic feature in periodically driven open quantum systems. Indeed, for the sequence of states known as no-jump trajectory, which can be thought of as the smooth evolution generated by a non-hermitian Hamiltonian, we find the GP displays a complex pattern in the parameters space exhibiting singular points. These singularities can be tracked down to correspond to points of vanishing probability for such a trajectory, and to reveal the border between distinct topological sectors. The transition observed in the evolution when varying the parameters is topological in the sense that it is related to a discontinuous jump of an integer-valued topological invariant. Section 5.3 will be entirely devoted to the study of this transition and ways to detect it through an echo protocol. A summary of our results and concluding considerations are presented in Section 6. The appendices give some additional ingredients used to compute the GP in the numerical simulations, Appendix A, a detailed analysis of the already mentioned interference fringes distribu-tion, Appendix B, a brief discussion on how the distribution of GPs may depend on the unravelling of the Lindblad equation (leading to the same averaged evolution), Appendix C, and analytical treatment of the no-jump trajectory, Appendix D.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">From Lindblad dynamics to quantum trajectories</head><p>Lindblad equation -In order to make a connection with existing literature, it is convenient to set the stage and start from the case in which the state of an open quantum system is described by a density matrix ρ(t). In this case, under proper conditions, the dynamics is governed by the Lindblad equation <ref type="bibr" target="#b66">[63,</ref><ref type="bibr" target="#b68">64]</ref> </p><formula xml:id="formula_0">(ℏ = 1) ρ = -i [H, ρ] + α [L α ρL † α - 1 2 {L † α L α , ρ }] . (<label>1</label></formula><formula xml:id="formula_1">)</formula><p>The first term in the r.h.s. of the Lindblad equation accounts for the unitary evolution, while the second originates in the coupling to the environment.</p><p>The strength and the nature of this coupling are encoded in the Lindblad operators L α . We will consider a Hamiltonian H that depends periodically on time</p><formula xml:id="formula_2">H(t + 2π/Ω) = H(t) with T = 2π</formula><p>/Ω the period of a cycle in suitable parameter space. The Lindblad operators, if time-dependent, should also be time-periodic</p><formula xml:id="formula_3">L α (t + 2π/Ω) = L α (t).</formula><p>It is useful to already at this point briefly comment on the adiabatic limit for slow dynamics as this issue will be central in the analysis conducted along the paper. If the evolution is unitary, for a sufficiently large period T , a system prepared in an eigenstate will remain in the corresponding instantaneous eigenstate up to small corrections due to Landau-Zener transitions between energy levels. In other words, the occupancy of any given eigenstate will not change in time. The situation strongly differs in presence of an environment. In this case, a proper adiabatic limit is not well defined, since the slow driving limit where adiabatic dynamics sets in, is also the regime in which the consequences of the external baths are the most severe and the system reaches a (possibly periodic) steady state. The adiabatic limit itself should be reconsidered <ref type="bibr" target="#b69">[65]</ref><ref type="bibr" target="#b70">[66]</ref><ref type="bibr" target="#b71">[67]</ref><ref type="bibr" target="#b72">[68]</ref><ref type="bibr" target="#b73">[69]</ref> in an open system, as the existence of a continuum of energy levels makes the energy splittings of the system a bad reference scale for defining the regimes. Effects due to non-adiabaticity and corrections due to the presence of the environment seem thus to be inextricably linked.</p><p>Monitored dynamics and quantum trajectories -The dynamics of the systems radically change when it is possible to continuously monitor their state. In this case, the state of the system remains pure and consists of intervals of smooth evolution interrupted at random times by abrupt changes called quantum jumps. A sequence of smoothly-evolving intervals together with a set of random events is denominated a quantum trajectory. The literature on the subject is vast and we refer to the following papers and books for a general overview <ref type="bibr" target="#b54">[53,</ref><ref type="bibr" target="#b56">54,</ref><ref type="bibr" target="#b74">70,</ref><ref type="bibr" target="#b75">71]</ref> and applications e.g. to many-body systems <ref type="bibr" target="#b77">[72,</ref><ref type="bibr" target="#b78">73]</ref>.</p><p>Evolution is described in this framework as follows. If at time t the state of the system is |ψ(t)⟩, at a later t + δt time it will be</p><formula xml:id="formula_4">|ψ(t + δt)⟩ =          Ko|ψ(t)⟩ √ po(t)</formula><p>with probability p o (t)</p><formula xml:id="formula_5">Kα|ψ(t)⟩ √ pα(t)</formula><p>with probability p α (t) <ref type="bibr" target="#b1">(2)</ref> where o, α = 1, .. label the different operators K α inducing dynamical steps</p><formula xml:id="formula_6">K o = 1 -i δt H - i 2 α L † α L α K α = √ δtL α (3) and p o/α (t) = ⟨ψ(t)| K † o/α K o/α |ψ(t)⟩.</formula><p>Each choice in the r.h.s. of Eq.( <ref type="formula">2</ref>) represents evolution steps of different characters. The second line corresponds to the occurrence of a jump K α at time t, while the first is a smooth evolution (no jump), albeit altered from unitarity by the fact that acquiring the information that no jumps occurred modifies the evolution of the system. The no-jump operator K o can also be thought of as generated by an effective drift Hamiltonian H o to which it relates in the usual way K o = 1 -i δt H o . The full evolution in a time interval [0, t] is therefore characterized by a sequence of N J jumps of types α i occurring at times t i . We will denote the string of these events</p><formula xml:id="formula_7">R(t, N J ) = {(α 1 , t 1 ), . . . , (α i , t i ), . . . (α N J , t N J )},<label>(4</label></formula><p>) with 0 ≥ t i ≥ t ∀i, the quantum trajectory. As mentioned above, this framework naturally emerges when the system is continuously and indirectly monitored, so that each trajectory can be viewed as the result of continuous measurements of the environment on a given basis. From this perspective, continuous monitoring may lead to decoherence mitigation by the environment <ref type="bibr" target="#b79">[74]</ref>, also post-selection and error correction schemes <ref type="bibr" target="#b80">[75,</ref><ref type="bibr" target="#b81">76]</ref> have been proposed.</p><p>The properties of the Kraus operators K o/α guarantee that the probabilities to get a given outcome sum up to one, and the time step δ t should be taken small enough for the first order approximation to be valid, which requires α p α ≪ 1. Averaging over every possible jump sequence one gets back the Lindblad equation <ref type="bibr" target="#b54">[53]</ref> in Eq.( <ref type="formula" target="#formula_0">1</ref>), the converse implication is not valid, an infinite number of different unravellings give rise to the same Lindblad evolution <ref type="bibr" target="#b56">[54]</ref>. We will address this question in Appendix C.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">The model</head><p>Since we are interested in studying the impact of an external environment on the GPs, we will consider a unitary evolution over which the accumulated GP, in the adiabatic limit, is the Berry phase. To be concrete, we shall consider a spin-1/2 particle in presence of a time-dependent magnetic field B(t) = ω nB (t), whose direction is given by nB = (sin (θ) cos(Ω t), sin (θ) sin(Ω t), cos θ) with fixed polar angle θ and time-varying azimuthal angle Ω t. Such unitary evolution is generated by the Hamiltonian</p><formula xml:id="formula_8">H(t) = 1 2 B(t) • σ, (<label>5</label></formula><formula xml:id="formula_9">)</formula><p>with σ = (σ x , σ y , σ z ); and |0⟩ and |1⟩, the eigenstates of σ z . The instantaneous eigenstates of H(t) are denoted |ψ -(t)⟩ and |ψ + (t)⟩ .</p><p>Figure <ref type="figure">1</ref>: Trajectories described by the state of the system on the Bloch sphere under different conditions. The black line corresponds to unitary evolution in the adiabatic limit.</p><p>The purple line depicting a curly ring corresponds to general unitary dynamics in which non-adiabatic corrections start to be visible. In the presence of an environment, the quantum state can suffer from jumps or can be smoothly driven along the whole evolution. For a system prepared in the exited eigenstate, the orange trajectory corresponds to a fully smooth drift. Differently, the blue path shows a jump that projects the state into the instantaneous ground eigenstate and is afterward smoothly driven. Finally, the light blue path shows a case with several jumps, where the non-adiabatic corrections appear in between the jumps.</p><p>If the system could be kept perfectly isolated while the direction of B(t) is adiabatically changed in a cycle parameterized by t ∈ [0, T ], with T = 2π/Ω (as shown in Fig. <ref type="figure">1</ref>), it would acquire an adiabatic <ref type="bibr">(Berry)</ref> phase ϕ ± a = -π(1 ∓ cos θ), where the ∓ sign depends on the energy eigenstate in which the system was initially prepared.</p><p>Lindblad operators -For a system that evolves according to H(t) given by Eq. ( <ref type="formula" target="#formula_8">5</ref>) coupled to an en-vironment of harmonic oscillators a consistent timedependent Lindblad equation of the form in Eq. ( <ref type="formula" target="#formula_0">1</ref>) can be derived from microscopic considerations as long as the evolution remains sufficiently slow <ref type="bibr" target="#b82">[77,</ref><ref type="bibr" target="#b83">78]</ref>, with Lindblad operators given by</p><formula xml:id="formula_10">L -(t) = √ γ -⟨ψ -(t)| σ x |ψ + (t)⟩ |ψ -(t)⟩ ⟨ψ + (t)| L + (t) = √ γ + ⟨ψ + (t)| σ x |ψ -(t)⟩ |ψ + (t)⟩ ⟨ψ -(t)| (6) L d (t) = √ γ d i=± ⟨ψ i (t)| σ x |ψ i (t)⟩ |ψ i (t)⟩ ⟨ψ i (t)|</formula><p>and corresponding to decay, spontaneous excitation, and dephasing respectively. The coupling strengths considered in this work are, in terms of the dissipation ratio Γ, γ -= Γ ; γ d = 0.32 Γ, while we consider γ + to be negligible (all the results that we will show are rather generic and do not qualitatively depend on the chosen values). The jumps defined by Eq. ( <ref type="formula">3</ref>) from the Lindblad operators above lead, after averaging, to a consistent Lindblad equation for slow dynamical evolutions <ref type="bibr" target="#b84">[79]</ref>. The operators introduced in Eq. ( <ref type="formula">6</ref>) induce transitions and dephasing between the instantaneous eigenstates of the Hamiltonian defined in Eq.( <ref type="formula" target="#formula_8">5</ref>). In order to keep the analysis as general as possible, we will include a further term in the Lindbladian which requires considering a fourth operator</p><formula xml:id="formula_11">L z = √ γ z σ z (<label>7</label></formula><formula xml:id="formula_12">)</formula><p>along a fixed direction in the Bloch sphere. The particular choice of σ z operator as the additional Lindblad operator is motivated by the need of introducing transitions that do not simply involve the instantaneous eigenstates. Any other Lindblad operator that differed from those in Eq.( <ref type="formula">6</ref>) would lead to similar qualitative conclusions.</p><p>While the unitary evolution of the closed system will follow the curly path indicated in purple in Fig. <ref type="figure">1</ref>, the actual dynamics will follow, with some probability, the path indicated in blue (see Fig. <ref type="figure">1</ref> for illustrative purposes), i.e. it will be discontinuous and not necessary closed after a cycle of the driving, even in the slow-driving limit. Moreover, the slower the driving, the more jumps will occur (see light blue curve in Fig. <ref type="figure">1</ref>). The task of the next Sections is to characterize GPs under these conditions.</p><p>Smooth evolution with no jumps -A particularly interesting quantum trajectory is that which is smooth along the whole evolution. Before addressing the characterization of GPs in indirectly monitored systems, we provide insight into the evolution giving rise to it. When the records of the measurements performed on the environment reveal zero jumps, the dynamics describe a continuous smooth path and is generated by an effective drift Hamiltonian which depends both on the Hamiltonian of the system and the Lindblad operators as described by Eq. ( <ref type="formula">3</ref>). Within the model considered in our work, the effective drift Hamiltonian H o governing the no-jump dynamics [K o = 1 -δtH o in Eq.( <ref type="formula">3</ref>)] is given by</p><formula xml:id="formula_13">H o (t) = 1 -i Γ 2ω f (t) H(t) (8)</formula><p>with f (t) = cos 2 (θ) + sin 2 (θ) sin 2 (Ωt). We highlight the fact that, due to the unitarity of σ z matrix, the no-jump evolution is completely independent of the fourth Lindblad operator L z included ad-hoc and, consequently, from the parameter γ z . An illustrative example of the trajectory generated by the above evolution, referred to as the no-jump trajectory in what comes, is the orange path in Fig. <ref type="figure">1</ref>. In Appendix D we provide the analytic solution for the dynamics associated with the non-Hermitian Hamiltonian H o (t) of Eq. <ref type="bibr" target="#b7">(8)</ref>. While this trajectory is unique, the number of possible (even though unevenly probable) trajectories in which N J &gt; 0 jumps occur increases with the number N J of jumps, diverging as δt goes to zero. Its uniqueness will make the no-jump trajectory especially suitable for the analysis of some features of the GPs, we come back to this question in Section 5.3.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">Geometric phases in open systems</head><p>As mentioned in Sec. 1, the accumulation of a GP during the dynamics of a quantum system is not necessarily restricted to an adiabatic evolution. For a generic quantum trajectory, consisting of a sequence of smoothly-evolving intervals together with a set of random quantum jumps R, a proper phase that deals with both aspects of evolution can be defined. Considering the evolution in a time interval [0, T ], parameterized with t, the GP associated to a trajectory in which N J jumps are registered at times t i , can be written as</p><formula xml:id="formula_14">ϕ[R] = arg ⟨ψ(0)|ψ(T )⟩ -Im N J i=0 ti+1 ti dt ⟨ψ(t)| ψ(t)⟩ ⟨ψ(t)|ψ(t)⟩ - (ti,αi)∈R arg ⟨ψ(t i )| K αi |ψ(t i )⟩ , (<label>9</label></formula><formula xml:id="formula_15">)</formula><p>where R = R(T, N J ) for brevity, with t 0 = 0 and the convention that t N J +1 ≡ T in the sum of integrals. The definition of GP as given in Eq.( <ref type="formula" target="#formula_14">9</ref>) will be at the basis of our analysis and we refer to Appendix A for a derivation of this expression. As it is evident from the dependence on the times and nature of the jumps, the phase ϕ[R(T, N J )] will be a stochastic variable, dependent on the trajectory R(T, N J ).</p><p>The first term in Eq. ( <ref type="formula" target="#formula_14">9</ref>) is the total relative phase between the initial and final states. The remaining terms are of two different kinds, reflecting the properties of the dynamics itself. The second term features the dynamical phases accumulated along the in-tervals of smooth evolution that take place before, between, and after jumps, and which should be subtracted in order to access the purely geometrical object ϕ R . The occurrence at time t i of a jump generated by the operator K αi introduces a contribution arg ⟨ψ(t i )| K αi |ψ(t i )⟩ given by the Pancharatnam phase difference ϕ 1→2 P = arg ⟨ψ 1 |ψ 2 ⟩ between the state before and after the jump. Such terms, arising when the path traced by the state shows discontinuities <ref type="bibr" target="#b3">[4,</ref><ref type="bibr" target="#b4">5]</ref>, can also be thought of as the GP accumulated along the geodesic arc in the Hilbert space that fills the discontinuity by joining both states. The expression in Eq. ( <ref type="formula" target="#formula_14">9</ref>) is independent of the U (1) gauge choice. It neither requires the trajectory to trace a close path in the state space nor relies on adiabaticity condition. Moreover, it does not even demand unitarity as it is well defined also if the states |ψ(t i )⟩ or |ψ(t ′ )⟩ are not normalized (the norm should, however, be non-vanishing).</p><p>Suitable to be applied to the trajectories that emerge in master equation unraveling, Eq. ( <ref type="formula" target="#formula_14">9</ref>) has been employed in limiting forms for addressing the definition of GPs fitting non-unitary evolution. A first explored route was to focus on the no-jump trajectory <ref type="bibr" target="#b46">[44,</ref><ref type="bibr" target="#b47">45]</ref>. This approach, which disregards the possibility of quantum jumps by restricting to the smooth evolution, preserves the well-known definitions of GPs applicable to pure states and includes environmental effects through the non-hermiticity of</p><formula xml:id="formula_16">H o . If no jumps are registered along the entire evolution, this is, if R(T, 0) = ∅, the GP ϕ 0 ≡ ϕ[R(T, 0) = ∅] reads ϕ 0 = arg ⟨ψ(0)|ψ(T )⟩ -Im T 0 dt ⟨ψ(t)| ψ(t)⟩ ⟨ψ(t)|ψ(t)⟩<label>(10)</label></formula><p>which trivially reduces to the expression for the GP accumulated in the most general unitary evolution <ref type="bibr" target="#b4">[5]</ref> when this is indeed the case, and therefore the states are instantaneously normalized, rendering the denominator ⟨ψ(t)|ψ(t)⟩ ≡ 1 ∀ t. Eq.( <ref type="formula" target="#formula_16">10</ref>) also reduces to Aharonov-Anandan and Berry phases as the conditions required by each definition are fulfilled, namely, for cyclic and unitary while not necessarily adiabatic evolution and for both cyclic and adiabatic evolution. Note that phase ϕ 0 is ill-defined if some internal product on its argument vanishes, this observation will become of relevance when discussing the topological transition in Section 5.3. Several other works consider the full Lindblad equation unraveling, suggesting to define the GP of the ensemble-averaged state ρ(t) as an average over the ensemble of phases {ϕ R } = ϕ {R} obtained by applying Eq.( <ref type="formula" target="#formula_14">9</ref>) to each trajectory <ref type="bibr" target="#b46">[44]</ref><ref type="bibr" target="#b47">[45]</ref><ref type="bibr" target="#b48">[46]</ref>. It has been extensively discussed whether this is a proper definition of a GP for the density matrix representing the state of the system as it does not allow for a one-toone relation between the set of density matrices and the obtained GP values <ref type="bibr">[47,</ref><ref type="bibr" target="#b49">48,</ref><ref type="bibr" target="#b86">80]</ref>.</p><p>Finally, a different approach introduces a generalized GP defined directly from the reduced density matrix <ref type="bibr" target="#b45">[43]</ref>. The expression reads</p><formula xml:id="formula_17">ϕ ρ = arg   j λ m (0)λ m (t) ⟨ξ m (0)|ξ m (t)⟩ × exp - t 0 dt ′ ⟨ξ m (t ′ )| ξm (t ′ )⟩ (<label>11</label></formula><formula xml:id="formula_18">)</formula><p>where λ k (t) and |ξ k ⟩ are the instantaneous eigenvalues and eigenstates of the density matrix ρ(t) which describes the state of the system. Even though defined for non-degenerate but otherwise general mixed states, when computed over pure states under unitary evolution, reduces to the unitary expression of the GP.</p><p>All the above-mentioned proposals of GPs applicable when dynamics are non-unitary either restrict to modified evolutions on which pure-state GP definitions would be applicable or seek a consistently defined GP for the reduced density matrix ρ(t), which accounts for an averaged description. Stochastic processes, however, arising from master equation unraveling, acquire independent physical relevance in continuous monitoring schemes. As anticipated in the introduction, the randomness introduced by the occurrence of jumps in a given trajectory reflects in the GPs acquiring a stochastic nature itself. This approach, therefore, requires a study of the environmentallyinduced effects in GPs from a statistical perspective. The probability associated with some GP value will be related to that of individual trajectories as</p><formula xml:id="formula_19">P [ϕ] = R/ϕ[R]=ϕ P [R]. (<label>12</label></formula><formula xml:id="formula_20">)</formula><p>The average phase corresponds only to the first moment of the distribution</p><formula xml:id="formula_21">φ = arg e iϕ P [ϕ]</formula><p>and in some cases may be not sufficient in characterizing the dynamics.</p><p>For easy later reference, we provide a table summarizing the GP definitions reviewed along this section GP Description</p><formula xml:id="formula_22">ϕ a Adiabatic Berry phase ϕ[R] GP associated to the quantum trajectory R(T, N J )</formula><p>Eq.( <ref type="formula" target="#formula_14">9</ref>) ϕ 0 GP associated to the no-jump trajectory Eq.( <ref type="formula" target="#formula_16">10</ref>) ϕ u GP accumulated on general unitary evolution ( from Eq. ( <ref type="formula" target="#formula_16">10</ref>) with ⟨ψ(t)|ψ(t)⟩ = 1) φ</p><p>Average over the probability distribution</p><formula xml:id="formula_23">P [ϕ]</formula><p>ϕ ρ Mixed state geometric phase <ref type="bibr" target="#b45">[43]</ref> Eq.( <ref type="formula" target="#formula_17">11</ref>)</p><p>The next Section will be devoted to the properties of P [ϕ] and how representative the different GPs applicable to trajectories are, see Eqs. <ref type="bibr">(9 -10)</ref>. As we will be showing in the following, in most cases the entire probability distribution, i.e. all higher order cumulant, is necessary to understand the accumulation of GPs in a continuously monitored system. We will also discuss under which circumstances and what features of P [ϕ] can be extracted by geometric interferometry through a spin-echo protocol.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">Results</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1">Geometric phase distribution P [ϕ]</head><p>We investigate in this section the distribution of the ensemble {ϕ R } = ϕ {R} of GPs obtained by applying Eq. ( <ref type="formula" target="#formula_14">9</ref>) to each individual realization (trajectory) of the evolution, characterized by some set R(T, N J ). In Fig. <ref type="figure" target="#fig_0">2</ref> we show two representative cases in which the corresponding dynamics of a hypothetical unitary evolution would either be faster (with small but non-zero non-adiabatic corrections) or slow enough to be considered in the adiabatic regime while the environment remains the same, characterized by the dissipation rate Γ = 10 -3 ω, which leads to γ -= Γ, γ d = 0.32 Γ, and negligible γ + .</p><p>We first attend the case with γ z = 0, in which the environment induces jumps involving instantaneous eigenstates only. The two situations, corresponding to the two sets of parameters indicated before, are shown in Fig. <ref type="figure" target="#fig_0">2</ref>, in panels (a) and (b) respectively. In both panels, we also plot for reference the adiabatic (Berry) result, the no-jump and unitary GPs, and the average of the distribution. Being the Berry phase independent of Ω, it is exactly the same for both cases, this is, ϕ a ∼ 1.482π. For the parameters chosen, the value ϕ 0 computed from Eq.( <ref type="formula" target="#formula_16">10</ref>) over the trajectory with no jumps, shows small deviations from ϕ a . While the values of these characteristic GPs are similar, the entire distribution of the monitored system is dras- tically different on each panel. In the first case of faster driving, the period T is such that a considerable amount of times the evolution is completed registering no jumps, with the mean number of jumps over the ensemble NJ = 0.63. The narrow peak in the Figure shows these cases of entire smooth evolution. In addition, there is a small background revealing the accumulated GP along those trajectories where jumps occurred. The composition of the ensemble is reflected in the histogram by the presence of a large contribution, corresponding to ∼ 50% of the realizations, due to the no-jump GP-value and the remaining 50% of the counts distributed in a broad way over the possible GP values. This broad background distribution can be easily interpreted as the randomness inherited by the GP due to the (random) time at which the jump occurred. A single term ⟨ψ(t i )| K -i |ψ(t i )⟩ in Eq. ( <ref type="formula" target="#formula_14">9</ref>), denoting a contribution to the GP from a jump at time t i , successfully accounts for the background when considering all possible jump-times. The peak in the distribution agrees well with both the adiabatic and the no-jump values. The average phase, on the other side, is a bit off due to the small and poorly structured background, broadly distributed over 2π. This clearly demonstrates that even a single jump occurring at a random time leads to very large fluctuations in the accumulated GP. In the case with slower driving shown in panel (b) the mean number of jumps over the set of trajectories is NJ = 1.77. This means that the state of the system is much more likely to undergo an abrupt change, or even more than one, in each realization of the cycle. As expected, the distribution of GPs becomes much wider, and a sharp peak around ϕ 0 is not visible anymore. Higher-order cumulants become necessary to understand the dynamics. The three lines, corresponding to the adiabatic, nojump, and average GPs do not provide thorough information on the dynamics of the monitored system. The rate Ω/ω at which the magnetic field is rotated has thus a direct impact on the distribution of GPs. For larger rates, the system is exposed to the environment for a shorter period of time, but deviations from the adiabatic regime become non-negligible. On the other hand, lowering the driving frequency might result in the system being exposed to environmental effects for too long, implying strong corrections to ϕ R from ϕ + a . Fig. <ref type="figure" target="#fig_1">3</ref> shows the distribution of GP-values obtained along a range of different Ω/ω rates which include the cases presented in Fig. <ref type="figure" target="#fig_0">2</ref>. For high enough frequency, the distribution shows a sharp peak around the no-jump value of the GP and almost no background counts. On the other hand, this no-jump value deviates considerably from the Berry phase. The broad background visible in panel (a) of Fig. <ref type="figure" target="#fig_0">2</ref> develops as the frequency rate is lowered and the relative period grows. Further on, the background turns into a second peak, while the one in the no-jump value decreases. For the smaller rate values, the distribution shows the behavior depicted by panel (b) of Fig. <ref type="figure" target="#fig_0">2</ref>, this is, a broad single-peaked distribution. This regime shows non-negligible environmental effects also over the GP associated with the no-jump evolution, which deviates from the adiabatic result even though the driving is performed slowly. We refer to Appendix D for an analytical expression of the dependence of this deviation on the different parameters involved. The broadening exhibited by the distribution as the frequency rate decreases is reflected in the increment of the distribution variance. We note that, for variables described on a circle as the GP, this measure is constrained to the [0, 1] range. The described behaviour is shown in Fig. <ref type="figure" target="#fig_2">4</ref>. {ϕ R } of the GPs' distribution as a function of the ratioΩ/ω. The field is oriented with θ = 0.34π and the environment is characterized by the dissipation rate Γ = 10 -3 ω and a γz = 0 (same as in Fig. <ref type="figure" target="#fig_1">3</ref>).</p><p>We conclude this section by analyzing the distribution of GP values when γ z ̸ = 0. As already discussed, a non-zero value of γ z induces jumps to states that are not instantaneous eigenstates of the Hamiltonian and thus allows to consider of a wider class of cases. The resulting phenomenology depends only quantitatively on the choice of the Lindblad operator L z . Specifically, we take γ z = 0.1 Γ and consider, as we did before, two different values of the speed at which the system is cyclically driven. The results are shown in Fig. <ref type="figure" target="#fig_3">5</ref>, with the qualitative features of the distribution closely resembling those obtained in the case with γ z = 0.</p><p>Panel (a) of Fig. <ref type="figure" target="#fig_3">5</ref> corresponds to the faster case. The mean number of jumps NJ = 0.69 is slightly above the one obtained in the γ z = 0. The additional jumps generated by K z are not sufficient to modify the distribution qualitatively, which continues to show a well-defined peak (arising from the occurrence of smooth evolution with no jumps) plus a broad small background. In panel (b), showing the case in which the system is driven slower, the mean number of jumps is also slightly increased from the γ z = 0 case due to the additional presence of γ z jumps, reaching a value NJ = 2.66.</p><p>The cases discussed above contain the first message of the present work. The stochastic nature of the GP in monitored dynamics needs to be taken into account and it is not possible to characterize it only through a single value. This raises the additional question of how this fact reflects on the experimental outcomes.</p><p>To address this question, we will consider in the next Section a spin-echo protocol and see how, when, and whether the distribution in the interference fringes is affected by the randomness of the process.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2">Distribution of interference fringes in a spin-echo protocol</head><p>If the system is prepared in an eigenstate of the Hamiltonian and subsequently driven in a cycle, adiabatically and in absolute isolation from the environment, then the quantum state accumulates a Berry phase that can be measured by implementing a spinecho protocol <ref type="bibr" target="#b87">[81]</ref>. It goes as follows. The system is initially prepared in a superposition state |ψ(0)⟩ which reads</p><formula xml:id="formula_24">(1/ √ 2)(|ψ + (0)⟩ + |ψ -(0)⟩)</formula><p>in terms of the ground and exited instantaneous eigenstates of H(0). Then, it is driven for a period T , causing each eigenstate to acquire both a dynamical and a geometric phase ϕ ± a . A spin-flip operation and a second cycle in the opposite direction lead to a cancellation of the dynamical phases, resulting in a purely geometric relative phase. Berry phase can thus be extracted through state tomography <ref type="bibr" target="#b27">[25,</ref><ref type="bibr" target="#b29">27,</ref><ref type="bibr" target="#b88">82]</ref> or by realizing that the probability for the system to be back in the initial state once the full evolution is completed, the persistence probability, is related to the Berry phase as |⟨ψ(0)|ψ(2 T )⟩| 2 = cos 2 (2 ϕ + a ) <ref type="bibr" target="#b89">[83]</ref>. The relation between the persistent probability and the GP given above relies on two factors: the adiabatic regime preventing the transitions between eigenstates and the exact cancellation of the dynamical phases during the protocol. If an echo experiment is performed on a system that is exposed to the effect of the environment and continuously monitored, the persistence probability will retain its dependence on the dynamical evolution. Nevertheless, it is worth understanding to which extent it is possible to learn features of GPs in a monitored system through an echo protocol.</p><p>For each realization of the protocol, characterized by a sequence of jumps R(2 T, N J ), we can parametrize the persistent probability P R through an associated angle φ R</p><formula xml:id="formula_25">P R = |⟨ψ(0)|ψ(2T )⟩| 2 ≡ cos 2 (2 φ R ) . (<label>13</label></formula><formula xml:id="formula_26">)</formula><p>Both the persistence probability and the parameter φ R inherit the stochastic character of the trajectories, with the probability of measuring a given value φ related to the probability of the trajectories as</p><formula xml:id="formula_27">P [φ] = R/φ R =φ P [R]. (<label>14</label></formula><formula xml:id="formula_28">)</formula><p>In the limiting case in which the persistence probability approaches its adiabatic value, φ will approach ϕ + a . Away from that particular regime, φ R is NOT equal to the GP ϕ R = ϕ[R] but, as mentioned previously, a convenient parametrization of the spin-echo interference fringes.</p><p>The non-adiabatic and environment-induced deviations from ϕ + a can be analyzed by examining the ensemble {φ R } = φ {R} that is obtained by computing Eq. ( <ref type="formula" target="#formula_25">13</ref>) for each individual realization of the protocol. This study will also allow seeking possible relations, if any, between the stochastic behavior of the GPs and that of experimental outcomes (note that φ R is defined modulo π/2 and up to a sign, therefore, any relation between the distribution of GPs and the distribution of the experimental results should take this into account). The frequency Ω at which the magnetic field is rotated is expected, once again, to have a direct impact on the distribution <ref type="bibr" target="#b38">[36,</ref><ref type="bibr" target="#b39">37]</ref>. On increasing the relative value of Ω, the system will be exposed to the disruptive influence of the environment for shorter times, allowing to a larger extent a partial cancellation of the dynamical phases. At the same time, in this regime, non-negligible deviations from the adiabatic results will be unavoidable. On the other hand, smaller values of Ω might result in the system being exposed to environmental effects for too long, leading to strong deviations of the echo-parameter values φ from ϕ + a . In analogy with what we did in section 5.1, we examine first the case γ z = 0 and present, in Fig. <ref type="figure" target="#fig_5">6</ref>, two representative cases in which the hypothetical unitary evolution would either be faster or slow enough to be considered within the adiabatic regime. These are shown in panels (a) and (b) of Fig. <ref type="figure" target="#fig_5">6</ref> respectively. In both panels, we also display the adiabatic Berry phase ϕ a (which does not depend on Ω), the GP ϕ 0 obtained in a no-jump evolution, and the GP ϕ u obtained in general unitary evolution. The φ value obtained from an echo experiment which is completed without detecting jumps is also shown. For the parameters chosen, both panels show very small deviations of φ extracted in a protocol with no jumps from the Berry phase (see the insets in Fig. <ref type="figure" target="#fig_5">6</ref>). It should be noted, however, that the probability of registering this specific trajectory is different in the two cases, as can be seen in the differences in the full P [φ] distributions.</p><p>The first striking feature that comes out is the presence of three distinct sharp peaks. The broad distribution observed in the GP values completely disappears in the spin-echo. This behavior originates from the fact that when γ z = 0, only jumps between instantaneous eigenstates are possible. This particular aspect of the unravelling leads, when combined with the properties of the persistence probability, to a distribution of interference fringes qualitatively different from that of the GPs. Each of the peaks shown in panel (a) of Fig. <ref type="figure" target="#fig_5">6</ref> can be understood as arising from a different set of quantum trajectories in the following way. For the parameters chosen in panel (a) of Fig. <ref type="figure" target="#fig_5">6</ref> trajectories with at most one jump are possible. The three peaks correspond to protocols with no jumps, protocols with one jump of the type L ± , and one jump of the type L d respectively. We refer to</p><p>1.275 1.325 1.375 1.425 1.475 ϕ/π 0 1 2 3 4 P [ϕ] 1e 1 (a) 1.48173 1.48177 0 2 4 1e 3 1.275 1.325 1.375 1.425 1.475 ϕ/π 0 2 4 6 8 P [ϕ] 1e 1 (b) 1.4813 1.4817 0 2 4 6 1e 4 a , and the black dashed and dash-dotted lines signalize the GPs obtained in no-jump and unitary evolution respectively. Furthermore, the black dash double-dotted line indicates the φ value obtained in an echo protocol with no jumps. The insets in both panels show a range in which the result of a smoothly performed echo experiment is distinguishable from the Berry phase.</p><p>Appendix B for a detailed justification of this identification. Trajectories that remain smooth along the whole protocol induce the right peak in Fig. <ref type="figure" target="#fig_5">6</ref> (closest to the no-jump result, φ ∼ 1.475π for this choice of parameters). The central peak, centered at the value φ ∼ 1.375π trivially associated via Eq. ( <ref type="formula" target="#formula_25">13</ref>) with a persistence probability taking the value 1/2, builds up from all those cases in which the state of the system is, at some given time, projected into an eigenstate of H(t). In those trajectories, all the information about the accumulated phase before the jump is lost. As a consequence, immediately after a jump L ± , and regardless of both the previous evolution and the time at which the jump occurred, the persistence probability takes the exact value 1/2. The third peak, the left one, is due to trajectories in which a jump L d occurs. This type of jump has the effect of introducing a π-shift in the relative phase of the echo state, that corresponds with the position of the left peak in Fig. <ref type="figure" target="#fig_5">6</ref>. Therefore, the interference fringes distribution shows three peaks out of which two encode the same information, namely, the φ value of a smoothly driven protocol, while the central peak contains almost no information. Furthermore, the distribution is quite sharp because, for the parameters chosen, the described classes of trajectories are all detected, while more complex quantum trajectories are highly improbable (see Appendix B). In panel (b) of Fig. <ref type="figure" target="#fig_5">6</ref> the two peaks located at the sides have almost vanished. This reveals that when the system is driven at lower relative frequencies, a decay jump or a spontaneous excitation will be detected in almost every trajectory. A similar effect is obtained if the decay rate Γ/ω increases while keeping the ratio Ω/ω fixed.</p><p>A second aspect of the distribution P [φ] is which features of GPs in open systems it captures. In panel (a) Fig. <ref type="figure" target="#fig_5">6</ref>, the fast-driven regime, the φ value obtained from protocols with no jumps agrees well with the adiabatic (Berry) phase, and both of these show small but visible deviations from no-jump GP. The φ value is more closely related to the adiabatic case than the actual GP accumulated in smoothly drifted dynamics. For the slower driving shown in panel (b) of Fig. <ref type="figure" target="#fig_5">6</ref>, the no-jump φ value remains a good indicator of the adiabatic phase, even though registering a smooth protocol is in this case less probable. Under these conditions, most of the experiment realizations will contribute to the central peak, which is not related to any characteristic GP.</p><p>Inspection of Fig. <ref type="figure" target="#fig_5">6</ref> suggests that, as in the case of the GPs distribution, the interplay between nonadiabatic corrections and environmentally induced jumps is better revealed when the distribution P [φ] is analyzed as a function of the rate Ω/ω. This is shown in Fig. <ref type="figure" target="#fig_6">7</ref>, which includes the two paradigmatic cases of Fig. <ref type="figure" target="#fig_5">6</ref>. The Berry phase ϕ a and the values ϕ 0 and φ of the GP associated with smooth trajectories and the first moment of the GP distribution are also given for reference. In the fast-driving regime, Ω/ω ≳ 0.1 the φ value is most of the time the one arising in a protocol with no jumps and shows appreciable but still small deviations from the adiabatic phase. A trajectory with a single jump might be observed, albeit with less probability. If this is the case, the mixing of the eigenvalues due to non-adiabatic transitions will produce slightly broad distributions around the other two peaks, revealing the stochastic nature of the jump times. Non-adiabatic corrections have a much stronger impact on ϕ 0 (for an analytical expression of this scaling, see Appendix D), its behavior completely disconnects from that of the distribution of echo protocols. On the other side, approaching the slow driving regime, the three peaks get sharper. This behavior is accompanied by a sharp decrease in the height of the side peaks and an enhancement of counts on the trivial, middle peak. Along the full range, there is a region in which the interplay between environmentally-induced and non-adiabatic effects allows for good agreement between the GP accumulated in smooth non-unitary evolution and the value of φ. The behavior displayed by both the GP and the echo "phase" in smooth non-unitary evolution is further analyzed in Appendix D. The (consistently re-ranged) first moment of the GP distribution φ remains, along the whole frequency range, uncorrelated from both the φ distribution to a greater degree than all other characteristic values. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>The distribution changes radically when γ</head><formula xml:id="formula_29">z ̸ = 0.</formula><p>In what follows we discuss the case γ z = 0.1 Γ with Γ = 10 -3 ω. We start re-considering the two representative cases of fast and slower driving, displayed in panels (a) and (b) of Fig. <ref type="figure" target="#fig_8">8</ref> respectively. The first noticeable aspect is that, while three peaks observed in Fig. <ref type="figure" target="#fig_5">6</ref> (indicated here by the blue contours) can still be detected, they are now coexisting with a broad distribution.</p><p>As visible in panel (a) of Fig. <ref type="figure" target="#fig_8">8</ref>, the three peak heights discussed previously decrease in the presence of γ z . The suppression of the peaks is accompanied by the appearance of a broad background distribution covering the entire range. Panel (b) of Fig. <ref type="figure" target="#fig_8">8</ref> attends the slow driving situation, in which the probability to have a jump, and even several, along each trajectory, grows. The inclusion of the L z jump modifies the sharp-peaked distribution into a broad one, which covers the entire range of φ values. In partic-</p><p>1.275 1.325 1.375 1.425 1.475 ϕ/π 0 1 2 3 4 P [ϕ] 1e 1 (a) 1.475 1.480 0 2 4 1e 3 1.275 1.325 1.375 1.425 1.475 ϕ/π 0 1 2 3 4 5 P [ϕ] 1e 2 (b) 1.3625 1.3875 0.0 2.5 5.0 7.5 1e 1 ular, the two peaks connected to the no-jump trajectory disappeared. The inclusion of this term in the Lindbladian induces jumps into states other than the eigenstates of the Hamiltonian. In this sense, we may consider the results quite generic, not specifically dependent on the choice of the Lindblad operator. In order to get a more complete view of the effect of a finite γ z , Fig. <ref type="figure" target="#fig_9">9</ref> shows the distribution of φ-values as a function of Ω/ω. For a fast-driven evolution in which almost no jumps are detected, the behavior exhibited by the distribution is similar to that observed in the γ z = 0 case. When the velocity of the driving is reduced, gradually favouring the occurrence of jumps, the effect of introducing a finite γ z value becomes more relevant. The L z jumps lead to φ values that do depend on the time at which the jump took place and hence biuld up a broad background. Summarizing, while the distribution of interference fringes is, in general, quite different from that of the phase accumulated along a single trajectory, the analysis of a spin-echo protocol allows to extract reliable information on both the no-jump trajectories and the adiabatic <ref type="bibr">(Berry)</ref> phase in some regimes of parameters. In the following Section we will concentrate on the no-jump trajectory (the kind of smooth evolution associated to the side-peaks of the probability distribution emerging in the echo-protocol) and show that undergoes a topological transition as a function of the coupling to the environment.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.3">Topological transitions</head><p>As already anticipated, we conclude this analysis of GPs in monitored systems by focusing on the no-jump trajectory. We will show, following in spirit the work in Ref. <ref type="bibr" target="#b60">[58]</ref>, that the drift jump-free dynamics encode a topological transition. We would like to emphasize that, although the setting is very much different from that of <ref type="bibr" target="#b60">[58]</ref>, we believe that the nature of the transition is the same. Our analysis is a strong hint to the conjecture that this type of transition is rather generic for monitored systems.</p><p>Phase diagram -The GP ϕ 0 given by Eq. ( <ref type="formula" target="#formula_16">10</ref>) depends, for every fixed θ, on the ratios Ω/ω and Γ/ω. We recall the no-jump trajectory, and therefore the GP associated with it, have no dependence on γ z . Plotted as a function of the above-mentioned parameters, the GP shows discrete singularities at critical points, around which it makes a 2π winding. Meanwhile, the probability associated with this particular trajectory vanishes at these points. We stress that, being the initial state of the system the eigenstate |ψ + (0)⟩ of H(0), the null probability condition ⟨ψ(0)|ψ(T )⟩ = 0 implies a final state |ψ -(T )⟩, meaning a singular point if found when full population transfer is attained within a time-interval t ∈ [0, T ], and refer to Appendix D for details on the analytical derivation. Fig. <ref type="figure" target="#fig_10">10</ref> shows a color plot of the GP in the Γ -Ω diagram at fixed values of the angle θ. The range of the parameters is shown to highlight the singular point and the 2π winding of the GP around it. The white lines indicate the probability for the nojump trajectory, which approaches zero on reaching the singularity. We will show that the collection of these singular points delimits regions of the parameter space associated with different topological classes of evolution. This will be done by defining a topological invariant n ∈ Z (see below) and explicitly showing it takes different values over different regions of the parameter-rates plane. Topological transition in the no-jump trajectory -Direct inspection of the effective drift Hamiltonian shows that, if the magnetic field points in the zdirection, the exited eigenstate |ψ + ⟩ of H(t) remains fixed in a pole of the Bloch sphere independently of the values taken by the parameter rates Ω/ω and Γ/ω. Therefore, the GP associated with the no-jump trajectory identically vanishes (mod 2π) for θ = 0 and θ = π. Without loss of generality, the mod 2π free-dom can be eliminated from the GP by simultaneously setting ϕ 0 (θ = 0) = 0 and demanding continuity. In this way, ϕ 0 (θ = π) is completely determined by the evolution and acquires a value</p><formula xml:id="formula_30">ϕ 0 (θ = π) = 2π n, (<label>15</label></formula><formula xml:id="formula_31">)</formula><p>where n is an integer number that characterizes the dependence of the GP with θ for fixed parameter values. Being an integer, n constitutes a topological invariant because it can not be changed by smoothly deforming ϕ 0 (θ). As a consequence, if the GP is characterized by different values of n as a function of the various parameters, this will impose the GP to undergo a non-smooth transformation, as the singular behavior exhibited in Fig. <ref type="figure" target="#fig_10">10</ref>. Indeed, points in the parameter space slightly to the right and slightly to the left of the singularity (indicated with crosses in Fig. <ref type="figure" target="#fig_10">10</ref>) give rise to no-jump evolutions associated with topological invariants n = 0 and n = 1 respectively, thus identifying different topological classes. To explicitly show this, Fig. <ref type="figure" target="#fig_11">11</ref> compares the behavior as a function of θ of these GPs by means of showing the difference ∆(θ) between them. Given two points, say ( <ref type="formula" target="#formula_0">1</ref>) and ( <ref type="formula">2</ref>) and labelled by crosses in Fig. <ref type="figure" target="#fig_11">11</ref>, ∆(θ) is defined as</p><formula xml:id="formula_32">∆(θ) = 1 2π ϕ (Γ1,Ω1) 0 -ϕ (Γ2,Ω2) 0 . (<label>16</label></formula><formula xml:id="formula_33">)</formula><p>This difference is seen to vanish (up to some smooth small deviations) up to θ = 0.34π, this is, until the angle of the singularity. At this specific θ value the GP obtained from each parameter rate abruptly deviates, so that their difference shows a step and settles around ∆ = 1 for the remaining range. The different topological numbers n is reflected by the value ∆(π) = 1 for θ = π. Over the full parameter space, the GP shows several singularities, with locations that depend on the value of θ. The set of singular points composes two counter-phase oscillating curves that define a chain of concatenated closed regions and split the parameter-rate space into an upper and lower region. This is shown in panel (a) of Fig. <ref type="figure" target="#fig_12">12</ref>. Parameters within each sector lead to the same n value. The area below the sequence of closed regions is characterized by n = -1. The points given by parameter values Γ = 0 and Ω/ω ≪ 1, defining the adiabatic regime, belong to this region. The regions in between the lines are topologically trivial sectors with n = 0, while the upper one is characterized by n = 1. It is worth pointing out that these topological sectors are not equally probable. Besides the singular points of vanishing probability, the probability of attaining a trajectory with no jumps increases as Γ is reduced. This implies that the upper topological sector is less probable than the others.</p><p>Topological transition in the echo experiment -With the aim of seeking experimentally detectable signatures of the topological transition, we perform a close inspection of the echo experiment that is completed without any jump event. In Section 5.2, the φ value extracted in this case was observed to show good agreement with the adiabatic (Berry) phase for a wide range of frequencies. However, the close agreement of φ with ϕ a will not hold for arbitrarily small frequency values, and it will deviate when the ratio Γ/Ω becomes sufficiently large. Fig. <ref type="figure" target="#fig_13">13</ref> shows the φ value as a function of the frequency ratio. For easy reference and comparison, we consider an environment characterized by the dissipation rate Γ/ω = 0.0306, which is included in the ranges exhibited by Figs. 10 to 12. For a large frequency ratio, the no-jump φ value shows the behavior described in Section 5.2. However, approaching smaller frequencies, it shows a highly oscillating step and finally settles in the constant value φ ∼ 1.375π, associated with a persistence probability 1/2. Such a persistence probability is obtained when the state at the end of the protocol coincides, up to a global phase, with |ψ -(0)⟩, what happens when the smooth drift suppresses the occupancy of the exited eigenstate within a cycle leading to |ψ(T )⟩ ∼ |ψ -(T )⟩. As discussed, the parameter rates leading to full population transfer from the excited to the ground eigenstate exactly in a cycle of magnetic field rotation t ∈ [0, T ] correspond to the singular points observed in the phase diagram. Thus, full population transfer within the cycle requires the system to be driven at a slower frequency than that leading to a singular point, allowing therefore for greater exposition. This requirement establishes a connection between the value of the echo phase and the topological classes of evolution, as distinctive regimes of φ are accessed on one and the other side of the singular points. We refer to Appendix D for details on this point. The limits of the range along which φ shows the step and turns from ∼ ϕ a into the central value are marked, on Fig. <ref type="figure" target="#fig_13">13</ref> with two light blue dotted lines. The righter region of the plot corresponds to evolutions characterized by the topological number n = -1. The range between the light-blue lines corresponds to the densely packed sequence of topological sectors illustrated by panel (a) of Fig. <ref type="figure" target="#fig_12">12</ref>. Finally, once on the left of the last vertical line, the evolution is associated with a value n = 1 of the topological number.</p><p>The inset in Fig. <ref type="figure" target="#fig_13">13</ref> shows φ as a function of the dissipation rate. In this plot, for easy reference and comparison, the value of the frequency rate is kept fixed at Ω/ω = 4.8 × 10 -3 , also included in the ranges exhibited by Figs. 10 to 12. Once again, the φ value shows good agreement with the adiabatic phase up to some critical Γ/Ω relation, at which it shows a decreasing step, finally landing at φ ∼ 1.375π. As in the main plot, light blue dotted lines mark the limit of the step and split the plot into three distinctive sectors. The left of the first line corresponds to n = -1 evolution, while the right side of the plot, to n = 1. The space between lines, once again, can be associated with the intermediate zone, which is a single region (see Fig. <ref type="figure" target="#fig_12">12 (a)</ref>) thus leading to no oscillations.</p><p>In summary, a measure of the persistent probability in an echo protocol carries clear indications of the topological transition. The peak structure discussed in Section 5.2 allows to identify the no-jump trajectory. The subsequent analysis of this peak, as summarized in Fig. <ref type="figure" target="#fig_13">13</ref>, is sufficient to capture the topological transition.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6">Conclusions</head><p>In this paper, we have studied geometric phases in a continuously monitored quantum system. In absence of any coupling to the environment, the cyclic timedependence of the Hamiltonian leads, in the adiabatic regime, to the Berry phase, and to its consistent generalization for a generic unitary evolution. The presence of an environment induces quantum jumps so that in a single realization of the dynamics the wave function, following a given quantum trajectory, accumulates a GP that is itself a stochastic quantity. We have analyzed the distribution of GPs by highlighting the interplay between non-adiabatic effects and the influence of the external environment. We have shown that for slow drivings the distribution of phases is broad because of the several different occurrences of jumps at random times. On speeding up the driving, the number of jumps reduces and the distribu-tion becomes peaked around the no-jump trajectory (still deviating from the Berry phase because of the non-adiabatic correction and the non-Hermitian drift term). A first quantitative measure of the distribution has been given by the variance, discussed in Fig. <ref type="figure" target="#fig_2">4</ref>.</p><p>In order to have experimental access to the GPs along a given trajectory, we have also analyzed a spinecho protocol. The structure provided by the jump operators taken together with the possibility of level transitions due to non-adiabaticity and the characteristics of the persistence probability can be set in such a way that they lead either to the observation of broad distributions or extremely sharp peaks. This interplay should be thus considered in order to be explored as a tool or otherwise, the experiment is rendered uninformative.</p><p>We have finally concentrated on the no-jump trajectory, showing that it undergoes a topological transition as a function of the dissipation strength. Interestingly, this transition is not necessarily connected to singularities occurring in the dynamics of the density matrix. Indeed, for the model considered herein, at the transition point occurring in the no-jump trajectory the behavior of the density matrix is smooth. Despite the striking differences shown between the GP and the interference fringes of an echo experiment, traces of this transition can be observed in the behavior of the interference fringes.</p><p>In this work, we have considered a specific model for the jump operators corresponding to a well-defined type of monitoring. However, it is important to understand to which extent the properties we have discussed here depend on the type of unravelling. This question might be of particular relevance, especially if one wants to define topological properties associated with Markovian systems starting from the properties of their trajectories (there are infinite ways of unravelling the same Lindblad dynamics). A glimpse on this question is summarised in Appendix C where we consider an unraveling corresponding to a homodyne detection. For what concerns the distribution the qualitative pictures we have outlined in the body of the paper remain valid although important quantitative differences may arise.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A Pancharatnam phase along a quantum trajectory</head><p>As stated in section 2, the quantum trajectory emerging in a single monitored evolution of the system can be understood as intervals of smooth dynamics interrupted at random times by quantum jumps. Considered in this way, evolution in a time interval t ∈ [0, T ] is characterized by an array of jumps of type α i occurring at times t i of the form given by Eq. ( <ref type="formula" target="#formula_7">4</ref>), and the parameter t is a continuous variable within the intervals delimited by the t i 's. In the quantum jumps approach, the algorithm applied in constructing the trajectories goes as follows <ref type="bibr" target="#b54">[53]</ref>. The time interval [0, T ] is discretized into N steps of length δ t. and the state is consistently updated at each time step according to a randomly-decided non-hermitian operator, as described in Eq. ( <ref type="formula">2</ref>). Hence, each quantum trajectory can also be thought of from an algorithmic point of view as the ordered collection of states generated by the action of a specific sequence of operators K 0,α given by Eq. ( <ref type="formula">3</ref>), and is in this way a discrete set of states.</p><p>For a sequence of N discrete pure states, the suitable GP expression is Pancharatnam phase <ref type="bibr" target="#b4">[5,</ref><ref type="bibr" target="#b46">44,</ref><ref type="bibr" target="#b47">45]</ref>, and is given by</p><formula xml:id="formula_34">ϕ P [ψ] = arg ⟨ψ 1 |ψ N ⟩ -arg(⟨ψ 1 |ψ 2 ⟩ ... ⟨ψ N-1 |ψ N ⟩).</formula><p>(17) The Pancharatnam phase is independent of the U (1) gauge choice and does not require the sequence to close, rely on adiabaticity condition or demand for unitarity, allowing for non-normalized states in the sequence, as long as non of them perfectly vanishes. Exhibiting these characteristics, it becomes a natural definition of GP to be applied to monitored dynamics, in which evolution is generated by non-hermitian operators. It equals the unitary GP associated with the trajectory build-up from joining consecutive states in the sequence by the shortest geodesic in the Hilbert space.</p><p>While this definition does not imply any constraint on the number of states in the sequence by itself, when applied in the context of quantum jumps the number N of states is constrained from below as a consequence of the condition reigning the time step. An evolution in time-interval [0, T ] consist of N = T /δ t ≫ 1 states. Splitting the sequence of states {|ψ 1 ⟩ |ψ 2 ⟩ ... |ψ N ⟩} into sets starting and ending at those corresponding to the specific times t i where a jump is registered, sets a bridge between this two different descriptions of a quantum trajectory. Each time interval [t i , t i+1 ], discretized in time-steps of length δt, consist of a number of steps that depend on the specific values of t i and t i+1 . From a given jump-time t i , any time-step in the consecutive interval can be found as t i + k i δt, this is, by adding some amount k i ∈ N of increments δt, up to some maximum value k * i that satisfies t i+1 = t i +k * i δt (See Fig. <ref type="figure" target="#fig_14">14</ref>). At each given time, the outcome of a measurement performed on the environment will be associated to the corresponding Kraus operator acting on the system and the state generated by its action. Therefore, there is a to a one-to-one correspondence between the discrete set conforming the time interval and the array of states forming the trajectory. The splitting at jump-times t i can thus be mapped into the trajectory as</p><formula xml:id="formula_35">0 T t i |ψ(t i )⟩ t i+1 |ψ(t i + k i δt)⟩ . +k i δt</formula><formula xml:id="formula_36">N J i=0 {|ψ(t i + k i δt)⟩ k i = 0, ..., k max i -1}<label>(18)</label></formula><p>with N J the number of jumps occurring in the trajectory and the out-bounds indexes i = 0 and i = N J + 1 signaling the entire time-interval limits t 0 = 0 and t N J +1 = T . Introducing such a decomposition into the formula for Pancharatnam phase, Eq. ( <ref type="formula">17</ref>) can be re-written as</p><formula xml:id="formula_37">ϕ P = arg ⟨ψ(0)|ψ(T )⟩ - N J i=0 k * i -1 ki=1 arg ⟨ψ(t i + k i δt)|ψ(t i + (k i + 1) δt)⟩ - N J i=0 arg ⟨ψ(t i )| K αi |ψ(t i )⟩ . (<label>19</label></formula><formula xml:id="formula_38">)</formula><p>The formula in Eq.( <ref type="formula" target="#formula_14">9</ref>) for the GP is thus associated with a single trajectory is derived by taking the continuous limit δt/T → 0 within the intervals of smooth evolution <ref type="bibr" target="#b46">[44,</ref><ref type="bibr" target="#b47">45]</ref>. This expression, more suitable for the exam performed in our work, inherits all the properties of the Pancharatnam phase from which it is obtained.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B Interference fringes distribution</head><p>As discussed in Sec. 5.2, the distribution of interference fringes from an echo experiment, which we parameterize with φ, shows three (sometimes sharp) peaks. When γ z = 0 only jumps between instantaneous energy eigenstates are possible, and the three peaks emerge from sets of trajectories of a different character as follows.</p><p>1. Smooth protocols with no jumps generate the piling up in the no-jump value φ 0 ∼ 1.43π</p><p>2. Protocols in which at least one decay or spontaneous excitation jump occurred, projecting the state into an eigenstate |ψ ± (t i )⟩ of H(t), give rise to the peak at φ ∼ 1.375π.</p><p>3. Protocols in which only dephasing jumps took place give rise to the peak at φ ∼ 1.275π.</p><p>In this appendix, we provide a detailed justification of this observation. With the aim of providing an accessible presentation of the qualitative aspects of the phenomena, we will generally disregard the non-hermiticity of the smooth evolution between jumps, thinking of those intervals as unitary (slowly or rapidly driven) evolution. Hence, this presentation should not be taken as a rigorous quantitative analysis.</p><p>We begin with the consideration of the peak (1.) coinciding with the no-jump value φ 0 ∼ 1.34π. As presented in Sec. 2 this smooth trajectory is unique and therefore the exact same value of φ will be expected on every case in which this trajectory is obtained.</p><p>We thus turn to the case in which jumps are indeed detected, with special care on the anti-intuitive shrinking of the distribution in the slower regime in which more jumps are detected. When γ z = 0 three jumps are possible within our unravelling of the Lindblad equation. Two out of these three jumps project the state into an energy eigenstate, namely, decay jumps and spontaneous excitations. Whenever a jump of this kind takes place at some instant of time t i , immediately after the jump the state of the system turns into</p><formula xml:id="formula_39">|Ψ(t i )⟩ = e i ξ(ti)+i ϕ(ti) |ψ ± (t i )⟩ (<label>20</label></formula><formula xml:id="formula_40">)</formula><p>with ξ(t i ) the dynamical phase and ϕ(t i ) the geometrical phase, given by Eq. ( <ref type="formula" target="#formula_14">9</ref>) accumulated up to the occurrence of the jump. If the protocol ends immediately after, the persistence probability P R = | ⟨ψ(0)|ψ(2T )⟩ | 2 = 1/2 preserves no information on either the GP or the specific characteristics of the jump. If, on the other hand, the system continues to evolve, the possibility of obtaining any information on a phase or the jump time will rely on the interplay between the non-adiabatic transitions and the existence of further jumps. If the evolution continues from the first jump on, this will happen smoothly until either the protocol is finished or another jump takes place. Different regimes of Ω/ω give rise to the smooth evolution of different natures. If the protocol is performed slowly enough, this smooth evolution is (almost) transition-free and |ψ(t)⟩ ∼ e i ξ(t&gt;ti)+i ϕ(t&gt;ti) |ψ ± (t &gt; t i )⟩, so the result obtained for the persistent probability remains to be P R = 1/2. Moreover, this regime favors the occurrence of further jumps, thus reinforcing the erasing of information by re-projecting into eigenstates of H(t).</p><p>The complete independence of the result on the times t i of the jumps makes this peak (2.) extremely sharp in the slow regime. On the other hand, if the system is driven faster, along the smooth evolution after the jump the state develops contributions from the other eigenstate due to non-adiabatic effects, favoring the emergence of relative phases and becoming</p><formula xml:id="formula_41">|ψ(t &gt; t i )⟩ = A ± (t &gt; t i ) |ψ ± (t &gt; t i )⟩ +A ∓ (t -t i ) |ψ ∓ (t -t i )⟩<label>(21)</label></formula><p>with A ± (t) the amplitudes for each eigenstate. In such a situation, the persistence probability depends on t i , leading to the broadening observed in the central peak of Fig. <ref type="figure" target="#fig_6">7</ref> for faster driving, while still not trivially connected to the GP. As anticipated in the previous paragraphs, each jump of this kind will erase all information on the phases and any dependence on previous jump times. The possibility of further erasing events is mitigated in faster protocols by the reduction of exposure to the environment. The third peak (3.) observed in the distribution at φ ∼ 1.475π can be understood by adding dephasing jumps to the previous discussion. A dephasing jump has the effect of introducing a π shift in the relative phase of the state. If the evolution afterward remains transition-less (and no erasing jumps occur at any point), the evolution resembles that of the adiabatic echo experiment up to corrections that can be disregarded, so the persistence probability takes the value P ∼ sin 2 (2ϕ a ) (with cos replaced by sin due to the relative π shift). This situation leads to a well-defined single φ-value which is independent of the time t i at which the jump took place. Therefore, in the slow-driving range, a well-defined peak emerges, that might however be small, as in this regime decay jumps are likely. As the magnetic field is rotated faster, non-adiabatic effects induce a dependence on t i on the persistence probability. This dependence on t i is inherited by the "phases" extracted, and thus responsible for the broadening of the distribution observed in Fig. <ref type="figure" target="#fig_6">7</ref> for larger Ω/ω values.</p><p>The inclusion of a jump operator ∝ σ z modifies this three-peaked distribution by leading to a broad background which is present even in the case in which it is not the dominant process. The K z jumps promote the development of relative phases as they mix eigenstates of the Hamiltonian. Even if the system has, at some time, transitioned to an eigenstate, suffering from a σ z -jump suddenly drags it away into a superposition state.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C Dependence on the unravelling: field displacement</head><p>Another paradigmatic quantum trajectories scheme arising from a different unraveling of the master equation is that of the so-called diffusive trajectories, in which the monitored quantities produce continuously fluctuating signals instead of discontinuous jumps <ref type="bibr" target="#b90">[84]</ref>. This is the prototypical scheme of continuous or ideal homodyne detection, which can be theoretically obtained as a limiting case of the mentioned discrete homodyne detection <ref type="bibr" target="#b74">[70,</ref><ref type="bibr" target="#b75">71,</ref><ref type="bibr" target="#b86">80,</ref><ref type="bibr" target="#b91">85,</ref><ref type="bibr" target="#b92">86]</ref>.</p><p>The master equation Eq. ( <ref type="formula" target="#formula_0">1</ref>) is invariant under the transformation</p><formula xml:id="formula_42">H(t) → H ′ (t) = H(t) - √ λ i 2 α (K α -K † α ) K α → K ′ α = K α + √ λ I,<label>(22)</label></formula><p>where √ λ ∈ R. Therefore it is possible to substitute K α and H(t) in Eq. ( <ref type="formula" target="#formula_0">1</ref>) by K ′ α and H ′ (t) without modifying the averaged dynamics of the system and unravel it using the standard direct detection (quantum jumps) scheme applied before. When the reservoir is assumed to be made of harmonic modes, like electromagnetic radiation, adding the displacement √ λ to the Lindblad operators corresponds to the implementation of homodyne detection <ref type="bibr" target="#b75">[71,</ref><ref type="bibr" target="#b91">85,</ref><ref type="bibr" target="#b94">87]</ref>. In this case, taking √ λ suitably large leads to a measurement of the quadrature of the system dipole K α +K † α . However, in order to keep the collapse probability per step small, it would be necessary to reduce the time step and hence increase the simulation time by the same order. For this reason, we refrain to consider finite large √ λ values in this section and focus on the modifications suffered by P [ϕ] for smaller √ λ values. In Fig. <ref type="figure" target="#fig_15">15</ref> we present, also for the case of this different unravelling of the Lindblad equation, the two cases in which the driving is performed faster or slow enough for the hypothetical unitary dynamics to be considered adiabatic. As in the previous cases, the environment remains fixed with Γ = 10 -3 ω and γ z = 0, and we have taken λ = 2.5 × 10 -5 ω &lt; Γ. The two cases are shown in panels (a) and (b) of Fig. <ref type="figure" target="#fig_15">15</ref> respectively, where we also plot the no-jump and unitary GPs, and the average of the distribution for reference.</p><p>Striking differences from the case of direct detection arise. For this λ/ω ≪ 1, the reference values displayed remain close to those obtained in the λ = 0, while the distributions behave differently. In the fastdriven case displayed in panel (a), the expected increase in jumps is reflected by the decrease of the sharp peak piling up from no-jump trajectories. However, the formerly broad, but still uneven background, has now turned into a completely uniform distribution in which each phase value (but the no-jump) is evenly probable. The described behavior is reinforced when the system is driven at slower frequency rates. The previously broad while single-peaked distribution lacks, in a system monitored through the operators K ′ α forming the new basis, of any structure.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D Smooth evolution with no jumps: analytic approach</head><p>We provide in this Appendix some additional analytical results for the no-jumps evolution. As previously mentioned, this particular case can be thought of as generated by the non-hermitian Hamiltonian in Eq. <ref type="bibr" target="#b7">(8)</ref>, in such a way that a non-normalized state ψ(t) will follow Schrodinger's equation i d dt | ψ(t)⟩ = H o (t) | ψ(t)⟩ (23) where H o (t) is not only non-hermitian but also explicitly time-dependent due to the function f (t). The effective drift Hamiltonian shares eigenstates with H(t), but the eigenvalues associated with these eigenstates are now complex and time-dependent, given by ±ω/2 [1 -i Γ/(2ω)f (t)]. The dynamics of the normalized state of the system |ψ(t)⟩ = | ψ(t)⟩ ⟨ ψ(t)| ψ(t)⟩ (24)</p><p>will be governed by the more involved, nonlinear equation which is found by jointly differentiating Eq. ( <ref type="formula">24</ref>) and making use of Eq. ( <ref type="formula">23</ref>).</p><p>The not-normalized state can be expanded into the instantaneous eigenstates of H o (t), as ψ(t) = c+ |ψ + (t)⟩ + c-|ψ -(t)⟩. Explicit computation of Eq. ( <ref type="formula">23</ref>) leads to the following differential equations for the coefficients c± (t)</p><formula xml:id="formula_43">ċ± = ∓i ω 2 -i Ω 2 (1 ∓ cos(θ)) ∓ Γ 4 f (t) c± (t) + i Ω 2 sin(θ) c∓ (t), (<label>25</label></formula><formula xml:id="formula_44">)</formula><p>where the real term ∼ -Γc + (t) indicates that even in the case with no jumps, the presence of the environment favors state transitions, as the amplitude of the excited eigenstate is suppressed. Taking into account the normalization procedure involved in turning from the not-normalized state into the real, normalized one, this suppression implies a population transfer from the excited eigenstate into the ground state. As a consequence, any trivial implementation of the adiabatic approximation is prevented. A second feature observed in Eq. ( <ref type="formula" target="#formula_43">25</ref>) is that, for the parameters chosen in this work, a good agreement can be obtained by replacing f (t) with its mean value f (t) ∼ 1 -sin 2 (θ)/2. By performing this replacement, dynamics become easily solvable in the rotating frame. The smooth evolution of each eigenstate of the system is, within this approximation, given by ψ (±) (t) = N ± e -iΩ/2 t ±(ν + ε)e -iε/2 t ∓ (ν -ε)e iε/2 t |ψ ± (t)⟩</p><p>-Ω sin(θ) |ψ ∓ (t)⟩} , <ref type="bibr" target="#b28">(26)</ref> where both ν and ε are complex quantities given by ν = ω -Ω cos(θ) -i Γ/2(1 -sin 2 (θ)/2) and ε = ν 2 + Ω 2 sin 2 (θ), N ± is a normalization factor. At this point, it should be stressed that Eq.( <ref type="formula">26</ref>) explicitly shows how the state ψ (±) (t) obtained when evolving an eigenstate will not be equal to the instantaneous eigenstate at a later time in the general case. Geometric phase -The GP associated with a trajectory in which no jumps can be explicitly computed from Eq. <ref type="bibr" target="#b9">(10)</ref>. While the general expression is quite involved, it takes, for small rates Ω/ω ∼ Γ/ω of the driving frequency and the dissipation rate to the amplitude of the magnetic field, the form</p><formula xml:id="formula_45">ϕ 0 ∼ -π(1 -cos(θ))<label>(27)</label></formula><p>-π sin 2 (θ)</p><formula xml:id="formula_46">Ω ω + cos(θ) Ω 2 ω 2 - sin 2 (θ) 4 Ω ω + cos(θ) Ω 2 ω 2</formula><p>e -4π Im(ν)/Ω -1 2 Im(ν)/Ω , where the first term in the r.h.s is the Berry phase.</p><p>The term in the second line of the equation is the main correction originating exclusively from nonadiabaticity, in otherwise unitary evolution. The third line accounts for the non-trivial effect of the environment in the no-jump evolution. As Γ → 0 this term turns into a further contribution due to nonadiabaticity.</p><p>Phase diagram singularities -When computing the accumulated GPs analyzed in Sections 5.1 and 5.3 we have taken |ψ + (0)⟩ as our initial state. Thus, a vanishing probability for observing this particular trajectory, of the kind observed at the GP singular points, requires |ψ(T )⟩ ∼ |ψ -(T )⟩. Considering the cyclic character of the instantaneous eigenstates, this means a singular point will take place whenever a full population transfer is achieved exactly in a time period. It was already inferred from the differential equations governing the evolution of the c± coefficients, that the dynamics generated by the effective drift Hamiltonian H o (t) favored transitions from the excited to the ground instantaneous eigenstate. As long as the original approximation remains accurate, the singular points of the GP will be defined through the equation (ν + ε) -(ν -ε)e 2iπε/Ω = 0.</p><p>No-jump interference fringe -In Section 5.2, we have studied the interference fringes of an echo experiment. For this purpose, we've defined the convenient parameter φ given by Eq. ( <ref type="formula" target="#formula_25">13</ref>). Restricting to the case of a protocol performed without registering any jump, it was shown that the value of φ displays, generally, better agreement with the Berry phase than with the GP ϕ 0 accumulated by the state of the system under equal conditions, this is, when it is smoothly driven along one period of time. As long as the nojump value φ ∼ ϕ a , good agreement between this "phase" and the GP will be obtained when the second and third lines in Eq. ( <ref type="formula" target="#formula_45">27</ref>) are sufficiently small. However, it is worth noting that the φ value will not remain close to the Berry phase for arbitrarily small driving frequency. While the protocol has shown to be less sensitive to both non-adiabatic and environmentally induced effects than the GP, it will account for the non-ideal conditions. It was already shown that the environment induces population transfer from the excited to the ground state. The asymmetry between the smooth evolution of each eigenstate should be expected to prevent, at some point, the cancellation of the dynamical evolutions. Figure <ref type="figure" target="#fig_13">13</ref> illustrates this situation, by showing the φ value as a function of the rate between the driving frequency and the field amplitude. While for larger rates ≳ 0.01 the phase reproduces the behavior discussed in Section 5.2, this situation does not hold if the rate is lowered enough. At some critical value, the parameter extracted from the echo protocol starts deviating from the adiabatic phase.</p><p>A rather singular situation arises when the state at the end of the protocol coincides, up to a global phase, with |ψ -(0)⟩, so that the persistence probability turns P = 1/2. As a consequence, the φ ∼ 1.375π value observed in Fig. <ref type="figure" target="#fig_13">13</ref>, trivially associated with P ∼ 1/2 by Eq. ( <ref type="formula" target="#formula_25">13</ref>) is obtained. In this case, the three peaks observed in the distribution P[φ] (see Section 5.2) merge into a single, central peak. This regime is therefore accessed when full population transfer occurs within a cycle and the system reaches a steady state ∼ |ψ -(t)⟩. As we have discussed above, the parameters leading to full population transfer exactly in a cycle t ∈ [0, T ] correspond to singular points of the GP. Then, full population transfer within a cycle implies evolutions performed either at higher dissipation rates or at slower frequencies than those for which the singularity occurs. This requirement establishes a connection between the value of the echo phase and the topological classes of evolution, as distinctive regimes of φ are accessed on one and other side of the singular points.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Figure 2 :</head><label>2</label><figDesc>Figure 2: Probability distribution P [ϕ] of GPs for a magnetic field oriented with θ = 0.34π and driven in a loop at frequencies (a) Ω = 5 × 10 -3 ω and (b) Ω = 5 × 10 -4 ω. The environment is characterized by the dissipation rate Γ = 10 -3 ω and a γz = 0. In both panels, the solid red line depicts the adiabatic (Berry) phase ϕ + a , and the black dashed and dot-dashed lines signalize the GPs ϕ0 and ϕu associated with no-jump and general unitary evolution. The black dotted line indicates the first moment of the distribution φ. The inset in panel (a) is a zoom in which the difference between these reference GP values is visible.</figDesc><graphic coords="7,56.69,231.06,230.99,173.24" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Figure 3 :</head><label>3</label><figDesc>Figure 3: Probability distribution P [ϕ] of GPs as a function of the ratio Ω/ω. The field is oriented with θ = 0.34π and the environment is characterized by the dissipation rate Γ = 10 -3 ω and a γz = 0 amplitude for the fourth Lindblad operator. The GP values are displayed on the y-axis, while the intensity of the count color indicates their probability. The solid red line depicts the adiabatic (Berry) phase ϕ + a , the black dashed line indicates the GP ϕ0 accumulated along smooth trajectories with no jumps, and the black dotted line shows the first moment of the distribution φ.</figDesc><graphic coords="7,307.60,321.09,230.99,173.24" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>Figure 4 :</head><label>4</label><figDesc>Figure 4: Variance σ 2{ϕ R } of the GPs' distribution as a function of the ratioΩ/ω. The field is oriented with θ = 0.34π and the environment is characterized by the dissipation rate Γ = 10 -3 ω and a γz = 0 (same as in Fig.3).</figDesc><graphic coords="8,62.47,345.79,219.44,164.58" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>Figure 5 :</head><label>5</label><figDesc>Figure 5: Probability distribution P [ϕ] of the GPs for a magnetic field oriented with θ = 0.34π and driven in a loop at frequencies (a) Ω = 5×10 -3 ω and (b) Ω = 5×10 -4 ω. The environment is characterized by the dissipation rate Γ = 10 -3 ω and γz = 0.1 Γ. In both panels, a blue solid contour indicates (for comparison) the γz = 0 distributions. The solid red line depicts the adiabatic (Berry) phase ϕ + a , the black dashed and dot-dashed lines signalize the GPs ϕ0 and ϕu associated with no-jump and general unitary evolution. The black dotted line shows the first moment of the distribution φ. The inset in panel (a) zooms in to see the differences in the positions of the lines</figDesc><graphic coords="8,307.60,222.27,230.99,173.24" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><head>Figure 6 :</head><label>6</label><figDesc>Figure 6: Probability distribution P [φ] obtained in the echoprotocol for a magnetic field oriented with θ = 0.34π and driven in a loop at frequencies (a) Ω = 5 × 10 -3 ω and (b) Ω = 5 × 10 -4 ω.The environment remains the same, characterized by the dissipation rate Γ = 10 -3 ω and a γz = 0. In both panels, the solid red line depicts the adiabatic (Berry) phase ϕ + a , and the black dashed and dash-dotted lines signalize the GPs obtained in no-jump and unitary evolution respectively. Furthermore, the black dash double-dotted line indicates the φ value obtained in an echo protocol with no jumps. The insets in both panels show a range in which the result of a smoothly performed echo experiment is distinguishable from the Berry phase.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><head>Figure 7 :</head><label>7</label><figDesc>Figure 7: Probability distribution P [φ] of φ (as determined in an echo experiment) as a function of the ratio Ω/ω. The field is oriented with θ = 0.34π and the environment is characterized by the dissipation rate Γ = 10 -3 ω and a γz = 0 . The φ values are displayed on the y-axis, while the intensity of the count color indicates their probability. The solid red line depicts the adiabatic (Berry) phase ϕ + a , while the black dashed and dotted lines signalize the no-jump GP ϕ0 and the first moment φ of the GP distribution respectively.</figDesc><graphic coords="11,56.69,234.78,230.99,173.24" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8"><head>Figure 8 :</head><label>8</label><figDesc>Figure 8: Probability distribution P [φ] for a magnetic field oriented with θ = 0.34π and driven in a loop at frequencies (a) Ω = 5 × 10 -3 ω and (b) Ω = 5 × 10 -4 ω. The environment is characterized by the dissipation rate Γ = 10 -3 ω, and finite γz = 0.1 Γ. In both panels, a blue solid contour indicates the γz = 0 distributions. The solid red line depicts the adiabatic (Berry) phase ϕ + a , and the black dashed and dash-dotted lines signalize the GPs obtained in no-jumps and unitary evolution respectively. Finally, the black dash doubledotted line indicates the φ value obtained in an echo protocol with no jumps. The insets zoom in a range in which differences between the reference values, panel (a), and the full magnitude of the central peak, panel (b), are visible.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9"><head>Figure 9 :</head><label>9</label><figDesc>Figure 9: Probability distribution P [φ] as a function of the rate Ω/ω between the frequency Ω at which the magnetic field its rotated and its amplitude ω. The field is oriented with θ = 0.34π and the environment is characterized by the dissipation rate Γ = 10 -3 ω and γz = 0.1Γ. The φ values are displayed on the y-axis, while the intensity of the count color indicates their probability. Extra lines signalize reference GP factors. The solid red line indicates the adiabatic (Berry) phase ϕ + a , while the black dashed line is the value ϕ0 extracted from evolution with no jumps.</figDesc><graphic coords="12,56.69,93.23,230.99,173.24" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10"><head>Figure 10 :</head><label>10</label><figDesc>Figure 10: Geometric phase associated with the no-jump trajectory, displayed over a limited region of the parameters plane defined by the ratios Ω/ω and Γ/ω. The value of the GP is given by color, as indicated by the bar on the right. The direction of the field is fixed to θ = 0.34π. A singularity is observed Ω/ω = 4.8082 × 10 -3 and Γ/ω = 0.0306. The crosses indicate points slightly to the left of the singularity (Ω/ω = 4.8 × 10 -3 ) and slightly to the right of it (Ω/ω = 4.8084 × 10 -3 ), which will be shown to belong to different topological sectors.</figDesc><graphic coords="12,307.60,345.00,230.99,173.24" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11"><head>Figure 11 :</head><label>11</label><figDesc>Figure 11: ∆(θ) between GPs computed for points slightly to the right and slightly to the left of the singularity, indicated in Fig.10 withx's. The GP is, in each case, characterized by a different value of the topological invariant n. This is reflected in the fact that they differ by 2π for θ = π.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_12"><head>Figure 12 :</head><label>12</label><figDesc>Figure 12: Critical lines dividing the parameters' plane into different topological classes of the no-jump evolution. The classes are characterized by different n values. The critical angle θc at which each singular point is found is indicated by a color as described by the bar on the right. Panels (a) and (b) display different ranges for the rates Ω/ω and Γ/ω.</figDesc><graphic coords="13,307.60,339.19,230.99,173.24" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_13"><head>Figure 13 :</head><label>13</label><figDesc>Figure 13: Dependence of φ (black dashed line) obtained in a protocol with no jump events, as a function of the ratio Ω/ω. The field is oriented with θ = 0.34π and the environment is characterized by the dissipation rate Γ = 0.0306ω, included in the ranges displayed in Figs. 10 -12. The adiabatic (Berry) phase is also indicated for reference, with a red solid line. The inset shows the φ value as a function of the rate Γ/ω, with the magnetic field characterized by the same angle θ and Ω/ω = 4.8 × 10 -3 , coinciding as well with the values used in the previous plots.</figDesc><graphic coords="14,62.47,259.67,219.44,164.58" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_14"><head>Figure 14 :</head><label>14</label><figDesc>Figure 14: Illustrative diagram depicting time interval [0, T ]. Both the discretization in δt steps and the splitting at jump times ti are indicated. The relation between times and states is represented as well</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_15"><head>Figure 15 :</head><label>15</label><figDesc>Figure 15: Probability distribution P [ϕ] of GP values obtained in an unravelling with K ′ α and H ′ (t) operators. The magnetic field is oriented at θ = 0.34π and driven in a cycle at frequencies (a) Ω = 5 × 10 -3 ω and (b) Ω = 5 × 10 -4 ω. The environment is characterized by the dissipation rate Γ = 10 -3 ω and γz = 0. We have taken λ = 2.5 × 10 -5 ω. In both panels, a blue solid contour recalls the distributions obtained in the original unraveling considered in this work. Extra lines indicate the new reference GP values. The black dashed and dot-dashed lines signalize the GPs ϕ0 and ϕu associated with no-jump and general unitary evolution. The black dotted line shows the first moment φ.</figDesc></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0"><p>Accepted in Quantum 2023-05-26, click title to verify. Published under CC-BY 4.0.</p></note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div><head>Acknowledgments</head><p>We would like to acknowledge <rs type="person">Alessandro Romito</rs> for very useful discussions and critical reading of the manuscript. The work of R.F. has been supported by the <rs type="funder">ERC</rs> under grant agreement n.101053159 (RAVE) and by a <rs type="funder">Google Quantum Research Award</rs>. The work of L.V., F.L., and P.I.V. is supported by <rs type="funder">Agencia Nacional de Promoción Científica y Tecnológica (ANPCyT)</rs>, <rs type="funder">Consejo Nacional de Investigaciones Científicas y Técnicas (CONICET)</rs>, and <rs type="funder">Universidad de Buenos Aires (UBA)</rs>. P.I.V. acknowledges <rs type="funder">ICTP-Trieste Associate Program</rs>. R.F. acknowledges that his research has been conducted within the framework of the <rs type="institution">Trieste Institute for Theoretical Quantum Technologies (TQT)</rs>.</p></div>
+			</div>
+			<listOrg type="funding">
+			</listOrg>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Quantal phase factors accompanying adiabatic changes</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">V</forename><surname>Berry</surname></persName>
+		</author>
+		<idno type="DOI">10.1098/rspa.1984.0023</idno>
+		<ptr target="https://doi.org/10.1098/rspa.1984.0023" />
+	</analytic>
+	<monogr>
+		<title level="j">Proc. R. Soc. London</title>
+		<idno type="ISSN">00804630</idno>
+		<imprint>
+			<biblScope unit="volume">392</biblScope>
+			<biblScope unit="page" from="45" to="57" />
+			<date type="published" when="1802">1802. 1984</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Phase change during a cyclic quantum evolution</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Aharonov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Anandan</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.58.1593</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevLett.58.1593" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">58</biblScope>
+			<biblScope unit="page" from="1593" to="1596" />
+			<date type="published" when="1987-04">Apr 1987</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Appearance of gauge structure in simple dynamical systems</title>
+		<author>
+			<persName><forename type="first">Frank</forename><surname>Wilczek</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Zee</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.52.2111</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevLett.52.2111" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">52</biblScope>
+			<biblScope unit="page" from="2111" to="2114" />
+			<date type="published" when="1984-06">Jun 1984</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">General setting for berry&apos;s phase</title>
+		<author>
+			<persName><forename type="first">Joseph</forename><surname>Samuel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rajendra</forename><surname>Bhandari</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.60.2339</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevLett.60.2339" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">60</biblScope>
+			<biblScope unit="page" from="2339" to="2342" />
+			<date type="published" when="1988-06">Jun 1988</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Quantum kinematic approach to the geometric phase. i. general formalism</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Mukunda</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Simon</surname></persName>
+		</author>
+		<idno type="DOI">10.1006/aphy.1993.1093</idno>
+		<ptr target="https://doi.org/10.1006/aphy.1993.1093" />
+	</analytic>
+	<monogr>
+		<title level="j">Annals of Physics</title>
+		<idno type="ISSN">0003-4916</idno>
+		<imprint>
+			<biblScope unit="volume">228</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="205" to="268" />
+			<date type="published" when="1993">1993</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Parallel transport and &quot;quantum holonomy&quot; along density operators</title>
+		<author>
+			<persName><forename type="first">Armin</forename><surname>Uhlmann</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/0034-4877(86)90055-8</idno>
+		<ptr target="https://doi.org/10.1016/0034-4877(86)90055-8" />
+	</analytic>
+	<monogr>
+		<title level="j">Reports on Mathematical Physics</title>
+		<idno type="ISSN">0034-4877</idno>
+		<imprint>
+			<biblScope unit="volume">24</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="229" to="240" />
+			<date type="published" when="1986">1986</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">On berry phases along mixtures of states</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Uhlmann</surname></persName>
+		</author>
+		<idno type="DOI">10.1002/andp.19895010108</idno>
+		<ptr target="https://doi.org/10.1002/andp.19895010108" />
+	</analytic>
+	<monogr>
+		<title level="j">Annalen der Physik</title>
+		<imprint>
+			<biblScope unit="volume">501</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="63" to="69" />
+			<date type="published" when="1989">1989</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<monogr>
+		<title level="m" type="main">A gauge field governing parallel transport along mixed states. letters in mathematical physics</title>
+		<author>
+			<persName><forename type="first">Armin</forename><surname>Uhlmann</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/BF00420373</idno>
+		<ptr target="https://doi.org/10.1007/BF00420373" />
+		<imprint>
+			<date type="published" when="1991">1991</date>
+			<biblScope unit="volume">21</biblScope>
+			<biblScope unit="page" from="229" to="236" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Geometric phases for mixed states in interferometry</title>
+		<author>
+			<persName><forename type="first">Erik</forename><surname>Sjöqvist</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Arun</forename><forename type="middle">K</forename><surname>Pati</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Artur</forename><surname>Ekert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jeeva</forename><forename type="middle">S</forename><surname>Anandan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Marie</forename><surname>Ericsson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">L</forename><surname>Daniel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Vlatko</forename><surname>Oi</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Vedral</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.85.2845</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevLett.85.2845" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">85</biblScope>
+			<biblScope unit="page" from="2845" to="2849" />
+			<date type="published" when="2000-10">Oct 2000</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Geometric phases for nondegenerate and degenerate mixed states</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Singh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">M</forename><surname>Tong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Basu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">L</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">F</forename><surname>Du</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.67.032106</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevA.67.032106" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">67</biblScope>
+			<biblScope unit="page">32106</biblScope>
+			<date type="published" when="2003-03">Mar 2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Offdiagonal geometric phases</title>
+		<author>
+			<persName><forename type="first">Nicola</forename><surname>Manini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Pistolesi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<monogr>
+		<title/>
+		<author>
+			<persName><surname>Lett</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.85.3067</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevLett.85.3067" />
+		<imprint>
+			<date type="published" when="2000-10">Oct 2000</date>
+			<biblScope unit="volume">85</biblScope>
+			<biblScope unit="page" from="3067" to="3071" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Off-diagonal geometric phase for mixed states</title>
+		<author>
+			<persName><forename type="first">Stefan</forename><surname>Filipp</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Erik</forename><surname>Sjöqvist</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.90.050403</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevLett.90.050403" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">90</biblScope>
+			<biblScope unit="page">50403</biblScope>
+			<date type="published" when="2003-02">Feb 2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">the quantum adiabatic theorem, and berry&apos;s phase</title>
+		<author>
+			<persName><forename type="first">Barry</forename><surname>Simon</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Holonomy</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.51.2167</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevLett.51.2167" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">51</biblScope>
+			<biblScope unit="page" from="2167" to="2170" />
+			<date type="published" when="1983-12">Dec 1983</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<monogr>
+		<author>
+			<persName><forename type="first">Mikio</forename><surname>Nakahara</surname></persName>
+		</author>
+		<idno type="DOI">10.1201/9781315275826</idno>
+		<ptr target="https://doi.org/10.1201/9781315275826" />
+		<title level="m">Geometry, topology and physics</title>
+		<imprint>
+			<publisher>CRC press</publisher>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<monogr>
+		<title level="m" type="main">The Geometric phase in quantum systems: foundations, mathematical concepts, and applications in molecular and condensed matter physics</title>
+		<author>
+			<persName><forename type="first">Arno</forename><surname>Bohm</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ali</forename><surname>Mostafazadeh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hiroyasu</forename><surname>Koizumi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Qian</forename><surname>Niu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Josef</forename><surname>Zwanziger</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/978-3-662-10333-3</idno>
+		<ptr target="https://doi.org/10.1007/978-3-662-10333-3" />
+		<imprint>
+			<date type="published" when="2003">2003</date>
+			<publisher>Springer</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Geometric Phases in Classical and Quantum Mechanics</title>
+		<author>
+			<persName><forename type="first">Dariusz</forename><surname>Chruściński</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andrzej</forename><surname>Jamio Lkowski</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/978-0-8176-8176-0</idno>
+		<ptr target="https://doi.org/10.1007/978-0-8176-8176-0" />
+	</analytic>
+	<monogr>
+		<title level="m">ISBN 9780817642822</title>
+		<imprint>
+			<date type="published" when="2004">2004</date>
+			<biblScope unit="volume">36</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Geometric phases in physics</title>
+		<author>
+			<persName><forename type="first">Frank</forename><surname>Wilczek</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alfred</forename><surname>Shapere</surname></persName>
+		</author>
+		<idno type="DOI">10.1142/0613</idno>
+		<ptr target="https://doi.org/10.1142/0613" />
+	</analytic>
+	<monogr>
+		<title level="j">World Scientific</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<date type="published" when="1989">1989</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Quantized hall conductance in a two-dimensional periodic potential</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">J</forename><surname>Thouless</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Kohmoto</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">P</forename><surname>Nightingale</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Den Nijs</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.49.405</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevLett.49.405" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">49</biblScope>
+			<biblScope unit="page" from="405" to="408" />
+			<date type="published" when="1982-08">Aug 1982</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Topological insulators and topological superconductors</title>
+		<author>
+			<persName><forename type="first">Andrei</forename><surname>Bernevig</surname></persName>
+		</author>
+		<idno type="DOI">10.1515/9781400846733</idno>
+		<ptr target="https://doi.org/10.1515/9781400846733" />
+	</analytic>
+	<monogr>
+		<title level="m">Topological Insulators and Topological Superconductors</title>
+		<imprint>
+			<publisher>Princeton university press</publisher>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title level="a" type="main">A short course on topological insulators</title>
+		<author>
+			<persName><forename type="first">László</forename><surname>János K Asbóth</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">András</forename><surname>Oroszlány</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Pályi</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/978-3-319-25607-8</idno>
+		<ptr target="https://doi.org/10.1007/978-3-319-25607-8" />
+	</analytic>
+	<monogr>
+		<title level="m">Lecture notes in physics</title>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="volume">919</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Holonomic quantum computation</title>
+		<author>
+			<persName><forename type="first">Paolo</forename><surname>Zanardi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mario</forename><surname>Rasetti</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/s0375-9601(99)00803-8</idno>
+		<ptr target="https://doi.org/10.1016/s0375-9601(99)00803-8" />
+	</analytic>
+	<monogr>
+		<title level="j">Physics Letters A</title>
+		<imprint>
+			<biblScope unit="volume">264</biblScope>
+			<biblScope unit="issue">2-3</biblScope>
+			<biblScope unit="page" from="94" to="99" />
+			<date type="published" when="1999-12">dec 1999</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Geometric quantum computation using nuclear magnetic resonance</title>
+		<author>
+			<persName><forename type="first">Jonathan</forename><forename type="middle">A</forename><surname>Jones</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Vlatko</forename><surname>Vedral</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/35002528</idno>
+		<ptr target="https://doi.org/10.1038/35002528" />
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">403</biblScope>
+			<biblScope unit="issue">6772</biblScope>
+			<biblScope unit="page" from="869" to="871" />
+			<date type="published" when="2000-02">feb 2000</date>
+		</imprint>
+	</monogr>
+	<note>Artur Ekert, and Giuseppe Castagnoli</note>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">Chetan</forename><surname>Nayak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Steven</forename><forename type="middle">H</forename><surname>Simon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ady</forename><surname>Stern</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michael</forename><surname>Freedman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sankar</forename></persName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Non-abelian anyons and topological quantum computation</title>
+		<author>
+			<persName><forename type="first">Das</forename><surname>Sarma</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Rev. Mod</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<monogr>
+		<title/>
+		<author>
+			<persName><surname>Phys</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/RevModPhys.80.1083</idno>
+		<ptr target="https://doi.org/10.1103/RevModPhys.80.1083" />
+		<imprint>
+			<date type="published" when="2008-09">Sep 2008</date>
+			<biblScope unit="volume">80</biblScope>
+			<biblScope unit="page" from="1083" to="1159" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Detection of geometric phases in superconducting nanocircuits</title>
+		<author>
+			<persName><forename type="first">Giuseppe</forename><surname>Falci</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rosario</forename><surname>Fazio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">Massimo</forename><surname>Palma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jens</forename><surname>Siewert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Vlatko</forename><surname>Vedral</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/35030052</idno>
+		<ptr target="https://doi.org/10.1038/35030052" />
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">407</biblScope>
+			<biblScope unit="issue">6802</biblScope>
+			<biblScope unit="page" from="355" to="358" />
+			<date type="published" when="2000-09">sep 2000</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Observation of berry&apos;s phase in a solid-state qubit</title>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">J</forename><surname>Leek</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Fink</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Blais</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Bianchetti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Göppl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Gambetta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">I</forename><surname>Schuster</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Frunzio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">J</forename><surname>Schoelkopf</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Wallraff</surname></persName>
+		</author>
+		<idno type="DOI">10.1126/science.1149858</idno>
+		<ptr target="https://doi.org/10.1126/science.1149858" />
+	</analytic>
+	<monogr>
+		<title level="j">Science</title>
+		<imprint>
+			<biblScope unit="volume">318</biblScope>
+			<biblScope unit="issue">5858</biblScope>
+			<biblScope unit="page" from="1889" to="1892" />
+			<date type="published" when="2007">2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Experimental determination of the berry phase in a superconducting charge pump</title>
+		<author>
+			<persName><forename type="first">Mikko</forename><surname>Möttönen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Juha</forename><forename type="middle">J</forename><surname>Vartiainen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jukka</forename><forename type="middle">P</forename><surname>Pekola</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.100.177201</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevLett.100.177201" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">100</biblScope>
+			<biblScope unit="page">177201</biblScope>
+			<date type="published" when="2008-04">Apr 2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Measurement of a vacuum-induced geometric phase</title>
+		<author>
+			<persName><forename type="first">Simone</forename><surname>Gasparinetti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Simon</forename><surname>Berger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Abdufarrukh</forename><forename type="middle">A</forename><surname>Abdumalikov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Marek</forename><surname>Pechal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Stefan</forename><surname>Filipp</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andreas</forename><forename type="middle">J</forename><surname>Wallraff</surname></persName>
+		</author>
+		<idno type="DOI">10.1126/sciadv.1501732</idno>
+		<ptr target="https://doi.org/10.1126/sciadv.1501732" />
+	</analytic>
+	<monogr>
+		<title level="j">Science advances</title>
+		<imprint>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<date type="published" when="2016">1501732. 2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Experimental realization of non-abelian non-adiabatic geometric gates</title>
+		<author>
+			<persName><forename type="first">Abdufarrukh A Abdumalikov</forename><surname>Jr</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Johannes</forename><forename type="middle">M</forename><surname>Fink</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kristinn</forename><surname>Juliusson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Marek</forename><surname>Pechal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Simon</forename><surname>Berger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andreas</forename><surname>Wallraff</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Stefan</forename><surname>Filipp</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/nature12010</idno>
+		<ptr target="https://doi.org/10.1038/nature12010" />
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">496</biblScope>
+			<biblScope unit="issue">7446</biblScope>
+			<biblScope unit="page" from="482" to="485" />
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Continuous-variable geometric phase and its manipulation for quantum computation in a superconducting circuit</title>
+		<author>
+			<persName><forename type="first">Chao</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Shi-Biao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pengfei</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kai</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Libo</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Qiujiang</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Wuxin</forename><surname>Guo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Da</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hui</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Keqiang</forename><surname>Deng</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Huang</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41467-017-01156-5</idno>
+		<ptr target="https://doi.org/10.1038/s41467-017-01156-5" />
+	</analytic>
+	<monogr>
+		<title level="j">Nature communications</title>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="1" to="7" />
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Experimental implementation of universal nonadiabatic geometric quantum gates in a superconducting circuit</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Hua</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Tao Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Pan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Han</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Cai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><forename type="middle">P</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zheng-Yuan</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Xue</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Sun</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.124.230503</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevLett.124.230503" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">124</biblScope>
+			<biblScope unit="page">230503</biblScope>
+			<date type="published" when="2020-06">Jun 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Experimental demonstration of a robust, highfidelity geometric two ion-qubit phase gate</title>
+		<author>
+			<persName><forename type="first">Dietrich</forename><surname>Leibfried</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Brian</forename><surname>Demarco</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Volker</forename><surname>Meyer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">David</forename><surname>Lucas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Murray</forename><surname>Barrett</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Joe</forename><surname>Britton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Wayne</forename><forename type="middle">M</forename><surname>Itano</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Jelenković</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chris</forename><surname>Langer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Till</forename><surname>Rosenband</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/nature01492</idno>
+		<ptr target="https://doi.org/10.1038/nature01492" />
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">422</biblScope>
+			<biblScope unit="issue">6930</biblScope>
+			<biblScope unit="page" from="412" to="415" />
+			<date type="published" when="2003">2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Nonadiabatic conditional geometric phase shift with nmr</title>
+		<author>
+			<persName><forename type="first">Wang</forename><surname>Xiang-Bin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Matsumoto</forename><surname>Keiji</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.87.097901</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevLett.87.097901" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">87</biblScope>
+			<biblScope unit="page">97901</biblScope>
+			<date type="published" when="2001-08">Aug 2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Implementation of universal quantum gates based on nonadiabatic geometric phases</title>
+		<author>
+			<persName><forename type="first">Shi-Liang</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><forename type="middle">D</forename><surname>Wang</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.89.097902</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevLett.89.097902" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">89</biblScope>
+			<biblScope unit="page">97902</biblScope>
+			<date type="published" when="2002-08">Aug 2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<analytic>
+		<title level="a" type="main">Approach to realizing nonadiabatic geometric gates with prescribed evolution paths</title>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">Z</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">Z</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">M</forename><surname>Tong</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevResearch.2.023295</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevResearch.2.023295" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Res</title>
+		<imprint>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="page">23295</biblScope>
+			<date type="published" when="2020-06">Jun 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Path-optimized nonadiabatic geometric quantum computation on superconducting qubits</title>
+		<author>
+			<persName><surname>Cheng Yun Ding</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Na</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tao</forename><surname>Ji</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zheng</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xue</forename><surname>Yuan</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/2058-9565/ac3621</idno>
+		<ptr target="https://doi.org/10.1088/2058-9565/ac3621" />
+	</analytic>
+	<monogr>
+		<title level="j">Quantum Science and Technology</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page">15012</biblScope>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Transitionless quantum driving in spin echo</title>
+		<author>
+			<persName><forename type="first">Anton</forename><surname>Gregefalk</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Erik</forename><surname>Sjöqvist</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevApplied.17.024012</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevApplied.17.024012" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Applied</title>
+		<imprint>
+			<biblScope unit="volume">17</biblScope>
+			<biblScope unit="page">24012</biblScope>
+			<date type="published" when="2022-02">Feb 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<analytic>
+		<title level="a" type="main">Measuring the berry phase in a superconducting phase qubit by a shortcut to adiabaticity</title>
+		<author>
+			<persName><forename type="first">Zhenxing</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tenghui</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Liang</forename><surname>Xiang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jiadong</forename><surname>Yao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jianlan</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yi</forename><surname>Yin</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.95.042345</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevA.95.042345" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">95</biblScope>
+			<biblScope unit="page">42345</biblScope>
+			<date type="published" when="2017-04">Apr 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<analytic>
+		<title level="a" type="main">Berry phase for a spin 1/2 parti-cle in a classical fluctuating field</title>
+		<author>
+			<persName><forename type="first">Gabriele</forename><surname>De</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chiara</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">Massimo</forename><surname>Palma</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.91.090404</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevLett.91.090404" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">91</biblScope>
+			<biblScope unit="page">90404</biblScope>
+			<date type="published" when="2003-08">Aug 2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Berry phase in a nonisolated system</title>
+		<author>
+			<persName><forename type="first">Robert</forename><forename type="middle">S</forename><surname>Whitney</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuval</forename><surname>Gefen</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.90.190402</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevLett.90.190402" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">90</biblScope>
+			<biblScope unit="page">190402</biblScope>
+			<date type="published" when="2003-05">May 2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b42">
+	<analytic>
+		<title level="a" type="main">Geometric nature of the environment-induced berry phase and geometric dephasing</title>
+		<author>
+			<persName><forename type="first">Robert</forename><forename type="middle">S</forename><surname>Whitney</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuriy</forename><surname>Makhlin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alexander</forename><surname>Shnirman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuval</forename><surname>Gefen</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.94.070407</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevLett.94.070407" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">94</biblScope>
+			<biblScope unit="page">70407</biblScope>
+			<date type="published" when="2005-02">Feb 2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b43">
+	<analytic>
+		<title level="a" type="main">Exploring the effect of noise on the berry phase</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Berger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Pechal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">A</forename><surname>Abdumalikov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Eichler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Steffen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Fedorov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Wallraff</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Filipp</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.87.060303</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevA.87.060303" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">87</biblScope>
+			<biblScope unit="page">60303</biblScope>
+			<date type="published" when="2013-06">Jun 2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b44">
+	<monogr>
+		<title level="m" type="main">Geometric phases and noise in circuit QED</title>
+		<author>
+			<persName><forename type="first">Jacques</forename><surname>Simon</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Berger</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2015">2015</date>
+			<publisher>ETH Zurich</publisher>
+		</imprint>
+	</monogr>
+	<note type="report_type">PhD thesis</note>
+</biblStruct>
+
+<biblStruct xml:id="b45">
+	<analytic>
+		<title level="a" type="main">Kinematic approach to the mixed state geometric phase in nonunitary evolution</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">M</forename><surname>Tong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Sjöqvist</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">C</forename><surname>Kwek</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">H</forename><surname>Oh</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.93.080405</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevLett.93.080405" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">93</biblScope>
+			<biblScope unit="page">80405</biblScope>
+			<date type="published" when="2004-08">Aug 2004</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b46">
+	<analytic>
+		<title level="a" type="main">Geometric phase in open systems</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Carollo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Fuentes-Guridi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">França</forename><surname>Santos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Vedral</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.90.160402</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevLett.90.160402" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">90</biblScope>
+			<biblScope unit="page">160402</biblScope>
+			<date type="published" when="2003-04">Apr 2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b47">
+	<analytic>
+		<title level="a" type="main">The quantum trajectory approach to geometric phase for open systems</title>
+		<author>
+			<persName><forename type="first">Carollo</forename><surname>Angelo</surname></persName>
+		</author>
+		<idno type="DOI">10.1142/S0217732305017718</idno>
+		<ptr target="https://doi.org/10.1142/S0217732305017718" />
+	</analytic>
+	<monogr>
+		<title level="j">Modern Physics Letters A</title>
+		<imprint>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="issue">22</biblScope>
+			<biblScope unit="page" from="1635" to="1654" />
+			<date type="published" when="2005">2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b48">
+	<analytic>
+		<title level="a" type="main">Uniquely defined geometric phase of an open system</title>
+		<author>
+			<persName><forename type="first">Nikola</forename><surname>Burić</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Milan</forename><surname>Radonjić</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Erik</forename><surname>Sjöqvist</surname></persName>
+		</author>
+		<idno type="DOI">10.1556/APH.26.2006.1-2.23</idno>
+		<idno>quant-ph/0608237</idno>
+		<ptr target="https://doi.org/10.1556/APH.26.2006.1-2.23" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">80</biblScope>
+			<biblScope unit="page">14101</biblScope>
+			<date type="published" when="2006">Jul 2009. 2006</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+	<note>On geometric phases for quantum trajectories</note>
+</biblStruct>
+
+<biblStruct xml:id="b49">
+	<analytic>
+		<title level="a" type="main">Geometric phase for open quantum systems and stochastic unravelings</title>
+		<author>
+			<persName><forename type="first">Angelo</forename><surname>Bassi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Emiliano</forename><surname>Ippoliti</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.73.062104</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevA.73.062104" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">73</biblScope>
+			<biblScope unit="page">62104</biblScope>
+			<date type="published" when="2006-06">Jun 2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b50">
+	<analytic>
+		<title level="a" type="main">Phases of quantum states in completely positive non-unitary evolution</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">G</forename><surname>Peixoto De Faria</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">F R</forename><surname>De Toledo Piza</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">C</forename><surname>Nemes</surname></persName>
+		</author>
+		<idno type="DOI">10.1209/epl/i2003-00440-4</idno>
+		<ptr target="https://doi.org/10.1209/epl/i2003-00440-4" />
+	</analytic>
+	<monogr>
+		<title level="j">Europhysics Letters</title>
+		<imprint>
+			<biblScope unit="volume">62</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page">782</biblScope>
+			<date type="published" when="2003-06">jun 2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b51">
+	<analytic>
+		<title level="a" type="main">Generalization of the geometric phase to completely positive maps</title>
+		<author>
+			<persName><forename type="first">Marie</forename><surname>Ericsson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Erik</forename><surname>Sjöqvist</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Johan</forename><surname>Brännlund</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">L</forename><surname>Daniel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Arun</forename><forename type="middle">K</forename><surname>Oi</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Pati</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.67.020101</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevA.67.020101" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">67</biblScope>
+			<biblScope unit="page">20101</biblScope>
+			<date type="published" when="2003-02">Feb 2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b52">
+	<analytic>
+		<title level="a" type="main">Geometric phases in open systems: A model to study how they are corrected by decoherence</title>
+		<author>
+			<persName><forename type="first">Fernando</forename><forename type="middle">C</forename><surname>Lombardo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Paula</forename><forename type="middle">I</forename><surname>Villar</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.74.042311</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevA.74.042311" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">74</biblScope>
+			<biblScope unit="page">42311</biblScope>
+			<date type="published" when="2006-10">Oct 2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b53">
+	<analytic>
+		<title level="a" type="main">Villar. Corrections to the berry phase in a solid-state qubit due to low-frequency noise</title>
+		<author>
+			<persName><forename type="first">Fernando</forename><forename type="middle">C</forename><surname>Lombardo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Paula</forename><forename type="middle">I</forename></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.89.012110</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevA.89.012110" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">89</biblScope>
+			<biblScope unit="page">12110</biblScope>
+			<date type="published" when="2014-01">Jan 2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b54">
+	<analytic>
+		<title level="a" type="main">Monte carlo wave-function method in quantum optics</title>
+		<author>
+			<persName><forename type="first">Klaus</forename><surname>Mølmer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yvan</forename><surname>Castin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jean</forename><surname>Dalibard</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Opt. Soc</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b55">
+	<analytic>
+		<title/>
+		<idno type="DOI">10.1364/JOSAB.10.000524</idno>
+		<ptr target="https://doi.org/10.1364/JOSAB.10.000524" />
+	</analytic>
+	<monogr>
+		<title level="j">Am. B</title>
+		<imprint>
+			<biblScope unit="volume">10</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="524" to="538" />
+			<date type="published" when="1993-03">Mar 1993</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b56">
+	<analytic>
+		<title level="a" type="main">Quantum thermodynamics under continuous monitoring: A general framework</title>
+		<author>
+			<persName><forename type="first">Gonzalo</forename><surname>Manzano</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Roberta</forename><surname>Zambrini</surname></persName>
+		</author>
+		<idno type="DOI">10.1116/5.0079886</idno>
+		<ptr target="https://doi.org/10.1116/5.0079886.025302" />
+	</analytic>
+	<monogr>
+		<title level="j">AVS Quantum Science</title>
+		<idno type="ISSN">2639-0213</idno>
+		<imprint>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="5" to="2022" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b57">
+	<analytic>
+		<title level="a" type="main">Random quantum circuits</title>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">A</forename><surname>Matthew</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Vedika</forename><surname>Fisher</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Adam</forename><surname>Khemani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sagar</forename><surname>Nahum</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Vijay</surname></persName>
+		</author>
+		<idno type="DOI">10.1146/annurev-conmatphys-031720-030658</idno>
+		<ptr target="https://doi.org/10.1146/annurev-conmatphys-031720-030658" />
+	</analytic>
+	<monogr>
+		<title level="j">Annual Review of Condensed Matter Physics</title>
+		<imprint>
+			<biblScope unit="volume">14</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="335" to="379" />
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b58">
+	<monogr>
+		<author>
+			<persName><forename type="first">Ulrich</forename><surname>Shane P Kelly</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ferdinand</forename><surname>Poschinger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Matthew</forename><surname>Schmidt-Kaler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jamir</forename><surname>Fisher</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Marino</surname></persName>
+		</author>
+		<idno type="DOI">10.48550/arXiv.2210.11547</idno>
+		<idno type="arXiv">arXiv:2210.11547</idno>
+		<ptr target="https://doi.org/10.48550/arXiv.2210.11547" />
+		<title level="m">Coherence requirements for quantum communication from hybrid circuit dynamics</title>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b59">
+	<monogr>
+		<author>
+			<persName><forename type="first">Zack</forename><surname>Weinstein</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shane</forename><forename type="middle">P</forename><surname>Kelly</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jamir</forename><surname>Marino</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ehud</forename><surname>Altman</surname></persName>
+		</author>
+		<idno type="DOI">10.48550/arXiv.2210.14242</idno>
+		<idno type="arXiv">arXiv:2210.14242</idno>
+		<ptr target="https://doi.org/10.48550/arXiv.2210.14242" />
+		<title level="m">Scrambling transition in a radiative random unitary circuit</title>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b60">
+	<analytic>
+		<title level="a" type="main">Topological transition in measurement-induced geometric phases</title>
+		<author>
+			<persName><forename type="first">Valentin</forename><surname>Gebhart</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kyrylo</forename><surname>Snizhko</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Thomas</forename><surname>Wellens</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andreas</forename><surname>Buchleitner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alessandro</forename><surname>Romito</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuval</forename><surname>Gefen</surname></persName>
+		</author>
+		<idno type="DOI">10.1073/pnas.1911620117</idno>
+		<ptr target="https://doi.org/10.1073/pnas.1911620117" />
+	</analytic>
+	<monogr>
+		<title level="j">Proceedings of the National Academy of Sciences</title>
+		<imprint>
+			<biblScope unit="volume">117</biblScope>
+			<biblScope unit="issue">11</biblScope>
+			<biblScope unit="page" from="5706" to="5713" />
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b61">
+	<analytic>
+		<title level="a" type="main">Weak-measurementinduced asymmetric dephasing: Manifestation of intrinsic measurement chirality</title>
+		<author>
+			<persName><forename type="first">Kyrylo</forename><surname>Snizhko</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Parveen</forename><surname>Kumar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nihal</forename><surname>Rao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuval</forename><surname>Gefen</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.127.170401</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevLett.127.170401" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">127</biblScope>
+			<biblScope unit="page">170401</biblScope>
+			<date type="published" when="2021-10">Oct 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b62">
+	<analytic>
+		<title level="a" type="main">Weak-measurementinduced phases and dephasing: Broken symmetry of the geometric phase</title>
+		<author>
+			<persName><forename type="first">Kyrylo</forename><surname>Snizhko</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nihal</forename><surname>Rao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Parveen</forename><surname>Kumar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuval</forename><surname>Gefen</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevResearch.3.043045</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevResearch.3.043045" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Res</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page">43045</biblScope>
+			<date type="published" when="2021-10">Oct 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b63">
+	<monogr>
+		<title level="m" type="main">Observing a topological transition in weakmeasurement-induced geometric phases</title>
+		<author>
+			<persName><forename type="first">Yunzhao</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kyrylo</forename><surname>Snizhko</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alessandro</forename><surname>Romito</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuval</forename><surname>Gefen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kater</forename><surname>Murch</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b64">
+	<analytic>
+		<title/>
+		<idno type="DOI">10.1103/PhysRevResearch.4.023179</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevResearch.4.023179" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Res</title>
+		<imprint>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="page">23179</biblScope>
+			<date type="published" when="2022-06">Jun 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b65">
+	<monogr>
+		<title level="m" type="main">Topological transitions of the generalized pancharatnam-berry phase</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Manuel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kyrylo</forename><surname>Ferrer-Garcia</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Snizhko</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D'</forename><surname>Alessio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alessandro</forename><surname>Errico</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuval</forename><surname>Romito</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ebrahim</forename><surname>Gefen</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Karimi</surname></persName>
+		</author>
+		<idno type="DOI">10.48550/arXiv.2211.08519</idno>
+		<idno type="arXiv">arXiv:2211.08519</idno>
+		<ptr target="https://doi.org/10.48550/arXiv.2211.08519" />
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b66">
+	<monogr>
+		<title level="m" type="main">On the generators of quantum dynamical semigroups</title>
+		<author>
+			<persName><forename type="first">Goran</forename><surname>Lindblad</surname></persName>
+		</author>
+		<imprint>
+			<publisher>Comm</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b67">
+	<analytic>
+		<title/>
+		<idno type="DOI">10.1007/BF01608499</idno>
+		<ptr target="https://doi.org/10.1007/BF01608499" />
+	</analytic>
+	<monogr>
+		<title level="j">Math. Phys</title>
+		<imprint>
+			<biblScope unit="volume">48</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="119" to="130" />
+			<date type="published" when="1976">1976</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b68">
+	<monogr>
+		<title level="m" type="main">Open quantum systems</title>
+		<author>
+			<persName><forename type="first">Angel</forename><surname>Rivas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Susana</forename><forename type="middle">F</forename><surname>Huelga</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/978-3-642-23354-8</idno>
+		<ptr target="https://doi.org/10.1007/978-3-642-23354-8" />
+		<imprint>
+			<date type="published" when="2012">2012</date>
+			<publisher>Springer</publisher>
+			<biblScope unit="volume">10</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b69">
+	<analytic>
+		<title level="a" type="main">Adiabatic approximation in open quantum systems</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">S</forename><surname>Sarandy</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">A</forename><surname>Lidar</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/physreva.71.012331</idno>
+		<ptr target="https://doi.org/10.1103/physreva.71.012331" />
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review A</title>
+		<imprint>
+			<biblScope unit="volume">71</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<date type="published" when="2005-01">jan 2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b70">
+	<analytic>
+		<title level="a" type="main">Adiabatic approximation for weakly open systems</title>
+		<author>
+			<persName><forename type="first">Patrik</forename><surname>Thunström</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Johan</forename><surname>Åberg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Erik</forename><surname>Sjöqvist</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.72.022328</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevA.72.022328" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">72</biblScope>
+			<biblScope unit="page">22328</biblScope>
+			<date type="published" when="2005-08">Aug 2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b71">
+	<analytic>
+		<title level="a" type="main">Adiabatic approximation in open systems: an alternative approach</title>
+		<author>
+			<persName><surname>Yi</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Tong</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Kwek</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Oh</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/0953-4075/40/2/004</idno>
+		<ptr target="https://doi.org/10.1088/0953-4075/40/2/004" />
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Physics B: Atomic, Molecular and Optical Physics</title>
+		<imprint>
+			<biblScope unit="volume">40</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page">281</biblScope>
+			<date type="published" when="2007">2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b72">
+	<analytic>
+		<title level="a" type="main">Adiabatic markovian dynamics</title>
+		<author>
+			<persName><forename type="first">Ognyan</forename><surname>Oreshkov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">John</forename><surname>Calsamiglia</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.105.050503</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevLett.105.050503" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">105</biblScope>
+			<biblScope unit="page">50503</biblScope>
+			<date type="published" when="2010-07">Jul 2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b73">
+	<analytic>
+		<title level="a" type="main">Adiabaticity in open quantum systems</title>
+		<author>
+			<persName><forename type="first">Lorenzo</forename><forename type="middle">Campos</forename><surname>Venuti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tameem</forename><surname>Albash</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Daniel</forename><forename type="middle">A</forename><surname>Lidar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Paolo</forename><surname>Zanardi</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.93.032118</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevA.93.032118" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">93</biblScope>
+			<biblScope unit="page">32118</biblScope>
+			<date type="published" when="2016-03">Mar 2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b74">
+	<analytic>
+		<title level="a" type="main">An open systems approach to quantum optics</title>
+		<author>
+			<persName><forename type="first">Howard</forename><surname>Carmichael</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/978-3-540-47620-7</idno>
+		<ptr target="https://doi.org/10.1007/978-3-540-47620-7" />
+	</analytic>
+	<monogr>
+		<title level="s">Lecture Notes in Physics Monographs</title>
+		<imprint>
+			<date type="published" when="1993">1993</date>
+			<publisher>Springer</publisher>
+			<pubPlace>Berlin, Heidelberg</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b75">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">M</forename><surname>Howard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Gerard</forename><forename type="middle">J</forename><surname>Wiseman</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Milburn</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Quantum Measurement and Control</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b76">
+	<monogr>
+		<title/>
+		<idno type="DOI">10.1017/CBO9780511813948</idno>
+		<ptr target="https://doi.org/10.1017/CBO9780511813948" />
+		<imprint>
+			<date type="published" when="2009">2009</date>
+			<publisher>Cambridge University Press</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b77">
+	<analytic>
+		<title level="a" type="main">Quantum trajectories and open many-body quantum systems</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Andrew</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Daley</surname></persName>
+		</author>
+		<idno type="DOI">10.1080/00018732.2014.933502</idno>
+		<ptr target="https://doi.org/10.1080/00018732.2014.933502" />
+	</analytic>
+	<monogr>
+		<title level="j">Advances in Physics</title>
+		<imprint>
+			<biblScope unit="volume">63</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="77" to="149" />
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b78">
+	<analytic>
+		<title level="a" type="main">Improving quantum annealing of the ferromagnetic p-spin model through pausing</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Passarelli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Cataudella</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Lucignano</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevB.100.024302</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevB.100.024302" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. B</title>
+		<imprint>
+			<biblScope unit="volume">100</biblScope>
+			<biblScope unit="page">24302</biblScope>
+			<date type="published" when="2019-07">Jul 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b79">
+	<analytic>
+		<title level="a" type="main">Observing single quantum trajectories of a superconducting quantum bit</title>
+		<author>
+			<persName><surname>Kw Murch</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christopher</forename><surname>Weber</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Irfan</forename><surname>Macklin</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Siddiqi</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/nature12539</idno>
+		<ptr target="https://doi.org/10.1038/nature12539" />
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">502</biblScope>
+			<biblScope unit="issue">7470</biblScope>
+			<biblScope unit="page" from="211" to="214" />
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b80">
+	<analytic>
+		<title level="a" type="main">Continuous quantum error correction via quantum feedback control</title>
+		<author>
+			<persName><forename type="first">Charlene</forename><surname>Ahn</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andrew</forename><forename type="middle">C</forename><surname>Doherty</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andrew</forename><forename type="middle">J</forename><surname>Landahl</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.65.042301</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevA.65.042301" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">65</biblScope>
+			<biblScope unit="page">42301</biblScope>
+			<date type="published" when="2002-03">Mar 2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b81">
+	<analytic>
+		<title level="a" type="main">Observation of quantum jumps in a superconducting artificial atom</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Vijay</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">H</forename><surname>Slichter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Siddiqi</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.106.110502</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevLett.106.110502" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">106</biblScope>
+			<biblScope unit="page">110502</biblScope>
+			<date type="published" when="2011-03">Mar 2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b82">
+	<analytic>
+		<title level="a" type="main">Quantum adiabatic markovian master equations</title>
+		<author>
+			<persName><forename type="first">Tameem</forename><surname>Albash</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sergio</forename><surname>Boixo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Daniel</forename><forename type="middle">A</forename><surname>Lidar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Paolo</forename><surname>Zanardi</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/1367-2630/14/12/123016</idno>
+		<ptr target="https://doi.org/10.1088/1367-2630/14/12/123016" />
+	</analytic>
+	<monogr>
+		<title level="j">New Journal of Physics</title>
+		<imprint>
+			<biblScope unit="volume">14</biblScope>
+			<biblScope unit="issue">12</biblScope>
+			<biblScope unit="page">123016</biblScope>
+			<date type="published" when="2012-12">dec 2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b83">
+	<analytic>
+		<title level="a" type="main">Corrigendum: Quantum adiabatic markovian master equations (2012 new j. phys. 14 123016)</title>
+		<author>
+			<persName><forename type="first">Tameem</forename><surname>Albash</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sergio</forename><surname>Boixo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Daniel</forename><forename type="middle">A</forename><surname>Lidar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Paolo</forename><surname>Zanardi</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/1367-2630/17/12/129501</idno>
+		<ptr target="https://doi.org/10.1088/1367-2630/17/12/129501" />
+	</analytic>
+	<monogr>
+		<title level="j">New Journal of Physics</title>
+		<imprint>
+			<biblScope unit="volume">17</biblScope>
+			<biblScope unit="issue">12</biblScope>
+			<biblScope unit="page">129501</biblScope>
+			<date type="published" when="2015-12">dec 2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b84">
+	<monogr>
+		<title level="m" type="main">Quantum trajectories for timedependent adiabatic master equations</title>
+		<author>
+			<persName><forename type="first">Ka</forename><surname>Wa Yip</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tameem</forename><surname>Albash</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Daniel</forename><forename type="middle">A</forename><surname>Lidar</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b85">
+	<analytic>
+		<title/>
+		<idno type="DOI">10.1103/PhysRevA.97.022116</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevA.97.022116" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">97</biblScope>
+			<biblScope unit="page">22116</biblScope>
+			<date type="published" when="2018-02">Feb 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b86">
+	<analytic>
+		<title level="a" type="main">Hidden parameters in open-system evolution unveiled by geometric phase</title>
+		<author>
+			<persName><forename type="first">Patrik</forename><surname>Pawlus</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Erik</forename><surname>Sjöqvist</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.82.052107</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevA.82.052107" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">82</biblScope>
+			<biblScope unit="page">52107</biblScope>
+			<date type="published" when="2010-11">Nov 2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b87">
+	<analytic>
+		<title level="a" type="main">Spin echoes</title>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">L</forename><surname>Hahn</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRev.80.580</idno>
+		<ptr target="https://doi.org/10.1103/PhysRev.80.580" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev</title>
+		<imprint>
+			<biblScope unit="volume">80</biblScope>
+			<biblScope unit="page" from="580" to="594" />
+			<date type="published" when="1950-11">Nov 1950</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b88">
+	<analytic>
+		<title level="a" type="main">Geometric phase with nonunitary evolution in the presence of a quantum critical bath</title>
+		<author>
+			<persName><forename type="first">F</forename><forename type="middle">M</forename><surname>Cucchietti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J.-F</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><forename type="middle">C</forename><surname>Lombardo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">I</forename><surname>Villar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Laflamme</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.105.240406</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevLett.105.240406" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">105</biblScope>
+			<biblScope unit="page">240406</biblScope>
+			<date type="published" when="2010-12">Dec 2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b89">
+	<monogr>
+		<title level="m" type="main">Preparing and measuring the system in the equal-superposition state |ψ(0)⟩ might be quite involved. Instead, the σ zgoundstate |0⟩ is prepared and a pulse driving it to |ψ(0)⟩ is applied afterwards. Then, the protocol usually ends with a last spin rotation taking the final state back to the σ z basis</title>
+		<author>
+			<persName><surname>Note</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+	<note>Real implementations of the protocol require two extra steps where the actually compute probability is that of being in |0⟩</note>
+</biblStruct>
+
+<biblStruct xml:id="b90">
+	<monogr>
+		<title level="m" type="main">Given the invariance of Eq. (1) under some joint transformation W m → W ′ m , H → H ′ , the Lindblad evolution of the averaged density matrix ρ(t) is consequently unchanged, while the different possible trajectories may undergo nontrivial changes, therefore describing different scenarios. Such a procedure can be followed to go from direct photodetection to discrete homodyne detection schemes</title>
+		<author>
+			<persName><surname>Note</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+	<note>Different measurement schemes and physical situations can be described using symmetries of the Lindbland equation as a way of generating different unraveling in which a beam-splitter mixes the output field with an additional coherent field</note>
+</biblStruct>
+
+<biblStruct xml:id="b91">
+	<analytic>
+		<title level="a" type="main">Quantum theory of field-quadrature measurements</title>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">M</forename><surname>Wiseman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">J</forename><surname>Milburn</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.47.642</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevA.47.642" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">47</biblScope>
+			<biblScope unit="page" from="642" to="662" />
+			<date type="published" when="1993-01">Jan 1993</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b92">
+	<monogr>
+		<title level="m" type="main">Quantum state diffusion, measurement and second quantization</title>
+		<author>
+			<persName><forename type="first">Ian</forename><forename type="middle">C</forename><surname>Percival</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b93">
+	<monogr>
+		<title/>
+		<idno type="DOI">10.1016/S0375-9601(99)00526-5</idno>
+		<ptr target="https://doi.org/10.1016/S0375-9601(99)00526-5" />
+		<imprint>
+			<date type="published" when="1999">1999</date>
+			<publisher>Cambridge University Press</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b94">
+	<analytic>
+		<title level="a" type="main">Synchronization along quantum trajectories</title>
+		<author>
+			<persName><forename type="first">Najmeh</forename><surname>Es</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">'</forename><surname>Haqi-Sani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Gonzalo</forename><surname>Manzano</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Roberta</forename><surname>Zambrini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rosario</forename><surname>Fazio</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevResearch.2.023101</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevResearch.2.023101" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Res</title>
+		<imprint>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="page">23101</biblScope>
+			<date type="published" when="2020-04">Apr 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

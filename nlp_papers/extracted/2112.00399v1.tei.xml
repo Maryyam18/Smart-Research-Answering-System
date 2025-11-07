@@ -1,0 +1,833 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Quantum-Resistant Cryptography</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">John</forename><forename type="middle">Preuß</forename><surname>Mattsson</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">Ericsson Security Research</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Ben</forename><surname>Smeets</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">Ericsson Security Research</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Erik</forename><surname>Thormarker</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">Ericsson Security Research</orgName>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Quantum-Resistant Cryptography</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date/>
+						</imprint>
+					</monogr>
+					<idno type="MD5">80E4AC6459BFE3331E3CA8A639BEA7F3</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-07T10:19+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Quantum-resistant cryptography is cryptography that aims to deliver cryptographic functions and protocols that remain secure even if large-scale fault-tolerant quantum computers are built. NIST will soon announce the first selected public-key cryptography algorithms in its Post-Quantum Cryptography (PQC) standardization which is the most important current effort in the field of quantum-resistant cryptography. This report provides an overview to security experts who do not yet have a deep understanding of quantumresistant cryptography. It surveys the computational model of quantum computers; the quantum algorithms that affect cryptography the most; the risk of Cryptographically Relevant Quantum Computers (CRQCs) being built; the security of symmetric and public-key cryptography in the presence of CRQCs; the NIST PQC standardization effort; the migration to quantum-resistant public-key cryptography; the relevance of Quantum Key Distribution as a complement to conventional cryptography; and the relevance of Quantum Random Number Generators as a complement to current hardware Random Number Generators.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Scope</head><p>Quantum-resistant cryptography is cryptography that aims to deliver cryptographic functions and protocols that remain secure even if large-scale fault-tolerant quantum computers are built. In this report we summarize the current state of quantum-resistant cryptography and report on the progress of the most important effort in this area: the NIST Post-Quantum Cryptography standardization. We also give a summary of the security and practicality of Quantum Key Distribution (QKD) since it has been mentioned as a hypothetical quantum-resistant solution in the past. As part of the background for the report we give a high-level overview of the computational model for quantum computers, the quantum algorithms that affect cryptography the most, and what we know about the progress of building machines that can execute these algorithms. This report is not an implementation guide, rather it aims to provide an overview of the state-of-the-art and what we can expect in the coming years.</p><p>A paragraph or section marked with contains information that is slightly more technical than other parts of the report. These parts are not necessary to read to understand the overall report.</p><p>We include a discussion on quantum random number generators (QRNGs) in Appendix A. This is a technology that is sometimes mentioned in connection with QKD and quantum computers, however QRNGs do not really fit into our overall scope here since our current hardware randomness generator technology is secure and quantum-resistant. Also, QRNGs themselves do not solve the current urgent question to have secure random number generators in virtualized (VMs, containerized) products. However, as we discuss in Appendix A, if trustworthy vendors make QRNG technology in the future that is as well-understood and certified to the same degree as common RNG technology, then QRNGs could be evaluated as alternatives to common RNG technology.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.1">Terminology</head><p>We call our current traditional computers "classical". A "classical attacker" is one that uses a classical computer and not a quantum one. Similarly, a "classical algorithm" is one that can execute on a classical computer.</p><p>3</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Quantum computers</head><p>Following <ref type="bibr">[131]</ref>, we define a Cryptographically Relevant Quantum Computer (CRQC) as a quantum computer of sufficient size and fault tolerance to break today's public-key cryptography using Shor's quantum algorithm 2 .</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1">The computational model of quantum computers</head><p>➢ Quantum computers are not general-purpose (super) computers, rather they are potential special-purpose machines for certain problems where we can leverage their peculiar nature through clever quantum algorithms.</p><p>This section contains an informal high-level introduction to the quantum computational model. It is not necessary to read to understand material outside of this section or the conclusions in the subsequent subsections of this section. It is however necessary to read the section in order to understand a few of the details in those other subsections.</p><p>Quantum algorithms are typically expressed in the circuit model. In this model, one typically starts from a set of qubits, applies a series of quantum gates to them, and measures in the end to produce an output. The state of a qubit 𝑄 is a linear combination of the states 0 ̅ and 1 ̅ with coefficients 𝛼 and 𝛽 that are complex numbers <ref type="foot" target="#foot_1">3</ref> . That is, 𝑄 = 𝛼0 ̅ + 𝛽1 ̅ . The states 0 ̅ and 1 ̅ can be thought of as the 0 and 1 state of a classical bit. It is sometimes said that the state of the qubit is "between" 0 ̅ and 1 ̅ . Figure <ref type="figure">1</ref> shows some example operations in a very simple circuit.</p><p>Figure <ref type="figure">1</ref>: Example operations in the circuit model. 2 One could also define a CRQC as a quantum computer that is sufficiently powerful to threaten today's cryptography in general, thereby also covering, for example, implementations of Grover's algorithm against symmetric cryptography. However, the importance of Shor's algorithm (see Section 3.2) together with the extremely long running time of Grover's algorithm (see Section 3.3), for cryptographically relevant problems, makes it reasonable to let the purpose of the definition be a kind of shorthand to describe a machine that can threaten today's public key cryptography using Shor's algorithm. A special case that would be somewhat problematic with this definition would be if quantum computers turned out to be much faster than classical computers and if the possible circuit width (see Section 3.1) of implementations turned out to be restricted in a way so that cryptographically relevant implementations of Grover's algorithm that target a low width usage (see e.g., <ref type="bibr" target="#b40">[132]</ref>) are possible, while cryptographically relevant implementations of Shor's algorithm are not. It is implicitly assumed in <ref type="bibr">[131]</ref> that CRQCs can execute Shor's algorithm on cryptographically relevant problems. We make this explicit in our definition.</p><p>At the start of the circuit (to the left in the figure), we have two qubits, and each qubit is independently in the simple state 0 ̅ . That is, 𝑄 = 𝛼0 ̅ + 𝛽1 ̅ , with 𝛼 = 1 and 𝛽 = 0 in the notation from above. As we apply quantum gates, the qubits become entangled, which roughly means that their collective state can no longer be expressed as a simple function of their individual states. If we have N many qubits, then after we applied a series of gates, our collective qubit state is a linear combination of 2 N many distinct states. Measurement is a process that collapses the linear combination of the 2 N states into a single one state among them <ref type="foot" target="#foot_2">4</ref> . The single state present after the collapse is the output state of the computation. So, while we operate on exponentially many states at once in a sense when we apply gates throughout the circuit, we can only output a single state in the end. Worse yet, the output state is completely randomly chosen according to a probability distribution that depends on the coefficients in the linear combination of the 2 N states. So, if the output is not useful, then one needs to run the algorithm again. Our selection of gates decides the probability distribution on the coefficients, but the gates have certain limitations on them as well. The design of quantum algorithms is now the art of applying gates -chosen from a typically pretty small, limited set of possible gates -in a way so that the probability of getting a useful output state when measuring is sufficiently high. This inherent limitation of quantum computing -together with the common assumption that quantum computers will remain slower and more expensive than classical computers -hints at an important observation: Quantum computers are not general-purpose super computers, rather they are potential special-purpose machines for certain problems where we can leverage their peculiar nature through clever quantum algorithms. Shor's quantum algorithm in Section 3.2 is precisely such a clever algorithm that solves two central problems whose intractability public-key cryptography relies on for its security. Another potential very important application of sufficiently powerful quantum computers is physics simulations, an original intended application of quantum computing was indeed to simulate quantum mechanics itself <ref type="bibr" target="#b41">[138]</ref>. Aaronson suggests that common misconceptions about the power of quantum computers originate from focusing only being able to operate on "exponentially many states at once", and then jumping to the incorrect conclusion that quantum computers will be a kind of superior universal super computers <ref type="bibr">[63]</ref>.</p><p>There are several reasons why the circuit model is an idealized model of quantum computation ➢ The qubits in the circuit model, hereafter referred to as logical qubits, are assumed to be perfect. In a real quantum computer, we would use some sort of real physical qubits to model a typically much smaller number of logical qubits in the circuit model. Physical qubits are unstable to some degree and gate operations can introduce errors. Thus, we need to interleave our higher layer logical operations in the circuit model with lower layer error correction to the physical qubits to ensure that our logical qubits remain uncorrupted. Kalai has conjectured that the error rate in the computations will be a fundamental roadblock that cannot be overcome to actually achieve large-scale quantum computers <ref type="bibr">[21]</ref>. Galbraith comments that, in general, theoretical objections to quantum computing do not seem to be widely believed <ref type="bibr" target="#b25">[84]</ref>. See Figure <ref type="figure" target="#fig_0">2</ref> for an illustration of the different layers that are envisioned to be part of a potential CRQC. ➢ In the circuit model we can apply a gate, say a gate that operates on two qubits, to any individual two qubits regardless of their placement vertically in the circuit. In a real quantum computer, interaction between (physical) qubits through gates is sometimes limited to qubits which are physically close to each other in the underlying quantum hardware [40] <ref type="bibr" target="#b13">[45]</ref> <ref type="foot" target="#foot_3">foot_3</ref> . Assuming that the first issue can be overcome, these issues still add overhead to the running time of our quantum algorithms. This is especially relevant to an algorithm such as Grover's algorithm which has an extremely long running time to begin with for cryptographic problems of interest.</p><p>The running time of the quantum algorithm is the depth in the number of gates of the circuit (so the depth is 2 in Figure <ref type="figure">1</ref>). The gates may be applied in parallel if they involve distinct qubits. We do not include the overhead discussed in the previous two bullet points in the depth. That overhead will be dependent on the implementation of the quantum computer and will be added on top of our (logical) depth. The width of the circuit is the number of logical qubits (so the width is 2 in Figure <ref type="figure">1</ref>). However, the actual number of physical qubits, that in a sense is the true width, will again depend on the implementation of the quantum computer and the error correction implementation, and is an additional unknown overhead. As mentioned in Section 3.2, a CRQC with thousands of logical qubits is often estimated to consist of millions of physical qubits. The error correction may be done in layers where each layer uses error correction on qubits of poorer quality to provide qubits of higher quality to the layer above <ref type="bibr" target="#b38">[129]</ref>. There can be a tradeoff between what qubit error rate a specific error correction code can tolerate and the overhead in terms of for example the number of physical qubits necessary to implement the code.</p><p>For details on the quantum computational model, the lecture notes by de Wolf <ref type="bibr" target="#b26">[85]</ref> are a good, up-to-date, and concise starting point.</p><p>In the next two subsections we will survey the two quantum algorithms that affect cryptography the most. One thing to beware of is research discussing quantum attacks that rely on having access to a quantum implementation of a cryptographic algorithm keyed with a target secret key that the attacker attempts to recover. This threat model appears to be of limited interest since our cryptography will continue to run on classical computers for any foreseeable future.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2">Shor's quantum algorithm</head><p>➢ If CRQCs are built, then Shor's quantum algorithm will break today's public-key cryptography. Variants of the algorithm apply to both the discrete logarithm problem (which breaks elliptic curve cryptography and finite field Diffie-Hellman) and to factoring large integers (which breaks RSA). ➢ Shor's algorithm is efficient (relatively shallow depth in the circuit model). In the case of using Shor's algorithm to attack RSA, it is essentially as efficient as performing an RSA signing/decryption operation, but on a quantum computer.</p><p>Shor's algorithm is certainly the most important quantum algorithm with regard to its impact on cryptography. Shor's algorithm is also one of the most important quantum algorithms in general, since it was this algorithm that showed in 1994 that large-scale quantum computers can efficiently solve important problems (such as factoring very large integers) which appear to be intractable on classical computers. Shor's algorithm consists of a quantum subroutine and some post-processing that can be done on a classical computer. The quantum subroutine for the variant of the algorithm which factors integers is shown in Figure <ref type="figure" target="#fig_1">3</ref>. The most expensive operation in the circuit of Figure <ref type="figure" target="#fig_1">3</ref> is the sequence of gates on the bottom wire(s), the ones whose names start with "U". This sequence of gates performs a modular exponentiation modulo N, where N is the number (e.g., RSA modulus) that we are trying to factor. Just as for classical computers, this can be done efficiently<ref type="foot" target="#foot_4">foot_4</ref> using e.g., the square-and-multiply algorithm. This means that Shor's algorithm is essentially as efficient as performing an RSA signing/decryption operation, but on a quantum computer. This is typically estimated to take a few hours on a CRQC <ref type="bibr" target="#b39">[130]</ref>. However, the width of the circuit (number of wires) is thousands of qubits <ref type="foot" target="#foot_5">7</ref> for sizes of N that are relevant to cryptography. As discussed in Section 3.1 such qubits are typically envisioned to be implemented through error correction on layers of lower layer qubits (physical qubits in Section 3.1) of poorer quality. By typical estimates we then expect to need millions of such lower quality qubits in the lower layers (which are not visible in Figure <ref type="figure" target="#fig_1">3</ref>) <ref type="bibr">[129][20]</ref>[100] <ref type="bibr" target="#b37">[128]</ref>. The rightmost boxes in Figure <ref type="figure" target="#fig_1">3</ref> are measurement operations, as discussed in Section 3.1. These operations output classical information from which we have a good probability of being able to factor N after post-processing. The variant of Shor's algorithm that finds discrete logarithms looks similar but, e.g., in the case of elliptic curve discrete logarithms, we perform two scalar multiplications instead of a modular exponentiation (see Figure <ref type="figure">1</ref> in <ref type="bibr" target="#b19">[57]</ref>). This results in similar efficiency. The number of qubits required in Shor's algorithm against elliptic curve cryptography (ECC) is estimated to be somewhat lower than the number of qubits required in Shor's algorithm against RSA (factoring) <ref type="bibr" target="#b19">[57]</ref>. This is not too surprising since an ECC problem of, for example, size 256 bits is typically estimated to be roughly equivalent in cryptographic strength to an RSA problem of size 3072 bits.This difference in problem size is due to the fact that only very inefficient (exponential) classical attacks are known for ECC [55], while somewhat more efficient (sub-exponential) classical attacks are known against RSA <ref type="bibr">[56]</ref>. Thus, we naturally see differences when we also consider quantum attackers that can use Shor's algorithm against both ECC and RSA. However, the number of logical qubits needed for Shor's algorithm against ECC is still estimated to be in the thousands, as for Shor's algorithm against RSA <ref type="bibr" target="#b19">[57]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>3.3</head><p>Grover's quantum algorithm and symmetric cryptography ➢ When attacking today's symmetric cryptography, Grover's algorithm is an extremely long-running (extremely large depth in the circuit model) computation that does not parallelize efficiently. ➢ Our most important symmetric primitives, ciphers, MAC algorithms and hash functions are quantum-resistant as is at e.g., the 128-bit security level. In particular, no "doubling of key length" is necessary due to CRQCs.</p><p>Grover's algorithm is in a sense an algorithm that finds a needle in a haystack. It quickly puts the collective qubit state in a linear combination of 2 N states where each state would be as likely to be outputted if we immediately measured. It then iteratively, roughly 2 N/2 times, applies a set of gates such that each iteration, just so slightly, makes a single target state more likely to be found if we would measure. When we measure in the end, after all 2 N/2 iterations, we find the target state with very high probability. When using this method to attack AES-128, the target state is an encoding of the unknown key which was used to encrypt a target plaintext-ciphertext pair which we assume that we have somehow collected<ref type="foot" target="#foot_6">foot_6</ref> . The previously mentioned "set of gates" used in each of the 2 N/2 iterations are actually an implementation of encrypting the target plaintext and checking if the result matches the target ciphertext. As discussed in Section 3.1 we can do this for each of the 2 N states that we start from in parallel, each state being the encoding of a candidate key. Since we have 2 128 candidate keys in AES-128, we have N = 128. We then also see that we require 2 64 iterations of this procedure, before measuring in the end. One might ask why we cannot use a set of gates so that we need only 1 iteration instead of 2 64 , but this is where the limitations on the set of gates which can be used that we mentioned in Section 3.1 comes in. In fact, one can show that Grover's algorithm solves the generic problem using an optimal number of iterations <ref type="bibr" target="#b20">[60]</ref>. The depth of each iteration (measured in the number of serial gates applied) is a problem here. If each iteration contains a serial application of, say 2 11   gates 9 , then Grover's algorithm as a whole requires a serial application of 2 64 • 2 11 = 2 75   gates. And this is on a single quantum computer, counting only the logical gates in the circuit model. On top of this we have potential overhead from e.g., error correction on the physical qubits as discussed in Section 3.1. In comparison, a classical 5 GHz CPU core executes about 2 57 cycles in a year. Actually, NIST mentions 2 40 as an estimate for the number of serial logical gates that could be applied in a year for presently envisioned quantum computing architectures <ref type="bibr">[59]</ref>. These numbers mean that in practice we would need split up the key space and search in each smaller partition of the key space on a separate quantum computer <ref type="bibr" target="#b21">[61]</ref>.</p><p>Grover's algorithm does not parallelize efficiently. For classical computers we can split up a brute force search for a key over S many computers and find the key S times faster. But Grover's algorithm is not a brute force search. In fact, for Grover's algorithm we need S 2 quantum computers to find the key S times faster. As an example, under the 2 75 and 2 40  estimates mentioned above, it would take one billion CRQCs, one million years of uninterrupted computation to find a sought AES-128 key. The up-shot is that AES-128 is a relevant security level even in the presence of quantum computers and indeed AES-128 is one of the relevant security categories in the NIST PQC standardization <ref type="bibr">[59]</ref>. This means that NIST thinks it is relevant to standardize new public key cryptography that is as costly to break on a quantum computer as it is to do key search for AES-128 using Grover's algorithm.</p><p>Attacks on MAC algorithms (e.g., HMAC-SHA-256) using Grover's algorithm are implemented similarly to attacks on AES using Grover's algorithm, and the same conclusions hold. This means that our most important symmetric primitives, ciphers, and MAC algorithms are quantum-resistant as is. In particular, no key length changes due to quantum computers are known to be necessary at this point <ref type="bibr" target="#b12">[44]</ref>. We think that the view of NIST <ref type="bibr" target="#b12">[44]</ref>, namely that current deployments using 128-bit symmetric keys do not need to be upgraded because of quantum computers by current knowledge, is well supported by arguments from research as outlined above. Of course, this does not rule out that there could be a quantum algorithm for exploiting a specific weakness in a specific algorithm such as AES-128. But no specific examples of such attacks are known right now for our most relevant symmetric primitives. Newer deployments may want to also consider 256-bit symmetric primitives due to e.g., compliance, and also because the effect on performance may be quite small as commented by e.g., ENISA [64].</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3.1">Grover's quantum algorithm and cryptographic hash functions</head><p>➢ There are no known quantum attacks for finding collisions for hash functions that outperform classical attacks for relevant cost measures.</p><p>The typical relevant attack against a cryptographic hash function is to find a collision: Two distinct inputs that hash to the same output.</p><p>There is a quite famous variant of Grover's quantum algorithm [87] that finds hash collisions after only roughly 2 N/3 quantum evaluations of the target hash function, where N is the bit-size of the hash digest (e.g., 256 for SHA-256). For an ideal hash function, no classical algorithm can do it in less than approximately an expected 2 N/2 hash function evaluations (the "birthday bound" [88]). This is however only of theoretical interest; the number of hash function evaluations is only indirectly relevant; a directly relevant cost measure is the hardware cost times the running time. As it turns out, the quantum algorithm actually uses roughly 2 N/3 quantum-accessible hardware units as well. So, the hardware cost times running time actually grows roughly like 2 2N/3 , and that is on a quantum computer. At the same time, as discussed by Bernstein <ref type="bibr" target="#b28">[89]</ref>, a classical computing cluster made up of 2 N/6 cheap devices that implement the hash function and work in parallel can find a collision in time proportional to 2 N/3 , by together performing the total 2 N/2 hash function evaluations <ref type="foot" target="#foot_8">10</ref>that are expected to be necessary by the birthday bound.</p><p>The fact that quantum attacks against hash functions are no better than classical attacks is visible in the NIST PQC standardization security levels. As explained in Section 4.5, these levels correspond to the optimal attacks (quantum or classical) for key recovery against an ideal block cipher (exemplified by AES) or collision finding for an ideal hash function (exemplified by SHA-2). The attack costs for SHA-2 are based on the most efficient classical attack; no quantum attacks are mentioned.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.4">Building quantum computers</head><p>➢ It is very unclear when, or even if, a CRQC will ever be built. The gap between today's quantum computers and envisioned CRQCs is huge, and the field faces some near-term challenges such as for example no known applications for the Noisy Intermediate-Scale Quantum (NISQ) computers that are expected to be built these coming years. ➢ The best current estimate we have is that an expert committee in 2019 concluded that the emergence of a CRQC during the next decade would be highly unexpected.</p><p>The collective effort of working towards quantum computers that can execute large-scale circuits in the circuit model is broad and complex. There are several publicly known engagements both in academia and industry [93][92]. There is also a variety of potential quantum computer realizations (e.g., in terms of how to realize the physical qubits and quantum gates) being studied and proposed, with superconducting qubits and qubits based on trapped ions being popular candidates. However, there is a huge gap between today's noisy small quantum computers and envisioned CRQCs <ref type="bibr">[26]</ref>. IBM wrote "Knowing the way forward doesn't remove the obstacles; we face some of the biggest challenges in the history of technological progress."</p><p>when presenting a roadmap for scaling quantum technology in 2020 <ref type="bibr">[99]</ref>. The latest and best estimate we have is that a committee of experts from academia and industry concluded in a 2019 report that the emergence during the next decade of a CRQC is highly unexpected <ref type="bibr">[26]</ref>. The same report states that there are no known practical applications for the Noisy Intermediate-Scale Quantum (NISQ) computers that we may see in these coming years. Since the report argues that it was the virtuous cycle of incomes and reinvestments that allowed transistor counts in classical computers to grow according to Moore's law for decades, a key finding of the report is</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>"Research and development into practical commercial applications of noisy intermediate-scale quantum (NISQ) computers is an issue of immediate urgency for the field."</head><p>The report argues that the field of building quantum computers may become dependent strictly on government funding otherwise, if useful applications in the near-term cannot be found. Aaronson said in 2021 [137] that there is… allowed researchers to craft a collision in 2 63 hash function evaluations [91], which is better than the 2 80 generic bound described above.</p><p>"Some hope to eke out a near-term advantage [over classical computers] for e.g., quantum simulation with little or no error correction. But claims that we know how to get near-term speedups for optimization, machine learning, etc. are &gt;95% BS!"</p><p>As explained in Section 3.1, quantum computers are not general-purpose super computers, rather they are potential special purpose machines for certain problems where we can leverage their peculiar nature through clever quantum algorithms. Aaronson thinks that the original intended application of quantum computers -simulating quantum physics -will be the "killer app" for quantum computers <ref type="bibr" target="#b0">[2]</ref>.</p><p>Besides technical and usability arguments, judging the progress of quantum computers is further complicated by other aspects. Pornin discusses how judging the progress of quantum computers involves in fact the people -who not only have the best insight into the progress -but are also the same ones who depend on funding to keep the ball that is this very expensive research endeavor rolling <ref type="bibr" target="#b29">[95]</ref>. Essentially, what actors in the security community (i.e., industry, academia, governments, and standardization organizations) are doing is watching each other to assess how other actors appear to judge the risk. We can then note that the security community as a whole appears to be calmly awaiting the outcome of NIST PQC standardization that we will discuss in the next section.</p><p>Media reporting on quantum computers naturally often focuses on simple metrics such as physical qubit count. As we have discussed, qubit count is not the only relevant metric, but we note that current quantum computers typically have about 100 physical qubits [99][100] <ref type="bibr">[135]</ref>. We talked about in Section 3.2 how a CRQC is estimated to require a number of physical qubits in the millions. Given the short history of quantum computers and the many competing technologies, it is difficult to estimate how qubit counts will grow the coming years and decades <ref type="bibr">[98]</ref>. Simply assuming a Moore's law type scaling in physical qubit counts, it would take 25-30 years to go from 100 qubits to millions of qubits. Of course, there could also be for example improvements in quantum error correction techniques. IBM's roadmap in 2020 aimed to unveil a 127-qubit machine by 2021, a 433qubit quantum computer by 2022, and a 1121-qubit quantum computer by 2023 <ref type="bibr">[99]</ref>. The 127-qubit machine was recently unveiled in 2021 as planned in the roadmap <ref type="bibr">[135]</ref>.</p><p>A claim that a team of researchers had shown "Quantum supremacy" through a computation on a quantum computer consisting of 54 physical qubits caused some stir in 2019 <ref type="bibr">[18]</ref>. Quantum supremacy is the achievement of doing a computation on a quantum computer that cannot be achieved in any feasible time on a classical computer. The computation does not have to be useful for anything else than showing Quantum supremacy and the computational task can apparently be chosen in a biased way so that it is naturally much easier for the specific quantum computer at hand than for classical computers 11 . Borcherds criticized this notion of Quantum supremacy by arguing that Quantum supremacy failed at the teapot test <ref type="bibr">[133]</ref>. Borcherds explained that teapots achieve "Teapot supremacy" over classical computers because it is very hard to compute on 11 In this case the computational task was to estimate the probability distribution that repeatedly executing a short sequence of quantum gates on a certain number of physical qubits in a specific quantum computer architecture and then measuring the result gives rise to. The classical hardness of the problem appears to still be debated, see <ref type="bibr">[127]</ref>.</p><p>a classical computer exactly how a teapot will shatter if it is tossed in the floor. However, using a teapot, we can compute this by tossing the teapot in the floor and observing the result. While teapots do achieve Teapot supremacy, they are clearly not superior computing devices compared to classical computers. Since Quantum supremacy is similarly biased in the favor of quantum computers, the concept of Quantum supremacy fails in Borcherds's teapot test. Aaronson on the other hand, suggested that we should feel some excitement about the Quantum supremacy experiment <ref type="bibr">[19]</ref>, seeing it as an important milestone for the field. Aaronson does however stress that the gap between the Quantum supremacy machine and CRQCs is huge and that the research community has no idea how long it will take to close that gap <ref type="bibr" target="#b6">[20]</ref>. Some researchers believe that the gap might never be closed in practice <ref type="bibr">[</ref>21][22]. Dyakonov [22] says: "I believe that, appearances to the contrary, the quantum computing fervor is nearing its end. That's because a few decades is the maximum lifetime of any big bubble in technology or science. After a certain period, too many unfulfilled promises have been made, and anyone who has been following the topic starts to get annoyed by further announcements of impending breakthroughs. What's more, by that time all the tenured faculty positions in the field are already occupied. The proponents have grown older and less zealous, while the younger generation seeks something completely new and more likely to succeed." As mentioned above, somewhat similar concerns are raised in an article [25] drawing from statements in the expert committee report [26] on the progress of quantum computing: "The kind of machine that might soon be built, something the committee calls a "noisy intermediate-scale quantum computer," or NISQ computer, probably isn't going to be of much practical use. "There are at present no known algorithms/applications that could make effective use of this class of machine," says the committee. That might change. Or it might not. And if it doesn't, it seems unlikely that industry will keep investing in quantum computing long enough for the technology to pay dividends." In their FAQ on Quantum Computing and Post-Quantum Cryptography, NSA states [104]</p><p>"NSA does not know when or even if a quantum computer of sufficient size and power to exploit public key cryptography … will exist."</p><p>It is important to keep in mind that NSA, in one of its roles, provide guidance and recommendations for protecting US National Security Systems (NSS). Information in these systems that is encrypted under public-key cryptography today may require confidentiality for many decades. The potential damage CRQCs may inflict here is the core of the motivation to seek for counter measures even if we have uncertainties around when and if these computers can be built. The risk that CRQCs will be built means that currently deployed public-key cryptography needs to be replaced with quantum-resistant alternatives.</p><p>For further reading on the state of building quantum computers, the summary in the expert committee report <ref type="bibr">[26]</ref> (and the whole report) is highly recommended.</p><p>4</p><p>Post-Quantum Cryptography (PQC)</p><p>➢ The NIST PQC standardization is an effort to standardize new quantum-resistant public-key cryptography. In particular, these algorithms can execute completely in software on classical computers.</p><p>In this report we define Post-Quantum Cryptography (PQC) as quantum-resistant cryptography that can serve as a functional replacement for current public-key cryptography. The NIST PQC standardization is an effort to standardize new Key Encapsulation Mechanisms (KEM) and digital signature algorithms that fall within the PQC scope [96]. In particular, these algorithms can execute completely in software on classical computers, in contrast to e.g., Quantum Key Distribution (QKD) which requires custom hardware. A signature algorithm is an established primitive, but the KEM abstraction shown in Figure 4 has not been used as extensively in the past. KeyGenerate() generates a private secret key SK and public key PK, just like key generation in current publickey cryptography. K  Decapsulate(SK,C) (SK,PK)  KeyGenerate() PK (K,C)  Encapsulate(PK) C Encapsulate() takes the public key PK as input and generates a random key K and an encapsulation C of K. The encapsulation C can be thought of as a kind of encryption of K. Recipient Sender Decapsulate() takes as input the private secret key SK and the encapsulation C, and outputs the now shared secret key K. Note from Figure <ref type="figure" target="#fig_2">4</ref> that, for example, both</p><p>➢ key establishment through RSA (where the sender would encrypt a randomly chosen key K under the RSA public key of the recipient and send that as the encapsulation C to the recipient), and ➢ key exchange through Diffie-Hellman (DH) (where the sender would send an ephemeral public key C as the encapsulation to the recipient from which the recipient can compute the key K as the shared secret using the DH primitive) fit within the KEM abstraction. We note one important distinction, in the DH example above, the encapsulation may also be a static public key of the sender -effectively mapping a Non-Interactive Key Exchange (NIKE) <ref type="bibr" target="#b14">[46]</ref> to the KEM setting. NIKE, which is used in for example Group OSCORE [121], is one example of how the KEM and signature frameworks targeted by the NIST PQC standardization do not fill all the needs where public-key cryptography (especially elliptic curve cryptography) is used such as for example Privacy-Enhancing Cryptography [119], Identity-Based Encryption and Signature Aggregation [120]. The KEMs in the NIST PQC standardization provide KEMs that are secure both in a stronger security model that allows for using a static recipient public key (so-called IND-CCA(2) security<ref type="foot" target="#foot_9">foot_9</ref> ) and KEMs with less overhead that support only certain ephemeral usage.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1">Why the wait?</head><p>➢ Establishing trust in new cryptographic primitives takes time. Especially for publickey cryptography where typically a new class of mathematical problems must be analyzed and well understood to ensure security. ➢ Elliptic curve cryptography is too efficient, flexible, and rich to give up easily. ➢ Updating standards and libraries takes time, and updating procedures and protocols is costly. ➢ Hybrid solutions can offer important additional assurance when migrating to PQC.</p><p>One might ask why actors are waiting to implement PQC if the threat of quantum computers cannot be ruled out and if information that is confidentiality protected today through public-key cryptography can be recorded and potentially attacked in the future. The main reasons are randomness used in creating the encapsulation is revealed to the recipient during the decapsulation procedure. The recipient then asserts that the encapsulation was generated in an honest manner using this randomness. This is the so-called Fujisaki-Okamoto transform <ref type="bibr" target="#b30">[97]</ref> which is a generic method to strengthen the security of the recipient's static key by making sure that only honestly generated encapsulations are completely processed during decapsulation (see also <ref type="bibr" target="#b36">[122]</ref> for variants). In contrast, for DH we have instantiations such as X25519 <ref type="bibr" target="#b17">[51]</ref> where it is secure to reuse a key pair in multiple DH key exchanges without using a transform like Fujisaki-Okamoto. These DH instantiations are the result of carefully developing parameter sets and (domain-aware) checks that avoid and mitigate known attacks, see for example <ref type="bibr">[66]</ref>. This can naturally be more efficient than a generic mitigation through a transform like Fujisaki-Okamoto. Renes suggests that the heavy usage of the Fujisaki-Okamoto transform can make the NIST PQC candidates more vulnerable to certain physical side-channels such as power analysis <ref type="bibr">[116]</ref>.</p><p>➢ Establishing trust in cryptographic primitives is a slow process. Ideally, we want as many experts as possible to try to break a primitive for as long time as possible before we put it into production use. Some of the PQC systems are relatively new and for new public-key cryptography there is typically a new class of mathematical problems that must be analyzed and well understood to ensure security. After the security community jointly establishes trust in a system, actors also need to wait for standardization. Part of the trust-establishment step has merged with standardization in the case of the NIST PQC standardization. After standardization, actors additionally need access to well-reviewed libraries and hardware that can support operations with the new cryptographic algorithms. Standardization also may take place in stages; first the cryptographic primitives may be standardized, then protocols such as TLS may be updated to support them. ➢ There is a cost associated with the PQC systems. Elliptic curve cryptography (ECC) provides a wide variety of very efficient primitives. We also have very efficient and secure implementations and standards available. Nobody wants to give up ECC 13 . As we will see, one typical difference between PQC and ECC is larger keys or signatures. Furthermore, changing algorithms (affecting public keys and certificates), and updating security critical software and hardware obviously costs money. There is thus a balance between prudent preparations for switching to quantum-resistant cryptography on the one hand, and making sure that the investment in implementing quantum-resistant cryptography will be a long-term secure and good choice, on the other hand.</p><p>A potential solution to the issue in the first bullet point is to run two cryptographic systems in parallel, one that is quantum-resistant and one that is well-studied and trusted to be secure against classical adversaries. So, for example, we could derive a final session key in a key establishment protocol from a combination of KPQC and KECDH, where KPQC is the key from a PQC key establishment mechanism and KECDH is the shared secret from an elliptic curve Diffie-Hellman key exchange. This is for example what was done when Cloudflare and Google tested PQC schemes in TLS [102], and NIST plans to incorporate this possibility into a future revision of SP 800-56C that deals with key establishment <ref type="bibr">[101]</ref>. An attacker would need to break both primitives independently to recover the final derived key. This is sometimes called a hybrid scheme, but note that hybrid is used for other things as well in cryptography. The obvious downsides to the hybrid solution are poorer efficiency, additional communication overhead, and additional code complexity. These downsides can be manageable though and hybrid solutions can offer important additional assurance when migrating to PQC. One could consider a similar hybrid solution for signatures as well [1][101], however, here the overhead would be more significant if hybrid signatures were used throughout a long certificate chain. Also, incorporating PQC into encryption is more urgent since encrypted information typically needs confidentiality protection for a longer time than a public key 13 Lattice-based cryptography, on which some of the most important PQC proposals are based, also seems to be very flexible and rich, exemplified by the introduction of the first fully homomorphic encryption system in 2004 by Gentry, which was based on lattice cryptography <ref type="bibr">[109]</ref>.</p><p>is valid for signature verification. At the same time, updating deployed systems for especially PKI can take many years.</p><p>An alternative quantum-resistant solution that could be deployed today already is including Pre-Shared (symmetric) Keys (PSKs) in session key derivation <ref type="bibr" target="#b22">[65]</ref> for communication protocols such as TLS. The serious downsides to this solution are the need to distribute pair-wise secret PSKs to any two parties that want to communicate, and the need for an endpoint to store many confidential PSKs rather than a single private key for public-key cryptography.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Fitting PQC into existing protocols</head><p>➢ The main difference with fitting PQC into existing protocols is larger public key or signature sizes. The performance of the PQC schemes with regard to running time is often comparable to that of today's public-key cryptography.</p><p>Taking TLS as an example, a KEM could replace the key establishment done through Diffie-Hellman key exchange today in TLS 1.3. For forward secrecy 14 , the client could send an ephemeral KEM public key to the server to which the server responds with an encapsulation of a shared a key K. The session key is then derived from K, much like it is derived from the shared Diffie-Hellman secret in TLS 1.3 today.</p><p>In TLS, the handshake is authenticated by the server towards the client using a digital signature over all the information exchanged during the handshake. The client authenticates towards the server either through digital signature, or in the application layer (by e.g., "logging in") as is often the case in human-to-server communication on the Web. These signatures could of course be replaced by PQC signatures. But for this kind of pairwise (interactive) communication there is also another possibility. The server could authenticate by proving knowledge of a key K that is decapsulated from an encapsulation which is encapsulated towards a KEM public key tied through PKI to the server. This means that we replace a signature sent from the server with an encapsulation sent from the client to the server and e.g., a MAC tag computed using K (over the information in the handshake) sent from the server to the client. Of course, the most relevant overhead in practice may be a certificate chain that certifies the server public key rather than the size of the signature or KEM public key used by the server for authentication. See <ref type="bibr" target="#b8">[33]</ref> for a discussion about using KEMs for handshake authentication in TLS. Existing versions of TLS could also have relied on authentication through static DH keys (instead of RSA-based signatures), but one problem with this would be the overwhelming popularity of certificates with RSA keys. Static DH keys are used for authentication in for example Signal X3DH [123] and EDHOC <ref type="bibr">[124]</ref>. Note that the DH primitive is more flexible than a KEM. In the X3DH and EDHOC examples, an ephemeral DH public key (which can be thought of as the encapsulation when mapping to a KEM) can be combined with multiple different DH keys to form shared secrets, something which is not possible with KEM encapsulations in general. As applications 14 Forward secrecy typically implies that new ephemeral public keys are used for key establishment in essentially every session.</p><p>After the session ends, all keys are securely deleted. Thus, session keys cannot leak at a later time. Such ephemeral public keys must of course be authenticated by some means to provide any security. migrate to PQC, new certificates will be needed anyway and maybe there will be more widespread usage of KEMs for pair-wise authentication.</p><p>As shown in Section 4.5 the main difference with fitting PQC into existing protocols is communication overhead. The performance of the PQC schemes with regard to running time is typically comparable to that of today's public-key cryptography. NIST summarizes the status of replacing current public-key cryptography with any of the different (classes of) PQC algorithms as "Unfortunately, each class has at least one requirement for secure implementation that makes drop-in replacement unsuitable." <ref type="bibr">[67]</ref> The earlier mentioned PQC TLS experiment by Google and Cloudflare gives some observations about using PQC in TLS <ref type="bibr">[118][16]</ref>. In this experiment, Diffie-Hellman key exchange in TLS 1.3 was experimentally replaced with two hybrid alternatives: a) ECDH + NTRU-HRSS-KEM<ref type="foot" target="#foot_10">foot_10</ref> , and b) ECDH + SIKE. As can be seen in Table <ref type="table" target="#tab_4">1</ref> of Section 4.5, alternative b) has smaller communication overhead but slower running times, while alternative a) has the opposite properties. While the clients were biased towards more powerful platforms (x64 and AArch64) -which could favor the slower running times of alternative b) -the overall TLS handshake times tended to be faster for alternative a).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3">Fitting PQC into constrained scenarios</head><p>Over constrained network links, the typically larger signature and encapsulation sizes of the PQC schemes may lead to for example packet fragmentation and increased energy spent in the radio or wire-line interfaces on sending more bits.</p><p>For constrained devices, there has been quite a lot of implementation work on the 32-bit Cortex M4. In the NIST PQC standardization third round conference, the pqm4 project reported on the performance of implementations of almost all the finalist candidates in the standardization <ref type="bibr">[114]</ref>. The results where for a platform with the Cortex M4, 128 KB RAM and 1 MB of flash storage. On the KEM side, SABER performed well, while the results on the signature side were more mixed. Implementations can be challenged by the fact that the RAM is not even large enough to hold the whole public key for some of the standardization candidates. In <ref type="bibr" target="#b35">[115]</ref>, implementers work with Classic McEliece (whose public key is 260 KB for its smallest parameter set) on a platform with 192 KB of RAM. In the call for proposals, NIST asks implementers to also consider even more constrained 16-and 8-bit microprocessors <ref type="bibr" target="#b34">[113]</ref>. Atkins <ref type="bibr">[112]</ref> says that RAM appears to be the bottleneck with storage currently growing at a faster rate over time. So, Atkins suggests that NIST should focus on RAM usage in the standardization, rather than code size, when considering devices that are even more constrained than typical platforms with the Cortex M4.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.4">Stateful hash-based signatures</head><p>➢ Stateful hash-based signature schemes depend on security-critical dynamic state. Otherwise, their security depends only on some generally accepted assumptions about cryptographic hash functions. ➢ The standardized stateful hash-based signature schemes are currently the only option for applications that o can handle the dynamic state, o cannot wait for the outcome of the NIST PQC standardization, and o are prepared to deal with using a stateful algorithm that may not yet be supported by common tools for PKI.</p><p>Two stateful hash-based signature schemes have been standardized by IETF and NIST 16 : LMS and XMSS. We discussed in Section 3 how the security of hash functions is unaffected by quantum computers. These schemes are indeed PQC schemes, and this is the reason why there was a sudden interest to standardize them. The idea of using hash functions to build signature schemes is otherwise quite old but has not been interesting up to now since signature sizes are much larger than for signature schemes currently deployed and the stateful hash-based signature schemes have the serious burden of depending on security critical dynamic state. We explain the idea behind the standardized stateful hash-based signature schemes in Appendix B.</p><p>It is critical for security that two distinct messages are not signed using the same private key state (leaf WOTS private key in Appendix B). This dynamic security-critical state is the reason that NIST and NSA consider these schemes not to be suitable for general use <ref type="bibr">[41][42]</ref>. These schemes, LMS and XMSS, are currently the only option for applications that can handle the dynamic state, cannot wait for the outcome of the NIST PQC standardization and are prepared to deal with using a signature algorithm that may not be supported by tools for PKI.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.5">NIST PQC standardization -candidates and progress</head><p>➢ Lattice-based cryptography will offer a good middle-way for PQC with efficient running times and medium-sized communication overhead. These schemes are represented both as finalist KEM and signature algorithm candidates in the standardization.</p><p>NIST aims to announce the first selected algorithms for standardization close to the end of 2021 and provide draft standards in 2022-2023 17 . From the initial 69 accepted 1 st round candidates, the 3 rd round candidates consist of 7 finalists and 8 alternate candidates. The first algorithms selected by NIST will mainly be chosen from the finalists. Additional algorithms may be selected after an additional round of evaluation. Four of the finalists are 16 See <ref type="bibr" target="#b33">[110]</ref> for a comparison between LMS and XMSS written by authors from the LMS team.</p><p>17 Unless otherwise stated, the implicit reference in this section is the NIST Status Update on the 3 rd Round [69] from the Third PQC Standardization Conference (June 7-9, 2021).</p><p>KEMs and three are signature schemes. NIST has successfully attracted world-leading experts in the field of PQC to make submissions in the standardization.</p><p>To assess the security of the PQC candidates, NIST has asked the submissions to rank the security of the candidates according to security levels that are based on the optimal classical and quantum attacks on ideal ciphers (exemplified by AES) and hash functions (exemplified by SHA-2). For example, the schemes in</p><p>Table 1 and 2 are believed to be security level 1. This means that any significant quantum or classical attack on them should be as expensive as a key recovery attack on AES-128 (using either classical brute-force or Grover's quantum algorithm) [59]. Some experts have argued that security level 1 or 2 should not be used due to cryptanalysis for the PQC candidates still not being completely settled down [136].</p><p>➢ Three of the finalist KEMs (Kyber, NTRU, SABER) are so-called structured latticebased schemes. NIST expects to select at most one of these KEMs for standardization, but may standardize more than one. Lattice-based cryptography uses hard problems on mathematical objects called lattices as the foundation for its security <ref type="bibr" target="#b23">[71]</ref>. While security reductions that relate the security of some of these lattice-based schemes to known conjectured-to-be-hard computational problems on lattices exist, for efficiency, concrete schemes are typically instantiated with heuristic assumptions and parameters are set only with respect to best known attacks in practice <ref type="bibr">[72]</ref>. An example of a heuristic assumption could be that a certain structure in a problem does not give an attacker any advantage compared to the corresponding unstructured mathematical problem. Overall, there is quite strong confidence in the security of lattice-based schemes. Cryptographic applications have been studied extensively the last two decades <ref type="bibr" target="#b23">[71]</ref>  As stated earlier, there are three different finalists in the digital signature track. NIST is concerned about the lack of diversity in these finalists (two being structured lattice-based schemes and the third having an unstable security history), and has therefore declared that there will be a new call for proposals for additional quantum-resistant digital signature schemes at the end of the third round of the original standardization effort. The third round is expected to end in late 2021 or early 2022.</p><p>➢ Two of the finalist signature schemes Dilithium and Falcon are structured latticebased schemes. They vary in their construction, and Falcon has significantly smaller signatures (roughly 800 bytes). In their talk at the Third PQC Standardization Conference, the Dilithium team pointed out that the design choice of Falcon that enables small signatures also makes secure implementation of the scheme significantly more complicated and difficult than in the Dilithium case <ref type="bibr">[80]</ref>. Like for their KEM counterparts, there is quite strong confidence in the security of these structured lattice-based signature schemes, and they have had a stable security history through the NIST PQC standardization. Like for the structured lattice-based KEM schemes, NIST expects to standardize at most one of these two schemes and that scheme has a good chance to be the main general purpose PQC signature scheme considered for adoption in protocols and industry in the years following the NIST PQC standardization. ➢ The third finalist signature scheme is Rainbow which is based on multivariate cryptography. Rainbow's security relies on the hardness of finding solutions to certain polynomial equations with certain structure. There have been relevant attacks on Rainbow during the standardization process <ref type="bibr">[81]</ref>. The Rainbow team responded to the latest attack by only updating the way that attacker cost is estimated in their security model, thus leaving their parameter sets unchanged <ref type="bibr">[82]</ref>.</p><p>NIST has expressed concern about the security of multivariate cryptography [83], and ENISA states that "the security analysis of Rainbow cannot be considered stable at the moment" [81]. As can be seen in Table <ref type="table">2</ref>, Rainbow has large public keys (roughly 160 KB), but very small signatures (64 bytes -as small as current elliptic curve cryptography signatures). ➢ SPHINCS+ is an alternate candidate and a stateless hash-based signature scheme.</p><p>It is based on the same idea as the stateful hash-based signatures of Section 4.4. As explained in Appendix B, the security critical state in stateful hash-based signatures controls that internal low-level one-time signature keys are used only once. In SPHINCS+ these one-time keys are replaced by "few-time" signature keys, and for each signing operation in SPHINCS+, such an internal few-time signature key is randomly chosen. Each few-times signature key can be reused up to a certain limit while retaining security of the overall algorithm. Overall, the algorithm supports for up to 2 64 signatures to be issued, as requested by NIST in the call for proposals <ref type="bibr">[96]</ref>.</p><p>As can be seen in Table <ref type="table" target="#tab_4">1</ref>, SPHINCS+ has a slow signing operation and large signatures.</p><p>Detailed documentation for all of the NIST PQC standardization candidates is available from the NIST third round home page <ref type="bibr">[111]</ref>. Being written by experts in the field and continuously updated throughout the standardization effort that started in 2017, this documentation is a great technical entry point to the field of PQC. Many submissions also include optimized constant-time<ref type="foot" target="#foot_12">foot_12</ref> implementations.</p><p>impact of deploying PQC KEMs in TLS. One consideration for that experiment is whether maximum transmission unit restrictions over the network in combination with communication overhead from PQC algorithms give rise to additional packet fragmentation during the TLS handshake <ref type="bibr">[16]</ref>. The communication overhead of PQC can also contribute to filling congestion windows in protocols such as TCP <ref type="bibr">[134]</ref>.</p><p>Exactly what will happen when the NIST PQC standardization ends sometimes in the next few years is hard to say. A likely scenario is that other standards-developing organizations will follow and that important protocols such as TLS and IKEv2 will be updated to support the new standardized PQC algorithms. It is also likely that the new algorithms have good library support in important software libraries such as OpenSSL at that time since work on production grade (e.g., efficient, and secure against timing side-channel attacks) implementations is already in progress <ref type="foot" target="#foot_13">20</ref> . In contrast, somewhat more uncertain is how fast deployment in applications, support in hardware and support in PKI will come. These are things that come at a cost (e.g., overhead, issues with legacy interworking, and deployment/development costs) to the relevant actors, and one important drive here could be what real progress is made towards large-scale quantum computers in the next few years. As a rough analogy one can consider how slow applications and actors have historically been at phasing out algorithms (e.g., MD5, RC4, SHA-1) whose security has gradually but publicly degraded through cryptanalysis <ref type="bibr">[15]</ref>. However, one must not only consider the cost of upgrading cryptographic algorithms and the security risk of using degraded algorithms, but also the pure cost in reputation of using degraded algorithms. An event that could drive forward PQC adoption after the NIST PQC standardization is complete is if SDOs and other important actors such as NSA not only update standards and guidance to support the new PQC algorithms, but also deprecate our currently used publickey algorithms. NSA says <ref type="bibr">[104]</ref> "Programs should anticipate that after NIST provides the needed [PQC] standards there would be rapid movement toward requiring support of a quantum-resistant standard in new acquisitions."</p><p>As discussed previously in this report, updating authentication is typically less pressing than confidentiality protection, and thus PKIs might be relatively slow in deploying PQC, as briefly discussed by Langley <ref type="bibr">[118]</ref>. Firmware updates with very long-term keys is a case of authentication that requires special attention. Stateful hash-based signatures -being standardized already -have been considered for this use case <ref type="bibr" target="#b31">[105]</ref>.</p><p>We cannot rule out that results in cryptanalysis for some class of the new PQC algorithms could also appear, such an event could seriously disrupt deployment. Most serious would presumably a serious attack on the lattice-based schemes be since these are represented through several contributions in the NIST PQC standardization and are typically regarded to be a good middle way when taking communication overhead, performance, and security into account, as discussed in Section 4.5. It should also be noted that for most schemes in the NIST PQC standardization, the underlying computational assumptions have been studied for many years, if not decades, before the standardization started.</p><p>A NIST whitepaper Getting Ready for Post-Quantum Cryptography [67] recommends that enterprises, as an initial step in migrating from current public-key cryptography to PQC, makes an inventory of where and for what they are using public-key cryptography. After that, <ref type="bibr">[67]</ref> advises that enterprises determine use characteristics such as hardware/software limits related to current key sizes, latency, and throughput thresholds, etc. NIST is also launching a project to ease migration to PQC <ref type="bibr">[68]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.7">Possible adoption of quantum-resistant cryptography in future 3GPP networks</head><p>The cryptographic protection in the radio access of 3GPP networks relies mostly on symmetric cryptography today (e.g., UE authentication and radio access ciphering/integrity protection). As we saw in Section 3.3 there is no need to update this protection specifically due to the threat of large-scale quantum computers <ref type="foot" target="#foot_14">21</ref> . In contrast, the SUPI protection (SUCI <ref type="bibr">[125]</ref>) that relies on public-key cryptography is affected by quantum computers and so is any 3GPP network domain security that relies on public-key cryptography (e.g., IKEv2 in the IPsec suite and TLS) as explained in the previous section. A possible upgrade path for SUCI is HPKE [126] (a public-key encryption system based on the KEM+DEM paradigm which is under development in the IETF) which is expected to be updated with PQC algorithms at the same time as TLS.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>5</head><p>Summary of the security of Quantum Key Distribution (QKD)</p><p>➢ QKD typically needs to rely on many of the same computational assumptions as conventional efficient cryptography. ➢ QKD has less well-understood of a risk profile and implementation security than conventional cryptography. ➢ QKD is inherently tied to custom hardware. This can increase cost and risk, compared to conventional cryptography that can often be patched and upgraded in software. ➢ QKD is inherently tied to the physical layer, this gives a quite different attack surface than conventional cryptography. ➢ QKD is fundamentally a point-to-point protocol. This can imply a dependency on trusted intermediate nodes that is not compatible with the modern technology environment which is moving towards end-to-end encryption and Zero Trust principles. ➢ QKD may be more sensitive to Denial-of-Service attacks than conventional cryptography. ➢ There is a consensus in the security community that QKD has many fundamental issues that would need to be solved before being considered as a secure complement to conventional cryptography. QKD is the primary example of so-called Quantum Cryptography but it is important to understand that it has nothing necessarily to do with quantum computers. The idea was first described in the 80's [34] and several commercial systems exist. We refer the interested reader to Wikipedia for a simple description of QKD using photons <ref type="bibr">[34]</ref>. Essentially, in theory, QKD allows Alice and Bob to agree on a shared (classical) key by Alice sending qubits (photons in the Wikipedia example) to Bob over a quantum communication channel. By sending and receiving the photons using a clever encoding scheme Alice and Bob can determine with almost certainty if an attacker has interfered and eavesdropped (i.e., measured the qubits). If this is the case, they abort. Otherwise, they can derive a short key that a potential attacker has supposedly essentially no information about. An important condition is that Alice and Bob need an authenticated conventional communication channel (in addition to the quantum one) to make comparisons and exchange information. Also, harmless noise on the quantum channel and potential interference by an eavesdropper are indistinguishable.</p><p>It is sometimes said that QKD is provably secure from "the laws of physics" or similar (see e.g., <ref type="bibr" target="#b7">[23]</ref> for references). Bernstein <ref type="bibr" target="#b7">[23]</ref> criticizes these kinds of formulations as misleading. Indeed, if the security of QKD is provable from the laws of physics, then it sounds like QKD is a well-defined physical process that has some proven physical security property. But the published physical attacks on commercial QKD (see e.g., <ref type="bibr">[24]</ref> for references) contradict this. Bernstein in fact argues that it is unlikely that a physical process similar to how QKD is typically described could be absolutely provably secure since information about the agreed upon (classical) shared key presumably leaks (to some small, albeit non-zero amount) through various standard physical phenomena such as e.g., electromagnetic radiation 22 . The way that we will make sense of the connection between the security proofs for QKD and the physical systems claiming to perform QKD in the rest of this report is the following. There is a protocol called QKD taking place in a mathematical model that is modelled after quantum mechanics. Attackers are limited in the mathematical model to certain well-defined mathematical actions and physical leakage through sidechannels or other physical attacks on the protocol is out of scope in the model. Presumably, the theoretical model cannot be implemented absolutely securely in the physical world due to e.g., side-channel attacks, as argued by Bernstein. Then we have hardware components provided by actors that are claimed to provide a sufficiently secure implementation (a kind of practically realizable approximation) of the theoretical protocol 23 . As we will argue below, this is where part of the security problems with QKD begin since the most important attack surface against modern cryptography is implementation details.</p><p>QKD is sometimes said to be provably secure without relying on computational assumptions. At the same time, we mentioned above that QKD needs external authentication. For this reason, QKD has been described as a "key expansion primitive" <ref type="bibr" target="#b3">[9]</ref>: A short pre-shared symmetric key used for authentication is expanded through QKD into an 22 See also the assumption about "Sealed laboratories" in device independent QKD later in the text. 23 It is common to have security proofs (in a mathematical model) building on computational assumptions for conventional cryptography as well. In the gap, between that security proof and a concrete implementation executing in a given threat model, lives side-channel attacks that depend on implementation details which are out of scope in the mathematical model. unconditionally secure, which -once again -means that the system as a whole is not unconditionally secure. ➢ While the security proof for QKD is a good first step -just like such a tool is valuable for conventional cryptography -attacks on modern cryptography almost always target implementation details, and not the underlying theoretical algorithms. The long and rich history of attacks on implementations of cryptographic protocols show how hard it is to get all of these implementation details exactly right. The standard cost-efficient way to reduce the risk of implementation vulnerabilities is to use wellreviewed and highly trusted implementations of cryptographic primitives such as those in a well-known open-source software library. Regarding the implementation security of QKD hardware, NSA <ref type="bibr">[12]</ref> states that "Communications needs and security requirements physically conflict in the use of QKD/QC, and the engineering required to balance these fundamental issues has extremely low tolerance for error. Thus, security of QKD … is highly implementation-dependent rather than assured by laws of physics."</p><p>Indeed, there have been attacks on commercial implementations of QKD <ref type="bibr">[24]</ref>. It is important to note that conventional cryptography is implemented at a higher layer than the physical layer. In modern cryptography, the physical layer is often just an untrusted pipe and the attacker may be assumed to be able to launch any attack against it. In contrast, QKD is inherently tied to the physical layer and its practical security depends on implementation details at the physical layer as shown by attacks on commercial QKD systems <ref type="bibr" target="#b9">[37]</ref>. This fact gives QKD and conventional cryptography quite different attack surfaces in practice. Experimental "device independent" QKD (e.g., DI-QKD, DDI-QKD and MDI-QKD) is being studied by the QKD community, it appears that this technology does not close this attack surface against QKD <ref type="bibr" target="#b15">[49]</ref> since these experimental technologies still need to make various assumptions about isolation of the quantum devices:</p><p>"In device-independent quantum key distribution, we make the additional assumption that there is no communication between the adversary and the quantum devices." <ref type="bibr" target="#b10">[38]</ref> "In terms of security, MDI-QKD closes all side-channels in the detection unit, which significantly simplifies the path towards achieving implementation security in QKD, as now one only needs to secure the source. MDI-QKD requires, however, that certain assumptions on the sources are satisfied." <ref type="bibr" target="#b11">[39]</ref> ➢ Post-Quantum Cryptography (PQC) typically has a better understood risk profile than QKD <ref type="bibr">[12]</ref>. Much of the knowledge about implementing public-key cryptography securely which has been gradually (and sometimes painfully) built over the last decades can be more or less directly transferred to the PQC schemes in the NIST PQC standardization, this includes security models and low-level implementation details such as protection against side-channel attacks. Furthermore, while PQC relies on the intractability of certain mathematical problems, this still appears to be a better situation than QKD which is inherently tied to hardware. A mathematical problem can be made available to, and discussed over the Internet between any researchers that are interested while every piece of QKD hardware is a unique physical thing that may require expensive hardware to thoroughly study. ➢ QKD is inherently tied to custom hardware. This is in contrast to PQC systems in software that can be patched or upgraded in software. This difference may negatively affect the security of QKD, leaving vulnerabilities deployed longer in production because of replacement costs. Both conventional cryptography and QKD may depend on hardware acceleration for e.g., high-speed data protection through symmetric cryptography. ➢ QKD is fundamentally a point-to-point protocol. The straightforward way to extend it is to use a sequence of QKD protocol instances between trusted nodes that form a path between the two end-user parties. Introducing trusted nodes can be a serious obstacle in a technological environment where many applications are moving more towards end-to-end security <ref type="bibr">[35]</ref> and Zero Trust principles. Experimental ideas for building "quantum repeaters" that supposedly remove the need for trusted nodes are also being considered <ref type="bibr">[36]</ref>. It is critical that any such technology is securely implemented, and not only modelled after something that is secure in some idealized mathematical model. In contrast, conventional cryptography can secure information that is sent through untrusted nodes over the Internet today already.</p><p>Figure <ref type="figure" target="#fig_3">5</ref> shows a comparison between secure two-party communication using conventional crypto (e.g., PQC) and using QKD. ➢ QKD may be more sensitive to DoS (Denial-of-Service) attacks than conventional cryptography <ref type="bibr">[12]</ref>. NSA <ref type="bibr">[12]</ref> specifically mentions the fact that sensitivity to an eavesdropper is at the core of the security idea for QKD. At the same time, in principle, any communication system (including classical ones) can be subjected to DoS if the attacker has sufficient control over the channel. Classical communication can however be error-corrected through standard ways to mitigate attacks to a certain degree. It may also be easier to utilize redundant paths for classical communication which is more flexible than QKD communication which is tied to hardware and particular communication channels. It remains to be seen whether the strong reservations against QKD put forth by government agencies will alone be a show-stopper to deploying QKD in any critical national infrastructure. In <ref type="bibr">[12]</ref>, NSA writes that it does not recommend deploying QKD for securing US National Security Systems, unless the limitations discussed in [12] are overcome. NCSC (UK) states [27]:</p><p>"NCSC does not endorse the use of QKD for any government or military applications, and cautions against sole reliance on QKD for business-critical networks, especially in Critical National Infrastructure sectors." ANSSI (France) highlights a number of problems and limitations of QKD but still does not want to rule out that QKD could be deployed as a defense-in-depth measure on point-topoint links in combination with classical cryptography (e.g., a classical asymmetric key exchange such as elliptic curve Diffie-Hellman) as long as "the cost incurred should not jeopardize the fight against current threats to information systems" <ref type="bibr">[32]</ref>. However, if one is actually seriously concerned about relying on a computational assumption used in a specific instance of a public-key cryptography scheme, then a more cost-efficient solution is likely to deploy several public-key primitives in a hybrid fashion as discussed in Section 4.1. For key establishment, an extremely paranoid application could bundle up say RSA encryption, DH, ECDH and all of the round 3 NIST PQC KEM contributions in a hybrid solution so that an attacker would need to break all of the schemes to gain any useful information at all about the shared key. It is hard to see a competitive business application in any industry deploying such a paranoid solution when most of the daily TLS traffic over the Internet rely on a single version of some Diffie-Hellman key exchange.</p><p>6 Appendix A: Quantum random number generators (QRNGs)</p><p>A hardware Random Number Generator (RNG) is random bit generator that uses some physical process to collect random bits. A quantum RNG (QRNG) is an RNG that specifically uses a physical process that is at the "quantum level" [8].</p><p>➢ Quantum random number generators solve no real issue with our current hardware RNGs. If trustworthy vendors make QRNG technology in the future that is as wellunderstood and certified to the same degree as common RNG technology, then QRNGs could be evaluated as alternatives to common RNG technology.</p><p>The claimed argument for preferring QRNGs over other more traditional hardware RNGs is that QRNGs in theory produce perfectly random bits while the physical process utilized in traditional RNGs may produce biased bits that are not perfectly random. However, this is in practice a non-issue since we have established methods for going from biased non-perfectly random bits to what we need: bits that look perfectly random in the eyes of any existing adversary. To give more detail: the physical process in an RNG need not produce perfect random bits, rather it must produce a relatively small amount of total randomness (e.g., 128-256 bits of so-called entropy) so that we can smooth it out and output as much cryptographically secure randomness we need through cryptographically secure pseudo-random number generators (CSPRNGs) (which are seeded and reseeded using random bits from the physical process in the RNG). The principles that the CSPRNG process builds on are typically the same ones as our conventional symmetric cryptography builds on.</p><p>One issue that has been discussed about traditional hardware RNGs is trust in the nonmaliciousness of the RNG [4]. As we argued in Section 5 regarding QKD, relying on an opaque piece of hardware for security operations is typically less appealing than trusting an open-source software library. But in the case of RNGs or QRNGs, we have no choice, we must trust an opaque piece of hardware in practice <ref type="foot" target="#foot_17">26</ref> . In practice this trust falls on the manufacturer of that hardware. If we ignore test procedures that check if the RNG is not faulty, this is essentially a trust issue that is not solved by technology. On their recent CPU chips, Intel provides a hardware RNG that is accessible through the RDRAND instruction. This traditional RNG follow the principles from the previous paragraph <ref type="bibr" target="#b2">[7]</ref> and most discussion about it has been focused on whether one wants to trust that this RNG is not malicious <ref type="bibr">[4]</ref>. One can hedge against non-ideal trust in a single RNG vendor (e.g., Intel) by mixing output entropy from more than one hardware source in some well-reviewed way 27 . Similarly, one can and should mix in accessible randomness from system events that are believed to contain some entropy to avoid relying only on a single hardware source of entropy. It should also be noted that security typically relies on trusting at least some part of the hardware, e.g., the CPU. Building secure complex systems at a competitive price will imply trusting many other components, including various software libraries (e.g., compilers, programming language libraries, operating system distributions, etc.). For an industry product that has already decided to trust for example the CPUs from a vendor, relying also on the RNGs on those CPU chips may be reasonable and cost-efficient. Trust in a hardware vendor here means trust in that the supply chain and production (including delivery) of the product is not malicious. If we also consider vulnerabilities inadvertently inserted in the random generator, then it appears that one should also prefer a well-known RNG such as the Intel one, rather than one from some smaller less established QRNG vendor.</p><p>Additionally, a main general practical problem is to make proper use of hardware random bit generators in virtual and container implementations. See the work of BSI <ref type="bibr">[117]</ref>, which discusses amongst other the impact of the VMM (Virtual Machine Manager) on the randomness in the virtual machine.</p><p>NCSC lists a better understanding of the robustness and security of QRNG technology as a future research challenge <ref type="bibr" target="#b16">[50]</ref>. On the topic of QRNGs, the NSA points out that there is a variety of non-quantum hardware RNGs that have been appropriately validated and certified <ref type="bibr">[104]</ref>.</p><p>A candidate WOTS public key is computed from (i) (and the message being verified) as described above, and that candidate WOTS public key is then verified by using (ii) and the candidate WOTS public key to compute a candidate root value of the hash tree. The signature is valid if the candidate root value equals the public key (of the signature scheme). We are skipping some details that are important for security here. Furthermore, we may actually have multiple layers of trees so that we do not need to compute all the bottom leaf nodes at key generation, this choice would depend on how many messages we intend to sign over the lifetime of the public key. If we have, say 20 levels, in the hash tree (L = 20), then we can sign 2 20 messages and a signature has size 2048 + 20 • 32 ≈ 2700 bytes. In comparison, an ECDSA signature is typically 64 bytes. If we have two layers of trees, then signatures are twice as big, and we can sign 2 40 messages instead. See Table <ref type="table">2</ref> for exact public key and signature size for the LMS signature scheme using a single tree and 20 levels. That instance can use its private key to sign at most 2 20 messages. Stateful schemes like LMS and XMSS are out of scope in the NIST PQC standardization.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Figure 2 :</head><label>2</label><figDesc>Figure 2: Envisioned structure of future error-corrected quantum computers.</figDesc><graphic coords="7,124.75,278.90,471.50,256.50" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Figure 3 :</head><label>3</label><figDesc>Figure 3: Quantum part of Shor's algorithm (for factoring).</figDesc><graphic coords="9,145.85,253.70,390.80,191.30" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>Figure 4 :</head><label>4</label><figDesc>Figure4: The operations and communication of a KEM. Sender and recipient share a secret key K after carrying out the KEM procedure. The key K can then be used to e.g., key a symmetric cipher.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>Figure 5 :</head><label>5</label><figDesc>Figure 5: Secure communication comparison between conventional cryptography (e.g., PQC) and QKD. The orange boxes in the PQC scenario show how PQC could be introduced into a legacy environment that uses today's public-key cryptography.</figDesc><graphic coords="33,124.75,136.10,433.65,307.35" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_4"><head>Table 1 :</head><label>1</label><figDesc>As can be seen in Table1, the public keys and encapsulations in these finalist KEMs start in the 600-800-byte range. These quantities are 32-64 bytes in today's elliptic curve Diffie-Hellman, which is vulnerable to Shor's quantum algorithm. ➢ The fourth finalist KEM -Classical McEliece -is code-based. In code-based cryptography, error-correcting codes are used to decode a message that has been masked with random noise. Classical McEliece uses more unstructured codes than some other code-based candidates that have not qualified as finalists, and is based on a system by McEliece from 1978 [74]. The system enjoys a long and stable security history [75], which NIST says inspire confidence [76]. Classical McEliece is one of two PQC systems that the German BSI have issued an initial recommendation for 18 . As can be seen in Table 1, Classical McEliece has small encapsulation size (128 bytes), but very large public keys at roughly 200 KB. NIST says [77] that it was impressed by Post-quantum WireGuard where static Classical McEliece keys are used long-term for pair-wise authentication and their cost is amortized over many handshakes. This is the same principle as discussed in Section 4.2 of using KEMs for pair-wise authentication. ➢ A noteworthy alternate candidate KEM is SIKE (Supersingular Isogeny Key Encapsulation). SIKE works on elliptic curves like elliptic curve Diffie-Hellman (ECDH) but instead of staying on a single fixed curve, SIKE jumps between many different curves that are connected through so-called isogenies. In particular, unlike ECDH, SIKE does not rely on the hardness of the elliptic curve discrete logarithm problem which is broken through Shor's quantum algorithm. SIKE is based on problems that are relatively new, but it has a very stable (albeit short) security history [78]. As can be seen in Table 1, SIKE has relatively small public keys and ciphertexts (roughly 400 bytes, and they can be compressed down to roughly 200 bytes), but orders of magnitude slower running time than many other candidates. Single-core median performance on Intel Xeon E-2124 3.3 GHz of some of the NIST PQC KEM algorithm candidates (and some current non-PQC alternatives) at NIST PQC security level 1. Source: r24000, supercop-20210604 at [107]. The measurements for RSA-3072 are estimated by taking the measurements for verify and sign from Table 1 as encapsulate and decapsulate, respectively. The measurements for SIKE are for a different platform: Intel Core i7-6700 3.4 GHz [108].</figDesc><table><row><cell>KEM algorithm</cell><cell>Generate key</cell><cell>Encaps.</cell><cell>Decaps.</cell><cell>Public key size</cell><cell>Encaps. size</cell></row><row><cell>NTRU (ntruhps2048509)</cell><cell cols="3">0.048 ms 0.0073 ms 0.012 ms</cell><cell>699 B</cell><cell>699 B</cell></row><row><cell>Kyber (kyber512)</cell><cell cols="3">0.0070 ms 0.011 ms 0.0084 ms</cell><cell>800 B</cell><cell>768 B</cell></row><row><cell>SABER (lightsaber2)</cell><cell cols="3">0.012 ms 0.016 ms 0.016 ms</cell><cell>672 B</cell><cell>736 B</cell></row><row><cell>Classic McEliece (mceliece348864)</cell><cell cols="4">14 ms 0.011 ms 0.036 ms 261120 B</cell><cell>128 B</cell></row><row><cell>SIKE (SIKEp434_compressed)</cell><cell>3.0 ms</cell><cell>4.4 ms</cell><cell>3.3 ms</cell><cell>197 B</cell><cell>236 B</cell></row><row><cell>ECDH (X25519) (non-PQC)</cell><cell cols="3">0.038 ms 0.044 ms 0.044 ms</cell><cell>32 B</cell><cell>32 B</cell></row><row><cell>ECDH (P-256) (non-PQC)</cell><cell>0.074 ms</cell><cell>0.18 ms</cell><cell cols="2">0.18 ms 32-64 B</cell><cell>32-64 B</cell></row><row><cell>RSA-3072 (non-PQC)</cell><cell cols="2">400 ms 0.027 ms</cell><cell>2.6 ms</cell><cell>384 B</cell><cell>384 B</cell></row></table><note><p>and an original NTRU system dates back to the 90's[73]</p><p>. NSA recently stated that it expects that lattice-based cryptography as standardized by NIST will be deemed secure enough to protect US National Security Systems (NSS)[42]</p><p>. In fact, NSA plans to add structured latticebased cryptography to its CNSA suite already at the end of the third round of the NIST PQC standardization (tentatively late 2021 -early 2022) [104]. It appears that structured lattice-based cryptography will offer a good middle-way for PQC with efficient running times and medium-sized communication overhead.</p></note></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="1" xml:id="foot_0"><p>erik.thormarker@ericsson.com</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="3" xml:id="foot_1"><p>Mathematically speaking, Q is a unit vector in a two-dimensional complex vector space.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="4" xml:id="foot_2"><p>The previously described phenomena of entanglement can now be seen to the right in Figure1: if we would measure the first qubit and see that it is in state 0 ̅ , then we would also know that the second qubit is in the same state 0 ̅ . The corresponding holds if we measure and see that the first qubit is in the state 1 ̅ . As we measure the first qubit, the whole collective qubit state collapses to a state that is consistent with the measurement result in the first qubit.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="5" xml:id="foot_3"><p>To solve this, we can swap the position of two qubits (in the circuit) using a few applications of the quantum "CNOT" gate [48]. CNOT is essentially a quantum version of the XOR operation, and we can use the classic XOR swap trick [47].</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="6" xml:id="foot_4"><p>E.g., in time complexity that grows slower than log 3 𝑁.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="7" xml:id="foot_5"><p>logical ones in the terminology of Section 3.1.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="8" xml:id="foot_6"><p>Note that this is a very reasonable assumption. Much information sent encrypted over the Internet is e.g., known headers or plaintext of a known format.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="9" xml:id="foot_7"><p>It is roughly an implementation of AES encryption. Gate depth 2<ref type="bibr" target="#b5">11</ref> for this operation is estimated in Table8of<ref type="bibr" target="#b21">[61]</ref>.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="10" xml:id="foot_8"><p>The bitcoin network computes approximately 2 92 SHA-256 hashes per year [90], well out of reach of the expected 2<ref type="bibr" target="#b37">128</ref> needed to find a collision this way for SHA-256. Note that, for example for SHA-1, cryptanalytic progress specific to SHA-1</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="12" xml:id="foot_9"><p>This gives security against not only passive attackers, but also active attackers. To achieve such strong security, the</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="15" xml:id="foot_10"><p>Now merged into the finalist candidate NTRU in Section 4.5.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="18" xml:id="foot_11"><p>The other one also being a conservative choice, FrodoKEM -an unstructured lattice-based scheme that is also a NIST PQC 3 rd round alternate candidate.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="19" xml:id="foot_12"><p>A constant-time implementation is one where the running time of the algorithm does not depend on the value of secret key data. This prevents timing-based side-channel attacks.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="20" xml:id="foot_13"><p>This can be seen e.g., from the activities discussed in the NIST PQC standardization forum[14].</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="21" xml:id="foot_14"><p>However, if user authentication is augmented with current public-key cryptography to provide additional security even in very strong threat models, then these parts would need to be updated.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="24" xml:id="foot_15"><p>It is sometimes further envisioned that part of the agreed upon shared secret key can be used to authenticate the next QKD protocol run<ref type="bibr" target="#b3">[9]</ref>. This means that, in theory, we no longer need to rely on the original pre-shared symmetric key after using it once.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="25" xml:id="foot_16"><p>See also<ref type="bibr" target="#b7">[23]</ref> where Bernstein discusses an attacker that records physical side-channel information about the processing of the agreed upon shared key and then derives the shared key by computations on the side-channel information.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="26" xml:id="foot_17"><p>Even if the design of the piece of hardware is published, how do you as a business verify (in a commercially competitive way) that the instance of the hardware that you're holding is completely and accurately described by the design?</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="27" xml:id="foot_18"><p>While there may still be theoretical attacks on this in a very strong threat model where a malicious randomness source can (in real-time) spy on the output of all other sources [5], this is the best idea we have of how to solve this very hard problem.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_19"><p>To conclude, QRNGs solve no real issue with our current hardware RNGs. If trustworthy vendors make QRNG technology in the future that is as well-understood and certified to the same degree as common RNG technology, then QRNGs could be evaluated as alternatives to common RNG technology.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="28" xml:id="foot_20"><p>A nibble is a sequence of four bits.</p></note>
+		</body>
+		<back>
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Signature algorithm</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.6">How to prepare for PQC</head><p>The security community and relevant actors are waiting for the NIST PQC standardization to conclude. For example, NSA still recommends a suite of non-quantum-resistant publickey algorithms for protecting TOP SECRET material <ref type="bibr">[43]</ref>. Such material typically needs to be protected for decades. What industry can do today is to ensure that products are sufficiently prepared for migrating to public-key algorithms with properties (key and signature/ciphertext sizes) similar to those for the round three proposals in the NIST PQC standardization when the time comes. The schemes in the NIST PQC standardization are intended to be drop-in replacements with regard to functional interfaces for the current public-key key establishment and signature algorithms. This means that protocols such as IKEv2 and TLS can continue to work as they do today with slightly different performance characteristics in the asymmetric (public-key) part of the protocols when the protocols and certificates are updated to support the new algorithms. We mentioned in Section 4.1 how Google and Cloudflare have run experiments over the Internet to try and determine the arbitrarily long shared secret key 24 . The argument here is then that the resulting shared secret key is everlasting secure, it cannot be cracked in the future in contrast to e.g., a PQC KEM key that could be cracked if someone recorded the KEM protocol messages and in the future discovered a break-through efficient algorithm to solve the underlying mathematical problem. The same argument of everlasting security afterwards has been put forth when e.g., a PQC signature algorithm is used to authenticate QKD <ref type="bibr" target="#b3">[9]</ref>, instead of a shared symmetric key. As discussed in the previous paragraph, it is unlikely that any physical realization of QKD actually provides truly absolute "everlasting security" 25 . But let us leave this aside for a moment and discuss the relevance of the fact that QKD does not rely on a computational assumption the same way that a PQC KEM does. It is important to understand that relying on an "extra" computational assumption (that the PQC KEM will not be completely broken during the protection lifetime of the data) is only one out of many concerns in choosing a cryptography suite. As an example, current public-key signature schemes depend, not only on the hardness of some mathematical problem such as factoring integers, but also on cryptographic hash functions. At the same time, we have stateful hashbased signature schemes with well-understood theoretical security which rely only on hash functions for their security. You could argue that using stateful hash-based signature schemes and relying only on hash functions would be more daunting to adversaries since it relies on fewer computational assumptions. Despite this, hash-based signature schemes have seen essentially zero use due to the drawbacks discussed in Section 4.4, and there is little library support. Many attackers would presumably rather attack a fragile proprietary implementation of a signature scheme depending on security-critical dynamic state, rather than joining the long line of mathematicians that have tried to solve e.g., factoring large integers efficiently. Furthermore, any complex system must presumably rely on many computational assumptions in very many places anyway (storage encryption, firmware updates, etc.).</p><p>There is a consensus in the security community that QKD has many fundamental issues that would need to be solved before being considered as a secure complement to conventional cryptography</p><p>As already hinted at in the discussion above, the security-relevant criticism against QKD includes:</p><p>➢ QKD needs external authentication as explained above. This either implies relying on computational assumptions such as PQC signature schemes or using more impractical symmetric key distribution schemes. Depending on this choice the system as a whole may no longer be "unconditionally secure". As we argued above, it is unlikely that the theoretical protocol can be mapped to a physical process in an absolutely secure way anyway. ➢ Current QKD systems typically rely on ordinary symmetric cryptography for cryptographic high-speed data protection. Such symmetric cryptography is not</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Appendix B: Idea behind the standardized hash-based signature schemes</head><p>The basic underlying primitive is called a Winternitz one-time signature (WOTS) and its private key is for one-time use. The idea is roughly that we reveal pre-images for the hash function such that iteratively hashing a pre-image a certain number of times we obtain a corresponding digest in the public key. The number of times we iterate the hash function is decided by the corresponding nibble 28 value in the digest of the message being signed. Since finding pre-images for hash functions is infeasible, no one can forge signatures. This means that if we sign message digests that are 32 bytes (e.g., as for SHA-256) which is 64 nibbles, then the one-time public key consists of about 64 digests. The size of 64 number of 32-byte digests is 2048 bytes. But a single one-time signature is not very useful on its own. Instead, one uses a hash tree (often called Merkle trees) whose leaves are WOTS public keys. The public key of the signature scheme is the root of the hash tree and a signature consist roughly of (i) a WOTS signature related to a leaf one-time public key, and (ii)</p><p>L digests which are needed to verify the leaf one-time public key's place in the hash tree which have L levels.</p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">The limits of quantum</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Aaronson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Scientific American</title>
+		<imprint>
+			<biblScope unit="volume">298</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="62" to="69" />
+			<date type="published" when="2008">2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<monogr>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">F</forename><surname>Kerry</surname></persName>
+			<affiliation>
+				<orgName type="collaboration">DSS</orgName>
+			</affiliation>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">R</forename><surname>Director</surname></persName>
+			<affiliation>
+				<orgName type="collaboration">DSS</orgName>
+			</affiliation>
+		</author>
+		<title level="m">FIPS PUB 186-4 federal information processing standards publication digital signature standard</title>
+		<imprint>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<monogr>
+		<title level="m" type="main">Analysis of Intel&apos;s Ivy Bridge digital random number generator</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Hamburg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Kocher</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">E</forename><surname>Marson</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2012">2012</date>
+		</imprint>
+		<respStmt>
+			<orgName>Cryptography Research INC</orgName>
+		</respStmt>
+	</monogr>
+	<note type="report_type">Technical Report</note>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">The case for quantum key distribution</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Stebila</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Mosca</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Lütkenhaus</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Quantum Comunication and Quantum Networking</title>
+		<meeting><address><addrLine>Berlin, Heidelberg</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2009-10">2009. October</date>
+			<biblScope unit="page" from="283" to="296" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<monogr>
+		<title level="m" type="main">A largely self-contained and complete security proof for quantum key distribution</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Tomamichel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Leverrier</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="1" to="14" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Quantum cryptography: a practical information security perspective</title>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">G</forename><surname>Paterson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Piper</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Schack</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="s">Nato Security Through Science Series D-Information and Communication Security</title>
+		<imprint>
+			<biblScope unit="volume">11</biblScope>
+			<biblScope unit="page">175</biblScope>
+			<date type="published" when="2007">2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">Q</forename></persName>
+		</author>
+		<ptr target="https://www.scottaaronson.com/blog/?p=4317" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<monogr>
+		<title level="m" type="main">Is the security of quantum cryptography guaranteed by the laws of physics</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">J</forename><surname>Bernstein</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">P</forename><surname>Schwabe</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Stebila</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Wiggers</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+	<note type="report_type">Post-Quantum TLS Without Handshake Signatures</note>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Hacking commercial quantum cryptography systems by tailored bright illumination</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Lydersen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Wiechers</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Wittmann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Elser</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Skaar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Makarov</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature photonics</title>
+		<imprint>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="issue">10</biblScope>
+			<biblScope unit="page" from="686" to="689" />
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<monogr>
+		<author>
+			<persName><forename type="first">A</forename><surname>Broadbent</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Schaffner</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1510.06120</idno>
+		<title level="m">Quantum Cryptography Beyond Quantum Key Distribution</title>
+		<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Measurement-device-independent quantum key distribution with leaky sources</title>
+		<author>
+			<persName><forename type="first">W</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Tamaki</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Curty</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Scientific reports</title>
+		<imprint>
+			<biblScope unit="volume">11</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="1" to="11" />
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<monogr>
+		<title level="m" type="main">To protect against the threat of quantum computers, should we double the key length for AES now</title>
+		<ptr target="https://csrc.nist.gov/Projects/post-quantum-cryptography/faqs" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<monogr>
+		<ptr target="https://www.nature.com/articles/s41586-019-1666-5" />
+		<title level="m">Figure 1 in</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Noninteractive key exchange</title>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">S</forename><surname>Freire</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Hofheinz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Kiltz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">G</forename><surname>Paterson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Workshop on Public Key Cryptography</title>
+		<meeting><address><addrLine>Berlin, Heidelberg</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2013-02">2013. February</date>
+			<biblScope unit="page" from="254" to="271" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Feasible attack on detector-device-independent quantum key distribution</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Wei</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">.</forename><forename type="middle">.</forename><surname>Ji</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Scientific reports</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="1" to="8" />
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<monogr>
+		<ptr target="https://www.ncsc.gov.uk/whitepaper/quantum-security-technologies" />
+		<title level="m">Quantum Random Number Generation in</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Curve25519: new Diffie-Hellman speed records</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">J</forename><surname>Bernstein</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Workshop on Public Key Cryptography</title>
+		<meeting><address><addrLine>Berlin, Heidelberg</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2006-04">2006, April</date>
+			<biblScope unit="page" from="207" to="228" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<monogr>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">A</forename><surname>Nielsen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Chuang</surname></persName>
+		</author>
+		<title level="m">Quantum computation and quantum information</title>
+		<imprint>
+			<date type="published" when="2002">2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Quantum resource estimates for computing elliptic curve discrete logarithms</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Roetteler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Naehrig</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">M</forename><surname>Svore</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Lauter</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on the Theory and Application of Cryptology and Information Security</title>
+		<meeting><address><addrLine>Cham</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2017-12">2017, December</date>
+			<biblScope unit="page" from="241" to="270" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Grover&apos;s quantum searching algorithm is optimal</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Zalka</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review A</title>
+		<imprint>
+			<biblScope unit="volume">60</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page">2746</biblScope>
+			<date type="published" when="1999">1999</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Implementing Grover oracles for quantum key search on AES and LowMC</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Jaques</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Naehrig</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Roetteler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Virdia</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Cryptology-EUROCRYPT 2020</title>
+		<imprint>
+			<date type="published" when="2020">2020. 12106</date>
+			<biblScope unit="page">280</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<monogr>
+		<ptr target="https://www.enisa.europa.eu/publications/post-quantum-cryptography-current-state-and-quantum-mitigation" />
+		<title level="m">Section 6 of</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<monogr>
+		<author>
+			<persName><forename type="first">C</forename><surname>Peikert</surname></persName>
+		</author>
+		<title level="m">A Decade of Lattice Cryptography</title>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">The Case for SIKE: A Decade of the Supersingular Isogeny Problem</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Costello</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Cryptology ePrint Archive</title>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">D</forename><surname>Galbraith</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Review</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Eddsa</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<monogr>
+		<author>
+			<persName><forename type="first">R</forename><surname>De Wolf</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1907.09415</idno>
+		<title level="m">Quantum computing: Lecture notes</title>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<monogr>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">A</forename><surname>Nielsen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Chuang</surname></persName>
+		</author>
+		<title level="m">Quantum computation and quantum information</title>
+		<imprint>
+			<date type="published" when="2002">2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Cost analysis of hash collisions: Will quantum computers make SHARCS obsolete</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">J</forename><surname>Bernstein</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SHARCS</title>
+		<imprint>
+			<biblScope unit="issue">9</biblScope>
+			<biblScope unit="page">105</biblScope>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<monogr>
+		<title level="m" type="main">Isn&apos;t all of this pointless since elliptic curves will be utterly annihilated by quantum computers</title>
+		<ptr target="https://research.nccgroup.com/2021/01/06/double-odd-elliptic-curves/" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Secure integration of asymmetric and symmetric encryption schemes</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Fujisaki</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Okamoto</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of cryptology</title>
+		<imprint>
+			<biblScope unit="volume">26</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="80" to="101" />
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<monogr>
+		<title level="m" type="main">Can I use stateful hash-based signatures</title>
+		<ptr target="https://media.defense.gov/2021/Aug/04/2002821837/-1/-1/1/Quantum_FAQs_20210804.PDF" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<monogr>
+		<ptr target="https://sike.org/files/SIDH-spec.pdf" />
+		<title level="m">SIKE specification October</title>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="volume">1</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title level="a" type="main">LMS vs XMSS: Comparion of two Hash-Based Signature Standards</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Kampanakis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Fluhrer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IACR Cryptology ePrint Archive: Report</title>
+		<imprint>
+			<date type="published" when="2017">2017. 2017/349</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<monogr>
+		<title level="m" type="main">NIST PQC Reference Platform&quot; when evaluating submissions?</title>
+		<ptr target="https://csrc.nist.gov/Projects/post-quantum-cryptography/faqs" />
+		<imprint/>
+	</monogr>
+	<note>Will NIST consider platforms other than the</note>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<analytic>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">S</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Chou</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Classic McEliece on the ARM Cortex-M4</title>
+		<imprint>
+			<date type="published" when="2021">2021. 2021</date>
+			<biblScope unit="page">492</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<analytic>
+		<title level="a" type="main">A modular analysis of the Fujisaki-Okamoto transformation</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Hofheinz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Hövelmanns</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Kiltz</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Theory of Cryptography Conference</title>
+		<meeting><address><addrLine>Cham</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2017-11">2017, November</date>
+			<biblScope unit="page" from="341" to="371" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<monogr>
+		<title level="m" type="main">Cybersecurity in an era with quantum computers: will we be ready?</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Mosca</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Section 3.2 of National Academies of Sciences, Engineering, and Medicine</title>
+	</analytic>
+	<monogr>
+		<title level="m">Quantum computing: progress and prospects</title>
+		<imprint>
+			<publisher>National Academies Press</publisher>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<analytic>
+		<title level="a" type="main">1 of National Academies of Sciences, Engineering, and Medicine</title>
+	</analytic>
+	<monogr>
+		<title level="m">Quantum computing: progress and prospects</title>
+		<imprint>
+			<publisher>National Academies Press</publisher>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<analytic>
+		<title level="a" type="main">Improvements to quantum search techniques for block-ciphers, with applications to AES</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">H</forename><surname>Davenport</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Pring</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Selected Areas in Cryptography-SAC</title>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b41">
+	<monogr>
+		<author>
+			<persName><forename type="first">J</forename><surname>Preskill</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2106.10522</idno>
+		<title level="m">Quantum computing 40 years later</title>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

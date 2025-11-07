@@ -1,0 +1,1591 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Shortcuts to adiabaticity with a quantum control field</title>
+				<funder ref="#_HE4bZ4S">
+					<orgName type="full">European Research Council</orgName>
+					<orgName type="abbreviated">ERC</orgName>
+				</funder>
+				<funder ref="#_stvSjG6">
+					<orgName type="full">German Ministry of Education and Research (BMBF)</orgName>
+				</funder>
+				<funder ref="#_jxJCpvc">
+					<orgName type="full">EU</orgName>
+				</funder>
+				<funder ref="#_3S6VDc8">
+					<orgName type="full">Deutsche Forschungsgemeinschaft DFG</orgName>
+				</funder>
+				<funder ref="#_QMctT4n #_Jknb8pZ #_JRGDB6x #_VeZn43x">
+					<orgName type="full">unknown</orgName>
+				</funder>
+				<funder ref="#_ncFVaEH">
+					<orgName type="full">Deutsche Forschungsgemeinschaft (DFG, German Research Foundation</orgName>
+				</funder>
+				<funder ref="#_dxQQkUc">
+					<orgName type="full">French National Research Agency</orgName>
+				</funder>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability  status="unknown">
+					<licence/>
+				</availability>
+				<date type="published" when="2025-08-11">August 11, 2025</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Emma</forename><forename type="middle">C</forename><surname>King</surname></persName>
+							<idno type="ORCID">0000-0002-6696-3235</idno>
+							<affiliation key="aff0">
+								<orgName type="department">Theoretische Physik</orgName>
+								<orgName type="institution">Universität des Saarlandes</orgName>
+								<address>
+									<postCode>D-66123</postCode>
+									<settlement>Saarbrücken</settlement>
+									<country key="DE">Germany</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Giovanna</forename><surname>Morigi</surname></persName>
+							<idno type="ORCID">0000-0002-1946-3684</idno>
+							<affiliation key="aff0">
+								<orgName type="department">Theoretische Physik</orgName>
+								<orgName type="institution">Universität des Saarlandes</orgName>
+								<address>
+									<postCode>D-66123</postCode>
+									<settlement>Saarbrücken</settlement>
+									<country key="DE">Germany</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Raphaël</forename><surname>Menu</surname></persName>
+							<idno type="ORCID">0000-0001-7641-9922</idno>
+							<affiliation key="aff0">
+								<orgName type="department">Theoretische Physik</orgName>
+								<orgName type="institution">Universität des Saarlandes</orgName>
+								<address>
+									<postCode>D-66123</postCode>
+									<settlement>Saarbrücken</settlement>
+									<country key="DE">Germany</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="department">CESQ/ISIS</orgName>
+								<orgName type="laboratory">UMR 7006</orgName>
+								<orgName type="institution" key="instit1">CNRS</orgName>
+								<orgName type="institution" key="instit2">Université de Strasbourg</orgName>
+								<address>
+									<postCode>67000</postCode>
+									<settlement>Strasbourg</settlement>
+									<country key="FR">France</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Shortcuts to adiabaticity with a quantum control field</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2025-08-11">August 11, 2025</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">1FCCFC05238DB6C76D5CD26DBB0FF2FD</idno>
+					<idno type="arXiv">arXiv:2508.06304v1[quant-ph]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-07T10:22+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Quantum adiabatic dynamics is the crucial element of adiabatic quantum computing and quantum annealing. Shortcuts to adiabaticity enable acceleration of the computational time by suppressing unwanted non-adiabatic processes with designed classical fields. Here, we consider quantum state transfer in the Landau-Zener model, which exemplifies the key elements of quantum adiabatic dynamics. We argue that non-adiabatic transitions can be suppressed by autonomous quantum dynamics, which involves coupling the Landau-Zener qubit to a second quantum system. By tuning the coupling strength, the composite quantum dynamics can reduce the probability of unwanted processes by more than two orders of magnitude. This is a prime example of control where the quantum properties of the control fields are key for implementing shortcuts to adiabaticity.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Introduction.-The Landau-Zener (LZ) model is a paradigm of a time-dependent quantum mechanical process <ref type="bibr" target="#b0">[1]</ref><ref type="bibr" target="#b1">[2]</ref><ref type="bibr" target="#b2">[3]</ref> that is exactly solvable and encompasses the fundamental principles of quantum adiabatic transfer. For these reasons, the LZ model provides key insights into quantum thermodynamic principles <ref type="bibr" target="#b3">[4]</ref>, quantum phase transitions <ref type="bibr" target="#b4">[5,</ref><ref type="bibr" target="#b5">6]</ref>, and quantum annealing dynamics <ref type="bibr" target="#b6">[7]</ref><ref type="bibr" target="#b7">[8]</ref><ref type="bibr" target="#b8">[9]</ref>, serving as the workhorse for identifying strategies for accelerating adiabatic transfers <ref type="bibr" target="#b4">[5]</ref> and unveiling the mechanisms that determine their ultimate speed limits <ref type="bibr" target="#b9">[10,</ref><ref type="bibr" target="#b10">11]</ref>. Some of these strategies utilize classical control fields, which induce processes that suppress adiabatic transitions, thereby implementing so-called "shortcut to adiabaticity" protocols <ref type="bibr" target="#b11">[12,</ref><ref type="bibr" target="#b12">13]</ref>. This can be enforced through nonlinearities <ref type="bibr" target="#b13">[14]</ref><ref type="bibr" target="#b14">[15]</ref><ref type="bibr" target="#b15">[16]</ref><ref type="bibr" target="#b16">[17]</ref>. Perfect cancellation of the non-adiabatic transitions is achieved by counterdiabatic protocols <ref type="bibr" target="#b17">[18]</ref><ref type="bibr" target="#b18">[19]</ref><ref type="bibr" target="#b19">[20]</ref><ref type="bibr" target="#b20">[21]</ref><ref type="bibr" target="#b21">[22]</ref><ref type="bibr" target="#b22">[23]</ref>, among which the control field is known for the LZ dynamics <ref type="bibr" target="#b18">[19]</ref>.</p><p>Thermal reservoirs can be beneficial for adiabaticity <ref type="bibr" target="#b23">[24]</ref><ref type="bibr" target="#b24">[25]</ref><ref type="bibr" target="#b25">[26]</ref><ref type="bibr" target="#b26">[27]</ref>. This observation has led to the identification of open-quantum-system approaches to shortcuts to adiabaticity <ref type="bibr" target="#b27">[28]</ref><ref type="bibr" target="#b28">[29]</ref><ref type="bibr" target="#b29">[30]</ref><ref type="bibr" target="#b30">[31]</ref><ref type="bibr" target="#b31">[32]</ref> and to the formulation of strategies for reservoir-induced transitionless quantum driving <ref type="bibr" target="#b32">[33,</ref><ref type="bibr" target="#b33">34]</ref>. In these protocols, the incoherent dynamics is engineered through the coupling with a second quantum system, which can possess the features of a reservoir <ref type="bibr" target="#b34">[35,</ref><ref type="bibr" target="#b35">36]</ref> or undergo dissipative dynamics itself <ref type="bibr" target="#b31">[32,</ref><ref type="bibr" target="#b36">[37]</ref><ref type="bibr" target="#b37">[38]</ref><ref type="bibr" target="#b38">[39]</ref>. The majority of these models disregard quantum correlations between the LZ qubit and the second quantum system, treating the latter as memoryless. Nevertheless, there are indications that memory effects can lead to more favorable speed limits <ref type="bibr" target="#b33">[34,</ref><ref type="bibr" target="#b38">[39]</ref><ref type="bibr" target="#b39">[40]</ref><ref type="bibr" target="#b40">[41]</ref>. In particular, it has been posited that entanglement between the LZ qubit and the quantum control field during the dynamics can be resourceful for shortcuts to adiabaticity <ref type="bibr" target="#b38">[39]</ref>. This hypothesis is corroborated by studies of the multilevel LZ model <ref type="bibr" target="#b29">[30,</ref><ref type="bibr" target="#b41">42,</ref><ref type="bibr" target="#b42">43]</ref> and on quantum annealing protocols designed by auxiliary systems <ref type="bibr" target="#b43">[44,</ref><ref type="bibr" target="#b44">45]</ref>.</p><p>In this work, we analyze the fidelity of quantum state transfer in the LZ model. We assume that the LZ qubit couples linearly to a second quantum system, which we interchangeably denote by quantum field or spectator. We demonstrate that, when the LZ qubit dynamics is deep in the diabatic regime, where quantum state transfer is inefficient, the composite dynamics of the LZ qubit and spectator can correct for the diabatic processes and reduce the probability that they occur by more than two orders of magnitude. The protocol is illustrated in Fig. <ref type="figure">1</ref>. Superadiabatic transfer is realized when the coupling between qubit and spectator is in the so-called ultra-strong coupling regime <ref type="bibr" target="#b45">[46,</ref><ref type="bibr" target="#b46">47]</ref>. The protocol does not require the time-dependent control of the quantum field; it is optimized by choosing the field eigenfrequency and the coupling strength with the LZ qubit, and is robust against fluctuations in the physical parameters. The model.-The dynamics of the LZ qubit and field is governed by the Hamiltonian acting on the composite Hilbert space of qubit (s) and field (f ):</p><formula xml:id="formula_0">Ĥ = Ĥs (t) ⊗ Îf + Ĥint + Îs ⊗ Ĥf ,<label>(1)</label></formula><p>FIG. <ref type="figure">1</ref>. Interference-assisted superadiabaticity: The ultrastrong coupling of an LZ qubit with a quantum field (bosonic or fermionic) leads to high-fidelity adiabatic passage even for fast sweeps, where the isolated LZ dynamics would be in the diabatic regime. Here, x0 scales the strength of the coupling, and ωc is the eigenfrequency of the quantum field. where Îi is the identity operator in the corresponding Hilbert space, see Fig. <ref type="figure">1</ref>. The LZ Hamiltonian of the qubit reads</p><formula xml:id="formula_1">Ĥs (t) = 1 2 [ϵt σz + g σx ] ,<label>(2)</label></formula><p>where σj are the Pauli matrices (j = x, y, z). Hamiltonian (2) describes the dynamics of a spin 1/2 (qubit) in the presence of a classical magnetic field with a constant component along x and a time-dependent amplitude along z, which varies at a constant (sweep) rate ϵ. The instantaneous Hamiltonian Ĥs (t) is diagonal in the eigenbasis |±⟩ t with eigenenergies</p><formula xml:id="formula_2">E ± (t) = ± 1 2 ϵ 2 t 2 + g 2 .</formula><p>In the absence of the spectator field (x 0 = 0), the probability that the qubit is excited into the upper branch |+⟩ t is the infidelity</p><formula xml:id="formula_3">I LZ = | t ⟨+|ψ⟩ t | 2 ,</formula><p>where the quantum state |ψ⟩ t solves the time-dependent Schrödinger equation i∂ t |ψ⟩ t = Ĥ(t)|ψ⟩ t (we set ℏ = 1). For t → ∞, the infidelity takes the compact form I LZ = exp -πg 2 /2ϵ , showing that adiabatic transfer is warranted for g 2 /ϵ ≫ 1. Evidently, I LZ decreases monotonously by increasing the gap g and/or decreasing the sweep rate ϵ <ref type="bibr" target="#b41">[42]</ref>.</p><p>In what follows, we consider the diabatic regime, in which g 2 /ϵ &lt; 1 and I LZ &gt; 0.2. For convenience, we now assume that the spectator field is a second qubit at the transition frequency ω c , with Ĥf = ω c τ z /2, and τ j denoting the Pauli matrices acting on the states of the spectator Hilbert space. The qubit-spectator interaction is the minimal coupling Hamiltonian</p><formula xml:id="formula_4">Ĥint = x 0 σx ⊗ τ x ,<label>(3)</label></formula><p>and is scaled by the parameter x 0 with the dimension of an energy. Hamiltonian (1), and variations thereof, have been discussed in several contexts. A trivial but instructive case is found for ϵ = 0. Then, the interaction Hamiltonian commutes with the qubit Hamiltonian, and the spectator field undergoes a dynamics conditioned by the state of the qubit. Measurement of the state of the spectator then provides information on the state of the qubit. This is the basic principle underlying quantum non-demolition (QND) measurements <ref type="bibr" target="#b47">[48]</ref><ref type="bibr" target="#b48">[49]</ref><ref type="bibr" target="#b49">[50]</ref>. This concept has been extended in Refs. <ref type="bibr" target="#b31">[32,</ref><ref type="bibr" target="#b38">39]</ref> for designing adiabatic protocols in which the instantaneous interaction commutes with Ĥs (t) at all times. For ϵ ̸ = 0, when the spectator's eigenfrequency vanishes ω c = 0, the spectator field dynamics is stationary in the eigenbasis of τ x . By judiciously selecting the state of the spectator field, the qubit undergoes a LZ dynamics with the effective gap g ′ = g + x 0 at the anticrossing t = 0. This results in a rescaling of the adiabaticity parameter g ′ 2 /ϵ, which increases the fidelity of the transfer (see also <ref type="bibr" target="#b15">[16]</ref> for a similar case). In its complete form, the dynamics governed by Hamiltonian (1) spans the four-dimensional Hilbert space of qubit and spectator. In what follows, we show that this is key for promoting superadiabatic quantum state transfer.</p><p>Adiabatic basis and adiabatic theorem.-Relevant frequency scales of the dynamics governed by the Hamiltonian in Eq. ( <ref type="formula" target="#formula_0">1</ref>) can be extracted in the adiabatic basis of the instantaneous eigenstates of Ĥ(t). Figure <ref type="figure" target="#fig_0">2</ref> displays the eigenenergies as a function of t for different values of x 0 and ω c . In general, we observe a doubling of the two branches E ± (t) of the LZ model. The coupling x 0 entangles the qubit and spectator states. At fixed x 0 , tuning ω c can give rise to a single anticrossing at t = 0 or to multiple anticrossings at t = 0 and |t| &gt; 0. Some insight is gained in the two limiting cases: |t| → ∞ and t = 0. In the trivial case |t| → ∞, the qubit and spectator are decoupled and the Hamiltonian is diagonal in the basis of eigenstates of σz ⊗ τ z . At t = 0, the Hamiltonian can be exactly diagonalized. In fact, the instantaneous Hamiltonian commutes with σx and the qubit eigenstates are the instantaneous states |±⟩ 0 . Each branch is split into two values: For |+⟩ 0 , the eigenvalues are E (+) ± = +g/2 ± ∆/2, while for |-⟩ 0 they read E (-) ± = -g/2 ± ∆/2. Thus, the two key quantities determining the energy splitting at t = 0 are the minimum gap g of the LZ Hamiltonian (2) and the spectator splitting energy</p><formula xml:id="formula_5">∆ = 4x 2 0 + ω 2 c .<label>(4)</label></formula><p>This simple analysis identifies a threshold value ∆ = ∆</p><p>(1) c</p><p>≈ g, at which the spectrum becomes doubly degenerate. This threshold value separates two different regimes: For ∆ &lt; ∆</p><p>(1) c the coupling with the spectator field tends to close the minimal gap between |±⟩ 0 , as visible in Fig. <ref type="figure" target="#fig_2">2(a)</ref>. In this regime, the gap is ∼ |g -∆|, and the efficiency of the adiabatic protocol worsens with increasing ∆. This tendency inverts for ∆ &gt; ∆</p><p>(1) c . In this regime, the coupling with the spectator field increases the energy splitting at t = 0 between the states |+⟩ 0 and |-⟩ 0 . Inspection of Fig. <ref type="figure" target="#fig_2">2(c</ref>) shows that, for larger values of x 0 , the gap between upper and lower branches closes at t ̸ = 0. Considerations on the structure of the adiabatic eigenvalues show that this occurs at |t| = t ϵ ∼ ∆/ϵ when ∆ ≳ ϵ 2 . This identifies a second threshold value ∆</p><p>(2) c (ϵ), above which the coupling with the quantum field shall promote diabatic transitions. Interestingly, the threshold ∆</p><p>(2) c (ϵ) increases monotonically with the sweep rate ϵ. In the diabatic regime, for g &lt; √ ϵ, this second threshold is then an upper bound: ∆ </p><p>c ]. This led us to identify three regimes induced by the coupling with the quantum field, which are strictly valid for g &gt; √ ϵ. The regime (I) where 0 &lt; ∆ &lt; ∆</p><p>c . Here, the minimal energy gap decreases monotonically by increasing ∆ and the diabatic transitions occur with the largest probability at t ∼ 0. Regime (II) is found at ∆ ∈ (∆</p><formula xml:id="formula_8">(1) c , ∆<label>(2)</label></formula><p>c ). Here, increasing ∆ increases the minimal gap and is thus expected to suppress diabatic transitions. In regime (III), ∆ &gt; ∆ c to be satisfied. Thus, increasing the sweep rate ϵ is expected to increase the size of the superadiabatic region (II) in parameter space. This consideration might seem contradictory. In fact, diabatic effects scale with ∂ t Ĥ(t) and thus with the sweep rate ϵ. According to the adiabatic theorem, adiabatic transfer is warranted when</p><formula xml:id="formula_9">|⟨i(t)|∂ t Ĥ(t)|j(t)⟩| (E i (t) -E j (t)) 2 ≪ 1 ,</formula><p>with i, j labeling the instantaneous eigenstates and E i,j the corresponding eigenenergies. For x 0 = 0, this reduces to the inequality ϵ/g 2 ≪ 1. By coupling with the spectator field, the numerator becomes generally smaller because of the reduced overlap between each pair of states. Moreover, in regime (II), the denominator becomes larger. We therefore expect that the fidelity of the transfer will increase when the parameters of the spectator qubit are chosen in this regime. Dynamics.-We use the following figures of merit to characterize the dynamics. Given |Ψ⟩ t , the state of the composite system of qubit and spectator at time t, we determine the density matrix of the qubit ρ(t) = Tr f {|Ψ⟩ t ⟨Ψ|} by tracing out the degrees of freedom of the spectator field. We then define the infidelity at time t as the probability P (t) that the qubit is in the excited branch |+⟩ t of the bare LZ Hamiltonian:</p><formula xml:id="formula_10">P (t) = Tr{ρ(t)|+⟩ t ⟨+|} . (<label>5</label></formula><formula xml:id="formula_11">)</formula><p>The probability P (t) refers solely to the excitation of the LZ model, irrespective of the state of the spectator field. Entanglement between qubit and spectator is assessed by means of the purity</p><formula xml:id="formula_12">γ(t) = Tr{ρ 2 (t)} . (<label>6</label></formula><formula xml:id="formula_13">)</formula><p>The purity is a witness of entanglement via its link with the Rényi entropy S 2 = -ln γ; its maxima γ = 1 signal that the qubit is in a pure state. Figure <ref type="figure" target="#fig_3">3</ref> displays the evolution of P (t) for ϵ = 2g 2 . For this choice, and in the absence of the spectator field (x 0 = 0), the probability that the qubit is excited into the upper branch at the end of the transfer exceeds 0.5. The coupling with the spectator for a choice of parameters in regime (II) leads to a dramatic reduction in the transition probability, performing oscillations which are damped out for larger times (not shown). Correspondingly, the purity reaches values close to unity. During the protocol, the purity is visibly reduced at the anticrossing (t = 0), showing that entanglement between the qubit  and spectator is instrumental in achieving high fidelity at the end of the transfer.</p><p>Figure <ref type="figure" target="#fig_4">4</ref> visualizes the central result of this work. It displays the infidelity and purity at t f ≈ 10g/ϵ and as a function of x 0 (in units of g) and of ω c /x 0 . We emphasize that we choose a relatively short transfer time, t f ≈ 10g/ϵ, where the infidelity still oscillates. The choice of ϵ = 2g 2 fixes the asymptotic value of the infidelity of the LZ transfer above 0.5. The dashed lines indicate the position of the two thresholds ∆</p><p>(1) c and ∆ (2) c .</p><p>As expected from the analysis of the spectrum in the adiabatic basis, the transfer is inefficient in regime (I) at ∆ &lt; ∆</p><p>(1) c . In contrast, in regime (II), the infidelity drops to values below 0.05. The bright contours highlight the regions where it reaches below 10 -3 : This occurs in islands distributed along an optimal value of ∆ as well as along a stripe at ω c /x 0 ≲ 1. Regime (III) is generally characterized by low fidelity. An exception is the stripe at ω c /x 0 ≲ 1, which stretches into this region. Here, x 0 ≫ g. For ω c = 0, the effect of the spectator is simply to renormalize the minimal gap to g ′ = g + x 0 ≈ x 0 . As a consequence, even though in the absence of the coupling the sweep is in the diabatic regime (ϵ/g 2 &gt; 1), adding the field effectively yields ϵ/g ′ 2 ≪ 1 and adiabaticity is reestablished. The minimal infidelity, however, is reached for ω c of the order of x 0 , indicating that the quantum nature of the spectator is essential to achieve high transfer efficiencies. We note that the initial state of the spectator is not important: Choosing different initial values only affects the infidelity at ω c = 0, while for ω c &gt; 0 the diagram is qualitatively the same.</p><p>We have varied the form of the coupling of the qubit in Eq. ( <ref type="formula" target="#formula_4">3</ref>) and verified that the superadiabatic transfer occurs independently of the choice of the Pauli matrix σx or σy . This indicates that the superadiabaticity we report emerges from a very different dynamics than the counteradiabatic protocol of Ref. <ref type="bibr" target="#b18">[19]</ref>, which instead strictly requires a classical control field along σy for perfect cancellation. In our case, superadiabaticity is due to interference between the different paths corresponding to the branches in the adiabatic basis, as visible in the evolution of the purity, Fig. <ref type="figure" target="#fig_3">3</ref>, and by the corresponding reduction of the amplitude of the diabatic transitions. We have additionally determined the transfer infidelity when the spectator is a harmonic oscillator at frequency ω c , taking the interaction Hamiltonian Ĥint = x 0 σx ⊗ (â + â † ), with â, â † the annihilation and creation operators. We observe superadiabatic behavior qualitatively similar to Fig. <ref type="figure" target="#fig_4">4</ref>. Based on these insights, we denote by interference-assisted superadiabacity (IAS) the superadiabatic transfer induced by the quantum field, emphasizing the role of quantum coherence and entanglement in this dynamics. Discussion.-The dynamics discussed here could be realized in solid-state platforms <ref type="bibr" target="#b42">[43,</ref><ref type="bibr" target="#b50">51,</ref><ref type="bibr" target="#b51">52]</ref>, which offer the possibility to selectively couple a qubit with a spectator field. These versatile platforms allow for coupling strengths in the ultra-strong coupling regime, meeting the criteria to be in the optimal IAS regime. Our results show that fluctuations of 10% of the parameter values do not significantly affect the efficiency (see Fig. <ref type="figure" target="#fig_4">4</ref>), demonstrating that the protocol is robust against variation of the experimental parameters. We have verified that moderate dissipation of the spectator leads to a small reduction in the efficiency, but can be advantageous as it "damps down" the oscillations after the transfer.</p><p>A striking feature of IAS is the protocol's remarkable efficiency deep in the diabatic regime: Almost unit fidelity can be reached at fast sweeps. The dynamics is reminiscent of counteradiabatic protocols, even though we have no evidence of transitionless driving. The infidelity could be further reduced by optimizing the schedule for the qubit sweep, e.g. by implementing local adiabatic evolution, extending the approach of Ref. <ref type="bibr" target="#b52">[53]</ref> to the coupled qubit-spectator system. Scalability to a qubit string requires the capability to implement ultrastrong global coupling between qubits and the spectator. This can be done by means of a central spin or oscillator model as realized in CQED platforms <ref type="bibr" target="#b53">[54]</ref>. The robustness against fluctuations of the control field relaxes the requirements on the precision about the knowledge of the annealing gap. Our study is in line with the insights of recent works <ref type="bibr" target="#b43">[44,</ref><ref type="bibr" target="#b44">45,</ref><ref type="bibr" target="#b54">55,</ref><ref type="bibr" target="#b55">56]</ref> and points toward the advantage of autonomous quantum protocols for quantum supremacy.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>FIG. 2 .</head><label>2</label><figDesc>FIG. 2. Instantaneous energy branches Ej(t) of the qubit-field Hamiltonian Ĥ (1) (solid lines) for exemplary values of x0 and ωc corresponding to three regimes: (a) Regime (I) x0 = ωc = 0.6g, where the coupling with the field tends to close the minimal gap; (b) Regime (II) x0 = ωc = 1.8g, where the minimal gap increases with ∆ and the eigenenergies flatten in the vicinity of t = 0; (c) Regime (III), for x0 = 4g and ωc = 12g, gaps start to close at |t| &gt; 0. In all cases, ϵ = 2g 2 . The dashed lines are the instantaneous eigenenergies of the qubit-field system at x0 = 0.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>c</head><figDesc>, and there exists a finite range of values x 0 and ω c for which ∆ ∈ [∆</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>( 2 )</head><label>2</label><figDesc>c , diabatic transitions might also occur at |t| = t ϵ &gt; 0. Since the bound ∆ (2) c increases with ϵ, entering regime (III) necessitates sufficiently large values of ∆ for the condition ∆ &gt; ∆ (2)</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>FIG. 3 .</head><label>3</label><figDesc>FIG. 3. Evolution of the transition probability P (t) (5) and the purity γ(t) (6) as a function of time for the qubit-field dynamics governed by Hamiltonian (2) and ϵ = 2g 2 . Three different choices of x0 and ωc are shown, illustrating the regimes of the annealing dynamics: (I) x0 = g/4 and ωc = 2x0, (II) x0 = 2g and ωc = x0/4, (III) x0 = 4g and ωc = 4x0. The black dashed line represents the Landau-Zener case (x0 = 0). The qubit-field system is initialized at time ti = -10g/ϵ in state |ψ0⟩ = |-⟩t i ⊗ | ↓⟩ and evolved up until time t f = -ti.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head>FIG. 4 .</head><label>4</label><figDesc>FIG. 4. Adiabatic transfer induced by a quantum field: Infidelity I and purity γ of the final state as a function of the parameters x0/g and x0/ωc. Results are obtained for the same annealing procedure and choice of parameters as for Fig. 3. Other parameters are fixed such that g 2 /ϵ = 0.5. The duration of the annealing protocol is optimized such that P (t f ) is at the nearest local minimum to t = 10g/ϵ. The dashed lines indicate the critical values ∆ (1) c ≈ g and ∆ (2) c , separating the three regimes (I), (II), and (III). The orange contour delimits regions where the infidelity lies below 5 × 10 -3 .</figDesc></figure>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div><p>Acknowledgments.-The authors thank <rs type="person">L. Giannelli</rs> for insightful remarks and are grateful to <rs type="person">R. Fazio</rs>, <rs type="person">E. Shimshoni</rs>, <rs type="person">C.P. Koch</rs>, <rs type="person">Y. Gefen</rs>, <rs type="person">I. Gornyi</rs> and <rs type="person">J. Schachenmayer</rs> for stimulating comments. This work was partially funded by the <rs type="funder">Deutsche Forschungsgemeinschaft (DFG, German Research Foundation</rs>) -Project-<rs type="projectName">ID 429529648 -TRR306 QuCoLiMa ("Quantum Cooperativity of Light and Matter</rs>"), by the <rs type="funder">German Ministry of Education and Research (BMBF)</rs> via the Project <rs type="projectName">NiQ (Noise in Quantum Algorithms</rs>), and within the <rs type="programName">Quan-tERA II Programme</rs> (project "<rs type="projectName">QNet: Quantum transport, metastability, and neuromorphic applications in Quantum Networks</rs>"), which has received funding from the <rs type="funder">EU</rs>'s <rs type="programName">Horizon 2020 research and innovation programme</rs> under Grant Agreement No. <rs type="grantNumber">101017733</rs>, as well as from the <rs type="funder">Deutsche Forschungsgemeinschaft DFG</rs> (Project <rs type="projectName">ID 532771420</rs>). In Strasbourg, R.M. acknowledges support by the <rs type="funder">ERC</rs> <rs type="projectName">Consolidator</rs> project <rs type="projectName">MATH-LOCCA</rs> (Grant nr. <rs type="grantNumber">101170485</rs>), and by the <rs type="funder">French National Research Agency</rs> under the <rs type="programName">France 2030</rs> program <rs type="grantNumber">ANR-23-PETQ-0002</rs> (<rs type="projectName">PEPR</rs> project <rs type="projectName">QUTISYM</rs>) as well as the Investments of the <rs type="projectName">Future</rs> <rs type="projectName">Program</rs> project <rs type="grantNumber">ANR-21-ESRE-0032</rs> (aQCess).</p></div>
+			</div>
+			<listOrg type="funding">
+				<org type="funded-project" xml:id="_ncFVaEH">
+					<orgName type="project" subtype="full">ID 429529648 -TRR306 QuCoLiMa (&quot;Quantum Cooperativity of Light and Matter</orgName>
+				</org>
+				<org type="funded-project" xml:id="_stvSjG6">
+					<orgName type="project" subtype="full">NiQ (Noise in Quantum Algorithms</orgName>
+					<orgName type="program" subtype="full">Quan-tERA II Programme</orgName>
+				</org>
+				<org type="funded-project" xml:id="_jxJCpvc">
+					<idno type="grant-number">101017733</idno>
+					<orgName type="project" subtype="full">QNet: Quantum transport, metastability, and neuromorphic applications in Quantum Networks</orgName>
+					<orgName type="program" subtype="full">Horizon 2020 research and innovation programme</orgName>
+				</org>
+				<org type="funded-project" xml:id="_3S6VDc8">
+					<orgName type="project" subtype="full">ID 532771420</orgName>
+				</org>
+				<org type="funded-project" xml:id="_HE4bZ4S">
+					<orgName type="project" subtype="full">Consolidator</orgName>
+				</org>
+				<org type="funded-project" xml:id="_dxQQkUc">
+					<idno type="grant-number">101170485</idno>
+					<orgName type="project" subtype="full">MATH-LOCCA</orgName>
+					<orgName type="program" subtype="full">France 2030</orgName>
+				</org>
+				<org type="funded-project" xml:id="_QMctT4n">
+					<idno type="grant-number">ANR-23-PETQ-0002</idno>
+					<orgName type="project" subtype="full">PEPR</orgName>
+				</org>
+				<org type="funded-project" xml:id="_Jknb8pZ">
+					<orgName type="project" subtype="full">QUTISYM</orgName>
+				</org>
+				<org type="funded-project" xml:id="_JRGDB6x">
+					<orgName type="project" subtype="full">Future</orgName>
+				</org>
+				<org type="funded-project" xml:id="_VeZn43x">
+					<idno type="grant-number">ANR-21-ESRE-0032</idno>
+					<orgName type="project" subtype="full">Program</orgName>
+				</org>
+			</listOrg>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Zur Theorie der Energieubertragung II</title>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">D</forename><surname>Landau</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Z. Sowjetunion</title>
+		<imprint>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="page" from="46" to="51" />
+			<date type="published" when="1932">1932</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Non-adiabatic crossing of energy levels</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Zener</surname></persName>
+		</author>
+		<idno type="DOI">10.1098/rspa.1932.0165</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. R. Soc. Lond. A</title>
+		<meeting>R. Soc. Lond. A</meeting>
+		<imprint>
+			<date type="published" when="1932">1932</date>
+			<biblScope unit="volume">137</biblScope>
+			<biblScope unit="page" from="696" to="702" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Theorie der unelastischen Stösse zwischen Atomen</title>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">C G</forename><surname>Stückelberg</surname></persName>
+		</author>
+		<idno type="DOI">10.5169/seals-110177</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Helvetica Physica Acta</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="page">369</biblScope>
+			<date type="published" when="1932">1932</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Dissipation in small systems: Landau-Zener approach</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Barra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Esposito</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevE.93.062118</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. E</title>
+		<imprint>
+			<biblScope unit="volume">93</biblScope>
+			<biblScope unit="page">62118</biblScope>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">The Simplest Quantum Model Supporting the Kibble-Zurek Mechanism of Topological Defect Production: Landau-Zener Transitions from a New Perspective</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Damski</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.95.035701</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">95</biblScope>
+			<biblScope unit="page">35701</biblScope>
+			<date type="published" when="2005">2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Adiabatic Perturbation Theory: From Landau-Zener Problem to Quenching Through a Quantum Critical Point</title>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">De</forename><surname>Grandi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Polkovnikov</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/978-3-642-11470-0_4</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Quantum Quenching, Annealing and Computation</title>
+		<title level="s">Lecture Notes in Physics</title>
+		<meeting><address><addrLine>Berlin, Heidelberg</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2010">2010</date>
+			<biblScope unit="page" from="75" to="114" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Theory of quantum annealing of an ising spin glass</title>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">E</forename><surname>Santoro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Martonák</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Tosatti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Car</surname></persName>
+		</author>
+		<idno type="DOI">10.1126/science.1068774</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Science</title>
+		<imprint>
+			<biblScope unit="volume">295</biblScope>
+			<biblScope unit="page" from="2427" to="2430" />
+			<date type="published" when="2002">2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Dynamics of a quantum phase transition and relaxation to a steady state</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Dziarmaga</surname></persName>
+		</author>
+		<idno type="DOI">10.1080/00018732.2010.514702</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Advances in Physics</title>
+		<imprint>
+			<biblScope unit="volume">59</biblScope>
+			<biblScope unit="page" from="1063" to="1189" />
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Adiabatic quantum computation</title>
+		<author>
+			<persName><forename type="first">T</forename><surname>Albash</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">A</forename><surname>Lidar</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/RevModPhys.90.015002</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Rev. Mod. Phys</title>
+		<imprint>
+			<biblScope unit="volume">90</biblScope>
+			<biblScope unit="page">15002</biblScope>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Time of zener tunneling</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Mullen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Ben-Jacob</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Gefen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Schuss</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.62.2543</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">62</biblScope>
+			<biblScope unit="page" from="2543" to="2546" />
+			<date type="published" when="1989">1989</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Driving at the quantum speed limit: Optimal control of a two-level system</title>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">C</forename><surname>Hegerfeldt</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.111.260501</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">111</biblScope>
+			<biblScope unit="page">260501</biblScope>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Shortcuts to adiabaticity: Concepts, methods, and applications</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Guéry-Odelin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ruschhaupt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kiely</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Torrontegui</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Martínez-Garaot</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">G</forename><surname>Muga</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/RevModPhys.91.045001</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Rev. Mod. Phys</title>
+		<imprint>
+			<biblScope unit="volume">91</biblScope>
+			<biblScope unit="page">45001</biblScope>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<monogr>
+		<title level="m" type="main">Pulse optimization in adiabatic quantum computation and control</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Turyansky</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zolti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Cohen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Pick</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2507.09770</idno>
+		<imprint>
+			<date type="published" when="2025">2025</date>
+		</imprint>
+	</monogr>
+	<note>quant-ph</note>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Cavity-assisted dynamical quantum phase transition at bifurcation points</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Tian</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.93.043850</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">93</biblScope>
+			<biblScope unit="page">43850</biblScope>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Boosting Photonic Quantum Computation with Moderate Nonlinearity</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Pick</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">S</forename><surname>Matekole</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Aqua</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Guendelman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Firstenberg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">P</forename><surname>Dowling</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Dayan</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevApplied.15.054054</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Appl</title>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="page">54054</biblScope>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<monogr>
+		<title level="m" type="main">Speeding up Quantum Annealing with Engineered Dephasing</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Sveistrys</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Langbehn</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Menu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Campbell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Morigi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">P</forename><surname>Koch</surname></persName>
+		</author>
+		<idno type="DOI">10.22331/q-2025-05-05-1731</idno>
+		<imprint>
+			<date type="published" when="2025">2025</date>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="page">1731</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<monogr>
+		<title level="m" type="main">Suppressing excitations in the nonlinear Landau-Zener model</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Deffner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Campbell</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2506.11759</idno>
+		<imprint>
+			<date type="published" when="2025">2025</date>
+		</imprint>
+	</monogr>
+	<note>quant-ph</note>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Assisted adiabatic passage revisited</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Demirplak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">A</forename><surname>Rice</surname></persName>
+		</author>
+		<idno type="DOI">10.1021/jp040647w</idno>
+	</analytic>
+	<monogr>
+		<title level="j">The Journal of Physical Chemistry B</title>
+		<imprint>
+			<biblScope unit="volume">109</biblScope>
+			<biblScope unit="page" from="6838" to="6844" />
+			<date type="published" when="2005">2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Transitionless quantum driving</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">V</forename><surname>Berry</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/1751-8113/42/36/365303</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Physics A: Mathematical and Theoretical</title>
+		<imprint>
+			<biblScope unit="volume">42</biblScope>
+			<biblScope unit="page">365303</biblScope>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Shortcuts to Adiabaticity by Counterdiabatic Driving</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Del Campo</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.111.100502</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">111</biblScope>
+			<biblScope unit="page">100502</biblScope>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Partial suppression of nonadiabatic transitions</title>
+		<author>
+			<persName><forename type="first">T</forename><surname>Opatrný</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Mølmer</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/1367-2630/16/1/015025</idno>
+	</analytic>
+	<monogr>
+		<title level="j">New Journal of Physics</title>
+		<imprint>
+			<biblScope unit="volume">16</biblScope>
+			<biblScope unit="page">15025</biblScope>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Three-level superadiabatic quantum driving</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Giannelli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Arimondo</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.89.033419</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">89</biblScope>
+			<biblScope unit="page">33419</biblScope>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Geometry and non-adiabatic response in quantum and classical systems</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Kolodrubetz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Sels</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Mehta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Polkovnikov</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.physrep.2017.07.001</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physics Reports</title>
+		<imprint>
+			<biblScope unit="volume">697</biblScope>
+			<biblScope unit="page" from="1" to="87" />
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Onset of dissipation in Zener dynamics: Relaxation versus dephasing</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Shimshoni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Gefen</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/0003-4916(91)90275-D</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Annals of Physics</title>
+		<imprint>
+			<biblScope unit="volume">210</biblScope>
+			<biblScope unit="page" from="16" to="80" />
+			<date type="published" when="1991">1991</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Dephasing of interference in Landau-Zener transitions</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Shimshoni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Stern</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevB.47.9523</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. B</title>
+		<imprint>
+			<biblScope unit="volume">47</biblScope>
+			<biblScope unit="page" from="9523" to="9536" />
+			<date type="published" when="1993">1993</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Thermally Assisted Adiabatic Quantum Computation</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">H S</forename><surname>Amin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">J</forename><surname>Love</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">J S</forename><surname>Truncik</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.100.060503</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">100</biblScope>
+			<biblScope unit="page">60503</biblScope>
+			<date type="published" when="2008">2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Effects of dissipation on an adiabatic quantum search algorithm</title>
+		<author>
+			<persName><forename type="first">I</forename><surname>Vega</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">C</forename><surname>Bañuls</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Pérez</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/1367-2630/12/12/123010</idno>
+	</analytic>
+	<monogr>
+		<title level="j">New Journal of Physics</title>
+		<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="page">123010</biblScope>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Optimal time schedule for adiabatic evolution</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">E</forename><surname>Avron</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Fraas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">M</forename><surname>Graf</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Grech</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.82.040304</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">82</biblScope>
+			<biblScope unit="page">40304</biblScope>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Landau-Zener Tunneling for Dephasing Lindblad Evo-lutions</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">E</forename><surname>Avron</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Fraas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">M</forename><surname>Graf</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Grech</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/s00220-011-1269-y</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Communications in Mathematical Physics</title>
+		<imprint>
+			<biblScope unit="volume">305</biblScope>
+			<biblScope unit="page" from="633" to="639" />
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Dissipative Landau-Zener problem and thermally assisted Quantum Annealing</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Arceci</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Barbarino</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Fazio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">E</forename><surname>Santoro</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevB.96.054301</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. B</title>
+		<imprint>
+			<biblScope unit="volume">96</biblScope>
+			<biblScope unit="page">54301</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Shortcuts to Squeezed Thermal States</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Dupays</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Chenu</surname></persName>
+		</author>
+		<idno type="DOI">10.22331/q-2021-05-01-449</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Quantum</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="page">449</biblScope>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<monogr>
+		<title level="m" type="main">Adiabatic quantum trajectories in engineered reservoirs</title>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">C</forename><surname>King</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Giannelli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Menu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">N</forename><surname>Kriel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Morigi</surname></persName>
+		</author>
+		<idno type="DOI">10.22331/q-2024-07-30-1428</idno>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="page">1428</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Transitionless quantum driving in open quantum systems</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Vacanti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Fazio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Montangero</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">M</forename><surname>Palma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Paternostro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Vedral</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/1367-2630/16/5/053017</idno>
+	</analytic>
+	<monogr>
+		<title level="j">New Journal of Physics</title>
+		<imprint>
+			<biblScope unit="volume">16</biblScope>
+			<biblScope unit="page">53017</biblScope>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Shortcuts to Adiabaticity in Driven Open Quantum Systems: Balanced Gain and Loss and Non-Markovian Evolution</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Alipour</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Chenu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">T</forename><surname>Rezakhani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Del Campo</surname></persName>
+		</author>
+		<idno type="DOI">10.22331/q-2020-09-28-336</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Quantum</title>
+		<imprint>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="page">336</biblScope>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Nonperturbative Treatment of non-Markovian Dynamics of Open Quantum Systems</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Tamascelli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Smirne</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">F</forename><surname>Huelga</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">B</forename><surname>Plenio</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.120.030402</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">120</biblScope>
+			<biblScope unit="page">30402</biblScope>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Quantum collision models: Open system dynamics from repeated interactions</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Ciccarello</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Lorenzo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Giovannetti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">M</forename><surname>Palma</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.physrep.2022.01.001</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physics Reports</title>
+		<imprint>
+			<biblScope unit="volume">954</biblScope>
+			<biblScope unit="page" from="1" to="70" />
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<analytic>
+		<title level="a" type="main">Quantum reservoir engineering with laser cooled trapped ions</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">F</forename><surname>Poyatos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">I</forename><surname>Cirac</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Zoller</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.77.4728</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">77</biblScope>
+			<biblScope unit="page" from="4728" to="4731" />
+			<date type="published" when="1996">1996</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Cavity-Induced Atom Cooling in the Strong Coupling Regime</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Horak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Hechenblaikner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">M</forename><surname>Gheri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Stecher</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Ritsch</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.79.4974</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">79</biblScope>
+			<biblScope unit="page" from="4974" to="4977" />
+			<date type="published" when="1997">1997</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Reservoir-engineering shortcuts to adiabaticity</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Menu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Langbehn</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">P</forename><surname>Koch</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Morigi</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevResearch.4.033005</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Res</title>
+		<imprint>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="page">33005</biblScope>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<analytic>
+		<title level="a" type="main">Adiabatic Quantum Search in Open Systems</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">S</forename><surname>Wild</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Gopalakrishnan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Knap</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">Y</forename><surname>Yao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">D</forename><surname>Lukin</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.117.150501</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">117</biblScope>
+			<biblScope unit="page">150501</biblScope>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<analytic>
+		<title level="a" type="main">Optimizing performance of quantum operations with non-markovian decoherence: The tortoise or the hare?</title>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">P</forename><surname>Butler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">E</forename><surname>Fux</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Ortega-Taberner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">W</forename><surname>Lovett</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Keeling</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">R</forename><surname>Eastham</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.132.060401</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">132</biblScope>
+			<biblScope unit="page">60401</biblScope>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Nonadiabatic Landau-Zener-Stückelberg-Majorana transitions, dynamics, and interference</title>
+		<author>
+			<persName><forename type="first">O</forename><forename type="middle">V</forename><surname>Ivakhnenko</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">N</forename><surname>Shevchenko</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Nori</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.physrep.2022.10.002</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physics Reports</title>
+		<imprint>
+			<biblScope unit="volume">995</biblScope>
+			<biblScope unit="page" from="1" to="89" />
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b42">
+	<analytic>
+		<title level="a" type="main">Quan-tum emulation of the transient dynamics in the multistate landau-zener model</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Stehli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">D</forename><surname>Brehm</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Wolz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Schneider</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Rotzinger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Weides</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">V</forename><surname>Ustinov</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41534-023-00731-7</idno>
+	</analytic>
+	<monogr>
+		<title level="j">npj Quantum Information</title>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="page">61</biblScope>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b43">
+	<analytic>
+		<title level="a" type="main">Mediator-assisted cooling in quantum annealing</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Pino</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">J</forename><surname>García-Ripoll</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.101.032324</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">101</biblScope>
+			<biblScope unit="page">32324</biblScope>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b44">
+	<analytic>
+		<title level="a" type="main">Quantum shortcut to adiabaticity for state preparation in a finite-sized Jaynes-Cummings lattice</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Cai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Parajuli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Govindarajan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Tian</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.110.022621</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">110</biblScope>
+			<biblScope unit="page">22621</biblScope>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b45">
+	<analytic>
+		<title level="a" type="main">Ultrastrong coupling between light and matter</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">F</forename><surname>Kockum</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Miranowicz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>De Liberato</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Savasta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Nori</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s42254-018-0006-2</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature Reviews Physics</title>
+		<imprint>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="19" to="40" />
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b46">
+	<analytic>
+		<title level="a" type="main">Probing ultrastrong light-matter coupling in open quantum systems</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ridolfo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Rajendran</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Giannelli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Paladino</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Falci</surname></persName>
+		</author>
+		<idno type="DOI">10.1140/epjs/s11734-021-00070-8</idno>
+	</analytic>
+	<monogr>
+		<title level="j">The European Physical Journal Special Topics</title>
+		<imprint>
+			<biblScope unit="volume">230</biblScope>
+			<biblScope unit="page" from="941" to="945" />
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b47">
+	<analytic>
+		<title level="a" type="main">Quantum Nondemolition Measurements</title>
+		<author>
+			<persName><forename type="first">V</forename><forename type="middle">B</forename><surname>Braginsky</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><forename type="middle">I</forename><surname>Vorontsov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">S</forename><surname>Thorne</surname></persName>
+		</author>
+		<idno type="DOI">10.1126/science.209.4456.547</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Science</title>
+		<imprint>
+			<biblScope unit="volume">209</biblScope>
+			<biblScope unit="page" from="547" to="557" />
+			<date type="published" when="1980">1980</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b48">
+	<monogr>
+		<author>
+			<persName><forename type="first">S</forename><surname>Haroche</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Raimond</surname></persName>
+		</author>
+		<title level="m">Exploring the Quantum: Atoms, Cavities, and Photons, Oxford Graduate Texts</title>
+		<imprint>
+			<publisher>Oxford University Press</publisher>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b49">
+	<analytic>
+		<title level="a" type="main">Decoherence and equilibration under nondestructive measurements</title>
+		<author>
+			<persName><forename type="first">V</forename><forename type="middle">I</forename><surname>Yukalov</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.aop.2011.09.009</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Annals of Physics</title>
+		<imprint>
+			<biblScope unit="volume">327</biblScope>
+			<biblScope unit="page" from="253" to="263" />
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b50">
+	<analytic>
+		<title level="a" type="main">Ultrastrong coupling regimes of light-matter interaction</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Forn-Díaz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Lamata</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Rico</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Kono</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Solano</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/RevModPhys.91.025005</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Rev. Mod. Phys</title>
+		<imprint>
+			<biblScope unit="volume">91</biblScope>
+			<biblScope unit="page">25005</biblScope>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b51">
+	<analytic>
+		<title level="a" type="main">Direct manipulation of a superconducting spin qubit strongly coupled to a transmon qubit</title>
+		<author>
+			<persName><forename type="first">Marta</forename><surname>Pita-Vidal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Arno</forename><surname>Bargerbos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rok</forename><surname>Žitko</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lukas</forename><forename type="middle">J</forename><surname>Splitthoff</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lukas</forename><surname>Grünhaupt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jaap</forename><forename type="middle">J</forename><surname>Wesdorp</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yu</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Leo</forename><forename type="middle">P</forename><surname>Kouwenhoven</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ramón</forename><surname>Aguado</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Angela</forename><surname>Bernard Van Heck</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christian</forename><surname>Kou</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Kraglund Andersen</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41567-023-02071-x</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature Physics</title>
+		<imprint>
+			<biblScope unit="volume">19</biblScope>
+			<biblScope unit="page" from="1110" to="1115" />
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b52">
+	<analytic>
+		<title level="a" type="main">Quantum search by local adiabatic evolution</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Roland</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">J</forename><surname>Cerf</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.65.042308</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">65</biblScope>
+			<biblScope unit="page">42308</biblScope>
+			<date type="published" when="2002">2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b53">
+	<analytic>
+		<title level="a" type="main">Number partitioning with grover&apos;s algorithm in central spin systems</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Anikeeva</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Marković</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Borish</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">A</forename><surname>Hines</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">V</forename><surname>Rajagopal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">S</forename><surname>Cooper</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Periwal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Safavi-Naeini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">J</forename><surname>Davis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Schleier-Smith</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PRXQuantum.2.020319</idno>
+	</analytic>
+	<monogr>
+		<title level="j">PRX Quantum</title>
+		<imprint>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="page">20319</biblScope>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b54">
+	<monogr>
+		<title level="m" type="main">Quantum state preparation via engineered ancilla resetting</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">A</forename><surname>Puente</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Motzoi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Calarco</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Morigi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Rizzi</surname></persName>
+		</author>
+		<idno type="DOI">10.22331/q-2024-03-27-1299</idno>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="page">1299</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b55">
+	<monogr>
+		<title level="m" type="main">Decoherence Cancellation through Noise Interference</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>D'auria</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Morigi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Anselmi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Benatti</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2408.04418</idno>
+		<imprint>
+			<date type="published" when="2025">2025</date>
+		</imprint>
+	</monogr>
+	<note>quant-ph</note>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

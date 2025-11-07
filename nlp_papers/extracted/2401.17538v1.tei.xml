@@ -1,0 +1,2070 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Post-Quantum Cryptography for Internet of Things: A Survey on Performance and Optimization</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability  status="unknown">
+					<licence/>
+				</availability>
+				<date type="published" when="2024-01-31">31 Jan 2024</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Tao</forename><surname>Liu</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Gowri</forename><surname>Ramachandran</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Raja</forename><surname>Jurdak</surname></persName>
+						</author>
+						<title level="a" type="main">Post-Quantum Cryptography for Internet of Things: A Survey on Performance and Optimization</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2024-01-31">31 Jan 2024</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">1A7CCB234633211DCA00643403C6D0FA</idno>
+					<idno type="arXiv">arXiv:2401.17538v1[cs.CR]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-07T10:21+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Internet-of-Things</term>
+					<term>Constrained Devices</term>
+					<term>Post-Quantum Cryptography</term>
+					<term>Public-key Cryptography</term>
+					<term>Information Security</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Due to recent development in quantum computing, the invention of a large quantum computer is no longer a distant future. Quantum computing severely threatens modern cryptography, as the hard mathematical problems beneath classic public-key cryptosystems can be solved easily by a sufficiently large quantum computer. As such, researchers have proposed PQC based on problems that even quantum computers cannot efficiently solve. Generally, post-quantum encryption and signatures can be hard to compute. This could potentially be a problem for IoT, which usually consist lightweight devices with limited computational power. In this paper, we survey existing literature on the performance for PQC in resource-constrained devices to understand the severeness of this problem. We also review recent proposals to optimize PQC algorithms for resource-constrained devices. Overall, we find that whilst PQC may be feasible for reasonably lightweight IoT, proposals for their optimization seem to lack standardization. As such, we suggest future research to seek coordination, in order to ensure an efficient and safe migration toward IoT for the post-quantum era.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>I NTERNET of Things (IoT) is a promising technology that emerged in recent years. IoT has many potential applications, ranging from connected personal gadgets to large-scale industrial drone networks. It has been estimated that 12.2 billion IoT devices were active in 2021, and this number will grow to 27 billion by 2025 <ref type="bibr" target="#b0">[1]</ref>. The security of IoT technologies remains a concern, as the computation cost of cryptography algorithms used for digital encryption and authentication may be burdensome for resource-constrained IoT node devices that were designed to be deployed en masse, and sometimes in inaccessible remote areas. Very often, factors such as production cost, size and battery life are prioritized over security for such low-end lightweight devices. If IoT technologies are indeed to integrate with agriculture, industrial production, medical service, military and everyday lives in general, adequate digital encryption and authentication standards should be enforced. Currently, one significant issue with applying cryptography in IoT is their high computational cost, which often scales with the key sizes of algorithms used.</p><p>On the other hand, an upgrade for cryptographic standards will soon be necessary due to the latest development in quantum computing, as this advanced computation technology may force the world to use even more complex cryptographic algorithms, further exacerbating the current problem for IoT systems. A sufficiently large quantum computer can use Shor's algorithm <ref type="bibr" target="#b1">[2]</ref> to solve Integer Factorization and Discrete Logarithmic problems, both used as fundamental hard problems for today's public-key cryptosystems. Additionally, Grover's algorithm <ref type="bibr" target="#b2">[3]</ref> makes symmetric keys easier to search by providing quadratic speed up for the unstructured search problem. As such, whilst symmetric ciphers need to double the key size in order to maintain their security level, asymmetric cryptography must undergo a fundamental change in response to the emergence of quantum computing. These developments threaten the security of contemporary cryptographic schemes used in IoT applications.Formally, cryptography that is secure against an attacker with large quantum computers is categorized as Post-Quantum Cryptography (PQC).</p><p>Naturally, to ensure security in future IoT systems, lightweight devices should also be protected by PQC. Yet a very practical problem remains: in general, quantum-resistant encryption and signature schemes are more computationally intensive than any public-key cryptosystems currently in-use <ref type="bibr" target="#b3">[4]</ref>. As a result, the migration toward PQC may have an undesired impact on IoT systems, where devices typically have limited energy supply, memory sizes, and processing speed. Recently, such complications have been noticed by researchers, and efforts were made to evaluate and optimize the performance of PQC algorithms in resource constrained devices. A comprehensive survey on this topic is <ref type="bibr" target="#b4">[5]</ref>, underscoring the problem that complex PQC algorithms may not be efficient enough on resource constrained IoT devices. This work reviews typical IoT network structures and past efforts for PQC migration. Furthermore, it surveys literature on the performance of candidates of a major PQC standardization project <ref type="bibr" target="#b5">[6]</ref> led by the United States National Institute of Standards and Technology (NIST), and compares their suitability for IoT systems. The content of this survey remains largely relevant today, but more recent developments warrant revisiting its findings. For example, this survey concluded that few works have proposed Post-Quantum solutions specific to resource-constrained IoT devices, but recent projects, such as pqm4 <ref type="bibr" target="#b6">[7]</ref>, have gained traction in this direction since the survey's publication. We also noticed that some algorithms recommended by this survey were eliminated in the NIST PQC standardization project, rendering them less relevant in today's context.</p><p>There are also other works that investigate the Post-Quantum security issues for IoT. Malina et al. <ref type="bibr" target="#b7">[8]</ref> is a survey on privacy-protecting technologies for IoT systems. Although it surveys the performance of several round-3 NIST PQC candidates, we found the information it provides is not sufficiently up-to-date: for example, NIST later selected Kyber and Dilithium as the primary KEM and signature schemes respectively <ref type="bibr" target="#b8">[9]</ref>, but the article only includes performance evaluation for one variation from each algorithm: Kyber1024 and Dilithium-III. Furthermore, data for both algorithms were drawn from sources published before 2019. The authors of <ref type="bibr" target="#b9">[10]</ref>, on the other hand, review the security requirement at different layers of IoT and the application of lattice-based cryptography (LBC) for IoT security. The authors further propose a classification framework for the application of LBC in resource-constrained devices. However, an IETF classification for resource-constrained devices published in 2014 <ref type="bibr" target="#b10">[11]</ref> was used, and the paper concludes that LBC is inefficient in many use cases. Such assessment may have under-evaluated, as many legacy devices originally covered by the IETF classification (such as 8-bit microprocessors) have become less relevant today.</p><p>In light of the recent NIST decisions on the first several PQC algorithms to be standardized, PQC for IoT needs to be revisited. A survey which reviews the most recent development on PQC for IoT security is needed. Additionally, as we explained earlier, we believe an emphasis should be placed on the performance evaluation and optimization of PQC algorithms for resource constrained devices. The specific contributions of this paper are as follows:</p><p>1) we evaluate recent works on PQC optimisation and evaluation. 2) we review the current trends and identify the emerging gaps in this research area. 3) we discuss potential future directions for the application of (optimized) PQC for IoT. The rest of this paper is structured as follows: in section II, we discuss preliminary knowledge required for further discussion of the topic, including the application of cryptography, quantum threat against modern cryptography, taxonomy of post-quantum cryptography and the basic structure of IoT systems. Section III presents our methodology for selecting and reviewing literature. In section IV-VII, we divide key literature based on their topics and discuss recent research trends. Section VIII summarizes our findings and provides recommendations on future research direction.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. PRELIMINARY KNOWLEDGE</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Data Encryption for IoT</head><p>In order to investigate the feasibility of applying PQC in IoT, it is important to first identify the application of contemporary pre-quantum cryptography in IoT. Figure <ref type="figure" target="#fig_0">1</ref> demonstrates the basic IoT network structure: the design goal is to connect the "Things", i.e., IoT sensor/actuator devices to the Internet but full-blown Internet protocols such as TCP/IP do not fit into the resource-constrained hardware they operate on. Therefore, a gateway is required as a medium between the "Things" and the Internet <ref type="bibr" target="#b11">[12]</ref>. The node-to-gateway connection is often wireless, allowing adversaries in proximity to eavesdrop if the broadcast is not encrypted. On the other hand, connections beyond the gateway can support more functionality due to the availability of network stacks and increased device capacity. A gateway may connect to an edge device, a cloud server, or join a many-to-many network over protocols such as Message Queuing Telemetry Transport (MQTT). It is also easier to implement security measures at this level, although the resource constraints may still be an issue for gateway devices that are mobile or in remote areas where energy and/or bandwidth are scarce. In general, we assume that the computation cost of securely transferring data to and from gateways and nodes may be heavy in the post-quantum era.</p><p>To date, Zigbee and LoRaWAN are two common technologies used for device-to-gateway communication, whilst MQTT is a publish-subscribe protocol used for data transmission from the gateways. In Table <ref type="table">I</ref> we present their currently supported encryption methods, and possible upgrades for them to be Post-Quantum secure. It is noted that both Zigbee and LoRaWAN rely only on 128-bit AES encryption, and the use of pre-installed keys is always necessary, whilst MQTT can use Transport Layer Security (TLS) and any custom payload encryption at application level. One issue about key preinstallation is the balance between scalability and security: on one hand, key diversification is usually preferred to limit the impact of side channel attacks <ref type="bibr" target="#b12">[13]</ref> (i.e., compromising one key will only compromise the device that uses it). On the other hand, keeping track of pre-installed keys can also be burdensome considering an IoT application may use thousands of small devices. Malik et al. <ref type="bibr" target="#b13">[14]</ref> surveyed IoT key bootstrapping protocols based on public key cryptography (PKC) and summarized proposals into five categories: Raw Public Key, Certificate-Based, Identity-Based, Self-Certified and Certificate-less. However, for most of these sophisticated protocols to function, public-key cryptographic functions need to be executed frequently in both server and client devices. Therefore, especially under a post-quantum context, it would be crucial to understand if public-key cryptographic functions are feasible to run on resource-constrained devices.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Cryptography and Information Security</head><p>Cryptography is closely associated with encryption. By using a key and an algorithm (consists of permutations, substitutions and other operations) to "scramble" a plaintext, it is possible to produce a ciphertext which can only be recovered with the correct key. Whilst the primary objective of cryptography is to protect confidentiality, modern cryptography can be used to achieve three other objectives: data integrity, authentication and non-repudiation <ref type="bibr" target="#b14">[15]</ref>. The usage of keys differentiates modern cryptography into two distinctive categories: symmetric cryptography and asymmetric cryptography (also known as public-key cryptography). In symmetric cryptography, the same key is used to both encrypt and decrypt data. In asymmetric cryptography, a "private key" is kept secret, and the "public key", as its name suggests, is made public. such arrangement allows interesting functionalities which is critical for information security: when the public key is used to encrypt, it ensures that a secret message can only be read by the intended recipient; when the secret key is used to encrypt, on the other hand, entities with the public key can verify that a non-repudiable message is indeed made by the secret key owner.</p><p>Together, these two categories of cryptography guarantee the secure transmission and storage of information in the digital world. One of the most important applications of cryptography is the Transport Layer Security (TLS) protocol, which is the standard method for establishing confidential and authenticated communication channels over the open Internet. With TLS, two distant parties can authenticate each other using digital signatures and third-party certificates, and then establish mutual secrets using asymmetric key exchange such as the Diffie-Hellman algorithm (without actually transmitting the secret, thus eliminating the risk of eavesdropping). Then, the mutual secret can be used as the key for symmetric ciphers, which are much more efficient for bulk data encryption and decryption.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Quantum Threats Against Cryptography</head><p>It is known that quantum computing poses threats to both symmetric and asymmetric cryptography, but the threat against asymmetric cryptography is more significant <ref type="bibr" target="#b15">[16]</ref>. An overview of existing cryptosystems and how they are threatened by quantum computing is presented in Table <ref type="table">I</ref>. As shown in the table, state-of-the-art asymmetric cryptography -including the RSA, the Elliptic-Curve Diffie-Hellman (ECDH) key exchange, and the Elliptic-Curve Digital Signature Algorithm (ECDSA) -offer no security against quantum computing. The security of RSA relies on the hardness of factoring large bi-prime numbers, also known as the Integer Factorization (IF) problem. On the other hand, Elliptic Curve Cryptography (ECC) takes the assumption that Elliptic Curve Discrete Logarithm (ECDL) problems are hard to solve. Integer Factorization and the Discrete Logarithm Problem are believed to be hard for classic computers, yet they can be solved in polynomial time by a quantum computer large enough to run Shor's algorithm. Whilst small, experimental quantum computers today are incapable of solving practical ciphers, researchers have been estimating the quantum resources needed to achieve such a goal <ref type="bibr" target="#b16">[17]</ref>, <ref type="bibr" target="#b17">[18]</ref>. Other studies, such as <ref type="bibr" target="#b18">[19]</ref>, <ref type="bibr" target="#b19">[20]</ref> explore the possibility of using variations of</p><p>TABLE I: List of modern cryptosystems, their fundamental problems and security against quantum computing. Cryptosystem Fundamental Problem Current State Secure Against QC? Diffie-Hellman (DH) Discrete Logarithm Outdated No DSA Outdated RSA Integer Factorization In Use ECDH Discrete Logarithm over Elliptic Curves In Use ECDSA In Use Symmetric Ciphers Exhaustive search &amp; collision-finding in large key spaces In Use Yes 1 PQC Lattice Problems, Error-Correction Codes, Multivariate Systems, Hash Trees, Isogeny Graphs Developing Yes 1 Increasing key size may be required for maintaining security level.</p><p>Shor's algorithm to factorize small bi-prime and tri-primes in quantum architectures. The quantum approach to solving the Discrete Logarithm problem over elliptic curves has also been discussed in theory in <ref type="bibr" target="#b20">[21]</ref>.</p><p>On attacking symmetric cryptography, Grover's algorithm can potentially decrease the security strength of existing ciphers by offering a quadratic speed-up for exhaustive keysearching <ref type="bibr" target="#b2">[3]</ref>, but the practical implication of this attack is still debated as Grover's algorithm requires queries to be run sequentially. Nevertheless, researchers have estimated that a quantum architecture with 2953, 4449, 6681 qubits can carry out Grover's search against the Advanced Encryption Standard (AES) with 128-, 192-and 256-bit security, respectively <ref type="bibr" target="#b21">[22]</ref>. Other works, such as <ref type="bibr" target="#b22">[23]</ref> and <ref type="bibr" target="#b23">[24]</ref>, outlines additional quantum attacks that can potentially reduce the hardness of exhaustive key-searching.</p><p>Whilst theoretical estimations suggest at least several thousands of qubits are needed in a quantum computer to break existing cryptography, global technology giants are certainly making their efforts to reach this goal. Currently, IBM takes lead in quantum computing hardware with its 127-qubit processor <ref type="bibr" target="#b24">[25]</ref> and ambition to go beyond 1000 qubits in 2023 <ref type="bibr" target="#b25">[26]</ref>. It has been predicted that the likelihood of having a scalable quantum computer in the next decade is significant <ref type="bibr" target="#b26">[27]</ref>. As such, quantum-resistant encryption and signature schemes are urgently needed.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D. Migration Toward PQC</head><p>By formal definition, post-quantum cryptography is cryptography under the assumption that the attacker has a large quantum computer (i.e. the quantum threat discussed in the previous section is realistic), and the central challenge in PQC is to maintain cryptographic usability and flexibility without sacrificing confidence <ref type="bibr" target="#b27">[28]</ref>. This requires cryptography to stop relying on the assumed hardness of integer factorization and the discrete logarithmic problem and start using problems that even quantum computers cannot efficiently solve. To date, there have been calls for the Internet to prepare for migration</p><p>TABLE II: Taxonomy of PQC, their fundamental problems and notable cryptographic schemes submitted to the NIST PQC standardization project. PQC Category Fundamental Problems Notable Schemes Lattice-based Problems based on structured lattices, such as the (Modular) Learning With Error problem and the NTRU problem Kyber, Dilithium, Faclon Code-based Problems related to decoding linear binary error-correcting code, to which random errors were added. McEliece, HQC, BIKE Hash-based Signatures Combining multiple one-time signature key pairs into a hash tree to generate signatures. SPHINCS+, XMSS Isogeny-based Problems based on finding isogenies on a large isogeny graph. SIKE Multivariate Problems based on finding solutions to large systems of quadratic equations over finite fields. Rainbow toward Post-Quantum Cryptography (PQC) despite the fact that a large quantum computer has not been built, and the reasons are two-fold: first, secret communications today may be stored and decrypted with QC later and second, pre-quantum public-key cryptosystems like Rivest-Shamir-Adleman (RSA) and Elliptic Curve Cryptography (ECC) have been embedded within numerous applications and protocols. It is not easy to upgrade software and standards used globally, and such effort must be organized with care. The U.S. National Cybersecurity Center of Excellence's Migration to Post-Quantum Cryptography project <ref type="bibr" target="#b28">[29]</ref>, which collaboratively involves many global technology giants, is an example in this direction. The NIST's PQC standardization project <ref type="bibr" target="#b5">[6]</ref> is another major effort aimed to "solicit, evaluate, and standardize one or more quantumresistant public-key cryptographic algorithm". Started in 2017, the NIST PQC standardization project initially received a total of 69 key exchange mechanism (KEM) and signature scheme proposals, which can be separated into five categories based on their underlying hard problems, as listed in table <ref type="table">II</ref>. Over the course of 5 years, many have been found unsafe or impractical. Recently, four public-key post-Quantum algorithms have been selected <ref type="bibr" target="#b8">[9]</ref>, including one key encapsulation mechanism (KEM) and three digital signature schemes. It is expected that at least one additional KEM will also be selected in the near future. A summary of these algorithms is provided in Table <ref type="table">III</ref>. Note that two additional stateful hash-based signature schemes are also included in Table <ref type="table">III</ref>: the Leighton-Micali Signature (LMS) system and the eXtended Merkle Signature Scheme (XMSS). These two signatures are not candidates of the main NIST PQC standardization project due to the fact that stateful hash-based signatures need to maintain internal states and cannot be implemented using the standard API (i.e. Key Generate, Sign and Verify). As a result, they were approved by the NIST in a separate publication <ref type="bibr" target="#b29">[30]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. METHODOLOGY</head><p>We searched digital databases for works that include "Post-Quantum Cryptography" and "Internet of Things" in the full text. The databases are IEEE Xplore and ACM Digital</p><p>TABLE III: List of PQC Algorithms standardized and currently under evaluation by the NIST. Algorithm Foundation Type NIST Evaluation Kyber Lattice-based KEM Recommended Dilithium Lattice-based Signature Recommended Falcon Lattice-based Signature Alternative SPHINCS+ Stateless Hashbased Signature Alternative HIKE Code-based KEM Under Evaluation HQC Code-based KEM Under Evaluation Classic McEliece Code-based KEM Under Evaluation XMSS Stateful Hashbased Signature Recommended 1 LMS Stateful Hashbased Signature Recommended 1 1</p><p>Recommended in NIST SP 800-208 <ref type="bibr" target="#b29">[30]</ref>, separate from the main NIST PQC standardization project. In general, stateful hash-based cryptography requires careful management of internal states and is harder to implement securely.</p><p>Library due to their dominance and reputation in the field of computer science. Additionally, we searched the Cryptology ePrint Archive for the newest development. Although works found on the Cryptology ePrint Archive are not peer reviewed, the archive itself has a reputation for its fast processing. Since our work aims to survey the most up-to-date information, this suits our purpose as long as the quality of papers found is critically analyzed. The search results were then reviewed and manually filtered. In our scope, a relevant article should:</p><p>• be about PQC algorithms and their application on resource-constrained platforms, and</p><p>• evaluate the performance of PQC algorithms, or propose a solution to optimize PQC algorithms for performance, and</p><p>• be published after 2020, as <ref type="bibr" target="#b7">[8]</ref> has already conducted a survey in 2019. A diagram illustrating our filtering process is shown in figure <ref type="figure">2</ref>. After the initial filtering of search results, 83 publications remained for detailed review and categorization. We found that a total of 34 publications were relevant to the scope of survey: 9 publications are dedicated to the performance evaluation of PQC algorithms on certain resource constrained platforms, whereas the other 25 propose new software designs, hardware designs, or software/hardware co-designs to optimize the performance of PQC algorithms. Tables IV, V and VI provide lists of literature reviewed, categorized by their primary topics; a pie chart showing the distribution of the research topics is also presented in Figure <ref type="figure" target="#fig_1">3</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. PQC PERFORMANCE EVALUATION</head><p>The foremost problem that needs to be addressed when discussing Post-Quantum security for IoT systems is the performance of PQC algorithms, as it was discussed in <ref type="bibr" target="#b4">[5]</ref> that complex computation may be burdensome for IoT devices. In Table <ref type="table">IV</ref>, we summarize recent works on this topic. We notice that the majority of the literature (except for <ref type="bibr" target="#b30">[31]</ref>, <ref type="bibr" target="#b31">[32]</ref>) include algorithms approved by the NIST (Kyber, Dilithium, Falcon and SPHINCS+) in the evaluation. All works except for one ( Fig. <ref type="figure">2</ref>: Process used to determine publications relevant to our survey's scope. The number of results found by using the search criteria from each database is accurate as of Jan 2023. [33], which focuses only on PQC power consumption) evaluate the speed of PQC algorithms, either in real time or CPU cycles. Such a trend is understandable, as speed/latency is the most intuitive representation of efficiency, and a key requirement for the Next-Generation smart IoT systems <ref type="bibr" target="#b33">[34]</ref>. However, we must keep in mind that IoT systems often consist of large numbers of small devices, and it is also important to keep other metrics in check: for example, code size (which consumes flash memory), transmission size (which increases bandwidth requirement), RAM usage, and energy/power consumption. As shown in Table <ref type="table">IV</ref>, we are yet to find a publication which presents a uniform evaluation framework that considers all those metrics for one or more NIST-selected PQC algorithms operating in resource constrained environments.</p><p>Lastly, we also note that while <ref type="bibr" target="#b30">[31]</ref>- <ref type="bibr" target="#b32">[33]</ref>, <ref type="bibr" target="#b34">[35]</ref>, <ref type="bibr" target="#b35">[36]</ref> focused on PQC primitives in resource constrained environment, <ref type="bibr" target="#b36">[37]</ref>- <ref type="bibr" target="#b39">[40]</ref> implemented the primitives as part of Post-Quantum Transport Layer Security (PQTLS) protocol and evaluated the performance at the transport level.</p><p>Overall, recent works tend to be optimistic in regard to the performance of lattice-based PQC for IoT: despite significant performance overhead, PQC is still shown to be feasible in some reasonably constrained devices. Bürstinghaus-Steinbach et al. <ref type="bibr" target="#b37">[38]</ref> suggested that the NIST-selected, lattice-based algorithm Kyber runs faster than ECDH by at least one order of magnitude, when both algorithms are executed as primitives on four lightweight devices. However, the code-based SPHINCS+, which was selected by the NIST as an alternative to lattice, demonstrates slower execution than ECDSA. <ref type="bibr" target="#b37">[38]</ref> further discovered that a Post-Quantum TLS protocol using Kyber-SPHINCS+ cipher suite would introduce a significant burden in terms of latency and memory usage, mainly due to the cost of computing signatures with SPHINCS+.</p><p>The efficiency of Kyber (and lattice-based cryptography in general) is also shown in <ref type="bibr" target="#b34">[35]</ref>, <ref type="bibr" target="#b35">[36]</ref>. In <ref type="bibr" target="#b34">[35]</ref>, Mayes demonstrated that the encryption arithmetic of Kyber768 can be run inside a MULTOS Trust Anchor <ref type="bibr" target="#b40">[41]</ref> with just 13 kilobytes of RAM, although the process requires approximately 9.8 seconds even with the aid of a cryptography co-processor. For more powerful devices, <ref type="bibr" target="#b35">[36]</ref> showed that a Raspberry Pi 4 requires 100-300 microseconds to compute main functions (key generation, encapsulation and decapsulation) of Kyber and SABER, yet lattice-based signatures (Dilithium and Falcon) are more expensive to compute in general. Another study, <ref type="bibr" target="#b32">[33]</ref>, investigated the power consumption of using Dilithium and Falcon for signature-based authentication. It was found that Dilithium and Falcon's power consumption is in fact on par with RSA-4096, which is commonly used in the pre-quantum era.</p><p>A key topic related to the efficiency of PQC in IoT is the Post-Quantum Transport Layer Security (PQTLS). As public-key cryptography is used for key exchange and signature verification in the pre-quantum TLS, their eventual upgrade to PQC should be expected. On a Cortex-M4 microcontroller unit (MCU), <ref type="bibr" target="#b39">[40]</ref> tested PQKEMs in place of ECDH in TLS 1.2 and measured the overhead, both in terms of latency and energy consumption. It was suggested that the overhead induced by PQC is feasible for IoT, especially with latticed-based KEMs which consumed less energy than ECDH. Furthermore, the authors noted that for lattice-based KEMs, a large portion of latency overhead was caused by larger bandwidth requirements, rather than the actual computation of PQC. As such the potential of hardware acceleration may be limited for PQTLS. A more recent work on this matter is <ref type="bibr" target="#b36">[37]</ref>, which used the OQS-OpenSSL from Open Quantum Safe to establish TLS 1.3 handshake over MQTT protocol. A key observation noted in this work is that lattice-based KEMs (Kyber, NTRU, NTRU Prime and SABER) achieved faster key exchange than EDCH on both RPi3 and RPi4, despite having to transmit larger packets. However, the same cannot be said for signature authentication as ECDSA outperformed all PQ signature schemes. A key difference between <ref type="bibr" target="#b39">[40]</ref> and <ref type="bibr" target="#b36">[37]</ref> is software implementation. <ref type="bibr" target="#b39">[40]</ref> integrated PQC ciphers within the WolfSSL library, which only supported TLS 1.2 at the time, while the OQS-OpenSSL library used by <ref type="bibr" target="#b39">[40]</ref> supports TLS 1.3 and was developed specifically for PQC ciphers. Considering the fact that TLS 1.3 is generally faster and superior to TLS 1.2, the information provided by <ref type="bibr" target="#b39">[40]</ref> might seem more relevant.</p><p>If we consider the fact that lattice-based KEMs perform similarly to ECDH yet lattice-based signatures are slower than ECDSA, it would be intuitive to ask if TLS-like authentication can be performed with KEMs only, eschewing the need of computing expensive PQ signatures. Conveniently, KEMTLS has been proposed by Schwabe et al. <ref type="bibr" target="#b41">[42]</ref>. In KEMTLS protocol, a server uses a certificated long-term KEM public key so that the key exchange can be implicitly authenticated, and no signature has to be generated during the handshake. The certificate used in KEMTLS still requires a CA's PQ signature, but it can be computed offline and only need to be verified once by the client. In <ref type="bibr" target="#b38">[39]</ref>, Gonzalez and Wiggers compared KEMTLS and Post-Quantum TLS 1.3 in an embedded setting. It was found that in comparison to PQTLS, KEMTLS can reduce handshake latency by up to 38%, in addition to achieving less peak memory usage due to the smaller memory footprint of lattice-based KEMs.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. SOFTWARE OPTIMIZATION FOR PQC</head><p>As shown in Table <ref type="table">V</ref>, recent works on software optimization for PQC focused heavily on lattice-based cryptography (LBC), as 7 out of a total 9 papers described means to optimize lattice-based KEM and signatures. However, papers published in 2020 did not seem to focus on a specific type of PQC: ways to optimize hash-based (XMSS), lattice-based (NTRU Primes, Saber) and a cipher based on zero-knowledge proofs, namely Picnic, were discussed. However, after 2021 there seems to be a shift in direction, as all 5 papers focused on optimizing LBC algorithms, including Dilithium and Falcon which were officially selected by the NIST for standardization.</p><p>In regard to optimization goals, we note that proposals for PQC software optimization aim all to improve operation speed (latency) and memory usage. In general, the quest for optimization is a trade-off problem between speed and memory usage. For example, a relatively straight-forward optimization technique for reducing minimum memory requirement is to generate data required for computation (i.e. coefficient matrices of large polynomial systems) only when needed, instead of storing all data in the memory space simultaneously. This technique was used in <ref type="bibr" target="#b42">[43]</ref>- <ref type="bibr" target="#b44">[45]</ref> to drastically reduce memory usage at the cost of extra computation time. For LBC, the most computational intensive task is polynomial multiplication: as practical LBC algorithms need to compute multiplications of large and high-degree polynomials, the optimization of this operation is rewarding. In a "school book" implementation, polynomial multiplication can be done by multiplying each pair of coefficients, which has a time complexity of O(n 2 ), where n is the degree of two polynomials being multiplied together. Alternatively, an algorithm which operates on the similar principles of Fast Fourier Transform (FFT) -called Number Theoretic Transform (NTT) -can reduce this complexity to the order of O(n) log n <ref type="bibr" target="#b45">[46]</ref>. Broadly speaking, like FFT and inverse-FFT, NTT and inverse-NTT transforms polynomials to and back from points representation using values evaluated at roots of unity. Yet unlike FFT which uses n-th complex roots of unity (i.e. complex number z where z n = 1), NTT uses roots of unity in a finite field (i.e. modular arithmetic over a prime number). Some papers demonstrate that it is possible to modify the standard NTT algorithm for further enhancement in performance: for example, <ref type="bibr" target="#b42">[43]</ref> notices that some polynomials used in Dilithium have small coefficients and proposes a parallel algorithm which runs faster with "small" polynomials than the standard NTT. <ref type="bibr" target="#b43">[44]</ref>, on the other hand, suggests that by performing NTT over a smaller prime number, some polynomial coefficient values can be stored as 16-bit value instead of 32-bit. However, this deviates from the standard specification of Dilithium, which raises questions about whether or not such modification affects the scheme's security strength -unfortunately, such issues were not fully discussed. Whilst other works optimize the algorithms by making trade-offs between speed and memory usage, Alkim et al. <ref type="bibr" target="#b46">[47]</ref> claimed to achieve both. The authors present three means to optimize the NTRU Prime KEM and claim that one is optimized for speed using Good's trick <ref type="bibr" target="#b47">[48]</ref>, whilst the other two use mixed-radix NTT multiplication and are optimized for memory usage. Despite the fact that these methods focus on different metrics, all of them seem to outperform the standard pqm4 implementation -which is already a PQC library optimized for the Cortex-M4 platforms <ref type="bibr" target="#b6">[7]</ref> -in both speed and memory. The only downside appears to be the fact that those optimizations only support a limited set of parameters used in NTRU Prime. Nevertheless, we should note that NTRU Prime is no longer a KEM being considered for NIST standardization, but this work does raise the question of whether a joint speed-and-memory optimization is possible for other LBC algorithms.</p><p>On the other hand, for the stateful hash-based signature (HBS) XMSS, <ref type="bibr" target="#b48">[49]</ref> discusses an interesting technique for maximizing speed for signature verification on lightweight devices. One key characteristic of stateful HBS is that the private key used by the signer consists of a large set of onetime signature (OTS) keys, and an OTS key should never be reused <ref type="bibr" target="#b29">[30]</ref>. Additionally, the verification of XMSS signatures is not a constant-time operation, as the time to verify signatures (of the same message) generated by different OTS varies for each OTS. Therefore the authors propose an altered XMSS algorithm, in which the signer uses a probabilistic method to search for signatures that are faster to verify. The addition of this "search" process, in practice, seems to drastically increase the signing time: on a general purpose CPU, the increase in signing time may reach one minute, and this does not seem feasible for any real-time network application that requires frequent signature-based authentication -for example, a TLSlike protocol for server authentication.</p><p>Instead of tweaking the internal workings of cryptographic algorithms, a more conservative approach might be optimizing lower level software and catering to the needs of cryptographic computations. In <ref type="bibr" target="#b49">[50]</ref>, <ref type="bibr">Kim et</ref> al. took advantage</p><p>TABLE IV: Summary of literature on the topic of performance evaluation for PQC algorithms Work Year Algorithm Implementation Hardware Protocols Evaluated Metrics<ref type="foot" target="#foot_0">foot_0</ref> S CS TS M E P [35] 2020 Kyber768 NIST Reference + MULTOS MULTOS IoT Trust-Anchor Board Primitives ✓ × × × × × [38] 2020 Kyber, SPHINCS+ pqm4 + mbedTLS RPi 3, ESP32-PICO-KIT, Fieldbus Option Card, LPC11U68 Primitives, PQTLS ✓ ✓ ✓ × × × [39] 2020 Kyber, SABER, NTRU, Dilithium, Falcon pqm4 + WolfSSL + Zephyr RTOS STK3701A KEMTLS, PQTLS ✓ ✓ ✓ ✓ × × [40] 2021 McEliece, Kyber, NTRU, NTRU Prime, Saber, FrodoKEM, HQC, BIKE, SIKE NIST Reference nRF52840 PQTLS ✓ × × × ✓ × [31] 2021 Mersenne-756839 Not specified<ref type="foot" target="#foot_1">foot_1</ref> ESP8266 Primitives ✓ × ✓ × ✓ × [32] 2022 NTRU pqm4 EFR32MG12 Primitives ✓ × × ✓ ✓ ✓ [36] 2022 Kyber, Saber, Dilithium, Falcon liboqs RPi 4 Primitives ✓ × × × × × [33] 2022 Dilithium, Falcon Not specified 2 RPi 3 &amp; 4; Laptop and PC Primitives × × × × × ✓ [37] 2022 BIKE, HQC, FrodoKEM, Kyber, NTRU, NTRU Prime, SABER, SIKE NIST Reference + existing application RPi 3 &amp; 4 PQTLS ✓ × × × × × of ARMv8's Neon technology and parallelized the overall process of FFT/NTT-based polynomial multiplication and reported 15.1%, 16.4% and 65.4% speed improvement in key generation, signing and verification, respectively.</p><p>Considering the fact that Falcon by design is a signature scheme that features exceptionally fast verification but slower key generation and signing, the drastic improvement in signature verification may further push Falcon as the preferred scheme in scenarios where a large number of client-side lightweight IoT devices are frequently tasked to verify server signatures. On the other hand, for the RISC-V architecture, <ref type="bibr" target="#b50">[51]</ref> implemented faster multiplication methods and designed a new processor instruction set extension dedicated to polynomial multiplication. However, although <ref type="bibr" target="#b50">[51]</ref> claims improvement in performance, no comparison with the existing state-of-the-art method (i.e. traditional NTT) is provided. As such, we cannot practically evaluate this implementation's potential improvement on a post-quantum KEM or signature scheme.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VI. HARDWARE OPTIMIZATION FOR PQC</head><p>Another practical way to optimize cryptography for performance is implementing cryptographic functions in hardware, such as using Field Programmable Gate Arrays (FPGAs) or Application Specific Integrated Circuits (ASICs). In general, hardware implementation is faster than software implementation of the same function, yet the benefit in this case is not only execution speed: the need for cryptographic functions to compete with application logic for memory space can also be eliminated by moving those functions to separate hardware, and this may be crucial for memory constrained IoT devices. However, such perks come with a cost: the introduction of extra hardware would also cost extra energy, and this problem is more prominent for FPGAs than ASICs <ref type="bibr" target="#b53">[54]</ref>. On the other side, ASICs sacrifice flexibility (i.e. unlike FPGAs, ASICs cannot be re-programmed once produced) for performance, and generally have higher development cost along with longer time-to-market <ref type="bibr" target="#b54">[55]</ref>.</p><p>Before the discussion of specific works in Table <ref type="table">VI</ref>, we should keep in mind that a common issue with hardware optimization is the lack of standards. For software, NIST's reference implementations in C and the pqm4 library are used as the de facto standard. For hardware optimization, many work report improvement in some aspects over a previous similar hardware design, but as a common baseline does not seem to exist, cross-comparing is rather difficult. Therefore, on the right-hand-side of Table <ref type="table">VI</ref> where we indicate whether each optimization "improves" or "sacrifices" a metric, the indications are not relative to a global or absolute baseline, but a summary of comparison made to certain previous works selected by the authors.</p><p>Nevertheless, we surveyed papers listed in Table <ref type="table">VI</ref>. We notice that unlike optimized software implementations, recent works on hardware PQC are less focused on NIST PQC candidates. 4 out of 13 surveyed papers propose optimization for the Binary Ring Learning With Error (Bin-RLWE) <ref type="bibr" target="#b55">[56]</ref>, which seems to be a popular cipher among hardware designers <ref type="bibr" target="#b56">[57]</ref>- <ref type="bibr" target="#b59">[60]</ref>. One possible reason for this is that Bin-RLWE is by design lightweight and implementation-friendly, as the binary error values can be efficiently generated in hardware <ref type="bibr" target="#b60">[61]</ref>. Yet the Bin-RLWE was not submitted as a NIST standardization candidate. As such, the likelihood of it being widely accepted is not as high as other lattice-based schemes, despite its inherent suitability for hardware. Overall, we note that the most promising hardware optimization for Bin-RLWE is <ref type="bibr" target="#b59">[60]</ref>, where He et al. demonstrate that using the combination of algorithmic derivation and parallel computation, a high areadelay product (ADP) can be achieved by improving area and speed simultaneously, rather than sacrificing one for another.</p><p>TABLE V: Summary of literature on the topic of software optimization for PQC algorithms on resource-constrained devices Work Year Algorithm Target Hardware Optimization Technique Metrics Considered 1 Speed Memory [49] 2020 XMSS Cortex-M4 Using probabilistic method to generate signatures that are easier to verify, at the cost of longer signing time. + -[47] 2020 NTRU Prime Cortex-M4 Good's trick for improving speed and mixed radix NTT for improving memory usage. + + [43] 2020 Picnic -Generating data on demand; avoid caching; streaming signature output. -+ [52] 2020 Saber -Using alternative algorithms to convert polynomial multiplication into large integer multiplication suitable for acceleration with CCoPs. + ? [51] 2021 General LBC RISC-V Efficient instruction sets for 32-bit RISC-V processors suitable for polynomial multiplication. + ? [44] 2022 Dilithium Cortex-M4 Streaming and compressing data; alternative algorithms for polynomial multiplication. -+ [53] 2022 Dilithium Cortex-A series Using parallel small polynomial multiplication to accelerate Sign and Verify operations for Dilithium. + -[50] 2022 Falcon Cortex-A series Utilizing NEON engine and vector instructions to parallelize FFT/NTT-based polynomial multiplication.</p><p>+ ? <ref type="bibr" target="#b44">[45]</ref> 2022 Saber RISC-V Finding optimized NTT parameters for polynomial multiplication; generating data on demand.</p><p>-+</p><p>1 Symbols are used to indicate whether a proposed implementation intends to improve (+), sacrifice (-) a metric. Question mark (?) indicates that a metric is not included in the evaluation.</p><p>Kim et al. <ref type="bibr" target="#b61">[62]</ref> is another recent work that we found significant for the current PQC optimization landscape. This work uses a look-up-table-based approach for NTT modular multiplication, and a real-time processing for polynomial sampling. These optimization techniques were applied on ASIC and an overall improvement in all metrics (speed, area, memory and energy) were reported. As reported in the paper, this implementation can be used for any LBC where the modulus parameter (q) is smaller than 2 24 -which both Dilithium (q = 8, 380, 417) and Kyber (q = 7, 681) satisfy. Therefore, it would be interesting to investigate how well this design (and ASIC crypto-accelerators in general) applies to the NIST-selected algorithms in practice in future studies.</p><p>On specific standardized LBC ciphers, one recent work <ref type="bibr" target="#b62">[63]</ref> provided a hardware implementation for the NIST-selected lattice signatures, Dilithium and Falcon. In this work, Beckwith et al. discuss the challenges of implementing NTT for polynomial multiplication, as well as performance bottle-necking caused by the need of large pseudo-random data for polynomial sampling in Dilithium. Addressing these challenges, the authors present an optimized Dilithium implementation in FPGA, which claims the best latency to date. For Dilithium-II on a Xilinx Artix-7 FPGA board running at 256 MHz, their implementation reported 19, 27 and 117 microseconds on average for key generation, verifying and signing operations, respectively. However, the issue with energy was left not discussed: for a small IoT device, the addition of an FPGA is likely to increase the device's power consumption. Should similar hardware implementation be used in a practical design, a well-understood energy profile is crucial. The work in <ref type="bibr" target="#b62">[63]</ref> provides the first hardware implementation of Falcon (albeit only the verify function) and achieved a latency as low as 16.8 microseconds on an Artix-7 at 142 MHz. Again, the energyefficiency of this approach comes into question, considering the FPGA's higher energy demand and the lack of energy-wise evaluation in this work.</p><p>[64] is another work with notable significance as it features an area-efficient hardware implementation of SPHINCS+, which is a stateless hash-based signature also selected by the NIST (albeit not a primary recommendation, as shown in many works such as <ref type="bibr" target="#b37">[38]</ref>, its computation is not as efficient as LBC). Instead of speed, this work proposes an FPGA implementation that maximizes area-efficiency yet still maintains acceptable latency. The authors show that this implementation of SPHINCS+, on a Xilinx-XZU3EG FPGA running at 150MHz frequency can achieve comparable speed to software implementation running on a 3.6GHz Intel-i7 CPU: 2.02 milliseconds for key generation, 64.34 milliseconds for signing, and 2.51 milliseconds for verifying. However, we should note that such results are three orders of magnitude higher than Dilithium and Falcon, the operations of which are measured in tens of microseconds. Naturally, this raises the question if hash-based cryptography is suitable for resourceconstrained devices, if LBC signatures can perform 100 times faster than HBC on similar devices (27 microseconds for Dilithium and 16.8 microseconds for Falcon, as reported in <ref type="bibr" target="#b62">[63]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VII. GRAPHIC PROCESSOR UNIT (GPU) ACCELERATION</head><p>FOR PQC Another category of papers we surveyed is on the topic of GPU acceleration for PQC algorithms. GPU has long been used for cryptographic computation due to the advantage offered by its inherent parallel architecture <ref type="bibr" target="#b70">[71]</ref>. Aside from its original purpose (graphic rendering), a major use case of GPU computation is the mining of crypto-currencies <ref type="bibr" target="#b71">[72]</ref>, in which a GPU's large number of parallel cores can be used to reach very high throughput compared to general-purpose CPUs. Similarly, the advantage offered by GPU computation can be leveraged for PQC -especially for LBC, as the key to accelerating LBC is parallelizing expensive polynomial multiplication (as per earlier discussion). Among works we</p><p>TABLE VI: Summary of literature on the topic of hardware optimization for PQC algorithms on FPGA and ASIC Work Year Algorithm Hardware Optimization Technique Metrics Considered<ref type="foot" target="#foot_2">foot_2</ref> Speed Area Power Memory [57] 2020 Bin-RLWE FPGA Novel masked implementation method against differencial power attack without using a pseudo random number generator. + + ? × [65] 2020 RLWE ASIC Using novel Approximate Modular Multiplier design for faster RLWE. + + + ? [66] 2020 LEDAkem FPGA Optimized block partitioning and lazy accumulation techniques. ? + ? ? [67] 2020 LEDAsig FPGA Compact design with novel technique for quasi-cyclic block rotation by using read-first feature of BRAMs. -+ ? -[64] 2021 SPHINCS+ FPGA Area-efficient implementation using a data path around a sequential SHA-256 core, and a control path with nested Finite State Machines. -+ ? -[58] 2022 Bin-RLWE FPGA Efficient vector multiplication with simple shift-and-add algorithm over a finite ring. + -? + [62] 2022 General LBC ASIC Look-up-table-based modular multiplication and real-time processing for polynomial sampling. + + + + [68] 2022 General LBC ASIC Accelerating NTT by parallelizing calculations with multiple arithmetic units in circuit design. + -? ? [69] 2022 XMSS FPGA Hardware implementation with optimized node traversal for the Ltree and Merkel tree; utilizing the Buchmann-Dahmen-Schneider algorithm for faster signature generation. + ? ? × [70] 2022 XMSS FPGA Two designs that use multiple hash cores for concurrent computation. + -+ × [59] 2022 Bin-RLWE FPGA Novel algorithmic operations for polynomial multiplication and addition. +/-<ref type="foot" target="#foot_3">foot_3</ref> -/+ 2 ? × [60] 2022 Bin-RLWE FPGA Novel implementation-oriented algorithmic derivation for achieving low implementation complexity. + + ? × [63] 2022 Dilithium and Falcon FPGA Overall high performance design for Dilithium, and first hardware implementation for Falcon-verify. + + ? -</p><p>surveyed four papers are dedicated to GPU acceleration for LBC <ref type="bibr" target="#b72">[73]</ref>- <ref type="bibr" target="#b75">[76]</ref> as shown in Table <ref type="table">VII</ref>. A commonality among these papers is that their "optimization" is purely aimed for computation speed/throughput without consideration for other metrics -after all, the GPUs used in their implementation are powerful hardware with high energy demand, which can execute hundreds of thousands LBC key encapsulation and decapsulation per second. For example, <ref type="bibr" target="#b73">[74]</ref> reports that with an optimized GPU algorithm for SABER, a single GPU can reach a key generation throughput that is equivalent to 64 CPU cores, and <ref type="bibr" target="#b75">[76]</ref> shows that a NVIDIA RTX3080 GPU can process 124,418 key exchanges per second using SABER, whereas a Intel Core i9-10900K can only process 29,836 per second.</p><p>For smaller devices, Lee et al. <ref type="bibr" target="#b76">[77]</ref> show that the same technique is also feasible on a Jetson Nano, which is an embedded device with a Cortex-A53 processor and a small 128-core GPU. It is shown that by utilizing GPU acceleration on the Jetson Nano, Kyber-512 can achieve a throughput performance of 1,345 key encapsulations per second and 918 key decapsulations per second. Although <ref type="bibr" target="#b76">[77]</ref> does not mention how this result compares to using CPU, it is possible to crosscheck it against <ref type="bibr" target="#b35">[36]</ref>, which reports that on a Raspberry Pi 3 (which uses the same Cortex-A53 processor), the average execution time for Kyber-512 is 1.1 ms -or 909 operations for second -for both encapsulation and decapsulation. As the same paper reports that Kyber performs more than 9 times faster with GPU acceleration (RTX2060) than using CPU alone (Intel i9-9700F), it's reasonable to suspect that for lightweight devices, accelerating PQC computation with small GPUs may not be as rewarding. However, more data is needed on this topic to obtain a definitive answer.</p><p>Regardless of the size, we should note that the usage of GPU is not common in resource-constrained IoT nodes. An argument repeatedly used by Lee et al. <ref type="bibr" target="#b72">[73]</ref>, <ref type="bibr" target="#b74">[75]</ref>, <ref type="bibr" target="#b75">[76]</ref> is that GPUs may be used in gateway devices to provide "Encryptionas-a-Service" for IoT nodes in proximity. Whilst such novelty may prove its value in a sophisticated IoT network, it does not directly contribute to solving the resource-constraint problem at the node layer: unless the node devices are also capable of dynamic post-quantum key-exchange and authentication, this arrangement does not improve the security of node-togateway communication. As such, it is reasonable to argue that the application of GPU acceleration for PQC on resourceconstrained platforms may be limited.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VIII. CRITICAL REFLECTION AND FUTURE DIRECTIONS</head><p>In this paper, we surveyed 35 recent publications on the performance and optimization of PQC for IoT applications. First we reviewed papers which evaluate the performance of PQC -both as cryptographic primitive functions and as parts of TLS-like protocols -in resource-constrained devices. Then we examined optimized software and hardware PQC implementations, which may extend the protection of PQC to lightweight systems. Finally, we reviewed recent attempts</p><p>TABLE VII: Summary of literature on the topic of GPU acceleration for PQC algorithms Work Year Algorithm GPU Optimization Technique [77] 2021 Kyber NVIDIA RTX2060; 128core Maxwell GPU Accelerating Kyber KEM's encapsulation and decapsulation using a fine-grain parallel GPU implementation. [74] 2021 Saber NVIDIA A100 Accelerating Saber key generation on GPU with Physical Unclonable Functions (PUFs). [75] 2022 NTRU, LAC, FrodoKEM NVIDIA RTX2060 Accelerating LBC polynomial multiplication with NVIDIA Tensor Core Technology. [76] 2022 FrodoKEM, Saber NVIDIA RTX 3080, V100 and T4 Accelerating LBC polynomial multiplication with dot-product instructions available on NVIDIA GPUs.</p><p>GPU acceleration for PQC, which may be possible on the IoT gateway layer.</p><p>On performance evaluation, we note that lattice-based KEMs seem to be feasible in reasonably constrained devices, and some KEMs were reported to outperform the current state-of-the-art key exchange algorithms in terms of speed. However, post-quantum signature schemes appear to have slower computation speed and heavier memory footprint than their pre-quantum counterparts. As a result, the KEMTLS -an alternative TLS-like protocol which does not need onthe-fly signature generation and uses long-term KEM public keys to implicitly authenticate users -seems to be a convenient arrangement for resource-constrained IoT networks. Furthermore, we realize that recent works all focus on a limited selection of PQC algorithms, and metrics used in these works are not uniform. We suggest that a comprehensive PQC evaluation framework should be proposed specifically for resource-constrained platforms so that IoT applications in the post-quantum era can be designed efficiently and safely.</p><p>On optimized software designs, recent development in this area mainly focuses on the trade-off between speed and memory usage. We reviewed the implementations and summarize that the recent proposals generally fall into one of the three categories: lazy initiation (for reducing peak memory usage at the cost of speed), parallelization (for accelerating speed at the cost of memory usage and design complexity) and alternative polynomial multiplication for lattice-based algorithms. In general, there is no "free lunch" in this regard and the feasibility of those trade-off designs depends on the application context. We also note that some proposals were made to optimize PQC algorithms that are no longer being considered for standardization by the NIST, making them less relevant today. As a result, we believe that exploration in this direction should focus on algorithms already selected by the NIST to maximize research contribution.</p><p>On hardware implementations, we found that recently proposed schemes are no longer trade-offs, and it is possible to improve several metrics simultaneously by utilizing efficient designs. We observed that many proposals report improvement in both speed and area complexity, but power consumption seems to be a metric on which less attention has been paid. Overall, the performance improvements achieved by ASIC designs seem to be more significant than that of FPGA designs, but it should be kept in mind that ASICs lack flexibility and generally have longer time-to-market. Additionally, we note the lack of "baseline" for hardware makes cross-comparison difficult, especially when specific algorithms have received significantly less attention in this regard. The lack of attention on hardware implementation for the NIST-selected candidates might be due to the fact that an alternative LBC algorithm -the more lightweight, hardware-friendly Bin-RLWE -is simpler to implement. However, we argue that because the Bin-RLWE is not a NIST PQC candidate, the likelihood of it receiving global recognition is low and more attention should be paid to the primary NIST recommendations (i.e. Kyber and Dilithium) in the future.</p><p>Finally, GPU acceleration for PQC is a less explored field to date despite the long history of using GPU for (prequantum) cryptographic computation. We note that as far as high-end GPUs are concerned, the benefit of GPU acceleration is significant: it is possible to reach a throughput of hundreds of thousands of key exchanges per second on a single GPU. However, it seems that smaller GPUs found on SoCs do not offer the same advantage against lightweight Cortex-A series CPUs. This may potentially make GPU acceleration less suitable for resource-constrained IoT systems, as highend GPUs often have high power demand and the possibility of integrating them with IoT devices on the node layer is slim.</p><p>Overall, we observe that existing literature on the performance of PQC in resource-constrained IoT applications is providing interesting clues, but is also far from comprehensive. On the other hand, as the NIST's PQC standardization project is expected to publish the complete standard by 2024 <ref type="bibr" target="#b8">[9]</ref>, we believe that researchers should seek alignment with the standardization efforts. In other words, we suggest that future research should focus on the NIST-approved KEMs and signatures, rather than novel cryptosystems that are less likely to receive global adaptation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IX. CONCLUSION</head><p>Quantum computing poses great threat to public key cryptosystems that are widely used today, but the computation of PQC may be heavyweight for IoT applications, which typically employs a large number of lightweight and resourceconstrained devices. In this paper, 35 recent publications are surveyed and the latest developments on performance evaluation, software/hardware optimization, and GPU acceleration for PQC are discussed in the context of IoT. By tabulating and analyzing their findings, we summarize and present key discoveries in this area. We further conclude that whilst some PQC schemes are feasible for reasonably lightweight IoT devices, proposals for their optimization seem to lack focus and standardization. As the NIST is set to publish the first standard for PQC in 2024, we suggest future research to seek coordination, in order to ensure an efficient and safe migration toward IoT for the post-quantum era.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Fig. 1 :</head><label>1</label><figDesc>Fig. 1: Layers in a simple IoT network. In general, we consider IoT sensor/actuator node devices and gateway devices resource constrained. As such, two types of communication are resource constrained: the Node-to-Gateway layer and the Gateway-to-Internet layer.</figDesc><graphic coords="2,315.11,56.07,244.80,158.02" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Fig. 3 :</head><label>3</label><figDesc>Fig. 3: Pie chart showing the topic composition of literature surveyed in this paper.</figDesc><graphic coords="5,84.49,367.95,180.00,160.66" type="bitmap" /></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="1" xml:id="foot_0"><p>Acronyms used in the header: S -Speed; CS -Code Size; TS -Transmission Size; M -Memory; E -Energy; P -Power.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="2" xml:id="foot_1"><p>These works did not state explicitly which implementation was used for evaluation, nor did the authors provide the source code. It is likely that the C reference implementation submitted to the NIST was used, as both works recognized the algorithms as NIST PQC standardization candidates.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="1" xml:id="foot_2"><p>Symbols are used to indicate whether a proposed implementation improves (+), sacrifices (-) or omits (?) a metric. Additionally, "×" in the memory column indicates that Block Random Access Memory (BRAM) is not used in the corresponding FPGA design.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="2" xml:id="foot_3"><p>Two different designs are proposed: one optimizes area-complexity against speed and the other does the opposite. However, both designs achieve higher area-delay product against previous works.</p></note>
+		</body>
+		<back>
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0" />			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<monogr>
+		<title level="m" type="main">State of iot 2022: Number of connected iot devices growing 18% to 14.4 billion globally</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Hasan</surname></persName>
+		</author>
+		<ptr target="https://iot-analytics.com/number-connected-iot-devices/" />
+		<imprint>
+			<date type="published" when="2022-06">Jun 2022</date>
+			<biblScope unit="page" from="2023" to="2023" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Algorithms for quantum computation: discrete logarithms and factoring</title>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">W</forename><surname>Shor</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings 35th annual symposium on foundations of computer science</title>
+		<meeting>35th annual symposium on foundations of computer science</meeting>
+		<imprint>
+			<publisher>Ieee</publisher>
+			<date type="published" when="1994">1994</date>
+			<biblScope unit="page" from="124" to="134" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">A fast quantum mechanical algorithm for database search</title>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">K</forename><surname>Grover</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the twenty-eighth annual ACM symposium on Theory of computing</title>
+		<meeting>the twenty-eighth annual ACM symposium on Theory of computing</meeting>
+		<imprint>
+			<date type="published" when="1996">1996</date>
+			<biblScope unit="page" from="212" to="219" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Postquantum era privacy protection for intelligent infrastructures</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Malina</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Dzurenda</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ricci</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Hajny</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Srivastava</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Matulevičius</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A.-A</forename><forename type="middle">O</forename><surname>Affia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Laurent</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">H</forename><surname>Sultan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Tang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Access</title>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="page" from="36038" to="36077" />
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">From pre-quantum to post-quantum iot security: A survey on quantum-resistant cryptosystems for the internet of things</title>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">M</forename><surname>Fernández-Caramés</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Internet of Things Journal</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="page" from="6457" to="6480" />
+			<date type="published" when="2020-07">July 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<monogr>
+		<title level="m" type="main">Post-quantum cryptography</title>
+		<author>
+			<persName><surname>Nist</surname></persName>
+		</author>
+		<ptr target="https://csrc.nist.gov/projects/post-quantum-cryptography" />
+		<imprint>
+			<date type="published" when="2017-01">Jan 2017. 2023-3-24</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<monogr>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">J</forename><surname>Kannwischer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Petri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Rijneveld</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Schwabe</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Stoffelen</surname></persName>
+		</author>
+		<title level="m">PQM4: Post-quantum crypto library for the ARM Cortex-M4</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Postquantum era privacy protection for intelligent infrastructures</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Malina</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Dzurenda</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ricci</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Hajny</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Srivastava</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Matulevičius</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A.-A</forename><forename type="middle">O</forename><surname>Affia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Laurent</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">H</forename><surname>Sultan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Tang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Access</title>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="page" from="36038" to="36077" />
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<monogr>
+		<title level="m" type="main">Status report on the third round of the nist post-quantum cryptography standardization process</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Alagic</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Apon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Cooper</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Dang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Dang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Kelsey</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Lichtinger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y.-K</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Miller</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Moody</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Peralta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Perlner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Robinson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Smith-Tone</surname></persName>
+		</author>
+		<ptr target="https://nvlpubs.nist.gov/nistpubs/ir/2022/NIST.IR.8413-upd1.pdf" />
+		<imprint>
+			<date type="published" when="2022-07">Jul 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Lattice-based cryptosystems for the security of resource-constrained iot devices in post-quantum world: A survey</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Seyhan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">N</forename><surname>Nguyen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Akleylek</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Cengiz</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Cluster Computing</title>
+		<imprint>
+			<biblScope unit="volume">25</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="1729" to="1748" />
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<monogr>
+		<title level="m" type="main">Rfc 7228: Terminology for constrained-node networks</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Bormann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Ersue</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Keranen</surname></persName>
+		</author>
+		<ptr target="https://www.rfc-editor.org/info/rfc7228" />
+		<imprint>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="2023" to="2023" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Industry iot gateway for cloud connectivity</title>
+		<author>
+			<persName><forename type="first">I</forename><surname>Zolotová</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Bundzel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Lojka</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Production Management Systems: Innovative Production Management Towards Sustainable Growth: IFIP WG 5.7 International Conference, APMS 2015</title>
+		<meeting><address><addrLine>Tokyo, Japan</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2015">September 7-9, 2015. 2015</date>
+			<biblScope unit="page" from="59" to="66" />
+		</imprint>
+	</monogr>
+	<note>Proceedings, Part II 0</note>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Security classes for iot devices</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Urien</surname></persName>
+		</author>
+		<ptr target="https://datatracker.ietf.org/doc/draft-urien-lwig-security-classes/09/" />
+	</analytic>
+	<monogr>
+		<title level="j">Work in Progress</title>
+		<imprint>
+			<biblScope unit="page" from="2023" to="2023" />
+			<date type="published" when="2022-12">Dec. 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">A survey of key bootstrapping protocols based on public key cryptography in the internet of things</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Malik</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Dutta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Granjal</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Access</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="page" from="27443" to="27464" />
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<monogr>
+		<author>
+			<persName><forename type="first">H</forename><surname>Delfs</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Knebl</surname></persName>
+		</author>
+		<title level="m">Introduction to Cryptography: Principles and Applications</title>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">The impact of quantum computing on present cryptography</title>
+		<author>
+			<persName><forename type="first">V</forename><surname>Mavroeidis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Vishi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">D</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Jøsang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">International Journal of Advanced Computer Science and Applications</title>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Resources required for topological quantum factoring</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Baraban</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">E</forename><surname>Bonesteel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">H</forename><surname>Simon</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review A -Atomic, Molecular, and Optical Physics</title>
+		<imprint>
+			<biblScope unit="volume">81</biblScope>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Quantum resource estimates for computing elliptic curve discrete logarithms</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Roetteler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Naehrig</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">M</forename><surname>Svore</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Lauter</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Cryptology -ASIACRYPT 2017</title>
+		<imprint>
+			<publisher>Springer International Publishing</publisher>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="241" to="270" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">A hybrid scheme for prime factorization and its experimental implementation using ibm quantum processor</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Saxena</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Shukla</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Pathak</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Quantum Information Processing</title>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="page">112</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Factoring with qutrits: Shor&apos;s algorithm on ternary and metaplectic quantum architectures</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Bocharov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Roetteler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">M</forename><surname>Svore</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review A</title>
+		<imprint>
+			<biblScope unit="volume">96</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page">12306</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<monogr>
+		<title level="m" type="main">Quantum cryptanalysis landscape of shor&apos;s algorithm for elliptic curve discrete logarithm problem</title>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">T</forename><surname>Larasati</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Kim</surname></persName>
+		</author>
+		<editor>H. Kim</editor>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<publisher>Springer International Publishing</publisher>
+			<biblScope unit="page" from="91" to="104" />
+			<pubPlace>Cham</pubPlace>
+		</imprint>
+	</monogr>
+	<note>in Information Security Applications</note>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Applying grover&apos;s algorithm to aes: quantum resource estimates</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Grassl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Langenberg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Roetteler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Steinwandt</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Post-Quantum Cryptography: 7th International Workshop</title>
+		<meeting><address><addrLine>Fukuoka, Japan</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2016-02-24">2016. February 24-26, 2016. 2016</date>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="page" from="29" to="43" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Breaking symmetric cryptosystems using quantum period finding</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Kaplan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Leurent</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Leverrier</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Naya-Plasencia</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Cryptology -CRYPTO 2016</title>
+		<meeting><address><addrLine>Berlin Heidelberg</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="207" to="237" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Quantum attacks without superposition queries: The offline simon&apos;s algorithm</title>
+		<author>
+			<persName><forename type="first">X</forename><surname>Bonnetain</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Hosoyamada</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Naya-Plasencia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Sasaki</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Schrottenloher</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Cryptology -ASIACRYPT 2019</title>
+		<imprint>
+			<publisher>Springer International Publishing</publisher>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="552" to="583" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<monogr>
+		<title level="m" type="main">Ibm unveils breakthrough 127-qubit quantum processor</title>
+		<author>
+			<persName><surname>Ibm</surname></persName>
+		</author>
+		<ptr target="https://newsroom.ibm.com/2021-11-16" />
+		<imprint>
+			<date type="published" when="2021-11">Nov 2021</date>
+			<biblScope unit="page" from="2023" to="2023" />
+		</imprint>
+	</monogr>
+	<note type="report_type">IBM-Unveils-Breakthrough-127-Qubit-Quantum-Processor</note>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<monogr>
+		<title level="m" type="main">Ibm&apos;s roadmap for scaling quantum technology</title>
+		<author>
+			<persName><surname>Ibm</surname></persName>
+		</author>
+		<ptr target="https://www.ibm.com/quantum/roadmap" />
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="2023" to="2023" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Cybersecurity in an era with quantum computers: Will we be ready?</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Mosca</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Security &amp; Privacy</title>
+		<imprint>
+			<biblScope unit="volume">16</biblScope>
+			<biblScope unit="page" from="38" to="41" />
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Post-quantum cryptography</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">J</forename><surname>Bernstein</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Lange</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">549</biblScope>
+			<biblScope unit="page" from="188" to="194" />
+			<date type="published" when="2017-10">Oct 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<monogr>
+		<title level="m" type="main">Migration to post-quantum cryptography</title>
+		<author>
+			<persName><surname>Nccoe</surname></persName>
+		</author>
+		<ptr target="https://www.nccoe.nist.gov/crypto-agility-considerations-migrating-post-quantum-cryptographic-algorithms" />
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="2023" to="2023" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Recommendation for stateful hash-based signature schemes</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">A</forename><surname>Cooper</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">C</forename><surname>Apon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Q</forename><forename type="middle">H</forename><surname>Dang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">S</forename><surname>Davidson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">J</forename><surname>Dworkin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">A</forename><surname>Miller</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">NIST Special Publication</title>
+		<imprint>
+			<biblScope unit="volume">800</biblScope>
+			<biblScope unit="page">208</biblScope>
+			<date type="published" when="2020-10">Oct 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Performance evaluation for a post-quantum publickey cryptosystem</title>
+		<author>
+			<persName><forename type="first">T</forename><surname>Prantl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Prantl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Beierlieb</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Iffländer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Dmitrienko</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Kounev</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Krupitzer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2021 IEEE International Performance, Computing, and Communications Conference (IPCCC)</title>
+		<imprint>
+			<date type="published" when="2021-10">Oct 2021</date>
+			<biblScope unit="page" from="1" to="7" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Analysis of the ntru post-quantum cryptographic scheme in constrained iot edge devices</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Señor</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Portilla</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Mujica</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Internet of Things Journal</title>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="page" from="18778" to="18790" />
+			<date type="published" when="2022-10">Oct 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Post-quantum cipher power analysis in lightweight devices</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Hines</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Raavi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J.-M</forename><surname>Villeneuve</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Wuthier</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Moreno-Colin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Bai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S.-Y</forename><surname>Chang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 15th ACM Conference on Security and Privacy in Wireless and Mobile Networks, WiSec &apos;22</title>
+		<meeting>the 15th ACM Conference on Security and Privacy in Wireless and Mobile Networks, WiSec &apos;22</meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="282" to="284" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Internet of things (iot) for next-generation smart systems: A review of current challenges, future trends and prospects for emerging 5g-iot scenarios</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Shafique</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">A</forename><surname>Khawaja</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Sabir</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Qazi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Mustaqim</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Access</title>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="page" from="23022" to="23040" />
+			<date type="published" when="2020-01">Jan 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Performance evaluation and optimisation for kyber on the multos iot trust-anchor</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Mayes</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2020 IEEE International Conference on Smart Internet of Things (SmartIoT)</title>
+		<imprint>
+			<date type="published" when="2020-08">Aug 2020</date>
+			<biblScope unit="page" from="1" to="8" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Analysis of post-quantum cryptography for internet of things</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Sajimon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Jain</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Krishnan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2022 6th International Conference on Intelligent Computing and Control Systems (ICICCS)</title>
+		<imprint>
+			<date type="published" when="2022-05">May 2022</date>
+			<biblScope unit="page" from="387" to="394" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<analytic>
+		<title level="a" type="main">When post-quantum cryptography meets the internet of things: An empirical study</title>
+		<author>
+			<persName><forename type="first">C.-C</forename><surname>Chung</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C.-C</forename><surname>Pai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F.-S</forename><surname>Ching</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L.-J</forename><surname>Chen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 20th Annual International Conference on Mobile Systems, Applications and Services, MobiSys &apos;22</title>
+		<meeting>the 20th Annual International Conference on Mobile Systems, Applications and Services, MobiSys &apos;22<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="525" to="526" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Post-quantum tls on embedded systems: Integrating and evaluating kyber and sphincs+ with mbed tls</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Bürstinghaus-Steinbach</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Krauß</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Niederhagen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Schneider</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 15th ACM Asia Conference on Computer and Communications Security, ASIA CCS &apos;20</title>
+		<meeting>the 15th ACM Asia Conference on Computer and Communications Security, ASIA CCS &apos;20<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="841" to="852" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Kemtls vs. post-quantum tls: Performance on embedded systems</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Gonzalez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Wiggers</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Cryptology ePrint Archive</title>
+		<imprint>
+			<date type="published" when="1712">2022/1712, 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<analytic>
+		<title level="a" type="main">On the energy costs of post-quantum kems in tls-based low-power secure iot</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Schöffel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Lauer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">C</forename><surname>Rheinländer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Wehn</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference on Internet-of-Things Design and Implementation, IoTDI &apos;21</title>
+		<meeting>the International Conference on Internet-of-Things Design and Implementation, IoTDI &apos;21<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="158" to="168" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<monogr>
+		<title level="m" type="main">The multos trust anchor development board</title>
+		<author>
+			<persName><surname>Multos</surname></persName>
+		</author>
+		<ptr target="https://multos.com/support/multos-trust-anchor/developer-boards/" />
+		<imprint>
+			<biblScope unit="page" from="2022" to="2023" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Post-quantum tls without handshake signatures</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Schwabe</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Stebila</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Wiggers</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2020 ACM SIGSAC Conference on Computer and Communications Security, CCS &apos;20</title>
+		<meeting>the 2020 ACM SIGSAC Conference on Computer and Communications Security, CCS &apos;20<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="1461" to="1480" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b42">
+	<analytic>
+		<title level="a" type="main">Optimizing picnic for limited memory resources</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Winkler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Höller</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Steger</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2020 23rd Euromicro Conference on Digital System Design (DSD)</title>
+		<imprint>
+			<date type="published" when="2020-08">Aug 2020</date>
+			<biblScope unit="page" from="200" to="204" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b43">
+	<analytic>
+		<title level="a" type="main">Dilithium for memory constrained devices</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">W</forename><surname>Bos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Renes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Sprenkels</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Cryptology ePrint Archive</title>
+		<imprint>
+			<date type="published" when="2022">2022/323, 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b44">
+	<analytic>
+		<title level="a" type="main">Time-memory trade-offs for saber+ on memory-constrained risc-v platform</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">S</forename><surname>Roy</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Computers</title>
+		<imprint>
+			<biblScope unit="volume">71</biblScope>
+			<biblScope unit="page" from="2996" to="3007" />
+			<date type="published" when="2022-11">Nov 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b45">
+	<analytic>
+		<title level="a" type="main">An algorithm for the machine calculation of complex fourier series</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">W</forename><surname>Cooley</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">W</forename><surname>Tukey</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Mathematics of computation</title>
+		<imprint>
+			<biblScope unit="volume">19</biblScope>
+			<biblScope unit="issue">90</biblScope>
+			<biblScope unit="page" from="297" to="301" />
+			<date type="published" when="1965">1965</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b46">
+	<monogr>
+		<title level="m" type="main">Polynomial multiplication in ntru prime: Comparison of optimization strategies on cortex-m4</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Alkim</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">Y</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">.-L</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C.-M</forename><forename type="middle">M</forename><surname>Chung</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Evkan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">W</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">-L</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Hwang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C.-L</forename><forename type="middle">T</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Niederhagen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C.-J</forename><surname>Shih</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Wälde</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B.-Y</forename><surname>Yang</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+	<note>Cryptology ePrint Archive, Paper 2020/1216</note>
+</biblStruct>
+
+<biblStruct xml:id="b47">
+	<analytic>
+		<title level="a" type="main">Random motion on a finite abelian group</title>
+		<author>
+			<persName><forename type="first">I</forename><forename type="middle">J</forename><surname>Good</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Mathematical Proceedings of the Cambridge Philosophical Society</title>
+		<imprint>
+			<biblScope unit="volume">47</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="756" to="762" />
+			<date type="published" when="1951">1951</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b48">
+	<analytic>
+		<title level="a" type="main">Rapidly verifiable xmss signatures</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">W</forename><surname>Bos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Hülsing</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Renes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Van Vredendaal</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Cryptology ePrint Archive</title>
+		<imprint>
+			<date type="published" when="2020">2020/898, 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b49">
+	<analytic>
+		<title level="a" type="main">Accelerating falcon on armv8</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">C</forename><surname>Seo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Access</title>
+		<imprint>
+			<biblScope unit="volume">10</biblScope>
+			<biblScope unit="page" from="44446" to="44460" />
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b50">
+	<analytic>
+		<title level="a" type="main">All the polynomial multiplication you need on risc-v</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Seo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Kwon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Eum</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Jang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Sim</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W.-K</forename><surname>Lee</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Cryptology ePrint Archive</title>
+		<imprint>
+			<date type="published" when="1117">2021/1117, 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b51">
+	<analytic>
+		<title level="a" type="main">Post-quantum cryptography with contemporary co-processors: Beyond kronecker, schönhagestrassen &amp; nussbaumer</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">W</forename><surname>Bos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Renes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Van Vredendaal</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Cryptology ePrint Archive</title>
+		<imprint>
+			<date type="published" when="1303">2020/1303, 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b52">
+	<analytic>
+		<title level="a" type="main">Parallel small polynomial multiplication for dilithium: A faster design and implementation</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Shen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Xue</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zhao</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 38th Annual Computer Security Applications Conference, ACSAC &apos;22</title>
+		<meeting>the 38th Annual Computer Security Applications Conference, ACSAC &apos;22<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="304" to="317" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b53">
+	<analytic>
+		<title level="a" type="main">Review of state-of-the-art fpga applications in iot networks</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Magyari</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Chen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Sensors</title>
+		<imprint>
+			<biblScope unit="volume">22</biblScope>
+			<biblScope unit="issue">19</biblScope>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b54">
+	<analytic>
+		<title level="a" type="main">Role of fpga in internet of things applications</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Elnawawy</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Farhan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">A</forename><surname>Nabulsi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Al-Ali</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Sagahyroon</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2019 IEEE International Symposium on Signal Processing and Information Technology (ISSPIT)</title>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="1" to="6" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b55">
+	<analytic>
+		<title level="a" type="main">High-performance and lightweight lattice-based public-key encryption</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Buchmann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Göpfert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Güneysu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Oder</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Pöppelmann</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2nd ACM International Workshop on IoT Privacy, Trust, and Security, IoTPTS &apos;16</title>
+		<meeting>the 2nd ACM International Workshop on IoT Privacy, Trust, and Security, IoTPTS &apos;16<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="2" to="9" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b56">
+	<analytic>
+		<title level="a" type="main">Lightweight and dpa-resistant post-quantum cryptoprocessor based on binary ring-lwe</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ebrahimi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bayat-Sarmadi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2020 20th International Symposium on Computer Architecture and Digital Systems (CADS)</title>
+		<imprint>
+			<date type="published" when="2020-08">Aug 2020</date>
+			<biblScope unit="page" from="1" to="6" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b57">
+	<analytic>
+		<title level="a" type="main">High-speed post-quantum cryptoprocessor based on risc-v architecture for iot</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Hadayeghparast</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bayat-Sarmadi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ebrahimi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Internet of Things Journal</title>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="page" from="15839" to="15846" />
+			<date type="published" when="2022-09">Sep. 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b58">
+	<analytic>
+		<title level="a" type="main">Lightweight hardware implementation of binary ring-lwe pqc accelerator</title>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">J</forename><surname>Lucas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Alwan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Murzello</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Tu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">J</forename><surname>Schwartz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Guevara</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">U</forename><surname>Guin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Juretus</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Xie</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Computer Architecture Letters</title>
+		<imprint>
+			<biblScope unit="volume">21</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="17" to="20" />
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b59">
+	<analytic>
+		<title level="a" type="main">Fpga implementation of compact hardware accelerators for ring-binary-lwe based post-quantum cryptography</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Bao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Xie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Amin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Reconfigurable Technol. Syst</title>
+		<imprint>
+			<date type="published" when="2022-10">oct 2022</date>
+		</imprint>
+	</monogr>
+	<note>Just Accepted</note>
+</biblStruct>
+
+<biblStruct xml:id="b60">
+	<analytic>
+		<title level="a" type="main">Binary ring-lwe hardware with power side-channel countermeasures</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Aysu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Orshansky</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Tiwari</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2018 Design, Automation &amp; Test in Europe Conference &amp; Exhibition (DATE)</title>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="1253" to="1258" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b61">
+	<analytic>
+		<title level="a" type="main">Configurable energy-efficient lattice-based post-quantum cryptography processor for iot devices</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Moon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Kang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J.-Y</forename><surname>Sim</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ESSCIRC 2022-IEEE 48th European Solid State Circuits Conference (ESSCIRC)</title>
+		<imprint>
+			<date type="published" when="2022-09">Sep. 2022</date>
+			<biblScope unit="page" from="525" to="528" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b62">
+	<analytic>
+		<title level="a" type="main">High-performance hardware implementation of lattice-based digital signatures</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Beckwith</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">T</forename><surname>Nguyen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Gaj</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Cryptology ePrint Archive</title>
+		<imprint>
+			<date type="published" when="2022">2022/217, 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b63">
+	<analytic>
+		<title level="a" type="main">An areaefficient sphincs+ post-quantum signature coprocessor</title>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Berthet</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Upegui</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Gantel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Duc</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Traverso</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2021 IEEE International Parallel and Distributed Processing Symposium Workshops (IPDPSW)</title>
+		<imprint>
+			<date type="published" when="2021-06">June 2021</date>
+			<biblScope unit="page" from="180" to="187" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b64">
+	<analytic>
+		<title level="a" type="main">Axmm: Area and power efficient approximate modular multiplier for r-lwe cryptosystem</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">E S</forename><surname>Kundi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bian</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Khalid</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>O'neill</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Liu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2020 IEEE International Symposium on Circuits and Systems (ISCAS)</title>
+		<imprint>
+			<date type="published" when="2020-10">Oct 2020</date>
+			<biblScope unit="page" from="1" to="5" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b65">
+	<analytic>
+		<title level="a" type="main">Lightweight key encapsulation using ldpc codes on fpgas</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Baldi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Santini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Zeng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ling</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Computers</title>
+		<imprint>
+			<biblScope unit="volume">69</biblScope>
+			<biblScope unit="page" from="327" to="341" />
+			<date type="published" when="2020-03">March 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b66">
+	<analytic>
+		<title level="a" type="main">Compact code-based signature for reconfigurable devices with side channel resilience</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">C C</forename><surname>Cheung</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bhasin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ling</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Circuits and Systems I: Regular Papers</title>
+		<imprint>
+			<biblScope unit="volume">67</biblScope>
+			<biblScope unit="page" from="2305" to="2316" />
+			<date type="published" when="2020-07">July 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b67">
+	<analytic>
+		<title level="a" type="main">Implementation of number theoretic transform unit for polynomial multiplication of lattice-based cryptography</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Xin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Yao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Liu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2022 2nd International Conference on Consumer Electronics and Computer Engineering (IC-CECE)</title>
+		<imprint>
+			<date type="published" when="2022-01">Jan 2022</date>
+			<biblScope unit="page" from="323" to="327" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b68">
+	<analytic>
+		<title level="a" type="main">An efficient full hardware implementation of extended merkle signature scheme</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Cao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Ye</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C.-H</forename><surname>Chang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Circuits and Systems I: Regular Papers</title>
+		<imprint>
+			<biblScope unit="volume">69</biblScope>
+			<biblScope unit="page" from="682" to="693" />
+			<date type="published" when="2022-02">Feb 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b69">
+	<analytic>
+		<title level="a" type="main">Area, time and energy efficient multicore hardware accelerators for extended merkle signature scheme</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Cao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Qin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C.-H</forename><surname>Chang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Circuits and Systems I: Regular Papers</title>
+		<imprint>
+			<biblScope unit="volume">69</biblScope>
+			<biblScope unit="page" from="4908" to="4918" />
+			<date type="published" when="2022-12">Dec 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b70">
+	<analytic>
+		<title level="a" type="main">Exploiting the power of gpus for asymmetric cryptography</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Szerwinski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Güneysu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Cryptographic Hardware and Embedded Systems -CHES 2008</title>
+		<meeting><address><addrLine>Berlin Heidelberg</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2008">2008</date>
+			<biblScope unit="page" from="79" to="99" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b71">
+	<analytic>
+		<title level="a" type="main">A novel optimization for gpu mining using overclocking and undervolting</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Shuaib</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Badotra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">I</forename><surname>Khalid</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">D</forename><surname>Algarni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">S</forename><surname>Ullah</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bourouis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Iqbal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bharany</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Gundaboina</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Sustainability</title>
+		<imprint>
+			<biblScope unit="volume">14</biblScope>
+			<biblScope unit="issue">14</biblScope>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b72">
+	<analytic>
+		<title level="a" type="main">High throughput implementation of post-quantum key encapsulation and decapsulation on gpu for internet of things applications</title>
+		<author>
+			<persName><forename type="first">W.-K</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">O</forename><surname>Hwang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2022 IEEE World Congress on Services (SERVICES)</title>
+		<imprint>
+			<date type="published" when="2022-07">July 2022</date>
+			<biblScope unit="page" from="13" to="13" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b73">
+	<analytic>
+		<title level="a" type="main">Saber-gpu: A responsebased cryptography algorithm for saber on the gpu</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Gowanlock</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Cambou</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2021 IEEE 26th Pacific Rim International Symposium on Dependable Computing (PRDC)</title>
+		<imprint>
+			<date type="published" when="2021-12">Dec 2021</date>
+			<biblScope unit="page" from="123" to="132" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b74">
+	<analytic>
+		<title level="a" type="main">Tensorcrypto: High throughput acceleration of lattice-based cryptography using tensor core on gpu</title>
+		<author>
+			<persName><forename type="first">W.-K</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Seo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">O</forename><surname>Hwang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Access</title>
+		<imprint>
+			<biblScope unit="volume">10</biblScope>
+			<biblScope unit="page" from="20616" to="20632" />
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b75">
+	<analytic>
+		<title level="a" type="main">Dpcrypto: Acceleration of post-quantum cryptographic algorithms using dot-product instruction on gpus</title>
+		<author>
+			<persName><forename type="first">W.-K</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Seo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">O</forename><surname>Hwang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Karmakar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M B</forename><surname>Mera</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Achar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Cryptology ePrint Archive</title>
+		<imprint>
+			<date type="published" when="1389">2021/1389, 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b76">
+	<analytic>
+		<title level="a" type="main">High throughput implementation of postquantum key encapsulation and decapsulation on gpu for internet of things applications</title>
+		<author>
+			<persName><forename type="first">W.-K</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">O</forename><surname>Hwang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Services Computing</title>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="page" from="3275" to="3288" />
+			<date type="published" when="2022-11">Nov 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b77">
+	<analytic>
+		<title level="a" type="main">He is currently pursuing a PhD Degree in computer science with QUT</title>
+	</analytic>
+	<monogr>
+		<title level="m">His research interest include the Internet-of-Things, cybersecurity and data encryption</title>
+		<imprint/>
+	</monogr>
+	<note>Tao Liu Received his M. IT degree from Queensland University of Technology in 2022</note>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

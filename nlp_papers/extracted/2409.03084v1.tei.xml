@@ -1,0 +1,2775 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Quantum geometric protocols for fast high-fidelity adiabatic state transfer</title>
+				<funder ref="#_drsW2xp">
+					<orgName type="full">EU</orgName>
+				</funder>
+				<funder ref="#_4ANsytM">
+					<orgName type="full">Army Research Office</orgName>
+				</funder>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability  status="unknown">
+					<licence/>
+				</availability>
+				<date type="published" when="2024-09-06">September 6, 2024</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Chris</forename><forename type="middle">Ventura</forename><surname>Meinersen</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">QuTech</orgName>
+								<orgName type="institution">Delft University of Technology</orgName>
+								<address>
+									<addrLine>Lorentzweg 1</addrLine>
+									<postCode>2628 CJ</postCode>
+									<settlement>Delft</settlement>
+									<country key="NL">The Netherlands</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Stefano</forename><surname>Bosco</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">QuTech</orgName>
+								<orgName type="institution">Delft University of Technology</orgName>
+								<address>
+									<addrLine>Lorentzweg 1</addrLine>
+									<postCode>2628 CJ</postCode>
+									<settlement>Delft</settlement>
+									<country key="NL">The Netherlands</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Maximilian</forename><surname>Rimbach-Russ</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">QuTech</orgName>
+								<orgName type="institution">Delft University of Technology</orgName>
+								<address>
+									<addrLine>Lorentzweg 1</addrLine>
+									<postCode>2628 CJ</postCode>
+									<settlement>Delft</settlement>
+									<country key="NL">The Netherlands</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Quantum geometric protocols for fast high-fidelity adiabatic state transfer</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2024-09-06">September 6, 2024</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">FFFFC17045A4448E5BC4C56E7612ECC0</idno>
+					<idno type="arXiv">arXiv:2409.03084v1[quant-ph]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-07T10:22+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Efficient control schemes that enable fast, high-fidelity operations are essential for any practical quantum computation. However, current optimization protocols are intractable due to stringent requirements imposed by the microscopic systems encoding the qubit, including dense energy level spectra and cross talk, and generally require a trade-off between speed and fidelity of the operation. Here, we address these challenges by developing a general framework for optimal control based on the quantum metric tensor. This framework allows for fast and high-fidelity adiabatic pulses, even for a dense energy spectrum, based solely on the Hamiltonian of the system instead of the full time evolution propagator and independent of the size of the underlying Hilbert space. Furthermore, the framework suppresses diabatic transitions and state-dependent crosstalk effects without the need for additional control fields. As an example, we study the adiabatic charge transfer in a double quantum dot to find optimal control pulses with improved performance. We show that for the geometric protocol, the transfer fidelites are lower bounded F &gt; 99 % for ultrafast 20 ns pulses, regardless of the size of the anti-crossing.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>Coherent control of quantum information is the central part of the advancement of emerging quantum technologies such as quantum processors, quantum sensors, and quantum communication <ref type="bibr" target="#b0">[1]</ref>. However, the inherently fragile nature of quantum states makes their coherent control a challenging task. Much research is dedicated to finding so-called quantum optimal control protocols, that allow fast and high-fidelity operations by appropriately shaping the control pulses <ref type="bibr" target="#b1">[2,</ref><ref type="bibr" target="#b2">3]</ref>. Optimized initialization and readout protocols are of particular interest, as they are an integral part of any error correction algorithm <ref type="bibr" target="#b3">[4]</ref>.</p><p>To achieve a fast and high-fidelity protocol, one has to carefully compose pulse shapes to avoid undesired transitions, which are summarized in shortcut-to-adiabaticity methods <ref type="bibr" target="#b4">[5]</ref><ref type="bibr" target="#b5">[6]</ref><ref type="bibr" target="#b6">[7]</ref><ref type="bibr" target="#b7">[8]</ref><ref type="bibr" target="#b8">[9]</ref><ref type="bibr" target="#b9">[10]</ref>. Through the addition of new control fields, one can suppress these transitions <ref type="bibr" target="#b6">[7,</ref><ref type="bibr" target="#b10">[11]</ref><ref type="bibr" target="#b11">[12]</ref><ref type="bibr" target="#b12">[13]</ref><ref type="bibr" target="#b13">[14]</ref><ref type="bibr" target="#b14">[15]</ref>. However, this approach requires additional experimental overhead and precise control of new driving parameters. Approximate methods, based on the minimization of diabatic transitions, circumvent new control fields and only affect the experimentally accessible parameters while providing fast and quasiadabatic (fast-QUAD) protocols <ref type="bibr" target="#b15">[16]</ref><ref type="bibr" target="#b16">[17]</ref><ref type="bibr" target="#b17">[18]</ref>. Unfortunately, these methods cannot be straightforwardly generalized to bigger parameter spaces and beyond transitions between two energy levels. Most protocols are based on classical optimization problems, which are computationally challenging for larger systems <ref type="bibr" target="#b18">[19]</ref><ref type="bibr" target="#b19">[20]</ref><ref type="bibr" target="#b20">[21]</ref> and hence make purely numerical methods unattractive. Geometric approaches, including the space curve quantum control <ref type="bibr" target="#b7">[8,</ref><ref type="bibr" target="#b8">9]</ref>, allow for a simple geometric understanding of noisy time dynamics <ref type="bibr" target="#b21">[22]</ref>. Notwithstanding, this geometric picture is limited because it relies on the computation of the time evolution operator and is hence constrained to small system sizes <ref type="bibr" target="#b7">[8,</ref><ref type="bibr" target="#b8">9]</ref>. In addition, the derived pulse shapes are natively discontinuous due to the closed-curve and closed-area constraints of the formalism. Similar constraints on the control field to suppress first-, and second-order errors can also be found in <ref type="bibr" target="#b22">[23]</ref>.</p><p>In this work, we develop a general geometric approach to provide a general framework, based on geodesics provided by the quantum metric tensor <ref type="bibr" target="#b23">[24]</ref><ref type="bibr" target="#b24">[25]</ref><ref type="bibr" target="#b25">[26]</ref><ref type="bibr" target="#b26">[27]</ref><ref type="bibr" target="#b27">[28]</ref><ref type="bibr" target="#b28">[29]</ref><ref type="bibr" target="#b29">[30]</ref><ref type="bibr" target="#b30">[31]</ref>, that can be generalized to any multi-level Hamiltonian and allows for fast and high-fidelity adiabatic operations. We refer to this approach as the geometric fast-QUAD. Our geometric fast-QUAD does not require imposing any new external control fields like in the counter-diabatic approach, it is resistant to miscalibration errors and allows for fast operations even in dense energy landscapes. It reduces undesired level transitions and the state-dependent crosstalk in the qubit operation and initialization/readout phases. In addition, since it does not require the computation of the full time-ordered evolution operator, we can easily adjust it to allow for operational flexibility of different quantum platforms. We show the advantages of the geometric fast-QUAD through an optimal protocol for initialization and readout of semiconductor spin-qubits.</p><p>Semiconductor spin qubits are a platform for quantum computing based on confined semiconductor quantum dots with a promise to be scalable <ref type="bibr" target="#b31">[32,</ref><ref type="bibr" target="#b32">33]</ref>, with long coherence times <ref type="bibr" target="#b33">[34]</ref>, operability at high temperatures <ref type="bibr" target="#b34">[35,</ref><ref type="bibr" target="#b35">36]</ref>, and their similarity in fabrication to the classical semiconductor industry <ref type="bibr" target="#b36">[37]</ref><ref type="bibr" target="#b37">[38]</ref><ref type="bibr" target="#b38">[39]</ref>. However, their small size can lead to dense energy spectra that may hinder fast and high-fidelity quantum control. For reading out and initializing such qubits, the measured signal is typically enhanced through spin-to-charge conversion techniques <ref type="bibr" target="#b39">[40,</ref><ref type="bibr" target="#b40">41]</ref>. Common spin-to-charge techniques, such as Pauli-Spin-Blockade (PSB), rely on an adiabatic transition between a spin and a charge state <ref type="bibr" target="#b41">[42]</ref> passing through multiple anticrossings. We illustrate advantages of the geometric fast-QUAD through optimizing the PSB initialization and readout in a double quantum dot (DQD) with experimentally feasible parameters.</p><p>The paper is structured as follows. In Section II, the</p><formula xml:id="formula_0">1. Define Ĥ[x], x µ ∈ M Ĥ[x] = x 3 x 1 -ix 2 x 1 + ix 2 -x 3 |ψ ± (x)⟩ = α ± (x) |0⟩ + β ± (x) |1⟩ E ± (x) = ± x 2 1 + x 2 2 + x 2 3 2. Compute g µν (x) 3. Solve g µν ẋµ ẋν = δ 2 FIG.</formula><p>1. Schematic representation of the geometric fast-QUAD approach with the example of a qubit Hamiltonian. First, one defines the system Hamiltonian and the respective parameters x µ = (x 1 , x 2 , x 3 ) one wants to optimally operate. The number of parameters defines the dimension of the quantum metric tensor gµν . For a qubit Hamiltonian, the underlying parameter manifold is the Bloch sphere. The geodesic on the sphere (red line) gives the optimal path connecting two states. Examples of non-optimal state transfer protocols (x µ 1 , x µ 2 ) are drawn as blue and purple, dotted lines.</p><p>general framework is introduced, starting with the geometric formalism, relating optimal protocols to geodesics, and applying it to a general qubit Hamiltonian. Subsequently, in Section III, upon reviewing the general DQD model in the presence of strong spin-orbit interaction <ref type="bibr" target="#b42">[43]</ref>, an effective three-level Hamiltonian describing the readout and initialization subject to PSB is introduced. In addition, we include decoherence sources to provide a detailed analysis of the geometric fast-QUAD.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. QUANTUM GEOMETRIC FORMALISM: FAST-QUASIADIABATIC DYNAMICS AS GEODESICS</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. The quantum metric</head><p>Optimal control schemes rely on the control of parameters x µ = (x 1 , x 2 . . . , x n ) of the physical Hamiltonian to provide high-fidelity state transfer. The task of optimizing the fidelity of state transfer can be captured in the geometric structure of the Hilbert space through the quantum metric tensor <ref type="bibr" target="#b26">[27]</ref>. The quantum metric tensor g µν describes the infinitesimal distance between two pure states via the local infidelity (up to second order in parameter changes) <ref type="bibr" target="#b25">[26,</ref><ref type="bibr" target="#b43">44]</ref> 1</p><formula xml:id="formula_1">-| ⟨ψ(x)|ψ(x + dx)⟩ | 2 ≈ 1 2 g µν (x)dx µ dx ν .<label>(1)</label></formula><p>Here, x µ ∈ M, where M is the set of all possible parameter values, define a set of parameters that define an embedding for the set of pure states P (H) = H/U (1).</p><p>For Greek indices, we will opt for the Einstein summation convention. The quantum metric tensor constitutes the real and symmetric part of the full quantum geo-metric tensor q µν = g µν + iΩ µν , whose antisymmetric component Ω µν is related to the Berry curvature, which captures topological effects <ref type="bibr" target="#b44">[45]</ref><ref type="bibr" target="#b45">[46]</ref><ref type="bibr" target="#b46">[47]</ref><ref type="bibr" target="#b47">[48]</ref> allowing for a possibility to straightforwardly connect quantum dynamics and topology. The quantum metric tensor, with respect to a given target state, |ψ 0 ⟩, can conveniently be written in terms of the Hamiltonian Ĥ, its eigenvalues E n , and eigenvectors {|ψ n ⟩}</p><formula xml:id="formula_2">g µν = Re n̸ =0 ⟨ψ 0 |∂ µ Ĥ|ψ n ⟩ ⟨ψ n |∂ ν Ĥ|ψ 0 ⟩ (E n -E 0 ) 2 = Re q µν ,<label>(2)</label></formula><p>where ∂ µ = ∂/∂x µ is the derivative with respect to the parameters of the Hamiltonian.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Minimal energy fluctuations and geodesic equations</head><p>The quantum metric tensor g µν allows us now to connect fast and quasi-adiabatic (fast-QUAD) dynamics with the geometry of the parameter space. For coherent population transfer, experimentally controlled parameters can be written as x µ (t). State transfer is then given by a path connecting the set of initial parameter values x µ i ≡ x µ (0) to some final set x µ f ≡ x µ (t f ). The task of fast and high-fidelity population transfer then relates to the optimization problem of finding an optimal path x µ geo (t) between these two points described by the following functional</p><formula xml:id="formula_3">L[x, ẋ, t] = t f 0 dt g µν (x) dx µ dt dx ν dt .<label>(3)</label></formula><p>This functional describes the length of a path x µ (t) parametrized by time t and can be minimized for -p(t f ) via quantum geometric protocols for a single qubit system (8) as a function of pulse time t f . As the quantum metric tensor ( <ref type="formula" target="#formula_10">9</ref>) is independent of ϕ we can choose a protocol exclusively for ρ(t) or for the ratio θ(t) = arctan2(ρ(t), z(t)).</p><p>Using the quantum adiabatic protocol (4) we find analytically that θgeo(t) = (θ f -θ0) t/t f + θ0, where the adiabaticity is given by the ramp rate δ = (θ f -θ0)/t f . We also simulate the pulse numerically, as indicated by ρgeo(t). Remarkably, the two methods align even up to the minimum transfer error. Throughout these simulations the values of ϕ = 0, ρ0 = -10 GHz, ρ f = 10 GHz, z = 0.1 GHz have been used. Note that the precision of the numerical simulations determines the singular behavior (gray area) in the transfer error.</p><p>functions x µ geo (t) (See Fig. <ref type="figure">1</ref>) that solve the Euler-Lagrange equations, which in this context are known as the geodesic equations. For adiabatic protocols, the geodesics have a conserved quantity, namely the total energy, which leads to the geometric adiabatic condition (See Appendix A)</p><formula xml:id="formula_4">g µν (x) dx µ dt dx ν dt = δ 2 ≪ 1.<label>(4)</label></formula><p>Here δ can be interpreted as the adiabaticity parameter. Since the above relationship minimizes the local infidelity <ref type="bibr" target="#b0">(1)</ref>, the geodesics also minimize the energy fluctuations <ref type="bibr" target="#b48">[49]</ref> σ</p><formula xml:id="formula_5">2 E = Ĥ2 -Ĥ 2 ≈ g µν (x) dx µ dt dx ν dt (<label>5</label></formula><formula xml:id="formula_6">)</formula><p>motivating the name of the adiabaticity δ = σ 2 E . If we restrict ourselves to a single parameter x µ = ε(t), we can solve for the adiabaticity parameter as follows</p><formula xml:id="formula_7">δ = 1 t f ε(t f ) ε(0) dε √ g εε = L[ε] t f ≪ 1.<label>(6)</label></formula><p>Therefore, adiabatic protocols can be understood as paths that minimize locally the length of the path that they trace out, i.e. short geodesics with respect to the time t f . The above equation also converges to the quantum speed limit bound for pure states as found in <ref type="bibr" target="#b48">[49]</ref>.</p><p>Finally, this allows us to draw a connection between adiabatic dynamics and geometry. To find an optimal time evolution of ε(t), we need to solve</p><formula xml:id="formula_8">g εε ε2 = n̸ =0 | ⟨ψ 0 |∂ ε Ĥ|ψ n ⟩ | 2 (E n -E 0 ) 2 dε dt 2 = δ 2 .<label>(7)</label></formula><p>Unsurprisingly, this is similar to the known fast-QUAD equation <ref type="bibr" target="#b15">[16]</ref><ref type="bibr" target="#b16">[17]</ref><ref type="bibr" target="#b17">[18]</ref>, differing from the historical fast-QUAD equation only by an additional exponent of 2 of the energy splitting in the denominator <ref type="bibr" target="#b49">[50]</ref>. In contrast, however, it allows for a clear extension to multiple energy levels. In the remainder of the article, we refer to Eq. ( <ref type="formula" target="#formula_8">7</ref>) as geometric fast-QUAD equation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Two-level system</head><p>The geometric structure of Hilbert space allows us to optimize adiabatic population transfer. For instance, a two-level Hamiltonian in cylindrical coordinates (ρ, ϕ, z)</p><formula xml:id="formula_9">ĤPauli = z ρ e -iϕ ρ e iϕ -z ,<label>(8)</label></formula><p>leads to the quantum metric tensor resembling the Bloch sphere (see Appendix A)</p><formula xml:id="formula_10">[g µν (θ, ϕ)] = 1 4 1 0 0 sin 2 θ .<label>(9)</label></formula><p>Here θ = arctan2(ρ, z) describes the azimuthal angle of the Bloch sphere. Figure <ref type="figure" target="#fig_0">2</ref> shows the simulated probability p(t f ) = | ⟨ψ 0 (t f )|ψ(t f )⟩ | 2 under adiabatic evolution for the standard linear protocol ρ linear (t) = (ρ fρ 0 ) t/t f + ρ 0 and the geometric protocol as defined in Eq. ( <ref type="formula" target="#formula_4">4</ref>). Using the quantum adiabatic protocol (4) we find analytically that <ref type="bibr" target="#b43">[44]</ref> </p><formula xml:id="formula_11">θ geo (t) = (θ f -θ 0 ) t/t f + θ 0 ,<label>(10)</label></formula><p>where θ 0 , θ f are the initial and final values of θ(t). Remarkably, our analytic expression θ geo (t) and the fully numerically simulated pulse ρ geo (t) cannot be distinguished. In both cases, because of the minimization of the energy fluctuations, the transfer errors arising from undesired diabatic transitions are drastically reduced with respect to the linear protocol. The geometric fast-QUAD can be easily extended to an arbitrary multi-level system as illustrated in Eq. ( <ref type="formula" target="#formula_2">2</ref>). In addition, the quantum metric tensor only scales with the number of control parameters and is hence also useful for large systems, making it a reliable tool for analyzing and optimizing large-scale quantum architectures.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. APPLICATION: CHARGE TRANSFER IN A DOUBLE QUANTUM DOT</head><p>Given the advantages of the quantum metric tensor, we aim to apply the geometric fast-QUAD for the adiabatic initialization and readout processes. We model an effective model for a double quantum dot (DQD) system that may be used directly for the initialization and readout of singlet-triplet qubits <ref type="bibr" target="#b40">[41,</ref><ref type="bibr" target="#b50">[51]</ref><ref type="bibr" target="#b51">[52]</ref><ref type="bibr" target="#b52">[53]</ref><ref type="bibr" target="#b53">[54]</ref>. After providing a brief overview of the microscopic model in III A, we investigate a truncated two-level model of the full model in Sec. III B, to extend the previous result of a two-level Landau-Zener problem to one in the presence of ST - coupling <ref type="bibr" target="#b50">[51,</ref><ref type="bibr" target="#b51">52,</ref><ref type="bibr" target="#b54">55]</ref>. Following, in Sec. III C, we will introduce a low-dimensional effective DQD model, which captures the spin-to-charge transition, while taking into account the spin state. Using this model, we will aim to provide a detailed analysis and comparison of the geometric fast-QUAD with the linear protocol under coherent and non-unitary noise. In the remaining text, we will work in units of ℏ.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Full model</head><p>The results in the single qubit case (Fig. <ref type="figure" target="#fig_0">2</ref>) can be extended to the full 6x6 DQD <ref type="bibr" target="#b55">[56,</ref><ref type="bibr" target="#b56">57]</ref>, consisting of two spins in the lowest orbitals of two quantum dots. The Hamiltonian is a sum of the Fermi-Hubbard Hamiltonian and the Zeeman Hamiltonian</p><formula xml:id="formula_12">ĤDQD = ĤFH + ĤZeeman ,<label>(11)</label></formula><p>where the spin-degenerate part is described by the Fermi-Hubbard model</p><formula xml:id="formula_13">ĤFH = -Ω ij,σ ĉ † i,σ ĉj,σ + h.c. + ⟨ij⟩ U ij ni nj + j Ũ 2 nj (n j -1) + V j nj<label>(12)</label></formula><p>where ĉ † j,σ (ĉ j,σ ) creates (annihilates) a fermion on sites j with spin σ. The fermionic number operator is nj = σ ĉ † σ,j ĉσ,j , Ũ and U ij are the intra-and inter-dot Coulomb repulsion, Ω is the tunnel coupling originating from the overlap of the wavefunctions in nearby quantum dots, and V i are the chemical potentials in each dot. The spin degeneracy is lifted through the Zeeman term</p><formula xml:id="formula_14">ĤZeeman = 1 2 µ B j ⃗ B j • ⃗ σ j ,<label>(13)</label></formula><p>where µ B is the Bohr magneton, ⃗ σ = (σ x , σ y , σ z ) T is the Pauli vector consisting of the conventional Pauli matrices, B j a = b G j ab B b the effective magnetic field and G j ab the g-tensor at site j. The indices a, b = x, y, z run over the spatial components. Additionally, we define E a = E a,1 + E a,2 and ∆E a = E a,1 -E a,2 as the total Zeeman energy and the Zeeman splitting difference, which may arise due to a spatially varying g-factor as usually found in germanium-based platforms <ref type="bibr" target="#b54">[55,</ref><ref type="bibr" target="#b57">[58]</ref><ref type="bibr" target="#b58">[59]</ref><ref type="bibr" target="#b59">[60]</ref><ref type="bibr" target="#b60">[61]</ref><ref type="bibr" target="#b61">[62]</ref> or a magnetic field gradient as appears in silicon-based architectures with an additional micromagnet <ref type="bibr" target="#b41">[42,</ref><ref type="bibr" target="#b62">[63]</ref><ref type="bibr" target="#b63">[64]</ref><ref type="bibr" target="#b64">[65]</ref>. The matrix representation in the full basis is given in Appendix B.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Truncated two-level model</head><p>Here, we restrict our optimization protocol to suppress only the transition of the ground state to the closest state. This way we effectively work in a low-energy twodimensional subspace of the full 6x6 DQD, which in the eigenbasis takes the schematic form</p><formula xml:id="formula_15">ĤDQD ≈ n,m=0,1 H n,m |ψ n ⟩⟨ψ m | . (<label>14</label></formula><formula xml:id="formula_16">)</formula><p>The state |T -⟩ = |↓↓⟩ is initialized by shifting the detuning ε(t), which is the difference of the left and right chemical potentials of each dot ε := V L -V R . Due to the small ST -anti-crossing, as found in <ref type="bibr" target="#b54">[55]</ref> for out-of-plane magnetic fields, we again find that the geometric fast-QUAD is superior to the linear pulse (See Fig. <ref type="figure" target="#fig_1">3</ref>). Even under this simplification, we report a transfer fidelity of &gt; 99.99 % after around 150 ns pulse time.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Three-level model</head><p>To obtain a simplified model that captures spin-tocharge conversion (See Fig. <ref type="figure" target="#fig_2">4</ref>(a)), we restrict ourselves to a double dot system with a magnetic field pointing purely in the z-direction, neglecting the fully polarized states |T ± ⟩, and focus on the singlet-triplet basis with two charge degrees of freedom (Fig. <ref type="figure" target="#fig_2">4(b)</ref>). The Hilbert space is spanned by the following basis states</p><formula xml:id="formula_17">|S(2, 0)⟩ = ĉ † L,↑ ĉ † L,↓ |vac⟩<label>(15)</label></formula><formula xml:id="formula_18">|S(1, 1)⟩ = 1 √ 2 ĉ † L,↑ ĉ † R,↓ -ĉ † L,↓ ĉ † R,↑ |vac⟩<label>(16)</label></formula><formula xml:id="formula_19">|T 0 (1, 1)⟩ = 1 √ 2 ĉ † L,↑ ĉ † R,↓ + ĉ † L,↓ ĉ † R,↑ |vac⟩ ,<label>(17)</label></formula><p>where (n L , n R ) describes the number of charges in the left and right dots, respectively, and |vac⟩ represents the vacuum state. In this subspace, we find that the matrix representation of the DQD Hamiltonian, in the above basis, is</p><formula xml:id="formula_20">Ĥ(t) =   Ũ -ε(t) Ω 0 Ω 0 ∆E Z 0 ∆E Z 0   . (<label>18</label></formula><formula xml:id="formula_21">)</formula><p>The energy spectrum of the Hamiltonian in Eq. ( <ref type="formula" target="#formula_20">18</ref>) is seen in Fig. <ref type="figure" target="#fig_2">4</ref>(c), which displays an anti-crossing at ε = Ũ . The size of the anti-crossing is now determined by the combination of the tunnel coupling Ω and the Zeeman splitting difference ∆E Z . In contrast to the Landau-Zener-Majorana-Stueckelberg anticross-ing, the energy spectrum is not symmetric in the detuning ε. Also, the existence of a third energy level, makes it possible for diabatic transitions from the ground state to two upper energy eigenstates.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D. Incoherent dynamics</head><p>During coherent spin-to-charge conversion, a dominant error source are diabatic transitions in the vicinity of the anti-crossings, where the energy level difference is minimal. Our geometric protocol Eq. ( <ref type="formula" target="#formula_4">4</ref>) is designed to minimize such errors. However, non-unitary dynamics arise due to couplings with ambient degrees of freedom, which alter the time evolution and hence may affect the optimal pulse shape. In the following, we will describe two ubiquitous noise types that may affect the protocol, lowand high-frequency charge noise.</p><p>One of the most known types of noise in semiconducting and superconducting devices is the appearance of lowfrequency noise <ref type="bibr" target="#b65">[66]</ref><ref type="bibr" target="#b66">[67]</ref><ref type="bibr" target="#b67">[68]</ref><ref type="bibr" target="#b68">[69]</ref><ref type="bibr" target="#b69">[70]</ref><ref type="bibr" target="#b70">[71]</ref><ref type="bibr" target="#b71">[72]</ref><ref type="bibr" target="#b72">[73]</ref>, whose noise spectral density follows S(f ) ∝ 1/f . Under sufficient conditions, the noise spectral density is the Fourier transform of the autocorrelation of the noise. For the Hamiltonian in Eq. ( <ref type="formula" target="#formula_20">18</ref>), the noise spectral density arises from the correlation function of the fluctuations of the detuning parameter δε(t), which we include as a perturbation</p><formula xml:id="formula_22">δ Ĥ(t) = -δε(t) |S(2, 0)⟩⟨S(2, 0)| = -δε(t) ΠS(2,0) , (<label>19</label></formula><formula xml:id="formula_23">)</formula><p>where δε is drawn from a Gaussian distribution δε ∼ N (0, σ 2 ), which is centered at zero with a variance given by σ 2 . In the simulations, we will model this behavior by fluctuating boundary conditions of the pulse shape ε 0,f → ε 0,f + δε <ref type="bibr" target="#b73">[74]</ref> and illustrate the differences between a noisy and a noiseless time evolution.</p><p>To study the high-frequency noise, we will adopt the Lindblad master equation, which describes non-unitary evolution of a quantum system subject to Markovian noise. It takes the form</p><formula xml:id="formula_24">dρ dt = -i [ Ĥ, ρ] + j Lj ρ L † j - 1 2 { L † j Lj , ρ} ,<label>(20)</label></formula><p>where Lj are the conventional Linblad operators. Explicitly, we describe dephasing from high-frequency noise via the dephasing jump operator <ref type="bibr" target="#b41">[42]</ref> Ldephasing</p><formula xml:id="formula_25">= 1 2T 2   1 0 0 0 -1 0 0 0 -1   . (<label>21</label></formula><formula xml:id="formula_26">)</formula><p>Here the Lindblad operator acts on the charge states (1,1) and (2,0). The strength of the dephasing is captured by the decoherence time T 2 . Since the dephasing operator has real entries hermitian, we can also shift the Lindbladian to obtain the equivalent dephasing operator which will generate the same time dynamics. Since for spin qubits relaxation is several orders of magnitude longer than dephasing for spin <ref type="bibr" target="#b33">[34]</ref> and charge qubits <ref type="bibr" target="#b74">[75]</ref>, we neglect it in our analysis. Note that relaxation usually benefits adiabatic charge transfer of the ground-state as it counteracts the diabatic transitions to energetically excited states, thus effectively improving the population transfer fidelity. Using the Uhlmann fidelity F defined as</p><formula xml:id="formula_27">L′ dephasing = Ldephasing + 1 2T 2 1 = 2 T 2 ΠS(2,0) ,<label>(22)</label></formula><formula xml:id="formula_28">F(ρ, σ) = tr √ ρσ √ ρ 2 ,<label>(23)</label></formula><p>we can determine the overlap of the lowest energy eigenstate |ψ 0 (t)⟩ and the time-evolved one under the nonunitary evolution given by <ref type="bibr" target="#b21">(22)</ref> for the linear and geometric state transfer protocols.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>E. Results</head><p>For concreteness, we will focus in our analysis only on the initialization process, as the readout process is directly provided by the reverse pulse shape. The initial state is the singlet state in the (2,0) charge state and is adiabatically pulsed to the desired final state. Under coherent evolution, the only error source is due to undesired diabatic transitions, inducing interference effects that reduce the transfer fidelity. We scan multiple pairs of parameters and simulate the transfer error 1p(t f ) using the protocol in Eq. ( <ref type="formula" target="#formula_8">7</ref>) and the linear protocol. For the geometric protocol, we generate an appropriate adiabaticity using the boundary conditions of the detuning (ε 0 , ε f ) and the pulse time t f with Eq. ( <ref type="formula" target="#formula_7">6</ref>) and then feed the numerically solved pulse ε num (t) into our Hamiltonian or Lindbladian based time evolution, depending on whether we want to study unitary or non-unitary dynamics.</p><p>a. Unitary dynamics Figure <ref type="figure" target="#fig_3">5</ref> shows the results of the geometric pulse for the initialization sequence of the |↓↑⟩ state of the Hamiltonian <ref type="bibr" target="#b17">(18)</ref>. The transfer error is reduced as a function of the pulse time as we move more adiabatic at larger pulse times. We observe the advantage of using the geometric fast-QUAD over the linear protocol as a reliable protocol for circumventing coherent errors, even for very small anti-crossings and extremely fast pulse times. Strikingly, we observe as a common trend, that the transfer fidelity for the geometric fast-QUAD for t f &gt; 20 ns yields a transfer fidelity F &gt; 99 % for all investigated settings of tunnel couplings Ω and Zeeman splitting differences ∆E Z . Note that these results, for the same parameter settings besides the detuning boundary conditions, also hold for the adiabatic readout protocol, as the energy is conserved along these paths.</p><p>b. Non-unitary dynamics In addition to providing higher fidelities for very short pulse times and dense energy spectra, our protocol is also highly resilient against quasistatic noise as seen in Fig. <ref type="figure">6</ref>, where we plotted the susceptibility of the transfer fidelity with respect to detuning fluctuations. Notably, after 20 ns the effects of the quasistatic noise affect the fidelities below 10 -4 , even for strong fluctuation of δε = 5 GHz. In Fig. <ref type="figure" target="#fig_5">8</ref> we also show that the geometric protocol is robust against pulse miscalibration regarding Ω → Ω + δΩ, for small δΩ and for pulse times bigger than 20 ns. Remarkably, assuming larger tunnel couplings for the pulse leads to smaller deviations from the calibrated result. This may be caused due to favorable interference effects in the initial ramp towards the anti-crossing. Namely, assuming a smaller anti-crossing will usually result in an initial fast ramp- A similar trend can be seen in (e), (f ). Remarkably, in (f ) the charge transfer fidelity is lower bounded at 99 %, independent of the combination (∆EZ , Ω) for an ultrafast pulse with pulse time t f = 20 ns. In addition, due to the conservation of energy along adiabatic paths, we observe no difference between the initialization and readout protocols. FIG. <ref type="figure">6</ref>. Susceptibility of the geometric fast-QUAD to lowfrequency fluctuations in detuning. We simulate the effects of quasistatic noise via a fluctuation in the detuning <ref type="bibr" target="#b18">(19)</ref>. This fluctuation will affect the initial and final boundary conditions when simulating the pulse shape as follows: ε 0,f → ε 0,f + δε. We fix the values of the tunnel coupling to Ω = 3 GHz, ∆EZ = 0.5 GHz, and the remaining are identical to the ones in Figure <ref type="figure" target="#fig_3">5</ref>. The errors mostly affect infidelities below 1-F &lt; 10 -4 after a pulse time of t f = 20 ns. The asymmetry of the deviation is due to the fact that the energy spectrum is asymmetric around the anti-crossing at ε = Ũ .  ing ending in a slow-down at the anti-crossing, leading to interference effects that do not destructively interfere beyond the anti-crossing.</p><p>Lastly, we compare the optimal control sequences of the linear and geometric protocol given some fixed decoherence time T 2 in Fig. <ref type="figure" target="#fig_4">7</ref>. Here, we compute the linear and geometric fast-QUAD pulse shapes and simulate the Uhlmann fidelity of the lowest energy eigenstate |ψ 0 (t f )⟩ and the resulting mixed density matrix ρ(t f ) under Lindbladian time evolution. For a fixed interval of allowed pulse operation times t f ≤ 50 ns, we find the maximum Uhlmann fidelity at fixed decoherence time and compare the linear and geometric protocol. The maximum Uhlmann fidelity F(t * f ) is given by the optimal pulse operation time t * f for any given decoherence time T 2 . The linear protocol will always perform best at the longest allowed pulse times to suppress the diabatic transitions which dominate in this regime. On the other hand, the geometric fast-QUAD will be optimal at ultrafast operation times (t * f &lt; 10 ns) to simultaneousely reduce the coherent and incoherent errors through dephasing. Therefore, the geometric fast-QUAD will always outperform the linear protocol under fixed decoherence rates.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. CONCLUSION</head><p>In this work, we established a relationship between the quantum geometric structure of the Hilbert space and quasiadiabatic time dynamics. Our main focus lied in providing a general framework to deal with coherent errors arising from undesired diabatic transitions between multiple energy levels while operating at fast pulse times. Special emphasis was put on applying these methods to enable fast and high-fidelity adiabatic initialization and readout for a DQD system, which is integral for the min-imization of state-dependent crosstalk. Nevertheless, we stress that the framework is applicable to all quantum systems with non-degenerate eigenvalues and only requires optimization on the level of the Hamiltonian and not the time-ordered evolution operator. For coherent evolution, we found that independent of the parameter configuration, the geometric fast-QUAD provides an upper bound on the transfer error at 10 -2 for pulse times of 20 ns. Miscalibration of the pulse and quasistatic noise did not yield significant deviations. Errors arising due to dephasing effects were studied, and it was found that the geometric fast-QUAD was always superior to the linear protocol with respect to the Uhlmann fidelity, while allowing ultrafast operation times.</p><p>Nevertheless, further efforts in the understanding of the quantum geometric approach have to be made, especially with a focus on including the effects of noise directly into the formalism, understanding the geometric difference between pure and mixed states, and what the impact of a non-abelian connection and degenerate eigenstates would be for transfer protocols. So far, the case of mixed states has been tackled only for full and finite rank density matrices <ref type="bibr" target="#b28">[29,</ref><ref type="bibr" target="#b75">76]</ref>, making it challenging to capture non-unitary time evolution and systems with infinite-dimensional Hilbert spaces. Nevertheless, the quantum geometry of parameter space will provide new opportunities for ultrafast adiabatic operations allowing for significant improvements in the coherent processing of quantum information, accelerating the advancement of emerging quantum technologies.</p><formula xml:id="formula_29">[g µν (ρ, ϕ)] = 1 4(1 + ρ 2 ) 1 (1+ρ 2 ) 0 0 ρ 2 , (A6)</formula><p>which captures the fact that the embedding is welldefined. This can also be seen by the fact that now dim P (H Pauli ) = dim M. This metric is the metric on the Bloch sphere, as can be seen if we use ρ = tan θ and use the transformation rule for the quantum metric tensor to arrive at The left-hand side is the expression of the Hamiltonian and hence, in this case, Beltrami's identity is a consequence of conservation of energy. Computing the partial derivative of the Lagrangian above using ∂ ẋµ /∂ ẋα = δ µ α we find the adiabatic-geometric condition g µν (x) ẋµ ẋν = const.</p><p>(A10)</p><p>Another way to see this identity is that conservation laws arise due to symmetries. As we are considering unitary systems, we have time-reversal symmetry and hence energy conservation. The connection between symmetry and conserved charges in the geometrical context is illustrated by the Killing vectors ξ µ . Each Killing vector has an associated conserved charge <ref type="bibr" target="#b25">[26]</ref> </p><formula xml:id="formula_30">∂ t Q ξ = ∂ t g µν (x)ξ µ ẋν = 0. (A11)</formula><p>If the Killing vector is proportional to the tangent vector ξ µ ∝ ẋµ we also find the adiabatic-geometric relation. This shows the explicit relation between energy conservation and geometry. In order to find the geodesics of a manifold one also only needs dim M -1 Killing vector fields <ref type="bibr" target="#b25">[26]</ref>, which aligns with the parameter subspace after the constraint due to the conformal invariance of the QGT. </p><formula xml:id="formula_31">ĤDQD =         Ũ + ε 0 0 -Ω Ω 0 0 Ũ -ε 0 -Ω Ω 0 0 0 E Z ∆E X -∆E X 0 -Ω -Ω ∆E X ∆E Z 0 ∆E X Ω Ω -∆E X 0 -∆E Z -∆E X 0 0 0 ∆E X -∆E X -E Z         (B2)</formula><p>if we constrain ourselves to the charge states (1,1), (2,0), and (0,2) including the spin states |↑↑⟩ , |↑↓⟩ , |↓↑⟩ , |↓↓⟩}.</p><p>In addition, we define E j = E j,1 +E j,2 and ∆E j = E j,1 -E j,2 with j = X, Y, Z for each component of the Pauli vector, and we set the y-component to zero for simplicity. The energy spectrum of the above Hamiltonian is plotted in Figure <ref type="figure" target="#fig_7">9</ref>.</p><p>As seen in the main text, when restricting to the singlet and triplet sectors for the charge configurations (2,0) and (1,1), we find the Hamiltonian <ref type="bibr" target="#b17">(18)</ref>. Given that the Zeeman splitting difference ∆E Z is usually a much smaller energy scale than the tunnel coupling or detuning we want to find an effective 2-dimensional model. Using standard Schrieffer-Wolff transformation we find that the effective 2d model is spanned only by the singlet sector in the two different charge states (1, 1), (2, 0)</p><formula xml:id="formula_32">Ĥeff (t) = -ε(t) 1 -J 2 Ω(1 -J 2 /2) Ω(1 -J 2 /2) 0 ,<label>(B3)</label></formula><p>where J 2 = ∆E 2 Z /Ω 2 is the expansion parameter. For this 2 × 2 Hamiltonian we can find the fast-QUAD equation explicitly in the regime of J ≪ 1 up to second order in the Zeeman splitting difference</p><formula xml:id="formula_33">(1 + 3J 2 ) Ω 2 + ε(t) 2 (Ω 2 + ε(t) 2 ) 5/2 dε dt = δ/Ω. (B4)</formula><p>In the above equation, we rescaled Ω → Ω/2 for readability. For J = 0 we recover the fast-QUAD equation for the Landau-Zener model as seen in <ref type="bibr" target="#b16">[17,</ref><ref type="bibr" target="#b17">18,</ref><ref type="bibr" target="#b49">50]</ref>. The difference of pulse shapes of the effective 2d and the full 3d Hamiltonian is plotted in Figure <ref type="figure" target="#fig_8">10</ref>. We observe that the derived pulse shapes deviate significantly between the effective and the full model.</p><p>First, we compute the quantum metric tensor using Eq. (A2). Making use of the quantum adiabatic condition (4), we obtain a differential equation for the pulse in terms of the adiabaticity parameter δ. Once, we have chosen the boundary conditions of the pulse, we can compute the adiabaticity parameter using Eq. ( <ref type="formula" target="#formula_7">6</ref>) and hence solve the differential equation for the pulse consistently between these boundary conditions.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">Hamiltonian simulation</head><p>For the numerical simulations of the coherent population transfer, we first generate a pulse according to the boundary conditions for initialization or readout. Next, we replace the numerically solved pulse ε num (t) in the Hamiltonian operator and then solve the Schrödinger equation (in units of ℏ = 1)</p><formula xml:id="formula_34">i d dt |ψ(t)⟩ = Ĥ[ε num (t)] |ψ(t)⟩ . (C1)</formula><p>Given the initial state |ψ 0 (t = 0)⟩, we evolve the state and project it onto the lowest energy eigenstate at the final pulse time to see whether coherent errors occurred.</p><p>For that, we compute the transfer probability p(t where the Lindbladian takes the form</p><formula xml:id="formula_35">f ) = | ⟨ψ 0 (t f )|ψ geo (t f )⟩ | 2</formula><formula xml:id="formula_36">L = -i Ĥ ⊗ 1 -1 ⊗ ĤT + j Lj ⊗ L * j - 1 2 L † j Lj ⊗ 1 + 1 ⊗ [ L † j Lj ] T . (C5)</formula><p>Note that the expression explicitly depends on the basis chosen, as the transpose is basis-dependent. To compute the success of the state transfer protocols we define the Uhlmann fidelity</p><formula xml:id="formula_37">F(ρ, σ) = tr √ ρσ √ ρ 2 . (<label>C6</label></formula><formula xml:id="formula_38">)</formula><p>We will use this to quantify the overlap between the timeevolved pure initial state |ψ 0 (0)⟩ ≈ |S(2, 0)⟩ to the mixed state at the end of the non-unitary evolution ρ(t f ). In this case, the fidelity simplifies to Full-time evolutions are shown in Fig. <ref type="figure" target="#fig_12">12</ref>. We observe that the geometric fast-QUAD provides a better overlap with the energy eigenstate for weak dephasing. Figure <ref type="figure" target="#fig_11">11</ref> shows the procedure to obtain the optimal control simulation in Fig. <ref type="figure" target="#fig_4">7</ref>. We start by simulating the Uhlmann fidelity for a fixed decoherence time T 2 for pulse times t f ∈ [0, 50] ns and extract the highest overlap for both the linear (dashed line) and geometric (full line) protocol. These are shown in the figure as blue circles/red stars for two exemplary decoherence times T 2 = 1, 100 ns, respectively. Note that the geometric protocol provides a higher fidelity at shorter pulse times. From each simulation, therefore, we extract the fidelity F(t * f ), the pulse time t * f at which the highest fidelity is reached and the corresponding decoherence time T 2 . We note that, due to the small anti-crossing and the ultrafast pulse time (t f = 10 ns), the geometric pulse severely outperforms the linear protocol. However, only in the weak dephasing limit T2 ≫ t f do we find that the geometric fast-QUAD provides a high-fidelity state transfer. The geometric protocol, due to the minimization of the Landau-Zener transitions, will remain for long times in the anti-crossing region to avoid coherent errors. Thereby, however, it will be most exposed to charge noise.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>FIG. 2 .</head><label>2</label><figDesc>FIG. 2. (a)Coherent transfer probability p(t f ) = | ⟨ψ0(t f )|ψ(t f )⟩ | 2 (inset shows energy levels as a function of ρ) and (b) transfer error 1 -p(t f ) via quantum geometric protocols for a single qubit system (8) as a function of pulse time t f . As the quantum metric tensor (9) is independent of ϕ we can choose a protocol exclusively for ρ(t) or for the ratio θ(t) = arctan2(ρ(t), z(t)). Using the quantum adiabatic protocol (4) we find analytically that θgeo(t) = (θ f -θ0) t/t f + θ0, where the adiabaticity is given by the ramp rate δ = (θ f -θ0)/t f . We also simulate the pulse numerically, as indicated by ρgeo(t). Remarkably, the two methods align even up to the minimum transfer error. Throughout these simulations the values of ϕ = 0, ρ0 = -10 GHz, ρ f = 10 GHz, z = 0.1 GHz have been used. Note that the precision of the numerical simulations determines the singular behavior (gray area) in the transfer error.</figDesc><graphic coords="3,54.00,52.07,508.11,192.10" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>FIG. 3 .</head><label>3</label><figDesc>FIG. 3. (a) Transfer errors as a function of the pulse time t f are plotted for the linear and geometric protocols following Eq. (B2) without incoherent errors. (b) Illustration of the 6x6 energy levels as a function of detuning, where we only focus on the two lower levels. The ST-anti-crossing, which induces diabatic transitions in the initialization process, is given by the size of ∆EX = 0.1 GHz, similar to [55] for out-ofplane magnetic fields. After around 150 ns pulse time, we can expect an initialization fidelity of 99.99 % for the |↓↓⟩ state. The parameters used in the simulation are: Ũ = 100 GHz, EZ = 10 GHz, Ω = 10 GHz, ∆EZ = 1 GHz, ε f = 10 GHz, and ε0 = 3 Ũ /2.</figDesc><graphic coords="5,54.60,52.07,243.88,181.22" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>FIG. 4 .</head><label>4</label><figDesc>FIG. 4. (a) Illustration of the spin-to-charge conversion protocol of spin qubits. The particle on the right side of the DQD potential can only be transferred to an antisymmetric spin-state on the left side due to the Pauli exclusion principle. (b) Plot of the energy spectrum En of the full model (B2) as a function of the detuning ε (tilt of the potential wells). The colored lines correspond to the energy levels of the reduced three-level model (18). (c) Detailed energy spectrum for the three-level Hamiltonian (18). The dashed line represents the energy of the |S(2, 0)⟩ state, which for large detuning ε ≫ Ũ , Ω, ∆EZ becomes the eigenstate of the DQD Hamiltonian.</figDesc><graphic coords="6,54.00,52.08,508.10,163.55" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>FIG. 5 .</head><label>5</label><figDesc>FIG. 5. Comparison of initialization pulses using the linear (a), (c), (d) and geometric fast-QUAD (b), (d), (f ) protocols with ε0 = 2 Ũ = 200 GHz and ε f = 0. (a), (b)Illustrates the effect of both the tunnel coupling and the pulse time on the transfer error. We note that the geometric fast-QUAD achieves a transfer fidelity of 99.99 % after 20 ns, which defines a lower bound. Transfer errors as low as 10 -8 may be reached even for very small tunnel couplings. (c), (d) is a contour plot sweeping the Zeeman splitting difference and the pulse time (∆EZ , t f ) at fixed tunnel coupling Ω = 1 GHz. Here the clear advantage of the geometric fast-QUAD comes through, as the size of the anti-crossing hinders the coherent charge transfer in the linear case. A similar trend can be seen in (e), (f ). Remarkably, in (f ) the charge transfer fidelity is lower bounded at 99 %, independent of the combination (∆EZ , Ω) for an ultrafast pulse with pulse time t f = 20 ns. In addition, due to the conservation of energy along adiabatic paths, we observe no difference between the initialization and readout protocols.</figDesc><graphic coords="7,92.11,433.92,431.90,189.56" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head>FIG. 7 .</head><label>7</label><figDesc>FIG. 7. (a) Plot of the minimum infidelity of the geometric fast-QUAD (red line) and linear protocol (black, dashed line) for a given decoherence time T2 for pulses up to 50 ns. The geometric fast-QUAD, even under dephasing noise and dense energy spectra (Ω = 1 GHz, ∆EZ = 1 GHz), does always provide higher fidelity protocols at ultrafast operation times (t * f &lt; 10 ns). The boundary conditions chosen are: ε0 = 2 Ũ = 200 GHz, and ε f = 0. (b) Best pulse operation times given a decoherence time T2. Note that the linear protocol, due to the fact that it induces diabatic transitions, will always pick the longest operation time to achieve the highest fidelity.</figDesc><graphic coords="8,62.22,395.58,228.64,185.30" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><head>FIG. 8 .</head><label>8</label><figDesc>FIG.8. Transfer fidelity deviation, due to a miscalibrated pulse Ω pulse = Ω0 + δΩ, where the system Hamiltonian is set at Ω0 = 3 GHz and ∆EZ = 0.5 GHz. Remarkably, assuming a bigger tunnel coupling for the pulse will deviate less from the calibrated result.</figDesc><graphic coords="8,325.23,52.07,228.64,171.48" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><head>[</head><figDesc>identity, Killing charges and energy fluctuations To derive that adiabatic geometric condition (4) we start by simplifying the length functional in the main text via the Cauchy-Schwarz relation to the following functional [44]L ′ [x, ẋ, t] = t f 0 dt g µν (x) ẋµ ẋν , (A8)where the integrand can be understood as a Lagrangian L[x, ẋ, t] and the functional as the action. If the Lagrangian does not explicitly depend on time, i.e. ∂L/∂t = 0, then Beltrami's identity holds ẋα ∂L ∂ ẋα -L = const. (A9)</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7"><head>FIG. 9 .</head><label>9</label><figDesc>FIG.9. Energy spectrum 6x6 comparison for low (a) and high (b) tunnel couplings. The size of the anticrossing induced by ∆EX is removed by the increment of the tunnel coupling. This allows for very fast pulses as one decreases the probability of Landau-Zener transitions. Note that the Zeeman energy is comparable to the tunnel coupling, such that for the large tunnel coupling we still define the |↓↓⟩ as the ground state at zero detuning.</figDesc><graphic coords="10,325.23,143.73,228.64,190.45" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8"><head>FIG. 10 .</head><label>10</label><figDesc>FIG.10. Pulse shaping comparison between 2d low-energy effective Hamiltonian (B3) and the DQD model<ref type="bibr" target="#b17">(18)</ref>. The solid lines represent the full model, whereas the dashed lines represent the effective model. The simulation was done with Ω = 10 GHz, and the Zeeman splitting difference was plotted as different colors. We see that the pulse shapes differ strongly in the effective regime, where J ≪ 1.</figDesc><graphic coords="11,317.01,175.51,254.05,190.54" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9"><figDesc>, where|ψ geo (t f )⟩ = T exp -i t f 0 Ĥ[ε num (t)] |ψ 0 (t = 0)⟩ . (C2)3. Lindblad simulationFor the numerical simulations of the Lindblad master equation, we switch to the vectorized form. We choose to use vectorization by row, which means that, for instance, this notation, the Lindblad master equation can be written as a linear equationd dt |ρ⟩⟩ = L • |ρ⟩⟩,(C4)</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10"><head>F</head><figDesc>(ρ(t f ), |ψ 0 (t f )⟩⟨ψ 0 (t f )|) = | ⟨ψ 0 (t f )|ρ(t f )|ψ 0 (t f )⟩ |. (C7) Defining |ψ 0 ⟩⟩ = vec[|ψ 0 (t f )⟩⟨ψ 0 (t f )|]we find that the Uhlmann fidelity reduces toF(t f ) = |⟨⟨ρ(t f )|ψ 0 (t f )⟩⟩|. (C8)    </figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11"><head>FIG. 11 .</head><label>11</label><figDesc>FIG. 11. Example of simulated Uhlmann fidelity between the lowest energy eigenstate and the mixed state after Lindbladian evolution. The dashed lines represent the linear protocol. The stars and the dots illustrate the maximum values of the overlap for different decoherence times.</figDesc><graphic coords="12,317.01,52.07,254.05,190.54" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_12"><head>FIG. 12 .</head><label>12</label><figDesc>FIG.12. Comparison of the population densities during the initialization phase as a function of the linear or geometric pulse and the dephasing time T2. Different colors represent different components of the population density, and dashed lines represent the noiseless evolution of the respective colored component. The parameters used are Ũ = 100 GHz, Ω = ∆EZ = 1 GHz, and for boundary conditions ε0 = 2 Ũ and ε f = 0. We note that, due to the small anti-crossing and the ultrafast pulse time (t f = 10 ns), the geometric pulse severely outperforms the linear protocol. However, only in the weak dephasing limit T2 ≫ t f do we find that the geometric fast-QUAD provides a high-fidelity state transfer. The geometric protocol, due to the minimization of the Landau-Zener transitions, will remain for long times in the anti-crossing region to avoid coherent errors. Thereby, however, it will be most exposed to charge noise.</figDesc><graphic coords="13,104.81,423.06,406.48,169.37" type="bitmap" /></figure>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div><head>ACKNOWLEDGMENTS</head><p>We thank the members of the <rs type="institution">Veldhorst, Scappucci</rs>, and Vandersypen groups for helpful discussions on practical applications. Additionally, we are grateful for discussions with <rs type="person">Amanda Seedhouse</rs> and <rs type="person">Edmondo Valvo</rs> about the thoeretical model. This research was partly supported by the <rs type="funder">EU</rs> through the <rs type="grantNumber">H2024 QLSI2</rs> project and partly sponsored by the <rs type="funder">Army Research Office</rs> under Award Number: <rs type="grantNumber">W911NF-23-1-0110</rs>. The views and conclusions contained in this document are those of the authors and should not be interpreted as representing the official policies, either expressed or implied, of the <rs type="funder">Army Research Office</rs> or the <rs type="institution">U.S. Government</rs>. The U.S. Government is authorized to reproduce and distribute reprints for Government purposes notwithstanding any copyright notation herein.</p></div>
+			</div>
+			<listOrg type="funding">
+				<org type="funding" xml:id="_drsW2xp">
+					<idno type="grant-number">H2024 QLSI2</idno>
+				</org>
+				<org type="funding" xml:id="_4ANsytM">
+					<idno type="grant-number">W911NF-23-1-0110</idno>
+				</org>
+			</listOrg>
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Appendix A: Fundamentals of quantum Riemannian geometry a. Bloch sphere from quantum geometry To define the metric g we need to find a basis t µ (x) that spans the tangent space T ρP (H). A natural choice is given by the set of traceless and Hermitian matrices</p><p>where we assume that the density matrices are pure ρ(x) = |ψ(x)⟩⟨ψ(x)| and that the derivative is with respect to the parameters x µ . We can define the quantum geometric tensor as the Killing form on the tangent space T ρP (H)</p><p>We note that the quantum geometric tensor (QGT) has certain symmetries, which, in part, will constrain our dynamics. First, the QGT is invariant under shifts in the ground state energy Ĥ → Ĥ + ω(x) 1, which is the known invariance that only energy differences are measurable and is the expected invariance under U (1). Secondly, the QGT does not change if we rescale the Hamiltonian globally with a function Ω(x), i.e. Ĥ → Ω(x) Ĥ, which we will refer to as conformal invariance. We also need to rescale the time variable to not affect the time dynamics. The conformal invariance will constrain our dynamics to a (dim M -1)-dimensional subspace. To see this, we will work through the example in the main text: A general 2×2 Hamiltonian can be written in the Pauli basis, which in polar coordinates (ρ, ϕ, z) takes the form ĤPauli = z ρ e -iϕ ρ e iϕ -z ,</p><p>where we note that, for pure states, dim P (H Pauli ) = 2 &lt; dim M = 3, as pure states can be fully described by the angles (θ, ϕ) on the Bloch sphere. This condition restricts the notion of M being an embedding of the projective Hilbert space P (H Pauli ) as the map is no longer injective. Due to the conformal invariance, however, we may restrict ourselves to subspaces that span the projective Hilbert space and hence form a well-defined embedding. For instance, if we identify x µ = {ρ, ϕ, z} then we may find a function Ω(x) such that we can reduce the number of parameters. If we want to work in the subspace of x µ = {ρ, z} we find that the quantum metric tensor is singular, i.e. det g = 0, which alludes to the fact that the embedding is ill-defined. This feature can be seen by the fact that there is no non-trivial function Ω(x) that removes the ϕ-dependence. On the other hand, the subsets x µ = {ρ, ϕ} and x µ = {ϕ, z} can be well-defined. For instance, if Ω(x) = z and we redefine ρ/z → ρ, the Pauli Hamiltonian takes the form ĤPauli =</p><p>1 ρ e -iϕ ρ e iϕ -1 , (A5) which leads to a non-singular quantum metric tensor</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Appendix B: DQD Eigenspectrum and effective 2x2 Hamiltonian</head><p>We want to describe the effective dynamics of the DQD Hamiltnoian in Eq. <ref type="bibr" target="#b17">(18)</ref>. The total Hamiltonian describing an array of quantum dots is given by ĤDQD = ĤFH + ĤZeeman , (B1) where these two Hamiltonians can be written as <ref type="bibr" target="#b55">[56,</ref><ref type="bibr" target="#b56">57]</ref> Appendix C: Numerical methods Here we outline the numerical methods used in the main text, including the generation of the pulse shapes, the Hamiltonian, and Lindblad master equation solvers.</p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Training Schrödinger&apos;s cat: Quantum optimal control</title>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">J</forename><surname>Glaser</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">U</forename><surname>Boscain</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Calarco</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">P</forename><surname>Koch</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Köckenberger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Kosloff</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Kuprov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Luy</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Schirmer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Schulte-Herbrüggen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Sugny</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><forename type="middle">K</forename><surname>Wilhelm</surname></persName>
+		</author>
+		<idno type="DOI">10.1140/epjd/e2015-60464-1</idno>
+	</analytic>
+	<monogr>
+		<title level="j">The European Physical Journal D</title>
+		<imprint>
+			<biblScope unit="volume">69</biblScope>
+			<biblScope unit="page">279</biblScope>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Optimal Control for One-Qubit Quantum Sensing</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Poggiali</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Cappellaro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Fabbri</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevX.8.021059</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review X</title>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="page">21059</biblScope>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Optimal control of quantum state preparation and entanglement creation in two-qubit quantum system with bounded amplitude</title>
+		<author>
+			<persName><forename type="first">X</forename><surname>Li</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41598-023-41688-z</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Scientific Reports</title>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="page">14734</biblScope>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<monogr>
+		<idno type="DOI">10.1017/CBO9781139034807</idno>
+		<title level="m">Quantum Error Correction</title>
+		<editor>
+			<persName><forename type="first">D</forename><forename type="middle">A</forename><surname>Lidar</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">T</forename><forename type="middle">A</forename><surname>Brun</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Cambridge</addrLine></address></meeting>
+		<imprint>
+			<publisher>Cambridge University Press</publisher>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<monogr>
+		<title level="m" type="main">Adiabatic perturbation theory: From Landau-Zener problem to quenching through a quantum critical point</title>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">De</forename><surname>Grandi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Polkovnikov</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:0910.2236</idno>
+		<imprint>
+			<date type="published" when="2010">2010</date>
+			<biblScope unit="page" from="75" to="114" />
+		</imprint>
+	</monogr>
+	<note>cond-mat</note>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">A simple approach to the Landau-Zener formula</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">C</forename><surname>Vutha</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/0143-0807/31/2/016</idno>
+		<idno type="arXiv">arXiv:1001.3322</idno>
+	</analytic>
+	<monogr>
+		<title level="j">European Journal of Physics</title>
+		<imprint>
+			<biblScope unit="volume">31</biblScope>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+	<note>physics</note>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<author>
+			<persName><forename type="first">D</forename><surname>Guéry-Odelin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ruschhaupt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kiely</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Torrontegui</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Martínez-Garaot</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">G</forename><surname>Muga</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/RevModPhys.91.045001</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Shortcuts to adiabaticity: Concepts, methods, and applications</title>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="volume">91</biblScope>
+			<biblScope unit="page">45001</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<monogr>
+		<title level="m" type="main">Noise-resistant Landau-Zener sweeps from geometrical curves</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Zhuang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Zeng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">E</forename><surname>Economou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Barnes</surname></persName>
+		</author>
+		<idno type="DOI">10.22331/q-2022-02-02-639</idno>
+		<idno type="arXiv">arXiv:2103.07586</idno>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="volume">6</biblScope>
+		</imprint>
+	</monogr>
+	<note>quantph</note>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Dynamically corrected gates from geometric space curves</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Barnes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><forename type="middle">A</forename><surname>Calderon-Vargas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Dong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Zeng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Zhuang</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/2058-9565/ac4421</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Quantum Science and Technology</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="page">23001</biblScope>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">The Landau-Zener formula made simple</title>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">P</forename><surname>Glasbrenner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">P</forename><surname>Schleich</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/1361-6455/acc774</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Physics B: Atomic, Molecular and Optical Physics</title>
+		<imprint>
+			<biblScope unit="volume">56</biblScope>
+			<biblScope unit="page">104001</biblScope>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Transitionless quantum driving</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">V</forename><surname>Berry</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/1751-8113/42/36/365303</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Physics A: Mathematical and Theoretical</title>
+		<imprint>
+			<biblScope unit="volume">42</biblScope>
+			<biblScope unit="page">365303</biblScope>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Lewis-Riesenfeld invariants and transitionless quantum driving</title>
+		<author>
+			<persName><forename type="first">X</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Torrontegui</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">G</forename><surname>Muga</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.83.062116</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review A</title>
+		<imprint>
+			<biblScope unit="volume">83</biblScope>
+			<biblScope unit="page">62116</biblScope>
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Minimizing irreversible losses in quantum systems by local counterdiabatic driving</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Sels</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Polkovnikov</surname></persName>
+		</author>
+		<idno type="DOI">10.1073/pnas.1619826114</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Proceedings of the National Academy of Sciences</title>
+		<imprint>
+			<biblScope unit="volume">114</biblScope>
+			<biblScope unit="page">3909</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<monogr>
+		<idno type="DOI">10.7566/JPSJ.88.061002</idno>
+		<title level="m">Hamiltonian Engineering for Adiabatic Quantum Computation: Lessons from Shortcuts to Adiabaticity</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Accelerated adiabatic passage of a single electron spin qubit in quantum dots</title>
+		<author>
+			<persName><forename type="first">X.-F</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Matsumoto</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Fujita</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ludwig</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">D</forename><surname>Wieck</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Oiwa</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.132.027002</idno>
+		<idno type="arXiv">arXiv:2312.13135</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review Letters</title>
+		<imprint>
+			<biblScope unit="volume">132</biblScope>
+			<biblScope unit="page">27002</biblScope>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+	<note>cond-mat, physics:quant-ph</note>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Fast quasiadiabatic dynamics</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Martínez-Garaot</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ruschhaupt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Gillet</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Th</forename><surname>Busch</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">G</forename><surname>Muga</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.92.043406</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review A</title>
+		<imprint>
+			<biblScope unit="volume">92</biblScope>
+			<biblScope unit="page">43406</biblScope>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Improving coherent population transfer via a stricter adiabatic condition</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y.-X</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Huang</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.100.023848</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review A</title>
+		<imprint>
+			<biblScope unit="volume">100</biblScope>
+			<biblScope unit="page">23848</biblScope>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Generalized fast quasiadiabatic population transfer for improved qubit readout, shuttling, and noise mitigation</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Fehse</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>David</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Pioro-Ladrière</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">A</forename><surname>Coish</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevB.107.245303</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review B</title>
+		<imprint>
+			<biblScope unit="volume">107</biblScope>
+			<biblScope unit="page">245303</biblScope>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Optimal control of coupled spin dynamics: Design of NMR pulse sequences by gradient ascent algorithms</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Khaneja</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Reiss</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Kehlet</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Schulte-Herbrüggen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">J</forename><surname>Glaser</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.jmr.2004.11.004</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Magnetic Resonance</title>
+		<imprint>
+			<biblScope unit="volume">172</biblScope>
+			<biblScope unit="page">296</biblScope>
+			<date type="published" when="2005">2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Chopped random-basis quantum optimization</title>
+		<author>
+			<persName><forename type="first">T</forename><surname>Caneva</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Calarco</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Montangero</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.84.022326</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review A</title>
+		<imprint>
+			<biblScope unit="volume">84</biblScope>
+			<biblScope unit="page">22326</biblScope>
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Accelerated Newton-Raphson GRAPE methods for optimal control</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">L</forename><surname>Goodwin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">S</forename><surname>Vinding</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevResearch.5.L012042</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review Research</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="page">12042</biblScope>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<monogr>
+		<title level="m" type="main">Dynamically corrected gates in silicon singlettriplet spin qubits</title>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">Y</forename><surname>Walelign</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Cai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Barnes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Nichol</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2405.15148</idno>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+	<note>quant-ph</note>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Systematic Magnus-Based Approach for Suppressing Leakage and Nonadiabatic Errors in Quantum Dynamics</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Ribeiro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Baksic</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">A</forename><surname>Clerk</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevX.7.011021</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review X</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="page">11021</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">From classical to quantum information geometry: A guide for physicists</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Lambert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">S</forename><surname>Sørensen</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/1367-2630/aceb14</idno>
+	</analytic>
+	<monogr>
+		<title level="j">New Journal of Physics</title>
+		<imprint>
+			<biblScope unit="volume">25</biblScope>
+			<biblScope unit="page">81201</biblScope>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Geometry and non-adiabatic response in quantum and classical systems</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Kolodrubetz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Sels</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Mehta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Polkovnikov</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.physrep.2017.07.001</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physics Reports Geometry and Non-Adiabatic Response in Quantum and Classical Systems</title>
+		<imprint>
+			<biblScope unit="volume">697</biblScope>
+			<biblScope unit="page">1</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Hidden symmetries, the Bianchi classification and geodesics of the quantum geometric ground-state manifolds</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Liska</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Gritsev</surname></persName>
+		</author>
+		<idno type="DOI">10.21468/SciPostPhys.10.1.020</idno>
+	</analytic>
+	<monogr>
+		<title level="j">SciPost Physics</title>
+		<imprint>
+			<biblScope unit="volume">10</biblScope>
+			<biblScope unit="page">20</biblScope>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Quantum Geometric Tensor (Fubini-Study Metric</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Cheng</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1012.1337</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Simple Quantum System: A pedagogical Introduction</title>
+		<imprint>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+	<note>math-ph, physics:quant-ph</note>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Generalized quantum geometric tensor for excited states using the path integral approach</title>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">B</forename><surname>Juárez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Gonzalez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Gutiérrez-Ruiz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">D</forename><surname>Vergara</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/1402-4896/aceb21</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physica Scripta</title>
+		<imprint>
+			<biblScope unit="volume">98</biblScope>
+			<biblScope unit="page">95106</biblScope>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<monogr>
+		<title level="m" type="main">Local geometry and quantum geometric tensor of mixed states</title>
+		<author>
+			<persName><forename type="first">X.-Y</forename><surname>Hou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Guo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C.-C</forename><surname>Chien</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2305.07597</idno>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+	<note>cond-mat, physics:quant-ph</note>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Classifying and measuring geometry of a quantum ground state manifold</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Kolodrubetz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Gritsev</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Polkovnikov</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevB.88.064304</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review B</title>
+		<imprint>
+			<biblScope unit="volume">88</biblScope>
+			<biblScope unit="page">64304</biblScope>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Abelian and Non-Abelian Quantum Geometric Tensor</title>
+		<author>
+			<persName><forename type="first">Y.-Q</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Fan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W.-M</forename><surname>Liu</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevB.81.245129</idno>
+		<idno type="arXiv">arXiv:1003.4040</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review B</title>
+		<imprint>
+			<biblScope unit="volume">81</biblScope>
+			<biblScope unit="page">245129</biblScope>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+	<note>cond-mat, physics:quant-ph</note>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<analytic>
+		<title level="a" type="main">The germanium quantum information route</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Scappucci</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Kloeffel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><forename type="middle">A</forename><surname>Zwanenburg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Loss</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Myronov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J.-J</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>De Franceschi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Katsaros</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Veldhorst</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41578-020-00262-z</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature Reviews Materials</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="page">926</biblScope>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Semiconductor spin qubits</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Burkard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">D</forename><surname>Ladd</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Pan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Nichol</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">R</forename><surname>Petta</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/RevModPhys.95.025003</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Reviews of Modern Physics</title>
+		<imprint>
+			<biblScope unit="volume">95</biblScope>
+			<biblScope unit="page">25003</biblScope>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Review of performance metrics of spin qubits in gated semiconducting nanostructures</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Stano</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Loss</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s42254-022-00484-w</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature Reviews Physics</title>
+		<imprint>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="page">672</biblScope>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<analytic>
+		<author>
+			<persName><forename type="first">B</forename><surname>Undseth</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Pietx-Casas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Raymenants</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Mehmandoost</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">T</forename><surname>Madzik</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">G J</forename><surname>Philips</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">L</forename><surname>De Snoo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">J</forename><surname>Michalak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">V</forename><surname>Amitonov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Tryputen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">P</forename><surname>Wuetz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Fezzi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">D</forename><surname>Esposti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Sammak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Scappucci</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">M K</forename><surname>Vandersypen</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevX.13.041015</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Hotter is Easier: Unexpected Temperature Dependence of Spin Qubit Frequencies</title>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="page">41015</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<analytic>
+		<title level="a" type="main">High-fidelity spin qubit operation and algorithmic initialization above 1 K</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">Y</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">Y</forename><surname>Su</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">H</forename><surname>Lim</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Feng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Van Straaten</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Severin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Gilbert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Dumoulin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Stuyck</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Tanttu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">D</forename><surname>Serrano</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Cifuentes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">E</forename><surname>Hansen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Seedhouse</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">C C</forename><surname>Vahapoglu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">V</forename><surname>Leon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H.-J</forename><surname>Abrosimov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">L W</forename><surname>Pohl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><forename type="middle">E</forename><surname>Thewalt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">C</forename><surname>Hudson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Escott</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">D</forename><surname>Ares</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Bartlett</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Morello</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Saraiva</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">S</forename><surname>Laucht</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">H</forename><surname>Dzurak</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Yang</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41586-024-07160-2</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">627</biblScope>
+			<biblScope unit="page">772</biblScope>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<analytic>
+		<title level="a" type="main">Yield, variability, reliability, and stability of two-dimensional materials based solid-state electronic devices</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lanza</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Smets</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Huyghebaert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L.-J</forename><surname>Li</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41467-020-19053-9</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature Communications</title>
+		<imprint>
+			<biblScope unit="volume">11</biblScope>
+			<biblScope unit="page">5689</biblScope>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Qubits made by advanced semiconductor manufacturing</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">M J</forename><surname>Zwerver</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Krähenmann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">F</forename><surname>Watson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Lampert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">C</forename><surname>George</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Pillarisetty</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">A</forename><surname>Bojarski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Amin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">V</forename><surname>Amitonov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Boter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Caudillo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Correas-Serrano</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">P</forename><surname>Dehollain</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Droulers</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">M</forename><surname>Henry</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Kotlyar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lodari</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Lüthi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">J</forename><surname>Michalak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">K</forename><surname>Mueller</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Neyens</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Roberts</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Samkharadze</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><forename type="middle">K</forename><surname>Zietz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Scappucci</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Veldhorst</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">M K</forename><surname>Vandersypen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">S</forename><surname>Clarke</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41928-022-00727-9</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature Electronics</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="page">184</biblScope>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Bounds to electron spin qubit variability for scalable CMOS architectures</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">D</forename><surname>Cifuentes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Tanttu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Gilbert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">Y</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Vahapoglu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">C C</forename><surname>Leon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Serrano</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Otter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Dunmore</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">Y</forename><surname>Mai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Schlattner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Feng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Itoh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Abrosimov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H.-J</forename><surname>Pohl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Thewalt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Laucht</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">H</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">C</forename><surname>Escott</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">H</forename><surname>Lim</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><forename type="middle">E</forename><surname>Hudson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Rahman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">S</forename><surname>Dzurak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Saraiva</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41467-024-48557-x</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature Communications</title>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="page">4299</biblScope>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<analytic>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">S</forename><surname>Lai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">H</forename><surname>Lim</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">H</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><forename type="middle">A</forename><surname>Zwanenburg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">A</forename><surname>Coish</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Qassemi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Morello</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">S</forename><surname>Dzurak</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/srep00110</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Pauli Spin Blockade in a Highly Tunable Silicon Double Quantum Dot</title>
+		<imprint>
+			<date type="published" when="2011">2011</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page">110</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<monogr>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">J</forename><surname>Niegemann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>El-Homsy</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Jadot</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Nurizzo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Cardoso-Paz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Chanrion</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Dartiailh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Klemt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Thiney</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Bäuerle</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P.-A</forename><surname>Mortemousque</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Bertrand</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Niebojewski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Vinet</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Balestro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Meunier</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Urdampilleta</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PRXQuantum.3.040335</idno>
+		<title level="m">Parity and Singlet-Triplet High-Fidelity</title>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page">40335</biblScope>
+		</imprint>
+	</monogr>
+	<note>Readout in a Silicon Double Quantum Dot at 0.5 K, PRX Quantum</note>
+</biblStruct>
+
+<biblStruct xml:id="b41">
+	<analytic>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">E</forename><surname>Seedhouse</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Tanttu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">C</forename><surname>Leon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">Y</forename><surname>Tan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Hensen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><forename type="middle">E</forename><surname>Hudson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">M</forename><surname>Itoh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Yoneda</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">H</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Morello</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Laucht</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">N</forename><surname>Coppersmith</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Saraiva</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">S</forename><surname>Dzurak</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PRXQuantum.2.010303</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Pauli Blockade in Silicon Quantum Dots with Spin-Orbit Control</title>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="page">10303</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b42">
+	<analytic>
+		<title level="a" type="main">A four-qubit germanium quantum processor</title>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">W</forename><surname>Hendrickx</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">I L</forename><surname>Lawrie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Russ</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Van Riggelen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">L</forename><surname>De Snoo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">N</forename><surname>Schouten</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Sammak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Scappucci</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Veldhorst</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41586-021-03332-6</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">591</biblScope>
+			<biblScope unit="page">580</biblScope>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b43">
+	<monogr>
+		<author>
+			<persName><forename type="first">M</forename><surname>Tomka</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Souza</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Rosenberg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Polkovnikov</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1606.05890</idno>
+		<title level="m">Geodesic Paths for Quantum Many-Body Systems (2016)</title>
+		<imprint/>
+	</monogr>
+	<note>cond-mat, physics:quant-ph</note>
+</biblStruct>
+
+<biblStruct xml:id="b44">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">D</forename><surname>Xiao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M.-C</forename><surname>Chang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Niu</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/RevModPhys.82.1959</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Reviews of Modern Physics</title>
+		<imprint>
+			<biblScope unit="volume">82</biblScope>
+			<biblScope unit="page">1959</biblScope>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b45">
+	<analytic>
+		<title level="a" type="main">Quantum information metric and Berry curvature from a Lagrangian approach</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Alvarez-Jimenez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Dector</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">D</forename><surname>Vergara</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/JHEP03(2017)044</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of High Energy Physics</title>
+		<imprint>
+			<biblScope unit="page">44</biblScope>
+			<date type="published" when="2017">2017. 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b46">
+	<analytic>
+		<title level="a" type="main">Measurement of the quantum geometric tensor and of the anomalous Hall drift</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Gianfrate</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Bleu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Dominici</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Ardizzone</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>De Giorgi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Ballarini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Lerario</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">W</forename><surname>West</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">N</forename><surname>Pfeiffer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">D</forename><surname>Solnyshkov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Sanvitto</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Malpuech</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41586-020-1989-2</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">578</biblScope>
+			<biblScope unit="page">381</biblScope>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b47">
+	<analytic>
+		<title level="a" type="main">Experimental measurement of the quantum geometric tensor using coupled qubits in diamond</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Gong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Cao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">B</forename><surname>Plenio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Jelezko</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Ozawa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Goldman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Cai</surname></persName>
+		</author>
+		<idno type="DOI">10.1093/nsr/nwz193</idno>
+	</analytic>
+	<monogr>
+		<title level="j">National Science Review</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="page">254</biblScope>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b48">
+	<analytic>
+		<title level="a" type="main">Geometric Speed Limit of Accessible Many-Body State Preparation</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Bukov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Sels</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Polkovnikov</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevX.9.011034</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review X</title>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="page">11034</biblScope>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b49">
+	<analytic>
+		<title level="a" type="main">Speeding up quantum adiabatic processes with a dynamical quantum geometric tensor</title>
+		<author>
+			<persName><forename type="first">J.-F</forename><surname>Chen</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevResearch.4.023252</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review Research</title>
+		<imprint>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="page">23252</biblScope>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b50">
+	<monogr>
+		<title level="m" type="main">Universal control of four singlet-triplet qubits</title>
+		<author>
+			<persName><forename type="first">X</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Morozova</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Rimbach-Russ</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Jirovec</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T.-K</forename><surname>Hsiao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">C</forename><surname>Fariña</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C.-A</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">D</forename><surname>Oosterhout</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Sammak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Scappucci</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Veldhorst</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">M K</forename><surname>Vandersypen</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2312.16101</idno>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+	<note>condmat, physics:quant-ph</note>
+</biblStruct>
+
+<biblStruct xml:id="b51">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">D</forename><surname>Jirovec</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">M</forename><surname>Mutter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Hofmann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Crippa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Rychetsky</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">L</forename><surname>Craig</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Kukucka</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Martins</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ballabio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Ares</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Chrastina</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Isella</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Burkard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Katsaros</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.128.126803</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Dynamics of Hole Singlet-Triplet Qubits with Large $g$-Factor Differences</title>
+		<imprint>
+			<biblScope unit="volume">128</biblScope>
+			<biblScope unit="page">126803</biblScope>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+	<note>Physical Review Letters</note>
+</biblStruct>
+
+<biblStruct xml:id="b52">
+	<analytic>
+		<title level="a" type="main">A singlet-triplet hole spin qubit in planar Ge</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Jirovec</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Hofmann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ballabio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">M</forename><surname>Mutter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Tavani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Botifoll</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Crippa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Kukucka</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Sagi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Martins</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Saez-Mollejo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Prieto</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Borovkov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Arbiol</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Chrastina</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Isella</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Katsaros</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41563-021-01022-2</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature Materials</title>
+		<imprint>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="page">1106</biblScope>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b53">
+	<analytic>
+		<title level="a" type="main">Composite pulses for robust universal control of singlet-triplet qubits</title>
+		<author>
+			<persName><forename type="first">X</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">S</forename><surname>Bishop</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">P</forename><surname>Kestner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Barnes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">Das</forename><surname>Sarma</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/ncomms2003</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature Communications</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page">997</biblScope>
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b54">
+	<monogr>
+		<author>
+			<persName><forename type="first">J</forename><surname>Saez-Mollejo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Jirovec</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Schell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Kukucka</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Calcaterra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Chrastina</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Isella</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Rimbach-Russ</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bosco</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Katsaros</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2408.03224</idno>
+		<title level="m">Microwave driven singlettriplet qubits enabled by site-dependent g-tensors</title>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+	<note>cond-mat, physics:quant-ph</note>
+</biblStruct>
+
+<biblStruct xml:id="b55">
+	<analytic>
+		<title level="a" type="main">Anisotropic exchange interaction of two hole-spin qubits</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Geyer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Hetényi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bosco</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">C</forename><surname>Camenzind</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">S</forename><surname>Eggli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Fuhrer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Loss</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">J</forename><surname>Warburton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">M</forename><surname>Zumbühl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">V</forename><surname>Kuhlmann</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41567-024-02481-5</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature Physics</title>
+		<imprint>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="page">1152</biblScope>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b56">
+	<analytic>
+		<title level="a" type="main">Strong coupling between a microwave photon and a singlet-triplet qubit</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">H</forename><surname>Ungerer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Pally</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kononov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Lehmann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Ridderbos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">P</forename><surname>Potts</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Thelander</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">A</forename><surname>Dick</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><forename type="middle">F</forename><surname>Maisi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Scarlino</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Baumgartner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Schönenberger</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41467-024-45235-w</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature Communications</title>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="page">1068</biblScope>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b57">
+	<monogr>
+		<title level="m" type="main">Coherent spin qubit shuttling through germanium quantum dots</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Van Riggelen-Doelman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C.-A</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">L</forename><surname>De Snoo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">I L</forename><surname>Lawrie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">W</forename><surname>Hendrickx</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Rimbach-Russ</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Sammak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Scappucci</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Déprez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Veld-Horst</surname></persName>
+		</author>
+		<idno type="DOI">10.48550/arXiv.2308.02406</idno>
+		<idno type="arXiv">arXiv:2308.02406</idno>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+	<note>cond-mat, physics:quant-ph</note>
+</biblStruct>
+
+<biblStruct xml:id="b58">
+	<analytic>
+		<title level="a" type="main">Phase flip code with semiconductor spin qubits</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Van Riggelen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">I L</forename><surname>Lawrie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Russ</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">W</forename><surname>Hendrickx</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Sammak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Rispler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">M</forename><surname>Terhal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Scappucci</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Veldhorst</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41534-022-00639-8</idno>
+	</analytic>
+	<monogr>
+		<title level="j">npj Quantum Information</title>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="page">1</biblScope>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b59">
+	<analytic>
+		<title level="a" type="main">Fully tunable longitudinal spin-photon interactions in Si and Ge quantum dots</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bosco</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Scarlino</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Klinovaja</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Loss</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.129.066801</idno>
+		<idno type="arXiv">arXiv:2203.17163</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review Letters</title>
+		<imprint>
+			<biblScope unit="volume">129</biblScope>
+			<biblScope unit="page">66801</biblScope>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+	<note>cond-mat, physics:quant-ph</note>
+</biblStruct>
+
+<biblStruct xml:id="b60">
+	<analytic>
+		<author>
+			<persName><forename type="first">T.-K</forename><surname>Hsiao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Cova Fariña</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">D</forename><surname>Oosterhout</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Jirovec</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">J</forename><surname>Van Diepen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">I L</forename><surname>Lawrie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C.-A</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Sammak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Scappucci</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Veldhorst</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Demler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">M K</forename><surname>Vandersypen</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevX.14.011048</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Exciton Transport in a Germanium Quantum Dot Ladder</title>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+			<biblScope unit="volume">14</biblScope>
+			<biblScope unit="page">11048</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b61">
+	<monogr>
+		<author>
+			<persName><forename type="first">S</forename><surname>Geyer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Hetényi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bosco</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">C</forename><surname>Camenzind</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">S</forename><surname>Eggli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Fuhrer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Loss</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">J</forename><surname>Warburton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">M</forename><surname>Zumbühl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">V</forename><surname>Kuhlmann</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2212.02308</idno>
+		<title level="m">Two-qubit logic with anisotropic exchange in a fin field-effect transistor</title>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+	<note>cond-mat, physics:quant-ph</note>
+</biblStruct>
+
+<biblStruct xml:id="b62">
+	<analytic>
+		<title level="a" type="main">Quantum error correction with silicon spin qubits</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Takeda</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Noiri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Nakajima</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Kobayashi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Tarucha</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41586-022-04986-6</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">608</biblScope>
+			<biblScope unit="page">682</biblScope>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b63">
+	<analytic>
+		<title level="a" type="main">Quantum logic with spin qubits crossing the surface code threshold</title>
+		<author>
+			<persName><forename type="first">X</forename><surname>Xue</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Russ</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Samkharadze</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Undseth</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Sammak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Scappucci</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">M K</forename><surname>Vandersypen</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41586-021-04273-w</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">601</biblScope>
+			<biblScope unit="page">343</biblScope>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b64">
+	<monogr>
+		<title level="m" type="main">Vandersypen, High-fidelity single-spin shuttling in silicon</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">De</forename><surname>Smet</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Matsumoto</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A.-M</forename><forename type="middle">J</forename><surname>Zwerver</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Tryputen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">L</forename><surname>De Snoo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">V</forename><surname>Amitonov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Sammak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Samkharadze</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ö</forename><surname>Gül</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">N M</forename><surname>Wasserman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Rimbach-Russ</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Scappucci</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">M</forename></persName>
+		</author>
+		<idno type="arXiv">arXiv:2406.07267</idno>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+	<note>cond-mat, physics:quant-ph</note>
+</biblStruct>
+
+<biblStruct xml:id="b65">
+	<analytic>
+		<title level="a" type="main">Altshuler, 1/f noise: Implications for solid-state quantum information</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Paladino</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><forename type="middle">M</forename><surname>Galperin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Falci</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">L</forename></persName>
+		</author>
+		<idno type="DOI">10.1103/RevModPhys.86.361</idno>
+		<idno type="arXiv">arXiv:1304.7925</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Reviews of Modern Physics</title>
+		<imprint>
+			<biblScope unit="volume">86</biblScope>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+	<note>cond-mat, physics:quant-ph</note>
+</biblStruct>
+
+<biblStruct xml:id="b66">
+	<analytic>
+		<title level="a" type="main">A quantum-dot spin qubit with coherence limited by charge noise and fidelity higher than 99</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Yoneda</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Takeda</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Otsuka</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Nakajima</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">R</forename><surname>Delbecq</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Allison</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Honda</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Kodera</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Oda</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Hoshi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Usami</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">M</forename><surname>Itoh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Tarucha</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41565-017-0014-x</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature Nanotechnology</title>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="issue">9</biblScope>
+			<biblScope unit="page">102</biblScope>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b67">
+	<monogr>
+		<author>
+			<persName><surname>Sh</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Kogan</surname></persName>
+		</author>
+		<idno type="DOI">10.1017/CBO9780511551666</idno>
+		<title level="m">Electronic Noise and Fluctuations in Solids</title>
+		<meeting><address><addrLine>Cambridge</addrLine></address></meeting>
+		<imprint>
+			<publisher>Cambridge University Press</publisher>
+			<date type="published" when="1996">1996</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b68">
+	<monogr>
+		<author>
+			<persName><forename type="first">J</forename><surname>Zou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bosco</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Loss</surname></persName>
+		</author>
+		<idno type="DOI">10.48550/arXiv.2308.03054</idno>
+		<idno type="arXiv">arXiv:2308.03054</idno>
+		<title level="m">Spatially correlated classical and quantum noise in driven qubits: The good, the bad, and the ugly (2023)</title>
+		<imprint/>
+	</monogr>
+	<note>cond-mat, physics:quant-ph</note>
+</biblStruct>
+
+<biblStruct xml:id="b69">
+	<analytic>
+		<title level="a" type="main">Arbitrary quantum control of qubits in the presence of universal noise</title>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">J</forename><surname>Green</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Sastrawan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Uys</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">J</forename><surname>Biercuk</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/1367-2630/15/9/095004</idno>
+	</analytic>
+	<monogr>
+		<title level="j">New Journal of Physics</title>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="page">95004</biblScope>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b70">
+	<analytic>
+		<title level="a" type="main">Low-frequency fluctuations in solids: 1 f noise</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Dutta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">M</forename><surname>Horn</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/RevModPhys.53.497</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Reviews of Modern Physics</title>
+		<imprint>
+			<biblScope unit="volume">53</biblScope>
+			<biblScope unit="page">497</biblScope>
+			<date type="published" when="1981">1981</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b71">
+	<analytic>
+		<title level="a" type="main">Many electron theory of $1/f$ noise in hopping conductivity</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">L</forename><surname>Burin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">I</forename><surname>Shklovskii</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><forename type="middle">I</forename><surname>Kozub</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><forename type="middle">M</forename><surname>Galperin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Vinokur</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevB.74.075205</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review B</title>
+		<imprint>
+			<biblScope unit="volume">74</biblScope>
+			<biblScope unit="page">75205</biblScope>
+			<date type="published" when="2006">2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b72">
+	<analytic>
+		<title level="a" type="main">Accessing the full capabilities of filter functions: Tool for detailed noise and quantum control susceptibility analysis</title>
+		<author>
+			<persName><forename type="first">I</forename><surname>Hansen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">E</forename><surname>Seedhouse</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Saraiva</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">S</forename><surname>Dzurak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">H</forename><surname>Yang</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.108.012426</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review A</title>
+		<imprint>
+			<biblScope unit="volume">108</biblScope>
+			<biblScope unit="page">12426</biblScope>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b73">
+	<monogr>
+		<title level="m" type="main">Decoherence of electron spin qubit during transfer between two semiconductor quantum dots at low magnetic fields</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">A</forename><surname>Krzywda</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Cywiński</surname></persName>
+		</author>
+		<idno type="DOI">10.48550/arXiv.2405.12185</idno>
+		<idno type="arXiv">arXiv:2405.12185</idno>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+	<note>cond-mat, physics:quant-ph</note>
+</biblStruct>
+
+<biblStruct xml:id="b74">
+	<analytic>
+		<title level="a" type="main">Eriksson, Progress toward a capacitively mediated CNOT between two charge qubits in Si/SiGe</title>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">R</forename><surname>Macquarrie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">F</forename><surname>Neyens</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">P</forename><surname>Dodson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Corrigan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Thorgrimsson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Holman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Palma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">F</forename><surname>Edge</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Friesen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">N</forename><surname>Coppersmith</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">A</forename></persName>
+		</author>
+		<idno type="DOI">10.1038/s41534-020-00314-w</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Quantum Information</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="page">1</biblScope>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b75">
+	<monogr>
+		<author>
+			<persName><forename type="first">N</forename><surname>Hörnedal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><forename type="middle">A</forename><surname>Prośniak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Del Campo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Chenu</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2405.13913</idno>
+		<title level="m">A geometrical description of non-Hermitian dynamics: Speed limits in finite rank density operators</title>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+	<note>quant-ph</note>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>
