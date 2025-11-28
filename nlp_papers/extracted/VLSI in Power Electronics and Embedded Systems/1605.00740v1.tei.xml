@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">VLSI Extreme Learning Machine: A Design Space Exploration</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability  status="unknown">
+					<licence/>
+				</availability>
+				<date type="published" when="2016-05-03">3 May 2016</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><roleName>Student Member, IEEE</roleName><forename type="first">Enyi</forename><surname>Yao</surname></persName>
+						</author>
+						<author>
+							<persName><roleName>Member, IEEE</roleName><forename type="first">Arindam</forename><surname>Basu</surname></persName>
+						</author>
+						<title level="a" type="main">VLSI Extreme Learning Machine: A Design Space Exploration</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2016-05-03">3 May 2016</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">2ABBC1AEB39A7617D0C0A36CC560B396</idno>
+					<idno type="arXiv">arXiv:1605.00740v1[cs.LG]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-28T12:48+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Extreme Learning Machine</term>
+					<term>Classifier</term>
+					<term>Machine Learning</term>
+					<term>Low Power</term>
+					<term>Neural Networks</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>In this paper, we describe a compact low-power, high performance hardware implementation of the extreme learning machine (ELM) for machine learning applications. Mismatch in current mirrors are used to perform the vector-matrix multiplication that forms the first stage of this classifier and is the most computationally intensive. Both regression and classification (on UCI data sets) are demonstrated and a design space tradeoff between speed, power and accuracy is explored. Our results indicate that for a wide set of problems, σVT in the range of 15-25mV gives optimal results. An input weight matrix rotation method to extend the input dimension and hidden layer size beyond the physical limits imposed by the chip is also described. This allows us to overcome a major limit imposed on most hardware machine learners. The chip is implemented in a 0.35µm CMOS process and occupies a die area of around 5 mm × 5 mm. Operating from a 1 V power supply, it achieves an energy efficiency of 0.47 pJ/MAC at a classification rate of 31.6 kHz.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>In general, it is difficult to achieve high accuracy in pure analog signal processing modules due to several reasons, a major one being device mismatch <ref type="bibr" target="#b0">[1]</ref>. The effect of mismatch on traditional circuits like differential amplifiers and current mirrors is well documented <ref type="bibr" target="#b1">[2]</ref>. It has also been shown that for MOS based circuits, the extra power dissipation needed to overcome effects of mismatch can be an order of magnitude higher than the limit imposed by thermal noise <ref type="bibr" target="#b0">[1]</ref>. With transistor dimensions reducing over the years, variance in properties of transistors, notably the threshold voltage, has kept on increasing making it difficult to rely on conventional simulations ignoring statistical variations. The problem is particularly exacerbated for neuromorphic designs <ref type="bibr" target="#b2">[3]</ref>, where transistors are typically biased in the sub-threshold region <ref type="bibr" target="#b3">[4]</ref>- <ref type="bibr" target="#b5">[6]</ref> of operation (to glean maximal efficiencies in energy per operation) since device currents are exponentially related to threshold voltages thus amplifying its variations as well. For example, it is shown in <ref type="bibr" target="#b6">[7]</ref> that an array of 5 -bit DACs in 0.35µm CMOS process used as tunable weights only provide an effective number of bits of 1.1 due to mismatch. In general, there has been an approach to compensate for mismatch either through floating-gates <ref type="bibr" target="#b7">[8]</ref> or by storing calibration coefficients off-chip in the form of connection probabilities <ref type="bibr" target="#b2">[3]</ref>. Digital calibration can be used to compensate for these effects on-chip <ref type="bibr" target="#b6">[7]</ref> as well. However, they lead to huge area overheads due to the requirement of extra transistors for calibration and storage</p><p>The authors are with the School of Electrical and Electronic Engineering, Nanyang Technological University, Singapore. (email: eyao1@e.ntu.edu.sg, arindam.basu@ntu.edu.sg) of digital bits <ref type="bibr" target="#b8">[9]</ref>. Sometimes, it is claimed that learning can compensate for mismatch and has been demonstrated in specific cases <ref type="bibr" target="#b9">[10]</ref>, <ref type="bibr" target="#b10">[11]</ref>-but the claim needs to be further quantified using standard datasets since mismatch will exist in the learning circuits as well.</p><p>The ELM algorithm is popular in the machine learning community due to its fast training speed and has been shown to produce similar or better performance compared to support vector machines (SVM) <ref type="bibr" target="#b11">[12]</ref>. A closely related method (termed Neural Engineering Framework) has also been used to generate large scale models of cognitive systems <ref type="bibr" target="#b12">[13]</ref>. ELM based methods have been used classify spike time based patterns recently <ref type="bibr" target="#b13">[14]</ref> and online learning algorithms for ELM have been proposed <ref type="bibr" target="#b14">[15]</ref>. Clearly there is a need to develop hardware implementations of the same. In this paper we present a circuit that 'utilizes' mismatch to do effective computation in the first layer of a two layer spiking neural network implementation of ELM. This approach can be used in other algorithms like liquid state machine (LSM) or echo state networks (ESN) (sometimes referred to as reservoir computing), since they require random projections of the input as well. We have earlier proposed the idea of using spiking neurons for implementing ELM <ref type="bibr" target="#b15">[16]</ref> and described the advantages of such an architecture over standard digital implementations <ref type="bibr" target="#b16">[17]</ref>. It should be noted that this method only exploits spiking neurons for ease of hardware implementation and does not use any spike based learning rules to perform the learning of the second stage. The major hardware benefits are the use of low-power analog circuits for the reservoir and simple digital circuits for the second stage. We demonstrated the first VLSI implementation of this principle in <ref type="bibr" target="#b17">[18]</ref> where it was used for decoding motor intentions for implantable brain-machine interfaces. In this paper, we present a different chip utilizing the same core circuit as <ref type="bibr" target="#b17">[18]</ref> but operating on 10 bit digital inputs instead of spikes. Instead of a specific application, this paper presents an entire design space tradeoff between speed, power and accuracy. Finally, we present a method and associated circuits to virtually expand the input and output dimensions of the chip beyond the physically implemented 128 channels. We show results of applying inputs from standard machine learning data bases such as <ref type="bibr" target="#b18">[19]</ref>.</p><p>In the next section, we present details of the ELM algorithm and training methods. Section III describes the VLSI architecture of the chip and details of the sub-circuits. The trade-offs between noise, speed and energy dissipation of this architecture are presented in Section IV. An important limitation of hardware machine learners is limited input and output dimensions. In Section V, we present a method to virtually expand the dimensions beyond the physical number of channels on the chip. Measurement results are presented in Section VI and finally we conclude in the last section.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. ELM THEORY</head><p>In this section, we will present a brief description of the ELM algorithm and refer the readers to <ref type="bibr" target="#b11">[12]</ref>, <ref type="bibr" target="#b19">[20]</ref> for details. As illustrated in Fig. <ref type="figure" target="#fig_0">1</ref>, the ELM algorithm is applicable to a two layer neural feed-forward network with L hidden neurons having an activation function g : R → R. Without loss of generality, we consider a scalar output in this case though the method can be easily extended to multiple outputs by considering each output one by one <ref type="bibr" target="#b20">[21]</ref>. The output of the network o is given by:</p><formula xml:id="formula_0">o = L i β i H i = L i β i g (z i ) = L i β i g(w T i x + b i ), w i , xǫR d , β i , b i ǫR,<label>(1)</label></formula><p>where β denote the output weights, z i and H i are the input and output of the i-th hidden layer neuron. w i denotes the input weight and b i is the bias for the i-th neuron. In general, a sigmoidal form of g() is assumed though other functions have also been used. Compared to traditional back propagation learning rule that modifies all the weights, the ELM allows w i and b i to be random numbers drawn from any continuous distribution while only the output weights, β i needs to be tuned based on the training data T . For N samples (x k , t k ), the hidden layer output matrix H is defined as:</p><formula xml:id="formula_1">H =     g(w T 1 x 1 + b 1 ) ... g(w T L x 1 + b L ) . .... . . .... . g(w T 1 x N + b 1 ) ... g(w T L x N + b L )    <label>(2)</label></formula><p>The desired output weights, β are then the solution of the following optimization problem:</p><formula xml:id="formula_2">Minimize β : Hβ -T 2 ,<label>(3)</label></formula><p>where</p><formula xml:id="formula_3">β = [β 1 ..β L ] and T = [t 1 ..t N ].</formula><p>The ELM algorithm proves that the optimal solution β is given by β = H † T where H † denotes the Moore Penrose generalized inverse of a matrix <ref type="bibr" target="#b11">[12]</ref>. The huge benefit of this method is that it removes the need for iterative tuning and gives a simple formula to calculate the weights. The orthogonal projection method can be efficiently used to find H † as (H T H) -1 H T if H T H is non-singular or as H T (HH T ) -1 if HH T is nonsingular. Further, using concepts from ridge regression theory <ref type="bibr" target="#b21">[22]</ref>, a small constant I/C is often added to the diagonal of H T H or HH T of the Moore-Penrose generalized inverse H-the resultant resolution is stabler and tends to have better generalization performance. The value of C is typically optimized as a hyperparameter using cross-validation techniques. Iref Vcp VDD D0 D0 D8 D8 D9 D9 IDAC 10b MOS Ladder Current DAC Iref IDAC Vbias S1 S2 S1 D9 D8 D7 D6 D3 D2 D1 D0 D5 D4 S2 S1 S1 Iout C Fig. 3: Schematic of input generation circuit (IGC) for one channel. A reference current is split according to the 10 bits of input data to create IDAC. The capacitor C ensures sufficient SNR when the current is mirrored to the L columns. An active current mirror is enabled to allow fast settling when IDAC is small.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>RN_cnt</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. SYSTEM ARCHITECTURE</head><p>The architecture of the proposed mixed signal classifier that exploits analog computing for the d×L random weights of the input layer is shown in Fig. <ref type="figure">2(a)</ref>. The corresponding timing diagram is shown in Fig. <ref type="figure">2 (b</ref>). The input data (Data in) will be fed to the particular channel in the system serially through a 1 to 128 demultiplexor according to the corresponding address A &lt; 6 : 0 &gt; through a serial peripheral interface (SPI). The number of bits (NOB) of Data in for each channel is b in = 10. Input data will be stored in shift registers first for the configuration of the current-mode digital-to-analog convertor (DAC) in the input-generation-circuit (IGC). The function of IGC is to generate an analog DC current according to the input data which will be copied to every column using a current mirror. Multiplied by the random weights generated in the current mirror array, the current in one column will be summed according to Kirchoff's current law (KCL) and flow into a hidden layer neuron. This current is denoted as I z i for the ith neuron in Fig. <ref type="figure">2</ref>(a) and is analogous to the variable z i in Fig. <ref type="figure" target="#fig_0">1</ref>. Spiking oscillations with different frequency will be generated by the neuron according to their own input currents which is counted by an asynchronous counter forming a row of the matrix H. Through a column scanner, these hidden layer outputs can be transferred to the FPGA to first get the output weight β during training and later for the second stage computation of ELM during regular operation. Other timing and control signals will also be provided by the FPGA as shown in Fig. <ref type="figure">2(b)</ref>. Next, we describe the operation of each block.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Input Generation Circuit (IGC)</head><p>Figure <ref type="figure">3</ref> shows the schematic of the input generation circuit for each dimension of input. The reference block provides a fixed master biasing current I ref that acts as the reference current of the current DAC as well as the biasing for the active current mirror. The input data Data in is applied to configure a b in = 10 bits MOS based current splitting DAC to generate a corresponding analog current <ref type="bibr" target="#b22">[23]</ref>. The output current of this DAC is given by:</p><formula xml:id="formula_4">I DAC = 2 -1 D 9 + 2 -2 D 8 + • • • + 2 -9 D 1 + 2 -10 D 0 I ref . (<label>4</label></formula><formula xml:id="formula_5">)</formula><p>I DAC is multiplied with the input weights by current mirroring operation as described later. A capacitor C = 0.4pF is also added at the gate of the current mirror array for each row to improve noise performance and achieve the desired resolution of 8 bits in the multiplication-this will be discussed in the later section. In the conventional current mirror, bandwidth is in proportion to the input current. If Data in is too small, input currents are also small and hence the settling time of the current mirror (defined as time taken to settle to within 5% of the final value) might be too large. To solve this problem, an active current mirror is added to complement the conventional mirror. Switch S1 is closed to turn on the active current mirror if all of the 4 MSBs are zero. This ensures that the capacitor C is charged by the large bias current and not the small input currents. When all the bits of Data in are 0, switch S2 is closed to pull V bias to ground and shut off the current mirrors in that row. The logical signals to control S1 and S2 are given by:</p><formula xml:id="formula_6">S 1 = D 6 + D 7 + D 8 + D 9 . S 2 = D 0 + D 1 + • • • + D 8 + D 9 .<label>(5)</label></formula><p>where D i are the bits of Data in.   The curves saturate at higher maximum frequencies for higher VDD. Note the logarithmic scales for both plots.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VDD</head><formula xml:id="formula_7">V leak I z V out C b1 C b2 C a1 C a2 NEU_EN I lk I rst V mem Counter H (a) V out V mem mem V ∆ mem V ∆ T sp t t (b)</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Neuron</head><p>Figure <ref type="figure" target="#fig_2">4</ref>(a) details the circuit of the hidden layer neuron block. It is a current-controlled oscillator structure followed by an asynchronous counter. This is one of the simplest neuron circuits described in <ref type="bibr" target="#b23">[24]</ref>. This circuit has the issue of large short-circuit current dissipation in the inverters. However, in our case we can avoid this problem by operating at very low power supply voltages (≈ V T N +V T P ) making the short-circuit current negligible. The neuron is enabled when the control signal N EU EN is high. The oscillation waveform at the nodes V mem and V out are illustrated in Fig. <ref type="figure" target="#fig_2">4(b</ref>). V mem is charged down by the input current I z -I lk till it reaches the threshold voltage of the inverters. At that point both the inverters trip making the output switch to ground. Since the voltage change at the node of V out is VDD, the voltage change of V mem due to the feedback capacitor is given by:</p><formula xml:id="formula_8">∆V mem = C b C a + C b V DD.<label>(6)</label></formula><p>Also, the reset transistor turns ON charging V mem up by the current I rst + I lk -I z . The inverters trip again once V mem reaches the threshold and this process continues as long as N EU EN is high. Both the capacitors C a and C b can be digitally reconfigured as shown in Fig. <ref type="figure" target="#fig_2">4(a)</ref>. The values of the capacitors are:</p><formula xml:id="formula_9">C a1 = 100fF, C a2 = 200fF, C b1 = 50fF, C b2 = 100fF.</formula><p>We can derive an equation for the oscillation period T sp . It is composed of two parts: the time T 1 for the input current I z to discharge the capacitor of node V mem and the time T 2 to reset the capacitor. Hence, T sp is given by:</p><formula xml:id="formula_10">T sp = T 1 + T 2 = C b V DD 1 I z -I lk + 1 I rst -I z + I lk .</formula><p>(7) Assuming I lk ≈ 0, the relationship between the neuron spiking frequency and the input current I z can be easily obtained as:</p><formula xml:id="formula_11">f sp = g (I z ) = I z (I rst -I z ) I rst C b V DD . (<label>8</label></formula><formula xml:id="formula_12">)</formula><p>This quadratic relationship of equation ( <ref type="formula" target="#formula_11">8</ref>) between current and frequency is plotted in Fig. <ref type="figure" target="#fig_3">5</ref>(a). As we can see from Fig. <ref type="figure" target="#fig_3">5</ref>(a), if I z &lt;&lt; I rst /2, we have almost a linear relation given by:</p><formula xml:id="formula_13">f sp ≈ I z C b V DD = K neu I z ,<label>(9)</label></formula><formula xml:id="formula_14">K neu = 1 C b V DD . (<label>10</label></formula><formula xml:id="formula_15">)</formula><p>where</p><formula xml:id="formula_16">K neu = 1 C b V DD</formula><p>denotes a conversion gain from current to frequency. When I z = I rst /2, f sp will reach its maximum value f max . After this point, the spiking frequency will keep falling down till it reaches zero for I z = I rst . Since the inflection point of the curve is reached at I z = I rst /2, we refer to this current value as I f lx . The chip has digital control bits making the capacitors configurable. As shown in Fig. <ref type="figure" target="#fig_2">4</ref>(a), an asynchronous counter counts the total number of spikes from the neuron during a fixed period of time T neu (time duration for which N EU EN is high) and generates the output H. A hard nonlinearity in the form of saturation can be implemented by stopping the counter whenever its count reaches a predefined limit 2 b . b in this case is the valid MSB of the counter output which is also configurable from 6 to 14. If only the linear region of the neuron spiking waveform is adopted (this is also the most energy efficient part as shown later), the final transfer function of the hidden layer neuron can be represented by:</p><formula xml:id="formula_17">H = f sp T neu (≈ K neu I z T neu if I z &lt; I f lx ), if H &lt; 2 b 2 b . otherwise<label>(11</label></formula><p>) This saturating nonlinearity is shown in Fig. <ref type="figure" target="#fig_3">5(b</ref>). This nonlinearity was preferred due to its ease of implementation and digital control. From Fig. <ref type="figure" target="#fig_3">5</ref>(b) we can also note the current at which the H saturates is denoted by I z sat . This value depends on both T neu and b. Also, [0 I z max ] is used to denote the range of input currents to the neuron.</p><p>Figure <ref type="figure" target="#fig_4">6</ref>(a) plots SPICE simulation of the neuron spiking frequency with the variation of input current I z on a logarithmic scale and compares it with theoretical predictions based on equation 8. For this simulation, C a and C b were set to be 300fF and 50fF respectively while VDD was kept at 1V. As expected, the spike frequency increases linearly for small values of I z , reaches a maxima eventually and then starts reducing for further increase in I z . Results from a similar simulation but for three different values of VDD (0.8, 1 and 1.2 V) are shown in Fig. <ref type="figure" target="#fig_4">6(b)</ref>. Since f sp is inversely proportional to VDD, f sp is higher for small I z with a smaller VDD. However, when VDD is lower, I rst is smaller and hence f sp attains the peak value at smaller value of I z , i.e. I f lx reduces when VDD is reduced. On the other hand, for higher VDD, f sp saturates at a larger value f max and it is attained for larger value of I f lx .</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Current Mirror Array</head><p>The digital input Data in is mapped to a vector of input current I in which are copied to every neuron using a current mirror. These inputs can also be obtained from a sensor such as a photo diode. The capacitor C = 0.4pF is kept to maintain a minimum SNR <ref type="bibr" target="#b24">[25]</ref> at the expense of bandwidth. For low-power operation, we operate the current mirrors in sub-threshold regime. Minimum sized transistors are employed in these current mirrors to exploit VLSI mismatch which is necessary for the generation of random input weights w i and bias b i of ELM. For example, the contribution of input i in,i to the total input current of neuron j is given by i in,i w 0 e ∆VT,ij/UT where U T is the thermal voltage, w 0 is the nominal current mirror gain while ∆V T,ij denotes the mismatch of the threshold voltage for the transistor copying the i-th input current to the j-th neuron. This last term is a random variable with a Gaussian distribution and hence the weights w in equation ( <ref type="formula" target="#formula_0">1</ref>) above get mapped to random variables with a log-normal distribution in our implementation. Since in our implementation w 0 = 1, we can write:</p><formula xml:id="formula_18">w ij = e ∆V T ,ij U T (12)</formula><p>Do note that the ELM algorithm only requires random numbers from any continuous distribution <ref type="bibr" target="#b20">[21]</ref>. Here ,we choose log-normal distribution due to the intrinsic physics of subthreshold mosfets. If biased in above-threshold regime, the distribution of random numbers would be closer to gaussian.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D. Parameter Choice</head><p>To determine the performance of the network, we chose two representative tasks of regression (d = 1) and classification (d = 14). For the regression task, the network was given a set of noisy samples and had to approximate the underlying function. For classification, six different data sets with widely varying dimensions and training set sizes were chosen from the UCI machine learning repository <ref type="bibr" target="#b18">[19]</ref>. Here, we show results for only the 'brightdata' case as a representative but the conclusions drawn are valid across the other data sets. It is a two class problem that includes 1000 training data and 1462 testing data. The reasons for choosing these tasks were that the performance of the software implementation for these tasks are reported in publications as a typical benchmark <ref type="bibr" target="#b11">[12]</ref>.</p><p>For the following simulations done in MATLAB, we considered the mismatch in current mirror weights as the dominant factor. It was assumed to be log-normally distributed with a standard deviation of V T , σ VT ranging from 5 to 45 mV (as a reference, σ VT in our fabricated chip is ≈ 16 mV). Equation ( <ref type="formula" target="#formula_17">11</ref>) was used to simulate the neuronal characteristic and the other parameters were kept at fixed nominal values of K neu = 26KHz/nA and T neu = 56µsec. In real applications, variations exist for other parameters in the neuron transfer function as well. However, simulation results show that mismatch in these do not affect the qualitative nature of the results we present here.</p><p>1) Input Mapping: For efficient use of the hardware, we need to determine how to map the compact set X = [-1 1] to input currents. First, it can be only mapped to a set in R + since we have unidirectional current mirrors. Assume the maximum input current for one dimension is I max , i.e., the set is [0 I max ]. Therefore the maximum current going to the neuron I z max = d × I max . From Fig. <ref type="figure" target="#fig_3">5</ref>(b), we need to find out the relationship between I z max and I z sat . Though theoretically any positive set will work, it might need an unreasonably large number of neurons to get a satisfactory performance. To illustrate this point intuitively, consider a case where I z max &lt;&lt; I z sat . Then the transfer function of the neuron is a linear function without any high order components. Also, if I z max &gt;&gt; I z sat , the outputs of most neurons will be saturated to 2 b , and will not encode the variations of the input. Both of these cases will require a large number of hidden layer neurons so that 'by chance' a large enough pool of neurons are obtained which encode the changes in input. Hence, there should be a range for the ratio between I z max and I z sat , such that we can achieve a good performance with a small number of hidden layer neurons.</p><p>To find this desired range, we first fix a value of I z sat /I z max and evaluate the performance of the network on both tasks with different number L of hidden layer neurons. The regression error reduces initially with larger L but saturates after the L increases beyond a critical value L min . To quantify the dependence of performance on the ratio of I z sat /I z max , we now plot in Fig. <ref type="figure" target="#fig_6">7</ref>(a) the dependence of L min on the ratio of I z sat /I z max , with lower values of L min being preferable.  We have chosen error of 0.08 as the saturation level in this case. From this figure, the ratio of I z sat /I z max ≈ 0.75 is the best trade off point between number of hidden neurons and input dynamic range for all values of σ VT . For small values of σ VT , the performance degrades rapidly on both sides of the optimal value. However, as σ VT increases, the performance degradation is much less implying the choice of I z max is less critical in highly scaled VLSI.</p><p>However, it can also be noted that the performance is best (least L min ) for σ VT in the range of 15-25mV. This has been found to be true for a wide range of classification problems as well. Hence, for deeply scaled CMOS processes with larger σ VT , minimum sized transistors cannot be used. In those cases, the transistor size has to be increased (following Pelgrom's model <ref type="bibr" target="#b0">[1]</ref>) to reduce σ VT within the desired range. However, the required area will still reduce compared to an older process with larger transistors since the coefficient A VT is reducing as transistor scaling continues <ref type="bibr" target="#b0">[1]</ref>.</p><p>2) Resolution of Output Weight: As mentioned earlier, the digital circuits will use pre-calculated output weights, β from a memory and accumulate it based on neuronal spiking patterns. In order to implement this, we need to know how many bits are needed to represent β. Less number of bits will degrade performance of the classifier while more will waste hardware resources and power. We use the classification example here with L = 128. Figure <ref type="figure" target="#fig_6">7</ref>(b) shows the change of error with increasing number of bits indicating 10 bits resolution is enough for good accuracy.</p><p>3) Counter resolution: Besides the resolution of β, we also analyzed the dependence of performance on the output counter resolution b in equation <ref type="bibr" target="#b10">(11)</ref>. Since we estimate the spiking frequency by using a counter to count the number of spikes in a fixed time window T neu , a small value of b will introduce large quantization errors in the estimate of frequency. This implies that the neurons have to produce more spikes in the counting window, which would on the other hand induce more power dissipation. To find a good trade-off for b, we fixed I z sat /I z max ≈ 0.75, L = 128 and resolution of β to 10 bits. Figure <ref type="figure" target="#fig_6">7</ref>(c) shows the simulation result for the classification error with b increasing from 1 to 10. b ≈ 6 is found to be sufficient for classification.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. NOISE, SPEED AND ENERGY DISSIPATION A. Noise</head><p>Noise is an important specification to be considered in circuit design. In this section, we present the operational limits set on this architecture due to noise based constraints. Since the transistors are operating in sub-threshold region, the contribution of 1/f noise is negligible compared to the thermal noise <ref type="bibr" target="#b24">[25]</ref>. For the current mirror circuit as shown in Fig. <ref type="figure" target="#fig_5">8</ref>, we can easily get the input referred thermal noise spectral density as:</p><formula xml:id="formula_19">i 2 in = i 2 n1 + i 2 n2 • g 2 m1 g 2 m2 ,<label>(13)</label></formula><p>where g m1 and g m2 are transconductance of input and output transistors respectively, i 2 n1 and i 2 n2 are corresponding transistor channel noise. Since the transistors are working in the sub-threshold region, the transconductance is in proportion to its drain current. Applying the noise model of drain current of sub-threshold transistors to be i 2 = 2qI∆f <ref type="bibr" target="#b25">[26]</ref> where q denotes the electronics charge, we can rewrite the above equation as:</p><formula xml:id="formula_20">i 2 in = 2qI 1 ∆f + 2q∆f • I 2 1 I 2<label>(14)</label></formula><p>For this single pole system, the noise equivalent bandwidth ∆f = κI1 4CUT where κ denotes the inverse of the sub-threshold slope <ref type="bibr" target="#b25">[26]</ref>. Assuming I 2 /I 1 = w 0 , and substituting the bandwidth equation above, we get:</p><formula xml:id="formula_21">i 2 in = qκI 2 1 2CU T 1 + 1 w 0 .<label>(15)</label></formula><p>Finally, the signal to noise ratio (SNR) can be expressed in the following equation:</p><formula xml:id="formula_22">SN R = I 2 1 i 2 in = 2CU T w 0 qκ(w 0 + 1) . (<label>16</label></formula><formula xml:id="formula_23">)</formula><p>Thus, from the equation ( <ref type="formula" target="#formula_22">16</ref>), we can see the SNR can be controlled by changing C. This reflects a direct trade-off with bandwidth which is inversely proportional to C. If an 8 bits SNR is needed in the system, and w 0 = 1, it is sufficient to add C = 0.4pF capacitance in the current mirror for each input channel. Note that only one such capacitor is needed for every row.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Speed</head><p>The conversion time for one classification operation T c comprises two parts: T cm and T neu where T neu is the neuron operation time and T cm is the current mirror settling time. If one of them is much larger than the other, we can approximate T c ≈ max (T cm , T neu ). We consider T cm to be 4 times of the inverse of the bandwidth (BW), i.e. T cm = 4 BW = 4CUT κIin where κ = 0.7, U T = 0.025V at room temperature and C = 0.4pF as derived earlier. If the average input current is I max /2, the average current mirror settling time is</p><formula xml:id="formula_24">T cm,avg = 8CU t κI max . (<label>17</label></formula><formula xml:id="formula_25">)</formula><p>As discussed earlier in Section III-A, an active current mirror is utilized to boost the bandwidth for small current values. SPICE simulation result for this effect shown in Fig. <ref type="figure" target="#fig_7">9</ref>(a) demonstrates a bandwidth increase by around 5.84X. We can with its corresponding Tneu from equation (19).</p><p>find the range of T cm by considering maximum and minimum input currents:</p><formula xml:id="formula_26">T cm,max = 4CU t 5.84κI max /2 bin T cm,min = 4CU t κI max<label>(18)</label></formula><p>where b in = 10 is the number of bits of Data in and the factor of 5.84 is due to the active current mirror. Figure <ref type="figure" target="#fig_7">9</ref>(b) shows the decrease of T cm with increasing I max for the conventional and active current mirror cases.</p><p>To find the value of T neu , we can see from Fig. <ref type="figure" target="#fig_3">5</ref>(b) that we want H = 2 b for I z = I z sat . Combining this observation with equation <ref type="bibr" target="#b10">(11)</ref>, we can derive the following:  Increasing I max reduces the time required for both the neuron and current mirror. T cm for the conventional current mirror is always the dominant factor. However, with the active current mirror on T neu may be larger than T cm for large values of b. These plots are done for d = 10; increasing d will have an effect of reducing T neu since I Z max = d × I max increases. Hence, to show the trade-offs between T cm and T neu as a function of b and d, we plot contours in the space of counter dynamic range 2 b and input dimension d where T cm = T neu . To do this, we equate <ref type="bibr" target="#b16">(17)</ref> and <ref type="bibr" target="#b18">(19)</ref> to get:</p><formula xml:id="formula_27">T neu = 2 b K neu I z sat = 2 b 0.75K neu I z max = 2 b 0.75K neu dI max . (<label>19</label></formula><formula xml:id="formula_28">8CU t κI z max /d = 2 b K neu I z sat =⇒ 2 b = 6dCU t K neu κ (<label>20</label></formula><formula xml:id="formula_29">)</formula><p>where I z sat /I z max = 0.75 is used. The straight line contours defined by equation 20 are plotted in Fig. <ref type="figure" target="#fig_7">9</ref>(c) for three different K neu values corresponding to VDD= 0.8, 1 and 1.2V. For parameter choices on these contour lines, T c = T cm + T neu = 2T cm = 2T neu . If the relation between 2 b and d sets the operation regime above any of the contour lines, T neu &gt; T cm while the opposite condition is true if operation regime is below the contour lines. It can be seen that for b ≈ 8 -10 bits and a nominal value of VDD=1V, T neu dominates T cm for the maximum dimension of 128 supported by our chip.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Energy</head><p>The total power dissipated by the system (P t ) can be split into two parts: power from analog (P avdd ) and digital (P vdd ) supplies. The first term (P avdd ) is mainly dissipated by the voltage reference circuitry, biasing block and the IGCs. Ideally, this should be a function of input dimension. However, in the current design only unused active mirrors are turned off while the current DAC is always ON-this will be rectified in future designs. The second term (P vdd ) comprises the power dissipated by the neuron, asynchronous counter and other digital blocks including decoder and scanner. Of these terms, the power dissipated by the neuron includes the synaptic currents as the input and the counter at output and varies with different parameters such as biasing current. It is the major energy consumer in the chip when the number of hidden neurons, L is large. Hence, it is important to understand its dependence on different parameters. Thus, we can write P vdd as:</p><formula xml:id="formula_30">P vdd = P neu + P dig ≈ P neu = Lf sp E sp ,<label>(21)</label></formula><p>where E sp is the energy dissipation per spike for the neuron. E sp can be modelled as:</p><formula xml:id="formula_31">E sp = α 1 V DD 2 + α 2 I sc V DD f sp + C b I z V DD 2 I rst -I z + I lk ,<label>(22)</label></formula><p>where I sc is the short-circuit current in the inverter that depends on the value of VDD and is negligible for small values of VDD. Here, the first term denotes the switching power dissipated in the neuron circuit, second term denotes short circuit power loss in the inverters and the third term denotes the short-circuit power dissipated on the node V mem in Fig. <ref type="figure" target="#fig_2">4</ref>(a). If I z &lt;&lt; I rst and I lk ≈ 0, equations ( <ref type="formula" target="#formula_30">21</ref>) and ( <ref type="formula" target="#formula_31">22</ref>) can be combined to give: From simulation, when VDD is 1V, α 1 ≈ 0.2pF and α 2 I sc ≈ 0.03µA.</p><formula xml:id="formula_32">P vdd ≈ P neu ≈ L α 1 V DD 2 f sp + α 2 I sc V DD . (<label>23</label></formula><formula xml:id="formula_33">)</formula><p>Using equation ( <ref type="formula" target="#formula_31">22</ref>), we will now proceed to estimate average energy per conversion operation (E c ) for one neuron where an input current I z ∈ [0 I z max ] is converted to a digital count. Assuming that I z is distributed uniformly in the range of 0 to I z max , i.e. P (I z ) = 1</p><formula xml:id="formula_34">I z max</formula><p>, E c can be estimated as:</p><formula xml:id="formula_35">E c = I z max 0 E sp (I z ) H (I z ) P (I z ) dI z = 1 I z max I z max 0 E sp (I z ) H (I z ) dI z ,<label>(24)</label></formula><p>where H(I z ) is the number of spikes generated in T neu as defined in equation <ref type="bibr" target="#b10">(11)</ref>. Note that here we write E sp (I z ) and H(I z ) to make the dependence of equations ( <ref type="formula" target="#formula_31">22</ref>) and ( <ref type="formula" target="#formula_17">11</ref>) on I z explicit. Using the expression for T neu in equation <ref type="bibr" target="#b18">(19)</ref>, equation ( <ref type="formula" target="#formula_35">24</ref>) can be simplified further to get:</p><formula xml:id="formula_36">E c = 2 b 0.75K neu I z max 2 I z max 0 E sp (I z ) f sp (I z ) dI z . (25)</formula><p>From equation <ref type="bibr" target="#b24">(25)</ref>, we can see that E c depends on I z max . The choice of I z max is guided by the design constraints. Typically, we have to either meet a minimum specified speed of operation or minimize energy of operation without any constraint on speed. To better explain the trade-offs, we can plot E c while varying I z max with b = 10 as illustrated in Fig. <ref type="figure" target="#fig_8">10</ref>(a) for three values of VDD. The same figure is re-plotted in Fig. <ref type="figure" target="#fig_8">10(b</ref>) but with the corresponding value of T neu instead of I z . Firstly, note that the plots for smaller VDD span a smaller range of current since I rst is correspondingly smaller (similar to Fig. <ref type="figure" target="#fig_4">6</ref>). For each VDD, the lowest conversion energy is attained when I z max is close to I f lx = I rst /2. Intuitively, this happens because f sp is higher which leads to lower T neu and correspondingly lower energy. Thus it is beneficial to operate for a short time at a higher spiking frequency than over a longer time with a small frequency. The optimum current I z is less than I f lx since at I z = I f lx , the short-circuit power dissipation (third term in equation ( <ref type="formula" target="#formula_31">22</ref>)) increases significantly. From Fig. <ref type="figure" target="#fig_8">10</ref>, we can see that lowest energy per conversion is attainable for lowest VDD as expected since the short circuit current reduces drastically at lower VDD. However from Fig. <ref type="figure" target="#fig_8">10(b)</ref>, we can see that the trade-off for keeping a low VDD is large conversion time. Hence, if conversion time is a critical specification, we have to choose the minimum VDD that meets this specification. As can be seen from Fig. <ref type="figure" target="#fig_8">10(b</ref>), higher VDD allows for lower T neu . Reg Reg Reg Rotation_Control CNT 1 CNT 2 CNT L H 1 Reg H 2 Reg H L Reg CLK_r CLK_a 0 1 0 1 0 1 N 1 N 2 N L (a) RN NEU_EN CLK_r Rotation _Control CLK_a ceil(d/k)-1 cycle clock (b) Fig. 13: (a) Schematic of circuit for input dimension extension by shifting and summing the output counter values and (b) its timing diagram.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. INPUT DIMENSION AND HIDDEN LAYER EXTENSION TECHNIQUE</head><p>For some applications, dimension of the input data is quite large (over several thousands) while other applications may require a large number of hidden layer neurons (also over several thousands) to achieve the best performance. This poses a big challenge to neuromorphic analog hardware implementa- To expand the number of hidden layer neurons, we propose to do it in ⌈L/N ⌉ steps where the number of projections is increased N in every step. For the second set of N neurons, we need to shift the random matrix W comprising</p><formula xml:id="formula_37">w ij (i = 1, 2,• • • , d and j = 1, 2, • • • , N) to W 1,0 comprising w ij (i = 2, 3,• • • , d, 1 and j = 1, 2, • • • , N).</formula><p>Here, the subscript (1, 0) is used to denote a single circular rotation of the rows of the matrix W. This notation implies W = W 0,0 = W k,0 . Using this notation, we can continue to get more random projections of the input (and thus expand the number of hidden neurons) by generating W 1,0 to W ⌈L/N⌉-1,0 . Figure <ref type="figure" target="#fig_0">12(a)</ref> shows a simple circuit that can be added to the input side of the chip to achieve this function. The corresponding timing diagram of control signals are shown in Fig. <ref type="figure" target="#fig_0">12(b</ref>). Once the input data is loaded and the first set of hidden layer outputs are obtained (during the N EU EN signal), the Rotation Control signal is turned high to configure the input registers as a circular shift-register. This is followed by another N EU EN signal to obtain the second set of N random projections and this process continues till L random projections are obtained.</p><p>A similar method can be applied to expand the input dimension from k to d. In this case, we take the first k dimensions x 1 , x 2 ..x k of a particular input sample x ∈ ℜ d and send it to the chip to get the multiplication for the first k dimensions with the random matrix W. This generates L hidden neuron outputs which can be expanded to a larger number using the technique described in the last paragraph. For the next k dimensions of x, we shift the random matrix</p><formula xml:id="formula_38">W comprising w ij (i = 1, 2, • • • , k and j = 1, 2, • • • , N) to W 0,1 comprising w ij (i = 1, 2, • • • , k and j = 2, 3, • • • , N, 1)</formula><p>. This implies a circular shift along the columns of W. The hidden layer outputs obtained in this step are added to the ones obtained in the earlier step. This method can be continued for ⌈d/k⌉ -1 steps while accumulating the resulting hidden layer outs every time to get the final output for the d dimensional input x. Figure <ref type="figure" target="#fig_0">13</ref>(a) shows a simple circuit that can be added to the previously described chip architecture at the output to implement the input dimension expansion technique. Figure <ref type="figure" target="#fig_0">13</ref>(b) depicts the corresponding timing diagram. The circuit in Fig. <ref type="figure" target="#fig_0">13</ref>(a) shows a register bank after the neuron output counters that can accept inputs from these counters or from other registers in this layer to effect the circular rotation of columns of W. There is a second register bank after this which accumulates the counter outputs over multiple cycles. After the conversion of first k dimensions of x during the first N EU EN signal, a clock pulse on CLK r and CLK a are used to shift this output to the accumulator. From the next cycle, the Rotation Control signal is enabled and pulses on CLK r are used to rotate the columns of the hidden layer. Another pulse on CLK a is used to accumulate this value in the second register bank.</p><p>TABLE I: Chip Summary Technology 0.35 µm CMOS Die Size 5 mm × 5 mm Input Channels 128 Hidden Layer Size 128 Output Data format 14-bit Digital Input Data format 10-bit Digital Power supply voltage 1 V</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VI. MEASUREMENT RESULTS</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Characterization</head><p>To validate the function of the proposed design, we have implemented the system in a 0.35µm CMOS process. The ELM chip occupies a die area of 5mm × 5mm as shown in Fig. <ref type="figure" target="#fig_13">14</ref>. The current area of the chip is dominated by the current mirror array since the layout is not optimized. Each cell in the current mirror array is pitch matched to the neuron in one direction and the IGC along another making it mostly empty. The area of the current mirror array can be reduced tremendously by following the proposal in <ref type="bibr" target="#b28">[29]</ref> limiting the size to the pitch of the IGC. In the next version, we will reduce the pitch of the IGC by moving to a scaled process like 65nm. The mixed-signal chip implements the computationally intensive first stage while the second stage is currently implemented off-chip on a FPGA. In future, the second stage will also be integrated on the same die. Again, moving to a scaled process like 65nm enables a small layout for this digital part. The larger statistical variation in a scaled process does not hurt the performance of the analog part as shown in Fig. <ref type="figure" target="#fig_6">7</ref>. The extra gate leakage in the current mirrors can be handled by either using thick oxide I/O devices or using active mirrors. Next, we present some characterization results to show the functionality of the chip. In all the experiments, both analog and digital power supplies are shorted together and is denoted by VDD. Unless stated otherwise, the default value of VDD= 1V is used in most experiments.</p><p>First, we can get the transfer function of the 128 neurons by sweeping the digital input Data in on any one channel from 0 to 1023. The resultant curves are shown in Fig. <ref type="figure" target="#fig_15">15(a)</ref>. It can be seen that there is significant variation between the transfer curves of the neurons. Next, to characterize the random variation of the input weight matrix, we send a fixed value of Data in to each of the input channels one by one and measure the counter outputs H. For every input channel, we get L = 128 counter values indicative of the mismatch in that row. In total, there are 128 × 128 such values of H for all the input channels. These results are shown as a 3dimensional plot in Fig. <ref type="figure" target="#fig_15">15(b</ref>) where H is plotted on the Z-axis. These same values are normalized by the median count value to get the effective weight distribution. This distribution of 128 × 128 values is plotted as a histogram in Fig. <ref type="figure" target="#fig_15">15(c</ref>) displaying a log-normal distribution. This is to be expected since ∆V T n has a normal distribution as explained in Section III-C. Further, by fitting a gaussian distribution to the logarithm of the weight values, we obtain σ∆V T n ≈ 16mV in this process. Note that the mismatch obtained here also takes into account mismatch in the neuronal tuning curves since the count values are obtained at the output of the neuron. Further, this characterization is consistent across a set of 9 chips with minimum and maximum values of σ∆V T n being 15.36mV and 16.26mV respectively.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Speed and Power</head><p>During measurement, we found the chip to be functional for VDD down to 0.7 V. Thus we can apply the results of the design space exploration in Section IV to optimize the system for the best speed and power efficiency. During measurement, a pico-ammeter (Keithley 6485) is utilized to measure the average current from the power supply to estimate the power dissipation. For all the experiments, speed and TABLE II: Measured performance on Binary Classification Datasets from UCI repository Datasets # Features (d) # Training # Testing Miss Classification Rate (%) Software (L = 1000) [12] This work (L = 128) Diabetes 8 512 256 22.05 22.91 Australian Credit 14 460 230 13.82 12.11 Brightdata 14 1000 1462 0.69 1.26 Adult 123 4781 27780 15.41 15.57</p><p>TABLE III: Comparison Table JSSC 2013 [27] JSSC 2007 [25] IJCNN 2015 [28] ISCAS 2015 [18] This work Technology 0.13 µm 0.5 µm 65 nm 0.35 µm 0.35 µm Algorithm SVM SVM ELM ELM ELM Task Classification Classification Regression Regression Regression Classification Classification Design Style Digital Analog Mixed mode Mixed mode Mixed mode Floating gate Supply Voltage 0.85 V 4 V 1.2 V 0.6 V (Digital) 1 V 1.2 V (Analog) Power Dissipation 136.5 µW 0.84 µW -0.4 µW 188.8 µW 1 Max Input Dimension 400 14 1 128 16384 2 Energy Efficiency 631 pJ/MAC 3 0.8 pJ/MAC -3.4 pJ/MAC 4 0.47/ 0.54 pJ/MAC 5 Resolution 16 b 4.5 b 13 b 14 b 14 b Classification Rate 0.5-2 Hz 40 Hz -50 Hz 31.6 kHz Throughput 2 MMAC/s 1300 MMAC/s -0.12 MMAC/s 404.5 MMAC/s 1 This power dissipation is measured based on d = 128 and L = 100. 2 Using input dimension extension technique to expand to d = 128 × 128. Note that the circuits for rotating inputs and outputs for dimension increase are not included on this test chip. 3 Assuming 1000 support vectors. 4 Only considering first stage of ELM for d = 40 and L = 60. 5 0.47 pJ/MAC is energy efficiency of current chip implementing first stage of ELM. The total energy per operation for binary classification is 0.54 pJ/MAC using V DD = 1.5 V for digital multipliers of second stage (see section VI-B for details). power are measured for Data in = 1000 and d = 128 with L = 100 neurons activated. Conversion times T neu are estimated for 2 b = 128. At VDD= 0.7V, the power dissipation is 17.85µW at a maximum conversion speed of 4.5kHz. As can be expected from Fig. <ref type="figure" target="#fig_8">10</ref>, there is not much variation in energy per classification when I z max is reduced. However, this difference is more obvious at a higher VDD of 1V. In this case, the fastest classification rate for this system is 146.25 kHz corresponding to T neu = 68.5µs when I z ≈ I f lx . However, the power dissipation at this speed is quite high-2.2mW. Hence for a better energy efficiency, we optimize the classification rate to be around 31.6 kHz by reducing I z max to reduce the short-circuit power dissipation on V mem (as described in Section IV-C). The measured power dissipation now becomes 188.8µW as shown in Table <ref type="table">III</ref>.</p><p>We choose this operating point as a good trade-off between speed and power efficiency. From this, we can approximate the coefficients α 1 ≈ 0.3pF and α 2 I sc ≈ 0.076µA that are close to simulation values reported in section IV-C. Also, the analog power P avdd ≈ 3.4µW . Considering the 128 × 100 multiplication-and-accumulation (MAC) operation for the first layer, we can calculate the energy efficiency for this case as 0.47 pJ/MAC. The corresponding throughput for classification rate of 31.6 kHz is 404.5 MMAC/s. Note that the current test chip does not have the digital multiplier for the second stage. Hence to estimate total system power, we have simulated a 14-bit×10-bit array multiplier in the same 0.35µm process (assuming b = 14 and resolution of β = 10). For a digital V DD = 1.5V, the energy per multiply is estimated to be 7.1pJ at a delay of 12ns. Using this value, the energy efficiency of the whole system for binary classification can be found to be ≈ 0.54pJ/MAC.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Regression and Classification</head><p>In order to verify the performance of the proposed neuromorphic ELM system in machine learning applications, we first show an example of regression (d = 1) where the system was trained on 5000 noisy samples (additive gausian noise with σ = 0.2) of a target sinc(x) function and its task was to approximate the underlying function through regression. The input data is passed through the chip and hidden layer activations are obtained. These are next used for training the output weights. This method takes care of the mismatch in the neuronal transfer curves (which is also log-normal due to sub-threshold operation) by lumping it with the current mirror mismatch and training weights that take this into account. The measured result of this experiment are shown in Fig. <ref type="figure" target="#fig_14">16</ref> for L = 128 hidden neurons where the noisy samples are shown in green and the regressed function is in blue. The error of 0.021 we obtain in this experiment is comparable to the error of 0.01 obtained in software simulations of ELM <ref type="bibr" target="#b20">[21]</ref>.</p><p>Next, we employ some real-world benchmark binary classification data sets from the UCI machine learning repository <ref type="bibr" target="#b18">[19]</ref>. The reason for choosing these data sets are that they have different characteristics in terms of data dimension d and data set size in terms of number of samples: small size and low dimensions (P ima Indians diabetes, Statlog Australian credit), large size and low dimensions (Star/Galaxy -Bright), large size and high dimensions (Adult). The details of the data sets are shown in Table <ref type="table">II</ref>. During measurements, the hidden layer matrix H is obtained by applying the training data to the chip one by one. The second layer weights are obtained offline using this H and then downloaded to the FPGA for testing. The accuracy obtained in measurements with L = 128 hidden neurons is shown in table II and is compared with software simulation results taken from <ref type="bibr" target="#b11">[12]</ref>. This table shows that the performance of our implemented hardware ELM is comparable with the software ELM with the differences possibly due to the larger number of sigmoidal neurons (as opposed to saturating linear neurons for this chip) used in <ref type="bibr" target="#b11">[12]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D. Dimension Increase With Weight Reuse Technique</head><p>In order to evaluate the performance for the dimension extension technique, we first applied a very high dimensional dataset (leukemia) with d = 7129. Sizes for the training and testing data are 38 and 34 respectively. During measurement, we obtain a miss-classification rate of 20.59% with L = 128 neurons, which is comparable with the error rate of 19.92% obtained using the software ELM reported in <ref type="bibr" target="#b11">[12]</ref>. Next, we separately prove the concept of artificially increasing number of hidden layer neurons. The measured errors in table II are close to optimal and do not reduce much with further increase</p><p>TABLE IV: Sinc function regression using normalized hj Power supply (V) Error (%) Error (%) (Non-normalized) (Normalized) 0.8 0.5924 0.076 1 0.045 0.0629 1.2 0.1538 0.065</p><p>in L. Hence, we instead take L = 16 neurons and use weight reuse method to expand to L = 128. For the dataset diabetes, the error for L = 16 is 27.1%. This reduces to an error of 22.4%, comparable to that in tableII, when L is increased to 128 by weight reuse. Note that since our chip did not have the circuits described in Section V to perform on-chip dimension expansion, we shifted the input data before applying it to the chip. Also, the output data was shifted in the FPGA before accumulation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>E. Comparison</head><p>Our work is compared with other recently reported hardware machine learners in Table <ref type="table">III</ref>. Our design is the most power efficient machine learner reported so far due to the low power analog multiplications. The energy efficiency of commercial digital processors are saturating at ≈ 100pJ/MAC <ref type="bibr" target="#b29">[30]</ref>. Even custom digital multipliers have energy efficiencies of 10 -70pJ/MAC <ref type="bibr" target="#b16">[17]</ref>, <ref type="bibr" target="#b30">[31]</ref>, <ref type="bibr" target="#b31">[32]</ref>. This explains the higher energy requirement of <ref type="bibr" target="#b26">[27]</ref> in Table <ref type="table">III</ref>. <ref type="bibr" target="#b24">[25]</ref> uses analog floating-gate based multipliers and can hence achieve lowpower multiplication. However, our approach does not require high voltages for programming floating-gates and is also much more compact due to the use of only one transistor without capacitors in the multiplier cell. <ref type="bibr" target="#b27">[28]</ref> also uses random mismatch (and a systematic offset) in 65nm CMOS to perform the calculations in the first stage of ELM. However, they only have a single dimensional input and only show regression. Moreover, they do not report any energy or speed metrics. Lastly, compared to <ref type="bibr" target="#b17">[18]</ref> which also uses the same core circuit of current mirrors to perform ELM computations for neural decoding, the current work is more energy efficient due to the faster operation (as explained in section IV-C). Also, the current work shows a method of expanding input dimension to a maximum of d = 16, 384 while <ref type="bibr" target="#b17">[18]</ref> could only support a maximum of d = 128.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>F. Robustness</head><p>It is important to consider how the performance of the chip varies in the face of variations of power supply voltage (VDD) and temperature. We use the normalization method suggested in <ref type="bibr" target="#b17">[18]</ref> to increase the robustness of our chip with respect to common-mode variations in VDD and temperature. Following, <ref type="bibr" target="#b17">[18]</ref>, we define the j-th normalized hidden layer value (h j,norm ) as:</p><formula xml:id="formula_39">h j,norm = h j L j=1 h j / d i=1 x i<label>(26)</label></formula><p>To show the effectiveness of normalization, we first consider its effect on variations in VDD. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>1.2V).</head><p>It can be seen that there is a huge variation in h j (maximum of 22.7%). In contrast, when the same values are normalized (Fig. <ref type="figure" target="#fig_16">17(b</ref>)), the variation due to change in VDD is reduced a lot (maximum of 4.2%) while variation due to change of D in is still retained. This proves effectiveness of the normalization method. We have further used the normalized and non-normalized values to perform the sinc function regression task described in Section VI-C. In this case, the weights are obtained for a nominal VDD of 1V while testing is performed at all three VDD values. The result is reported in Table <ref type="table">IV</ref>. It can be seen that normalization enables the error to be low for all three values of VDD.</p><p>Next, we studied the effect of temperature variations on the hidden layer outputs. We expect the temperature dependent weights (e ∆V T U T ) to be the major contributor to variations in hidden layer outputs h j . To confirm this prediction, we made a MATLAB model and obtained the variation of h j when temperature varied by ∆T = ±20 • C about a nominal value of T 0 = 300K. Then we benchmarked this variation with a SPICE simulation of the same circuit to confirm our earlier assumption-henceforth, we used the MATLAB model for simulations. Similar to the earlier case, we found that applying normalization reduced the maximum variation of hidden layer outputs from 9% to 1.6% over this temperature range. Next, we trained output weights for classification problems at the nominal temperature T 0 while the temperature was again varied over the same range during testing. We plot the results for h j and h j,norm for two different datasets in Fig. <ref type="figure" target="#fig_18">18</ref>  rapidly when temperature varies on either side of T 0 while using h j . On the other hand, the error changes much more slowly when using h j,norm again confirming the benefit of normalization. Further, we have observed that retraining the weights can reduce the error close to the original value for both h j and h j,norm . Hence, to get good performance over a wider range of temperature, we can store different weights for different tmperature ranges. One disadvantage with using the normalization is that now the second layer has to perform L divisions on top of the L × C multiplications. But given the benefits provided, we believe that normalization is still a favourable choice. We do not have the normalization circuits included in this test chip but plan to include them in the next version.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VII. CONCLUSIONS</head><p>We have presented a low-power hardware neuromorphic IC in 0.35µm CMOS for machine learning applications using randomized neural networks such as random vector function link (RVFL), reservoir computing methods or extreme learning machines (ELM). Our hardware can also be used as a dimension reduction mechanism prior to applying unsupervised algorithms like k-nearest neighbors for clustering if the nonlinear saturation in the neuron is not applied <ref type="bibr" target="#b32">[33]</ref>, <ref type="bibr" target="#b33">[34]</ref>. The particular algorithm we employed in this work is extreme learning machine (ELM). The mismatch in silicon spiking neurons and synapses are used to perform the vector-matrix multiplication that forms the first stage of this classifier and is the most computationally intensive. Our results indicate that for a wide set of problems, σV T in the range of 15 -25mV gives optimal results. A design space exploration is performed to show that minimum energy per operation at a specific VDD is obtained by operating for a short time at the highest spiking frequency achievable at that VDD. Linear neurons with a saturating non-linearity are used due to ease of implementation. Operating from a 1 V power supply, this system can achieve an optimum energy efficiency of 0.47 pJ/MAC with a corresponding classification rate of 31.6 kHz making it one of the most energy efficient machine learners reported. Though this hardware can only implement randomized neural networks which might require a penalty of 2 -3X more number of hidden nodes compared to networks with full tunability <ref type="bibr" target="#b34">[35]</ref> in many applications, the 10 -20X lower energy required by random coefficient multiplications in our method overcome this penalty for lowering overall system energy. We also show a normalization method that enables a more robust operation of the circuit over changes in power supply and temperature.</p><p>In future, we will apply this chip to classify multi-class image datasets such as MNIST. We will also explore the possibility of using it for dimension reduction prior to unsupervised clustering.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Fig. 1 :</head><label>1</label><figDesc>Fig. 1: The architecture of ELM algorithm. d is the dimension of the input data and L denotes the number of hidden layer neurons.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Fig. 2 :Fig. 3 :</head><label>23</label><figDesc>Fig. 2: (a) System architecture of the mixed signal integrated circuit that implements the first stage of ELM; the second stage is implemented in digital domain. The digital input data is converted to current by the IGC and then multiplied by random weights wij in the current mirror array. The current is converted to digital domain by the combination of a spiking neuron and a counter. (b) Timing diagram of the ELM system where RN in is a global reset, Data in, A and CLK in are SPI control signals to transfer input data to the IC. N EU EN enables the neuron to produce spikes while CLK cnt is used to read out the counter values C one by one.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>Fig. 4 :</head><label>4</label><figDesc>Fig. 4: (a) Schematic of the neuronal oscillator circuit followed by an asynchronous counter. The neuron is enabled when control signal N EU EN is high. The capacitors can be digitally reconfigured and have the following values: Ca1 = 100fF, Ca2 = 200fF, C b1 = 50fF, C b2 = 100fF. (b) Oscillation waveforms at different nodes of the neuron circuit.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>Fig. 5 :</head><label>5</label><figDesc>Fig. 5: (a) Neuron spiking frequency initially increases with the increase of the input current I z till I z = I f lx . It then reduces and becomes zero finally when I z = Irst. (b) The transfer function (solid line) of the neuron with input I z and output H can be saturated at a pre-defined value of 2 b by stopping the counter.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head>Fig. 6 :</head><label>6</label><figDesc>Fig. 6: (a) Comparison of neuron spiking frequency between theory and simulation in SPICE show close match. (b) Simulated neuron spiking frequency with increasing input current for 3 different VDD.The curves saturate at higher maximum frequencies for higher VDD. Note the logarithmic scales for both plots.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><head>Fig. 8 :</head><label>8</label><figDesc>Fig. 8: Simplified circuit diagram of one current mirror for noise analysis.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><head>Fig. 7 :</head><label>7</label><figDesc>Fig. 7: Design Space Exploration: (a) Variations of Lmin with I z sat /I z max show that the optimal value of this ratio is ≈ 0.75. (b) Variations of classification accuracy with the resolution of output weight β showing 10 bits is sufficient for accurate classification. (c) Variations of classification accuracy with the number of bits of counter output H demonstrating that b ≈ 6 is enough for optimal performance. Each of the curves are averaged over 50 trials.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7"><head>Fig. 9 :</head><label>9</label><figDesc>Fig. 9: Trade-offs in speed: (a) Using active current mirror for small input currents can boost the bandwidth by 5.84X. (b) Variation of neuron counting time (Tneu) and current mirror settling time (Tcm) reduce as maximum input current per dimension (Imax) is increased. Further, Tneu increases exponentially with increase in b. (c) Contours where Tcm is equal to Tneu in the space of counter dynamic range 2 b and input dimension d. For increasing d, the total current input to a neuron I z keeps on increasing thus increasing oscillation frequency. Hence, it can support higher dynamic range 2 b in the same time Tneu.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8"><head>Fig. 10 :</head><label>10</label><figDesc>Fig. 10: (a) Variation of energy per classification operation (Ec) with varying maximum value of input current I z max for three different settings of VDD. (b) The same plot as in (a) but replacing I z max</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9"><figDesc>) where we use I z sat /I z max = 0.75 (shown earlier in Section III-D) and I z max = d × I max . Now, we can compare T cm and T neu to see the dominant term as a function of parameters b and d.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10"><head>Figure 9 (</head><label>9</label><figDesc>b) shows a comparison between T cm = 0.5(T cm,max + T cm,min ) and T neu for b = 8 and b = 12.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11"><head>11 wFig. 11 :</head><label>1111</label><figDesc>Fig. 11: The extension from a 2 × 3 random projection matrix to 6 × 6 by weight reuse technique .</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_12"><head>Fig. 12 :Fig. 13 :</head><label>1213</label><figDesc>Fig. 12: (a) Schematic of peripheral circuit for hidden layer extension by shifting the input data stored in the registers and (b) its timing diagram.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_13"><head>Fig. 14 :</head><label>14</label><figDesc>Fig. 14: Die photo of the prototype chip fabricated in 0.35µm CMOS.tions and have restricted the use of analog classifiers since the dimensions of the chip are fixed once fabricated. For example, suppose the input-dimension for an application is d and it requires L hidden layer neurons. Conventionally, at least d×L random weights are needed for the random projection operation in the first layer of ELM to get the hidden layer matrix H. However if the maximum input dimension for the hardware is only k (k &lt; d) and the number of implemented hidden layer neurons is N (N &lt; L), the hardware can only provide a k×N random projection matrix W comprising weightsw ij (i = 1, 2, • • • , k and j = 1, 2, • • • , N).For more efficient use of the hardware, here we propose a method to reuse the input weights and hidden layer neurons to effectively expand both input dimension and number of hidden layer neurons beyond the number physically fabricated on-chip. Intuitively, each neuron requires d random weights and there are a total of k × N such random weights on the chip. Hence, as long as d &lt; k × N , we can reuse these random weights to satisfy the requirement. Similarly, each input dimension requires L random numbers for the projection-it can be attained by reusing weights as long as L &lt; k × N . A simple example of such an increased dimension of weight matrix is shown in Fig.11for k = 2 and N = 3. This case shows the maximum dimension increase possible to get a matrix of size (k × N ) × (k × N ) Next, we elaborate the method used to do this assuming d, L &lt; k × N .</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_14"><head>Fig. 16 :</head><label>16</label><figDesc>Fig. 16: Regression of underlying sinc function (in blue) based on a set of noisy samples (in green).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_15"><head>Fig. 15 :</head><label>15</label><figDesc>Fig. 15: (a) Measured transfer function of hidden layer neurons when the digital input varying from 0 to 1023 with d = 1 and Tneu = 10ms. (b) A surface plot showing the mismatch in weights of the 128 × 128 current mirror synapses. The output counter values for different neurons are plotted for Tneu = 10ms when Data in = 100 is set on each input channel one by one. (c) Histogram showing the log-normal distribution of the input weights obtained from (b) for the 128 × 128 current mirror array.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_16"><head>Fig. 17 :</head><label>17</label><figDesc>Fig. 17: Comparison of hidden layer outputs for three different values of VDD in (a) the conventional case and (b) normalized case. The normalization results in less variation of output due to change in VDD.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_17"><figDesc>(a) and (b). It can be seen that the error increases</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_18"><head>Fig. 18 :</head><label>18</label><figDesc>Fig. 18: Comparison of performance when normalized and nonnormalized hidden layer outputs are used for classification of (a) Australian credit and (b) Brightdata sets from the UCI repository.</figDesc></figure>
+		</body>
+		<back>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Device mismatch and tradeoffs in the design of analog circuits</title>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">R</forename><surname>Kinget</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Journal of Solid-State Circuits</title>
+		<imprint>
+			<biblScope unit="volume">40</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="1212" to="1224" />
+			<date type="published" when="2005-06">June 2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<monogr>
+		<title level="m" type="main">Design of Analog CMOS Integrated Circuits, Mc-Graw Hill Education</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Razavi</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2000-08">Aug 2000</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">A device mismatch compensation method for VLSI neural networks</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Neftci</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Indiveri</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Biomedical Circuits and Systems</title>
+		<imprint>
+			<biblScope unit="page" from="262" to="265" />
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">A VLSI Array of Low-Power Spiking Neurons and Bistable Synapses With Spike-Timing Dependent Plasticity</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Indiveri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Chicca</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Douglas</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Neural Networks</title>
+		<imprint>
+			<biblScope unit="volume">17</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="211" to="221" />
+			<date type="published" when="2006-01">Jan. 2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Synchrony in Silicon: The Gamma Rhythm</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Arthur</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Boahen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Neural Networks</title>
+		<imprint>
+			<biblScope unit="volume">18</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="1815" to="1825" />
+			<date type="published" when="2007-11">Nov. 2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Nullcline based Design of a Silicon Neuron</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Basu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Hasler</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Circuits and Systems I</title>
+		<imprint>
+			<biblScope unit="volume">57</biblScope>
+			<biblScope unit="issue">11</biblScope>
+			<biblScope unit="page" from="2938" to="2947" />
+			<date type="published" when="2010-11">Nov. 2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<monogr>
+		<title level="m" type="main">Compact low-power calibration mini-DACs for neural massive arrays with programmable weights</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Linares-Barranco</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Serrano-Gotarredona</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Serrano-Gotarredona</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2003-09">Sept 2003</date>
+			<biblScope unit="volume">14</biblScope>
+			<biblScope unit="page" from="1207" to="1216" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">A Learning-enabled Neuron Array IC Based upon Transistor Channel Models of Biological Phenomenon</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Brink</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Nease</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Hasler</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Biomedical Circuits and Systems</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="71" to="81" />
+			<date type="published" when="2012-02">Feb. 2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Analysis and reduction of mismatch in silicon neurons</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Shuo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Basu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE Biomedical Circuits and Systems</title>
+		<meeting><address><addrLine>San-Diego, USA</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2011-10">Oct 2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Neuromorphic learning towards nano second precision</title>
+		<author>
+			<persName><forename type="first">T</forename><surname>Pfeil</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Scherzer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Schemmel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Meier</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Joint Conference on Neural Networks</title>
+		<meeting>the International Joint Conference on Neural Networks<address><addrLine>Dallas, USA</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2013">2013</date>
+			<biblScope unit="page" from="1" to="5" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Can Spike Timing Dependent Plasticity compensate for process mismatch in neuromorphic analogue VLSI?</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Cameron</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Murray</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Symposium on Circuits and Systems</title>
+		<meeting>the International Symposium on Circuits and Systems<address><addrLine>Vancouver</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2004">2004</date>
+			<biblScope unit="page" from="748" to="751" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Extreme Learning Machine for Regression and Multiclass Classification</title>
+		<author>
+			<persName><forename type="first">G.-B</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Ding</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Zhang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. on Systems, Man and Cybernetics-part B</title>
+		<imprint>
+			<biblScope unit="volume">42</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="515" to="529" />
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">A large-scale model of the functioning brain</title>
+		<author>
+			<persName><forename type="first">Chris</forename><surname>Eliasmith</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Science</title>
+		<imprint>
+			<biblScope unit="volume">338</biblScope>
+			<biblScope unit="issue">6111</biblScope>
+			<biblScope unit="page" from="1202" to="1205" />
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Synthesis of neural networks for spatio-temporal spike pattern recognition and processing</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Tapson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Frontiers in Neuroscience</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Online and adaptive pseudoinverse solutions for ELM weights</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Van Schaik</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Tapson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Neurocomputing</title>
+		<imprint>
+			<biblScope unit="volume">149</biblScope>
+			<biblScope unit="page" from="233" to="238" />
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Silicon Spiking Neurons for Hardware Implementation of Extreme Learning Machines</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Basu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Shuo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">H</forename><surname>Lim</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">B</forename><surname>Huang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Neurocomputing</title>
+		<imprint>
+			<biblScope unit="volume">102</biblScope>
+			<biblScope unit="page" from="125" to="134" />
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Computation using Mismatch: Neuromorphic Extreme Learning Machines</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Enyi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Hussain</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Basu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">B</forename><surname>Huang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE Biomedical Circuits and Systems Conference</title>
+		<meeting>the IEEE Biomedical Circuits and Systems Conference</meeting>
+		<imprint>
+			<date type="published" when="2013-10">Oct 2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">A 128 channel 290 GMACs/W machine learning based co-processor for intention decoding in brain machine interfaces</title>
+		<author>
+			<persName><forename type="first">Yi</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Enyi</forename><surname>Yao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Arindam</forename><surname>Basu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Symposium on Circuits and Systems</title>
+		<meeting>the International Symposium on Circuits and Systems</meeting>
+		<imprint>
+			<date type="published" when="2015-05">May 2015</date>
+			<biblScope unit="page" from="3004" to="3007" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<monogr>
+		<ptr target="http://archive.ics.uci.edu/ml/" />
+		<title level="m">UCI Machine Learning repository</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Extreme Learning Machines: A Survey</title>
+		<author>
+			<persName><forename type="first">G.-B</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">H</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Lan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Int. J. Mach. Learn. &amp; Cyber</title>
+		<imprint>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="page" from="107" to="122" />
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Extreme Learnng Machine: Theory and Applications</title>
+		<author>
+			<persName><forename type="first">G.-B</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Q</forename><forename type="middle">Y</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">K</forename><surname>Siew</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Neurocomputing</title>
+		<imprint>
+			<biblScope unit="volume">70</biblScope>
+			<biblScope unit="page" from="489" to="501" />
+			<date type="published" when="2006">2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Ridge Regression: Biased Estimation for Nonorthogonal Problems</title>
+		<author>
+			<persName><forename type="first">Arthur</forename><forename type="middle">E</forename><surname>Hoerl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Robert</forename><forename type="middle">W</forename><surname>Kennard</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Technometrics</title>
+		<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="55" to="67" />
+			<date type="published" when="1970-02">Feb. 1970</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Bias current generators with wide dynamic range</title>
+		<author>
+			<persName><forename type="first">T</forename><surname>Delbruck</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Van Schaik</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Analog Integrated Circuits and Signal Processing</title>
+		<imprint>
+			<biblScope unit="volume">43</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="247" to="268" />
+			<date type="published" when="2005">2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Neuromorphic Silicon Neuron Circuits</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Indiveri</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Frontiers in Neuroscience</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="issue">73</biblScope>
+			<date type="published" when="2011-05">May 2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">A Sub-microwatt Analog VLSI Trainable Pattern Classifier</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Chakrabartty</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Cauwenberghs</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Journal of Solid-State Circuits</title>
+		<imprint>
+			<biblScope unit="volume">42</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="1169" to="1179" />
+			<date type="published" when="2007-05">May 2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">White noise in MOS transistors and resistors</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Sarpeshkar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Delbruck</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">A</forename><surname>Mead</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Electron Devices</title>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="23" to="29" />
+			<date type="published" when="1993-11">Nov 1993</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">A low-power processor with configurable embedded machine-learning accelerators for high-order and adaptive analysis of medical-sensor signals</title>
+		<author>
+			<persName><forename type="first">Kyong</forename><surname>Ho</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lee</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Verma</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Journal of Solid-State Circuits</title>
+		<imprint>
+			<biblScope unit="volume">48</biblScope>
+			<biblScope unit="issue">7</biblScope>
+			<biblScope unit="page" from="1625" to="1637" />
+			<date type="published" when="2013-07">July 2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">A neuromorphic hardware framework based on population coding</title>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">S</forename><surname>Thakur</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">J</forename><surname>Hamilton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Tapson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">V</forename><surname>Schaik</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Joint Conference on Neural Networks</title>
+		<meeting>the International Joint Conference on Neural Networks<address><addrLine>Ireland</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2015-07">July 2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">A 128 channel Extreme Learning Machine based Neural Decoder for Brain Machine Interfaces</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yao</forename><surname>Enyi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Basu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Biomedical Circuits and Systems</title>
+		<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Scaling Energy Per Operation via an Asynchronous Pipeline</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Marr</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Degnan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">E</forename><surname>Hasler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Anderson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on VLSI</title>
+		<imprint>
+			<biblScope unit="volume">21</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="147" to="151" />
+			<date type="published" when="2013-01">Jan. 2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">A New Redundant Binary Booth Encoding for Fast 2n-Bit Multiplier Design</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">H</forename><surname>Chang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Circuits and Systems I</title>
+		<imprint>
+			<biblScope unit="volume">56</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="1192" to="1201" />
+			<date type="published" when="2009-06">June 2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Razor Based Programmable Truncated Multiply and Accumulate, Energy-Reduction for Efficient Digital Signal Processing</title>
+		<author>
+			<persName><forename type="first">M</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">La</forename><surname>Guia De Solaz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Conway</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on VLSI</title>
+		<imprint>
+			<biblScope unit="volume">23</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="189" to="193" />
+			<date type="published" when="2015-01">Jan 2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Random projection in dimensionality reduction: Applications to image and text data</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Bingham</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Mannila</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the seventh ACM SIGKDD international conference on Knowledge discovery and data mining</title>
+		<meeting>the seventh ACM SIGKDD international conference on Knowledge discovery and data mining</meeting>
+		<imprint>
+			<date type="published" when="2001">2001</date>
+			<biblScope unit="page" from="245" to="250" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Random Projections for k-means Clustering</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Boutsidis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Zouzias</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Drineas</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of Advances in Neural Information Processing Systems</title>
+		<meeting>of Advances in Neural Information essing Systems</meeting>
+		<imprint>
+			<date type="published" when="2010">2010</date>
+			<biblScope unit="page" from="298" to="306" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Weighted Sums of Random Kitchen Sinks: Replacing minimization with randomization in learning</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Rahimi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Recht</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of Advances in Neural Information Processing Systems</title>
+		<meeting>of Advances in Neural Information essing Systems</meeting>
+		<imprint>
+			<date type="published" when="2009">2009</date>
+			<biblScope unit="page" from="1313" to="1320" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

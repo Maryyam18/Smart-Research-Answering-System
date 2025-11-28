@@ -1,0 +1,1202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Making sense of quantum teleportation: An intervention study on students&apos; conceptions using a diagrammatic approach</title>
+				<funder ref="#_UEJPvZq">
+					<orgName type="full">unknown</orgName>
+				</funder>
+				<funder>
+					<orgName type="full">The Royal Society of Arts and Sciences in Gothenburg</orgName>
+				</funder>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability  status="unknown">
+					<licence/>
+				</availability>
+				<date type="published" when="2025-11-26">26 Nov 2025</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author role="corresp">
+							<persName><forename type="first">Sebastian</forename><surname>Kilde-Westberg</surname></persName>
+							<email>sebastian.kilde.westberg@physics.gu.se</email>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Physics</orgName>
+								<orgName type="institution">University of Gothenburg</orgName>
+								<address>
+									<postCode>412 96</postCode>
+									<settlement>SE Gothenburg</settlement>
+									<country key="SE">Sweden</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Andreas</forename><surname>Johansson</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Physics</orgName>
+								<orgName type="institution">University of Gothenburg</orgName>
+								<address>
+									<postCode>412 96</postCode>
+									<settlement>SE Gothenburg</settlement>
+									<country key="SE">Sweden</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Anna</forename><surname>Pearson</surname></persName>
+							<affiliation key="aff1">
+								<address>
+									<settlement>Quantinuum Oxford</settlement>
+									<country key="GB">UK</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Jonas</forename><surname>Enger</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Physics</orgName>
+								<orgName type="institution">University of Gothenburg</orgName>
+								<address>
+									<postCode>412 96</postCode>
+									<settlement>SE Gothenburg</settlement>
+									<country key="SE">Sweden</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Making sense of quantum teleportation: An intervention study on students&apos; conceptions using a diagrammatic approach</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2025-11-26">26 Nov 2025</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">BD10F8F11A1EB729DC12D9B89BD92CEF</idno>
+					<idno type="arXiv">arXiv:2511.21443v1[physics.ed-ph]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-28T12:41+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Quantum education research</term>
+					<term>phenomenography</term>
+					<term>quantum teleportation</term>
+					<term>upper-secondary school physics</term>
+					<term>pre-service teachers</term>
+					<term>conceptual understanding</term>
+					<term>diagrammatic formalism</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Quantum physics education at the upper-secondary level traditionally follows a historical approach, rarely extending beyond early 20th-century ideas, leaving students unprepared for comprehending modern quantum technologies central to everyday life and many facets of modern industry. To address this gap, we investigated how upper-secondary students and pre-service teachers understand quantum teleportation when taught with a simplified diagrammatic formalism based on the ZX-calculus, which represents quantum processes as diagrams of wires and boxes. Through phenomenographic analysis of video-recorded group work sessions, written responses to exercises, and a group interview, with a total of n = 21 participants, we identified an outcome space consisting of four qualitatively different, hierarchically ordered categories of description encapsulating the different ways of experiencing quantum teleportation. The categories revealed that a conceptual progression depends on how one understands the temporality in quantum processes, the role of entanglement in quantum teleportation, the active nature of quantum measurements, and interpretations of mathematical operations in the diagrams. Our findings demonstrate that while a simplified diagrammatic formalism for teaching quantum physics provides an accessible entry point at the upper-secondary level, it does not automatically resolve fundamental conceptual challenges, and requires careful consideration in terms of developing teaching and learning sequences. Finally, these results provide educators with a deeper understanding of conceptual affordances and challenges for designing and improving instruction, whilst also highlight the need for further exploring how students and teachers alike understand quantum phenomena.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>Today, quantum physics (QP) lies at the heart of many technological developments, from material science to computers and lasers <ref type="bibr" target="#b0">[1]</ref>. This has led to an increased need for industry and educational institutions to educate the future quantum workforce in areas ranging from having a solid foundation of quantum concepts, to more practical knowledge about working with hardware and software applications relying on quantum technologies <ref type="bibr" target="#b1">[2,</ref><ref type="bibr" target="#b2">3]</ref>. Since quantum technologies rely heavily on physics, there has been a growing need within the physics education research (PER) community to develop and explore new approaches to teaching various aspects of QP, including how to better introduce quantum concepts preuniversity <ref type="bibr" target="#b3">[4]</ref>.</p><p>In Europe, QP is commonly introduced in upper-secondary schools, predominantly through a historical or a semi-historical path that follows the footsteps of the theory development in the early 1900s <ref type="bibr" target="#b4">[5,</ref><ref type="bibr" target="#b5">6]</ref>. Following such an approach, it is rare for students to move much beyond the ideas of the Bohr atomic model with discretized energy levels being thought of as synonymous to the solar system model. Further, a recent study highlights, from a multi-stakeholder perspective including QP experts, PER researchers, and upper-secondary school teachers, that concepts such as superposition, qubits, entanglement, and quantum measurement should be among the key foci when teaching QP at the uppersecondary school level, whereas mathematical foundations are regarded as less important <ref type="bibr" target="#b6">[7]</ref>. The same study also highlights that upper-secondary school teachers seem to have little knowledge of illustrative examples of superposition, that can be created in a Mach-Zehnder interferometer or with a qubit, and that the teachers participating in the study generally had a rather limited tool set of illustrations and examples of quantum concepts available to them. Based on these findings, there is a clear need to develop and further explore teaching approaches and illustrative examples that go beyond current curricula and upper-secondary textbooks, as a step toward improving how QP is taught pre-university. Teaching foundations of quantum computing using a simplified diagrammatic formalism (QPic<ref type="foot" target="#foot_0">foot_0</ref> ) adapted from ZX-calculus <ref type="bibr" target="#b8">[9]</ref> may represent one promising approach. ZX-calculus is a graphical language for quantum theory that represents quantum processes as diagrams of wires and boxes <ref type="bibr" target="#b9">[10]</ref>. Unlike traditional approaches to the mathematical foundations of QP, QPic offers potential pedagogical advantages <ref type="bibr" target="#b7">[8,</ref><ref type="bibr" target="#b10">11]</ref> by avoiding the complexities of matrices and a level of calculus beyond what is taught at the upper-secondary school level, whilst preserving a level of formal mathematical structure through diagrammatic representations.</p><p>The present study investigates whether QPic can address these identified needs by making modern quantum concepts like quantum teleportation-which involves several key concepts, among them entanglement and measurement-accessible to upper-secondary students. Specifically, we seek to contribute to the current body of research in the field of quantum education with more qualitative insight into how students are experiencing and interpreting teaching approaches with simple mathematical structures. By further developing and testing proposed teaching materials to introduce pre-university students to modern QP, our study can serve multiple purposes. First, it provides teachers with practical knowledge about different ways students may conceive quantum concepts and their relation to QPic introduced in <ref type="bibr" target="#b8">[9]</ref>. Second, it provides quantum education researchers with deeper qualitative knowledge on ways of understanding quantum phenomena when being taught using varying mathematical formalisms. Third, it opens up new avenues for educators and researchers alike regarding designing and implementing a diagrammatic approach to teaching QP.</p><p>A. Teaching quantum physics beyond the historical approach: a review of needs and proposals</p><p>In this paper, we define current approaches to teaching QP as ones following what is typically found in textbooks, which is the historical or semi-historical approach introduced above <ref type="bibr" target="#b4">[5,</ref><ref type="bibr" target="#b5">6]</ref>. Here, we provide a review of identified needs and recent investigated approaches to introducing QP concepts in primarily upper-secondary school physics which diverge from current approaches.</p><p>In a review on approaches to teaching and learning QP as discussed in the PER literature <ref type="bibr" target="#b5">[6]</ref> three major approaches were identified: a historical approach, a formal structural approach, and a conceptual approach. The formal structural approach generally follows a similar path as what is taught at university-level QP courses with heavy emphasis on mathematical structure, a focus on the wave function and its predictive power of quantum phenomena. It is an approach that has similarities to the historical approach, but puts more clear emphasis on discussing QP using a modern view of matter and radiation and requires students to be well versed in the mathematical skills of manipulating the wave function.</p><p>On the other end of the spectrum we find the conceptual approach, which shifts the focus towards phenomenological explanations of various experiments manipulating two-state systems, such as the Stern-Gerlach experiment, the Mach-Zehnder interferometer, and the double-slit experiment. The aim of this approach is typically to promote a new way of thinking about the physical world, grounded in the idea that conceptual assumptions stu-dents make use of in classical physics are different, albeit sometimes lexically similar, from what is required to successfully comprehend quantum phenomena. In a bibliometric analysis giving an overview of the publication landscape and scope in QP education research, we find that research aligned with the conceptual approach seems most promising for tackling a prevalent problem in the era of modern quantum technologies <ref type="bibr" target="#b11">[12]</ref>. Namely, that today there is a growing need for a basic understanding of quantum technologies, which requires a degree of conceptual understanding of quantum concepts but less emphasis on mathematical foundations, for instance, to enable individuals to work with and program quantum computers.</p><p>To better understand educational needs at the upper-secondary level, the European Competence Framework for Quantum Technologies provides useful context <ref type="bibr" target="#b12">[13]</ref>, which has similarities to the U.S. quantum workforce development strategy <ref type="bibr" target="#b13">[14]</ref>. The framework identifies that different career paths in the quantum industry require diverse combinations of expertise-from developing theoretical foundations and building quantum computer components to designing quantum software or working in business and strategic roles. This highlights the need for QP education to prepare students by fostering an awareness of diverse career opportunities in quantum technologies. The diversity in skills required by the quantum industry is further evidenced by a recent study of quantum industry demands by analyzing job postings over six months of 37 quantum technology industry companies <ref type="bibr" target="#b14">[15]</ref>. Results from the study indicate that companies seek candidates with a broad set of skills, including strong foundations in QP, applied mathematics, programming skills, as well as experience working with quantum experiments and simulations. Thus, apart from having a pure physics degree, companies also seek people with some knowledge of quantum foundations, but who have expertise in the field of computer science or various engineering disciplines.</p><p>When teaching QP, at the upper-secondary school level and beyond, previous research highlights that students have several difficulties when trying to make sense of fundamental concepts, including wave-particle duality, wave functions, atomic models, and complex behaviors such as time dependence and nondeterminism <ref type="bibr" target="#b15">[16]</ref>. Specifically, student difficulties seem to be closely tied to the challenge of making assumptions and developing argumentation based on quantum rather than classical or semi-classical physics. To address these conceptual difficulties, several proposals aligned with the conceptual approach have been investigated recently targeting the upper-secondary level, including ones such as inquiry-based learning environments for QP <ref type="bibr" target="#b16">[17]</ref>; activities linking classical and quantum computing <ref type="bibr" target="#b17">[18]</ref>, the introduction of a simplified Dirac notation to analyze single-photon interference in a</p><p>Michelson interferometer <ref type="bibr" target="#b18">[19,</ref><ref type="bibr" target="#b19">20]</ref>; game-based approaches to teaching quantum concepts <ref type="bibr" target="#b20">[21]</ref><ref type="bibr" target="#b21">[22]</ref><ref type="bibr" target="#b22">[23]</ref><ref type="bibr" target="#b23">[24]</ref>; instruction on the basics of quantum cryptography <ref type="bibr" target="#b24">[25]</ref>; and the use of experiments, simulations, and multiple representations in QP <ref type="bibr" target="#b10">[11,</ref><ref type="bibr" target="#b25">[26]</ref><ref type="bibr" target="#b26">[27]</ref><ref type="bibr" target="#b27">[28]</ref>. What these proposals have in common is adhering to the notion that it is challenging, yet crucial, for conceptual approaches to have connections to mathematical formalism, regardless if it is explicated in the teaching or not. Further, there seems to be agreement that to address the many conceptual hurdles in QP, students need exposure to experiments, conceptual arguments, mathematical rigor, and various representations that highlight the uses and limitations of models and analogies. However, currently lacking from proposals on alternative teaching approaches to QP is a clear connection to how such proposals affect students' general view and understanding of the concepts and phenomena in focus. Rather, findings and conclusions connect to addressing specific previously identified conceptual hurdles, or misconceptions, but give less insight into a qualitative understanding of what the participating students' views of the phenomena under study are after an intervention, and how the intervention aligns with conceptual views of experts.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Aim and research question</head><p>The current study investigates how QPic can be used to teach introductory QP. Specifically, we aim to gain essential qualitative insights regarding ways of experiencing quantum teleportation in the context of it being taught using QPic similar to Chapter 1 in Quantum in Pictures <ref type="bibr" target="#b8">[9]</ref>. Such insights can then be used to design further educational material, and serve as an important starting point for teachers about understanding how their students may understand and interpret the material being taught. We approach this aim by exploring the following research questions: To answer the research questions, we apply the methodological approach of phenomenography as a way of gaining insight into students' ways of comprehending quantum teleportation, in the context of how the intervention was designed. Relying on phenomenography in a qualitative study often involves developing categories of description, which are to be understood as a limited set of qualitatively different, hierarchically ordered, set of conceptions of a certain aspect of reality <ref type="bibr" target="#b28">[29]</ref>. These categories collectively form an outcome space that represents the qualitatively different ways in which the phenomenon under investigation is experienced. In his original paper, Marton <ref type="bibr" target="#b28">[29]</ref> argues that the categories of description can be understood as that a conception is akin to frozen forms of thought, that they exist only in terms of some mental act expressed by someone doing something in a certain setting, or context. As such, there exists an intimate relationship between someone's conception and their current worldly context, which in phenomenography is studied using a second-order perspective <ref type="bibr" target="#b29">[30]</ref>. Having a second-order perspective when analyzing data means that one has to consider specific statements as reflecting some specific situation in the world and having to judge it in light of other statements about the same situation.</p><p>A phenomenon is commonly understood as being constituted by the 'different ways in which an aspect of the world is conceived or experienced ' <ref type="bibr" target="#b30">[31]</ref>. In the phenomenographic tradition, it is considered impossible to experience a phenomenon in the absence of a situation <ref type="bibr" target="#b29">[30]</ref>. This means that ontologically, phenomenography adheres to a nondualistic view of awareness, wherein people can only describe the world as they experience it. An implication here is that a phenomenon has to be understood as being viewed through the study participants' awareness and reflections. It is typical for phenomenographic studies to employ qualitative data collection methods through interviews, open-ended questionnaires, or observations to investigate a phenomenon, that is, how some situation in the world is experienced <ref type="bibr" target="#b31">[32]</ref>. In Sec. III B, we provide further specific context on how we operationalize phenomenography in the analysis to identify the outcome space presented in the results (Sec. IV).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. AN APPROACH TO TEACHING QUANTUM TELEPORTATION USING DI-</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>AGRAMS</head><p>In this section, we briefly introduce how the intervention used in the current study was designed based on the contents covered in Quantum in Pictures <ref type="bibr" target="#b8">[9]</ref>. Specifically, here we aim to give the reader a general understanding of two exercises (E1 and E2) that students worked with, that ended up being the focus of the phenomenographic analysis presented in this paper. Here, we first cover how the concepts of wires and boxes were introduced, followed by necessary diagrammatic rules that were taught to students in order to provide them with sufficient tools to connect QPic to quantum teleportation. Then, E1 and E2, that were part of the problem set students worked on during the intervention, are described as they are relevant for understanding the analysis presented in Sec. IV. For a more in-depth introduction to the formalism, we refer readers to Appendix A in Dündar-Coecke et al. <ref type="bibr" target="#b7">[8]</ref>,</p><p>Quantum in Pictures <ref type="bibr" target="#b8">[9]</ref>, and Picturing Quantum Processes <ref type="bibr" target="#b9">[10]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Building blocks and relevant rules</head><p>In order for any mathematical formalism to be useful, including QPic and the way it is used in the current study, some fundamental rules need to be established, along with necessary building blocks that these rules can be applied to. These were introduced to the students from a purely mathematical standpoint first, before establishing connections to QP. First, the concept of diagrams is introduced by discussing how various processes in the world can be visualized using diagrams, such as how to send information from a computer to a printer (Fig. <ref type="figure" target="#fig_1">1a</ref>).</p><p>Then, the building blocks used in the formalism can be introduced, which are the concepts of wires and boxes (Fig. <ref type="figure" target="#fig_1">1b</ref>). Wires are defined as connections that dictate where something travels, whereas boxes are nodes between connections, indicating that some operation is being done on what is traveling through the wire. To make diagrams more useful, it is possible to have multiple types of wires, e.g., one signifying water flow, and another electricity, or classical and quantum information. As a first fundamental rule in the formalism, different types of wires cannot be connected directly, but need some box in between (Fig. <ref type="figure" target="#fig_1">1c</ref>). Further, when constructing diagrams using the formalism, we only need to consider relative connections, which is the second fundamental rule (Fig. <ref type="figure" target="#fig_1">1d</ref>). As a final rule on how to interpret diagrams, the notion of time and space is introduced as the direction of time flows upward, whereas spatial separation between various wires and processes can be communicated by separating them horizontally (Fig. <ref type="figure" target="#fig_1">1e</ref>).</p><p>To illustrate the similarity between boxes and mathematical functions, consider the function f (x, y) = x 2 + y. There, f (x, y) tells us that this function produces some output but needs two inputs, x and y. As such, it can be described using diagrams in terms of a box with two inputs and one output (Fig. <ref type="figure" target="#fig_2">2</ref>). From the example, it is evident that boxes can  have various forms regarding connections in and out from them. Boxes with only an output wire are defined as state-boxes, and boxes with only an input wire are defined as test-boxes.</p><p>Delving further into boxes, it is also necessary to introduce two more special boxes, namely a cup-state and a cap-test, along with the 'yanking equation'<ref type="foot" target="#foot_1">foot_1</ref> , and the realization that sliding a box through a cup or cap results in the box being rotated π radians (Fig. <ref type="figure" target="#fig_3">3</ref>). </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Connecting to quantum teleportation</head><p>By employing the building blocks introduced in Sec. II A, it becomes possible to connect the mathematical formalism with QP to illustrate the principle of quantum teleportation (Fig. <ref type="figure">4</ref>). First, the cup-state can be understood as producing entangled pairs of particles.</p><p>Then, if applying a box that performs an operation, e.g., measuring polarization direction of photons, measures one photon to be vertically polarized in some axis, the other photon must be horizontally polarized if measured along the same axis, assuming the photons are anti-correlated. In QPic, this is akin to the fact that when a box moves through a cup-state it is rotated (Fig. <ref type="figure" target="#fig_3">3c</ref>) and when conducting the same measurement on the other particle, the result is the same as just described, because we have now rotated the 'up' direction by π radians.</p><p>Further, the cap-test represents some kind of measurement, which we here consider to</p><formula xml:id="formula_0">(b) (c) (a) = = ✌ ✌ ✌ ☕ ☕ ✌ ☕ Alice Bob</formula><p>Bob Bob FIG. 4. A simple quantum teleportation protocol. An emoji of the Earth is included to signify that the three laboratory locations, separated by dashed gray lines, are separated by a significant distance. In (a), the entire process of teleporting a quantum state (state box with a coffee cup symbol) from Alice to Bob is illustrated, with the inclusion of an 'error' box (a right hand making the peace sign) being introduced in the BSM, and Bob applying the corresponding 'correction' box (a vertically flipped version of the 'error' box, i.e., a left hand making the peace sign) after having received classical information about which Bell state Alice ended up with. In (b), we have the mathematical equivalent system after having applied the 'yanking equation', and (c) shows that Bob ends up with the original state Alice wanted to teleport since his 'correction' box projects his qubit into |B 1 ⟩. The figure has been adapted from [9]. be a Bell state measurement (BSM), that can produce four different outcomes depending on which of the four Bell states is projected. In QPic, this is represented as cap-tests being 'maybe' boxes, which can result in 4 different outcomes, and thus have a chance of an 'error' box being introduced. Moving on to teleportation, this can be realized using three particles as follows. Consider two maximally entangled particles that are sent to two different laboratories, A to Alice's and B to Bob's. The pair of entangled particles are prepared such that they are in the state</p><formula xml:id="formula_1">|Ψ - AB ⟩ = 1 √ 2 (|0 A ⟩|1 B ⟩ -|1 A ⟩|0 B ⟩) ,<label>(1)</label></formula><p>which tells us that if Alice were to do a measurement resulting in |0⟩ A , then Bob would, using the same measurement basis, get |1⟩ B . Now, Alice has access to another particle, A ′ which they want to send to Bob, that is in some state</p><formula xml:id="formula_2">|ψ⟩ A ′ = a|0⟩ + b|1⟩ ,<label>(2)</label></formula><p>that is a superposition of the states |0⟩ and |1⟩, each with a probability of |a| 2 and |b| 2 to be found as the result of some measurement <ref type="bibr" target="#b32">[33]</ref>. If Alice conducts a BSM on A ′ and A, they are projected onto one of four Bell states,</p><formula xml:id="formula_3">|Ψ ± A ′ A ⟩, |Φ ± A ′ A ⟩ ,<label>(3)</label></formula><p>each with a probability of 0.25. The resulting Bell state is known to Alice, but from this it is impossible to know something about the original state of A ′ . Further, prior to Alice's measurement, the full state of the three involved particles can be described by</p><formula xml:id="formula_4">|Ψ A ′ AB ⟩ = 1 2 |Ψ - A ′ A ⟩|B 1 ⟩ + |Ψ + A ′ A ⟩|B 2 ⟩ + |Φ - A ′ A ⟩|B 3 ⟩ + |Φ + A ′ A ⟩|B 4 ⟩ ,<label>(4)</label></formula><p>where |Φ ± A ′ A ⟩ and |Ψ ± A ′ A ⟩ are the Bell states from Eq. 3, and |B i ⟩, i = 1, 2, 3, 4 the states Bob's particle B could be in <ref type="bibr" target="#b33">[34]</ref>. Following this, when Alice conducts a BSM the outcome is a projection onto one of the four Bell states, it is given by Eq. 4 that if Alice communicates their results from the BSM to Bob (which can be done via classical communication channels), Bob instantly knows which of the four possible states B have been projected onto. Bob can then manipulate B by rotation to effectively transform the state |B i ⟩ into |B 1 ⟩, which is equal to the original state of A ′ given the original entanglement of A and B was prepared such that they correspond to Eq. 1.</p><p>Connecting to QPic, depending on information sent to Bob from Alice there are three possible rotational transformation Bob may need to perform, and one outcome in which Bob had to do nothing in order to get the teleported state |B 1 ⟩. As such, the quantum teleportation protocol described here can be constructed diagrammatically as seen in Fig. <ref type="figure">4a</ref>, with one of three different 'error' boxes or no box being present as part of the 'cap' box.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Student exercises</head><p>During the intervention in this study, students had to work through problem sets. Here, we describe E1 and E2, that are closely related to Fig. <ref type="figure">4</ref>.</p><p>In E1, students are provided with Fig. <ref type="figure" target="#fig_4">5a</ref>. The exercise consists of two parts, where the first asks what needs to be done with the diagram (Fig. <ref type="figure" target="#fig_4">5a</ref>) in order for the equality to be true. Part 2 then asks the following: If you know that the diagram describe some process involving quantum particles, do you need to change anything in your proposed solution to part 1? This requires the solution to include the possibility of 'error' and 'correction boxes,' as well as a classical communication wire between them. E2 is a three part exercise, where the first asks students to describe what they think happens in the experiment that is described by Fig. 5b. Part 2 asks students to construct a diagram using wires and boxes that describes the same experimental situation, essentially having them reconstruct the figure produced in E1. Finally, part 3 asks if teleportation happens faster or slower than the speed of light.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. METHOD</head><p>The study was designed as a two-lesson intervention study, with the explicit aim to introduce students to quantum teleportation. Lesson one was divided up into two parts; a 30 minute lecture followed by a 15 minute session where students had time to work on a first problem set. Lesson two had a similar division, but the initial lecture here was instead 15 minutes followed by 20 minutes of group work with a second problem they had not seen previously, which included E1 and E2 as described above. The two lessons were separated by one week, and all students were encouraged to study the Power Point slides, chapters 1 and 2 in the textbook <ref type="bibr" target="#b8">[9]</ref>, keep working on the first problem set between lessons one and two, and contact the lecturer (the first author). During the group work section of each lesson, students were free to ask the teachers questions (the first and last authors). However, during lesson two, the students were told they would not be provided with complete answers to exercises, nor indication if their answers were correct. Finally, as a way for the researchers to gauge the level of difficulty of the intervention, a pre-and post-test was distributed at the beginning of lesson one, and at the end of lesson two, with five questions about quantum measurements, and one self evaluation question asking students to state the difficulty of the two lessons (post-test only). The test served as a tool to certify that the material covered during the lesson was not unexpectedly difficult (the mean difficulty rating was 6.3 out of 10), and that students had either some or no prior knowledge about the content that was taught.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Participants, data collection, and ethical considerations</head><p>We invited two different groups of to participate to ensure a breadth of prior knowledge:</p><p>third-year upper-secondary school students (n = 18) and fourth-year pre-service teachers (n = 3). The upper-secondary school students were part of a group of students taking an elective advanced physics course. This meant that we could expect that students had been introduced to some QP concepts, mainly stemming from ideas from early QP such as energy quantization in the Bohr atomic model, but also concepts such as superposition, the Heisenberg uncertainty principle, wave-particle duality, tunneling, and even the Schrödinger wave equation. Regarding the fourth-year pre-service teachers, they were students who had recently passed a course on modern physics and an introductory quantum mechanics course with a wave-first approach following the structure of Griffiths <ref type="bibr" target="#b34">[35]</ref>. They were invited to ensure we had participants with an even deeper prior knowledge about QP.</p><p>The current study draws upon data collected during lesson two, and answers to an exam question given at the end of the upper-secondary school students course. During lesson two, we collected students' hand written answers and notes during the group work part of the lesson. For the exam questions, copies of pseudonynomized answers of participating students to one exam question were collected. Further, the group work session was also video recorded using six cameras, one placed above each group's workbench. Finally, the pre-service teachers were also invited to partake in a video recorded group interview shortly after concluding lesson two. The interview served as an opportunity for the first author to gain additional insight into the students understanding of the phenomenon under study.</p><p>In designing the current study, we adhered to local and national ethical guidelines <ref type="bibr" target="#b35">[36]</ref>.</p><p>All participants were given verbal and written information about the study and the type of data to be collected, and invited to ask questions before deciding if they wanted to participate. Students who agreed to partake in the study all gave their written consent, and could rescind their consent at any time.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Analysis and limitations</head><p>The aim of the current study is to gain a deeper understanding of students' understanding of quantum teleportation. Relying on phenomenography as our approach to gain such insight, a central goal of the analysis is to develop categories of description. Practically, this was done by one of the researchers (the first author) first by going through all data collected in order to familiarize themselves with the content and identify initial underpinnings of the outcome space. During this initial part, the goal was to initialize the identification of a pool of meaning, which is a way of identifying connections between specific instances of students expressions episodes of discussion or problem solving that helps identify a specific way of understanding, or communicating about, the phenomenon under study <ref type="bibr" target="#b36">[37,</ref><ref type="bibr" target="#b37">38]</ref>. Since the pool of meaning is comprised out of a collection of specific episodes or expressions, the same student may, within the data collected, express many different ways of understanding the phenomenon. As such, in phenomenographic research, it is essential to understand that categories of description are not a way to categorize the students as a whole; rather, it is to uncover the variation in ways of conceptualizing the phenomenon <ref type="bibr" target="#b31">[32,</ref><ref type="bibr" target="#b36">37]</ref>.</p><p>After having identified a pool of meaning, a preliminary set of six categories of descriptions were developed by the first author and discussed and revised with two of the co-authors.</p><p>The categories of description were further revised by presenting the analysis to external researchers, including providing example transcripts. The two steps of revising the categories of description with internal and external researchers was done to adhere to the quality criteria proposed by Marton and Booth <ref type="bibr" target="#b29">[30]</ref>; that the categories should have a clear relation to the phenomenon under study, have a clear logical and hierarchical relationship to each other, and that they are parsimonious. Discussions with co-authors and external colleagues was repeated until a final set of categories was agreed upon.</p><p>Phenomenography, as a qualitative research approach, still has to consider issues regarding validity and reliability, including regarding if the resulting outcome space would be significantly different with a larger study population. In the current study, the number of participants was 18 in total, which falls within a typical accepted range for phenomenographic studies in order to capture maximum variation <ref type="bibr" target="#b38">[39]</ref>. Further, in phenomenographic research, validity is often checked based on communicative and pragmatic grounds <ref type="bibr" target="#b39">[40]</ref>.</p><p>Regarding communicative validity checks, this was checked by presenting results at various meetings with external researchers, as well as the other intended audience which are teachers. Pragmatic validity was demonstrated through how the findings expand understanding of quantum teleportation conceptions and inform teaching of quantum physics using QPic. Finally, reliability of the findings was ensured through dialogic reliability. That is, the involved researchers were in full agreement of the validity of the categories and each researcher's interpretation was adhered to.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. RESULTS</head><p>When working with E1 and E2 during lesson two, and in answering the exam question at the end of the upper-secondary students course, the participants exhibited how varying focus on time and measurement affected their understanding of quantum teleportation as described using QPic. In particular, we identified four categories of qualitatively different ways of understanding how a complete quantum state can be transferred across space and time using entanglement during the intervention (Table <ref type="table">I</ref>), i.e., a model of the principle of quantum teleportation: 1. Teleportation is physical transportation of a quantum state, 2. Measurement allows for reconstitution of a quantum state, 3. Entanglement and measurement as ways of connecting particles to allow reconstitution of a quantum state, and 4. Entanglement and measurement as ways of connecting particles to allow teleportation. Reconstitution is used to denote that Bob can somehow change their state (B) into the state to be teleported (A ′ ),</p><p>given that Bob receives complete knowledge about A ′ .</p><p>Here, we present the outcome space as descriptions with example excerpts of each of the identified categories 1 through 4, where Category 1 represents the hierarchically lowest category, and Category 4 the highest.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.">Teleportation is physical transportation of a quantum state</head><p>In this category, answers to problems and peer discussions make use of concepts, ideas, and tools provided by lesson one or two, as well as previous instruction during the course without being clearly related to one another or used in accordance to established definitions or rules.</p><p>This leads to solutions and discussions not making much sense from a physics point of view.</p><p>An example of this is given by the following answer, by S31, to an exam question asking students to motivate why quantum teleportation requires entangled particles:</p><p>S31: Quantum teleportation with entangled particles means that the object never stops existing, only that it is transported through the wire.</p><p>TABLE I. The outcome space with summarized descriptions for each category. Category Description 1. Teleportation is physical transportation of a quantum state Quantum teleportation involves physical transportation of a quantum state from Alice to Bob. Time is not considered in diagrams and entangled particles are not present in explanations. 2. Measurement allows for reconstitution of a quantum state Teleportation no longer relies on physical transportation and the need for conducting measurements on the state to be teleported is identified. 'When' teleportation happens is still unclear, and the role of entanglement is not discerned. Attempts are made to connect diagrams to physical experiments. 3. Entanglement and measurement as ways of connecting particles to allow reconstitution of a quantum state A stronger emphasis is put on the concept of entanglement, but only in the sense that Alice and Bob have access to one particle each of an entangled pair. Teleportation still relies on some reconstitution process that requires Bob to have complete knowledge of the quantum state to be teleported. Time is seen as necessary to consider in diagrams, and teleportation is identified as non-instantaneous. Attempts are made to connect diagrams to physical experiments.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.">Entanglement and measurement as ways of connecting particles to allow teleportation</head><p>Here, entanglement is central to quantum teleportation and would not be possible without it, and all three particles are identified as becoming intimately connected through the initial entanglement and the BSM measurement. Superposition is identified to be a relevant concept.</p><p>Relativity is identified as not violated due to the need for classical communication. Diagrams are used to connect abstract concepts to physical experiments.</p><p>Here, the student is drawing upon concepts that had been introduced throughout the intervention, but conflates the mathematical rule of how boxes are allowed to move across wires in QPic with a physical movement of the state box in 'reality.' During the group work session in lesson two, similar confusions between mathematical rules and physical explanations were evident as students were pointing and moving their fingers across the wire signaling that the state box, that is, the quantum state or particle to be teleported, was allowed to physically move as long as the correct mathematical operations were applied to the diagram.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">Measurement allows for reconstitution of a quantum state</head><p>This category signifies a meaningful shift in interpreting the diagrams the students had been introduced to. Namely that it is acknowledged that there is a difference, although nebulous, between mathematical rules and operations with wires and boxes and the physical interpretations of these. In using the mathematical tools of boxes and wires in this category, there is still some notions of the sense of physical transportation in explanations. However, a meaningful difference is that it is asserted that the initial quantum state to be teleported is destroyed when applying the cap box, since it is recognized as being some kind of measurement and that measurements disturb, or destroys, quantum states. When working on E1, S24 and S30 comes to the following conclusion:</p><p>S30: Ok lets go to the next part. Do we need to change anything in our solution if we know the process involves quantum particles? S24: Hmm. S30: I don't... really know what... S24: Well isn't the solution the same as the one we wrote down? S30: Um. But when we're working with quantum particles this thing [points to the cap operation] can give an output that is a bit... wrong somehow. S24: Hmm... S30: Maybe we just ask the teacher. S24: Yes but, well don't we just need to add this signal thing [classical communication] so that we know how the particle interacts with the entangled one. Then... S30: Yes! That's correct! Then we can see what happens. Let's write it down [Both start writing] S30: But wait, why are we doing classical communication? To ensure the quantum state is the same or what should we say [gestures at the right side of the diagram, see Fig. 4a]? S24: Um, yes. Because to know how we should change the other particle to get the same state as the original one, we need it.</p><p>In the excerpt, S24 directs the discussion towards the idea that applying the cap box indicates doing some kind of measurement on two particles, A ′ and A. Then, there is a need for classical communication between Alice which allows Bob to somehow get the state to be teleported. Here the students try to connect the diagrammatic solution to some physical reality, but without discerning the role of entanglement. Later in their discussion, S24 and S30 concludes that the classical communication lets Bob know everything about the original state of A ′ with no mention of entanglement, but that the wires in the diagram connects A ′ to Bob.</p><p>As such, although they try to connect the diagrammatic solution to some physical reality, the students have not discerned the role of entanglement and instead seem to infer that it is possible, using a cap test, to somehow determine all information necessary to fully reconstruct the quantum state at another place.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.">Entanglement and measurement as ways of connecting particles to allow reconstitution of a quantum state</head><p>In categories 3 and 4, entanglement plays more of a central role, as evident by the following exam question (same question as described in category 1) answer provided by S29:</p><p>S29: That particles are entangled means that their properties somehow reflects, or are 'dependent' on each other. When one is observed you instantly know something about the corresponding property of the other particle. It is this fact that is necessary for quantum teleportation to be possible.</p><p>Further, when describing the quantum teleportation protocol, S29 states that Bob can somehow manipulate particle B to become a copy of A ′ since the entanglement between A and B, along with classical communication about the output of Alice's BSM, provide complete information about A ′ . From the written explanation, it is not discernible whether S29 considers 'complete information about A ′ ' to be connected to a classical understanding properties and observations.</p><p>What more clearly distinguishes Category 3 from 4, however, is the idea that teleportation still requires complete knowledge about A ′ , and that this is somehow part of the information Alice sends. The following segment by students S14, S15, and S34 when working on E2, illustrates this way of describing teleportation, where entanglement is recognized as needed for teleportation, but described more in terms of being used as a key to decrypt Alice's classically communicated information. that Bob then gets all information through the outcome of the measurement and his entangled particle.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>S14:</head><p>Perfect, and the entangled particle we need because....</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>S15:</head><p>Well you know... Since Bob can use it to know, using Alice's information, the initial state [|ψ⟩ A ′ ] and then copy it.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.">Entanglement and measurement as ways of connecting particles to allow teleportation</head><p>Category 4 was rarely seen in the group work session for the upper-secondary school students.</p><p>Rather, it emerged most clearly when the pre-service teachers were working with E2:</p><p>S3: So I think it's like this. The initial state is what we want to measure so that it can be teleported. And the teleported state is after measurement and that the entangled particle Bob has from the entangled pair is manipulated so that it becomes equal to the initial state. But we still don't know everything about the initial state. But then Bob can measure the teleported state to investigate what the initial state was. S2: Yeah, that's good. But we also need to connect this [gestures to the picture], to the wires. Like what does a wire actually mean? S1: Well, let's just do it and draw. S2: So then it's like the same as before [points to E1]? S3: I did it like this [shows their diagram to the others]. S1: Then we think like something is happening here, a measurement [points to the cap test]. S2: Yeah, and then a correction box at Bob to show how to manipulate his entangled particle so that it actually is the same as the initial state. S3: Mm. Because when we do this [points to BSM in Fig. 5b] it really connects the initial state to Bob through entanglement [points to the 'cup' state].</p><p>During this episode, S3 identifies that what happens when Alice does her measurement is that all particles becomes connected through Alice's BSM and entanglement between A and B. As such, this category differs from the previous in that it is recognized that the measurement Alice does connects the initial state to Bobs part of the entangled pair somehow. Additionally, S3 communicates that neither Alice nor Bob knows the full state of the teleported one, merely that entanglement and the BSM makes it so that with some manipulation by Bob they can be sure that the teleported state is in fact the same as the initial state.</p><p>Here, we see an idea about teleportation communicated that is akin to the description provided in Sec. II B. Specifically that the teleportation protocol involves Bob manipulating B based on the classical information provided by Alice. Thus, in this category copying <ref type="foot" target="#foot_2">3</ref>and reconstitution of a specific state based on having complete knowledge about the initial state |ψ⟩ A ′ -something we see as still present in Category 2 and 3-is impossible.</p><p>Finally, when working with E2, S29 brought up superposition, drawing upon previous knowledge about the concept as taught prior to the intervention in connection to mechanical waves and an introduction to QP, to argue that complete information about the state of A ′ is not possible to fully extract:</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>S29:</head><p>Well, I mean Bob can't manipulate his state until Alice sends the outcome of the measurement, which says something about the quantum state to be teleported's superposition. When receiving information about the measurement from Alice, Bob can then know what needs to be done to his particle in order to make it so that his particle's superposition is the same as the initial state.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. DISCUSSION</head><p>The four identified categories of description presented in this paper (Tab. I) provides several implications for teaching and learning QP at the pre-university level, including affordances and limitations of using QPic employed in the current study, and the role of various concepts for students understanding of quantum teleportation. Here, we first discuss specific concepts that emerged as central differentiators between categories, which expands upon the answer to RQ1, which is primarily answers in the results and Tab. I. Then, the results are discussed in relation to the role of mathematical formalism in conceptual understanding, that serves to shed more light on RQ2. Finally implications for teaching and learning QP are discussed in relation to the current study.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Key conceptual hurdles for understanding quantum teleportation</head><p>The categories of description revealed different conceptions of measurement in QP. Category 1 stood out by being the one with a strong classical notion of measurement as something passive that does not have any effect on the process or system being observed. In Category 2, we see a transition towards measurement being something that disturbs a quantum state, but still something that allows one to gain complete information about a quantum state after measurement. Then, it is still possible to conduct measurements on a quantum state and fully determine everything about it, which still is within the classical realm of conceiving measurement. The more sophisticated, disciplinary accepted description of measurement comes to the fore in categories 3 and 4, where Category 4 fully incorporates the idea that the BSM on A ′ and A is a way to couple A ′ to B via the entanglement between A and B.</p><p>In specifically Category 4, we thus find a view of measurement to be an active process, and something that determines rather than revealing outcomes, thus fundamentally affecting the system that is being measured.</p><p>Regarding how time is conceived or being aware of, a noticeable difference can be identified if grouping together categories 1 and 2, and 3 and 4 respectively. In the first two categories, where the process of 'teleportation' includes some physical transportation or reconstitution of a quantum particle, there seem not to be a direction of time in the diagrams per se. Additionally, in these categories the classical notion of transportation and communication is at the core of teleportation, leading to conceptions of quantum teleportation where entanglement is not a relevant concept to consider. In contrast, the temporal recognition in the diagrams is more clearly connected to a physical experimental situation, leading to conceptions of quantum teleportation akin to categories 3 and 4 having to become aware of entanglement. The struggle of successfully recognizing and dealing with a temporal dimension in diagrams may connect to previously identified struggles involving time and QP, such as inferring temporal directions in quantum atomic models, diagrams involving the wave equation, and general problems involving time evolution in QP <ref type="bibr" target="#b15">[16,</ref><ref type="bibr" target="#b41">42,</ref><ref type="bibr" target="#b42">43]</ref>. The identified struggles of dealing with temporality may connect to complications involving time and QP, such as the indeterministic nature of measurement outcomes on systems in superposition and that correlations due to entanglement seemingly introducing faster-than-light (FTL) communication, both conceptual challenges requiring sophisticated temporal reasoning.</p><p>Next up is the role of entanglement, and here we can focus on categories 3 and 4, as the concept was seemingly absent in the lower categories. The differences in describing entanglement in Category 3 versus 4 boils down to the fact that in Category 4 it is identified that the system of particles is understood to be in a state similar to Eq. 4, and that Alice only needs to convey classically the results from their BSM. In contrast, Category 3 exhibit a more fuzzy view of why exactly entanglement is necessary, focusing on the assumption that all information about the state to be teleported, A ′ , is communicated to Bob via a combination of Alice communicating results from their BSM and the fact that Bob has access to one of the originally maximally entangled particles, B. While this description may sound expert-like (see, for example, the similarity to <ref type="bibr" target="#b33">[34]</ref>), a crucial difference lies in the fact that in Category 3 there persists an assumption that in order to reconstruct the state |ψ⟩ A ′ , Bob needs complete knowledge about A ′ .</p><p>Previous research has identified the challenge of teaching the concept of entanglement, in part due to it being closely connected to philosophical foundations of QP, as well as it seemingly allowing for FTL communication or involving some kind of physical connections <ref type="bibr" target="#b43">[44,</ref><ref type="bibr" target="#b44">45]</ref>. From our results, it seems as though QPic in itself does little to address these previously identified struggles. However, the intervention in this study did not focus much on connecting the diagrammatic representation of entanglement (the cup-state) to physical experimental situations beyond stating that the quantum particle A ′ Alice wants to send to Bob could be in a superposition of states similar to Eq. 2, and a brief discussion about measurements are considered to be an active process in QP (as opposed to being passive, non-affecting, in classical physics). This, coupled with the relatively complex conception of the role of entanglement in quantum teleportation identified in categories 3 and 4, may hint that QPic, together with purposeful teaching, could be a fruitful mathematical tool to use as a basis for teaching QP.</p><p>Finally, the categories of description revealed different conceptions of measurement in QP. Category 1 stood out by being the one with a strong classical notion of measurement as something passive that does not have any effect on the process och system being observed.</p><p>In Category 2, we see a transition towards measurement being something that disturbs a quantum state, but still something that allows one to gain complete information about a quantum state after measurement. Then, it is still possible to conduct measurements on a quantum state and fully determine everything about it, which still is within the classical realm of conceiving measurement. The more sophisticated, disciplinary accepted description of measurement comes to the fore in categories 3 and 4, where Category 4 fully incorporates the idea that the BSM on A ′ and A is a way to couple A ′ to B via the entanglement between A and B. In specifically Category 4, we thus find a view of measurement to be an active process, and something that determines rather than revealing outcomes, thus fundamentally affecting the system that is being measured.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. The role of mathematical formalism in conceptual understanding</head><p>The mathematical formalism used to teach quantum teleportation (QPic) in the current study has been addressed as a 'simplified' diagrammatic approach, which does not mean that it is 'simplistic,' or 'dumbed down.' However, as is identified in our results, specifically in Category 1, there is still meaningful work to be done in order for students to make disciplinary accepted connections between a mathematical, diagrammatic solution to a problem and the corresponding physical phenomenon to be described by said solution. Conceptions of quantum teleportation in Category 1 primarily, and to some extent Category 2 is akin to how students struggle with conceptualizing models as a simplified, or ideal version of the world <ref type="bibr" target="#b45">[46]</ref>, and how the same mathematical construct can have widely different interpretations depending on what meaning is given to each symbol in an equation (or type of wire, block, and rule in QPic) <ref type="bibr" target="#b46">[47]</ref>. As such, the mathematical struggles identified in these lower categories provide essential further insight into previous work on teaching QP using the same diagrammatic approach <ref type="bibr" target="#b7">[8,</ref><ref type="bibr" target="#b10">11]</ref>. Namely that one main argument used has been that QPic is more intuitive than traditional mathematical formalisms used to teach QP, in the sense that students are able to make use of it after rather little instruction. Our findings problematize this notion in that the problem of connecting mathematical solutions and descriptions to physical phenomenon may persist even if the mathematics are more approachable.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Implications for teaching and learning</head><p>As has been discussed previously, the traditional historical or semi-historical approach as a way to introduce QP in upper-secondary school physics classrooms may not communicate adequately the modern state of QP knowledge and utility <ref type="bibr" target="#b4">[5,</ref><ref type="bibr" target="#b5">6]</ref>. Our results indicate that teaching quantum phenomena such as quantum teleportation using a simplified diagrammatic approach may be a fruitful way to introduce new ways of thinking about connections between mathematical formalisms and the quantum world. However, this study also provides further insight into students' ways of understanding quantum teleportation. This includes making educators aware of the role or temporality, entanglement, and measurement when students try to make sense of quantum teleportation. Specifically, educators can use our findings to design instruction that preemptively addresses the conceptual difficulties characteristic of categories 1 and 2, supporting students' progression toward more sophisticated ways of understanding quantum teleportation.</p><p>As a final note, the European Competence Framework for Quantum Technologies <ref type="bibr" target="#b12">[13]</ref> identifies the need for differentiated expertise in the quantum industry. The diagrammatic approach used as the context for the current study may be particularly well-suited for further investigation to be used to introduce students to modern aspects of QP, since it builds the foundation for later studying ZX-calculus as a way to understand quantum theory <ref type="bibr" target="#b9">[10]</ref>.</p><p>For teacher education, it may prove particularly useful as it opens up avenues to start from modern quantum experiments and applications, thus extending the future repertoire of available illustrations and experiments the can discuss and explore with students.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VI. CONCLUSION</head><p>In this paper, we investigated how upper-secondary physics students and pre-service teachers understood the principle of quantum teleportation when taught using QPic. Through phenomenographic analysis, we identified four qualitatively different ways students experience this phenomenon (Tab. I), thereby answering RQ1. The categories form a hierarchical progression, particularly distinguished by varying conceptualizations of temporality in quantum processes, the role of entanglement, the act of measurement on quantum systems, and how QPic is identified to be a model of the quantum teleportation protocol. The hierarchical structure of the outcome space indicates that Category 4 is the most complex way of understanding a diagrammatic representation of quantum teleportation identified in this study.</p><p>Regarding our RQ2 our results reveal both affordances and challenges. The formalism provided an accessible entry point for studying quantum teleportation without requiring particular mathematical prerequisites. However, as evidenced by the lower categories, students may make overly literal connections between mathematical operations in diagrams and the physical phenomena being described, leading to problematic conceptions about entanglement, superposition, and teleportation similar to those reported previously in the literature.</p><p>When designing teaching and learning sequences using a diagrammatic formalism similar to that employed in this study, several pedagogical implications merit consideration. </p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>RQ1:</head><figDesc>What are the qualitatively different ways of experiencing a diagrammatic representation of quantum teleportation among upper-secondary students and pre-service physics teachers? RQ2: In what ways do students relate the use of QPic to their understanding of the principle of quantum teleportation? C. Theoretical framework</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>FIG. 1 .</head><label>1</label><figDesc>FIG. 1. An overview of some concepts and rules introduced prior to having students use QPic to discuss quantum teleportation. (a) shows how diagrams can be used to convey connections between objects or describe processes in the real world. (b) introduces the two building blocks used in the version of the formalism relevant in the current study, wires and boxes. A wire shows where something is transported, and boxes show what operation is performed on what is transported. (c) establishes the first fundamental rule: type of wires must match, but they can be connected through a box. (d) establishes the second fundamental rule: only connections matter. (e) shows how to conceptualize time and space in diagrams. Parts of the figure, specifically (a), (b), (d), and(e) are adapted from<ref type="bibr" target="#b8">[9]</ref>.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>FIG. 2 .</head><label>2</label><figDesc>FIG.2. Establishing a similarity between boxes and mathematical functions. The box represents the function f (x, y) = x 2 + y, and produces one output (wire), given two input (wires).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>FIG. 3 .</head><label>3</label><figDesc>FIG. 3. Introducing the ideas of bending wires and sliding boxes. (a) defines a cup-state as a bent wire with two outputs, and a cap-test as a bent wire with two inputs. (b) defines the 'yanking equation' which follows logically from the second fundamental rule. (c) illustrates that sliding a box through a cup-state results in a rotation by π radians. The figure has been adapted from [9].</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head>FIG. 5 .</head><label>5</label><figDesc>FIG.5. Adaptions of the figures in E1 (a) and E2 (b). (a) is adapted from<ref type="bibr" target="#b8">[9]</ref>, and (b) is adapted from<ref type="bibr" target="#b32">[33]</ref>.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><figDesc>this [points to Fig. 5b] is just teleportation. But, I'm not sure why the initial state comes from here [gestures to the text] and not from here [circles the EPR source]? S15: But if you just consider it as equal to this [shows their drawing of a diagram with boxes and wires similar to Fig. 4a]? S34: Ah, yes of course. You are correct. And then we have the classical communication. It's just teleportation of quantum particles. But then, does the teleportation happen faster or slower than the speed of light? if you're Bob, and looks at Alice... I mean you can never observe the outcome of their results faster than the speed of light, even if something is happening with the two entangled particles instantaneously.. That sounds like a good thought. The best idea we have. Plus</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><figDesc>First,it is essential to explicitly address the relationship between mathematical operations and symbols in the formalism and the physical processes they represent. Second, the temporal aspect of teleportation requires explicit attention, as recognizing the flow and direction of time in diagrams appears critical for avoiding classical transportation misconceptions.Third, instruction should purposefully develop understanding of entanglement in relation to correlations and measurement outcomes on quantum systems.Future studies exploring alternative approaches to teaching modern quantum physics concepts should consider not only whether the approach can be implemented at the uppersecondary school level, but also what new ways of conceptualizing quantum phenomena these approaches may introduce. Additionally, given the prevalent issue that teachers possess limited knowledge of illustrative examples and experimental setups for modern quantum physics, alternative teaching approaches must consider implications for future teacher training. Thus, studying not only student conceptions but also teacher and pre-service teacher conceptions becomes important, as teacher understanding significantly influences instructional design and implementation, ultimately shaping how students are introduced to various facets of modern quantum physics.</figDesc></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="1" xml:id="foot_0"><p>which has been used previously to refer to 'quantum picturalism'<ref type="bibr" target="#b7">[8]</ref>.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="2" xml:id="foot_1"><p>In<ref type="bibr" target="#b9">[10]</ref>, Eq. 4.11, there are three 'yanking equations.' Here, we only include, and use, the first one.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="3" xml:id="foot_2"><p>which is of course not possible as per the no-cloning theorem<ref type="bibr" target="#b40">[41]</ref>.</p></note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div><head>Acknowledgements</head><p>S.K-W. and A.P. would like to thank <rs type="person">Muhammad Hamza Waseem</rs> and <rs type="person">Caterina Puca</rs> for valuable discussions about experiences on teaching the contents of Quantum in Pictures, and for commenting on a previous version of the paper. S.K-W. and A.P. are also grateful to <rs type="person">Fredrik Lannestam Holmelin</rs> for connecting them, thus making this collaboration possible.</p><p>The educational material presented in Sec. II and used as a basis for the intervention in this study was developed based on the work "<rs type="projectName">Quantum In Pictures</rs>" by <rs type="person">Professor Bob Coecke</rs> and <rs type="person">Dr Stefano Gogioso</rs>, © 2022 Quantinuum Ltd.</p></div>
+			</div>
+			<div type="funding">
+<div><head>Funding</head><p>S.K-W. acknowledge the support from <rs type="funder">The Royal Society of Arts and Sciences in Gothenburg</rs>.</p></div>
+			</div>
+			<listOrg type="funding">
+				<org type="funded-project" xml:id="_UEJPvZq">
+					<orgName type="project" subtype="full">Quantum In Pictures</orgName>
+				</org>
+			</listOrg>
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>DECLARATIONS Availability of data and materials</head><p>The data that support the results in this study are not publicly available as to preserve the privacy and anonymity of participants but are available from S.K-W. and J.E. upon reasonable request.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Competing interests</head><p>S.K-W., A.J., and J.E. declare no competing interests. A.P. is employed by Quantinuum, who is the publisher of the work Quantum In Pictures which was used to develop the intervention in this study. </p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<monogr>
+		<title level="m" type="main">The Second Quantum Revolution</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Jaeger</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<publisher>Springer International Publishing</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">The future is quantum: universities look to train engineers for an emerging industry</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Chen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">623</biblScope>
+			<biblScope unit="page" from="653" to="655" />
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Future quantum workforce: Competences, requirements, and forecasts</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Greinert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Müller</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Bitzenbauer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">S</forename><surname>Ubben</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">A</forename><surname>Weber</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys Rev Phys Educ Res. 2023</title>
+		<imprint>
+			<biblScope unit="volume">19</biblScope>
+			<biblScope unit="page">10137</biblScope>
+			<date>6</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Editorial: Focused Collection: Investigating and Improving Quantum Education through Research</title>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">B</forename><surname>Lane</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Michelini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Singh</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys Rev Phys Educ Res</title>
+		<imprint>
+			<biblScope unit="volume">2025</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page">10002</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Analysis of secondary school quantum physics curricula of 15 different countries: Different perspectives on a challenging topic</title>
+		<author>
+			<persName><forename type="first">Hke</forename><surname>Stadermann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Van Den Berg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">J</forename><surname>Goedhart</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys Rev Phys Educ Res</title>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="page">10130</biblScope>
+			<date>2019 5</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">A path to build basic Quantum Mechanics ideas in the context of light polarization and learning outcomes of secondary students</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Michelini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Stefanel</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J Phys: Conf Ser. 2021</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="page">12052</biblScope>
+			<date type="published" when="1929">1929</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">The core of secondary level quantum education: a multi-stakeholder perspective</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Merzel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Bitzenbauer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Krijtenburg-Lewerissa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Stadermann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Andreotti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Anttila</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">EPJ Quantum Technol</title>
+		<imprint>
+			<biblScope unit="volume">11</biblScope>
+			<biblScope unit="page">27</biblScope>
+			<date>2024 12</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<monogr>
+		<title level="m" type="main">Making the quantum world accessible to young learners through Quantum Picturalism: An experimental study</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Dündar-Coecke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Puca</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Yeh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">H</forename><surname>Waseem</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">M</forename><surname>Pothos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Cervoni</surname></persName>
+		</author>
+		<ptr target="http://arxiv.org/abs/2504.01013" />
+		<imprint>
+			<date type="published" when="2025">2025</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<monogr>
+		<author>
+			<persName><forename type="first">B</forename><surname>Coecke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Gogioso</surname></persName>
+		</author>
+		<title level="m">Quantum in Pictures. Quantinuum</title>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<monogr>
+		<author>
+			<persName><forename type="first">B</forename><surname>Coecke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kissinger</surname></persName>
+		</author>
+		<title level="m">Picturing Quantum Processes</title>
+		<imprint>
+			<publisher>Cambridge University Press</publisher>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<monogr>
+		<title level="m" type="main">Quantum Picturalism: Learning Quantum Theory in High School</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Dündar-Coecke</surname></persName>
+			<affiliation>
+				<orgName type="collaboration">2023 IEEE Int. Conf. on Quantum Comput. Eng.</orgName>
+			</affiliation>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Yeh</surname></persName>
+			<affiliation>
+				<orgName type="collaboration">2023 IEEE Int. Conf. on Quantum Comput. Eng.</orgName>
+			</affiliation>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Puca</surname></persName>
+			<affiliation>
+				<orgName type="collaboration">2023 IEEE Int. Conf. on Quantum Comput. Eng.</orgName>
+			</affiliation>
+		</author>
+		<author>
+			<persName><forename type="first">Sml</forename><surname>Pfaendler</surname></persName>
+			<affiliation>
+				<orgName type="collaboration">2023 IEEE Int. Conf. on Quantum Comput. Eng.</orgName>
+			</affiliation>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">H</forename><surname>Waseem</surname></persName>
+			<affiliation>
+				<orgName type="collaboration">2023 IEEE Int. Conf. on Quantum Comput. Eng.</orgName>
+			</affiliation>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Cervoni</surname></persName>
+			<affiliation>
+				<orgName type="collaboration">2023 IEEE Int. Conf. on Quantum Comput. Eng.</orgName>
+			</affiliation>
+		</author>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<publisher>QCE). IEEE</publisher>
+			<biblScope unit="page" from="21" to="32" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Quantum Physics Education Research over the Last Two Decades: A Bibliometric</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Bitzenbauer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Analysis. Educ Sci</title>
+		<imprint>
+			<biblScope unit="volume">11</biblScope>
+			<biblScope unit="page">699</biblScope>
+			<date>2021 11</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">European competence framework for quantum technologies (CFQT): Reference framework for planning, mapping and comparing QT-related educational activities, personal qualification and job requirements</title>
+	</analytic>
+	<monogr>
+		<title level="m">Content and Technology &amp; Quantum Flagship</title>
+		<imprint>
+			<publisher>Publications Office of the European Union</publisher>
+			<date type="published" when="2025">2025</date>
+		</imprint>
+	</monogr>
+	<note>European Commission: Directorate-General for Communications Networks</note>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<monogr>
+		<title level="m" type="main">Excecutive Office of the President of the United States</title>
+		<ptr target="https://www.quantum.gov/wp-content/uploads/2022/02/QIST-Natl-Workforce-Plan.pdf" />
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+		<respStmt>
+			<orgName>Subcommittee on Quantum Information Science Committee on Science of the National Science &amp; Technology Council. Quantum Information Science and Technology Workforce Development National Strategic Plan</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Mapping quantum industry demands to education: a critical analysis of skills, qualifications, and modalities</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Devendrababu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ganguly</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Hemachandran</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">EPJ Quantum Tech</title>
+		<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="page">105</biblScope>
+			<date>2025 12</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Insights into teaching quantum mechanics in secondary and lower undergraduate education</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Krijtenburg-Lewerissa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">J</forename><surname>Pol</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Brinkman</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Van Joolingen Wr</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys Rev Phys Educ Res</title>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="page">10109</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<monogr>
+		<title level="m" type="main">Designing inquirybased learning environments for quantum physics education in secondary schools. Phys Educ</title>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">V</forename><surname>Rodriguez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">T</forename><surname>Van Der Veen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Anjewierden</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Van Den Berg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jong</forename><forename type="middle">T</forename><surname>De</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="volume">55</biblScope>
+			<biblScope unit="page">65026</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">From computing to quantum mechanics: accessible and hands-on quantum computing education for high school students</title>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Feng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">T</forename><surname>Cheung</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">EPJ Quantum Technol</title>
+		<imprint>
+			<biblScope unit="volume">11</biblScope>
+			<biblScope unit="page">58</biblScope>
+			<date>2024 12</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Introducing quantum physics concepts and Dirac notation at the secondary school level: Insights into student reasoning from an acceptance survey</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Hennig</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Tóth</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Veith</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Bitzenbauer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys Rev Phys Educ Res</title>
+		<imprint>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="page">20147</biblScope>
+			<date>2024 11</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Mathematical sense making of quantum phenomena using Dirac notation: its effect on secondary school students&apos; functional thinking about photons</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Hennig</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Tóth</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Veith</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Bitzenbauer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">EPJ Quantum Technol</title>
+		<imprint>
+			<biblScope unit="volume">11</biblScope>
+			<biblScope unit="page">61</biblScope>
+			<date>2024 12</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<monogr>
+		<title level="m" type="main">Entanglement Ball: Using Dodgeball to Introduce Quantum Entanglement. Phys Teach</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Marckwordt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Muller</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Harlow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Franklin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">H</forename><surname>Landsberg</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="volume">59</biblScope>
+			<biblScope unit="page" from="613" to="616" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Entangle me! A game to demonstrate the principles of quantum mechanics</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>López-Incera</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Dür</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Am J Phys</title>
+		<imprint>
+			<biblScope unit="volume">87</biblScope>
+			<biblScope unit="page" from="95" to="101" />
+			<date>2019 2</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Quantum tic-tac-toe: A teaching metaphor for superposition in quantum mechanics</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Goff</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Am J Phys</title>
+		<imprint>
+			<biblScope unit="volume">74</biblScope>
+			<biblScope unit="page" from="962" to="973" />
+			<date>2006 11</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Defining quantum games</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Piispanen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Pfaffhauser</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Wootton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Togelius</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kultima</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">EPJ Quantum Technol</title>
+		<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="page">7</biblScope>
+			<date>2025 12</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Keep it secret, keep it safe: teaching quantum key distribution in high school</title>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">Y</forename><surname>Weissman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Merzel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Katz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Galili</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">EPJ Quantum Technol</title>
+		<imprint>
+			<biblScope unit="volume">11</biblScope>
+			<biblScope unit="page">64</biblScope>
+			<date>2024 12</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Using multiple representations to improve student understanding of quantum states</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Marshman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Maries</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Singh</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys Rev Phys Educ Res</title>
+		<imprint>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="page">20152</biblScope>
+			<date>2024 12</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Student reasoning about quantum mechanics while working with physical experiments</title>
+		<author>
+			<persName><forename type="first">V</forename><surname>Borish</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">J</forename><surname>Lewandowski</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys Rev Phys Educ Res</title>
+		<imprint>
+			<biblScope unit="volume">2024</biblScope>
+			<biblScope unit="page">20135</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Interactive homework to support student learning of measurement uncertainty in quantum mechanics</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Passante</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kohnle</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys Rev Phys Educ Res</title>
+		<imprint>
+			<biblScope unit="volume">2024</biblScope>
+			<biblScope unit="page">20131</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Phenomenography -Describing conceptions of the world around us</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Marton</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/BF00132516</idno>
+		<ptr target="http://link.springer.com/10.1007/BF00132516" />
+	</analytic>
+	<monogr>
+		<title level="j">Instr Sci</title>
+		<imprint>
+			<biblScope unit="volume">10</biblScope>
+			<biblScope unit="page" from="177" to="200" />
+			<date>1981 7</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<monogr>
+		<title level="m" type="main">Oxon : Routledge; 1997. Description based upon print version of record</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Marton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Booth</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Learning</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Abingdon</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Workplace experiences of information literacy</title>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">S</forename><surname>Bruce</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Int J Inf Manag</title>
+		<imprint>
+			<biblScope unit="volume">19</biblScope>
+			<biblScope unit="page" from="33" to="47" />
+			<date>1999 2</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Phenomenographic approach to understanding students&apos; learning in physics education</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Guisasola</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Campos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Zuza</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Zavala</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys Rev Phys Educ Res</title>
+		<imprint>
+			<biblScope unit="volume">2023</biblScope>
+			<biblScope unit="issue">8</biblScope>
+			<biblScope unit="page">20602</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Experimental quantum teleportation</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Bouwmeester</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">W</forename><surname>Pan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Mattle</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Eibl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Weinfurter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Zeilinger</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">390</biblScope>
+			<biblScope unit="page" from="575" to="579" />
+			<date type="published" when="1997">1997</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Teleporting an unknown quantum state via dual classical and Einstein-Podolsky-Rosen channels</title>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">H</forename><surname>Bennett</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Brassard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Crépeau</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Jozsa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Peres</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">K</forename><surname>Wootters</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review Letters</title>
+		<imprint>
+			<biblScope unit="volume">70</biblScope>
+			<biblScope unit="page" from="1895" to="1899" />
+			<date>1993 3</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">J</forename><surname>Griffiths</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">F</forename><surname>Schroeter</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<publisher>Cambridge University Press</publisher>
+		</imprint>
+	</monogr>
+	<note>Introduction to Quantum Mechanics. 3rd ed</note>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<monogr>
+		<title level="m" type="main">Good Research Practice 2024</title>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">R</forename><surname>Council</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2025">2025</date>
+			<publisher>Swedish Research Council</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<monogr>
+		<title level="m" type="main">Phenomenography for Physicists. Chalmers Strategic Effort on Learning and Teaching (C-SELT)</title>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">W</forename><surname>Adawi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Åke</forename><surname>Ingerman</surname></persName>
+		</author>
+		<editor>Christie</editor>
+		<imprint>
+			<date type="published" when="2006">2006</date>
+			<biblScope unit="page" from="262" to="271" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<monogr>
+		<title level="m" type="main">What makes the difference? An empirical comparison of critical aspects identified in phenomenographic and variation theory analyses</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Holmqvist</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Selin</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<publisher>Palgrave Commun</publisher>
+			<biblScope unit="page">71</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<monogr>
+		<title level="m" type="main">Growing and Developing as a University Teacher-Variation in Meaning</title>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">S</forename><surname>Åkerlind</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2003">2003</date>
+			<publisher>Stud High Educ</publisher>
+			<biblScope unit="volume">28</biblScope>
+			<biblScope unit="page" from="375" to="390" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<analytic>
+		<title level="a" type="main">Variation and commonality in phenomenographic research methods</title>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">S</forename><surname>Åkerlind</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">High Educ Res Dev</title>
+		<imprint>
+			<biblScope unit="volume">24</biblScope>
+			<biblScope unit="page" from="321" to="334" />
+			<date>2005 11</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<analytic>
+		<title level="a" type="main">A single quantum cannot be cloned</title>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">K</forename><surname>Wootters</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">H</forename><surname>Zurek</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">299</biblScope>
+			<biblScope unit="page" from="802" to="803" />
+			<date type="published" when="1982">1982</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Enhancing student visual understanding of the time evolution of quantum systems</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Passante</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kohnle</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys Rev Phys Educ Res</title>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="page">10110</biblScope>
+			<date>2019 2</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b42">
+	<analytic>
+		<title level="a" type="main">Review of student difficulties in upper-level quantum mechanics</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Singh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Marshman</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevSTPER.11.020117</idno>
+		<ptr target="https://link.aps.org/doi/10.1103/PhysRevSTPER.11.020117" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys Rev ST Phys Educ Res</title>
+		<imprint>
+			<biblScope unit="volume">11</biblScope>
+			<biblScope unit="page">20117</biblScope>
+			<date type="published" when="2015-09">2015 Sep</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b43">
+	<analytic>
+		<title level="a" type="main">Student understanding of quantum mechanics at the beginning of graduate instruction</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Singh</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Am J Phys</title>
+		<imprint>
+			<biblScope unit="volume">76</biblScope>
+			<biblScope unit="page" from="277" to="287" />
+			<date>2008 3</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b44">
+	<analytic>
+		<title level="a" type="main">Teaching quantum mechanics on an introductory level</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Müller</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Wiesner</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Am J Phys</title>
+		<imprint>
+			<biblScope unit="volume">70</biblScope>
+			<biblScope unit="page" from="200" to="209" />
+			<date>2002 3</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b45">
+	<analytic>
+		<title level="a" type="main">Rolling balls or trapping ions? How students relate models to real-world phenomena in the physics laboratory</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Kilde Löfgren</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Weidow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Enger</surname></persName>
+		</author>
+		<idno type="DOI">10.1002/sce.21802</idno>
+		<ptr target="https://onlinelibrary.wiley.com/doi/10.1002/sce.21802" />
+	</analytic>
+	<monogr>
+		<title level="j">Sci Educ</title>
+		<imprint>
+			<biblScope unit="volume">107</biblScope>
+			<biblScope unit="page" from="1215" to="1237" />
+			<date>2023 9</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b46">
+	<analytic>
+		<title level="a" type="main">Language of Physics, Language of Math: Disciplinary Culture and Dynamic Epistemology</title>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">F</forename><surname>Redish</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Kuo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Sci Educ</title>
+		<imprint>
+			<biblScope unit="volume">24</biblScope>
+			<biblScope unit="page" from="561" to="590" />
+			<date>2015 7</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

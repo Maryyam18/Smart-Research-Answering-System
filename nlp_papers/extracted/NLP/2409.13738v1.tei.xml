@@ -1,0 +1,2131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">NLP4PBM: A Systematic Review on Process Extraction using Natural Language Processing with Rule-based, Machine and Deep Learning Methods</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability  status="unknown">
+					<licence/>
+				</availability>
+				<date type="published" when="2024-09-24">September 24, 2024</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">William</forename><surname>Van Woensel</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">55 Laurier E</orgName>
+								<orgName type="institution" key="instit1">Telfer School of Management</orgName>
+								<orgName type="institution" key="instit2">University of Ottawa</orgName>
+								<address>
+									<postCode>K1N 6N5</postCode>
+									<settlement>Ottawa</settlement>
+									<region>Ontario</region>
+									<country key="CA">Canada</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Soroor</forename><surname>Motie</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">55 Laurier E</orgName>
+								<orgName type="institution" key="instit1">Telfer School of Management</orgName>
+								<orgName type="institution" key="instit2">University of Ottawa</orgName>
+								<address>
+									<postCode>K1N 6N5</postCode>
+									<settlement>Ottawa</settlement>
+									<region>Ontario</region>
+									<country key="CA">Canada</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">NLP4PBM: A Systematic Review on Process Extraction using Natural Language Processing with Rule-based, Machine and Deep Learning Methods</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2024-09-24">September 24, 2024</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">F5F9A4A0B33275DEA744BA8E80AF6985</idno>
+					<idno type="arXiv">arXiv:2409.13738v1[cs.CL]</idno>
+					<note type="submission">Preprint submitted to Enterprise Information Systems</note>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-28T12:25+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Business Process Management</term>
+					<term>Process Extraction</term>
+					<term>Natural Language Processing</term>
+					<term>Machine Learning</term>
+					<term>Deep Learning</term>
+					<term>Language Models</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>This literature review studies the field of automated process extraction, i.e., transforming textual descriptions into structured processes using Natural Language Processing (NLP). We found that Machine Learning (ML) / Deep Learning (DL) methods are being increasingly used for the NLP component. In some cases, they were chosen for their suitability towards process extraction, and results show that they can outperform classic rule-based methods. We also found a paucity of gold-standard, scalable annotated datasets, which currently hinders objective evaluations as well as the training or fine-tuning of ML / DL methods. Finally, we discuss preliminary work on the application of LLMs for automated process extraction, as well as promising developments in this field.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.">Introduction</head><p>Business processes are structured as series of tasks that collectively accomplish a business objective <ref type="bibr" target="#b2">[1]</ref>. As such, they can provide an objective framework for an organization's day-to-day operations <ref type="bibr" target="#b2">[1]</ref>. Business Process Management (BPM) is devoted to the analysis, design, implementation and management of business processes <ref type="bibr" target="#b2">[1]</ref>. BPM commonly relies on process models, i.e., structured representations of the processes in question <ref type="bibr" target="#b3">[2]</ref>. Process models may represent control flow (e.g., sequence, concurrency) or decisional (e.g., criteria and their requirements) aspects of processes. Moreover, in the former category, process models can be imperative, i.e., exhaustively prescribing the occurrence and ordering of activities; or declarative, i.e., declaring high-level constraints on the occurrence and ordering of specific activities<ref type="foot" target="#foot_0">foot_0</ref>  <ref type="bibr" target="#b4">[3]</ref>.</p><p>Currently, most organizations rely solely on natural text to describe business processes and their requirements <ref type="bibr" target="#b5">[4]</ref>. Vast amounts of textual data relevant to business processes is constantly being generated, such as reports, emails, and ad-hoc documentation. To implement BPM in such organizations, textual sources could be used as a source for structured process models. The extraction of process models from natural language text, albeit manually or automatically, is referred to as process extraction <ref type="bibr" target="#b3">[2]</ref>.</p><p>Nevertheless, according to a 2019 report from Deloitte <ref type="bibr" target="#b6">[5]</ref>, only a few organizations (18%) analyze unstructured data such as natural text to gain business insights, including as the processes described therein, since it is more challenging to interpret. Indeed, manual process extraction in particular is known to be time-consuming and error-prone <ref type="bibr" target="#b7">[6,</ref><ref type="bibr" target="#b8">7,</ref><ref type="bibr" target="#b3">2]</ref>; Herbst reported that more than half of the time in BPM is often spent on manual process extraction <ref type="bibr" target="#b9">[8]</ref>. Hence, automated support for process extraction, if done accurately and reliably, can improve the efficiency of process extraction. To that end, a number of studies have used Natural Language Processing (NLP) methods to implement process extraction: we refer to this as automated process extraction, or simply process extraction if the automated aspect is clear from the context. By providing structured process models, automated process extraction thus has the potential to improve the effectiveness of BPM in organizations currently relying on textual data. The availability of extracted process models, i.e., their management, storage and retrieval, will further have implications for information management within enterprises.</p><p>Traditionally, process extraction methods have involved rule-based and/or Machine Learning(ML)-based methods to implement two steps: (1) NLP, which categorises the fundamental building blocks of the text; such as labeling nouns, verbs, and adjectives, recognizing unique entities (e.g., people, events), and tagging their semantic concepts (e.g., actor, activity); and (2) process generation, which maps the NLP output to a process model that captures the control-flow or decisional elements from the text. With the emergence of Deep Learning (DL) in NLP, the last 5 years have seen a paradigm shift: authors are increasingly using DL models such as Transformers (e.g., BERT <ref type="bibr" target="#b10">[9]</ref>) and Long Short-Term Memory (LSTM) <ref type="bibr">[10]</ref> in process extraction. Even more recently, the advent of Large Language Models (LLM) has led to a surge of interest in LLM-powered NLP for a number of fields. We expect LLM to also impact the process extraction field, given their capabilities to generate code and models <ref type="bibr" target="#b12">[11]</ref>; we have already seen preliminary work on this topic <ref type="bibr" target="#b13">[12,</ref><ref type="bibr" target="#b14">13,</ref><ref type="bibr" target="#b15">14,</ref><ref type="bibr" target="#b16">15]</ref>. We discuss this initial work, and the promise of recent innovations, in the Discussion.</p><p>With these promising natural language applications on the horizon, we believe it is opportune to present a systematic review of process extraction from the "pre-LLM" era. For researchers who want to contribute to this field, we aim to acquaint them with state-of-the-art methods and pipelines, applied evaluation methods and datasets, and preliminary work on LLM in process extraction. For practitioners who want to apply process extraction, we present an overview of relevant methods, including publicly available NLP tools. We discuss both traditional approaches to process extraction, and emphasise recent work that relies on ML/DL. Hence, this paper will cover the following research questions:</p><p>• RQ1: Which NLP and process generation methods, including publicly available tools, have been studied and used for extracting process models?</p><p>• RQ2: To what extent have ML/DL methods been studied in process extraction?</p><p>• RQ3: Which evaluation methods and datasets have been utilised to evaluate process extraction?</p><p>The rest of the paper is structured as follows. Section 2 discusses other review papers on automated process extraction. Section 3 outlines our systematic review approach, including source databases, keywords, exclusion and inclusion criteria, and classification criteria. Sections 4-7 present our data synthesis results, including answers to the research questions. Section 8 summarises important observations from our study. Section 9 discusses the limitations and threats to the validity of the study, and Section 10 concludes our paper.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">Related Work</head><p>This section discusses other reviews on automated process extraction, and outlines the contributions of our systematic review to the literature. We differentiate between non-systematic and systematic literature reviews.</p><p>As a non-systematic review, Bellan et al. <ref type="bibr" target="#b3">[2]</ref> conducted a qualitative analysis in 2020 on process extraction methods. The authors highlight multiple limitations when applied to real-world natural language text, and conclude that process extraction is a task that is far from solved. The same authors performed a non-systematic comparative analysis of the literature a year later <ref type="bibr" target="#b17">[16]</ref>, covering 13 papers published up to 2020, and categorised the used NLP techniques, supported process elements, and evaluations.</p><p>We identified systematic reviews on process extraction up to 2018. These reviews thus do not cover important DL advancements that took place after 2018, notably BERT (i.e., Transformers) <ref type="bibr" target="#b18">[17]</ref>. The first relevant systematic review was conducted in 2016 by Riefer et al. <ref type="bibr" target="#b19">[18]</ref>, reviewing 5 papers in total. The authors analyzed 3 aspects, namely textual input, text analysis, and model generation. Bordignon et al. <ref type="bibr" target="#b8">[7]</ref> performed a systematic review of works up to 2016 that apply NLP to the first 3 BPM lifecycle phases (i.e., identification, discovery and analysis), and categorised the NLP tools utilised. Maqbool et al. <ref type="bibr" target="#b7">[6]</ref> covers process extraction up to 2018, focusing in particular on the extraction of Business Process Model and Notation (BPMN) <ref type="bibr" target="#b20">[19]</ref> process models, categorising the used NLP tools and techniques, and BPMN modelling constructs and tools. Schüler et al. <ref type="bibr" target="#b21">[20]</ref> performed a more general systematic review in 2022 (published in 2024) on the automated generation of process models from a range of input sources, including source code, business rules, event logs and natural text, among others. The authors only shortly discuss process extraction (2 paragraphs).</p><p>Compared to these studies, we present a systematic review of NLP-enabled process extraction literature up to 2023: we thus also include novel DL methods in our review. Further, we evaluate a more comprehensive set of review categories, including natural language analysis (text input, computational paradigm and tools), process generation (computational paradigm, intermediary representations, and target model), and evaluation (methods and dataset). Finally, our review pays special attention to works that rely on innovations in ML/DL-based NLP for process extraction.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.">Methods</head><p>We performed a systematic review of the literature based on the PRISMA (Preferred Reporting Items for Systematic Reviews and Meta-Analyses) guidelines <ref type="bibr" target="#b22">[21]</ref>, which are widely recognised recommendations for conducting systematic reviews and meta-analyses. We searched 5 major scientific literature databases: Web of Science, Scopus, IEEE Xplore, ACM, and ScienceDirect, thus covering all disciplines relevant to our search. Our search queries focused on the intersection of two key concepts: NLP and BPM<ref type="foot" target="#foot_1">foot_1</ref> . Table <ref type="table" target="#tab_0">1</ref> shows the synonyms and subfields (e.g., decision model extraction) considered for each concept and the corresponding search queries. We considered the title, abstract, and author's keywords metadata fields in our search.</p><p>We removed duplicates from the search results and downloaded the remaining papers. The papers' titles, abstracts and keywords were screened for eligibility based on the inclusion/exclusion criteria described in the subsections below. In case a paper was still considered inconclusive after screening, it was fully reviewed to determine its eligibility. We used the Covidence<ref type="foot" target="#foot_2">foot_2</ref> software to keep track of the review process.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1.">Inclusion Criteria (IC)</head><p>Articles meeting all of the following criteria were included in our systematic review: (IC.1) full research articles published in a peer-reviewed conference or journal, where a full text was available, and written in English (there was no restriction on time period); (IC.2) primary research articles, i.e., presenting original research contributions<ref type="foot" target="#foot_3">foot_3</ref> ; (IC.3) articles specifically covering the use of NLP for process extraction from natural language text; (IC.4) articles that explicate a concrete method and describe experiments to empirically validate their method.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2.">Exclusion Criteria (EC)</head><p>We excluded articles from our systematic review that did not comply with the IC as follows: (EC.1) articles that are not full research papers (such as posters, short papers, abstracts, reports, theses, or book chapters), not published in a conference or journal (e.g., workshops, discussion forums, white papers, technical reports), not peer-reviewed (including preprints), where no full text was available, or that were not written in English; (EC.2) secondary research articles, i.e., using primary research to derive results (e.g., literature reviews, meta-analysis, comments); (EC.3) articles not specifically covering the use of NLP for process extraction. This includes studies on the use of NLP for process redesign, matching or process prediction, sentiment analysis, works that target individual labels instead of natural text, or studies on generating natural text from processes; (EC.4) articles that only superficially discuss an applied method, or do not describe experiments to validate their method.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3.">Study Classification</head><p>We classified the remaining studies according to the orthogonal themes in Table <ref type="table" target="#tab_1">2</ref>. In line with our research questions, themes include NLP, process extraction, evaluation datasets and methods, and metadata to analyze publication trends. Based on  the reviewed papers, we identified a set of categories per theme; in turn, these were used to classify the papers (i.e., qualitative inductive coding <ref type="bibr" target="#b23">[22]</ref>).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.">Results</head><p>Figure <ref type="figure" target="#fig_0">1</ref> shows the results of the systematic review process using the PRISMA flowchart. A total number of 524 studies were identified by our database search, 405 of which were unique. Table <ref type="table" target="#tab_2">3</ref> shows the breakdown of search results per database. Following title and abstract screening, 70 articles were retained for full-text screening. In the end, 20 articles were found to fully meet our inclusion/exclusion criteria. Our search queries were executed in June 2023 and the found papers span a time period from 2011 to 2023. In the following sections, we answer our research questions RQ1-3 by discussing the reviewed papers in terms of the themes and categories from Table <ref type="table" target="#tab_1">2</ref>. Appendix A includes tables that categorize each paper along these themes in detail.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.">Natural Language Processing</head><p>This section discusses the NLP aspect of automated process generation, including restrictions on text input (Section 5.1), computational paradigms used to implement NLP (Section 5.2), and publicly available NLP tools that were used (Section 5.3).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1.">Text Input</head><p>In agile software development, user stories are used as a natural language medium to describe software requirements <ref type="bibr" target="#b24">[23]</ref>. Nasiri et al. <ref type="bibr" target="#b24">[23]</ref> extracted Unified Modeling Language (UML) activity diagrams from user stories to capture software requirements as process models. In an information systems context, Goncalves et al. <ref type="bibr" target="#b25">[24]</ref> similarly focus on user stories for process extraction. User stories, gathered through group storytelling, are described as a natural way for people to outline their everyday activities, difficulties, and suggestions for solving problems. The authors note that writing stories in a free style poses obstacles for NLP, such as ambiguity and lack of clarity; hence, the authors restrict the textual input to a scenario structure.</p><p>Halioui et al. <ref type="bibr" target="#b26">[25]</ref> extract bio-informatics workflows from scientific texts. The remainder of the papers did not explicitly mention a restriction on text input. That said, approaches that target decisional models will clearly expect text input with decision-related information; idem for control flow models. Further, authors will evaluate their approach on datasets that, for instance, pertain to only one domain, or include sentences with minimal structural variability. Hence, a method's (implicit) restrictions on text input may be reflected by the dataset used for evaluation. We discuss evaluation datasets in Section 7.1.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2.">Computing Paradigm</head><p>Most reviewed papers involve a traditional "NLP pipeline", which identifies and tags textual elements with increasing amounts of semantics-ranging from part-ofspeech and grammar relations to high-level semantics concepts-until the output is sufficiently detailed to generate a process model. Although many customizations exist, a "traditional NLP pipeline" includes the tasks listed in Table <ref type="table" target="#tab_3">4</ref>. Linking pronouns (e.g., "they") and noun phrases (e.g., "dog owner") to the entities they refer to in the text (e.g., "Bob"). This term is often used interchangeably with Anaphora Resolution and Entity Resolution.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Semantic Analysis</head><p>Extracting and understanding the meaning of words or phrases within text (e.g., activities, actors).</p><p>In this category, we include Relation Extraction (RE), i.e., identifying semantic relations found in the text (e.g., sequence, parallel relations); Word Sense Disambiguation (WSD), i.e., disambiguating word meanings based on context; and word/sentence classification, i.e., providing meaning to a word or sentence by assigning it a class. Preprocessing NLP pipelines that leverage ML and DL models often require preprocessing by generating word embeddings (e.g., using GloVe <ref type="bibr" target="#b28">[27]</ref>) or generating feature-vectors (e.g., using bag-of-words or TF-IDF).</p><p>Other works rely on "non-traditional" DL pipelines, as we discuss later.</p><p>To answer RQ2, we proceed by summarising the use of ML/DL models for NLP tasks from Table <ref type="table" target="#tab_3">4</ref>. Subsequently, we discuss performance comparisons between different computing paradigms; and describe non-traditional DL pipelines.</p><p>Figure <ref type="figure">2</ref> shows the evolution of computing paradigms used for NLP in reviewed papers from 2011-2023. In line with the advent of the DL BERT model in 2018, the first reviewed papers on DL-based process extraction appeared in 2020. In 2023, we find an even distribution across computing paradigms.</p><p>Table 5: ML and DL models used for NLP tasks.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Task</head><p>ML / DL Models Preprocessing BERT (or possibly Word2Vec) for word embeddings <ref type="bibr" target="#b29">[28]</ref>; Bag Of Words, TF-IDF, word embedding (GloVe) <ref type="bibr" target="#b10">[9]</ref>; RNN and Bi-LSTM for sentence-&amp; process-level encodings, ON-LSTM with process-level LM objective [10] NER Conditional Random Fields (CRF) <ref type="bibr" target="#b30">[29]</ref>; Pre-Trained BERT <ref type="bibr" target="#b10">[9,</ref><ref type="bibr" target="#b31">30]</ref> and Bi-LSTM <ref type="bibr" target="#b10">[9]</ref>; Coreference Resolution Pre-trained DL model <ref type="bibr" target="#b30">[29]</ref>; NeuralCoref4 <ref type="bibr" target="#b32">[31,</ref><ref type="bibr" target="#b33">32,</ref><ref type="bibr" target="#b10">9]</ref> Semantic Analysis RE Catboost Gradient Boosting <ref type="bibr" target="#b30">[29]</ref>; pre-trained BERT (binary, multi-class) [30] WSD PAUM (Perceptron Algorithm with Uneven Margins) <ref type="bibr" target="#b26">[25]</ref> Sentence/word classification Pre-Trained BERT (DistilBERT), logistic regression, naïve bayes and support vector machines <ref type="bibr" target="#b10">[9]</ref>; Bi-LSTM, CNN, MLP <ref type="bibr" target="#b29">[28]</ref>; Pre-trained BERT <ref type="bibr" target="#b31">[30]</ref> Comparison between rule-, ML-and DL-based NLP methods. Neuberger et al. <ref type="bibr" target="#b30">[29]</ref> compared different NLP modules and pipelines:</p><p>1. An ML-based Relation Extraction (RE) module outperformed a rule-based RE module. The authors also noted that, while rule-based methods can be optimised for specific domains, they are hard to adapt to other applications. 2. Their NLP pipeline outperformed Jerex <ref type="bibr" target="#b34">[33]</ref>, an end-to-end DL method. The authors hypothesised that the used PET dataset <ref type="bibr" target="#b35">[34]</ref> is not yet extensive enough for training state-of-the-art DL models.</p><p>Notably, their choice for Jerex was informed by the need for down-stream process generation: since Jerex's is also able to identify the textual location of an entity, its surrounding text can be used to obtain richer BPMN activity labels. Goossens et al. <ref type="bibr" target="#b10">[9]</ref> make the following observations: 1. For sentence classification into dependency vs. logic sentences, a pre-trained BERT model (DistilBERT <ref type="bibr" target="#b36">[35]</ref>) outperformed non-DL ML models (incl. logistic regression, naïve bayes and SVM). 2. For NER <ref type="foot" target="#foot_4">6</ref> , a pre-trained BERT model outperformed a trained-from-scratch Bi-LSTM-CRF model, although there were indications that the latter may work better on small datasets <ref type="bibr" target="#b37">[36]</ref>.</p><p>The authors also point out that the non-BERT models required extra pre-processing, respectively Bag of Words and TF-IDF, and word embeddings (GloVE <ref type="bibr" target="#b28">[27]</ref>).</p><p>López et al. <ref type="bibr" target="#b31">[30]</ref> compare ML-only, rule-only, and integrated ML + rule-based NER on roles, activities, and relations. The authors found the following:</p><p>1. Using only ML for NER yielded higher recall but lower precision; 2. Using only rules for NER yielded higher precision but lower recall; 3. Using ML for NER on roles and relations, and an integrated ML + rules for NER on activities, yielded the best F1 score.</p><p>Non-traditional, DL-based NLP pipelines.</p><p>Qian et al. <ref type="bibr" target="#b29">[28]</ref> implemented the NLP aspect of process extraction using multigrained text classification. In a course-grained phase, based on sentence encodings and features, sentences are classified (action vs. statement) and semantically tagged (e.g., sequential, concurrent). Next, based on the sentence-level encodings and features, together with word-level embeddings, a fine-grained phase semantically tags words and phrases with roles. The authors use a combination of Bi-LSTM, CNN, and multiple MLPs (Multi-Layer Perceptrons). Notably, the authors use LSTM as it was deemed suitable for the sequential nature of text. Han et al. <ref type="bibr">[10]</ref> use RNN and Bi-LSTM to obtain sentence-level and process-level encodings; these are later passed to an Ordered Neurons LSTM (ON-LSTM) <ref type="bibr" target="#b38">[37]</ref> for process model generation (Section 6.1).</p><p>In addition to a traditional NLP pipeline, Neuberger et al. <ref type="bibr" target="#b30">[29]</ref> use an end-to-end DL model (Jerex <ref type="bibr" target="#b34">[33]</ref>) to perform RE and NER.</p><p>Halioui et al. <ref type="bibr" target="#b26">[25]</ref> combine ML with an ontology for semantic analysis. The authors map text elements to concepts from this ontology; precedence constraints from the ontology are then used to help reconstruct the process. The authors further consider the word's context to perform WSD; i.e., POS tags and mapped concepts surrounding the word are used as context to train a ML (PAUM <ref type="bibr" target="#b39">[38]</ref>) model. E.g., this allows mapping the term "MEGA" to different concepts based on surrounding context. Notably, PAUM was designed for imbalanced data and has successfully been applied to semantic annotation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.3.">NLP Tools</head><p>Table <ref type="table">6</ref> lists the NLP tools found in the reviewed papers. Many tools used in the reviewed papers have overlapping capabilities such as lemmatization, dependency parsing, POS tagging, and coreference resolution. Tools like Stanford POS Tagging, Stanford Parser, and spaCy can handle multiple tasks, from dependency tree generation to semantic role labeling. Specialised tools such as NeuralCoref4 or Ansj Tokeniser target specific tasks, i.e., coreference resolution and word segmentation. Domain-specific tools such as MedPos focuses on POS tagging of clinical text.</p><p>Table 6: Public NLP tools used for process extraction.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>NLP Tools Description Papers Ansj Tokeniser</head><p>Chinese word segmentation tool.</p><p>[39] ELMo A pre-trained model that generates embeddings for words based on their context across linguistic contexts.</p><p>[28]</p><p>FrameNet A lexical database that annotates words in terms of their semantic frames and roles.</p><p>[40]</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>GloVe</head><p>An unsupervised learning algorithm for obtaining word vector representations based on word-word cooccurrence.</p><p>[ <ref type="bibr" target="#b29">28,</ref><ref type="bibr">10]</ref> MedPos Tagging Assigns POS tags to words targeting clinical text.</p><p>[25] NeuralCoref4</p><p>A spaCy extension that annotates and resolves coreference clusters using a neural network.</p><p>[31, 32, 9] NLTK Library with tools for symbolic and statistical NLP. [24, 31] OpenNLP Chunker Assigns POS tags to words in an input text. [32, 43, 45] Stanford Tregex Queries syntactic dependency trees based on patterns. [46] Stanza Python NLP library developed by Stanford for multiple human languages, similar in functionality to CoreNLP. [47] Word2Vec A technique that employs neural networks to learn word embeddings from a text corpus. [28] WordNet A lexical database of English, grouping words into sets of synonyms and providing brief definitions. [42, 40, 44, 43, 48, 45]</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.">Process Model Generation</head><p>This section discusses the generation of process models from NLP output: including the computational paradigm used (Section 6.1), intermediary representations, if any (Section 6.2), and targeted type of process model (Section 6.3).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.1.">Computing Paradigm</head><p>We observe that, despite the increasing popularity of ML/DL methods in NLP pipelines (Section 5), the majority of studies rely on knowledge-based methods for process generation-with the caveat that ML/DL enabled NLP pipelines may directly output a process model (see "Machine Learning / Deep Learning" below). We discuss these two approaches below.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Knowledge-based Methods.</head><p>Here, we consider the use of any knowledge-based artefact, such as concrete rules (e.g., Prolog), templates, or custom algorithms, to generate process elements based on NLP output. We discuss the type of artefact and the NLP output involved:</p><p>• Concrete Rules. Nasiri et al. <ref type="bibr" target="#b24">[23]</ref> provide a set of Prolog rules, which refer to Part-of-Speech (POS) tags and typed dependencies from NLP output, in order to generate activity diagrams. Halioui et al. <ref type="bibr" target="#b26">[25]</ref> use JAPE (Java Annotation Patterns Engine) <ref type="bibr" target="#b50">[49]</ref> pattern-based rules to, among other things, avoid incorrect entity recognitions. For instance, in case a noun, verb or adjective is in lowercase, a rule will ensure it is not matched to a software program<ref type="foot" target="#foot_6">foot_6</ref> .</p><p>• Custom algorithms. Sonbol et al. <ref type="bibr" target="#b44">[43]</ref> present a custom algorithm to generate an intermediary Text Graph (i.e., process model) based on semantic concepts, their tags and relations from the NLP step. Chen et al. <ref type="bibr" target="#b40">[39]</ref> collect a "verb flow" from a given start word using a recursive algorithm, based on POS tags, grammar relations, and semantic tags (topics). E.g., for topic "House Cleaning", this process would yield Clean→Dust Collection→Scrub→Wash→Wipe out. Van der Aa et al. <ref type="bibr" target="#b46">[45]</ref> define an algorithm based on elements from NLP output that indicate modality (e.g., "must"), negation, connectors (e.g., "or") and temporal relations (e.g., "before"); and consider verb-based (e.g., "create") and noun-based (e.g., "creation") activities. E.g., a sequential relation rel(A,B), where activity A is mandatory but B is not, results in a precedence constraint. López et al. <ref type="bibr" target="#b31">[30]</ref> apply an algorithm to integrate the results from RE and NER; when the binary RE classifier detects a sentence with a relation, the NER model extracts 2 events, with a relation as detected by the multi-class RE classifier.</p><p>• Templates / patterns. Etikala et al. <ref type="bibr" target="#b32">[31]</ref> apply predefined patterns, such as "passive A&lt;=B" (A follows from B) and relevant verbs (e.g., "determine") to generate dependency tuples in the form of 〈action, base, derived〉 concepts (e.g., determine, height, Body Mass Index), based on typed dependencies and semantic concepts from the text. Later on, Etikala <ref type="bibr" target="#b33">[32]</ref> additionally extracts decision logic by applying patterns with markers such as "if", "then", etc., which is ultimately converted into decision tables. Ferreira et al. <ref type="bibr" target="#b42">[41]</ref> define high-level templates to identify BPMN elements (e.g., XOR gateway) based on POS tags and semantic tags (e.g., condition, conjunction). Quishpi et al. <ref type="bibr" target="#b47">[46]</ref> use a query language (Tregex) to capture decision requirements (e.g., determine obesity from height) from a syntactic dependency tree with typed dependencies.</p><p>• High-level Rules. These include "if-then" rules narratively described in tables or text. (For instance, these could be implemented using concrete rules or a custom algorithm; see above.) Sholiq et al. <ref type="bibr" target="#b48">[47]</ref> describe rules that, based on typed dependencies, extract "fact types" (FT); e.g., a binary FT would be "officer accepts document". These fact types are mapped to BPMN elements. Goncalves et al. <ref type="bibr" target="#b25">[24]</ref> describe rules to find activities, actors and other elements, based on POS tags and typed dependencies.</p><p>• Custom. Others narratively describe a series of steps in the paper text. Honkisz et al. <ref type="bibr" target="#b43">[42]</ref> describe steps for identifying participants, subject-verb-object and BPMN gateway keywords, based on typed dependencies and semantic concepts from the text. Azevedo et al. <ref type="bibr" target="#b51">[50]</ref> only shortly summarise their process generation approach; based on NLP output (e.g., POS tags), the authors generate process elements based on the sequential ordering of sentences. Friedrich et al. <ref type="bibr" target="#b45">[44]</ref> describe an extensive process that includes extracting actors, actions and objects from text; merging actions, based on anaphora resolution; and generating process elements (e.g., exclusive, parallel) based on textual markers (e.g., "or", "in parallel"). López et al. <ref type="bibr" target="#b49">[48]</ref> suggest process elements from natural text for confirmation by the user, based on synonyms from Wordnet and a domain-specific R-A-R (role-activity-relation) dataset that is updated based on user interactions. So-called highlights keep the link between text and associated process elements.</p><p>Machine Learning / Deep Learning.</p><p>To the best of our knowledge, ML/DL is only used once to implement process generation in the reviewed papers <ref type="bibr">[10]</ref>. Some authors cast process extraction as NLP problems (e.g., text classification, NER), which they then solve using ML/DL methods <ref type="bibr" target="#b29">[28,</ref><ref type="bibr" target="#b10">9]</ref>. Here, NLP thus directly yields the targeted output; however, extra work may still be needed to generate a complete process model from this output. Qian et al. <ref type="bibr" target="#b29">[28]</ref> cast process extraction as a multi-grained text classification problem; output includes semantic annotations of sentences and words/phrases. Goossens et al. <ref type="bibr" target="#b10">[9]</ref> use the results from NER, i.e., a set of dependency tags (action, base, derived concepts) to generate dependency tuples; a tuple consists of dependency tags from 1 sentence. (Etikala et al. <ref type="bibr" target="#b32">[31]</ref> apply a separate knowledge-based step for extracting dependency tuples from NLP output.) Neuberger et al. <ref type="bibr" target="#b30">[29]</ref> focus on RE and NER for the purpose of process extraction; the latter is considered out of scope.</p><p>In contrast to these works, Han et al. <ref type="bibr">[10]</ref> pass the NLP output, i.e., sentencelevel and process-level encodings, to a novel ML model called Ordered Neurons LSTM (ON-LSTM) <ref type="bibr" target="#b38">[37]</ref>, which separately implements process model generation. In a structure-retrieve step, the latent hierarchical process structure is inferred from the ON-LSTM model. A BPMN diagram can then be extracted using Jinja2<ref type="foot" target="#foot_7">foot_7</ref> .</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.2.">Intermediary Representation</head><p>Here, we include any method where a notation-agnostic, intermediary representation is separately generated. This representation can then be mapped to multiple different model notations. Note that we do not consider intermediate NLP output (e.g., dependency trees, semantic tags) here, nor internal model representations (e.g., latent representations in DL models).</p><p>• Graph-based Model. Sonbol et al. <ref type="bibr" target="#b44">[43]</ref> construct a Text Graph with sentences as vertices, which are connected based on their ordering in the text (i.e., 2 consecutive sentences as 2 connected vertices). They also construct a concept map that includes interrelated actors and resources. This concept map is leveraged to further connect sentence vertices, i.e., based on their shared concepts in the map. The Text Graph is converted into a BPMN model in an 8-step procedure. Friedrich et al. <ref type="bibr" target="#b45">[44]</ref> generate a graph-based World Model that capture actors, resources, actions and flows as relations between them. Subsequently, a 9-step process generates a BPMN model from the World Model. We note that Azevedo et al. <ref type="bibr" target="#b51">[50]</ref> mention an intermediary Tree-based Process Model, i.e., with sentences as tree nodes, but do not provide details.</p><p>• Table . Honkisz et al. <ref type="bibr" target="#b43">[42]</ref> generate a table with columns including ordering, activity, condition and actor. The authors subsequently generate a BPMN diagram but do not detail the individual steps.</p><p>• Dependency tuples. Goossens et al. <ref type="bibr" target="#b10">[9]</ref> and Etikala et al. <ref type="bibr" target="#b32">[31,</ref><ref type="bibr" target="#b33">32]</ref> generate intermediary dependency tuples that are ultimately converted into a Dependency Requirements Diagram (DRD).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.3.">Target Process Model</head><p>Regarding the type of process model that is targeted, we find a contrast between control flow models (BPMN, UML activity diagrams) and decisional models (Decision Model and Notation, DMN: decision requirements, tables). Some studies focus only on particular elements; e.g., Chen et al. <ref type="bibr" target="#b40">[39]</ref> capture activity ordering ("verb-flow").</p><p>In the control flow category, we further distinguish imperative models, i.e., which fully specify the activity occurrence and sequential ordering; and declarative models, i.e., which include high-level constraints on the occurrence and ordering of certain activities (e.g., precedence, response, succession <ref type="bibr" target="#b46">[45]</ref>).</p><p>Table <ref type="table" target="#tab_7">7</ref> shows a breakdown of the reviewed papers based on the type of target model and the particular notation targeted, if any. Overall, imperative control flow models are the most covered (15), followed by decisional models (4) and then declarative control flow models (3). </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.">Process Extraction Evaluation</head><p>In this section, we review the datasets and methods commonly utilised to evaluate automated process extraction.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.1.">Evaluation Datasets</head><p>Table <ref type="table" target="#tab_8">8</ref> shows the datasets used by the reviewed papers. Regarding Type of Data, synthetic means that the included sentences were manually written by the authors; real means that sentences were collected from real-world sources, such as academic papers, laws and regulations, interviews and Internet searches. We note that the Dataset Size column lists the level of detail provided by the authors; e.g., if the paper mentions X "example texts", we repeat that in this column (as this does not necessarily constitute X separate cases). Below, we make several observations on these datasets; we also discuss multiple real datasets and how they were collected.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Main Observations on Evaluation Datasets.</head><p>1. There is a lack of consistently used evaluation datasets. Only the Friedrich <ref type="bibr" target="#b55">[54]</ref> and PET <ref type="bibr" target="#b35">[34]</ref> datasets are re-used, i.e., in 2 other studies (also, per dataset, only 1 of these 2 studies was not authored by its creators). 2. Many online datasets are no longer available. Some articles provide links to their evaluation dataset; however, Table <ref type="table" target="#tab_8">8</ref> shows that 4/9 links no longer work<ref type="foot" target="#foot_8">foot_8</ref> . 3. There is a paucity of gold-standard datasets. There is currently 1 reference dataset for control flow process extraction, i.e., the PET dataset (Section 7.1). 4. Most evaluation datasets are small in size. While a variety of datasets are used, they are relatively small in size (i.e., tens or hundreds of process descriptions).</p><p>Real-world Datasets and Their Collection.</p><p>Friedrich et al. <ref type="bibr" target="#b55">[54]</ref> introduced a dataset consisting of 47 text-model pairs, each pair including a textual description and a corresponding BPMN model created by a human modeler. It spans processes from academic sources, industry (e.g., BPM tool vendors), textbooks and the public sector. Hence, it can be considered a mix of synthetic (e.g., textbooks) and real (e.g., industry). Bellan et al. <ref type="bibr" target="#b35">[34]</ref> introduced the PET dataset, which was constructed based on the above "Friedrich dataset". It improves upon the granularity of the latter by annotating parts of the text with corresponding process elements. Also, since the textual dataset was annotated by 3 annotators, it can be considered more of a gold standard. The authors further provide baseline results for typical process extraction-related NLP tasks using the PET dataset, i.e., NER and RE using ML (CRF) and a custom rule-based approach. Han et al. <ref type="bibr">[10]</ref> collected 210 process descriptions from BluePrism RPA (Robotic Process Automation), and 50 process descriptions from the Internet such as whitepapers, user guides, and SAP support documents. Ferreira et al. <ref type="bibr" target="#b42">[41]</ref> evaluated their system using 56 natural language text from the US immigrant visa process, Federal Network Agency of Germany, and others. Chen et al. <ref type="bibr" target="#b40">[39]</ref> used a search engine to retrieve process descriptions on 5 topics (e.g., house cleaning).</p><p>To evaluate multi-grained classification for process extraction, Qian et al. <ref type="bibr" target="#b29">[28]</ref> manually collected a dataset consisting of (a) Cooking Recipes (COR) with 200+ recipes from recipe.com; (b) Maintenance Manuals (MAM) with 160+ device maintenance descriptions from ifixit.com. Halioui et al. <ref type="bibr" target="#b26">[25]</ref> conducted a search on the PubMed Central database for papers with "phylogenetic" and filtered on articles with suitable bio-informatics workflows (i.e., keywords "Data", "InferenceProgram").</p><p>Goncalves et al. <ref type="bibr" target="#b25">[24]</ref> manually collected user stories (events, characters, and other elements) from people involved with course enrolment (26 story events) and managing process elicitation at a company (15 story events).</p><p>For declarative process extraction, Van der Aa <ref type="bibr" target="#b46">[45]</ref> gathered constraint descriptions from industrial and academic sources, with both declarative and general processes. López et al. <ref type="bibr" target="#b31">[30]</ref> gathered process descriptions from the BPM academic initiative, student interviews, and excerpts related to social services.</p><p>For decisional model extraction, Goossens et al. <ref type="bibr" target="#b10">[9]</ref> collected a real-world dataset from the DM community, laws and regulations, Web searches, and their prior work <ref type="bibr" target="#b32">[31]</ref>. Quishpi et al. <ref type="bibr" target="#b47">[46]</ref> collected 12 text-model pairs (i.e., text paired with the corresponding DMN model created by a human) based on materials from other authors.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.2.">Evaluation Methods</head><p>We observed 2 orthogonal sets of evaluation methods for process extraction: Component-based vs. Holistic Evaluation Component-based evaluation evaluates the output of individual modules in the NLP and process model generation steps. This has the advantage of locating specific pain points, and avoids errors from propagating to subsequent modules <ref type="bibr" target="#b30">[29]</ref>. It is typically combined with a holistic evaluation to evaluate overall pipeline performance.</p><p>Holistic evaluation evaluates the holistic extracted process model; e.g., by comparing its individual elements with those of a reference model (systematic), or evaluating their understandability and usefulness (expert-based). While this approach thus evaluates the overall pipeline performance, it may gloss over the contribution of (and issues with) individual modules.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Systematic vs. Expert-based Evaluation</head><p>Systematic comparison of generated and reference output. The generated output, albeit individual module output or the final process model, is systematically compared to a reference model. This can be an element-by-element comparison or based on an aggregate measure, such as processes' behavioral profiles <ref type="bibr" target="#b57">[56]</ref>. Here, graphbased evaluations represent process models as graphs, and map the nodes between reference and extracted process graphs. A potential drawback is that the reference model may be only one of many valid process models for the same text <ref type="bibr" target="#b48">[47]</ref>.</p><p>Expert evaluation of generated output. Experts manually evaluate the generated output, providing their opinions on metrics such as understandability, usefulness, their agreement with the output, or the model's equivalency with the text. Here, the evaluation can again be element-by-element (i.e., evaluating individual elements), or focusing on properties of the output as a whole (aggregate). This avoids the above issue of multiple valid reference models, as it does not involve comparisons with a reference. However, it is also resource-intensive and relies on subjective judgments <ref type="foot" target="#foot_9">10</ref> .</p><p>Table <ref type="table" target="#tab_9">9</ref> shows a breakdown of the reviewed papers along these categories. Below, we separately discuss systematic and expert-based evaluations from the papers.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Systematic Evaluations</head><p>The majority of evaluation methods are holistic and systematic (element-by-element): individual elements from the extracted and reference process model are systematically compared. Clearly, the evaluated elements will depend on the target process model (control flow vs. decisional). Instead of element-by-element, Qian et al. <ref type="bibr" target="#b29">[28]</ref> utilise an aggregate measure: assessing the similarity of the extracted and reference process model based on their behavioral profiles <ref type="bibr" target="#b57">[56]</ref>. [28] Elements: declarative constraints <ref type="bibr" target="#b46">[45,</ref><ref type="bibr" target="#b31">30]</ref> </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Expertbased</head><p>Assess understandability and usefulness of extracted processes (aggregate) <ref type="bibr" target="#b44">[43]</ref> Assess knowledge equivalency between extracted, reference processes (aggregate) <ref type="bibr" target="#b51">[50]</ref> Gather opinions (fully-agree to disagree) on extracted processes (aggregate) <ref type="bibr" target="#b42">[41]</ref> Separate valid (useful) from noise (not useful) extracted process elements (element-byelement) <ref type="bibr" target="#b25">[24]</ref> Manually compare textual elements with extracted elements (element-by-element) <ref type="bibr" target="#b42">[41]</ref> Often in addition, several authors evaluate their approach in a component-based and systematic (element-by-element) way. Etikala <ref type="bibr" target="#b33">[32]</ref> separately evaluates the deci-sion logic and dependency tuple extractor components; individual output elements (e.g., dependency tuples) are compared to reference elements. Goossens et al. <ref type="bibr" target="#b10">[9]</ref> evaluate their sentence classification and downstream decisional model extraction. To avoid errors early on in the pipeline from propagating, Neuberger et al. <ref type="bibr" target="#b30">[29]</ref> evaluate modules' performance in isolation by also providing reference inputs. Qian et al. <ref type="bibr" target="#b29">[28]</ref> evaluate the accuracy of the classifiers involved in NLP and process extraction.</p><p>In graph-based systematic evaluations, reference and extracted processes are represented as graphs. Then, based on a mapping of graph nodes between the reference and extracted process graph, authors calculate a similarity score. Friedrich et al. <ref type="bibr" target="#b45">[44]</ref> and Sonbol et al. <ref type="bibr" target="#b44">[43]</ref> rely on the Graph Edit Distance <ref type="bibr" target="#b58">[57]</ref>, which, based on the similarity of individual nodes, calculates the number of node and edge edits needed to get from one graph to another. Han et al. <ref type="bibr">[10]</ref> similarly map identical nodes, in this case, based on their "step" descriptions and "parent" and "previous" nodes. A similarity score is calculated as the ratio of mapped nodes vs. the total number of model nodes.</p><p>Systematic evaluations typically evaluate correctness (false positives) and completeness (false negatives); hence, evaluation metrics tend to involve precision, recall, and F1-score. Sholiq et al. <ref type="bibr" target="#b48">[47]</ref> calculate the Magnitude of Relative Error (MRE) as the ratio of differences between the extracted and reference model vs. the size of the reference model. Chen et al. <ref type="bibr" target="#b40">[39]</ref>, in line with their focus on activity orderings ("verb-flow"), calculate the Normalised Distance-based Performance Measure (NDPM) as a ratio based on incorrectly &amp; correctly sorted and concurrent activities. Van der Aa <ref type="bibr" target="#b46">[45]</ref> proposes a fine-grained "slot filling" approach, where the type of constraint and its arguments are "slots"; precision and recall are based on the number of matching slots between the extracted and reference constraints.</p><p>To systematically evaluate ML/DL approaches, the text dataset is typically split up into training and testing using different ratios (e.g., 2/3, 8/10) <ref type="bibr" target="#b10">[9,</ref><ref type="bibr" target="#b26">25]</ref>, or an external (i.e., different from the training) dataset is used <ref type="bibr" target="#b31">[30]</ref>. For nondeterministic ML/DL methods, average performances over a number of runs (typically 5 or 10) are presented <ref type="bibr" target="#b10">[9]</ref>. Halioui et al. <ref type="bibr" target="#b26">[25]</ref> perform a 10-fold cross validation to establish optimal parameters; Bellan et al. <ref type="bibr" target="#b56">[55]</ref> and Neuberger et al. <ref type="bibr" target="#b30">[29]</ref> perform 5-fold crossvalidation and take the average performance.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Expert-based Evaluations</head><p>Sonbol et al. <ref type="bibr" target="#b44">[43]</ref> asked experts to assess the understandability and usefulness of the extracted process model. Azevedo et al. <ref type="bibr" target="#b51">[50]</ref> asked 48 participants to assess whether the knowledge represented by the extracted process model is equivalent to the textual description. Similarly, Ferreira et al. <ref type="bibr" target="#b42">[41]</ref> asked experts whether they agreed with the extracted process models, using a 5-item Likert scale (from "Fully Agree" to "Disagree"). They proposed six process models to the experts; 2 modeled based on mapping rules, and 4 purposefully modeled incorrectly. All of the above represent aggregate evaluations, as they focus on the process model as a whole.</p><p>In element-by-element evaluations, authors ask experts their opinion on the individual elements. Goncalves et al. <ref type="bibr" target="#b25">[24]</ref> evaluated the extracted processes using a human modeler who separated valid (useful) from noise (not useful) elements. In addition, Ferreira et al. <ref type="bibr" target="#b42">[41]</ref> asked experts to manually identify process elements from text (3 sentences) and subsequently compare them with the extracted elements.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8.">Discussion</head><p>We identified multiple challenges and trends related to automated process extraction. We further discuss preliminary work that has been done using LLMs in this field, as well as promising developments in LLM architectures.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8.1.">Complexity of Natural Language</head><p>Clearly, the problem of complex natural language is not limited to process extraction, but rather any domain that relies on NLP. To curb this complexity, the text input can be restricted. We discuss works that rely on restricted text input in Section 5.1. For example, regarding user stories, Nasiri et al. <ref type="bibr" target="#b24">[23]</ref> mention that a user story often uses the following format type: "As 〈Role〉, I want to 〈Action〉, so that 〈Benefit〉". To avoid ambiguity and lack of clarity of free text, Goncalves et al. <ref type="bibr" target="#b25">[24]</ref> consider stories from input text that is structured as a set of scenarios. Some papers mention simplifying assumptions in the text: e.g., Text2Dec <ref type="bibr" target="#b32">[31]</ref> assumes the description is sequential, contains no irrelevant information or redundancies, and contains only 1 main decision.</p><p>Quishpi et al. <ref type="bibr" target="#b47">[46]</ref> make the point that language patterns expressing decisions is less variable than those for control flow descriptions. Hence, decisional models may be an easier target for process extraction. Van der Aa <ref type="bibr" target="#b46">[45]</ref> pointed out additional challenges regarding declarative process extraction. For instance, subtle differences in text (e.g., modality; "can" instead of "must") will lead to semantically different constraints (e.g., precedence vs. response); in imperative models, these would typically lead to the same sequential relation. Text may also indicate the negation of a constraint (e.g., "invoice cannot be paid"), or logical relations (e.g., "can be approved or rejected"), which must similarly be reflected in declarative constraints.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8.2.">Use of Deep Learning for NLP</head><p>We have observed a paradigm shift over the last 5 years that coincides with the emergence of DL in NLP; authors are increasingly using DL models such as Transformers (e.g., BERT <ref type="bibr" target="#b10">[9]</ref>) and LSTM <ref type="bibr">[10]</ref> in process extraction. Until now, 4 works have applied Large Language Models (LLM), as discussed in Section 8.4.</p><p>Quishpi et al. <ref type="bibr" target="#b47">[46]</ref> note that classical, rule-based AI approaches can still have advantages over DL systems: <ref type="bibr" target="#b2">(1)</ref> training DL systems from scratch requires huge amounts of annotated training data, and the cost of producing such datasets may be higher than the cost of encoding expert knowledge into rules; and (2) DL systems, in contrast to rule-based systems, operate as black boxes, and it is difficult to tailor their behaviour to improve in case of wrong answers.</p><p>Indeed, regarding training data (1), Neuberger et al. <ref type="bibr" target="#b30">[29]</ref> hypothesised that the reason the end-to-end DL model Jerex, which was trained from scratch, was outperformed, was that the training data (PET dataset) was not yet extensive enough. Regarding the tailoring of behavior (2), the same authors point out that rule-based systems are also hard to adapt to even minor changes in the data.</p><p>Goossens et al. <ref type="bibr" target="#b10">[9]</ref> found that a pre-trained BERT model, fine-tuned on process extraction (i.e., not trained from scratch), outperforms ML methods and even a DL model trained from scratch. Hence, regarding training data (1), pre-trained models may obviate the need for large-scale training datasets. However, fine-tuning still requires training on a labeled dataset for adjusting parameters. Moreover, pretrained models may have difficulty with highly domain-specific terminology such as found in scientific texts <ref type="bibr" target="#b26">[25]</ref>.</p><p>Finally, authors have pointed out that certain DL models may be intrinsically more suited towards automated process extraction:</p><p>• LSTMs are adept at handling sequences, making them more suitable for modeling processes. Goossens et al. <ref type="bibr" target="#b10">[9]</ref> evaluated a Bi-LSTM-CRF model, pointing out that their particular structure affords them better insights into sentences. Similarly, several authors leveraged Bi-LSTM to obtain sentence encodings <ref type="bibr" target="#b29">[28,</ref><ref type="bibr">10]</ref>.</p><p>• Han et al. <ref type="bibr">[10]</ref> leverage Ordered Neurons LSTM (ON-LSTM), pointing out that ordered neurons add a structure-oriented inductive bias that better supports hierarchical process models.</p><p>• Neuberger et al. <ref type="bibr" target="#b30">[29]</ref> pointed out that Jerex <ref type="bibr" target="#b34">[33]</ref>, an end-to-end DL method, can identify the textual location of an entity; this allows obtaining its surrounding text for enriching BPMN activity labels.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8.3.">Lack of Consistently Used, Gold-standard, Accessible and Large-Scale Evaluation Datasets</head><p>We previously pointed out a number of observations regarding evaluation datasets (Section 7.1, Main Observations). We discuss these further below:</p><p>(1) There is a lack of consistently used evaluation datasets. Almost every study reviewed in this paper utilised a different dataset in their evaluation. Only the Friedrich <ref type="bibr" target="#b55">[54]</ref> and PET <ref type="bibr" target="#b35">[34]</ref> datasets are re-used, but only in 2 other studies each time; also, per dataset, only 1 of these 2 studies was not authored by its creators. This greatly complicates an objective, third-party comparative evaluation. There are multiple potential reasons for this: the fact that many evaluation datasets can no longer be found online (issue (2)), or that there is lack of gold standard datasets (issue (3)).</p><p>(2) Many online datasets are no longer available. While multiple articles provide links to their evaluation dataset, 4/9 of these links no longer work <ref type="foot" target="#foot_10">11</ref> , which prevents their re-use by third parties. We thus recommend making datasets available using immutable records, e.g., using Zenodo<ref type="foot" target="#foot_11">foot_11</ref> , as opposed to university resources or even code repositories such as github <ref type="foot" target="#foot_12">13</ref> . This could be made a requirement by journals and conferences; multiple journals already have a data availability requirement.</p><p>(3) There is a paucity of gold-standard datasets. There is currently 1 gold-standard dataset for control flow process extraction, namely the PET dataset (Section 7.1). However, this dataset has only been available since 2022; moreover, it seems geared towards imperative process models, as the manual annotations follow imperative model notations. For instance, annotated process elements include (AND/OR) gateways and associated conditions, branches, and flow (e.g., sequential) relations. It is thus an open question whether the PET dataset is amenable to declarative process extraction. Moreover, to the best of our knowledge, there is no gold standard dataset for extracting decisional models.</p><p>(4) Most evaluation datasets are small in size, i.e., in the order of tens or hundreds of individual process descriptions. There is a need for large-scale datasets, not just for robust evaluations, but also for training/fine-tuning and testing DL models <ref type="bibr" target="#b30">[29]</ref>.</p><p>To resolve issues (3) and ( <ref type="formula">4</ref>), Neuberger et al. <ref type="bibr" target="#b59">[58]</ref> recently proposed the appli-cation of data augmentation techniques for automatically synthesizing natural text for process extraction. The authors found that simple data augmentation techniques already improved the accuracy of ML-based NER and RE models trained on the augmented data. Example techniques include the increasing of linguistic variability, introducing variations in span length, and changing the directionality of actor-performer-recipient relations. Nevertheless, data augmentation techniques still rely on an initial domain dataset to synthesize additional samples. To better valuate manual data curation efforts, some conferences currently organize tracks that accept resources (datasets, benchmarks, software, ...) and their descriptions as publications. Finally, we note that LLMs (see below) may end up removing the need of large training/fine-tuning datasets.Even then, however, there may be a need to compare their performance with prior ML/DL methods.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8.4.">Promise of Large Language Models</head><p>Large Language Models (LLM) can perform a variety of natural language tasks without requiring a specialized training or fine-tuning step. Bellan et al. <ref type="bibr" target="#b13">[12]</ref> note that LLMs "push pre-training to the extreme": after being pre-trained on huge amounts of online textual data, they are able to carry out a variety of tasks by performing only small-scale "in-context learning". The latter involves a prompt with task instructions, contextual knowledge, possibly accompanied by few-shot examples (i.e., input and corresponding output), and the natural language text. Hence, LLMs have a huge potential for automated process extraction, as scalable datasets for training and fine-tuning are currently lacking (Section 8.3).</p><p>At the same time, the fact that LLM re trained purely on Internet data may lead to inadvertently learning and reproducing biases therein <ref type="bibr" target="#b60">[59]</ref>. In process extraction, for instance, this may lead to processes that perpetuate discrimination on gender, race, religion or age <ref type="bibr" target="#b61">[60]</ref>. We note that this problem expands beyond LLM and apply to any pre-trained language models, such as BERT <ref type="bibr" target="#b62">[61]</ref>; techniques have been studied to identify and mitigate such biases <ref type="bibr" target="#b61">[60]</ref>.</p><p>Below, we shortly summarize initial work on the use of LLM for process extraction (Section 8.4.1). Afterwards, we discuss promising developments such as Retrieval-Augmented Generation (RAG) and Multi-Agent Systems (Section 8.4.2).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8.4.1.">Current LLM-based Process Extraction</head><p>At the time of writing (August 2024), to the best of our knowledge, 4 peerreviewed papers <ref type="bibr" target="#b13">[12,</ref><ref type="bibr" target="#b14">13,</ref><ref type="bibr" target="#b15">14,</ref><ref type="bibr" target="#b16">15]</ref> present experimental results LLM-enabled process extraction. This relative paucity of work is not unexpected, considering their novelty; the "game-changing" ChatGPT was only released at the end of 2022. We discuss these works below along a salient set of dimensions.</p><p>Prompts. All reviewed approaches construct a prompt with the textual process description, task instructions, typically a few few-shot (positive and negative) examples, and context knowledge. Given the prompt, the LLM then generates a process model based on the natural text. Task instructions can range from relatively simple instructions <ref type="bibr" target="#b13">[12,</ref><ref type="bibr" target="#b14">13,</ref><ref type="bibr" target="#b16">15</ref>] (e.g., list all activities in the text <ref type="bibr" target="#b13">[12]</ref>) to detailed procedures (e.g., how to identify places and transitions for Petri nets <ref type="bibr" target="#b15">[14]</ref>). Context knowledge tends to depend on what output is targeted; since Bellan et al. <ref type="bibr" target="#b13">[12]</ref> aim to extract participants, activities, and relations, they define these elements in the prompt, as well as the process domain. Grohs et al. <ref type="bibr" target="#b14">[13]</ref> target both declarative and imperative control flow models; to cope with the LLM output limit, they define concise output formats that can later be mapped to e.g., Declare and BPMN, respectively. Forell et al <ref type="bibr" target="#b15">[14]</ref> provide a comprehensive definition of a Petri net and an output format (JSON). Kourani et al. <ref type="bibr" target="#b16">[15]</ref> target Partially Ordered Workflow Language (POWL) as output; they define POWL and its semantics, and a set of Python functions to generate the POWL (see below).</p><p>LLM Methodology. Most authors separate the task of generating a final output format. As mentioned, Grohs et al. <ref type="bibr" target="#b14">[13]</ref> output a custom format that is later mapped to Declare or BPMN. Forell et al. <ref type="bibr" target="#b15">[14]</ref> include a second phase, where the LLM is asked to output a concrete format for adaptability to different modeling tools. Kourani et al. <ref type="bibr" target="#b16">[15]</ref> ask the LLM to output Python code, which is then executed for the safe generation of POWL models.</p><p>Bellan et al. <ref type="bibr" target="#b13">[12]</ref> apply an incremental approach; an initial prompt asks the LLM to identify activities from the text; subsequent prompts include these activities and ask for participants in, and directly-follows relations between, the activities. Kourani et al. <ref type="bibr" target="#b16">[15]</ref> have users engage with the LLM in an iterative error handling loop; refined LLM prompts detail the error and ask the LLM to fix it.</p><p>Suitability of LLM for process extraction. Bellan et al. <ref type="bibr" target="#b13">[12]</ref> found that it is feasible to extract activities and their participants, but encountered challenges with directly-follows relations (avg. precision of 0.28). Grohs et al. <ref type="bibr" target="#b14">[13]</ref> compare the performance of their approach with the pre-LLM work by Van der Aa et al. <ref type="bibr" target="#b46">[45]</ref>; they found that GPT4 yields equal or higher F1 scores. Kourani et al. <ref type="bibr" target="#b16">[15]</ref> found that, regarding choice of LLM, GPT-4 performed better than Gemini. While the evaluation showed the effectiveness of LLM, the authors also note that manual effort is needed during the error handling loop <ref type="bibr" target="#b16">[15]</ref>. Forell et al. <ref type="bibr" target="#b15">[14]</ref> performed a small scale evaluation that illustrated the ability of LLM to generate correct Petri nets; however, issues were reported with AND/OR split and joins. They also found that the non-deterministic nature of LLM caused inconsistent output across multiple runs, which can be an issue for robust process modeling.</p><p>A number of vision papers have illustrated the general promise of LLM in BPM <ref type="bibr" target="#b63">[62,</ref><ref type="bibr" target="#b64">63,</ref><ref type="bibr" target="#b12">11]</ref>. For instance, Busch et al. <ref type="bibr" target="#b63">[62]</ref> pointed out studies demonstrating that the performance of in-context learning can be comparable to, or even better than, finetuned models. The authors discuss a research agenda that includes the appropriate representation of processes in prompts; e.g., this is studied in detail by Berti et al. <ref type="bibr" target="#b65">[64]</ref> for querying processes using natural language and LLM.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8.4.2.">Promising Developments in the Field of LLMs</head><p>This section describes two recent innovations in the LLM field, namely Retrieval-Augmented Generation (RAG) and Multi-Agent systems (LLM-MA), and their potential to improve process extraction performance.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Retrieval-Augmented Generation (RAG)</head><p>In a RAG setup, given the LLM prompt, an extra step first queries an external source (typically, a vector database) for data relevant to the prompt. This data is then provided, together with the prompt, to the LLM <ref type="bibr" target="#b66">[65]</ref>. By additionally providing the LLM with external, contextually relevant data, RAG aims to improve the accuracy and up-to-dateness of LLM responses.</p><p>Relevant to process extraction, RAG has been studied in event extraction <ref type="bibr" target="#b67">[66]</ref> and code generation from natural text <ref type="bibr" target="#b68">[67,</ref><ref type="bibr" target="#b69">68,</ref><ref type="bibr" target="#b70">69]</ref>. Typically, RAG is applied to find external event/code samples with labels relevant to the given text; subsequently, these samples are provided as positive examples to the generative model.</p><p>Event extraction. Event extraction identifies sequences of events in text, including their "arguments" (related individuals, organizations, and locations) <ref type="bibr" target="#b67">[66]</ref>. The authors note that the structure of event descriptions is often quite similar in terms of syntax and semantics. Hence, a RAG setup is proposed that retrieves relevant event samples, i.e., with labels similar to the given event description, and provide them to the generative model. Experimental results show that the proposed approach outperforms baseline approaches <ref type="bibr" target="#b67">[66]</ref>.</p><p>Code generation. Process extraction can be considered as a code generation problem, i.e., where "process code" is generated from input text <ref type="foot" target="#foot_13">14</ref> . Similar to event extraction, multiple works on code generation <ref type="bibr" target="#b68">[67,</ref><ref type="bibr" target="#b69">68,</ref><ref type="bibr" target="#b70">69]</ref> use RAG to retrieve code samples with labels similar to the user prompt, and then provide them as positive examples. This follows human developers' tendency to base themselves on code snippets that are relevant, but perhaps not identical, to their problem <ref type="bibr" target="#b69">[68,</ref><ref type="bibr" target="#b70">69]</ref>. In this vein, SkCoder <ref type="bibr" target="#b69">[68]</ref> retrieves code snippets related to a textual description, and subsequently extracts a "sketch" (i.e., code skeleton) that retains only the code relevant to the given description. To cope with the maximum input length of LLM, AceCoder <ref type="bibr" target="#b70">[69]</ref> applies a selector that filters out redundant code samples. Synchromesh <ref type="bibr" target="#b68">[67]</ref> applies Target Similarity Tuning to select semantically relevant samples; Constrained Semantic Decoding is then used to generate only valid programs. Experiments show that the RAG setup can improve LLM accuracy and code validity <ref type="bibr" target="#b68">[67]</ref>, and can outperform baseline LLM and non-RAG approaches <ref type="bibr" target="#b69">[68,</ref><ref type="bibr" target="#b70">69]</ref>.</p><p>We propose that similar setups can be used to improve process extraction. Such a setup could leverage a repository of process descriptions, i.e., structured processes labeled with a textual description, to provide relevant samples to the generative model. Moreover, an extra vector database can include word embeddings on organizational terminology; e.g., generated by a pre-trained BERT <ref type="bibr" target="#b18">[17]</ref> model fine-tuned on such terminology for activities, roles and objects. Given an input text, an intermediate step can first extract individual terms and search the vector database for similar organizational terms; in the retrieval step, this terminology is then used to retrieve relevant samples from the process repository.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Multi-Agent Systems (LLM-MA)</head><p>In the code generation field, LLM-based Multi-Agent (LLM-MA) frameworks involve multiple LLM agents, each assigned a different role (e.g., analyst, coder, reviewer, tester). These agents then collaborate throughout the software generation lifecycle to generate the code output <ref type="bibr" target="#b71">[70]</ref>. This setup draws inspiration from human software development, where complexity is managed by delegating tasks to team members, who then collaborate on producing the software. In the same vein, LLM-MA aim to improve the ability of LLM to manage the complexity of coding tasks.</p><p>Dong et al. <ref type="bibr" target="#b72">[71]</ref> present an LLM-MA framework where LLM agents respectively operate as analyst, coder, and tester; agents are instructed on how to collaborate and interact to generate code. In a sequence of stages, agents pass on their outputs to other agents (e.g., analyst to coder; tester back to coder). Qian et al. <ref type="bibr" target="#b73">[72]</ref> introduce ChatDev, an LLM-MA framework where agents assume e.g., programmer, reviewer, and tester roles. The code generation process is broken into a sequence of phases and subtasks. To solve a subtask, in a multi-turn dialogue, an instructor agent (e.g., reviewer) instructs an assistant agent (e.g., programmer), who responds with a potential solution (e.g., fixing an endless loop). The solution from a subtask is passed on to the next subtask. In a "de-hallucination" mechanism, an assistant can seek clarification from the instructor before providing a solution. In both works, the authors found that their LLM-MA setup improved code generation performance.</p><p>We propose that a similar LLM-MA setup can be applied to process extraction. Such an LLM-MA would feature specialized agents, each dedicated to specific aspects of process extraction (e.g., identifying actors, activities, and objects, and relations between them). In a continuous feedback loop, a "critic" agent can iteratively evaluate their output, and, if needed, ask for refinements. An "integration" agent could then synthesize the outputs into a format such as e.g., BPMN, Petri nets, or Declare.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="9.">Threats to Validity and Limitations</head><p>We acknowledge the existence of the following limitations and threats to validity:</p><p>• Search scope: Our literature search's effectiveness is invariably based on the chosen keywords (Table <ref type="table" target="#tab_0">1</ref>), which were selected to target both NLP methods and process extraction.</p><p>• Non-peer-reviewed and non-English articles: Our reliance on peer-reviewed sources written in English may exclude insights from grey literature, such as technical reports, theses or corporate white papers, and non-English sources. For instance, this may overlook advances made outside of academic circles.</p><p>• Coding of papers: both authors (WV, SM) read and coded (i.e., categorised) the papers. Any inconsistencies were resolved through internal discussions.</p><p>• Rapidly evolving field : the field of NLP is progressing rapidly, especially regarding LLM-related work. Recent developments may be reported in nonpeer-reviewed channels (e.g., preprints from repositories like arXiv). Of course, publications after the preparation of this manuscript (August 2024) will also not be included.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="10.">Conclusion</head><p>We presented a systematic literature review, conducted using the PRISMA guidelines, on the field of NLP-enabled process extraction. We cover publications up to 2023 that include rule-based, ML and DL methods, and with targets including control flow (imperative and declarative) and decisional models. Review themes include natural language analysis, process model generation, and evaluation.</p><p>Below, we summarise our answers to our research questions:</p><p>RQ1: Which NLP and process generation methods, including publicly available tools, have been studied and used for extracting process models? We presented a detailed landscape of process extraction methods, their NLP and process model generation components, and public tools (Sections 5-7). As shown in Figure <ref type="figure">2</ref>, historically (2011-2022), most approaches have used rule-based methods for NLP (14) compared to ML <ref type="bibr" target="#b7">(6)</ref>; DL methods started appearing after the advent of BERT in 2018 <ref type="bibr" target="#b6">(5)</ref>. At the time of submission, we found initial experimental results (4) on the use of LLM (Section 8.4.1). Finally, we point out an imbalance in the type of target process model, with most works targeting imperative control flow models <ref type="bibr" target="#b16">(15)</ref>, followed at a distance by decisional (4) and declarative control flow models (3).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>RQ2:</head><p>To what extent have ML/DL methods been studied in process extraction? Figure <ref type="figure">2</ref> shows that, at this point (2023), the interest in ML/DL is on par with rule-based methods. Table <ref type="table">5</ref> summarises the ML/DL models used for NLP tasks. We further discussed experimental results that show performance benefits of ML/DL over rule-based methods for NLP (Section 5.2). We found that DL-based Transformers (BERT), which revolutionised NLP in 2018, were successfully applied to improve process extraction. We outlined "non-traditional" DL pipelines for NLP, and the DL models involved (Section 5.2). In our discussion, we summarize the observed use of DL for process extraction (Section 8.2); including the suitability of certain DL models for downstream process extraction (e.g., LSTM) highlighted by study authors.</p><p>RQ3: Which evaluation methods and datasets have been utilised to evaluate process extraction? We provide a detailed listing of datasets used in the reviewed papers (Section 7.1). We hereby observed a barrier towards objective evaluation, namely the lack of accessible, scalable and gold-standard datasets for different types of process models. We further presented a breakdown of orthogonal sets of evaluation methods, and classified the reviewed papers accordingly (Section 7.2).</p><p>Finally, we discussed the more recent LLM revolution as an opportunity to further improve process extraction (Section 8.4). We shortly reviewed initial work here, which is promising but also points out current challenges; and discussed promising developments (RAG, LLM-MA) that may be amenable to process extraction. This systematic review of the "pre-LLM" era thus comes at an opportune moment: for practitioners who want to apply process extraction, we present a detailed overview of state-of-the-art methods that can be used, including public NLP tools. For researchers aiming to contribute to process extraction, we present the following:</p><p>• A review that describes a categorization of, and comparisons between, rulebased and ML/DL methods, non-traditional DL pipelines, and the use of LLM for process extraction. New studies can be inspired by this work, re-use their models, and/or compare their experimental results.</p><p>• A comprehensive analysis of evaluation methods and datasets for process ex-</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Figure 1 :</head><label>1</label><figDesc>Figure 1: PRISMA flow diagram with results for our systematic review.</figDesc><graphic coords="8,135.92,95.05,340.15,189.89" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0"><graphic coords="11,135.92,95.04,340.15,213.62" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0"><head>Table 1 :</head><label>1</label><figDesc>Synonyms and search queries for NLP and BPM.</figDesc><table><row><cell>Concepts</cell><cell>Synonyms</cell><cell>Search Queries</cell></row><row><cell>Natural</cell><cell>NLP</cell><cell>"NLP" OR</cell></row><row><cell>Language</cell><cell>Natural Language Process-</cell><cell>"Natural Language Processing" OR</cell></row><row><cell>Processing</cell><cell>ing</cell><cell></cell></row><row><cell></cell><cell>Text Mining</cell><cell>"Text mining" OR</cell></row><row><cell></cell><cell>Text Analysis</cell><cell>"Text analysis" OR</cell></row><row><cell></cell><cell>NL Processing</cell><cell>"NL processing" OR</cell></row><row><cell></cell><cell>NLTK</cell><cell>"NLTK"</cell></row><row><cell>Business</cell><cell>Process Modelling</cell><cell>"Process Modelling" OR</cell></row><row><cell>Process</cell><cell>Business Process</cell><cell>"Business Process Management" OR</cell></row><row><cell>Management</cell><cell>Management</cell><cell></cell></row><row><cell></cell><cell>BPM</cell><cell>"BPM" OR</cell></row><row><cell></cell><cell>Business Process Model</cell><cell>"Business Process Model and Nota-</cell></row><row><cell></cell><cell>and</cell><cell>tion" OR</cell></row><row><cell></cell><cell>Notation</cell><cell></cell></row><row><cell></cell><cell>BPMN</cell><cell>"BPMN" OR</cell></row><row><cell></cell><cell>Process Extraction</cell><cell>"Process Extraction" OR</cell></row><row><cell></cell><cell>Process Management</cell><cell>"Process Management" OR</cell></row><row><cell></cell><cell>Business Process Elicita-</cell><cell>"Business Process Elicitation" OR</cell></row><row><cell></cell><cell>tion</cell><cell></cell></row><row><cell></cell><cell>Decision Model and Nota-</cell><cell>"Decision Model and Notation" OR</cell></row><row><cell></cell><cell>tion</cell><cell></cell></row><row><cell></cell><cell>DMN</cell><cell>"DMN" OR</cell></row><row><cell></cell><cell>Process Discovery</cell><cell>"Process Discovery" OR</cell></row><row><cell></cell><cell cols="2">Decision Model Extraction "Decision Model Extraction" OR</cell></row><row><cell></cell><cell>Business decision</cell><cell>"Business decision management" OR</cell></row><row><cell></cell><cell>management</cell><cell></cell></row><row><cell></cell><cell>Decision Extraction</cell><cell>"Decision Extraction"</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1"><head>Table 2 :</head><label>2</label><figDesc>Themes and categories used for classification.</figDesc><table><row><cell>Theme</cell><cell cols="2">Category Description</cell><cell>Possible Values</cell></row><row><cell>Natural</cell><cell></cell><cell></cell><cell>User/group stories, un-</cell></row><row><cell>Language</cell><cell cols="2">Text Input Restrictions on textual data.</cell><cell>restricted or not men-</cell></row><row><cell>Analysis</cell><cell></cell><cell></cell><cell>tioned.</cell></row><row><cell></cell><cell>Computing paradigm</cell><cell>NLP Computing paradigm.</cell><cell>Rules or ML/DL mod-ules, end-to-end DL.</cell></row><row><cell></cell><cell cols="2">NLP Tools Off-the-shelf NLP tools used.</cell><cell>E.g., NLTK, spaCy, WordNet, CoreNLP.</cell></row><row><cell>Process Model Generation</cell><cell>Computing Paradigm</cell><cell>Computing paradigm for pro-cess generation.</cell><cell>Knowledge-based, ML/DL.</cell></row><row><cell></cell><cell>Intermediary</cell><cell>Use of notation-agnostic, in-</cell><cell>E.g., graph-based, de-</cell></row><row><cell></cell><cell>represent.</cell><cell>termediary representations.</cell><cell>pendency tuples.</cell></row><row><cell></cell><cell></cell><cell></cell><cell>Control flow (imperative</cell></row><row><cell></cell><cell>Target</cell><cell>Type of process model and no-</cell><cell>/ declarative) vs. de-</cell></row><row><cell></cell><cell>model</cell><cell>tation that was targeted.</cell><cell>cisional. E.g., BPMN,</cell></row><row><cell></cell><cell></cell><cell></cell><cell>DCL, DMN.</cell></row><row><cell></cell><cell></cell><cell></cell><cell>Methods: component-</cell></row><row><cell>Evaluation</cell><cell>Methods &amp; Metrics</cell><cell>Methods and metrics used for evaluation.</cell><cell>based / holistic; sys-tematic / expert-based.</cell></row><row><cell></cell><cell></cell><cell></cell><cell>Metrics: e.g., P, R, F1</cell></row><row><cell></cell><cell>Evaluation Dataset</cell><cell>Dataset used for evaluation.</cell><cell>Type (real, synthetic), target model, size, do-main, availability, link.</cell></row><row><cell>Metadata</cell><cell>Year</cell><cell>Year of Publication.</cell><cell>From 2011 to 2023.</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2"><head>Table 3 :</head><label>3</label><figDesc>Breakdown of search results per database.</figDesc><table><row><cell>Database</cell><cell>Web Address</cell><cell>Number of Results</cell></row><row><cell>Scopus</cell><cell>https://www.scopus.com/</cell><cell>303</cell></row><row><cell>Web of Science</cell><cell>https://www.webofknowledge.com/</cell><cell>90</cell></row><row><cell>IEEE Xplore</cell><cell>http://www.ieeexplore.ieee.org</cell><cell>33</cell></row><row><cell>ScienceDirect</cell><cell>https://www.sciencedirect.com</cell><cell>85</cell></row><row><cell>ACM Digital Library</cell><cell>http://dl.acm.org</cell><cell>13</cell></row><row><cell cols="2">Total with Duplicates</cell><cell>524</cell></row><row><cell cols="2">Number of Duplicates</cell><cell>119</cell></row><row><cell cols="2">Total without Duplicates</cell><cell>405</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3"><head>Table 4 :</head><label>4</label><figDesc>Traditional NLP pipeline tasks.</figDesc><table><row><cell cols="2">NLP Tasks Description</cell></row><row><cell cols="2">Tokenization Splitting the raw text into chunks of words or sentences called tokens</cell></row><row><cell></cell><cell>(e.g., based on whitespaces, periods, or regular expressions).</cell></row><row><cell>Stemming</cell><cell>Stemming reduces words to their root form by removing leading or trail-</cell></row><row><cell>and Lemma-</cell><cell>ing characters. Lemmatizing considers word meaning &amp; context to more</cell></row><row><cell>tizing</cell><cell>accurately find root forms.</cell></row><row><cell>Part-of-</cell><cell>Assigning grammatical categories (e.g., nouns, verbs) to words.</cell></row><row><cell>Speech</cell><cell></cell></row><row><cell>(POS) Tag-</cell><cell></cell></row><row><cell>ging</cell><cell></cell></row><row><cell>Dependency</cell><cell>Analyzing grammatical relationships between words in a sentence to re-</cell></row><row><cell>Parsing</cell><cell>veal typed dependencies (e.g., subject noun, verb object) [26].</cell></row><row><cell>Named En-</cell><cell>Identifying named entities in text, such as names of persons, locations,</cell></row><row><cell>tity Recogni-</cell><cell>and organizations. This term is often used interchangeably with Entity</cell></row><row><cell>tion (NER)</cell><cell>Extraction (EE) and Entity Recognition (ER).</cell></row><row><cell>Coreference</cell><cell></cell></row><row><cell>Resolution</cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_7"><head>Table 7 :</head><label>7</label><figDesc>Target Process Models</figDesc><table><row><cell>Model</cell><cell cols="2">Notation</cell><cell></cell><cell></cell><cell>Papers</cell></row><row><cell>Type</cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell>Control flow:</cell><cell>BPMN</cell><cell></cell><cell></cell><cell></cell><cell>[43, 47, 50, 41, 44, 40,</cell></row><row><cell>Imperative</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell>34, 10, 28, 42, 24]</cell></row><row><cell></cell><cell cols="3">UML activity diagram [51]</cell><cell></cell><cell>[23]</cell></row><row><cell></cell><cell cols="2">Custom / unspecified</cell><cell></cell><cell></cell><cell>[39, 29, 25]</cell></row><row><cell>Control flow:</cell><cell cols="2">Declare [3]</cell><cell></cell><cell></cell><cell>[45]</cell></row><row><cell>Declarative</cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell></cell><cell>DCR</cell><cell>(Dynamic</cell><cell>Condition</cell><cell>Re-</cell><cell>[48, 30]</cell></row><row><cell></cell><cell cols="2">sponse) [52]</cell><cell></cell><cell></cell></row><row><cell>Decisional</cell><cell cols="2">DMN [53]</cell><cell></cell><cell></cell><cell>[32, 9, 31, 46]</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_8"><head>Table 8 :</head><label>8</label><figDesc>Evaluation datasets used in process extraction.</figDesc><table><row><cell cols="2">Type Target</cell><cell>Dataset Size</cell><cell>Public Domain</cell><cell></cell><cell>Notes &amp;</cell></row><row><cell></cell><cell>Model</cell><cell></cell><cell></cell><cell></cell><cell>Papers</cell></row><row><cell>Synth./</cell><cell>Control</cell><cell>47 Processes, 432 Sen-</cell><cell cols="2">Public 1 Academic, industry, text-</cell><cell>'Friedrich' [54]</cell></row><row><cell>Real</cell><cell>(Imper.)</cell><cell>tences</cell><cell cols="2">book, public sector</cell><cell>[54, 44, 43]</cell></row><row><cell>Synth./</cell><cell>Control</cell><cell>45 Processes, 417 Sen-</cell><cell cols="2">Public 2 Cfr. Friedrich et al. [54]</cell><cell>'PET' [34]</cell></row><row><cell>Real</cell><cell>(Imper.)</cell><cell>tences</cell><cell></cell><cell></cell><cell>[34, 55, 29]</cell></row><row><cell>Real</cell><cell>Control</cell><cell>Ca. 260 Processes</cell><cell cols="2">Private Business processes (RPA,</cell><cell>[10]</cell></row><row><cell></cell><cell>(Imper.)</cell><cell></cell><cell cols="2">BluePrism, SAP)</cell></row><row><cell cols="2">Synth. Control</cell><cell>10 Cases</cell><cell cols="2">Public 3 Finance and HR</cell><cell>[47]</cell></row><row><cell></cell><cell>(Imper.)</cell><cell></cell><cell></cell><cell></cell></row><row><cell>Real</cell><cell>Control</cell><cell>56 Texts</cell><cell cols="2">Private US visa process, Federal</cell><cell>[41]</cell></row><row><cell></cell><cell>(Imper.)</cell><cell></cell><cell cols="2">Network Agency of Ger-</cell></row><row><cell></cell><cell></cell><cell></cell><cell cols="2">many, others</cell></row><row><cell>Real</cell><cell>Control</cell><cell>-</cell><cell cols="2">Public 4 Internet searches; 5 topics</cell><cell>[39]</cell></row><row><cell></cell><cell>(Imper.)</cell><cell></cell><cell cols="2">(e.g., house cleaning)</cell></row><row><cell cols="2">Synth. Control</cell><cell>-</cell><cell cols="2">Public 5 Computer repair</cell><cell>[42]</cell></row><row><cell></cell><cell>(Imper.)</cell><cell></cell><cell></cell><cell></cell></row><row><cell>Real</cell><cell>Control</cell><cell>Sentences: 2636(COR),</cell><cell cols="2">Public 6 Cooking, maintenance</cell><cell>[28]</cell></row><row><cell></cell><cell>(Imper.)</cell><cell>2172(MAM)</cell><cell></cell><cell></cell></row><row><cell>Real</cell><cell>Control</cell><cell>320 Texts</cell><cell cols="2">Public 7 Keywords: Phylogenetic,</cell><cell>[25]</cell></row><row><cell></cell><cell>(Imper.)</cell><cell></cell><cell>Data,</cell><cell>InferenceProgram</cell></row><row><cell></cell><cell></cell><cell></cell><cell cols="2">(PubMed PCM)</cell></row><row><cell cols="2">Synth. Control</cell><cell>2 Cases (33, 17 Activi-</cell><cell cols="2">Public 8 Finance and Web</cell><cell>[23]</cell></row><row><cell></cell><cell>(Imper.)</cell><cell>ties)</cell><cell></cell><cell></cell></row><row><cell>Real</cell><cell>Control</cell><cell>2 Cases (26, 15 Story</cell><cell cols="2">Private Course enrolment, manual</cell><cell>[24]</cell></row><row><cell></cell><cell>(Imper.)</cell><cell>Events)</cell><cell cols="2">process elicitation</cell></row><row><cell>Synth./</cell><cell>Control</cell><cell>103 Constraint Descrip-</cell><cell cols="2">Public 9 Industrial, academic (gen-</cell><cell>[45]</cell></row><row><cell>Real</cell><cell>(Decl.)</cell><cell>tions</cell><cell cols="2">eral, declarative)</cell></row><row><cell>Synth./</cell><cell>Control</cell><cell>107 Process Descrip-</cell><cell cols="2">Public 10 BPM academic initiative,</cell><cell>[30]</cell></row><row><cell>Real</cell><cell>(Decl.)</cell><cell>tions</cell><cell cols="2">students, social services</cell></row><row><cell cols="2">Synth. Decis.</cell><cell>2 Cases</cell><cell cols="2">Public 11 Finance and Health</cell><cell>[31]</cell></row><row><cell cols="2">Synth. Decis.</cell><cell>20 Texts</cell><cell>Private -</cell><cell></cell><cell>[32]</cell></row><row><cell>Real</cell><cell>Decis.</cell><cell>Sentences: 577 (train),</cell><cell cols="2">Public 12 Sentences: papers, laws</cell><cell>[9]</cell></row><row><cell></cell><cell></cell><cell>232 (test); Text: 6 (38-</cell><cell cols="2">&amp; regulations, Etikala et</cell></row><row><cell></cell><cell></cell><cell>101 words)</cell><cell cols="2">al. [31], others; Text: DM</cell></row><row><cell></cell><cell></cell><cell></cell><cell cols="2">community, Internet</cell></row><row><cell cols="2">Synth. Decis.</cell><cell>12 Texts</cell><cell cols="2">Public 13 Finance, healthcare</cell><cell>[46]</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_9"><head>Table 9 :</head><label>9</label><figDesc>Evaluation methods used in process extraction.</figDesc><table><row><cell cols="3">Category 1 Category 2 Description</cell><cell>Papers</cell></row><row><cell>Component-</cell><cell>Systematic</cell><cell>Components: Sentence classification</cell><cell>[9]</cell></row><row><cell>based</cell><cell></cell><cell></cell><cell></cell></row><row><cell></cell><cell></cell><cell>Components: Entity, Relation Extraction</cell><cell>[55, 29]</cell></row><row><cell></cell><cell></cell><cell>Components: Sentence classification, seman-</cell><cell>[28]</cell></row><row><cell></cell><cell></cell><cell>tics recognition, semantic role labeling</cell><cell></cell></row><row><cell>Holistic</cell><cell>Systematic</cell><cell>Elements: decisional dependencies</cell><cell>[9, 31,</cell></row><row><cell></cell><cell></cell><cell>(dependency tuples and/or decision logic)</cell><cell>32, 46]</cell></row><row><cell></cell><cell></cell><cell>Elements: disambiguated words, extracted re-</cell><cell>[25]</cell></row><row><cell></cell><cell></cell><cell>lations</cell><cell></cell></row><row><cell></cell><cell></cell><cell>Elements: extracted entities, relations</cell><cell>[55, 29,</cell></row><row><cell></cell><cell></cell><cell></cell><cell>48]</cell></row><row><cell></cell><cell></cell><cell>Elements: activity sorting, found activities</cell><cell>[39]</cell></row><row><cell></cell><cell></cell><cell>Elements: UML activity/ BPMN / interm.</cell><cell>[41, 23,</cell></row><row><cell></cell><cell></cell><cell>repr. elements</cell><cell>47, 42]</cell></row><row><cell></cell><cell></cell><cell>Graph-based: Graph Edit Distance</cell><cell>[44, 43]</cell></row><row><cell></cell><cell></cell><cell>Graph-based: Similarity score</cell><cell>[10]</cell></row><row><cell></cell><cell></cell><cell>Aggregate measure: behavioral profiles [56]</cell><cell></cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="1" xml:id="foot_0"><p>E.g., a precedence constraint on (A, B) states that B only occurs if preceded by A.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="2" xml:id="foot_1"><p>Any work focusing on the use of ML/DL for these concepts would thus also be included.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="3" xml:id="foot_2"><p>https://www.covidence.org/</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="4" xml:id="foot_3"><p>In case of multiple papers related to the same contribution, we reviewed the most recent paper.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="6" xml:id="foot_4"><p>In particular, extracting dependencies in terms of base, derived, and action tags.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_5"><p>Identifies syntactic constituents (e.g., noun, verb phrases).<ref type="bibr" target="#b26">[25]</ref> spaCy Python NLP library.[32, 31,41, 42] Stanford CoreNLPJava suite of NLP tools.<ref type="bibr" target="#b32">[31,</ref><ref type="bibr" target="#b24">23]</ref> Stanford LemmatiserConverts words to their root form.<ref type="bibr" target="#b44">[43,</ref><ref type="bibr" target="#b26">25]</ref> Stanford Parser Parses sentences to derive their grammatical structure.[44, 40, 42] Stanford POS Tagging</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="7" xml:id="foot_6"><p>This could be considered part of NLP; but, we mention it here as they act on NLP output.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="8" xml:id="foot_7"><p>https://jinja.palletsprojects.com/en/3.1.x/</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="9" xml:id="foot_8"><p>We suggest readers to reach out to the paper authors to gain access to these datasets.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="10" xml:id="foot_9"><p>Reference models (systematic) will typically be created by experts, and thus also include a degree of subjectivity. The difference here is how the comparison is performed.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="11" xml:id="foot_10"><p>Of course, this is a known problem beyond the field of automated process extraction.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="12" xml:id="foot_11"><p>https://zenodo.org/</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="13" xml:id="foot_12"><p>Unfortunately, the use of such repositories is not a solution, as 3/6 of those links no longer work either.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="14" xml:id="foot_13"><p>E.g., types of process code includes JSON<ref type="bibr" target="#b15">[14]</ref>, custom formats<ref type="bibr" target="#b14">[13]</ref>, and Python<ref type="bibr" target="#b16">[15]</ref>.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="18" xml:id="foot_14"><p>Paper implements NER, RE, and coref. resol. for process extraction (latter is not elaborated).</p></note>
+		</body>
+		<back>
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Table <ref type="table">5</ref> summarises the ML/DL models used to implement NLP tasks. 5 Note that papers covering multiple paradigms will be counted once for each paradigm.</p><p>traction, which can be directly re-used in new research.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="11.">Acknowledgements</head><p>We would like to thank Daniel Amyot for a thorough proofreading of the paper, and Alireza Houshidari for providing insights on novel LLM setups.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="12.">Declaration of Interest</head><p>The authors report there are no competing interests to declare.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="13.">Funding</head><p>This work was supported by the Telfer School of Management, University of Ottawa, under a School of Management Research Grant (SMRG).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Appendix A. Detailed categorization of papers along classification themes.</head><p>Regarding the NLP theme, we note that the vast majority of papers did not mention a restriction on text input (Section 5.1). We refer to Table <ref type="table">4</ref> for typical NLP pipeline tasks; Table <ref type="table">5</ref> for the use of ML/DL for these NLP tasks (NLP Computing Paradigm theme); and Table <ref type="table">6</ref> for public NLP tools utilized in the papers (NLP Tools theme).</p><p>Below, we categorize the papers along the remaining Metadata (Table <ref type="table">A1</ref>), Process Model Generation (Table <ref type="table">A2</ref>), and Evaluation (Table <ref type="table">A3</ref>) themes. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>/</head><p>Control flow -Imperative (BPMN) 15 Process extraction is cast as an NLP NER problem. 16 Process extraction is cast as an NLP text classification problem. 17 A process structure is extracted from the trained ON-LSTM model.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Neuberger et al. [29]</head><p>ML / DL -(see Table <ref type="table">5</ref>) 18   / Control flow -Imperative (Unspec.) Honkisz et al. <ref type="bibr" target="#b43">[42]</ref> Knowledge-based -Custom  </p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<monogr>
+		<title level="m" type="main">not working at submission) 11 Listed in paper 12</title>
+		<ptr target="http://github.com/Goossens496/Extracting-DMN-models-from-text" />
+		<imprint/>
+	</monogr>
+	<note>not working at submission</note>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<monogr>
+		<title/>
+		<author>
+			<persName><surname>References</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<monogr>
+		<author>
+			<persName><forename type="first">M</forename><surname>Weske</surname></persName>
+		</author>
+		<title level="m">Business process management-concepts, languages, architectures, verlag</title>
+		<meeting><address><addrLine>Berlin</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2007">2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">A qualitative analysis of the state of the art in process extraction from text</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Bellan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Dragoni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Ghidini</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">DP@ AI* IA</title>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="19" to="30" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Declarative workflows: Balancing between flexibility and support</title>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">M P</forename><surname>Van Der Aalst</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Pesic</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Schonenberg</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/s00450-009-0057-9</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Computer Science -Research and Development</title>
+		<imprint>
+			<biblScope unit="volume">23</biblScope>
+			<biblScope unit="page" from="99" to="113" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Challenges and opportunities of applying natural language processing in business process management</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Van Der Aa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">Carmona</forename><surname>Vargas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Leopold</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Mendling</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Padró</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">COLING 2018: The 27th International Conference on Computational Linguistics: Proceedings of the Conference</title>
+		<imprint>
+			<date type="published" when="2018">August 20-26, 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<monogr>
+		<title level="m" type="main">Insight-driven organization -deloitte insights</title>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">H</forename><surname>Davenport</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Guszcza</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Smith</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Stiller</surname></persName>
+		</author>
+		<ptr target="https://www2.deloitte.com/us/en/insights/topics/analytics/insight-driven-organization.html" />
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<author>
+			<persName><forename type="first">B</forename><surname>Maqbool</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Azam</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">W</forename><surname>Anwar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">H</forename><surname>Butt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Zeb</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Zafar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">K</forename><surname>Nazir</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Umair</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">A comprehensive investigation of bpmn models generation from textual requirements-techniques, tools and trends</title>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2018">2018. 2018. 2019</date>
+			<biblScope unit="page" from="543" to="557" />
+		</imprint>
+	</monogr>
+	<note>ICISA</note>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<monogr>
+		<title level="m" type="main">Natural language processing in business process identification and modeling: a systematic literature review</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">C D A</forename><surname>Bordignon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">H</forename><surname>Thom</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">S</forename><surname>Silva</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><forename type="middle">S</forename><surname>Dani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Fantinato</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">C B</forename><surname>Ferreira</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<publisher>Simpósio Brasileiro de Sistemas de Informação</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">An inductive approach to the acquisition and adaptation of workflow models</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Herbst</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Karagiannis</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IJCAI</title>
+		<meeting>the IJCAI</meeting>
+		<imprint>
+			<date type="published" when="1999">1999</date>
+			<biblScope unit="page" from="52" to="57" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Extracting decision model and notation models from text using deep learning techniques</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Goossens</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">De</forename><surname>Smedt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Vanthienen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Expert Systems with Applications</title>
+		<imprint>
+			<biblScope unit="volume">211</biblScope>
+			<biblScope unit="page">118667</biblScope>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">A-bps: automatic business process discovery service using ordered neurons lstm</title>
+		<author>
+			<persName><forename type="first">X</forename><surname>Han</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Mei</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Dang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Agarwal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Hu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2020 IEEE International Conference on Web Services (ICWS)</title>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="428" to="432" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<monogr>
+		<author>
+			<persName><forename type="first">T</forename><surname>Kampik</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Warmuth</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Rebmann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Agam</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">N</forename><surname>Egger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Gerber</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Hoffart</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Kolk</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Herzig</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Decker</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2309.00900</idno>
+		<title level="m">Large process models: Business process management in the age of generative ai</title>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Extracting business process entities and relations from text using pre-trained language models and in-context learning</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Bellan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Dragoni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Ghidini</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Enterprise Design, Operations, and Computing</title>
+		<editor>
+			<persName><forename type="first">J</forename><forename type="middle">P A</forename><surname>Almeida</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">D</forename><surname>Karastoyanova</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">G</forename><surname>Guizzardi</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">M</forename><surname>Montali</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">F</forename><forename type="middle">M</forename><surname>Maggi</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">C</forename><forename type="middle">M</forename><surname>Fonseca</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Cham</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer International Publishing</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="182" to="199" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<monogr>
+		<title level="m" type="main">Large language models can accomplish business process management tasks</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Grohs</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Abb</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Elsayed</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J.-R</forename><surname>Rehse</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2307.09923</idno>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<monogr>
+		<author>
+			<persName><forename type="first">M</forename><surname>Forell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Schüler</surname></persName>
+		</author>
+		<idno type="DOI">10.18420/modellierung2024-ws-003</idno>
+		<title level="m">Modeling meets large language models, Modellierung 2024 Satellite Events</title>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Process modeling with large language models</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Kourani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Berti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Schuster</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">M P</forename><surname>Van Der Aalst</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Enterprise, Business-Process and Information Systems Modeling</title>
+		<editor>
+			<persName><forename type="first">H</forename><surname>Van Der Aa</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">D</forename><surname>Bork</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">R</forename><surname>Schmidt</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">A</forename><surname>Sturm</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Cham</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer Nature Switzerland</publisher>
+			<date type="published" when="2024">2024</date>
+			<biblScope unit="page" from="229" to="244" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<monogr>
+		<author>
+			<persName><forename type="first">P</forename><surname>Bellan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Dragoni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Ghidini</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2110.03754</idno>
+		<title level="m">Process extraction from text: state of the art and challenges for the future</title>
+		<meeting>ess extraction from text: state of the art and challenges for the future</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<monogr>
+		<title level="m" type="main">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Devlin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M.-W</forename><surname>Chang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Toutanova</surname></persName>
+		</author>
+		<idno type="DOI">10.48550/arxiv.1810.04805</idno>
+		<ptr target="http://arxiv.org/abs/1810.04805" />
+		<imprint>
+			<date type="published" when="2018-10">Oct. 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<monogr>
+		<title level="m" type="main">Mining process models from natural language text: A state-of-the-art analysis, Multikonferenz Wirtschaftsinformatik (MKWI-16</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Riefer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">F</forename><surname>Ternis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Thaler</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="9" to="11" />
+			<pubPlace>March</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<monogr>
+		<ptr target="https://www.bpmn.org/" />
+		<title level="m">Business process model and notation (bpmn) (2024)</title>
+		<imprint/>
+		<respStmt>
+			<orgName>Object Management Group</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">State of the art: Automatic generation of business process models</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Schüler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Alpers</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Business Process Management Workshops</title>
+		<editor>
+			<persName><forename type="first">J</forename><surname>De Weerdt</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">L</forename><surname>Pufahl</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Cham</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer Nature Switzerland</publisher>
+			<date type="published" when="2024">2024</date>
+			<biblScope unit="page" from="161" to="173" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">The prisma 2020 statement: an updated guideline for reporting systematic reviews</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">J</forename><surname>Page</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">E</forename><surname>Mckenzie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">M</forename><surname>Bossuyt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Boutron</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">C</forename><surname>Hoffmann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">D</forename><surname>Mulrow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Shamseer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Tetzlaff</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">A</forename><surname>Akl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">E</forename><surname>Brennan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Chou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Glanville</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Grimshaw</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Hróbjartsson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">M</forename><surname>Lalu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">W</forename><surname>Loder</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Mayo-Wilson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Mcdonald</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">A</forename><surname>Mcguinness</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">A</forename><surname>Stewart</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Thomas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">C</forename><surname>Tricco</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><forename type="middle">A</forename><surname>Welch</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Whiting</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Moher</surname></persName>
+		</author>
+		<idno type="DOI">10.1136/bmj.n71</idno>
+		<ptr target="https://www.bmj.com/content/372/bmj.n71" />
+	</analytic>
+	<monogr>
+		<title level="j">BMJ</title>
+		<imprint>
+			<biblScope unit="volume">372</biblScope>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Demonstrating Rigor Using Thematic Analysis: A Hybrid Approach of Inductive and Deductive Coding and Theme Development</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Fereday</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Muir-Cochrane</surname></persName>
+		</author>
+		<idno type="DOI">10.1177/160940690600500107</idno>
+		<ptr target="http://journals.sagepub.com/doi/10.1177/160940690600500107" />
+	</analytic>
+	<monogr>
+		<title level="j">International Journal of Qualitative Methods</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="80" to="92" />
+			<date type="published" when="2006">2006</date>
+			<publisher>Los</publisher>
+			<pubPlace>Angeles, CA</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Automatic generation of business process models from user stories</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Nasiri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Adadi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lahmer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">International Journal of Electrical and Computer Engineering</title>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page">809</biblScope>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Let me tell you a storyon how to build process models</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">C D A</forename><surname>Goncalves</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><forename type="middle">M</forename><surname>Santoro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><forename type="middle">A</forename><surname>Baião</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Universal Computer Science</title>
+		<imprint>
+			<biblScope unit="volume">17</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="276" to="295" />
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Bioinformatic workflow extraction from scientific texts based on word sense disambiguation</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Halioui</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Valtchev</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">B</forename><surname>Diallo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE/ACM transactions on computational biology and bioinformatics</title>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="1979" to="1990" />
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<monogr>
+		<title level="m" type="main">Stanford typed dependencies manual</title>
+		<author>
+			<persName><forename type="first">M.-C</forename><surname>De Marneffe</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">D</forename><surname>Manning</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2008">2008</date>
+		</imprint>
+		<respStmt>
+			<orgName>Stanford University</orgName>
+		</respStmt>
+	</monogr>
+	<note type="report_type">Technical report</note>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Glove: Global vectors for word representation</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Pennington</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Socher</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">D</forename><surname>Manning</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2014 conference on empirical methods in natural language processing</title>
+		<meeting>the 2014 conference on empirical methods in natural language processing</meeting>
+		<imprint>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="1532" to="1543" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">An approach for process model extraction by multi-grained text classification</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Qian</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Wen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kumar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Zong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advanced Information Systems Engineering: 32nd International Conference, CAiSE 2020</title>
+		<meeting><address><addrLine>Grenoble, France</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2020">June 8-12, 2020. 2020</date>
+			<biblScope unit="volume">32</biblScope>
+			<biblScope unit="page" from="268" to="282" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<monogr>
+		<title level="m" type="main">Beyond rule-based named entity recognition and relation extraction for process model generation from natural language text, in: Cooperative Information Systems</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Neuberger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Ackermann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Jablonski</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<publisher>Springer Nature Switzerland</publisher>
+			<biblScope unit="page" from="179" to="197" />
+			<pubPlace>Cham</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Declarative process discovery: Linking process and textual views</title>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">A</forename><surname>López</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Strømsted</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J.-M</forename><surname>Niyodusenga</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Marquard</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Intelligent Information Systems</title>
+		<editor>
+			<persName><forename type="first">S</forename><surname>Nurcan</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">A</forename><surname>Korthaus</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Cham</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer International Publishing</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="109" to="117" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Text2dec: extracting decision dependencies from natural language text for automated dmn decision modelling</title>
+		<author>
+			<persName><forename type="first">V</forename><surname>Etikala</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Van Veldhoven</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Vanthienen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Business Process Management</title>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="367" to="379" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Extracting decision model components from natural language text for automated business decision modelling</title>
+		<author>
+			<persName><forename type="first">V</forename><surname>Etikala</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">RuleML+ RR</title>
+		<imprint>
+			<biblScope unit="page">2021</biblScope>
+		</imprint>
+	</monogr>
+	<note>Supplement</note>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<analytic>
+		<title level="a" type="main">An end-to-end model for entity-level relation extraction using multi-instance learning</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Eberts</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ulges</surname></persName>
+		</author>
+		<ptr target="https://api.semanticscholar.org/CorpusID" />
+	</analytic>
+	<monogr>
+		<title level="m">Conference of the European Chapter</title>
+		<imprint>
+			<publisher>the Association for Computational Linguistics</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page">231879840</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Process extraction from natural language text: the pet dataset and annotation guidelines</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Bellan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Ghidini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Dragoni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">P</forename><surname>Ponzetto</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Van Der Aa</surname></persName>
+		</author>
+		<ptr target="CEUR-WS.org" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Sixth Workshop on Natural Language for Artificial Intelligence (NL4AI 2022) co-located with 21th International Conference of the Italian Association for Artificial Intelligence (AI* IA 2022)</title>
+		<meeting>the Sixth Workshop on Natural Language for Artificial Intelligence (NL4AI 2022) co-located with 21th International Conference of the Italian Association for Artificial Intelligence (AI* IA 2022)</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="volume">3287</biblScope>
+			<biblScope unit="page" from="177" to="191" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<monogr>
+		<title level="m" type="main">Distilbert, a distilled version of bert: smaller, faster, cheaper and lighter</title>
+		<author>
+			<persName><forename type="first">V</forename><surname>Sanh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Debut</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Chaumond</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Wolf</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1910.01108</idno>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<monogr>
+		<title level="m" type="main">A comparison of lstm and bert for small corpus</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ezen-Can</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2009.05451</idno>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<monogr>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Shen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Tan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Sordoni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Courville</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1810.09536</idno>
+		<title level="m">Ordered neurons: Integrating tree structures into recurrent neural networks</title>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<analytic>
+		<title level="a" type="main">Using uneven margins svm and perceptron for information extraction</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Bontcheva</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Cunningham</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Ninth Conference on Computational Natural Language Learning (CoNLL-2005)</title>
+		<meeting>the Ninth Conference on Computational Natural Language Learning (CoNLL-2005)</meeting>
+		<imprint>
+			<date type="published" when="2005">2005</date>
+			<biblScope unit="page" from="72" to="79" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<analytic>
+		<title level="a" type="main">Pewp: Process extraction based on word position in documents</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Ding</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Sun</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Ninth International Conference on Digital Information Management</title>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="135" to="140" />
+		</imprint>
+	</monogr>
+	<note>ICDIM 2014</note>
+</biblStruct>
+
+<biblStruct xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Extracting business process models using natural language processing (nlp) techniques</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Sintoris</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Vergidis</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE 19th conference on business informatics (CBI)</title>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2017">2017. 2017</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="135" to="139" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b42">
+	<analytic>
+		<title level="a" type="main">A semi-automatic approach to identify business process elements in natural language texts</title>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">C B</forename><surname>Ferreira</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">H</forename><surname>Thom</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Fantinato</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Enterprise Information Systems</title>
+		<imprint>
+			<publisher>SCITEPRESS</publisher>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="page" from="250" to="261" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b43">
+	<analytic>
+		<title level="a" type="main">A concept for generating business process models from natural language description</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Honkisz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Kluza</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Wiśniewski</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Knowledge Science, Engineering and Management: 11th International Conference</title>
+		<meeting><address><addrLine>Changchun, China</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2018-08-17">2018. August 17-19, 2018. 2018</date>
+			<biblScope unit="page" from="91" to="103" />
+		</imprint>
+	</monogr>
+	<note>Proceedings, Part I 11</note>
+</biblStruct>
+
+<biblStruct xml:id="b44">
+	<analytic>
+		<title level="a" type="main">A machine translation like approach to generate business process model from textual description</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Sonbol</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Rebdawi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Ghneim</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SN Computer Science</title>
+		<imprint>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page">291</biblScope>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b45">
+	<analytic>
+		<author>
+			<persName><forename type="first">F</forename><surname>Friedrich</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Mendling</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Puhlmann</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advanced Information Systems Engineering: 23rd International Conference, CAiSE</title>
+		<meeting><address><addrLine>London, UK</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2011-06-20">2011. June 20-24, 2011. 2011</date>
+			<biblScope unit="volume">23</biblScope>
+			<biblScope unit="page" from="482" to="496" />
+		</imprint>
+	</monogr>
+	<note>Process model generation from natural language text</note>
+</biblStruct>
+
+<biblStruct xml:id="b46">
+	<monogr>
+		<title level="m" type="main">Extracting declarative process models from natural language</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Van Der Aa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Di Ciccio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Leopold</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">A</forename><surname>Reijers</surname></persName>
+		</author>
+		<editor>P. Giorgini, B. Weber</editor>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<publisher>Springer International Publishing</publisher>
+			<biblScope unit="page" from="365" to="382" />
+			<pubPlace>Cham</pubPlace>
+		</imprint>
+	</monogr>
+	<note>Advanced Information Systems Engineering</note>
+</biblStruct>
+
+<biblStruct xml:id="b47">
+	<analytic>
+		<title level="a" type="main">Extracting decision models from textual descriptions of processes</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Quishpi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Carmona</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Padró</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Business Process Management</title>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="85" to="102" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b48">
+	<analytic>
+		<title level="a" type="main">Generating bpmn diagram from textual requirements</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Sholiq</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Sarno</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">S</forename><surname>Astuti</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of King Saud University-Computer and Information Sciences</title>
+		<imprint>
+			<biblScope unit="volume">34</biblScope>
+			<biblScope unit="issue">10</biblScope>
+			<biblScope unit="page" from="10079" to="10093" />
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b49">
+	<analytic>
+		<title level="a" type="main">Assisted declarative process creation from natural language descriptions</title>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">A</forename><surname>López</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Marquard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Muttenthaler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">I</forename><surname>Strømsted</surname></persName>
+		</author>
+		<ptr target="https://api.semanticscholar.org/CorpusID" />
+	</analytic>
+	<monogr>
+		<title level="m">IEEE 23rd International Enterprise Distributed Object Computing Workshop</title>
+		<imprint>
+			<publisher>EDOCW</publisher>
+			<date type="published" when="2019">2019. 2019</date>
+			<biblScope unit="page">208207164</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b50">
+	<analytic>
+		<title level="a" type="main">Getting more out of biomedical documents with gate&apos;s full lifecycle open source text analytics</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Cunningham</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Tablan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Roberts</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Bontcheva</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">PLoS computational biology</title>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page">1002854</biblScope>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b51">
+	<analytic>
+		<title level="a" type="main">Bpmn model and text instructions automatic synchronization</title>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">G</forename><surname>Azevedo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">D A</forename><surname>Rodrigues</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Revoredo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ICEIS</title>
+		<imprint>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="484" to="491" />
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b52">
+	<monogr>
+		<ptr target="https://www.omg.org/spec/UML/" />
+		<title level="m">Unified modeling language (uml) (2024)</title>
+		<imprint/>
+		<respStmt>
+			<orgName>Object Management Group</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b53">
+	<analytic>
+		<title level="a" type="main">Declarative event-based workflow as distributed dynamic condition response graphs</title>
+		<author>
+			<persName><forename type="first">T</forename><surname>Hildebrandt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">R</forename><surname>Mukkamala</surname></persName>
+		</author>
+		<idno type="DOI">10.4204/EPTCS.69.5</idno>
+	</analytic>
+	<monogr>
+		<title level="j">PLACES</title>
+		<imprint>
+			<biblScope unit="volume">69</biblScope>
+			<date type="published" when="2011">10 2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b54">
+	<monogr>
+		<ptr target="https://www.omg.org/dmn/" />
+		<title level="m">Decision Model and Notation (DMN) (2024)</title>
+		<imprint/>
+		<respStmt>
+			<orgName>Object Management Group</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b55">
+	<analytic>
+		<title level="a" type="main">Automated generation of business process models from natural language input</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Friedrich</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">M. Sc., School of Business and Economics. Humboldt-Universität zu Berli</title>
+		<imprint>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b56">
+	<analytic>
+		<title level="a" type="main">Pet: An annotated dataset for process extraction from natural language text tasks</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Bellan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Van Der Aa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Dragoni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Ghidini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">P</forename><surname>Ponzetto</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Business Process Management Workshops</title>
+		<editor>
+			<persName><forename type="first">C</forename><surname>Cabanillas</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">N</forename><forename type="middle">F</forename><surname>Garmann-Johnsen</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">A</forename><surname>Koschmider</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Cham</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer International Publishing</publisher>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="315" to="321" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b57">
+	<analytic>
+		<title level="a" type="main">Efficient consistency measurement based on behavioral profiles of process models</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Weidlich</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Mendling</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Weske</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/TSE.2010.96</idno>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Software Engineering</title>
+		<imprint>
+			<biblScope unit="volume">37</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="410" to="429" />
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b58">
+	<analytic>
+		<title level="a" type="main">Similarity of business process models: Metrics and evaluation</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Dijkman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Dumas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Van Dongen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Käärik</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Mendling</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.is.2010.09.006</idno>
+		<ptr target="https://www.sciencedirect.com/science/article/pii/S0306437910001006" />
+	</analytic>
+	<monogr>
+		<title level="m">special Issue: Semantic Integration of Data, Multimedia, and Services</title>
+		<imprint>
+			<date type="published" when="2011">2011</date>
+			<biblScope unit="volume">36</biblScope>
+			<biblScope unit="page" from="498" to="516" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b59">
+	<analytic>
+		<title level="a" type="main">Leveraging data augmentation for process information extraction</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Neuberger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Doll</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Engelmann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Ackermann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Jablonski</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Enterprise, Business-Process and Information Systems Modeling</title>
+		<editor>
+			<persName><forename type="first">H</forename><surname>Van Der Aa</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">D</forename><surname>Bork</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">R</forename><surname>Schmidt</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">A</forename><surname>Sturm</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Cham</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer Nature Switzerland</publisher>
+			<date type="published" when="2024">2024</date>
+			<biblScope unit="page" from="57" to="70" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b60">
+	<analytic>
+		<title level="a" type="main">Navigating the security landscape of large language models in enterprise information systems</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">G</forename><surname>Brij</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Gupta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Arya</surname></persName>
+		</author>
+		<idno type="DOI">10.1080/17517575.2024.2310846</idno>
+		<idno>doi:10.1080/17517575.2024.2310846</idno>
+		<ptr target="https://doi.org/10.1080/17517575.2024.2310846" />
+	</analytic>
+	<monogr>
+		<title level="m">Enterprise Information Systems</title>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+			<biblScope unit="volume">18</biblScope>
+			<biblScope unit="page">2310846</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b61">
+	<analytic>
+		<title level="a" type="main">Artificial intelligence in mental health and the biases of language based models</title>
+		<author>
+			<persName><forename type="first">I</forename><surname>Straw</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Callison-Burch</surname></persName>
+		</author>
+		<idno type="DOI">10.1371/journal.pone.0240376</idno>
+		<ptr target="https://doi.org/10.1371/journal.pone.0240376" />
+	</analytic>
+	<monogr>
+		<title level="j">PLOS ONE</title>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="issue">12</biblScope>
+			<biblScope unit="page" from="1" to="19" />
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b62">
+	<analytic>
+		<title level="a" type="main">Investigating gender bias in bert</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Bhardwaj</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Majumder</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Poria</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Cognitive Computation</title>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="1008" to="1018" />
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b63">
+	<analytic>
+		<title level="a" type="main">Just tell me: Prompt engineering in business process management</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Busch</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Rochlitzer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Sola</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Leopold</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Business Process Modeling, Development and Support</title>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="3" to="11" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b64">
+	<monogr>
+		<title level="m" type="main">Large language models for business process management: Opportunities and challenges</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Vidgof</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bachhofner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Mendling</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2304.04309</idno>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b65">
+	<monogr>
+		<author>
+			<persName><forename type="first">A</forename><surname>Berti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Schuster</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">M</forename><surname>Van Der Aalst</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2307.02194</idno>
+		<title level="m">Abstractions, scenarios, and prompt definitions for process mining with llms: A case study</title>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b66">
+	<monogr>
+		<title level="m" type="main">Retrieval-augmented generation for ai-generated content: A survey</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Geng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Fu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Cui</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2402.19473</idno>
+		<ptr target="https://arxiv.org/abs/2402.19473" />
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b67">
+	<analytic>
+		<title level="a" type="main">Retrieval-augmented generative question answering for event argument extraction</title>
+		<author>
+			<persName><forename type="first">X</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Ji</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/2022.emnlp-main.307</idno>
+		<ptr target="https://aclanthology.org/2022.emnlp-main.307" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing</title>
+		<editor>
+			<persName><forename type="first">Y</forename><surname>Goldberg</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Z</forename><surname>Kozareva</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Y</forename><surname>Zhang</surname></persName>
+		</editor>
+		<meeting>the 2022 Conference on Empirical Methods in Natural Language Processing<address><addrLine>Abu Dhabi, United Arab Emirates</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="4649" to="4666" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b68">
+	<monogr>
+		<title level="m" type="main">Synchromesh: Reliable code generation from pre-trained language models</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Poesia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Polozov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Le</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Tiwari</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Soares</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Meek</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Gulwani</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2201.11227</idno>
+		<ptr target="https://arxiv.org/abs/2201.11227" />
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b69">
+	<analytic>
+		<title level="a" type="main">Skcoder: A sketch-based approach for automatic code generation</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Jin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Hao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Hu</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/ICSE48619.2023.00179</idno>
+		<ptr target="https://doi.org/10.1109/ICSE48619.2023.00179" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 45th International Conference on Software Engineering, ICSE &apos;23</title>
+		<meeting>the 45th International Conference on Software Engineering, ICSE &apos;23</meeting>
+		<imprint>
+			<publisher>IEEE Press</publisher>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="2124" to="2135" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b70">
+	<monogr>
+		<title level="m" type="main">Utilizing existing code to enhance code generation</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Jin</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Acecoder</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2303.17780</idno>
+		<ptr target="https://arxiv.org/abs/2303.17780" />
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b71">
+	<monogr>
+		<author>
+			<persName><forename type="first">T</forename><surname>Guo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Chang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Pei</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">V</forename><surname>Chawla</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Wiest</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Zhang</surname></persName>
+		</author>
+		<idno type="DOI">10.48550/arXiv.2402.01680</idno>
+		<idno type="arXiv">arXiv:2402.01680</idno>
+		<ptr target="https://doi.org/10.48550/arXiv.2402.01680" />
+		<title level="m">Large Language Model based Multi-Agents: A Survey of Progress and Challenges</title>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b72">
+	<analytic>
+		<title level="a" type="main">Self-collaboration Code Generation via Chat-GPT</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Dong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Jin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Li</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3672459</idno>
+		<ptr target="https://doi.org/10.1145/3672459" />
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Softw. Eng. Methodol.Place: New York</title>
+		<imprint>
+			<date type="published" when="2024-06">Jun. 2024</date>
+			<publisher>Association for Computing Machinery</publisher>
+			<pubPlace>NY, USA Publisher</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b73">
+	<monogr>
+		<author>
+			<persName><forename type="first">C</forename><surname>Qian</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Dang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Su</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Cong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chatdev</forename></persName>
+		</author>
+		<ptr target="https://aclanthology.org/2024.acl-long.810" />
+		<title level="m">Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics</title>
+		<editor>
+			<persName><forename type="first">L.-W</forename><surname>Ku</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">A</forename><surname>Martins</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">V</forename><surname>Srikumar</surname></persName>
+		</editor>
+		<meeting>the 62nd Annual Meeting of the Association for Computational Linguistics<address><addrLine>Bangkok, Thailand</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2024">August 11-16, 2024. 2024</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="15174" to="15186" />
+		</imprint>
+	</monogr>
+	<note>Communicative Agents for Software Development ACL 2024</note>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

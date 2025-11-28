@@ -1,0 +1,1059 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Quantum teleportation of multiple degrees of freedom in a single photon</title>
+				<funder>
+					<orgName type="full">National Natural Science Foundation of China</orgName>
+				</funder>
+				<funder ref="#_jbKkmpm">
+					<orgName type="full">National Fundamental Research Program</orgName>
+				</funder>
+				<funder>
+					<orgName type="full">Chinese Academy of Sciences</orgName>
+				</funder>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Xi-Lin</forename><surname>Wang</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department" key="dep1">Hefei National Laboratory for Physical Sciences at Microscale and Department of Modern Physics</orgName>
+								<orgName type="department" key="dep2">&amp; CAS Centre for Excellence</orgName>
+								<orgName type="department" key="dep3">Synergetic Innovation Centre in Quantum Information and Quantum Physics</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<postCode>230026</postCode>
+									<settlement>Hefei</settlement>
+									<region>Anhui</region>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Xin-Dong</forename><surname>Cai</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department" key="dep1">Hefei National Laboratory for Physical Sciences at Microscale and Department of Modern Physics</orgName>
+								<orgName type="department" key="dep2">&amp; CAS Centre for Excellence</orgName>
+								<orgName type="department" key="dep3">Synergetic Innovation Centre in Quantum Information and Quantum Physics</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<postCode>230026</postCode>
+									<settlement>Hefei</settlement>
+									<region>Anhui</region>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Zu-En</forename><surname>Su</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department" key="dep1">Hefei National Laboratory for Physical Sciences at Microscale and Department of Modern Physics</orgName>
+								<orgName type="department" key="dep2">&amp; CAS Centre for Excellence</orgName>
+								<orgName type="department" key="dep3">Synergetic Innovation Centre in Quantum Information and Quantum Physics</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<postCode>230026</postCode>
+									<settlement>Hefei</settlement>
+									<region>Anhui</region>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Ming-Cheng</forename><surname>Chen</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department" key="dep1">Hefei National Laboratory for Physical Sciences at Microscale and Department of Modern Physics</orgName>
+								<orgName type="department" key="dep2">&amp; CAS Centre for Excellence</orgName>
+								<orgName type="department" key="dep3">Synergetic Innovation Centre in Quantum Information and Quantum Physics</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<postCode>230026</postCode>
+									<settlement>Hefei</settlement>
+									<region>Anhui</region>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Dian</forename><surname>Wu</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department" key="dep1">Hefei National Laboratory for Physical Sciences at Microscale and Department of Modern Physics</orgName>
+								<orgName type="department" key="dep2">&amp; CAS Centre for Excellence</orgName>
+								<orgName type="department" key="dep3">Synergetic Innovation Centre in Quantum Information and Quantum Physics</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<postCode>230026</postCode>
+									<settlement>Hefei</settlement>
+									<region>Anhui</region>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Li</forename><surname>Li</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department" key="dep1">Hefei National Laboratory for Physical Sciences at Microscale and Department of Modern Physics</orgName>
+								<orgName type="department" key="dep2">&amp; CAS Centre for Excellence</orgName>
+								<orgName type="department" key="dep3">Synergetic Innovation Centre in Quantum Information and Quantum Physics</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<postCode>230026</postCode>
+									<settlement>Hefei</settlement>
+									<region>Anhui</region>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Nai-Le</forename><surname>Liu</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department" key="dep1">Hefei National Laboratory for Physical Sciences at Microscale and Department of Modern Physics</orgName>
+								<orgName type="department" key="dep2">&amp; CAS Centre for Excellence</orgName>
+								<orgName type="department" key="dep3">Synergetic Innovation Centre in Quantum Information and Quantum Physics</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<postCode>230026</postCode>
+									<settlement>Hefei</settlement>
+									<region>Anhui</region>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Chao-Yang</forename><surname>Lu</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department" key="dep1">Hefei National Laboratory for Physical Sciences at Microscale and Department of Modern Physics</orgName>
+								<orgName type="department" key="dep2">&amp; CAS Centre for Excellence</orgName>
+								<orgName type="department" key="dep3">Synergetic Innovation Centre in Quantum Information and Quantum Physics</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<postCode>230026</postCode>
+									<settlement>Hefei</settlement>
+									<region>Anhui</region>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Jian-Wei</forename><surname>Pan</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department" key="dep1">Hefei National Laboratory for Physical Sciences at Microscale and Department of Modern Physics</orgName>
+								<orgName type="department" key="dep2">&amp; CAS Centre for Excellence</orgName>
+								<orgName type="department" key="dep3">Synergetic Innovation Centre in Quantum Information and Quantum Physics</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<postCode>230026</postCode>
+									<settlement>Hefei</settlement>
+									<region>Anhui</region>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Quantum teleportation of multiple degrees of freedom in a single photon</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date/>
+						</imprint>
+					</monogr>
+					<idno type="MD5">7EF88BF6366F738076E89CAD3B3085AD</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-28T12:36+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Quantum teleportation 1 provides a "disembodied" way to transfer quantum states from one object to another at a distant location, assisted by priorly shared entangled states and a classical communication channel. In addition to its fundamental interest, teleportation has been recognized as an important element in long-distance quantum communication 2 , distributed quantum networks 3 and measurement-based quantum computation 4,5 . There have been numerous demonstrations of teleportation in different physical systems such as photons 6-8 , atoms 9 , ions 10,11 , electrons 12 , and superconducting circuits 13 . Yet, all the previous experiments were limited to teleportation of one degree of freedom (DoF) only. However, a single quantum particle can naturally possess various DoFs-internal and external-and with coherent coupling among them. A fundamental open challenge is to simultaneously teleport multiple DoFs, which is necessary to fully describe a quantum particle, thereby truly teleporting it intactly. Here, we demonstrate the first teleportation of the composite quantum states of a single photon encoded in both the spin and orbital angular momentum. We develop a method to project and discriminate hyper-entangled Bell states exploiting probabilistic quantum non-demolition measurement, which can be extended to more DoFs. We verify the teleportation for both spin-orbit product states and hybrid entangled state, and achieve a teleportation fidelity ranging from 0.57 to 0.68, where | 0 s  and |1 s  denote horizontal and vertical polarization of the SAM, and | 0 o  and |1 o  refer to right-handed and left-handed OAM with  , respectively, and  ,  ,  and  are complex numbers satisfying 2 2 2 2 1         . To do so, they first need to share a hyperentangled photon pair 2-3, which is simultaneously entangled in both the SAM and OAM: 23 23 23 2 3 2 3 2 3 2 3</p><p>Such a process is referred as hyper-entangled Bell state measurement (h-BSM). After the h-BSM that projects the two photons 1 and 2 onto the state 12 |   , quantum physics dictates that photon 3 will be projected onto the initial state of photon 1:</p><p>both the SAM and OAM are required to be taken into account as a molecular-like coupled state.</p><p>A detailed mathematical treatment is presented in Methods, showing that the PBS and two polarizers select the 4 following states out of the total 16 hyper-entangled Bell states:</p><p>12 12</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>above the classical limit. Our work moves a step toward teleportation of more complex quantum systems, and demonstrates an enhanced capability for scalable quantum technologies.</p><p>Quantum teleportation is a linear operation applied to the quantum states, thus teleporting multiple DoFs should be possible in theory <ref type="bibr" target="#b0">1</ref> . Suppose Alice wishes to teleport to Bob the composite quantum state of a single photon (see Fig. <ref type="figure" target="#fig_15">1a</ref>), encoded in both the spin angular momentum (SAM) and the orbital angular momentum (OAM): A crucial step in the teleportation is to perform a two-particle joint measurement of photon 1 and 2, projecting them onto the basis of the 16 orthogonal complete hyper-entangled Bell states, and discriminating one of them, e.g.</p><formula xml:id="formula_0">1 1 1 1 1 1 1 1 1 | |0 |0 |0 |1 |1 |0 |1 |1 s o s o s o s o                   ,<label>(1) 1</label></formula><formula xml:id="formula_1">| | | (| 0 | 0 |1 |1 )(| 0 | 0 |1 |1 ) 2 s s s s o o o o                     . (<label>2</label></formula><formula xml:id="formula_2">12 12 12 1 2 1 2 1 2 1 2 1 | | | (| 0 | 0 |1 |1 )(| 0 | 0 |1 |1 ) 2 s s s s o o o o                     . (<label>3</label></formula><formula xml:id="formula_3">) | |0 |0 |0 |1 |1 |0 |1 |1 s o s o s o s o                   .<label>(4)</label></formula><p>With an equal probability of 1/16, photons 1 and 2 can also be projected onto one of the other 15 hyper-entangled Bell states (Methods). The h-BSM results can be broadcast as a 4-bit classical information, which will allow Bob to apply appropriate Pauli operations to perfectly reconstruct the initial composite state of photon 1.</p><p>Experimental realization of the above teleportation protocol poses significant challenges in coherent control of multiple particles and multiple DoFs simultaneously. The most difficult task is to implement the h-BSM, because it would normally require coherently controlled gates between independent qubits of different DoFs. Moreover, with multiple DoFs, it is necessary to measure one DoF without disturbing another one. With linear operations only, previous theoretical work <ref type="bibr" target="#b13">14</ref> has suggested that it was impossible to discriminate the hyper-entangled states unambiguously. This challenge has been overcome in our work.</p><p>Figure <ref type="figure" target="#fig_15">1</ref> illustrates our linear optical scheme for teleporting the spin-orbit composite state.</p><p>The h-BSM is implemented in a step-by-step manner. First, the two photons, 1 and 2, are sent through a polarizing beam splitter (PBS), an optical device that transmits horizontal polarization (| 0 s  ) and reflects vertical polarization ( |1 s  ). After the PBS, we post-select the events that there is one and only one photon in each output. Such events is possible only if the two input photons have the same SAM-both are transmitted ( . It should be noted that the PBS is not OAM-preserving <ref type="bibr" target="#b14">15</ref> , as the reflection on the PBS flips the sign of the OAM qubit, that is,</p><formula xml:id="formula_4">1 1 1 1 | 0 | 0 | 0 | 0 s o s o        , 1 1 1 1 | 0 |1 | 0 |1 s o s o        , 1 1 2 2 |1 | 0 |1 |1 s o s o i        , 1 1 2 2 |1 |1 |1 | 0 s o s o i | |       .</formula><p>Unfortunately, the above two interferometers cannot be simply cascaded. The working of the interferometers rests on the assumption that two input photons are from different path. When directly connected, the 50% chance of both photons coalescing into a single output spatial mode after the first interferometer would remain undetected (no "coincidence" event is known), and would further induce erroneous coincidence event after the second interferometer, thus failing both BSMs. This is a ubiquitous and important problem in linear optical quantum information processing <ref type="bibr" target="#b4">5,</ref><ref type="bibr" target="#b16">17</ref> .</p><p>Our remedy is to exploit quantum non-demolition (QND) measurement-seeing a single photon without destroying it and keeping its quantum information intact. Interestingly, quantum teleportation itself can be used for probabilistic QND detection <ref type="bibr" target="#b6">7,</ref><ref type="bibr" target="#b17">18</ref> . As shown in Fig. <ref type="figure" target="#fig_15">1b</ref>, another pair of photons entangled in OAM is used as ancillary. The procedure is a standard teleportation:</p><p>If there is an incoming photon, a two-photon coincidence detection behind a BS can happen with a 50% efficiency, triggering a successful BSM, which heralds the presence of the incoming photon and meanwhile faithfully teleports the quantum state of the incoming photon to a freely propagating photon. In the case of no incoming photon, two-photon coincidence behind the BS never happen, in which case we will know and ignore the out-going photon. Thus, using the QND measurement, the BSM interferometers can be concatenated. Note that using a QND in one of the arm of the BS is sufficient due to the conserved total number of eventually registered photons. Our protocol can identify two hyper-entangled Bell states with an overall efficiency of 1/32 (Methods). The QND method is also applicable to boost the efficiency of photonic quantum logic gates in the Knill-Laflamme-Milburn scheme for scalable optical quantum computing <ref type="bibr" target="#b4">5</ref> .</p><p>Figure <ref type="figure" target="#fig_6">2</ref> shows the experimental setup for the realization of quantum teleportation of the spin-orbit composite state of a single photon. Passing a femtosecond pulsed laser through three type-I β-barium borate (BBO) crystals generates three photon pairs <ref type="bibr" target="#b18">[19]</ref><ref type="bibr" target="#b19">[20]</ref><ref type="bibr" target="#b20">[21]</ref> , engineered in different forms (Methods). From the first photon pair (1-t) , triggered by the detection of its sister photon (t), a heralded single photon to be teleported is prepared in the spin-orbit composite state |  .</p><p>The second pair (2-3) is created in the hyper-entangled state To demonstrate that teleportation works universally for arbitrary quantum superposition states, we test the following five representative initial states:</p><formula xml:id="formula_5">A B | |0 |0 , | |1 |1 , s o s o           C D | (| 0 |1 )(| 0 |1 ) / 2, | (| 0 |1 )(| 0 |1 ) / 2, s s o o s s o o i i                   and E | (| 0 | 0 |1 |1 ) / 2 s o s o       </formula><p>. These states can be grouped into three categories.</p><p>The first two, A |  and B |  , are product states of the both DoFs in the computational basis. C |  and D |  are products states of both DoFs in the superposition basis. The last one, E |  , is a spin-orbit hybrid entangled state. The four product states are prepared by independent single-qubit rotations, using wave plates for SAM and spiral phase plate (SPP) or binary phase plate (BPP)</p><p>for OAM, respectively. The entangled state is generated by counter-propagating a SPP inside a Sagnac interferometer (Methods).</p><p>The implementation of the h-BSM and QND measurement requires Hong-Ou-Mandel <ref type="bibr" target="#b21">22</ref> type interference of two indistinguishable single photons with good spatial and spectral overlap.</p><p>To make the independent photons 1, 2, 4, and 5 indistinguishable, their arrival time is matched to be within 10 fs , much smaller than the coherence time of the down-converted photons The final verification of the teleportation results relies on the coincidence detection counts of the six photon encoded in both DoFs, which would suffer from a low rate. It should be noted that all the pervious experiments <ref type="bibr" target="#b14">15,</ref><ref type="bibr" target="#b19">20,</ref><ref type="bibr" target="#b20">21,</ref><ref type="bibr" target="#b22">[23]</ref><ref type="bibr" target="#b23">[24]</ref><ref type="bibr" target="#b24">[25]</ref><ref type="bibr" target="#b25">[26]</ref> with OAM states have never gone beyond two single photons. We overcome this challenge by preparing high-brightness hyper-entangled photons and designing dual-channel and high-efficiency OAM measurement devices (Methods).</p><p>To evaluate the performance of the teleportation, we measure the teleported state fidelity</p><formula xml:id="formula_6">( | |) F Tr     </formula><p>, defined as the overlap of the ideal teleported state (|  ) and the measured density matrix (  ). Conditioned on the detection of the trigger photon t and the four-photon coincidence after the h-BSM, we register the photon counts of the teleported photon 3 and analyse its composite state. The fidelity measurement for the product states are straightforward as we can measure the SAM and OAM qubits separately. We measure the final state in the | 0 / |1</p><p>s s   and | 0 / |1 o o   basis for the A |  and B |  teleportation, in the (| 0 |1 ) / 2 s s    and (| 0 |1 ) / 2 o o    basis for the C |  teleportation, and in the (| 0 |1 ) / 2 s s i    and (| 0 |1 ) / 2 o o i    basis for the | D  teleportation, respectively. From our data shown in Fig. 3, the teleportation fidelities for A |  , B |  , C |  and D |  yield 0.68 0.04  , 0.66 0.04  , 0.62 0.04  and 0.63 0.04  , respectively. For the entangled state E | where the SAM and OAM qubits are not separable, its fidelity can be decomposed as 1 ˆˆˆˆˆˆ[ ( )] 4 s o s o s o E x x yy zz F Tr I            , where x  , y  and z  are the Pauli operators. The expectation values of the joint observables, ˆŝ o x x   , ˆŝ o y y   and ˆŝ o z z   , can be obtained by local measurements in the corresponding basis for the two DoFs, (| 0 |1 ) / 2   , (| 0 |1 ) / 2 i   </p><p>, and | 0 / |1   , respectively. Our experimental results on the three different basis are presented in Fig. <ref type="figure" target="#fig_8">4a-c</ref>, from which we determine a teleportation fidelity of 0.57 0.02  for the entangled state.</p><p>We note that all reported data are without background subtraction. The main sources of error include double pair emission, imperfection in the initial states, entangled photons 2-3 and 4-5, two-photon interferences, and OAM measurement. We note that the teleportation fidelity of the states in the three categories are affected differently by the error sources (Methods). The measured fidelities of the five typical teleported states (summarised in Fig. <ref type="figure" target="#fig_8">4d</ref>) are all well beyond 0.40-the classical limit, defined as the optimal state estimation fidelity on a single copy of a two-qubit system <ref type="bibr" target="#b26">27</ref> . These results prove the successful realization of quantum teleportation of the spin-orbit composite state of a single photon. Furthermore, for the entangled state E | , we emphasize that the teleportation fidelity exceeds the threshold of 0.5 for proving the presence of entanglement <ref type="bibr" target="#b27">28</ref> , which demonstrates that the hybrid entanglement of different DoFs inside a quantum particle can preserve after the teleportation.</p><p>In summary, we present the first quantum teleportation of multiple properties of a single quantum particle, demonstrating the ability to coherently control and simultaneously teleport a single object with multiple DoFs that can form a hybrid entangled state. It is interesting to note that these DoFs can also be in a fully undefined state, such as being part of a hyper-entangled pair, which would lead to the protocol of hyper-entanglement swapping <ref type="bibr" target="#b28">29</ref> . Our methods can be generalized to more DoFs (see Methods for a universal scheme). The efficiency of teleportation, which is limited mainly by the efficiency of h-BSM (1/32 in the present experiment), can be enhanced by using more ancillary photons, quantum encoding, embedded teleportation tricks, high-efficiency single-photon detectors, and active feed-forward, in a spirit similar to the Knill-Laflamme-Milburn scheme <ref type="bibr" target="#b4">5</ref> . We didn't implement the feed-forward in the current experiment, which could be done using electric-optical modulators for both the SAM and OAM qubits (see Methods for a detailed protocol). Although our current work is based on linear optics and single photons, the multi-DoF teleportation protocol is by no means limited to this system, but can also be applied to other quantum systems such as trapped electrons <ref type="bibr" target="#b11">12</ref> , atoms <ref type="bibr" target="#b8">9</ref> , and ions <ref type="bibr" target="#b9">10,</ref><ref type="bibr" target="#b10">11</ref> .</p><p>Besides  Figure 1 | Scheme for quantum teleportation of the spin-orbit composite states of a single photon. a, Alice wishes to teleport to Bob the quantum state of a single photon 1 which possess multiple DoFs. The quantum state of the photon 1 is encoded in both its SAM and OAM. To do so, Alice and Bob need to share a hyper-entangled photon pair 2-3. Alice then carries out an h-BSM assisted by a QND measurement (see main text for details) and tell the results as a 4bit classical information to Bob. On receiving Alice's h-BSM result, Bob can apply appropriate Pauli operations on photon 3 to convert it into the original state of photon 1. The active feedforward is essential for a full, deterministic teleportation. In our present proof-of-principle experiment, we didn't apply feed-forward but used post-selection to verify the success of teleportaiton. b, Teleportation-based probabilistic QND measurement with an ancillary entangled photon pair. An incoming photon can cause a coincidence detection after the BS,</p><p>which heralds its presence and meanwhile intactly teleports its arbitrary unknown quantum state to a free-flying photon. In the case of no incoming photon, the coincidence after the BS cannot happen, thus knowing its absence. is initialised in various spin-orbit composite states ( A E |   ， ) to be teleported. The second pair 2-3 is hyper-entangled in both SAM and OAM. The third pair 4-5 is OAM-entangled. The h-BSM for the photons 1 and 2 are performed in three steps: (1) SAM BSM; (2) QND measurement; (3) OAM BSM. The teleported state is measured separately in SAM and OAM: a PBS, a HWP and a QWP are combined for SAM qubit analysis, and a SPP or a BPP together with a single-mode fibre are used for OAM qubit analysis. A |  , B |  , C |  and D |  of a single photon. a-b, Measurement result of the final state of the teleported photon 3 in the | 0 / |1 s s   and | 0 / |1 o o   basis for the A |  and B |  teleportation experiment. c, The results for the C |  teleportation, measured in the (| 0 |1 ) / 2 s s    and (| 0 |1 ) / 2 o o    basis. d, The results for the D |  teleportation, measured in the</p><formula xml:id="formula_7">(| 0 |1 ) / 2 s s i    and (| 0 |1 ) / 2 o o i   </formula><p>basis. The X axis uses Pauli denotation for both</p><formula xml:id="formula_8">DoFs: | 0 / |1 | 0 / |1 z z      , | 0 / |1 | 0 |1 2 x x      ( )/ , and | 0 / |1 | 0 |1 2 y y i      ( )/ .</formula><p>The Y axis is six-photon coincidence counts. The error bar is one standard deviation, calculated from Poissonian counting statistics of the raw detection events. E | (| 0 | 0 |1 |1 ) / 2 s o s o        , three measurement basis are required: a, | 0 / |1 s s   and | 0 / |1 o o   , b, (| 0 |1 ) / 2 s s    and (| 0 |1 ) / 2 o o    , and c (| 0 |1 ) / 2 s s i    and (| 0 |1 ) / 2 o o i    , which are used to extract the expectation values of the joint Pauli observables ˆŝ o z z   , ˆŝ o x x   , and ˆŝ o y y   , respectively. Each measurement takes 12 h. The data set in a determines the population of the two desired terms: | 0 | 0 s o   and |1 |1 s o   in the entangled state E |  . The data set in b and c measured in the superposition basis determines the coherence of the entangled state. We use the same Pauli denotation as in Fig. 3. d, A summary of the teleportation fidelities for the states A, E |   . The error bars represent one standard deviation, deduced from propagated Poissonian counting statistics of the raw detection events. Alice 1 2 3 PBS Bob polariser 4-bit classical information Hyper-entanglement source BS QND h-BSM a b BS &amp; QND |F &gt; here? Yes or No |F &gt; or ignore Entanglement source U O U S 1 Trigger 2 4 5 QND SAM BSM OAM BSM State preparation Teleported state 8-nm filter BBO HWP Polariser 3-nm filter QWP PBS BS Dove prism UV pulse 3 SPP BPP BS1 BS2 </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Figures:</head><note type="other">Figure 1</note><formula xml:id="formula_9">ñ ñ |0 | 1 s o z z ñ ñ | 1 |0 s o z z ñ ñ | 1 | 1 s o z z ñ ñ |0 |0 s o z z ñ ñ |0 | 1 s o z z ñ ñ | 1 |0 s o z z ñ ñ | 1 | 1 s o z z ñ ñ |0 |0 s o x x ñ ñ |0 | 1 s o x x ñ ñ | 1 |0 s o x x ñ ñ | 1 | 1 s o x x ñ ñ |0 |0 s o y y ñ ñ |0 | 1 s o y y ñ ñ | 1 |0 s o y y ñ ñ | 1 | 1 s o y y ñ ñ Figure 4 |0 |0 s o z z ñ ñ |0 | 1 s o z z ñ ñ | 1 |0 s o z z ñ ñ | 1 | 1 s o z z ñ ñ |0 |0 s o x x ñ ñ |0 | 1 s o x x ñ ñ | 1 |0 s o x x ñ ñ | 1 | 1 s o x x ñ ñ |0 |0 s o y y ñ ñ |0 | 1 s o y y ñ ñ | 1 |0 s o y y ñ ñ | 1 | 1 s o y y ñ ñ s s o z z z s o s o z x z y o o z x                                                                                <label>12</label></formula><p>3 3 12 12 3 3 12 12 3 3 3 12 12 3 3 3 12 12 3 3 3 12 12 3 3 12 12 3 3 3 12 12</p><formula xml:id="formula_10">) i | ˆˆˆˆ(| | ) i | (| | ) i | (| | ) i | ˆˆˆˆ(| | ) | (| | ) | (| | ) | (| | ) o y s s o s o y y z y x s o s s o y y x x z                                                                               3 3 3 12 12 3 3 3 ˆˆ| (| | )i | ] s o s o x x x y              </formula><p>where ˆs x  , ˆs y  and ˆs z  ( ˆo x  , ˆo y  and ˆo z  ) are the Pauli operators for SAM (OAM) qubits. It indicates that, regardless of the unknown sate 1 |  , the 16 measurement outcomes are equally likely, each with a probability of 1/16. By carrying out the hyper-entangled Bell state measurement (h-BSM) on photons 1 and 2 to unambitiously distinguish one from the group of 16 hyper-entangled Bell states, Alice can project photon 3 onto one of the 16 corresponding states. After Alice tells Bob her h-BSM result as a 4-bit classical information via a classical communication channel, Bob can convert the state of his photon 3 into the original state by applying appropriate two-qubit local unitary transforms ˆˆˆˆ[(I, , , ) (I, , , )]</p><formula xml:id="formula_11">s s s o o o x y z x y z        .</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Two-photon interference of spin-orbit composite state on a PBS</head><p>The input and output of two photons 1 and 2 encoded in SAM and OAM on a polarizing beam splitter (PBS) as shown in Fig. <ref type="figure" target="#fig_15">1</ref> can be summarised as follows:</p><formula xml:id="formula_12">1 1 1 1 | 0 | 0 | 0 | 0 s o s o        , 1 1 1 1 | 0 |1 | 0 |1 s o s o        , 1 1 2 2 |1 | 0 |1 |1 s o s o i        , 1 1 2 2 |1 |1 |1 | 0 s o s o i        .</formula><p>Note that PBS is not OAMpreserving, as the reflection flips the sign of OAM. Therefore, the output state for each of the input 16 hyper-entangled Bell states can be listed below:</p><formula xml:id="formula_13">12 12 1 2 1 2 1 2 1 | | ( )| 2 D D A A                 ; (S1.1) 12 12 1 2 1 2 1 2 1 | | ( )| 2 D D A A                 ; (S1.2) 12 12 1 2 1 2 1 2 1 | | ( )| 2 D D A A                 ; (S1.3) 12 12 1 2 1 2 1 2 1 | | ( )| 2 D D A A                 ; (S1.4) 12 12 1 2 1 2 1 2 1 | | ( )| 2 D A A D                 ; (S1.5) 12 12 1 2 1 2 1 2 1 | | ( )| 2 D A A D                 ; (S1.6) 12 12 1 2 1 2 1 2 1 | | ( )| 2 D A A D                 ; (S1.7) 12 12 1 2 1 2 1 2 1 | | ( )| 2 D A A D                 ; (S1.8) 12 12 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 | | ( ) 2 i D r D l A r A l D r D l A r A l                           ;</formula><p>(S1.9) </p><formula xml:id="formula_14">12 12 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 | | ( ) 2 i D r D l A r A l D r D l A r A l                           ; (S1.10) 12 12 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 | | ( ) 2 i D r A l A r D l D r A l A r D l                           ; (S1.11) 12 12 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 | | ( ) 2 i D r A l A r D l D r A l A r D l                           ; (S1.12) 12 12 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 | | [( )( ) ( )( )] 4 i D D A A r r l l D D A A r r l l                             ; (S1.13) 12 12 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 | | [( )( ) ( )( )] 4 i D D A A r r l l D D A A r r l l                             ; (S1.14) 12 12 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 | | [( )( ) ( )( )] 4 i D D A A r r l l D D A A r r l l                             ; (S1.15) 12 12 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 | | [( )( ) ( )( )] 4 i D D A A r r l l D D A A r r l l                             , (S1.16) where (| 0 |1 ) / 2 s s D     , (| 0 |1 ) / 2 s s A     , | 0 o r   , |1 o l   .</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>BSM and teleportation of OAM qubits</head><p>Having measured and filtered out the SAM qubit, next we perform BSM on the OAM qubit.</p><p>Dealing with a single degree of freedom is more straightforward, which can be implemented by a beam splitter (BS). Similar to PBS, BS is also not OAM-preserving, as the reflection on the BS will also flip the sign of OAM. Therefore, the transform rules on a BS for the four OAM Bell states are:</p><formula xml:id="formula_15">12 1 1 2 2 | (| 0 |1 | 0 |1 ) / 2 o o o o i              ; (S2.1) 12 1 2 1 2 | ( |0 |0 |1 |1 )/ 2 o o o o              ; (S2.2) 12 1 1 1 1 2 2 2 2 | (| 0 | 0 |1 |1 | 0 | 0 |1 |1 ) / 2 2 o o o o o o o o i                        ; (S2.3) 12 1 1 1 1 2 2 2 2 | (| 0 | 0 |1 |1 | 0 | 0 |1 |1 ) / 2 2 o o o o o o o o i                        . (S2.4)</formula><p>We can see that only the Bell state 12 |    will result in one and only one photon in each output, whereas for the three other Bell states, the two input photons will coalesce into a single output mode. Among these three Bell states, the state</p><p>12 |    can be further distinguished by measuring two single photons in either output with OAM orthogonal basis | 0 / |1 o o   . Thus, this would allow us to unambiguously discriminate 2 from the 4 Bell states. Experimentally, we design dual-channel OAM readout devices to measure the | 0 o  and |1 o  simultaneously. Therefore, the efficiency for both QND and BSM on OAM is 1/2. The overall efficiency of h-BSM combing all the three steps is 1/ 8 1/ 2 1/ 2 1/ 32    .</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Generating three photon pairs:</head><p>Ultrafast laser pulses with an average power of 800 mW, central wavelength of 394 nm, pulse duration of 120 fs, and repetition rate of 76 MHz, successively pass through three BBO crystals (Fig. <ref type="figure" target="#fig_6">2</ref>) to generate three photon pairs through type-I spontaneous parametric down-conversion (SPDC). The first and the third crystal are 2-mm thick BBOs, whereas the second one consists of two 0.6-mm thick contiguous type-I BBO crystals with optic axes aligned in perpendicular planes. All the down converted photons have central wavelength at 788 nm. The first photon pair 1-t is initially prepared in the zero-order OAM mode with a coincidence count rate of We note that the whole conversion process is deterministic.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Dual-channel and efficient OAM measurement:</head><p>One of the most frequently used OAM measurement devices in the previous experiments is offaxis hologram gratings <ref type="bibr" target="#b20">21,</ref><ref type="bibr" target="#b22">23,</ref><ref type="bibr" target="#b23">24,</ref><ref type="bibr" target="#b29">31</ref> , which however typically have a practical efficiency (p) of about 30% <ref type="bibr" target="#b29">31</ref> . This low efficiency would cause an extremely low six-photon coincidence count rate that scales as 6 p , more challenging than the scaling ( 2 p ) in the previous two-photon OAM experiments. To overcome this challenge, we use two different types of devices for efficient OAM readout.</p><p>The first type is what we refer to as "dual-channel" OAM measurement devices, used after the two BSs. The strategy is to transfer the OAM information to the photon's SAM, and measure it using a PBS with two output channels. The method is as follows: After the BS, each photon passes through a HWP and is preared in the state (| 0 |1 ) / 2</p><p>s s    . They are then sent into Sagnac interferometers with a Dove prism inside 32 (see Fig. 2), which is placed with a / 8  angle with respect to the interferometer plane. The photon is rotated by an / 4  ( / 4   ) angle for the | 0 s  (|1 s  ) SAM component when forward (backward) passing through the Dove prism. Considering an OAM state | 0 o  (|1 o  ) with a phase i e  ( i e   ), where  is the azimuth angle in the polar system passes through a Dove prism rotated at / 8  , it will be rotated by an angle of / 4  and the phase will be changed to ( /4) i e    [ ( /4) i e     ]. Therefore, two opposite phase /4 i e  and /4 i e   will be added to the two orthogonal OAM modes. Finally, the output photon is transformed into the| 0 s  (|1 s  ) polarization using a QWP. The overall transformation can be summerised as a CNOT gate between the OAM and SAM: |1 s  HWP Sagnac QWP /4 /4 HWP Sagnac QWP /4 /4 | 0 | 0 (| 0 |1 ) | 0 / 2 (| 0 |1 ) | 0 / 2 | 0 | 0 , | 0 |1 (| 0 |1 ) |1 / 2 (| 0 |1 ) |1 / 2 |1 |1 s o s s o i s s o i s o s o s s o i s s o i s o e i e e i e    </p><formula xml:id="formula_16">                                     </formula><p>Effectively, the OAM qubit is deterministically and redudantly encoded by the SAM qubit, i.e., the SAM becomes idential to the OAM state. Thus, by measuring the SAM using a PBS with two output channel, we can derive the informaiton of the OAM with a high efficiency of ~97%.</p><p>In our experiment, four such Sagnac interferometers are utilized in the h-BSM. In this way, two out of the four OAM Bell states can be discriminated using a BS.</p><p>While the first type is like a two-channel readout device (like a PBS for SAM), the second type is like a one-channel readout device (like a polarizer for SAM), and is used in the final stage of state verification after teleportation. The strategy for the projective OAM measurement is by transforming it into the zero-order OAM mode so that the photon can be coupled into a singlemode fibre, while all other higher-order OAM modes will be rejected. Here we use SPP <ref type="bibr" target="#b31">33</ref> and BPP <ref type="bibr" target="#b31">33</ref> for efficient OAM readout.</p><p>SPP <ref type="bibr" target="#b31">33</ref> is designed with a spiral shape to create a vortex phase of il e  , where l is an integer and referred to as topological charge. SPP can attach a vortex phase il e  ( il e  For the coherent transformation between the OAM zero mode and the superposition states</p><formula xml:id="formula_17">(| 0 |1 ) / 2 o o    and (| 0 |1 ) / 2 o o i   </formula><p>, a 2-phase level BPP <ref type="bibr" target="#b31">33,</ref><ref type="bibr" target="#b32">34</ref> is used with an efficiency of ~80%. These high-efficiency OAM measurement devices boost the six-fold coincidence count rate in our present experiment by more than two orders of magnitudes, compared to the previous use of hologram gratings.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Error budget</head><p>The sources of error of our experiment include: 1. Double pair emission in spontaneous parametric down conversion; 2. Partial distinguishability of the independent photons interfered on the PBS (~5%) and BSs (~5%); 3. State measurement error due to zero-order OAM leakage (~2%); 4. Fidelity imperfection of the entangled photons 2-3 (~5%) and 4-5 (~9%); 5. Fidelity imperfection of the to-be-teleported single-photon hybrid entangled state (~8%).</p><p>Some error sources affect all the teleported states. First, the double pair emission contributed ~15% background to the overall six-fold coincidence counts. If this is subtracted, the average teleportation fidelity would be improved to ~0.74. Second, the imperfectly entangled photon pair 4-5 and the imperfect two-photon interference at the BS1 and BS2 (for QND and OAM Bell-state measurement, respectively) degrades the teleportation fidelity for all states by ~13%.</p><p>Third, the imperfect state measurements mainly due to the zero-order OAM leakage cause another degradation of ~2%.</p><p>We analyse that some error sources can affect differently on different teleported states. The imperfect two-photon interference at the PBS degrades the teleportation fidelity for the states highest. This is in consistent with the observation of the previous results: for the experiments using a PBS <ref type="bibr" target="#b33">[35]</ref><ref type="bibr" target="#b34">[36]</ref><ref type="bibr" target="#b35">[37]</ref> , the teleportation fidelities in the H/V basis is higher than those in the (H+V)/(H-V) and (H+iV)/(H-iV) basis); whereas for the experiments <ref type="bibr" target="#b36">38,</ref><ref type="bibr" target="#b37">39</ref> using a non-polarising BS, the teleportation fidelities in all polarization basis are largely unbiased.</p><p>We note that the teleportation fidelity for the hybrid entangled state These noise can be in principle eliminated using various methods in the future experiments. For instance, deterministic entangled photons <ref type="bibr" target="#b38">40</ref> can avoid the problem of double pair emission. We also plan to develop bright OAM-entangled photons with higher fidelity, and more precise 32phase level SPP for the next experiment of hyper-entanglement swapping.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A universal scheme for teleporting N DoFs</head><p>We illustrate in Extended Data Figure <ref type="figure" target="#fig_6">2</ref> a universal scheme for teleporting N DoFs of a single photon. For simplicity, we discuss an example for three DoFs (Extended Data Figure <ref type="figure" target="#fig_9">2b</ref>), labelled as X, Y, and Z. There are in total 64 hyper-entangled Bell states:</p><formula xml:id="formula_18">X X X X Y Y Y Y Z Z Z Z { } { } { }                           , ,<label>, , , , , , , , which are</label></formula><p>the products of the Bell states of each DoF, as defined below:</p><formula xml:id="formula_19">( 0 0 1 1 ) / 2 i i i i i     and ( 0 1 1 0 ) / 2 i i i i i     , where i = X, Y, Z.</formula><p>The aim is to perform an h-BSM, identifying 1 out of the 64. The required resources include: photon pairs entangled in the Z DoF, hyper-entangled in the Y-Z DoFs, and hyper-entangled in the X-Y-Z DoFs, filters for the three DoFs that can project the state to 0 or 1 (with a functionality similar to the polarizers for SAM), qubit flip ( x  ) operations for the DoFs, 50:50 non-polarising BS, and single-photon detectors, all of which are commercially available or have been experimentally demonstrated previously.</p><p>It has been known that if two single photons are superposed on a BS, only asymmetric quantum states can lead to the case that one and only one photon exits from each output of the BS. In the simplest case of one DoF, this is the asymmetric   state. As now we have three DoFs, we have to consider the combined, molecular-like quantum states. There are in total 28 possible combination that are asymmetric states, as listed below:</p><formula xml:id="formula_20">X Y Y Y Z Z Z { } { }                 , , , , , X X X Y Z Z Z { } { }                 , , , , , X X X Y Y Y Z { } { }                 , , , , , X Y Z         .</formula><p>After passing through the first BS, we can filter out these 28 from the total 64 hyper-entangled Bell states conditioned on seeing one and only one photon in each output of the BS. Next, we apply two filters in the two output of the BS to project the X DoF into   . One filter is set to pass the 1 state and the other is set to pass 0 state. This results in the below 16 filtered states from the 28, as listed below:</p><formula xml:id="formula_21">X Y Y Y Z Z Z { } { }                 , , , , , X Y Z Z Z { }             , , , X Y Y Y Z { }             , , , X Y Z         .</formula><p>We perform a bit-flip operation on the X DoF on one of the arms, erasing the information on the X DoF. We then pass them into the second BS, filtering out the asymmetric 6 combinations:</p><formula xml:id="formula_22">X Y Z Z Z { } { }             , , , X Y Y Y Z { }             , ,<label>.</label></formula><p>We emphasize that, before sending the photons to the seond BS, due to the same reason discussed in the main text, we use teleportation-based QND measurement to ensure the two photons can be further fed into the following cascaded interferometers. Here, the QND should preserve the quantum information in the Y and Z DoF. Thus, a quantum teleportation of two DoFs of a single photons is required as a key module (Extended Data Figure <ref type="figure" target="#fig_9">2a</ref>), which is exactly what we have demonstrated in the experiment presented in the main text.</p><p>After that, we again pass them through two filters on the Y DoF, one set in the 1 and the other one set in the 0 state, which leaves 4 asymmetric combinations:</p><formula xml:id="formula_23">X Y Z Z Z { } { }             , ,<label>, and X</label></formula><formula xml:id="formula_24">Y Z         .</formula><p>Similarly, we perform a bit-flip operation on the Y DoF on one of the arms, erasing the information on the Y DoF. We then do a QND measurement on the Z DoF, and pass the two photons into the third BS, finally filtering out the only remaining asymmetric state:</p><formula xml:id="formula_25">X Y Z         .</formula><p>By detecting one and only one photon out of the third BS, we can thus discriminate this particular hyper-entangled state</p><formula xml:id="formula_26">X Y Z        </formula><p>from the 64 hyper-entangled Bell states on three DoFs.</p><p>To experimentally demonstrate the teleportation of three DoFs, the scheme would need in total 10 photons (or 5 entangled photon pairs from SPDC), which is within the reach of near future experimental abilities given the recent advances in high-efficiency photon collection and detection. It is obvious that the above protocol can be extended to more DoFs as displayed in Extended Data Figure <ref type="figure" target="#fig_9">2c</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Feed-forward scheme for spin-orbit composite states</head><p>To realize a deterministic teleportation, feed-forward Pauli operations on the teleported particle based on the intrinsically random Bell-state measurement results are essential. In our present experiment, no feed-forward has been applied. Here we briefly describe how this can be done for the spin-orbit composite state. For the SAM qubits, active feed-forward has been demonstrated before using fast electro-optical modulators (EOMs) <ref type="bibr" target="#b37">39,</ref><ref type="bibr" target="#b39">41</ref> . To take advantage of this existing technology with demonstrated high-speed operation and high gate fidelity, we employ a coherent quantum SWAP gate between the OAM and SAM qubits. The SWAP gate is defined as:</p><formula xml:id="formula_27">SWAP ( 0 0 1 0 0 1 1 1 ) ( 0 0 1 0 0 1 1 1 ) S O S O S O S O O S O S O S O S                 .</formula><p>The operation sequence for the feed-forward operation on the spin-orbit composite states is shown in the Extended Data Figure <ref type="figure" target="#fig_16">3a</ref>. First, the SAM feed-forward is done with an EOM.</p><p>Second, the SAM and OAM qubits undergo a SWAP gate. Third, an EOM is used to operate on the "new" SAM that is converted from the OAM. Note that the EOM doesn't affect the OAM, so that the previous operation on the SAM is unaffected. Lastly, a final SWAP gate convert the SAM back to OAM, which completes the feed-forward for spin-orbit composite states.</p><p>The SWAP gate is composed of three CNOT gates (see the Extended Data Fig. <ref type="figure" target="#fig_16">3b</ref>). In the first and third CNOT gate (blue shading), the SAM qubit is the control qubit that acts on the OAM as target qubit, realized by sending a photon through, and recombined on a PBS. On the reflection arm only, a Dove prism is inserted to induce an OAM bit flip. In the second CNOT (yellow shading), the control (target) qubit is the SAM (OAM), as explained in the Methods (parallel SAMs, see solid circles). We measure each single photon from the two outputs of the PBS in the 1' 2' D D basis (1' and 2' denote the output spatial modes). At zero delay where the photons are optimally overlapped in time, the orthogonal SAM input yields an output state of</p><formula xml:id="formula_28">1 2 1 ' 2 (| 0 | 0 |1 |1 ) / 2 s s s s        </formula><p>conditioned on a coincidence detection, which can be decomposed in the diagonal basis as</p><formula xml:id="formula_29">1 2 1 ' 2 (| | D | | ) / 2 s s s s D A A        </formula><p>, thus showing an enhancement. For the parallel SAM input, the output stat is could be implemented based on the three principles: (1) BS could post-select the asymmetric hyper-entangled Bell states in N DoFs which contain odd numer of asymmetric Bell state in one DoF, (2) two filters and one bit flip operation will erase the information on the measured DoF and further post-select asymmetric states, (3) teleportation-based QND in less DoFs will enable one and only one photon pass through the next BS, which will allow the connection of the cascaded interferometers. Extended Data Figure 3 | Active feed-forward for spin-orbit composite states. a, The active feed-forward scheme. This composite active feed-forward could be completed in a step-by-step</p><formula xml:id="formula_30">1 2 1 ' 2 (| | | | ) / 2 s s s s D A A D         ,</formula><p>manner. First, we use a EOM to implement the active feed-forward for SAM qubits. Second we employ a coherent quantum SWAP gate between the OAM and SAM qubits. The orignal OAM will be converted into the "new" SAM, which active feed-foward will be completed by a second EOM. Then the OAM and SAM qubits will undergo a second SWAP gate and be converted to the orginal DoFs. Because EOM doesn't affect OAM, the first EOM completes the active feedforward for the original SAM and the second EOM is utilized for the "new" SAM corresponding the orginal OAM. Therefore, two EOMs and two SWAP gates will enable the active feed-forward for spin-orbit composite states. b, The quantum circuit for a SWAP gate between the OAM and SAM qubits. The SWAP gate is composed of three CNOT gates: in the first and the third CNOT gates, the SAM qubit acts as the control qubit and the OAM qubit is the target qubit, while in the second CNOT gate, the OAM (SAM) acts as the control (target) qubit.</p><p>Extended Data Figure <ref type="figure" target="#fig_6">2</ref> Extended Data Figure <ref type="figure" target="#fig_7">3</ref> Single photon state encoded in 3 DOFs</p><p>Alice 1 2 3 BS1 Bob Filter Hyper-entanglement source in 2 DOFs U A U B BS2 QND h-BSM 2 DOFs Bit flip a Alice 1 2 3 BS1 Bob Hyper-entanglement source in 3 DOFs BS2 QND in 2 DOFs h-BSM 3 DOFs BS3 QND Classical information Classical information Single photon state encoded in DOFs N Alice 1 2 3 BS1 Bob Hyper-entanglement source in DOFs N BS2 QND in -1 DOFs N h N -BSM DOFs Classical information BS3 QND in -2 DOFs N …… b c BSN Single photon state encoded in 2 DOFs U A U B U C U j N EOM SAM OAM b SWAP SWAP OAM SAM SAM OAM a EOM SWAP SAM OAM SAM OAM Comp. Dove PBS HWP QWP</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><figDesc>     to denote the four Bell state in OAM. Their tensor products result in a group of 16 hyper-entangled Bell states.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><figDesc>     . At both outputs of the PBS, we add two polarisers, projecting the two photons in the diagonal basis (| 0 |1 ) / 2 s s   </figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>23 |</head><label>23</label><figDesc>  . The third pair (4-5) is prepared as the ancillary OAM-entangled state 45 |    for the teleportation-based QND measurement.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>(</head><figDesc>~448 fs ) stretched by narrow-band spectral filtering ( ~3 nm). A step-by-step verification of two-photon interference as a function of temporal delay is shown in Extended Data Fig. 1. We observe a visibility of 0.75 0.03  for the interference of two SAM-encoded photons at the PBS, and 0.73 0.03  ( 0.69 0.03  ) for the interference of two OAM-encoded photons at the BS1 (BS2).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><figDesc>the fundamental interest, the developed methods in this work on the manipulation of quantum states of multiple DoFs will open up new possibilities in quantum technologies.Controlling multiple DoFs can bring into new advantages, such as complete SAM Bell-state analysis<ref type="bibr" target="#b22">23</ref> and alignment-free quantum communication30  . Carrying multiple DoFs on photons can enhance the information capacity in quantum communication protocols such as quantum super-dense coding<ref type="bibr" target="#b22">23</ref> . Moreover, combining the entanglement of multiple (M-) photons and high (N-) dimensions from the multiple DoFs would allow the generation of hyperentanglement with an expanded Hilbert space size that grows as N M , which would provide a versatile platform in the near future for demonstrations of complex quantum communication and quantum computing protocols, as well as extreme violations of Bell inequalities. 30. D'Ambrosio, V. et al. Complete experimental toolbox for alignment-free quantum communication. Nature Commun. 3, 961 (2012).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><head>Figure captions Figure 1 |</head><label>captions1</label><figDesc>Figure captions</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><head>Figure 2 |</head><label>2</label><figDesc>Figure 2 | Experimental setup for teleporting multiple properties of a single photon. A pulsed ultraviolet (UV) laser is focused on three β-barium borate (BBO) crystals and produces three photon pairs in spatial modes 1-t, 2-3 and 4-5. Triggered by its sister photon t, photon 1</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7"><head>Figure 3 |||</head><label>3</label><figDesc>Figure 3 | Experimental results for quantum teleportation of spin-orbit product state</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8"><head>Figure 4 |</head><label>4</label><figDesc>Figure 4 | Experimental results for quantum teleportation of spin-orbit entanglement of a single photon. To determine the state fidelity of the teleported entangled state</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9"><head>Figure 2</head><label>2</label><figDesc>Figure 2</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10"><figDesc>Then both the output modes are passing through two polarisers at 45  . Only the output with the term 1 2 D D   will result in one photon in each output mode with an efficiency of 1/8. The other terms will be rejected by the conditional detection. According to (S.1.1)-(S.1.16), 4 out of the 16 output modes have the term 1 will be sent to the next stage of BSM on the OAM qubits.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11"><head>5 3.6 10 4 3.4 10</head><label>510410</label><figDesc>Hz.In SPDC, the zero-order OAM mode occupies the highest weight among all OAM modes and thus have highest brightness. The second photon pair 2-3 is simultaneously entangled in both the SAM and OAM (in the first-order mode), due to OAM conservation in the type-I SPDC. It has a count rate of Hz  and a state fidelity of 0.95. The third photon pair 4-5 is created in the first-order OAM entangled state with a two-photon count rate of 5 1.2 10 Hz  , and a fidelity of 0.91. We estimate the mean number of photon pairs generated per pulse are ~0.1, ~0.01 and ~0.05 for the first, second and third pair, respectively. Preparing spin-orbit entanglement: As illustrated in the yellow panel of Fig. 2, we use a Sagnac interferometer to prepare the spinorbit hybrid entangled state to be teleported. The photon 1 is initially prepared in the (| 0 |1 ) / 2 s s    SAM state with zero-order OAM. It is then sent into a Sagnac interferometer that consists of a PBS and an SPP, where the counter-propagating | 0 s  and |1 s  SAMs with zero-order OAM pass through the SPP in opposite directions and are converted into | 0 | 0 s o   and |1 |1 s o   , respectively. Considering an extra  phase shift for the SAM from double reflections in the PBS, the final output state is (| 0 | 0 |1 |1 ) / 2</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_12"><head>)</head><figDesc>to a photon when it forwardly (backwardly) passes through the SPP. When attached a vortex phase il e  ( il e   ), the corresponding OAM value will add (subtrate) l . Therefore, a SPP can be used as an OAM mode converter. In our experiment, the OAM qubits are encoded in the OAM first-order subspace with the topological charge l being 1. The conversion between the OAM zero mode and the first-order modes (| 0 ,|1 o o   ) is realized using a 16-phase level SPP with an efficiency of ~97%.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_13"><head>||</head><figDesc> , as the SAM qubits there is in the preferred (H/V) basis for the PBS, they are immune to the imperfect interference at the PBS. This explains why the teleportation fidelities for the states A |  and B  are the</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_14"><figDesc>by the imperfection (~8%) of state preparation of the initial state E | -essentially all error and noise present in the experiment. It can be expected that all entangled states are subject to the same decoherence mechanism as the state E | as demonstrated, and should have similar fidelity reduction.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_15"><head>Extended Data Figure captions Extended Data Figure 1 |</head><label>1</label><figDesc>section: "Dual-channel and efficient OAM measurement". The extra Dove prism and half-wave plate in front of the PBS are used to compensate for the phase shift inside the Sagnac interferometer. Hong-Ou-Mandel interference of multiple independent photons encoded with SAM or OAM. a, Interference on the PBS where two input photons 1 and 2 are intentionally prepared in the states 1 1 2 2 D r A l (orthogonal SAMs, see open squares) and 1 1 2 2 D r D l</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_16"><head>Extended Data Figure 3 |</head><label>3</label><figDesc>photon in the output of the first BS is fulfilled by the teleportation-based QND in two DoFs in a. Similarliy, the second BS will post-select 6 states from the remaining 16 and two filters in Y DoF will post-select 4 state from the 6 states. Finally the third BS will post-selcet 1 state from the last 4 states. Then a h-BSM in three DoFs will be accomplished, which is necessary for the quantum teleportation of three DoFs of a single photons. See Methods for details. c, Quantum teleportation of N DoFs of a single photons. The most crucial step is a h-BSM in N DoFs, which</figDesc></figure>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div><p>Acknowledgements: This work was supported by the <rs type="funder">National Natural Science Foundation of China</rs>, the <rs type="funder">Chinese Academy of Sciences</rs>, and the <rs type="funder">National Fundamental Research Program</rs> (Grant No. <rs type="grantNumber">2011CB921300</rs>).</p></div>
+			</div>
+			<listOrg type="funding">
+				<org type="funding" xml:id="_jbKkmpm">
+					<idno type="grant-number">2011CB921300</idno>
+				</org>
+			</listOrg>
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Methods: The protocol for teleporting a spin-orbit composite quantum state</head><p>The combined state of photon 1, 2, and 3 can be rewritten in the basis of the 16 orthogonal complete hyper-entangled Bell states as following: </p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Teleporting an unknown quantum state via dual classic and Einstein-Podolsky-Rosen channels</title>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">H</forename><surname>Bennett</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">70</biblScope>
+			<biblScope unit="page" from="1895" to="1899" />
+			<date type="published" when="1993">1993</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Quantum repeaters: the role of imperfect local operations in quantum communication</title>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">J</forename><surname>Briegel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Dur</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">I</forename><surname>Cirac</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Zoller</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">81</biblScope>
+			<biblScope unit="page" from="5932" to="5935" />
+			<date type="published" when="1998">1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">The quantum internet</title>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">J</forename><surname>Kimble</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">453</biblScope>
+			<biblScope unit="page" from="1023" to="1030" />
+			<date type="published" when="2008">2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Demonstrating the viability of universal quantum computation using teleportation and single-qubit operations</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Gottesman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Chuang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">402</biblScope>
+			<biblScope unit="page" from="390" to="393" />
+			<date type="published" when="1999">1999</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">A scheme for efficient quantum computation with linear optics</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Knill</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Laflamme</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">J</forename><surname>Milburn</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">409</biblScope>
+			<biblScope unit="page" from="46" to="52" />
+			<date type="published" when="2001">2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Experimental quantum teleportation</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Bouwmeester</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">390</biblScope>
+			<biblScope unit="page" from="575" to="579" />
+			<date type="published" when="1997">1997</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Long-distance teleportation of qubits at telecommunication wavelengths</title>
+		<author>
+			<persName><forename type="first">I</forename><surname>Marcikic</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>De Riedmatten</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Tittel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Zbinden</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Gisin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">421</biblScope>
+			<biblScope unit="page" from="509" to="513" />
+			<date type="published" when="2003">2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Deterministic quantum teleportation of photonic quantum bits by a hybrid technique</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Takeda</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Mizuta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Fuwa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Van Loock</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Furusawa</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">500</biblScope>
+			<biblScope unit="page" from="315" to="318" />
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Deterministic quantum teleportation between distant atomic objects</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Krauter</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nat. Phys</title>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="page" from="400" to="404" />
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Deterministic quantum teleportation with atoms</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Riebe</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">429</biblScope>
+			<biblScope unit="page" from="734" to="737" />
+			<date type="published" when="2004">2004</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Deterministic quantum teleportation of atomic qubits</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">D</forename><surname>Barrett</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">429</biblScope>
+			<biblScope unit="page" from="737" to="739" />
+			<date type="published" when="2004">2004</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Unconditional quantum teleportation between distant solid-state quantum bits</title>
+		<author>
+			<persName><forename type="first">W</forename><surname>Pfaff</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Science</title>
+		<imprint>
+			<biblScope unit="volume">345</biblScope>
+			<biblScope unit="page" from="532" to="535" />
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Deterministic quantum teleportation with feed-forward in a solid state system</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Steffen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">500</biblScope>
+			<biblScope unit="page" from="319" to="322" />
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Hyperentangled Bell-state analysis</title>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">C</forename><surname>Wei</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">T</forename><surname>Barreiro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">G</forename><surname>Kwiat</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">75</biblScope>
+			<biblScope unit="page">60305</biblScope>
+			<date type="published" when="2007">2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Optimal quantum cloning of orbital angular momentum photon qubits through Hong-Ou-Mandel coalescence</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Nagali</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature Photon</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page" from="720" to="723" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Experimental Bell-state analysis</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Weinfurter</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Europhys. Lett</title>
+		<imprint>
+			<biblScope unit="volume">25</biblScope>
+			<biblScope unit="page" from="559" to="564" />
+			<date type="published" when="1994">1994</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Multiphoton entanglement and interferometry</title>
+		<author>
+			<persName><forename type="first">J.-W</forename><surname>Pan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Rev. Mod. Phys</title>
+		<imprint>
+			<biblScope unit="volume">84</biblScope>
+			<biblScope unit="page" from="777" to="838" />
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Quantum relays and noise suppression using linear optics</title>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">C</forename><surname>Jacobs</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">B</forename><surname>Pittman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">D</forename><surname>Franson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">66</biblScope>
+			<biblScope unit="page">52307</biblScope>
+			<date type="published" when="2002">2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Ultrabright source of polarization-entangled photons</title>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">G</forename><surname>Kwiat</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">60</biblScope>
+			<biblScope unit="page" from="773" to="776" />
+			<date type="published" when="1999">1999</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Generation of hyper-entangled photon pairs</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">T</forename><surname>Barreiro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">K</forename><surname>Langford</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">A</forename><surname>Peters</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">G</forename><surname>Kwiat</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">95</biblScope>
+			<biblScope unit="page">260501</biblScope>
+			<date type="published" when="2005">2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Entanglement of the orbital angular momentum states of photons</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Mair</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Vaziri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Weihs</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Zeilinger</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">412</biblScope>
+			<biblScope unit="page" from="313" to="316" />
+			<date type="published" when="2001">2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Measurement of subpicosecond time intervals between two photons by interference</title>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">K</forename><surname>Hong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><forename type="middle">Y</forename><surname>Ou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Mandel</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">59</biblScope>
+			<biblScope unit="page" from="2044" to="2046" />
+			<date type="published" when="1987">1987</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Beating the channel capacity limit for linear photonic superdense coding</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">T</forename><surname>Barreiro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T.-C</forename><surname>Wei</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">G</forename><surname>Kwiat</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature Phys</title>
+		<imprint>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="page" from="282" to="286" />
+			<date type="published" when="2008">2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Quantum information transfer from spin to orbital angular momentum of photons</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Nagali</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">103</biblScope>
+			<biblScope unit="page">13601</biblScope>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Quantum correlations in optical angle-orbital angular momentum variables</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Leach</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Science</title>
+		<imprint>
+			<biblScope unit="volume">329</biblScope>
+			<biblScope unit="page" from="662" to="665" />
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Quantum entanglement of high angular momenta</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Fickler</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Science</title>
+		<imprint>
+			<biblScope unit="volume">338</biblScope>
+			<biblScope unit="page" from="640" to="643" />
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Reexamination of optimal quantum state estimation of pure states</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Hayashi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Hashimoto</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Horibe</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">72</biblScope>
+			<biblScope unit="page">32325</biblScope>
+			<date type="published" when="2005">2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Entanglement detection</title>
+		<author>
+			<persName><forename type="first">O</forename><surname>Gühne</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Toth</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rep</title>
+		<imprint>
+			<biblScope unit="volume">474</biblScope>
+			<biblScope unit="page" from="1" to="75" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Event-ready-detectors&quot; Bell experiment via entanglement swapping</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Zukowski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Zeilinger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">A</forename><surname>Horne</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ekert</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">71</biblScope>
+			<biblScope unit="page" from="4287" to="4290" />
+			<date type="published" when="1993">1993</date>
+		</imprint>
+	</monogr>
+	<note>References</note>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Hyperentanglement-enabled direct characterization of quantum dynamics</title>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">M</forename><surname>Graham</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">T</forename><surname>Barreiro</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Mohseni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">G</forename><surname>Kwiat</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">110</biblScope>
+			<biblScope unit="page">60404</biblScope>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">The polarizing Sagnac interferometer: a tool for light orbital angular momentum sorting and spin-orbit photon processing</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Slussarenko</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Opt. Express</title>
+		<imprint>
+			<biblScope unit="volume">18</biblScope>
+			<biblScope unit="page" from="27205" to="27216" />
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<monogr>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">L</forename><surname>Andrews</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Babiker</surname></persName>
+		</author>
+		<title level="m">The Angular Momentum of Light</title>
+		<meeting><address><addrLine>Cambridge, UK</addrLine></address></meeting>
+		<imprint>
+			<publisher>Cambridge Univ. Press</publisher>
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Precise quantum tomography of photon pairs with entangled orbital angular momentum</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Jack</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Leach</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Ritsch</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">M</forename><surname>Barnett</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">J</forename><surname>Padgett</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Franke-Arnold</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">New J. Phys</title>
+		<imprint>
+			<biblScope unit="volume">11</biblScope>
+			<biblScope unit="page">103024</biblScope>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Experimental realization of freely propagating teleported qubits</title>
+		<author>
+			<persName><forename type="first">J.-W</forename><surname>Pan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Gasparoni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Aspelmeyer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Jennewein</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Zeilinger</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">421</biblScope>
+			<biblScope unit="page" from="721" to="725" />
+			<date type="published" when="2003">2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Experimental quantum teleportation of a two-qubit composite system</title>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Zhang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature Phys</title>
+		<imprint>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="page" from="678" to="682" />
+			<date type="published" when="2006">2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Quantum teleportation and entanglement distribution over 100-kilometre freespace channels</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Yin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">488</biblScope>
+			<biblScope unit="page" from="185" to="188" />
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<analytic>
+		<title level="a" type="main">Experimental quantum teleportation</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Bouwmeester</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">390</biblScope>
+			<biblScope unit="page" from="575" to="579" />
+			<date type="published" when="1997">1997</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Quantum teleportation over 143 kilometres using active feed-forward</title>
+		<author>
+			<persName><forename type="first">X.-S</forename><surname>Ma</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">489</biblScope>
+			<biblScope unit="page" from="269" to="273" />
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Push-button photon entanglement</title>
+		<author>
+			<persName><forename type="first">C.-Y</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J.-W</forename><surname>Pan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature Photonics</title>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="page" from="174" to="176" />
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<analytic>
+		<title level="a" type="main">High-speed linear optics quantum computing using active feed-forward</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Prevedel</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">445</biblScope>
+			<biblScope unit="page" from="65" to="69" />
+			<date type="published" when="2007">2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

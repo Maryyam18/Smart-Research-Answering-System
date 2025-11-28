@@ -1,206 +1,163 @@
-# app_mvP.py – CLEAN, USER-FRIENDLY, 3-4 LINES + 1 REFERENCE
-import psycopg2
-from sentence_transformers import SentenceTransformer
-from fastapi import FastAPI
+# app.py 
+
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+import psycopg2
 from pgvector.psycopg2 import register_vector
+from sentence_transformers import SentenceTransformer
 from groq import Groq
-from dotenv import load_dotenv
-import os
-import re
 
-# === CONFIG ===
-DB_CONFIG = {
-    "host": "localhost", "port": 5432, "user": "postgres",
-    "password": "hello098", "dbname": "smart_research"
+app = FastAPI()
+
+# ==========================
+# LOAD MODELS AT STARTUP
+# ==========================
+print("Loading BAAI/bge-small-en-v1.5... (startup may take ~1-2 min)")
+model = SentenceTransformer("BAAI/bge-small-en-v1.5")
+client = Groq(api_key="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")
+
+# ==========================
+# CONFIG
+# ==========================
+DOMAINS = {
+    "NLP",
+    "Quantum Information Retrieval and Information Teleportation",
+    "Quantum Resistant Cryptography and Identity Based Encryption",
+    "VLSI in Power Electronics and Embedded Systems"
 }
-EMBED_MODEL = "all-MiniLM-L6-v2"
-TOP_K = 1
-SIMILARITY_THRESHOLD = 0.40
-GREETING_KEYWORDS = ["hi", "hello", "aoa", "assalam", "how r u", "hey", "salaam", "how are you"]
-PERSONAL_KEYWORDS = ["my name", "your name", "friend name", "who am i", "who are you"]
 
-# === GROQ API SETUP ===
-GROQ_API_KEY = "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"
-groq_client = Groq(api_key=GROQ_API_KEY)
+DB = {"host": "localhost", "port": 5432, "user": "postgres", "password": "hello098", "dbname": "smart_research"}
+TOP_K = 20
+MIN_SIM = 0.64
 
-# === MODELS ===
-print("Loading embedding model...")
-retrieval_model = SentenceTransformer(EMBED_MODEL)
-print("Loaded.")
-print("Using Groq API (Llama 3) - Fast & Free!")
-print("Ready in 2 seconds!")
+class QueryRequest(BaseModel):
+    query: str
+    mode: str = "simple"
+    domain: str = "all"
 
-# === QUERY CLASSIFIER ===
-CLASSIFY_PROMPT = """Classify the query into ONE category:
-- GREETING: Simple greetings like 'hi', 'hello', 'salaam', 'how are you' (no substantive content).
-- VAGUE: Incomplete, unclear, or too short (e.g., 'Wha?', single words like 'what', punctuation-only).
-- OUT_OF_DOMAIN: Unrelated to NLP (e.g., cars, physics, biology, economics, personal questions like 'my name').
-- IN_DOMAIN: Related to NLP, language models, text processing, embeddings, or AI language tasks.
-Return only the category name in uppercase. Be precise: queries about NLP, bias, models, or text analysis are IN_DOMAIN. Personal questions are OUT_OF_DOMAIN.
-Query: {query}
-Category:"""
+def get_conn():
+    conn = psycopg2.connect(**DB)
+    register_vector(conn)
+    return conn
 
-def classify_query(query: str) -> str:
-    query_lower = query.lower().strip()
-    # Fallback: keyword-based check for greetings
-    if any(g in query_lower for g in GREETING_KEYWORDS) and len(query_lower.split()) <= 2:
-        print("Keyword-based: Classified as GREETING")
-        return "GREETING"
-    
-    # Check for personal or irrelevant questions
-    if any(p in query_lower for p in PERSONAL_KEYWORDS):
-        print("Keyword-based: Classified as OUT_OF_DOMAIN (personal question)")
-        return "OUT_OF_DOMAIN"
-    
-    # Vague check for short or unclear queries
-    if len(query_lower.split()) <= 1 or re.match(r"^[^\w\s]+$", query_lower):
-        print("Keyword-based: Classified as VAGUE (too short or unclear)")
-        return "VAGUE"
-    
-    try:
-        resp = groq_client.chat.completions.create(
-            model="llama-3.1-8b-instant",
-            messages=[{"role": "user", "content": CLASSIFY_PROMPT.format(query=query)}],
-            max_tokens=10,
-            temperature=0.0,
-        )
-        classification = resp.choices[0].message.content.strip().upper()
-        print(f"Classifier output: {classification}")
-        # Ensure NLP-related queries are correctly classified
-        if any(term in query_lower for term in ["nlp", "language model", "embedding", "text", "bias", "bert", "gpt"]):
-            classification = "IN_DOMAIN"
-            print("Overridden to IN_DOMAIN due to NLP keywords")
-        return classification
-    except Exception as e:
-        print(f"Classifier Error: {e}")
-        return "IN_DOMAIN"  # Safe fallback to check DB
+# ==========================
+# RETRIEVE FUNCTION
+# ==========================
+def retrieve(q: str, domain: str = "all"):
+    conn = get_conn()
+    cur = conn.cursor()
+    q_emb = model.encode(q, normalize_embeddings=True)
 
-# === RETRIEVAL ===
-def get_paper_context(query: str):
-    try:
-        print(f"Query: '{query}'")
-        conn = psycopg2.connect(**DB_CONFIG)
-        register_vector(conn)
-        cur = conn.cursor()
+    sql = "SELECT title, authors, year, enriched_text, paperid, embedding <=> %s FROM papers WHERE embedding IS NOT NULL"
+    params = [q_emb]
 
-        cur.execute("SELECT COUNT(*) FROM papers WHERE embedding IS NOT NULL;")
-        count = cur.fetchone()[0]
-        print(f"Papers with embeddings: {count}")
+    if domain != "all":
+        if domain not in DOMAINS:
+            cur.close(); conn.close()
+            return None
+        sql += " AND domain = %s"
+        params.append(domain)
 
-        q_emb = retrieval_model.encode(query, normalize_embeddings=True)
+    sql += " ORDER BY embedding <=> %s LIMIT %s"
+    cur.execute(sql, params + [q_emb, TOP_K])
+    results = cur.fetchall()
+    cur.close(); conn.close()
 
-        cur.execute("""
-            SELECT title, authors, year, section_heading, section_text,
-                   1 - (embedding <=> %s) AS sim
-            FROM papers
-            WHERE embedding IS NOT NULL
-            ORDER BY embedding <=> %s
-            LIMIT %s;
-        """, (q_emb, q_emb, TOP_K))
+    seen = set()
+    good = []
+    for row in results:
+        dist = row[5]
+        if 1 - dist >= MIN_SIM and row[4] not in seen:
+            seen.add(row[4])
+            good.append(row)
+    return good if good else None
 
-        row = cur.fetchone()
-        if row:
-            print(f"Found match! Similarity: {row[5]:.3f}")
-            print(f"Paper: {row[0]}")
-        else:
-            print("No match found")
+def make_ref(title, authors, year):
+    a = authors[0] + (" et al." if len(authors) > 1 else "")
+    return f"{title} by {a}, {year}"
 
-        cur.close()
-        conn.close()
+# ==========================
+# API ENDPOINT
+# ==========================
+@app.post("/answer")
+def answer(req: QueryRequest):
+    mode = req.mode.lower()
+    if mode not in ["simple", "deep"]:
+        raise HTTPException(status_code=400, detail="mode must be 'simple' or 'deep'")
 
-        if not row or row[5] < SIMILARITY_THRESHOLD:
-            print(f"Threshold failed: {row[5] if row else 'N/A'} < {SIMILARITY_THRESHOLD}")
-            return None, None, None
+    results = retrieve(req.query, req.domain if req.domain != "all" else "all")
 
-        text = row[4].strip()
-        if len(text) > 380:
-            text = text[:377] + "..."
+    if not results:
+        msg = "Sorry, I couldn't find any relevant research papers on this topic. I only know about NLP, Quantum Computing, Quantum Cryptography, and VLSI."
+        return {"answer": msg, "reference" if mode == "simple" else "references": None if mode == "simple" else []}
 
-        context = f"From section '{row[3]}': {text}"
-        authors = ", ".join(row[1][:3])
-        ref = f"{row[0]} by {authors}, {row[2]}"
-        print(f"Context ready: {context[:100]}...")
-        return context, ref, None
+    # --------------------------
+    # SIMPLE MODE
+    # --------------------------
+    if mode == "simple":
+        context = "\n\n".join([r[3] for r in results[:8]])
+        best = results[0]
 
-    except Exception as e:
-        print(f"DB Error: {e}")
-        return None, None, "Database error. Please try again!"
+        prompt = f"""Answer in 3-4 short sentences using only these sources.
+Do NOT mention titles, authors, or years.
 
-# === ANSWER GENERATION ===
-ANSWER_PROMPT = """Answer in 3-4 short, simple sentences for a high school student.
-Use ONLY the provided context if available and not 'None'.
-If context is 'None', use general NLP knowledge and end with: "This is general NLP knowledge – not found in our research papers."
-Always end with: Reference: {ref}
-Query: {query}
-Context: {context}
+Question: {req.query}
+Sources: {context}
 Answer:"""
 
-def generate_answer(query: str, context: str | None, ref: str | None):
-    cls = classify_query(query)
-    print(f"Classification: {cls}")
-
-    # 1. GREETING
-    if cls == "GREETING":
-        print("Responding as greeting")
-        return "Hello! I'm ready to answer your questions about NLP research. What would you like to know?", "No paper"
-
-    # 2. VAGUE
-    if cls == "VAGUE":
-        print("Responding as vague")
-        return "Your query is too vague. Please provide more details about the NLP topic!", "No paper"
-
-    # 3. OUT_OF_DOMAIN
-    if cls == "OUT_OF_DOMAIN":
-        print("Responding as out-of-domain")
-        return "Sorry, I can only answer questions about NLP research. Try asking about language models or text processing!", "No paper"
-
-    # 4 & 5. IN_DOMAIN (check DB)
-    context, ref, error = get_paper_context(query)
-    if error:
-        print("Responding with DB error")
-        return f"Sorry, there was an error: {error}", "No paper"
-
-    # DB hit with good similarity
-    if context and ref:
-        print("Using DB context")
-        prompt = ANSWER_PROMPT.format(query=query, context=context, ref=ref)
-        ref_to_use = ref
-    else:
-        # 4. IN_DOMAIN but not in DB or 5. Unclear in DB
-        print("Using general NLP knowledge (no DB match)")
-        prompt = ANSWER_PROMPT.format(query=query, context="None", ref="General NLP knowledge")
-        ref_to_use = "General NLP knowledge"
-
-    try:
-        resp = groq_client.chat.completions.create(
-            model="llama-3.1-8b-instant",
+        resp = client.chat.completions.create(
+            model="llama-3.3-70b-versatile",
             messages=[{"role": "user", "content": prompt}],
-            max_tokens=180,
-            temperature=0.3,
+            max_tokens=280,
+            temperature=0.1
         )
-        answer = resp.choices[0].message.content.strip()
-        # Clean any incorrect references and ensure correct one
-        if not answer.endswith(f"Reference: {ref_to_use}"):
-            answer = answer.split("Reference:")[0].strip() + f"\n\nReference: {ref_to_use}"
-        print(f"Answer generated: {answer[:100]}...")
-        return answer, ref_to_use
+        answer_text = resp.choices[0].message.content.strip()
+        answer_text += f"\n\nReference: {make_ref(best[0], best[1], best[2])}"
+        return {"answer": answer_text, "reference": make_ref(best[0], best[1], best[2])}
 
-    except Exception as e:
-        print(f"Groq Error: {e}")
-        return "Sorry, the AI is busy. Try again!", "No paper"
+    # --------------------------
+    # DEEP MODE (ALWAYS ANSWER)
+    # --------------------------
+    context = ""
+    refs = []
+    used = set()
+    for row in results:
+        pid = row[4]
+        if pid in used or len(refs) >= 4: 
+            continue
+        used.add(pid)
+        context += f"{row[3]}\n\n"
+        refs.append(make_ref(row[0], row[1], row[2]))
 
-# === FASTAPI ===
-app = FastAPI(title="Smart Research MVP")
+    prompt = f"""You are an expert researcher. Give a detailed answer using only these sources.
 
-class Query(BaseModel):
-    query: str
+Question: {req.query}
+Sources:
+{context}
 
-@app.post("/answer")
-async def answer(q: Query):
-    ans_text, source = generate_answer(q.query, None, None)
-    return {"query": q.query, "answer": ans_text, "source": source}
+Answer in clear paragraphs. End with "References are listed below."
+"""
+    resp = client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        messages=[{"role": "user", "content": prompt}],
+        max_tokens=1200,
+        temperature=0.3
+    )
+    answer_text = resp.choices[0].message.content.strip()
 
-@app.get("/health")
-async def health():
-    return {"status": "MVP ready with Groq API"}
+    # ADD SUMMARY / CONCLUSION
+    summary_prompt = f"""Summarize the above answer in 3-4 lines, highlighting the main conclusion.
+Answer:
+{answer_text}
+Summary:"""
+
+    summary_resp = client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        messages=[{"role": "user", "content": summary_prompt}],
+        max_tokens=150,
+        temperature=0.1
+    )
+    summary_text = summary_resp.choices[0].message.content.strip()
+
+    answer_text += f"\n\nConclusion:\n{summary_text}\n\nReferences:\n" + "\n".join(f"• {r}" for r in refs)
+    return {"answer": answer_text, "references": refs}

@@ -1,0 +1,1242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">What do we Really Know about State of the Art NER?</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Sowmya</forename><surname>Vajjala</surname></persName>
+							<email>sowmya.vajjala@nrc-cnrc.gc.ca</email>
+							<affiliation key="aff0">
+								<orgName type="institution">National Research Council</orgName>
+								<address>
+									<country>Canada; Novisto.com</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Ramya</forename><surname>Balasubramaniam</surname></persName>
+							<email>ramya.balasubramaniam@novisto.com</email>
+							<affiliation key="aff0">
+								<orgName type="institution">National Research Council</orgName>
+								<address>
+									<country>Canada; Novisto.com</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">What do we Really Know about State of the Art NER?</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date/>
+						</imprint>
+					</monogr>
+					<idno type="MD5">460518C416168E5A0B56396F28047441</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-28T12:21+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Named Entity Recognition</term>
+					<term>NER Evaluation</term>
+					<term>OntoNotes Dataset</term>
+					<term>English</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Named Entity Recognition (NER) is a well researched NLP task and is widely used in real world NLP scenarios. NER research typically focuses on the creation of new ways of training NER, with relatively less emphasis on resources and evaluation. Further, state of the art (SOTA) NER models, trained on standard datasets, typically report only a single performance measure (F-score) and we don't really know how well they do for different entity types and genres of text, or how robust are they to new, unseen entities. In this paper, we perform a broad evaluation of NER using a popular dataset, that takes into consideration various text genres and sources constituting the dataset at hand. Additionally, we generate six new adversarial test sets through small perturbations in the original test set, replacing select entities while retaining the context. We also train and test our models on randomly generated train/dev/test splits followed by an experiment where the models are trained on a select set of genres but tested genres not seen in training. These comprehensive evaluation strategies were performed using three SOTA NER models. Based on our results, we recommend some useful reporting practices for NER researchers, that could help in providing a better understanding of a SOTA model's performance in future.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.">Introduction</head><p>NER is one of the most commonly researched information extraction tasks in NLP. It is also among the most common use-cases in industry, according to a recent survey <ref type="bibr" target="#b20">(Lorica and Nathan, 2021)</ref>. State of the art (SOTA) NER models report F-scores of over 90% on standard English datasets 1 . There are also several off-the-shelf NER tools that provide pre-trained models based on this research, which can be used in practical application scenarios.</p><p>However, what do we really know about these NER models, beyond a single measure (typically, micro-F score)? One approach to answer this question could be to study how well does an NER model do on various named entity categories and text genres, or how well does it generalize on data with previously unseen genres and new test sets. Another approach could be to assess how robust the algorithms themselves are when trained and tested on different splits of the same dataset. There is some recent research in NLP that shows why reporting and comparing based on a single evaluation measure is not the best practice <ref type="bibr" target="#b25">(Reimers and Gurevych, 2018;</ref><ref type="bibr" target="#b6">Dror et al., 2019)</ref>. However, there isn't much research focusing on NER in particular. Consequently, to understand the performance of SOTA NER models in depth, and argue for better evaluation approaches in future, we address the following research questions in this paper: 2. How robust are the pre-trained NER models if we replace the entities in test set with new, unseen entities of the same type?</p><p>3. How sensitive are the NER models to:</p><p>• training on random splits of train/dev/test sets?</p><p>• text genres not seen during training?</p><p>We address these questions not by proposing new NER models or new evaluation metrics, but by studying three well-known NLP libraries based on SOTA NER models, using a large, and commonly used multi-genre and multi-source NER dataset for English and conducting multiple rounds of evaluations. Based on our results, we list a few recommendations on how to comprehensively evaluate and report performance of SOTA NER models.</p><p>Considering that NER models are used as-is in many industry use cases, and that NLP research does not evaluate such aspects as a norm, we believe this paper provides useful insights for both NER researchers and practitioners, and hope this encourages more research in developing a holistic evaluation framework for NER systems in future.</p><p>The main contributions of this paper can be summarized as follows:</p><p>1. We perform an extensive evaluation of three SOTA NER approaches and identify key insights for developing better NER models.</p><p>2. We create six new adversarial test sets for English NER, by applying small perturbations on the original test set.</p><p>The rest of this paper is organized as follows: Section 2 gives an overview of contemporary work in this area and sets the stage for the work carried out in this paper.</p><p>Section 3 describes our experimental methodology and dataset creation. Section 4 discusses our experiments that do "black-box" testing of three SOTA NER models. Section 5 describes results of our experiments with training and testing NER models. Section 6 highlights the main conclusions of the paper and recommendations for evaluating and reporting NER model performance.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">Related Work</head><p>Research about Named Entity Recognition in NLP community has primarily focused on developing new models (typically for English), but to a much lesser extent on resource creation and evaluation. OntoNotes 5.0 is a large, multi-genre dataset that is commonly used for the development and evaluation of NER models. In OntoNotes benchmarking paper, <ref type="bibr" target="#b22">Pradhan et al. (2013)</ref> hopes that this dataset "provides an opportunity for studying the genre effect on different syntactic, semantic and discourse analyzers". However, this is not really reflected in practice, at least in NER. SOTA NER models built using this dataset report just a single F score for English<ref type="foot" target="#foot_0">foot_0</ref> (e.g., <ref type="bibr">Yu et al. (2020) -91.3;</ref><ref type="bibr">Bhattacharjee et al. (2020) -92.07;</ref><ref type="bibr">Xu et al. (2021) -90.85;</ref><ref type="bibr">Shah et al. (2021)-92.17</ref>). However, none of these papers shed light on how good the models really are, beyond this single F score.</p><p>Apart from reporting the overall F score, some papers discuss genre-wise performance <ref type="bibr" target="#b22">(Pradhan et al., 2013;</ref><ref type="bibr" target="#b5">Chiu and Nichols, 2016;</ref><ref type="bibr" target="#b11">Ghaddar and Langlais, 2018;</ref><ref type="bibr" target="#b2">Bernier-Colborne and Langlais, 2020;</ref><ref type="bibr" target="#b9">Fu et al., 2021a;</ref><ref type="bibr" target="#b10">Fu et al., 2021b)</ref>, and some go beyond that to explore cross-corpus/cross-genre evaluation <ref type="bibr" target="#b39">(Wang et al., 2020;</ref><ref type="bibr" target="#b2">Bernier-Colborne and Langlais, 2020;</ref><ref type="bibr" target="#b36">Ushio and Camacho-Collados, 2021)</ref>. However, we still do not have a clear picture of how existing architectures perform on genres unseen during training. Considering the practical relevance of NER, this is important aspect of performance that needs to be better understood.</p><p>A majority of NER research focuses on training and evaluating with standard train/dev/test splits, and there are problems associated with it such as overfitting to the test set. Although there have been calls in the recent past for evaluating on random splits <ref type="bibr" target="#b14">(Gorman and Bedrick, 2019)</ref>, using multiple test sets <ref type="bibr" target="#b31">(Søgaard et al., 2021)</ref>, and using a "tune-set" (van der Goot, 2021), we haven't seen this being reflected in NER research much. Though several papers report on experiments that build and evaluate NER models on more than one dataset <ref type="bibr" target="#b36">(Ushio and Camacho-Collados, 2021;</ref><ref type="bibr" target="#b2">Bernier-Colborne and Langlais, 2020)</ref>, they still primarily report results on the standard splits for a given dataset. Some papers do report variance across multiple runs of training <ref type="bibr" target="#b33">(Strubell et al., 2017)</ref>, but we haven't found much analysis of how the performance changes with non-standard splits or with (slightly modified) test sets for NER.</p><p>Developing generalizable NLP models is an open research question. NER research too focused on this aspect in the past, from a modeling perspective. For example, <ref type="bibr" target="#b39">Wang et al. (2020)</ref> proposed methods develop models to account for multi-genre scenarios. <ref type="bibr" target="#b12">Ghaddar et al. (2021)</ref> recently proposed an approach that forces models to learn more contextual information and memorize less. <ref type="bibr" target="#b43">Zeng et al. (2020)</ref> generate counterfactual examples to enhance the original dataset while training a model. However, these approaches address only one side of the problem. The other side of generalizability is about evaluating on new test sets. Performing adversarial attacks has been a recent area of research in NLP and machine learning to understand some aspects of this question. The goal of such an approach is to create minimal perturbations in the input text, which will maximize the probability of a model making wrong predictions. From simple word/character substitutions and heuristics targeting various forms of text transformations to using large pre-trained language models, a range of strategies have been proposed in the past, to generate adversarial text <ref type="bibr" target="#b7">(Eger et al., 2019;</ref><ref type="bibr" target="#b27">Ren et al., 2019;</ref><ref type="bibr" target="#b15">Jin et al., 2020;</ref><ref type="bibr" target="#b41">Yangming et al., 2020;</ref><ref type="bibr" target="#b16">Keller et al., 2021)</ref>.</p><p>In the recent past, such methods have been applied for various tasks such as co-reference resolution <ref type="bibr" target="#b4">(Chai et al., 2020)</ref>, question answering <ref type="bibr" target="#b24">(Ravichander et al., 2021)</ref>, morphological analysis <ref type="bibr" target="#b30">(Shmidman et al., 2020)</ref>, natural language inference <ref type="bibr" target="#b38">(Wallace et al., 2019)</ref>, named entity linking <ref type="bibr" target="#b13">(Goel et al., 2021)</ref>. <ref type="bibr" target="#b0">Agarwal et al. (2020)</ref> extended this research to NER by creating new test sets replacing some entities selectively, using lists of common names by various nationalities. Lin et al. (2021)'s RockNER used wikidata and BERT to substitute entities and contexts and generate new NER test sets. In this paper, we extend this line of enquiry further by creating six new adversarial test sets for evaluating NER (in English).</p><p>To summarize, inspired by some past research into generalizability <ref type="bibr" target="#b1">(Augenstein et al., 2017;</ref><ref type="bibr" target="#b34">Taille et al., 2020)</ref> and evaluation <ref type="bibr" target="#b17">(Lignos and Kamyab, 2020;</ref><ref type="bibr" target="#b2">Bernier-Colborne and Langlais, 2020;</ref><ref type="bibr" target="#b8">Fu et al., 2020;</ref><ref type="bibr" target="#b35">Tu and Lignos, 2021;</ref><ref type="bibr" target="#b40">Xu et al., 2021)</ref> of NER, and evaluation of NLP systems in general <ref type="bibr" target="#b28">(Ribeiro et al., 2020)</ref>, we attempted to understand what we could learn about SOTA NER beyond a single F-score in this paper. While some of these questions were addressed separately in the past research to various degrees, to our knowledge, there is no previous research that addressed all these questions together, comparing multiple NER systems in the past.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.">Our Approach</head><p>In this paper, we conduct two kinds of experiments:</p><p>1. black box evaluation, where we evaluate pretrained NER models for their performance on various entity types, data sources/genres, and new test sets.</p><p>2. training NER models using existing model architectures to understand their sensitivity to random splits and cross-genre performance.</p><p>Our research questions require a dataset with multiple genres of NER annotated text. Further, since our focus is more on understanding the current SOTA, we required some easily re-trainable implementations of SOTA NER models. Our methodological choices, which are described in this section, are motivated by these requirements.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1.">Dataset</head><p>To our knowledge, Ontonotes 5.0 is the only NER dataset for English with multi source/genre annotation.</p><p>Hence, we used it for the experiments described in this paper. The NER part of Ontonotes 5.0 is a large dataset with 3,637 documents and 2 million tokens <ref type="bibr" target="#b22">(Pradhan et al., 2013)</ref>. The NER annotation consists of 18 tags, including 11 types (Person, geo-political entity, organization etc) and 7 values (date, percent etc). The dataset contains texts from six sources: broadcast conversation (bc), broadcast news (bn), magazines (mz), newswire (nw), telephone conversation (tc), weblog (wb). We re-grouped these into four genres -news (bn + nw + mz), bc, tc, and wb and report on results both by source and genre. The distinction between news and broadcast conversation is just that while the former is primarily in written form, the latter is a written version of broadcast news conversations. We decided to group bn, mz and nw to a common category news as we did not see much linguistic variation amongst these categories and hence there was no value in treating them as separate genres.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2.">New adversarial test sets</head><p>We created six new test sets by replacing entities from an entity type in the standard test, using the Python package Faker<ref type="foot" target="#foot_1">foot_1</ref> . Our motivation for this experiment is to understand how much of memorization of entities occurs in NER models and how sensitive the SOTA NER models are to small changes or perturbations, i.e., replacing some entities to unseen values, while keeping the surrounding context intact. Faker package generates fake named entity data, based on geographical, gender and entity type specifications. We generated the following 6 test sets with input perturbations, and all except the first one were generated using Faker:</p><p>1. Perturb 1: Replace all person names with the word Dodo. The motivation for this simple perturbation is to check how much do the models learn to infer by using context compared to actual memorization of lexical tokens.</p><p>2. Perturb 2: Replace all person names using en US locale in Faker.</p><p>3. Perturb 3: Replace all person names using en IN locale (India) in Faker.</p><p>4. Perturb 4: Replace all person names with female names, using en TH locale (Thailand) in Faker.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.">Perturb</head><p>5: Replace all person names with female names, using en IN locale in Faker. 6. Perturb 6: Replace all GPE names with GPE names from en IE (Ireland) locale. Note that the goal of the perturbations is to introduce new entities not seen during training into the test set. Consequently, each Perturb * dataset addresses one transformation. Hence, only some sentences of the original test set, which meet the individual perturbation's criteria, are altered in each new test set. For names with more than one word, we called First name function once and last name function for the rest. For GPE with more than one word, we called place suffix function for all words after the first word. The locale/gender combinations are arbitrary and Faker can be used with other locale/gender combinations as well.</p><p>Our goal was just to explore a small sample from a large population of possibilities, to understand SOTA NER's sensitivity to small changes in input. We chose gender and geography as a starting point in this exploration. Whether this strategy can be reliably used to evaluate NER models in terms of racial/sexist bias is an interesting aspect for future exploration.</p><p>Table <ref type="table">1</ref> shows how these perturbations were implemented on sentences from test set. While the locale and gender appropriateness of these functions is not reported in Faker documentation, the sentences we generated by replacing the entity tokens are all grammatically correct and hence they all serve as valid test sets for our purpose.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3.">NER systems</head><p>We experimented with three SOTA NER systems, using their pre-trained models as well as by training our own models with their architectures. They are described below:</p><p>1. Spacy 4 uses a neural network based state prediction model (transition based parser) to do structured prediction for NER. It comes with several pipelines for English. We used the en core web trf pipeline, which fine-tunes a RoBERTa-base <ref type="bibr" target="#b19">(Liu et al., 2019)</ref> for this task.</p><p>Its pre-trained model also gives maximum performance for NER on OntoNotes dataset compared to other models that Spacy provides, as reported on their website 5 .</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">Stanza</head><p>6 's NER architecture uses BiLSTM lay-Perturb Sentence None (Original) Faced with massive demonstrations and Russia's backing of Kostunica, he agreed to step down in October. Perturb 1 Faced with massive demonstrations and Russia's backing of Dodo, he agreed to step down in October. Perturb 2 Faced with massive demonstrations and Russia's backing of Kevin, he agreed to step down in October. Perturb 3 Faced with massive demonstrations and Russia's backing of Arnav, he agreed to step down in October. Perturb 4 Faced with massive demonstrations and Russia's backing of Pol, he agreed to step down in October. Perturb 5 Faced with massive demonstrations and Russia's backing of Samaira, he agreed to step down in October. None (Original) Previously we had a statistic, especially for the ringroads in Beijing. Perturb 6</p><p>Previously we had a statistic, especially for the ringroads in Galway.</p><p>Table <ref type="table">1</ref>: Examples of sentences in perturbed test sets ers with character and word-level representations followed by a CRF decoder <ref type="bibr" target="#b23">(Qi et al., 2018)</ref>. We used Stanza's NER model trained on OntoNotes for evaluating their approach, and used the combined pre-trained embeddings provided with Stanza's standard installation both for testing its pre-trained NER system as well as for training our own NER models. It is technically possible to use other existing NER libraries and/or the more recently published NER models. However, these three are the most used NLP libraries <ref type="bibr" target="#b20">(Lorica and Nathan, 2021)</ref> that support off the shelf NER. They provide both SOTA pre-trained models as well as training routines to train our own NER models. Hence, we chose these three libraries, which report SOTA or near SOTA results for NER on OntoNotes dataset. We provide all our code for replication, which can be applied with any English NER model/dataset that follows the standard BIO dataset format 9 .</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.4.">Experimental settings</head><p>We report our results in the following three experimental setups:</p><p>1. The pre-trained NER models and the genrespecific models we trained were evaluated with</p><p>7 <ref type="url" target="https://nlp.johnsnowlabs.com/">https://nlp.johnsnowlabs.com/</ref> 8 <ref type="url" target="https://nlp.johnsnowlabs.com/2020/12/">https://nlp.johnsnowlabs.com/2020/12/</ref> 05/onto_bert_base_cased_en.html 9 <ref type="url" target="https://github.com/nishkalavallabhi/">https://github.com/nishkalavallabhi/</ref> SOTANER/ the standard OntoNotes 5.0 test split described in Pradhan et al. (2013)<ref type="foot" target="#foot_3">foot_3</ref> , separating it by source/genre where needed.</p><p>2. The pre-trained NER models were also evaluated using the six new test sets we created.</p><p>3. We trained and tested models using the ten randomly generated train/dev/test splits.</p><p>In the original OntoNotes splits, a set of documents were kept aside as test set and the NER test sentences were taken from those documents. Our random train/dev/test splits were generated at the sentence level on the entire corpus, keeping the proportions of the original train/dev/test splits.</p><p>Evaluation As is common in NER research, we reported micro-averaged F scores for entity-level NER.</p><p>We used Seqeval <ref type="bibr" target="#b21">(Nakayama, 2018)</ref>, a Python compatible version of the standard conlleval script for sequence evaluation. Table <ref type="table">2</ref> shows a summary of model performance as reported on respective library websites, and the score we obtained when we ran those models with standard OntoNotes test splits.</p><p>Library Reported Obtained Delta Stanza 88.8 88.71 0.01 SpaCy 90.0 89.09 0.91 SparkNLP 89.97 88.6 1.37 Table 2: Performance of OntoNotes NER models in the three NLP libraries While the scores we obtained are very close in the case of Stanza, we notice a performance difference of around 1% between the scores reported on the website and our evaluation for the other two libraries. It is possible that the actual deployed model on these libraries was different from the model with best results, due to operational reasons. It is also possible that the evaluation scripts used by the libraries are slightly different from each other and from seqeval. However, it has to be noted that the goal of this paper is to understand the performance of these approaches at a more general level, considering various aspects, consistently, rather than replicating the exact results reported in the model descriptions. 4. Experiments: Black-box Evaluation Our black-box NER experiments tackled the first two research questions on how SOTA NER models perform on various named entity types, for various data sources/text genres, and how robust are they to small perturbations on standard test set.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1.">NER performance by types</head><p>OntoNotes dataset consists of 18 entity types in total, with a very uneven distribution (in terms of mention counts) across the train/dev/test splits. Table <ref type="table">3</ref> shows the F-scores for four most frequent and least frequent entity types in the dataset, using the three libraries we evaluated 11 .</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Category</head><p>Stanza Spacy SparkNLP Most-frequent entity types DATE 86.55 85.51 85.54 GPE 95.2 95.36 95.61 ORG 87.44 90.476 87.53 PER 93.29 93.51 93.11 Least-frequent entity types LANGUAGE 60.61 74.42 60.60 LAW 64.79 67.50 64.71 EVENT 64.96 74.42 53.22 PRODUCT 67.97 71.95 71.05 Table 3: F-scores for 4-most and 4-least frequent entity types</p><p>As we can observe from Table <ref type="table">3</ref>, there is a huge performance difference among various entity types, and less frequent entity types show poorer results for all the three libraries. All three libraries show similar performance for more frequent entity types, but for the less frequent entity types they show noticeable differences (close to 20% for EVENT category for Spacy versus SparkNLP). A possible reason for this could just be that we need more training examples for the less frequent entity types, or it could be that these entity types are indeed difficult to tag or even difficult to annotate for humans. Yet, OntoNotes is perhaps the largest NER dataset available for English, and it could be challenging to further increase dataset size for increasing the representation of these entity types. Clearly, this issue needs a closer look as reporting a single F score per 11 Full list for all 18 types can be seen in the supplementary material model does not give a full picture of how good SOTA NER is. There is evidently some road to travel in terms of getting to holistically higher performance across all entity types.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.">NER performance by data source and genre</head><p>To analyze the performance further, we split standard test set into subsets based on their source and genre as described in Section 3. Tables <ref type="table">4</ref> and <ref type="table" target="#tab_6">5</ref> show the performance of the pre-trained NER models separated by source and genre respectively. We notice some performance difference across sources for all models (Table <ref type="table">4</ref>). The drop in F-score for best and worst performance across sources is ⇠15% for Stanza, ⇠20% for Spacy and ⇠12% for SparkNLP. If we aggregate by genre (Table <ref type="table" target="#tab_6">5</ref>), the performance is higher for news, with a slight drop for bc, larger drops for wb and tc. The drop in F-score between the best and worst genre is ⇠14% for Stanza, ⇠20% for Spacy, and ⇠12% for SparkNLP. This leads us to conclude that the SOTA NER approaches, while reaching F scores around 90%, are still not as good for genres such as web blogs and telephonic conversations, compared to the more commonly seen news genre.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3.">Adversarial Test Sets</head><p>As described in Section 3, we created six new test sets from standard test splits by carefully replacing some entities with newly generated values, without changing the context.</p><p>Table 6 shows performance of all three NER models on the six adversarial test sets, in comparison with the original test set (indicated by None setting). For all person name perturbations (Perturb 1-5), overall NER performance did not drop drastically, with the largest drop being closer to 3% for all three models. The largest drop in all three models was for the test Setting Stanza-All Stanza-PER Spacy-All Spacy-PER SparkNLP-All SparkNLP-PER None 88.71 93.29 89.09 93.51 88.6 93.11 Perturb 1 88.66 93 88.29 91.51 86.21 82.98 Perturb 2 87.8 88.18 88.75 92.13 88.14 90.48 Perturb 3 87.95 90.35 88.34 90.84 88 91.22 Perturb 4 85.57 80.75 86.74 83.64 85.24 80.61 Perturb 5 87.88 90.15 88.42 91.37 87.84 90.26 Stanza-All Stanza-GPE Spacy-All SpacyGPE SparkNLP-All SparkNLP-GPE None 88.71 95.2 89.09 95.61 88.6 95.61 Perturb 6 80.87 68.37 82.48 73.47 80.56 68.84 Table 6: Performance of the NER systems with adversarial test sets set with Perturb 4. While this drop is large enough to change the SOTA model, it need not be considered drastic in general. However, drop was much larger for PER category itself. It was over 10% for this category, for Perturb 4, across all three models. Stanza, Spacy and SparkNLP had F-scores of 93.29, 93.51, 93.11 for PER category respectively, with the original test set. However, they dropped to 80.75, 83.64, 80.61 respectively with Perturb 4 test set. Spacy seemed relatively more robust to all the other PER category perturbations with &lt;3% drop across the other four perturbations. Stanza's model resulted in a 5% drop for Perturb 2, but otherwise, within 3% for others. Strangely enough, SparkNLP showed a drop of &gt;10% for Perturb 1</p><p>, where all person names were replaced with the word Dodo. Clearly, the models seem to be memorizing some of the entities that appear both in training and test set. When we look only at overall F-score, it is hard to identify NER models' sensitivity to such seemingly minor changes to input.</p><p>In the case of Perturb 6, performance drop was more noticeable, both for overall F as well as F for GPE category. While we would need further analysis to understand the reason for a more significant drop as compared to other perturbations, a possible explanation could be that there was larger token-level overlap between original test set and training data for GPE entities (75.7%) compared to PER entities (61.2%). Further, percentage of unique tokens was lower for GPE (⇠9%) than PER (⇠20%), even within training set. Hence, it is possible that models are memorizing the tokens than learning to infer using context, and this could be occurring more for GPE entity type than for other entity types. Thus, GPE could be more vulnerable than PER category, when tested with adversarial inputs.</p><p>Overall, these experiments with black-box testing of NER models showed that SOTA NER models we explored did not perform equally well across different NE categories, performed inconsistently across data sources/genres, and are sensitive to seemingly small input perturbations, which only introduced new entity values without changing context. We believe that this sensitivity to small perturbations particularly warrants further investigation into what exactly do NER models learn. Further, it has to be noted that we explored a small set of possible perturbations, and only for 2 of the 18 entity/numeric tags in the dataset. Future research could focus on other tags and other input perturbations, to get a fuller picture on what the NER system actually learns apart from memorization.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.">Experiments: Training NER</head><p>We performed two experiments involving training of NER models. The first one trained NER models using 10 randomly generated train/dev/test splits, and the second experiment explored a trained NER model's performance on unseen genres. In the latter, we preselected the genres used in training, development and testing steps within the OntoNotes dataset.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1.">Random Splits</head><p>As described in Section 3, we generated 10 random train/dev/test splits, keeping their proportions same as in the standard split.</p><p>Table 7 summarizes NER model performance, in terms of average, minimum and maximum micro F-score. Model Avg. F S.Dev min max Stanza 88.34 0.37 87.77 89.09 Spacy 90.77 1.17 87.98 92.19 SparkNLP 90.04 0.20 89.6 90.41 Table 7: Performance of NER with random splits</p><p>There is only a 1-1.5% variation in the performance across splits for Stanza and SparkNLP, but a 4.2% variation for Spacy. Considering that the chosen split can actually result in such difference in performance among the three chosen libraries, we conclude that in absence of multiple test sets, it would be good to evaluate an NER approach by training multiple models with random splits, to understand whether a model's performance is specific to the composition of the splits. We performed a two-tailed paired sample t-test 12 over the F-scores for the 10 splits to understand whether there is a significant difference in performance across the three models. While the performance of Spacy <ref type="url" target="https://www.socscistatistics.com/">https://www.socscistatistics.com/</ref> tests/ttestdependent/default2.aspx and SparkNLP are not significantly different from each other, but were both significantly better than Stanza (p &lt; 0.01).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2.">Cross-Genre performance</head><p>To evaluate whether SOTA NER approaches can work well in a cross-domain setting, we trained NER models, in two settings:</p><p>1. Training on a single genre, and testing on all four.</p><p>2. Training on any three genres, and testing on all four.</p><p>We also explored genre-specific parameter tuning by changing development set each time.</p><p>Training on a single genre Since "news" was the largest subset of all, we used that for training and evaluated these models on test sets from all four genres (which is nothing but the original OntoNotes test set split into four subsets). Table <ref type="table" target="#tab_11">8</ref> summarizes the results of this experiment, by training on news-train and tuning on news-dev 13 . From Table <ref type="table" target="#tab_11">8</ref>, we observed that all NER models performed poorly when used with new genres unseen during training. This performance drop was over 30% in 13 The results when we chose other genre development sets are provided in the supplementary material. the worst case (Spacy on tc). Even for the best performing approach, the drop was close to 10% when we evaluated on a new genre (SparkNLP on bc) which was the closest to the training genre (news) compared to others. Choosing genre specific development set either did not result in a major change in performance or resulted in slight drop in performance for that genre. Performance on genre-specific subsets for thesse genrespecific models was much lower than that for models trained on entire data (Table <ref type="table" target="#tab_6">5</ref>). This led us to conclude that SOTA training approaches won't give SOTA performance on unseen genres, even if we chose the best hyper-parameters for that genre based on development set.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Model</head><p>Training on multiple genres: Since our dataset had 4 genres, we explored whether performance on unseen genres would be better if the training data consisted of multiple genres. For this, we trained NER models by combining training sets of any three genres, and used development set of fourth genre. We then tested each of these models on all four genres. Our results are summarized in Figure <ref type="figure" target="#fig_1">1</ref>. In all three libraries, we observed that performance across genres was lower than when NER models were trained using all four genres (Table <ref type="table" target="#tab_6">5</ref>). Although there was a consistent performance drop across all genres, news genre performed the best (right most in Figure <ref type="figure" target="#fig_1">1</ref>). tc genre seemed to perform the worst (left most in the figure). When we compared this with single genre training, performance seemed slightly better, perhaps because training data were richer in each case (three genres versus one). Overall, it seemed that NER models did not perform well on genres unseen during training.</p><p>To summarize this set of experiments with training NER, we can conclude that evaluation across random splits indicate variation in performance, and the NER performance on genres unseen during training seems to a challenge. At this point, "quantity" of data seems to dominate "diversity", at least with this dataset.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.">Summary and Discussion</head><p>In this paper, we conducted several experiments to understand performance of three SOTA English NER approaches, using the OntoNotes dataset. Our findings can be summarized as follows:</p><p>1. The three SOTA models performed very differently across various NE categories, with huge performance variation observed among the entity types in the dataset.</p><p>2. The performance was also inconsistent across genres. For all models, performance on telephone conversation(tc) and web blog (wb) genres was much lower than that on the rest.</p><p>3. All models we explored were very sensitive to small input perturbations. The performance difference was starker in specific cases (Perturb 4 and Perturb 6).</p><p>4. Re-training and evaluating the three existing NER models on 10 randomly generated splits instead of the standard splits showed that there was sometimes over 4% variation in performance across the splits.</p><p>5. Single and multi-genre training and evaluation showed that SOTA NER models performed poorly on genres unseen during training, even when training data had multiple genres.</p><p>While we chose only three pre-trained English models and explored a limit set of evaluation dimensions, we believe that our observations are more general, and not model or architecture or language specific. Based on aforementioned findings, we recommend the following reporting practices for NER research:</p><p>1. Provide detailed performance table for the best performing model in the appendix, and report min/max individual F-scores along with averaged score for all reported models in the main content.</p><p>2. Perform experiments on other systematically/randomly generated splits apart from standard train/dev/test split and report any observed deviations.</p><p>3. Report results on multiple test sets to understand whether NER models just memorize entities or learn to tag using the context information.</p><p>4. Report results by source/genre too along with averaged performance, to understand the sensitivity of NER models to particular subsets of the dataset.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.1.">Outlook</head><p>Our experiments revealed several interesting aspects of NER system performance, which need further exploration. Identifying and addressing the effects of various forms of biases in NER datasets such as the ones introduced by source, genre, gender, region etc is an important aspect, following our experiments with adversarial test sets. Exploring adversarial test sets further, including other entity tags in the dataset would be useful to understand NER system robustness more comprehensively.</p><p>Improving the performance on under-represented NER categories and unseen text genres is another interesting problem to explore further. Considering the fact that our experiments have been conducted on a single language (English) and dataset(Onto Notes 5.0), we believe that we have a long way to go in terms of developing a more comprehensive, dataset and language agnostic evaluation approach.</p><p>Other related issues we did not touch include identifying annotation errors/inconsistencies in datasets <ref type="bibr" target="#b26">(Reiss et al., 2020)</ref>, error analysis of NER models <ref type="bibr" target="#b32">(Stanislawek et al., 2019)</ref>, development of new evaluation metrics (Bernier-Colborne and Langlais, 2020) and interpretable evaluation <ref type="bibr" target="#b8">(Fu et al., 2020)</ref>. We hope that the results and resources generated through this paper would lead to further research and development of a comprehensive evaluation suite for SOTA NER.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.2.">New Language resources</head><p>We created new test sets based on the original OntoNotes test set and also generated 10 new splits for train/dev/test files. OntoNotes is licensed under the terms of LDC 14 and hence, we cannot host the corpus publicly ourselves. However, we will share these resources with the research groups who have a license to use OntoNotes 5.0.</p><p>Supplementary material: <ref type="url" target="https://github">https://github</ref>. com/nishkalavallabhi/SOTANER/.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>3.</head><figDesc>SparkNLP7 uses a CharCNNs-BiLSTM-CRF model for training an NER model. We used its ontonotes-bert-base-cased 8 model for our evaluation. SparkNLP's training routine did not support usage of custom validation sets and instead used a percentage of training set for validation (we chose 10%).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Figure 1 :</head><label>1</label><figDesc>Figure 1: Training on Multiple-genres</figDesc><graphic coords="7,93.73,59.09,426.66,310.39" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_6"><head>Table 5 :</head><label>5</label><figDesc>NER Performance by genre</figDesc><table><row><cell cols="4">Source Stanza Spacy SparkNLP</cell></row><row><cell>bn</cell><cell>91.82</cell><cell>91.64</cell><cell>90.93</cell></row><row><cell>mz</cell><cell>85.97</cell><cell>88.72</cell><cell>87.73</cell></row><row><cell>nw</cell><cell>90.87</cell><cell>86.14</cell><cell>90.96</cell></row><row><cell>bc</cell><cell>88.35</cell><cell>91.55</cell><cell>87.59</cell></row><row><cell>tc</cell><cell>76.68</cell><cell>71.16</cell><cell>78.38</cell></row><row><cell>wb</cell><cell>81.2</cell><cell>82.81</cell><cell>80.11</cell></row><row><cell cols="4">Table 4: NER Performance by data source</cell></row><row><cell>Genre</cell><cell cols="3">Stanza Spacy SparkNLP</cell></row><row><cell>News</cell><cell>90.41</cell><cell>90.79</cell><cell>90.47</cell></row><row><cell>(bn, mz, nw)</cell><cell></cell><cell></cell><cell></cell></row><row><cell>bc</cell><cell>88.35</cell><cell>88.72</cell><cell>87.59</cell></row><row><cell>tc</cell><cell>76.68</cell><cell>71.16</cell><cell>78.37</cell></row><row><cell>wb</cell><cell>81.2</cell><cell>82.81</cell><cell>80.11</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_11"><head>Table 8 :</head><label>8</label><figDesc>Trained on Single genre</figDesc><table><row><cell></cell><cell>news bc</cell><cell>tc</cell><cell>wb</cell></row><row><cell>Stanza</cell><cell cols="3">89.18 78.55 67.19 76.04</cell></row><row><cell>Spacy</cell><cell>82.64 65.4</cell><cell cols="2">51.64 62.57</cell></row><row><cell cols="4">SparkNLP 89.47 78.78 63.08 75.62</cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="2" xml:id="foot_0"><p>https://paperswithcode.com/sota/ named-entity-recognition-ner-on-ontonotes-v5</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="3" xml:id="foot_1"><p>https://faker.readthedocs.io/en/ master/</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_2"><p>https://github.com/explosion/ spacy-models/releases/tag/en_core_web_ trf-3.2.0 6 https://stanfordnlp.github.io/stanza/</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="10" xml:id="foot_3"><p>Available at:http://cemantix.org/data/ ontonotes.html</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_4"><p>https://catalog.ldc.upenn.edu/</p></note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div><head>Acknowledgements</head><p>We would like to thank all the four reviewers, <rs type="person">Taraka Rama</rs>, <rs type="person">Gabriel Bernier-Colborne</rs> and <rs type="person">Yunli Wang</rs> for their detailed feedback.</p></div>
+			</div>			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<monogr>
+		<title level="m" type="main">Entity-switched datasets: An approach to auditing the in-domain robustness of named entity recognition models</title>
+		<author>
+			<persName><forename type="first">O</forename><surname>Bibliographical References Agarwal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">C</forename><surname>Wallace</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Nenkova</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2004.04123</idno>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Generalisation in named entity recognition: A quantitative analysis</title>
+		<author>
+			<persName><forename type="first">I</forename><surname>Augenstein</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Derczynski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Bontcheva</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Computer Speech &amp; Language</title>
+		<imprint>
+			<biblScope unit="volume">44</biblScope>
+			<biblScope unit="page" from="61" to="83" />
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Hardeval: Focusing on challenging tokens to assess robustness of ner</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Bernier-Colborne</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Langlais</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 12th Language Resources and Evaluation Conference</title>
+		<meeting>the 12th Language Resources and Evaluation Conference</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="1704" to="1711" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">To BERT or not to BERT: Comparing task-specific and task-agnostic semi-supervised approaches for sequence tagging</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Bhattacharjee</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Ballesteros</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Anubhai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Muresan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Ladhak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Al-Onaizan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)</title>
+		<meeting>the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)</meeting>
+		<imprint>
+			<publisher>Online, November. Association for Computational Linguistics</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="7927" to="7934" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Evaluation of coreference resolution systems under adversarial attacks</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Chai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Eger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Strube</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the First Workshop on Computational Approaches to Discourse</title>
+		<meeting>the First Workshop on Computational Approaches to Discourse</meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2020-11">2020. November</date>
+			<biblScope unit="page" from="154" to="159" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Named entity recognition with bidirectional lstm-cnns</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">P</forename><surname>Chiu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Nichols</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Transactions of the Association for Computational Linguistics</title>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="page" from="357" to="370" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Deep dominance -how to properly compare deep neural models</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Dror</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Shlomov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Reichart</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics</title>
+		<meeting>the 57th Annual Meeting of the Association for Computational Linguistics<address><addrLine>Florence, Italy</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2019-07">2019. July</date>
+			<biblScope unit="page" from="2773" to="2785" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Text processing like humans do: Visually attacking and shielding nlp systems</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Eger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">G</forename><surname>Rücklé</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J.-U</forename><surname>Schulz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Mesgar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Swarnkar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Simpson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Gurevych</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies</title>
+		<title level="s">Long and Short Papers</title>
+		<meeting>the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="1634" to="1647" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Interpretable multi-dataset evaluation for named entity recognition</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Fu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Neubig</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)</title>
+		<meeting>the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)</meeting>
+		<imprint>
+			<publisher>Online, November. Association for Computational Linguistics</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="6058" to="6069" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Larger-context tagging: When and why does it work?</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Fu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Feng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Liu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies</title>
+		<meeting>the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies</meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2021-06">2021a. June</date>
+			<biblScope unit="page" from="1463" to="1475" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<monogr>
+		<author>
+			<persName><forename type="first">J</forename><surname>Fu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Liu</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2106.00641</idno>
+		<title level="m">Spanner: Named entity re-/recognition as span prediction</title>
+		<imprint>
+			<date type="published" when="2021">2021b</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Robust lexical features for improved neural network namedentity recognition</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ghaddar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Langlais</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 27th International Conference on Computational Linguistics</title>
+		<meeting>the 27th International Conference on Computational Linguistics</meeting>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="1896" to="1907" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Context-aware adversarial training for name regularity bias in named entity recognition</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ghaddar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Langlais</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Rashid</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Rezagholizadeh</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Transactions of the Association for Computational Linguistics</title>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="page" from="586" to="604" />
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Robustness gym: Unifying the NLP evaluation landscape</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Goel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">F</forename><surname>Rajani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Vig</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Taschdjian</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Bansal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Ré</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies: Demonstrations</title>
+		<meeting>the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies: Demonstrations</meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2021-06">2021. June</date>
+			<biblScope unit="page" from="42" to="55" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">We need to talk about standard splits</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Gorman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bedrick</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 57th annual meeting of the association for computational linguistics</title>
+		<meeting>the 57th annual meeting of the association for computational linguistics</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="2786" to="2791" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Is bert really robust? a strong baseline for natural language attack on text classification and entailment</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Jin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Jin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">T</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Szolovits</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the AAAI conference on artificial intelligence</title>
+		<meeting>the AAAI conference on artificial intelligence</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="8018" to="8025" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">BERTdefense: A probabilistic model based on BERT to combat cognitively inspired orthographic adversarial attacks</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Keller</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Mackensen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Eger</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Findings of the Association for Computational Linguistics: ACL-IJCNLP 2021</title>
+		<imprint>
+			<publisher>Online, August. Association for Computational Linguistics</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="1616" to="1629" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">If you build your own ner scorer, non-replicable results will come</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Lignos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Kamyab</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the First Workshop on Insights from Negative Results in NLP</title>
+		<meeting>the First Workshop on Insights from Negative Results in NLP</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="94" to="99" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">RockNER: A simple method to create adversarial examples for evaluating the robustness of named entity recognition models</title>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">Y</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Moreno</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Ren</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing</title>
+		<meeting>the 2021 Conference on Empirical Methods in Natural Language Processing<address><addrLine>Punta Cana, Dominican Republic</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="3728" to="3737" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<monogr>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Ott</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Goyal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Joshi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Levy</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lewis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Zettlemoyer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Stoyanov</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1907.11692</idno>
+		<title level="m">Roberta: A robustly optimized bert pretraining approach</title>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<monogr>
+		<title level="m" type="main">2021 nlp survey report</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Lorica</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Nathan</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">Technical report</note>
+	<note>Gradient Flow</note>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<monogr>
+		<title level="m" type="main">seqeval: A python framework for sequence labeling evaluation</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Nakayama</surname></persName>
+		</author>
+		<ptr target="https://github.com/chakki-works/seqeval" />
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+	<note>Software available from</note>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Towards robust linguistic analysis using ontonotes</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Pradhan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Moschitti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Xue</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">T</forename><surname>Ng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Björkelund</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Uryupina</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Zhong</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Seventeenth Conference on Computational Natural Language Learning</title>
+		<meeting>the Seventeenth Conference on Computational Natural Language Learning</meeting>
+		<imprint>
+			<date type="published" when="2013">2013</date>
+			<biblScope unit="page" from="143" to="152" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Universal dependency parsing from scratch</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Qi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Dozat</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">D</forename><surname>Manning</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the CoNLL 2018 Shared Task: Multilingual Parsing from Raw Text to Universal Dependencies</title>
+		<meeting>the CoNLL 2018 Shared Task: Multilingual Parsing from Raw Text to Universal Dependencies</meeting>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="160" to="170" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">NoiseQA: Challenge set evaluation for user-centric question answering</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ravichander</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Dalmia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Ryskina</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Metze</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Hovy</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">W</forename><surname>Black</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 16th Conference of the European Chapter of the Association for Computational Linguistics: Main Volume</title>
+		<meeting>the 16th Conference of the European Chapter of the Association for Computational Linguistics: Main Volume</meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2021-04">2021. April</date>
+			<biblScope unit="page" from="2976" to="2992" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<monogr>
+		<title level="m" type="main">Why comparing single performance scores does not allow to draw conclusions about machine learning approaches</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Reimers</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Gurevych</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1803.09578</idno>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Identifying incorrect labels in the CoNLL-2003 corpus</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Reiss</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Cutler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Muthuraman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Eichenberger</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 24th Conference on Computational Natural Language Learning</title>
+		<meeting>the 24th Conference on Computational Natural Language Learning</meeting>
+		<imprint>
+			<publisher>Online, November. Association for Computational Linguistics</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="215" to="226" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Generating natural language adversarial examples through probability weighted word saliency</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ren</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Deng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Che</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 57th annual meeting of the association for computational linguistics</title>
+		<meeting>the 57th annual meeting of the association for computational linguistics</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="1085" to="1097" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Beyond accuracy: Behavioral testing of nlp models with checklist</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">T</forename><surname>Ribeiro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Guestrin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Singh</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics</title>
+		<meeting>the 58th Annual Meeting of the Association for Computational Linguistics</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="4902" to="4912" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<monogr>
+		<title level="m" type="main">Locallycontextual nonlinear crfs for sequence labeling</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Shah</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Xiao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Barber</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2103.16210</idno>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">A novel challenge set for Hebrew morphological disambiguation and diacritics restoration</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Shmidman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Guedalia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Shmidman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Koppel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Tsarfaty</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Findings of the Associa-tion for Computational Linguistics: EMNLP 2020</title>
+		<imprint>
+			<publisher>Online, November. Association for Computational Linguistics</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="3316" to="3326" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<analytic>
+		<title level="a" type="main">We need to talk about random splits</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Søgaard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ebert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Bastings</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Filippova</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 16th Conference of the European Chapter of the Association for Computational Linguistics: Main Volume</title>
+		<meeting>the 16th Conference of the European Chapter of the Association for Computational Linguistics: Main Volume</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="1823" to="1832" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Named entity recognition -is there a glass ceiling?</title>
+		<author>
+			<persName><forename type="first">T</forename><surname>Stanislawek</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Wróblewska</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Wójcicka</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Ziembicki</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Biecek</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 23rd Conference on Computational Natural Language Learning (CoNLL)</title>
+		<meeting>the 23rd Conference on Computational Natural Language Learning (CoNLL)<address><addrLine>Hong Kong, China</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2019-11">2019. November</date>
+			<biblScope unit="page" from="624" to="633" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Fast and accurate entity recognition with iterated dilated convolutions</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Strubell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Verga</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Belanger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Mccallum</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2017 Conference on Empirical Methods in Natural Language Processing</title>
+		<meeting>the 2017 Conference on Empirical Methods in Natural Language Processing</meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="2670" to="2680" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Contextualized embeddings in named-entity recognition: An empirical study on generalization</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Taille</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Guigue</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Gallinari</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ECIR 2020-42nd European Conference on Information Retrieval</title>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Tmr: Evaluating ner recall on tough mentions</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Tu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Lignos</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 16th Conference of the European Chapter of the Association for Computational Linguistics: Student Research Workshop</title>
+		<meeting>the 16th Conference of the European Chapter of the Association for Computational Linguistics: Student Research Workshop</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="155" to="163" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<analytic>
+		<title level="a" type="main">T-ner: An all-round python library for transformer-based named entity recognition</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ushio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Camacho-Collados</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 16th Conference of the European Chapter of the Association for Computational Linguistics: System Demonstrations</title>
+		<meeting>the 16th Conference of the European Chapter of the Association for Computational Linguistics: System Demonstrations</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="53" to="62" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<analytic>
+		<title level="a" type="main">We need to talk about traindev-test splits</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Van Der Goot</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing</title>
+		<meeting>the 2021 Conference on Empirical Methods in Natural Language Processing<address><addrLine>Dominican Republic</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2021-11">2021. November</date>
+			<biblScope unit="page" from="4485" to="4494" />
+		</imprint>
+		<respStmt>
+			<orgName>Online and Punta Cana</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Universal adversarial triggers for attacking and analyzing NLP</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Wallace</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Feng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Kandpal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Gardner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Singh</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)</title>
+		<meeting>the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)<address><addrLine>Hong Kong, China</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2019-11">2019. November</date>
+			<biblScope unit="page" from="2153" to="2162" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<analytic>
+		<title level="a" type="main">Multi-domain named entity recognition with genreaware and agnostic inference</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Kulkarni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Preotiuc-Pietro</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics</title>
+		<meeting>the 58th Annual Meeting of the Association for Computational Linguistics</meeting>
+		<imprint>
+			<publisher>Online, July. Association for Computational Linguistics</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="8476" to="8488" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<analytic>
+		<title level="a" type="main">Bet-ter feature integration for named entity recognition</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Jie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Bing</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies</title>
+		<meeting>the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="3457" to="3469" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Empirical analysis of unlabeled entity problem in named entity recognition</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Yangming</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Lemao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Shi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Learning Representations</title>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b42">
+	<analytic>
+		<title level="a" type="main">Named entity recognition as dependency parsing</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Bohnet</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Poesio</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics</title>
+		<meeting>the 58th Annual Meeting of the Association for Computational Linguistics</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="6470" to="6476" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b43">
+	<analytic>
+		<title level="a" type="main">Counterfactual generator: A weakly-supervised method for named entity recognition</title>
+		<author>
+			<persName><forename type="first">X</forename><surname>Zeng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zhai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zhang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)</title>
+		<meeting>the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)</meeting>
+		<imprint>
+			<publisher>Online, November. Association for Computational Linguistics</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="7270" to="7280" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

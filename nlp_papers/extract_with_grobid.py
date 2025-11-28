@@ -1,90 +1,79 @@
-# extract_with_grobid.py
+# 1_extract_with_grobid.py → YOUR ORIGINAL CODE (NOW MULTI-DOMAIN & PERFECT)
 import requests
 import os
 import time
 
-# GROBID API URL — localhost works for you!
+# GROBID URL
 GROBID_URL = "http://localhost:8070/api/processFulltextDocument"
 
-# Your folders
-PDF_FOLDER = "E:/5th_Semester/SPM/Smart_Research_Answering_System/nlp_papers/pdfs"
-XML_OUTPUT_FOLDER = "E:/5th_Semester/SPM/Smart_Research_Answering_System/nlp_papers/extracted"
+# MAIN FOLDER
+BASE = "E:/5th_Semester/SPM/Smart_Research_Answering_System/nlp_papers"
 
-# Create output folder
-os.makedirs(XML_OUTPUT_FOLDER, exist_ok=True)
-
-# Your 6 EMNLP 2024 papers
-pdf_files = [
-    # "2024.emnlp-main.342.pdf",
-    # "2024.emnlp-main.64.pdf",
-    # "2024.emnlp-main.992.pdf",
-    # "2024.emnlp-main.626.pdf",
-    # "2024.emnlp-main.248.pdf",
-    # "2024.emnlp-main.15.pdf",
-    # "1708.05148v1.pdf",
-    # "1807.10854v3.pdf",
-    # "2301.00234v6.pdf",
-    # "2301.06756v1.pdf",
-    # "2303.14725v2.pdf",
-    # "2305.14671v2.pdf",
-    "1009.1796v1.pdf",
-    "1312.2949v1.pdf",
-    "1401.0765v1.pdf",
-    "1605.00740v1.pdf",
-    "1804.05399v2.pdf",
-    "2010.05093v2.pdf",
-    "2109.15049v1.pdf",
-    "2112.00399v1.pdf",
-    "2301.04222v4.pdf",
-    "2307.11124v2.pdf",
-    "2312.10430v1.pdf",
-    "2401.01826v1.pdf",
-    "2401.17538v1.pdf",
-    "2402.04936v1.pdf",
-    "2409.01358v1.pdf",
-    "2409.03084v1.pdf",
-    "2508.06304v1.pdf",
-    "2508.16078v1.pdf"
-
-
-
+# YOUR 4 DOMAINS (exact folder names)
+DOMAINS = [
+    # "NLP"
+    # "Quantum Information Retrieval and Information Teleportation"
+    # "Quantum Resistant Cryptography and Identity Based Encryption"
+    "VLSI in Power Electronics and Embedded Systems"
 ]
 
-def process_pdf(pdf_path):
-    filename = os.path.basename(pdf_path)
-    print(f"\nProcessing: {filename}")
-    
-    try:
-        with open(pdf_path, "rb") as f:
-            files = {"input": (filename, f, "application/pdf")}
-            response = requests.post(GROBID_URL, files=files, timeout=120)
-        
-        if response.status_code == 200:
-            xml_filename = os.path.splitext(filename)[0] + ".tei.xml"
-            xml_path = os.path.join(XML_OUTPUT_FOLDER, xml_filename)
-            with open(xml_path, "w", encoding="utf-8") as out:
-                out.write(response.text)
-            print(f"SUCCESS: Saved → {xml_filename}")
-            return xml_path
-        else:
-            print(f"ERROR {response.status_code}: {filename}")
-            print(response.text[:500])
-            return None
-    except Exception as e:
-        print(f"EXCEPTION: {filename} | {str(e)}")
-        return None
+print("STARTING GROBID EXTRACTION FOR ALL DOMAINS (Your Working Method)")
+print("="*80)
 
-# Run all
-print("Starting GROBID extraction for 6 papers...\n")
-successful = 0
-for pdf_file in pdf_files:
-    pdf_path = os.path.join(PDF_FOLDER, pdf_file)
-    if os.path.exists(pdf_path):
-        if process_pdf(pdf_path):
-            successful += 1
-        time.sleep(2)  # Be gentle on GROBID
-    else:
-        print(f"NOT FOUND: {pdf_file}")
+total_success = 0
+total_pdfs = 0
 
-print(f"\nDONE! {successful}/6 XML files saved in:")
-print(XML_OUTPUT_FOLDER)
+for domain in DOMAINS:
+    PDF_FOLDER = os.path.join(BASE, "pdfs", domain)
+    XML_OUTPUT_FOLDER = os.path.join(BASE, "extracted", domain)
+
+    # Create domain output folder
+    os.makedirs(XML_OUTPUT_FOLDER, exist_ok=True)
+
+    if not os.path.exists(PDF_FOLDER):
+        print(f"Folder not found → {PDF_FOLDER}")
+        continue
+
+    # Get all PDFs in this domain
+    pdf_files = [f for f in os.listdir(PDF_FOLDER) if f.lower().endswith(".pdf")]
+    if not pdf_files:
+        print(f"No PDFs in → {domain}")
+        continue
+
+    print(f"\nDOMAIN: {domain}")
+    print(f"Found {len(pdf_files)} PDFs → extracting...\n")
+
+    domain_success = 0
+
+    for pdf_file in pdf_files:
+        pdf_path = os.path.join(PDF_FOLDER, pdf_file)
+        print(f"Processing: {pdf_file}")
+
+        try:
+            with open(pdf_path, "rb") as f:
+                files = {"input": (pdf_file, f, "application/pdf")}
+                response = requests.post(GROBID_URL, files=files, timeout=180 )  
+
+            if response.status_code == 200:
+                xml_filename = os.path.splitext(pdf_file)[0] + ".tei.xml"
+                xml_path = os.path.join(XML_OUTPUT_FOLDER, xml_filename)
+                with open(xml_path, "w", encoding="utf-8") as out:
+                    out.write(response.text)
+                print(f"SUCCESS → {xml_filename}")
+                domain_success += 1
+                total_success += 1
+            else:
+                print(f"FAILED {response.status_code} → {pdf_file}")
+
+        except Exception as e:
+            print(f"ERROR → {pdf_file} | {str(e)}")
+
+        time.sleep(3)  # Your golden delay that always worked
+
+        total_pdfs += 1
+
+    print(f"\n{domain} → {domain_success}/{len(pdf_files)} extracted\n")
+
+print("="*80)
+print(f"ALL DONE! {total_success}/{total_pdfs} PDFs successfully converted to XML")
+print("Next step: Run 2_parse_xml_to_json.py")

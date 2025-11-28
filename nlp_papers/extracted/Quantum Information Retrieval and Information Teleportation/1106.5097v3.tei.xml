@@ -1,0 +1,782 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Quantum Information Transmission</title>
+				<funder ref="#_bkRsH3k">
+					<orgName type="full">National Basic Research Program of China</orgName>
+				</funder>
+				<funder ref="#_3dPjePD">
+					<orgName type="full">RGC</orgName>
+				</funder>
+				<funder>
+					<orgName type="full">Foundational Questions Institute</orgName>
+				</funder>
+				<funder>
+					<orgName type="full">US National Science Foundation</orgName>
+				</funder>
+				<funder ref="#_DD3D8Gv #_SKZzAfn">
+					<orgName type="full">National Natural Science Foundation of China</orgName>
+					<orgName type="abbreviated">NSFC</orgName>
+				</funder>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability  status="unknown">
+					<licence/>
+				</availability>
+				<date type="published" when="2012-02-21">21 Feb 2012</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author role="corresp">
+							<persName><forename type="first">Lei</forename><surname>Wang</surname></persName>
+							<email>wanglei98@163.com</email>
+						</author>
+						<author>
+							<persName><forename type="first">Jie-Hui</forename><surname>Huang</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Jonathan</forename><forename type="middle">P</forename><surname>Dowling</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Shi-Yao</forename><surname>Zhu</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Hui</forename><surname>Huang</surname></persName>
+						</author>
+						<author>
+							<affiliation key="aff0">
+								<orgName type="department">College of Physics</orgName>
+								<orgName type="institution">Beijing Computational Science Research Center</orgName>
+								<address>
+									<postCode>100084</postCode>
+									<settlement>Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff1">
+								<orgName type="institution">Jilin University</orgName>
+								<address>
+									<postCode>130012</postCode>
+									<settlement>Changchun</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff2">
+								<orgName type="institution">Beijing Computational Science Research Center</orgName>
+								<address>
+									<postCode>100084</postCode>
+									<settlement>Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff3">
+								<orgName type="department">Hearne Institute for Theoretical Physics</orgName>
+								<orgName type="institution">Beijing Computational Science Research Center</orgName>
+								<address>
+									<postCode>100084</postCode>
+									<settlement>Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff4">
+								<orgName type="department">Department of Physics and Astonomy</orgName>
+								<orgName type="institution">Louisiana State University</orgName>
+								<address>
+									<postCode>70803</postCode>
+									<settlement>Baton Rouge</settlement>
+									<region>Louisiana</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff5">
+								<orgName type="institution">Beijing Computational Science Research Center</orgName>
+								<address>
+									<postCode>100084</postCode>
+									<settlement>Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Quantum Information Transmission</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2012-02-21">21 Feb 2012</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">448F9AB327FE91618560DB04D55AA3E1</idno>
+					<idno type="arXiv">arXiv:1106.5097v3[quant-ph]</idno>
+					<note type="submission">Received: date / Accepted: date</note>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-28T12:35+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>quantum information transmission</term>
+					<term>quantum correlation</term>
+					<term>quantum entanglement PACS 03.65.Ud</term>
+					<term>03.67.Hk</term>
+					<term>42.50.Ex</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>We present a scheme of quantum information transmission, which transmits the quantum information contained in a single qubit via the quantum correlation shared by two parties (a two-qubit channel), whose quantum discord is non-zero. We demonstrate that the quantum correlation, which may have no entanglement, is sufficient to transmit the information of a quantum state. When the correlation matrix of the two-qubit channel is of full rank (rank three), the information of the qubit in either a mixed state or a pure state can be transmitted. The quantum discord of a channel with rank larger than or equal to three is always non-zero. Therefore, non-zero quantum discord is also necessary for our quantum information transmission protocol.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>Quantum correlations have been demonstrated to be a resource for computing <ref type="bibr" target="#b0">[1,</ref><ref type="bibr" target="#b1">2]</ref>, metrology <ref type="bibr" target="#b2">[3]</ref><ref type="bibr" target="#b3">[4]</ref>, imaging <ref type="bibr" target="#b4">[5]</ref><ref type="bibr" target="#b5">[6]</ref><ref type="bibr" target="#b6">[7]</ref><ref type="bibr" target="#b7">[8]</ref>, communication <ref type="bibr" target="#b8">[9,</ref><ref type="bibr" target="#b9">10]</ref> and steganography <ref type="bibr" target="#b10">[11,</ref><ref type="bibr" target="#b11">12]</ref>. In each of these applications, entanglement has been central to the advantage provided by quantum systems. It is a question that has been discussed for quite a long time is whether other kinds of quantum correlation (besides the entanglement) can also be exploited in ways similar to entanglement. One such quantum correlation is quantum discord <ref type="bibr" target="#b12">[13]</ref><ref type="bibr" target="#b13">[14]</ref><ref type="bibr" target="#b14">[15]</ref>. States with non-zero quantum discord are quantum correlated. While all entangled states have non-zero quantum discord, there exist states of non-zero quantum discord that possess no entanglement. In this paper we proposed a new use of the quantum correlations: to transmit information of an unknown qubit between two parties via a two-qubit state with non-zero quantum discord shared by the two parties. The scheme is similar to the quantum teleportation <ref type="bibr" target="#b15">[16]</ref><ref type="bibr" target="#b16">[17]</ref><ref type="bibr" target="#b17">[18]</ref><ref type="bibr" target="#b18">[19]</ref>, and the information of the qubit can be transmitted from one place to another, if the correlation matrix of the two-qubit state (the quantum channel) is of full rank (rank three). The quantum discord of a state with full rank (rank three) is always non-zero. That is to say, the quantum information transmission is possible using a quantum channel with non-zero quantum discord. However, a quantum channel with non-zero quantum discord might have no quantum entanglement.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Quantum information transmission</head><p>Our set up is shown in Fig. <ref type="figure" target="#fig_0">1</ref>, which is similar to the original quantum teleportation scheme <ref type="bibr" target="#b15">[16]</ref>. A source of quantum particles generates a pair of qubits that have non-zero bipartite quantum correlations. Alice and Bob share the two qubits. Alice (the sender) makes a Bell measurement on her own qubit and an unknown single qubit C whose information will be transmitted to Bob (the receiver), and sends Bob the measurement result via a classical channel. The state Bob received will collapse to ρ ′ B . We will derive the conditions under which the state ρ ′ B contains complete information of the unknown state C. Non-classicality, which here is characterized by the rank of the correlation matrix <ref type="bibr" target="#b14">[15]</ref>, plays an important role in the quantum information transmission of the state of qubit C.</p><p>In the general case, a two-qubit quantum channel system can be written as, where σ 0 is the identity operator, σ i {i = 1, 2, 3} are the three Pauli operators. The unknown single-qubit input state can be written as:</p><formula xml:id="formula_0">ρ AB = 1 4 3 i,j=0 r ij σ A i ⊗ σ B j {-1 ≤ r ij ≤ 1, r 00 = 1},<label>(1)</label></formula><formula xml:id="formula_1">ρ C = 1 2 3 i=0 c i σ C i {-1 ≤ c i ≤ 1, c 0 = 1}.<label>(2)</label></formula><p>where the information of qubit C is contained in the three real parameters, c i (i=1,2,3). The expression ρ C ⊗ ρ AB denotes the state of the entire system. Now we consider the requirement for implementing the quantum information transmission. We choose the Bell states as the measurement basis on the AC system. After the measurement, the state B will collapse to,</p><formula xml:id="formula_2">ρ ′ B = β mn |ρ C ⊗ ρ AB |β mn Tr( β mn |ρ C ⊗ ρ AB |β mn ) ,<label>(3)</label></formula><p>where |β mn {m, n = 0, 1} is one of the Bell states, and Tr( β mn |ρ C ⊗ρ AB |β mn ) is the probability of the corresponding measurement outcome that is used to renormalize the density matrix. According to Alice's four different possible measurement outcomes, corresponding to the four Bell states, there are four possible expressions for ρ ′ B that can be written as,</p><formula xml:id="formula_3">ρ ′ B = 1 2 1 + s mn 3 s mn 1 -is mn 2 s mn 1 + is mn 2 1 -s mn 3 ,<label>(4)</label></formula><p>where where</p><formula xml:id="formula_4">s mn k = r 0k + 3 j=1 (-1) φj r jk c j 1 + 3 j=1 (-1) φj r j0 c j {k = 1, 2, 3},<label>(5)</label></formula><formula xml:id="formula_5">φ 1 = m, φ 2 = m + n, φ 3 = n.</formula><p>The denominator in Eq. ( <ref type="formula" target="#formula_4">5</ref>) is equal to zero only when the state ρ AB is a direct product state, a completely classical and uncorrelated states that will not be considered here. Now let us prove that the state ρ ′ B includes all the information needed to reconstruct ρ C . In general, the state B ′ has three independent parameters, s mn k {k = 1, 2, 3} in Eq. ( <ref type="formula" target="#formula_3">4</ref>), for each of the four Bell states. Select m = n = 0 (s 00 k = s k ) as an example. The values of m and n are sent to Bob via the classical channel. From Eq. ( <ref type="formula" target="#formula_4">5</ref>) we have</p><formula xml:id="formula_6">3 j=1 (-1) j+1 (r jk -r j0 s k )c j = s k -r 0k {k = 1, 2, 3}.<label>(6)</label></formula><p>From Eq. ( <ref type="formula" target="#formula_6">6</ref>) we construct three linear equations for c j . The information needed by Bob can be faithfully extracted when the Eq. ( <ref type="formula" target="#formula_6">6</ref>) have a uniquesolution, which means that the coefficient matrix of the equations is of full rank. By comparing the four matrices in Eq. ( <ref type="formula" target="#formula_3">4</ref>), we find that the four coefficient matrices can be transformed into each other by elementary matrix operations, which will not change the rank of a matrix. This means that the unique-solution condition is the same for each of the four density matrices in Eq. ( <ref type="formula" target="#formula_3">4</ref>). Thus we only need to consider any one of the four. We define the coefficient matrix for Eq. ( <ref type="formula" target="#formula_6">6</ref>) as T {T j,k = (-1) j+1 (r jk -r j0 s k )}. By substituting s i in Eq. ( <ref type="formula" target="#formula_4">5</ref>) into T , it is interesting to note that the determinant of T is connected to the determinant of the matrix R, through the relation (1 + r 10 c 1 -r 20 c 2 + r 30 c 3 )det(T ) = -det(R), where the matrix R {R i,j = r i-1,j-1 } is the correlation matrix defined in Ref. <ref type="bibr" target="#b14">[15]</ref>. The condition for unique solution for Eq. ( <ref type="formula" target="#formula_6">6</ref>) becomes that the R matrix is of full rank. Therefore, in order to implement the information transmission of an arbitrary qubit, full rank for the correlation matrix of the channel AB system is required.</p><p>In the following, we discuss the role of the rank of the correlation matrix R in the information transmission. The matrix R can be written as R = U DW T by singular value decomposition (SVD) <ref type="bibr" target="#b19">[20]</ref>, where U and W are 4×4 orthogonal matrices,</p><formula xml:id="formula_7">D = diag[d 1 d 2 d 3 d 4 ]</formula><p>, and the number of non-zero diagonal elements in D is the rank of R. Comparing with Eq. ( <ref type="formula" target="#formula_0">1</ref>), we have,</p><formula xml:id="formula_8">ρ AB = 1 4 4 i=1 d i A i ⊗ B i = i p i µ i A ⊗ µ i B ,<label>(7)</label></formula><p>where α i j σ χ j has the form of a single qubit expanded in the Pauli operators, and represent a physical state when the coefficients satisfy Werner state <ref type="bibr" target="#b20">[21]</ref>,</p><formula xml:id="formula_9">p i = d i U 1i W 1i , χ i = 4 j=1 θ j,i σ χ j-1 = θ 1,i<label>3</label></formula><formula xml:id="formula_10">ρ AB = x|Ψ -Ψ -| + 1 -x 4 I 4 x ∈ [0, 1]. (<label>8</label></formula><formula xml:id="formula_11">)</formula><p>The Werner state is pure and maximally entangled for x = 1 with concurrence (a measure of entanglement) <ref type="bibr" target="#b21">[22]</ref> equal to one and discord also equal to one. As shown analytically in Ref. <ref type="bibr" target="#b22">[23]</ref>, the Werner state has both non-zero discord and non-zero concurrence for x &gt; 1/3. In the regime 0 &lt; x ≤ 1/3, the Werner state has non-zero discord, but zero concurrence. Finally for x = 0, the Werner state is a product state with zero discord and zero concurrence. The correlation matrix of Werner state is diag[1 x -x x] , which is of full-rank except x = 0. If we do the joint Bell measurement, the state of particle B will collapse to:</p><formula xml:id="formula_12">1 2 + (-1) n x c3 2 (-1) m x( c1-(-1) n ic2 2 ) (-1) m x( c1+(-1) n ic2 2 ) 1 2 -(-1) n x c3 2 . (<label>9</label></formula><formula xml:id="formula_13">)</formula><p>which contains the information of the qubit C. Comparing Eq. ( <ref type="formula" target="#formula_12">9</ref>) with Eq. (4), we have c i ∝ s i /x, the relation between the received state and the state to be sent. Then the information of the unknown state C can be obtained directly.</p><p>From Eq. ( <ref type="formula" target="#formula_12">9</ref>), it is easy to see that for x = 1 the quantum information transmission scheme is exactly the traditional quantum teleportation scheme (except for the unitary operation imposed on the reduced system B). For x &lt; 1/3, the entanglement of the quantum communication channel is zero, and we can still carry out the quantum information transmission. In this scheme, we transfer the complete information needed to reconstruct ρ c , but not the state itself.</p><p>In the information transmission, the output density matrix ρ ′ B is not equal to the input unknown state ρ c , and cannot be simply transformed into ρ c via a local unitary operation as in the ordinary quantum teleportation <ref type="bibr" target="#b0">[1]</ref>, which is the price we pay for not having entanglement. Even if ρ c is a pure state, the output state (ρ ′ B ) is typically mixed if ρ AB is not a pure entangled state. In order to know the received state, Bob must make measurements on the received state, usually through quantum state tomography <ref type="bibr" target="#b23">[24]</ref>. In the ordinary quantum teleportation, measurement is also needed, if Bob wants to know the state. Our quantum information transmission plus the local tomography can be regarded as the remote state tomography, which is useful in the quantum information science and technology.</p><p>In general, the probabilities of the four Bell measurements are not equal, which means that Alice can learn something about the state she is sending, the information could be catch by the eavesdropper through the classical channel. If the state of the channel has the following form,</p><formula xml:id="formula_14">ρ AB = 1 2 I A ⊗ ρ B + 1 4 3 i,j=1 Λ ij σ A i ⊗ σ B j (<label>10</label></formula><formula xml:id="formula_15">)</formula><p>where I A is the identity operator on system A and ρ B is the reduced density matrix of system B, the Bell measurements have equal probability, so that Alice cannot get any useful information about the sending state from the Bell measurements. The Werner state can be written in the above form. This is useful for security consideration.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">Conclusions</head><p>In this work we propose a scheme of the quantum information transmission by using a quantum channel with nonzero quantum discord. Our scheme becomes ordinary quantum teleportation when a Bell state is chosen for the quantum channel. In the present scheme, what transferred from one place to another is the information of the state with knowing the relation between the received state and the state to be sent, but not the state itself. This is the disadvantage of the information transmission. When a particular channel is chosen, even Alice will have no knowledge on the information she is sending, while Bob obtains the state with complete information. The scheme for quantum information transmission can be implemented experimentally with the Werner states, as the Werner states with pairs of polarized photons from parametric down-conversion have been generated <ref type="bibr" target="#b24">[25,</ref><ref type="bibr" target="#b25">26]</ref>. In addition, entangled ions in an ion trap <ref type="bibr" target="#b26">[27]</ref> could also be used for the quantum channel.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Fig. 1 (</head><label>1</label><figDesc>Fig. 1 (Color online) Our scheme of the quantum information transmission. The source sends two correlated qubits to Alice and Bob. Once Alice performs a joint Bell measurement on her qubit A and the qubit C (with state ρ C that is unknown to Alice or Bob), and sends Bob the result, the state of Bob's qubit collapses to the mixed state ρ ′ B . Under some constraints, the state ρ ′ B contains complete information of the unknown (possibly even mixed) state C.</figDesc><graphic coords="3,114.12,89.59,252.59,137.22" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Fig. 2 (</head><label>2</label><figDesc>Fig. 2 (Color online) The states in Bloch sphere. (a) (b) (c) represent the collapsed states are located in line, plane and solid space with rank=2,3,4, respectively.</figDesc><graphic coords="4,114.12,88.95,253.09,94.99" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>1 2 3 j=0</head><label>13</label><figDesc>j {χ = A(orB) and θ = U (orW )}, and α i j = θj+1,i θ1,i . Note i p i = 1, and the individual p i can be negative. µ i χ =</figDesc></figure>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div><head n="5">Acknowledgments</head><p>We thank <rs type="person">Sai Vinjanampathy</rs> for helpful discussions and improving the content of the manuscript. This work is supported by <rs type="funder">National Basic Research Program of China</rs> (<rs type="grantNumber">2011CB922203</rs>), <rs type="funder">RGC</rs> (<rs type="grantNumber">HKBU202910</rs>), and the <rs type="funder">National Natural Science Foundation of China (NSFC)</rs> under grant number (<rs type="grantNumber">10804042</rs>, <rs type="grantNumber">10904048</rs>). JPD would like to acknowledge support from the <rs type="funder">Foundational Questions Institute</rs> and the <rs type="funder">US National Science Foundation</rs>.</p></div>
+			</div>
+			<listOrg type="funding">
+				<org type="funding" xml:id="_bkRsH3k">
+					<idno type="grant-number">2011CB922203</idno>
+				</org>
+				<org type="funding" xml:id="_3dPjePD">
+					<idno type="grant-number">HKBU202910</idno>
+				</org>
+				<org type="funding" xml:id="_DD3D8Gv">
+					<idno type="grant-number">10804042</idno>
+				</org>
+				<org type="funding" xml:id="_SKZzAfn">
+					<idno type="grant-number">10904048</idno>
+				</org>
+			</listOrg>
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>j=1</head><p>(α i j ) 2 ≤ 1. The measurement made by Alice is the projection on the basis of the AC system, which does not change the matrices µ i B since Eq. ( <ref type="formula">7</ref>) is the sum of the product µ i A µ i B , and the projection only affects its probabilities. In any case, Bob's results after the measurement will be a linear combination of all of µ i B . When the rank of correlation matrix equals unity, this means that the system AB is the direct product state with no correlations. When the rank of the correlation matrix equals two, the collapsed state B ′ after the measurement for any state C is a linear combination of the two µ 1 B and µ 2 B , geometrically the state B ′ is located on the line of µ 1 B and µ 2 B , as shown in Fig. <ref type="figure">2(a)</ref>. The line reflects the one-dimensional nature of the information of the C system. Note the quantum discord (quantum correlation) for rank 2 could be zero. When the rank equals three,the collapsed state B ′ after the measurement is linear combination of the three µ 1 B , µ 2 B and µ 3 B , geometrically the state B ′ is located on the plane of µ 1 B , µ 2 B and µ 3 B , as shown in Fig. <ref type="figure">2</ref>(b), which reflects the two-dimensional nature of the information contained in the C. As we know, the representation of a pure-state qubit only requires two degrees of freedom, so rank three is enough to transmit the information of a pure qubit. When the rank equals four, the collapsed state B ′ after the measurement for any state C is located in the three-dimensional tetrahedronal solid space formed by µ 1 B , µ 2 B , µ 3 B and µ 4 B , and in three dimensions the information contained in the C can be obtained from these values. Because an arbitrary single qubit has three degrees of freedom at most, we can realize the quantum information transmission of an arbitrary single qubit, when the rank of the channel system is full. The entanglement of the channel system with rank four could be zero. That is to say the entanglement is not necessary for quantum information transmission. Some non-zero quantum correlation is necessary, as the quantum discord is non-zero for states of rank 4 and 3 in bipartite systems <ref type="bibr" target="#b14">[15]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">An example: Werner state</head><p>Let us now consider a concrete example to implement the quantum information transmission. If the two-qubit quantum channel, the AB system is in the</p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<monogr>
+		<title level="m" type="main">Chuang: Quantum computation and information</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">A</forename><surname>Nielsen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><forename type="middle">L</forename></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2000">2000</date>
+			<publisher>Cambridge University</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Linear optical quantum computing with photonic qubits</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Kok</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Rev. Mod. Phys</title>
+		<imprint>
+			<biblScope unit="volume">79</biblScope>
+			<biblScope unit="page" from="135" to="174" />
+			<date type="published" when="2007">2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Caves: Quantum-mechanical noise in an interferometer</title>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">M</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. D</title>
+		<imprint>
+			<biblScope unit="volume">23</biblScope>
+			<biblScope unit="page" from="1693" to="1708" />
+			<date type="published" when="1981">1981</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Quantum Interferometric Optical Lithography: Exploiting Entanglement to Beat the Diffraction Limit</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">N</forename><surname>Boto</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">85</biblScope>
+			<biblScope unit="page" from="2733" to="2736" />
+			<date type="published" when="2000">2000</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Identifying Entanglement Using Quantum Ghost Interference and Imaging</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">D</forename><surname>Angelo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">92</biblScope>
+			<biblScope unit="page">233601</biblScope>
+			<date type="published" when="2004">2004</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Two-Photon Imaging with Thermal Light</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Valencia</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">94</biblScope>
+			<biblScope unit="page">63601</biblScope>
+			<date type="published" when="2005">2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Ghost Imaging with Thermal Light: Comparing Entanglement and Clas-sicalCorrelation</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Gatti</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">93</biblScope>
+			<biblScope unit="page">93602</biblScope>
+			<date type="published" when="2004">2004</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Computational ghost imaging</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">H</forename><surname>Shapiro</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">78</biblScope>
+			<biblScope unit="page">61802</biblScope>
+			<date type="published" when="2008">2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Quantum Repeaters: The Role of Imperfect Local Operations in Quantum Communication</title>
+		<author>
+			<persName><forename type="first">H. -J</forename><surname>Breigel</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">81</biblScope>
+			<biblScope unit="page" from="5932" to="5935" />
+			<date type="published" when="1998">1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Zoller: Long-distance quantum communication with atomic ensembles and linear optics</title>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">M</forename><surname>Duan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">D</forename><surname>Lukin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">D</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">L</forename><surname>Cirac</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">414</biblScope>
+			<biblScope unit="page" from="413" to="418" />
+			<date type="published" when="2001">2001</date>
+			<pubPlace>London</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Quantum Steganography Can Be Stronger Than Classical Steganography</title>
+		<author>
+			<persName><forename type="first">Shin</forename><surname>Natoriwhy</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Topics in Applied Physics</title>
+		<imprint>
+			<biblScope unit="volume">102</biblScope>
+			<biblScope unit="page" from="235" to="240" />
+			<date type="published" when="2006">2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<monogr>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">A</forename><surname>Shah</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">A</forename><surname>Brun</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1006.1934</idno>
+		<title level="m">Quantum Steganography</title>
+		<imprint>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Quantum Discord: A Measure of the Quantumness of Correlations</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Ollivier</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">H</forename><surname>Zurek</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">88</biblScope>
+			<biblScope unit="page">17901</biblScope>
+			<date type="published" when="2001">2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Unified View of Quantum and Classical Correlations</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Modi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Paterek</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Son</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Vedral</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Williamson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">104</biblScope>
+			<biblScope unit="page">80501</biblScope>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Brukner: Necessary and Sufficient Condition for Nonzero Quantum Discord</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Dakić</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Vedral</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">105</biblScope>
+			<biblScope unit="page">190502</biblScope>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Teleporting an unknown quantum state via dual classical and Einstein-Podolsky-Rosen channels</title>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">H</forename><surname>Bennett</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Brassard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Crpeau</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Jozsa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Peres</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">K</forename><surname>Wootters</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">70</biblScope>
+			<biblScope unit="page">1895</biblScope>
+			<date type="published" when="1993">1993</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Teleportation of Continuous Quantum Variables</title>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">L</forename><surname>Braunstein</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">J</forename><surname>Kimble</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">80</biblScope>
+			<biblScope unit="page">869</biblScope>
+			<date type="published" when="1998">1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Experimental quantum teleportation</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Bouwmeester</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J.-W</forename><surname>Pan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Mattle</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Eibl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Weinfurter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Zeilinger</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">390</biblScope>
+			<biblScope unit="page">575</biblScope>
+			<date type="published" when="1997">1997</date>
+			<pubPlace>London</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Experimental Realization of Teleporting an Unknown Pure Quantum State via Dual Classical and Einstein-Podolsky-Rosen Channels</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Boschi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Branca</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>De Martini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Hardy</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Popescu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">80</biblScope>
+			<biblScope unit="page">1121</biblScope>
+			<date type="published" when="1998">1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<monogr>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">A</forename><surname>Horn</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">R</forename><surname>Johnson</surname></persName>
+		</author>
+		<title level="m">Matrix Analysis, chaps 7</title>
+		<meeting><address><addrLine>New York</addrLine></address></meeting>
+		<imprint>
+			<publisher>Cambridge University Press</publisher>
+			<date type="published" when="1985">1985</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Quantum states with Einstein-Podolsky-Rosen correlations admitting a hidden-variable model</title>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">F</forename><surname>Werner</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">40</biblScope>
+			<biblScope unit="page">4277</biblScope>
+			<date type="published" when="1989">1989</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Entanglement of Formation of an Arbitrary State of Two Qubits</title>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">K</forename><surname>Wootters</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">80</biblScope>
+			<biblScope unit="page">2245</biblScope>
+			<date type="published" when="1998">1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Quantum discord for two-qubit X states</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Ali</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">R P</forename><surname>Rau</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Alber</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">81</biblScope>
+			<biblScope unit="page">42105</biblScope>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">White: Measurement of qubits</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">F</forename><surname>James</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">G</forename><surname>Kwiat</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">J</forename><surname>Munro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">G</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">64</biblScope>
+			<biblScope unit="page">52312</biblScope>
+			<date type="published" when="2001">2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Detection of Entanglement with Polarized Photons: Experimental Realization of an Entanglement Witness</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Barbieri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>De Martini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Di Nepi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Mataloni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">M</forename><surname>D'ariano</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Macchiavello</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">91</biblScope>
+			<biblScope unit="page">227901</biblScope>
+			<date type="published" when="2003">2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Maximally Entangled Mixed States: Creation and Concentration</title>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">A</forename><surname>Peters</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">B</forename><surname>Altepeter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Branning</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">R</forename><surname>Jeffrey</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">C</forename><surname>Wei</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">G</forename><surname>Kwiat</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">92</biblScope>
+			<biblScope unit="page">133601</biblScope>
+			<date type="published" when="2004">2004</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Deterministic quantum teleportation with atoms</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Riebe</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Haffner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">F</forename><surname>Roos</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">429</biblScope>
+			<biblScope unit="page" from="734" to="737" />
+			<date type="published" when="2004">2004</date>
+			<pubPlace>London</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

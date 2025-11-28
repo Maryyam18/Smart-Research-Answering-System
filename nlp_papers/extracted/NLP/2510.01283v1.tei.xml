@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Evaluation Sheet for Deep Research: A Use Case for Academic Survey Writing</title>
+				<funder>
+					<orgName type="full">National High-Performance Computing (NHR)</orgName>
+				</funder>
+				<funder>
+					<orgName type="full">German Federal Ministry of Education and Research</orgName>
+				</funder>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability  status="unknown">
+					<licence/>
+				</availability>
+				<date type="published" when="2025-09-30">30 Sep 2025</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Israel</forename><forename type="middle">Abebe</forename><surname>Azime</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">Saarland University</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Tadesse</forename><surname>Destaw Belay</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">Saarland University</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Atnafu</forename><surname>Lambebo Tonja</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">Saarland University</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Instituto</forename><forename type="middle">Politécnico</forename><surname>Nacional</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">Saarland University</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><surname>Mbzuai</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">Saarland University</orgName>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Evaluation Sheet for Deep Research: A Use Case for Academic Survey Writing</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2025-09-30">30 Sep 2025</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">81D8D9337D8E4C4AF71115035654FCE9</idno>
+					<idno type="arXiv">arXiv:2510.01283v1[cs.CL]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-28T12:25+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Large Language Models (LLMs) powered with argentic capabilities are able to do knowledgeintensive tasks without human involvement. A prime example of this tool is Deep research with the capability to browse the web, extract information and generate multi-page reports. In this work, we introduce an evaluation sheet that can be used for assessing the capability of Deep Research tools. In addition, we selected academic survey writing as a use case task and evaluated output reports based on the evaluation sheet we introduced. Our findings show the need to have carefully crafted evaluation standards. The evaluation done on OpenAI's Deep Search and Google's Deep Search in generating an academic survey showed the huge gap between search engines and standalone Deep Research tools, the shortcoming in representing the targeted area.</p><p>* Equal Contribution. and accurate answers through iterative searching and reasoning, "Deep Research" leverages reasoning to search, interpret, and analyze information, producing comprehensive long-form reports that explore complex topics in depth <ref type="bibr" target="#b5">(OpenAI, 2025)</ref>. In this paper, we focus mainly on Deep Research tools.</p><p>Deep Research tools are designed to create comprehensive, long-form reports that dive deep into complex topics <ref type="bibr" target="#b7">(Wu et al., 2025)</ref>. Their defining characteristics include unassisted web browsing, compilation of several sources, long waiting time, and results that resemble reports, not chat responses <ref type="bibr" target="#b5">(OpenAI, 2025)</ref>. Deep Research improves traditional search capabilities from keyword-based searching to more exhaustive search incorporating reasoning, inference synthesis, and response generation. This profound research feature transcends basic question-answering; it enables LLMs to navigate the internet, process extensive datasets, synthesize insights, and create structured reports with appropriate citations <ref type="bibr" target="#b8">(Xiong et al., 2024)</ref>. Unlike traditional search engines, which primarily provide direct answers, it employs an iterative search process that deconstructs complex inquiries and engages in reasoning before generating responses <ref type="bibr" target="#b7">(Wu et al., 2025)</ref>. This method operates several search cycles, such as an iterative reading, searching, and reasoning cycle, until the most accurate response is achieved. The entire operation can be segmented into three main distinct phases (search, read and reason), as illustrated in Figure <ref type="figure">1</ref>.</p><p>LLM providers such as Google 1 , OpenAI 2 , Perplexity 3 , XAI 4 and others are making available their Deep Research agent-based application,</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>Large Language Models (LLMs) present a transformative evolution in artificial intelligence, particularly their capacity for advanced text generation, reasoning, and analytical tasks <ref type="bibr" target="#b4">(Naveed et al., 2024)</ref>. A notable enhancement in LLM functionalities is the incorporation of the vertical AI agents <ref type="bibr" target="#b1">(Bousetouane, 2025)</ref>. Vertical AI agents are specialized intelligent systems tailored to specific industries, combining domain expertise with realtime adaptability to enhance workflows, perform unassisted tasks and decision-making. One of the notable examples of well integrated AI agents is Deep Research. Deep Research empowers LLMs to perform in-depth examinations of intricate subjects autonomously by accessing web using search engines <ref type="bibr" target="#b5">(OpenAI, 2025)</ref>. While the term "Deep Search" emphasizes tool delivering quick, concise, a list of "Deep Research" tools with their details is shown in Table <ref type="table" target="#tab_0">1</ref>.</p><p>One of the main real-world application areas of Deep Research is to use them as helpers for academic research, such as conducting a comprehensive literature review in a specific field of study. Academics can get a draft literature summary in minutes instead of days, and analysts can quickly pull together data from hundreds of webpages. However, these tools still require oversight, and the effectiveness of these Deep Research tools requires rigorous evaluation and study. They might sometimes "hallucinate" (produce incorrect information), cite less credible sources or give priority for outdated contents. Even though, Deep Research tools are powerful for scaling up our research capabilities, users must understand their strengths and limitations to choose the right tool. In this work:</p><p>• We introduce Evaluation Sheet as a road-map for evaluating the performance of Deep Research tools. The main categories of this evaluation sheet (also known as Pillars) are discussed in Section 3.</p><p>• As a use case, we selected three recent NLP survey papers focused on African countries and languages: an Ethiopian language survey <ref type="bibr" target="#b6">(Tonja et al., 2023)</ref>, a Nigerian language survey (Inuwa-Dutse, 2025), and a Kenyan language survey (Amol et al., 2024) to assess the applicability of the introduced evaluation sheet in order to evaluate the generated Deep Research report. We generated Deep Research reports that resemble these papers from the two selected Deep Research tools (ChatGPT and Gemini) and evaluated their effectiveness, assuming that these survey papers were created using Google-like search engines combined with human involvement.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Motivation</head><p>Deep Research tools allow users to extract, summarize, and gather information on research areas with which they may not be familiar. As the reliability of these tools continues to improve, ensuring their accuracy and dependability is crucial to trusting and using the outputs from these models. LLMs are becoming the new search engines, and if they are not thoroughly tested, research findings may be lost unnoticed, and only selected knowledge will be propagated.</p><p>Although Deep Research tools can generate wellstructured content, they generate hallucinated references, biased arguments, or incorrect stories. We believe that evaluation sheets are essential to assess AI-generated content to ensure that it meets the required standards, has logical coherence, and has relevant and appropriate sources. This evaluation sheet helps the users to determine whether AI-generated content has accurate data, unbiased output, and diverse perspectives. It also provides ways to verify the source's credibility and the generated text's reliability. The users can effectively leverage Deep Research tools using the evaluation sheet while maintaining the required standards. We also hope that researchers will use this evaluation sheet as a starting point and add more pillars along with questions to create a standard way of testing Deep Research tools. for different use cases. Here, we discuss the six pillars of the proposed evaluation sheet:</p><p>(1) LLMs &amp; Deep Research for [Surveying NLP Papers and Datasets for Low-Resource African Languages]<ref type="foot" target="#foot_0">foot_0</ref> . Surveying existing NLP papers in research areas such as low-resource languages presents unique challenges. A crucial task is determining whether these tools can effectively identify the most important and impactful research, even when such research papers do not appear in the top search results. The primary issue we aim to address is how the growing popularity of these tools and their increasing role in replacing traditional searche engines affects the visibility and accessibility of significant research.</p><p>To access the usage of LLMs &amp; Deep Research in survey report writing in low-resource languages, we crafted the following question:</p><p>• Does the Deep Research reports effectively identifies and consolidate NLP papers on lowresource [African]<ref type="foot" target="#foot_1">foot_1</ref> languages?</p><p>• Does the selection of datasets for lowresource [African] languages is comprehensive and representative?</p><p>• Does the Deep Research method provide sufficient depth in its analysis of linguistic challenges in [African] NLP?</p><p>• Does the LLM-generated survey highlights the most impactful research in [African] NLP?</p><p>• Does the coverage of low-resource [African] languages in the survey align with the actual research landscape?</p><p>(2) Hallucination Hallucination refers to information that appears true to someone without prior knowledge of the subject but cannot be verified by a reliable source <ref type="bibr" target="#b2">(Huang et al., 2025)</ref>. In contrast, errors are categorized as mistakes that are easily noticeable. Hallucination is a huge treat in practical LLM usage, specifically while automating knowledge extraction from contents like research works. This set of guidelines and questions helps us determine the focus we must place on the reliability of the output. The following questions are crafted to evaluate whether the Deep Research generated report contains hallucination.</p><p>• Does the Deep Research generated survey contains minimal factual errors or hallucinations?</p><p>• Does the hallucinated content, if present, is easy to identify and correct?</p><p>• Does the Deep Research tool properly distinguishes between verified academic sources and speculative content?</p><p>• Does a lower risk of hallucination improve the reliability of the survey's insights?</p><p>(3) Correctness of sources Sources can range from reliable, peer-reviewed papers to blogs and social media pages that present personal opinions. While extracting information from both types of sources is optional, web agents should be able to distinguish between reliable and unreliable sources. Below, we pose a set of questions to assess whether the source impacts the reliability of the information and whether certain sources are preferable. This approach ensures that the extracted information is accurate and verified.</p><p>• Does the sources suggested in the report are based on verifiable and authoritative sources?</p><p>• Does the Deep Research tool appropriately prioritize papers on credibility and impact?</p><p>• Does the mechanism used by Deep Research to extract information from sources adequately account for domain-specific knowledge in [NLP]?</p><p>(4) Information Validity The validity of the references provided can be assessed based on their accessibility, verification through independent sources, and whether they demonstrate why they are superior to other potential alternatives. Below are the questions created to assess the validity of information generated by Deep Research.</p><p>• Does the cited links and references in the survey are valid and accessible?</p><p>• Does the Deep Research tool effectively differentiates between credible and non-credible sources?</p><p>• Does the report content remains valid and relevant when cross-checked with independent sources?</p><p>• Does the Deep Research tool provide sufficient transparency regarding how sources are selected and ranked?</p><p>• Does the Deep Research generated report appropriately handles broken or outdated links in its output?</p><p>(5) Information Latestness Recent information is more valid compared to older information that may have a high search volume but could have been corrected or improved by more recent works. Research papers with higher citation counts and those that appear at the top of search results are not always the latest studies, which can pose a challenge for LLM agents searching the web for information. The following question will help to assess whether the information generated in the report has been extracted from the latest sources.</p><p>• Does the report prioritize the most recent sources?</p><p>• Does the Deep Research tool effectively identify the latest trends in NLP for low-resource African languages?</p><p>• Does the Deep Research method ensure that outdated references are minimized in the survey?</p><p>• Does the system effectively highlight emerging resources that are not widely recognized?</p><p>• Does the report output remain relevant given the fast-paced evolution of AI and [NLP] research?</p><p>(6) Quantifying Actual Google Search Results</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>vs. Deep Research Answers</head><p>Finally, we added questions below to explore how the shift from using search engines like Google for information retrieval compares to using automated search agents like Deep Research tools.</p><p>• Does the report findings align well with actual Google search results on the same topics?</p><p>• Does Deep Research generated answers provided by Deep Research are insightful than Google search results?</p><p>• Does the Deep Research tool accurately quantify differences in retrieval efficiency between LLMs and traditional search engines?</p><p>• Does the Deep Research tool effectively reduce misinformation compared to open-web search engines?</p><p>• Does the Deep Research approach provide added value beyond standard keyword-based search queries?</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1">Rating Procedure</head><p>For the above questions (listed in Section 3), we recommend that users use the Likert scale <ref type="bibr" target="#b3">(Joshi et al., 2015)</ref> rating system when answering. The rating scale consists of six levels to express agreement or disagreement with a question. These are: Strongly Disagree (0)indicates complete opposition with no support for the statement. Disagree (1)reflects mostly disagreement, though some merit is acknowledged. Somewhat Disagree (2)suggests a leaning toward disagreement while recognizing certain validity. Neutral (3)signifies neither agreement nor disagreement or an undecided stance. Somewhat Agree (4)represents general agreement but with some reservations. Finally, Strongly Agree (5)-expresses full endorsement and support without any doubt. 4 Case study: Ethiopia, Nigeria, Kenya 4.1 Methodology Creating evaluation sheet We selected three regional survey papers that focus on capturing valuable research progress within their respective countries: the Ethiopian language survey (Tonja et al., 2023), the Nigerian language survey (Inuwa-Dutse, 2025), and the Kenyan language survey (Amol <ref type="bibr">et al., 2024)</ref>. We analyzed these papers in detail, extracted the key questions they addressed, and then combined them to formulate prompts (see A)incorporating these questions. To create the evaluation sheet, we carefully identified scenarios the Deep Research tools fail at and must be tested with and created a list of questions under each important evaluation topic. Questions were edited, filtered and removed based on discussion among the authors.</p><p>Generating representative outputs We evaluated the prompts for validity and selected the one capable of generating detailed reports. Using a selected prompt, we generated three distinct Deep Research outputs by modifying only the countryspecific information while utilizing OpenAI Deep Research and Google Deep Research. Three reviewers selected from the authors of this study reviewed the outputs of the tools and rated the generated report based on the rating criteria for each question in the pillars. They used the actual research paper from each of the countries as a reference while answering the questions accordingly.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Comparative analysis</head><p>In this section, we discuss our observations while evaluating reports generated by Google's Deep Research and OpenAI's Deep Research tools. Due to the limited number of reports considered in this study and the frequent updates made to these tools, we focus only on the broader conclusions from the results. We recommend scaling this work with a larger number of reports and evaluators to derive more detailed findings. Hallucination The inclusion of social media links alongside verified academic peer review catalogs as sources makes Deep Research tools particularly susceptible to hallucinations and erroneous outputs. Additionally, the absence of source information in reports or the citation of incorrect sources complicates the process of identifying and verifying hallucinations. However, based on our analysis, we found that the rate of misinformation and hallucination is not significantly high.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>LLMs</head><p>Correctness of Sources When examining the detailed process these tools follow while "researching", they tend to review a large number of relevant resources. Google's tool heavily summarizes information and often does not mention many of the sources it picks up during the process. Additionally, both tools tend to include social media links, such as Facebook and Reddit, as information sources.</p><p>Information/Link Validity We observe that the tools use sources multiple times during their execution. Apart from that, the tools have a problem of identifying the correct source from which the information is obtained and mostly rely on survey papers and summarized contents rather than extracting information from the original source.</p><p>Actual Google Search Results vs. LLM Answers Although the system does not produce significant misinformation, its outputs are not fully aligned with Google search results. We find better choices, more recent works, and broader domain coverage when using Google Search.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3">Lesson learned -Takeaway</head><p>The need for evaluation standard With the rapid introduction of tools that improve or entirely replace search engines, it is crucial to establish evaluation guidelines that foster consistency and common characteristics across benchmarks. The careful design and assessment of these tools are essential, as they shape the knowledge and research considered important, as well as how different approaches and solutions are presented for comparison, ultimately influencing decision-making. If these tools are not designed to provide as much relevant information as possible to users, the real decision-making process-including the selection of problems and solutions-risks being controlled by autonomous agents developed by big tech companies.</p><p>Are Deep Research tools reliable for extracting information and generating user-ready reports for low resource research summarization?</p><p>The use cases in this study, focused on generating scientific summary reports on underrepresented groups, highlight the challenges of finding, sorting, and presenting hard-to-access research. We found that Deep Research tools are not fully reliable, as their selection of research works lacks transparency, and their summaries-drawn from multiple sources-fail to comprehensively represent the research landscape of the targeted area. Despite the limitations discussed above, Deep Research tools have a potential in presenting summarized information and making it more accessible.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">Conclusion</head><p>LLMs equipped with web search capabilities can delve deeper and spend more time answering questions, making them valuable for knowledgeintensive tasks by comparing multiple sources and improving reasoning. The introduction of Deep Research tools exemplifies this capability, enabling LLMs to search for sources, filter numerous links, and generate detailed reports.</p><p>In this work, we developed an Evaluation Sheet to help researchers identify the most critical evaluation criteria for assessing Deep Research tools for different use cases. This evaluation sheet seeks to standardize benchmarking datasets by highlighting key focus areas. To demonstrate its applicability, we conducted a proof-of-concept study on "Deep Research for Survey Paper Generation" and used it to evaluate two well-known Deep Research tools.</p><p>We hope researchers will adopt this Evaluation Sheet to create benchmarking datasets in their respective domains, ultimately improving the effectiveness of agentic tools that require minimal human interaction. By ensuring these tools generate reliable and informative outputs-comparable to what users would find through independent searches-we aim to improve their practical utility and trustworthiness.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Limitation</head><p>Deep Research tools are relatively new, and we selected OpenAI and Google as use cases due to their availability and popularity. Future research will expand the scope by incorporating a broader range of tools, generating a larger number of reports and a larger number of evaluators to better assess their capabilities on a wider scale.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><figDesc>Figure 1: Deep Research workflow</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Figure 2 :</head><label>2</label><figDesc>Figure 2: A -LLMs &amp; Deep Research for Surveying NLP Papers, B -Hallucination, C -Correction Sources, D -Information/Link Validity, E -Information Latestness, F -Quantifying Actual Google Search Results vs. LLM Answers,</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><figDesc>&amp; Deep Research for Surveying NLP Papers Both Google's Deep Research and Ope-nAI's Deep Research tools show below-average results in identifying more valuable research works in their reports. The region-specific gap becomes larger for Google's Deep Research.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0"><head>Table 1 :</head><label>1</label><figDesc>Summaries of Deep Research tools: launch dates in ascending order, company names, products, license types, and source as of March 2025.</figDesc><table><row><cell>3 The Evaluation Sheets -Pillars</cell></row><row><cell>LLM evaluation datasets, particularly those focus-</cell></row><row><cell>ing on low-resource languages, should emphasize</cell></row><row><cell>specific characteristics of the generated output. In</cell></row><row><cell>this work, we propose evaluation sheets that con-</cell></row><row><cell>tain different questions in five pillars to evaluate</cell></row><row><cell>LLMs' Deep Research tool that require minimal</cell></row><row><cell>user interaction. The proposed evaluation sheet can</cell></row><row><cell>be further adapted and extended to create different</cell></row><row><cell>benchmark datasets to evaluate different LLM tools</cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="5" xml:id="foot_0"><p>This section and subsequent questions can be replaced or modified according to the use case scenario (Eg. financial market study, Sport analysis etc).</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="6" xml:id="foot_1"><p>can be specific region name(Ethiopia, Kenya and Nigeria)   </p></note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div><head>Acknowledgment</head><p>The authors would like to thank the <rs type="funder">German Federal Ministry of Education and Research</rs> and the German federal states (<ref type="url" target="http://www.nhr-">http://www.nhr-</ref>verein.de/en/our-partners) for supporting this work/project as part of the <rs type="funder">National High-Performance Computing (NHR)</rs> joint funding program.</p></div>
+			</div>
+			<listOrg type="funding">
+			</listOrg>
+
+			<div type="availability">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>1 <ref type="url" target="https://blog.google/products/gemini/google-gemini-deep-research/">https://blog.google/products/gemini/  google-gemini-deep-research/</ref> 2 <ref type="url" target="https://openai.com/index/introducing-deep-research/">https://openai.com/index/  introducing-deep-research/</ref> 3 <ref type="url" target="https://www.perplexity.ai/ko/hub/blog/introducing-perplexity-deep-research">https://www.perplexity.ai/ko/hub/blog/  introducing-perplexity-deep-research</ref> 4 <ref type="url" target="https://x.ai/blog/grok-3">https://x.ai/blog/grok-3</ref> </p></div>
+			</div>
+
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A Prompt Deep Research Template for NLP Survey on a Specific Country</head><p>Steps to Conduct This NLP Survey</p><p>Step 1: Define Your Research Scope Select the country whose NLP landscape you want to analyze. Identify the languages spoken in the country, including official, regional, indigenous, and endangered languages. Decide on the specific NLP focus, such as general NLP, speech recognition, machine translation, or sentiment analysis.</p><p>Step 2: Gather Data &amp; Sources</p><p>• Academic Papers: Search IEEE Xplore, ACL Anthology, Google Scholar, arXiv, and Scopus.</p><p>• Datasets &amp; Resources: Explore Hugging Face, Kaggle, LDC, and government data repositories.</p><p>• Pretrained Models: Check models from Hugging Face, Google AI, and Meta AI.</p><p>• Government &amp; Industry Reports: Look for language policy documents and AI research reports.</p><p>• Community &amp; Open-Source Projects: Identify ongoing grassroots NLP efforts.</p><p>Step 3: Structure the Paper Using the Template Below Use the structured sections to analyze and organize findings. Answer the guiding questions within each section to provide a comprehensive analysis.</p><p>Step 4: Conduct Systematic Analysis Review historical NLP progress in the country. Evaluate language challenges and computational constraints affecting NLP adoption. Identify key gaps in linguistic resources, datasets, and models. Highlight ongoing projects and promising research directions.</p><p>Step 5: Synthesize Findings &amp; Propose Solutions Summarize research trends, NLP applications, and linguistic barriers. Suggest data collection initiatives, model improvements, and collaborative strategies. Provide policy recommendations for governments, industries, and researchers.</p><p>Research Template: Structure of the Paper</p><p>• Introduction: Define the research focus, its importance, and the major linguistic and computational challenges in the country.</p><p>• Research Methodology: Describe the sources used, search strategies, and inclusion/exclusion criteria.</p><p>• Language Landscape: Analyze linguistic diversity, digital presence, and computational challenges.</p><p>• Available NLP Resources &amp; Tools: Review datasets, pretrained models, and language processing tools.</p><p>• NLP Applications &amp; Downstream Tasks: Discuss various NLP tasks such as text processing, machine translation, ASR, NER, and conversational AI.</p><p>• Challenges &amp; Limitations: Address technical constraints, linguistic barriers, and ethical concerns.</p><p>• Future Directions &amp; Recommendations: Propose solutions for data collection, model improvements, policy considerations, and community engagement.</p><p>• Conclusion: Summarize key findings and provide a call to action.</p><p>Guiding Questions for Each Section 1. Introduction</p><p>• What is the focus of this research?</p><p>• Why is this topic important for [Country Name]?</p><p>• What are the major linguistic and computational challenges in this country's NLP landscape?</p><p>• What are the objectives and scope of this study?</p><p>• How does the country's NLP research compare to global trends?</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">Research Methodology</head><p>• What databases and sources were used?</p><p>• What search strategies were applied?</p><p>• What criteria were used to include/exclude studies?</p><p>• How was the information categorized (e.g., by language type, NLP task, dataset availability)?</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.">Language Landscape in [Country Name]</head><p>• What are the primary linguistic characteristics of the country's languages?</p><p>• Which languages have the most NLP research, and which are neglected?</p><p>• What challenges arise in processing these languages (e.g., word segmentation, diacritics)?</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.">Available NLP Resources &amp; Tools</head><p>• Are there high-quality datasets available for these languages?</p><p>• Are the models pre-trained on country-specific linguistic data?</p><p>• What tools exist for POS tagging, NER, and other NLP tasks?</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.">NLP Applications &amp; Downstream Tasks</head><p>• What NLP tasks have seen the most research focus?</p><p>• What tools and datasets exist for these tasks?</p><p>• What are the biggest challenges in implementing NLP solutions?</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.">Challenges &amp; Limitations</head><p>• What are the biggest challenges preventing NLP advancements?</p><p>• Are there systematic biases in datasets and models?</p><p>• How does governmental or industry support impact NLP growth?</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.">Future Directions &amp; Recommendations</head><p>• What strategies can bridge the research gap in NLP for [Country Name]?</p><p>• What government or private sector initiatives can support NLP growth?</p><p>• How can the NLP community collaborate to improve datasets and models?</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8.">Conclusion</head><p>Summarize key findings and provide a call to action for researchers, policymakers, and industry leaders.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Practical Example: Applying This Template</head><p>• Choose the country: Kenya.</p><p>• Select the languages: Swahili (major language), Kikuyu, Luo, Maasai (regional languages).</p><p>• Determine the focus: Speech recognition &amp; machine translation.</p><p>• Collect data: Look for Kenyan NLP research, datasets, and community projects.</p><p>• Analyze findings: Identify gaps, challenges, and progress in NLP research.</p><p>• Suggest solutions: Recommend better dataset collection, funding initiatives, and collaborative research.</p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<monogr>
+		<author>
+			<persName><forename type="first">Cynthia</forename><surname>Jayne Amol</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Everlyn</forename><surname>Asiko Chimoto</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rose</forename><surname>Delilah Gesicho</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Antony</forename><forename type="middle">M</forename><surname>Gitau</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Naome</forename><forename type="middle">A</forename><surname>Etori</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Caringtone</forename><surname>Kinyanjui</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Steven</forename><surname>Ndung'u</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lawrence</forename><surname>Moruye</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Samson</forename><surname>Otieno Ooko</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kavengi</forename><surname>Kitonga</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Brian</forename><surname>Muhia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Catherine</forename><surname>Gitau</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Antony</forename><surname>Ndolo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lilian</forename><forename type="middle">D A</forename><surname>Wanzare</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Albert</forename><forename type="middle">Njoroge</forename><surname>Kahira</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ronald</forename><surname>Tombe</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2410.09948</idno>
+		<title level="m">State of nlp in kenya: A survey</title>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">Preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<monogr>
+		<author>
+			<persName><forename type="first">Fouad</forename><surname>Bousetouane</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2501.00881</idno>
+		<title level="m">Agentic systems: A guide to transforming industries with vertical ai agents</title>
+		<imprint>
+			<date type="published" when="2025">2025</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">A survey on hallucination in large language models: Principles, taxonomy, challenges, and open questions</title>
+		<author>
+			<persName><forename type="first">Lei</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Weijiang</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Weitao</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Weihong</forename><surname>Zhong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhangyin</forename><surname>Feng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Haotian</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Qianglong</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Weihua</forename><surname>Peng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xiaocheng</forename><surname>Feng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Bing</forename><surname>Qin</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2502.19784</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Naijanlp: A survey of nigerian low-resource languages</title>
+		<imprint>
+			<publisher>Isa Inuwa-Dutse</publisher>
+			<date type="published" when="2025">2025. 2025</date>
+			<biblScope unit="volume">43</biblScope>
+			<biblScope unit="page" from="1" to="55" />
+		</imprint>
+	</monogr>
+	<note type="report_type">Preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Likert scale: Explored and explained</title>
+		<author>
+			<persName><forename type="first">Ankur</forename><surname>Joshi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Saket</forename><surname>Kale</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Satish</forename><surname>Chandel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Kumar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pal</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">British journal of applied science &amp; technology</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page">396</biblScope>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<monogr>
+		<title level="m" type="main">A comprehensive overview of large language models</title>
+		<author>
+			<persName><forename type="first">Humza</forename><surname>Naveed</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Asad</forename><surname>Ullah Khan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shi</forename><surname>Qiu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Muhammad</forename><surname>Saqib</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Saeed</forename><surname>Anwar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Muhammad</forename><surname>Usman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Naveed</forename><surname>Akhtar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nick</forename><surname>Barnes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ajmal</forename><surname>Mian</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2307.06435</idno>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">Preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<monogr>
+		<author>
+			<persName><surname>Openai</surname></persName>
+		</author>
+		<title level="m">Deep research system card</title>
+		<imprint>
+			<date type="published" when="2025">2025</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Natural language processing in Ethiopian languages: Current state, challenges, and opportunities</title>
+		<author>
+			<persName><forename type="first">Atnafu</forename><surname>Lambebo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tonja</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tadesse</forename><surname>Destaw Belay</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Israel</forename><surname>Abebe Azime</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Abinew</forename><surname>Ali Ayele</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Moges</forename><surname>Ahmed Mehamed</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Olga</forename><surname>Kolesnikova</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Seid</forename><surname>Muhie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yimam</forename></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/2023.rail-1.14</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Fourth workshop on Resources for African Indigenous Languages (RAIL 2023)</title>
+		<meeting>the Fourth workshop on Resources for African Indigenous Languages (RAIL 2023)<address><addrLine>Dubrovnik, Croatia</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="126" to="139" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<monogr>
+		<author>
+			<persName><forename type="first">Junde</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jiayuan</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuyuan</forename><surname>Liu</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2502.04644</idno>
+		<title level="m">Agentic reasoning: Reasoning llms with tools for the deep research</title>
+		<imprint>
+			<date type="published" when="2025">2025</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<monogr>
+		<title level="m" type="main">When search engine services meet large language models: Visions and challenges</title>
+		<author>
+			<persName><forename type="first">Haoyi</forename><surname>Xiong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jiang</forename><surname>Bian</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuchen</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xuhong</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mengnan</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shuaiqiang</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dawei</forename><surname>Yin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sumi</forename><surname>Helal</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2407.00128</idno>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">Preprint</note>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

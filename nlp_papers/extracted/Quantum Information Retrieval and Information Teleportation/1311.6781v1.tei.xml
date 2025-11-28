@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">On the Limits of Information Retrieval in Quantum Mechanics</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">P</forename><forename type="middle">B</forename><surname>Lerner</surname></persName>
+						</author>
+						<title level="a" type="main">On the Limits of Information Retrieval in Quantum Mechanics</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date/>
+						</imprint>
+					</monogr>
+					<idno type="MD5">EDA9E5D727B4330B51447B00C8717207</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-28T12:36+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>The widely considered assertion is that the unitarity of quantum mechanical evolution assures the "preservation" of information. It is even promoted in popular literature as an established fact. (Susskind, 2008)  Yet, a simple chain of reasoning demonstrates that: 1) almost any evolutionary operator can be well approximated by a degenerate (finite-rank) operator and 2) one needs an eternity to retrieve information exactly from a nonstationary quantum state and to distinguish between arbitrary unitary operator and its finite-dimensional approximations.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Introduction</head><p>The preservation of quantum mechanical information as a result of unitarity of evolution operators-usually assumed in the standard schemes of quantum mechanics-acquired the status of popular mythology, which is repeated in numerous literature sources without much debate. It is claimed to be a law of nature akin to the conservation of energy or growth of entropy. <ref type="bibr">(Susskind, 2008)</ref> In this paper, I re-capitulate two elementary facts. First, unitary evolution operators have many degenerate (finite-rank) operators in their immediate vicinity. Second, checking that a given operator is unitary within the confines of paradigmatic quantum mechanics is, in general, impossible.</p><p>One of the first demonstrations of these, quite routine conclusions from the general formalism of quantum mechanics in the context of irreversibility of quantum mechanical experiments belongs to genial and untimely deceased Asher Peres. <ref type="bibr" target="#b16">(Peres, 1984)</ref> In a simple (now available to any undergraduate student) and elegant numerical experiment, he proved that if there is an uncertainty in determination of a Hamiltonian of the quantum mechanical system, the "average" long-term evolution of the family of indistinguishable QM systems is irreversible. This paper, in its first part, follows a different approach. Within the confines of what I call "primitive" quantum mechanics-a formalism usually described in textbooks as The Quantum Mechanics-I demonstrate that there exists many finite-dimensional approximations of the original Hilbert state, which produce the results of measurement of any observable, which are arbitrarily close to the true quantum mechanical expectations. This is a direct consequence of well-known approximation property in Banach spaces. Because, the extension of the approximation of the original unitary evolution operator on a finite-dimensional space can have infinite-dimensional ("fat") kernel on the original Hilbert space, this proves that there are many degenerate operators in the arbitrary vicinity of the true QM evolution.</p><p>In the second part, I use considerations analogous to the Mandelstam-Tamm uncertainty relation to demonstrate that an infinite precision for the quantum-mechanical measurement, in general, requires infinite time of measurement. For a physical experiment, limited in time, i.e. having a beginning and an end, there is no general possibility to distinguish between a measurement made by a perfect, or a "coarse-grained" device. Because of that, reconstruction of an original quantum state back to its origins is usually impossible and the unitary nature of quantum-mechanical evolution is irrelevant. Presented results are not the only limits on "computability" in quantum mechanics and the author hopes to present other limitations in subsequent publications.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>1.</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Finite-dimensional Approximation of Quantum Observables</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Primitive quantum mechanics</head><p>In this section, we describe the structure of "primitive" (or standard) quantum mechanics. The author acknowledges caveats, both theoretical and practical, in this description but this is what is typically meant by "quantum mechanics" in conventional textbook treatments. (see e.g. Chapter 2 of Nielsen and <ref type="bibr" target="#b2">Chuang, 2001</ref> with the reference to <ref type="bibr" target="#b17">Sakurai, 1995 and</ref><ref type="bibr" target="#b3">Cohen-Tannoudji, Diu and</ref><ref type="bibr">Laloe, 1977)</ref> Namely, given is a separable Hilbert space over the complex numbers field L , the vectors</p><p>Ψ∈ L of which are called states. The select Hermitian injection operator Ĥ : L → L is called Hamiltonian. There are other Hermitian operators Â on L, which are called observables. All linear operators on the Hilbert space constitute an algebra over the field of complex numbers. All bounded operators on L: 〈Ψ|B|Ψ 〉&lt;∞ have a natural norm defined by the identity:</p><formula xml:id="formula_0">∥B∥= supr 〈 Ψ|Ψ 〉=1 〈 Ψ|B|Ψ〉 〈Ψ|Ψ 〉<label>(1)</label></formula><p>This norm, under some generic assumptions, turns algebra of bounded operators on L into a Banach space.</p><p>Quantum mechanical evolution is described by the exponential of the Hamiltonian:</p><formula xml:id="formula_1">U =e i Ĥ t (2)</formula><p>as transformations of the state vector. This exponential, under certain mild conditions is a unitary operator.<ref type="foot" target="#foot_1">foot_1</ref>  <ref type="bibr" target="#b6">(Dunford and Schwartz, 1971</ref>, Chapter VIII) Note, that, first, we consider explicitly relativistically non-covariant formulation of the quantum mechanics. Second, our Hamiltonian is timeindependent to simplify the analytic reasoning. Otherwise, we have to deal with time ordering of exponential operators. Comment on these limitations will be provided in Part II of the present work.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Convergence of truncated observables</head><p>First, we note the following obvious property of any primitive quantum mechanics as a system.</p><p>Separable Hilbert space L possesses a complete system of mutually orthogonal eigenvectors. <ref type="bibr" target="#b6">(Dunford and Schwartz, 1971)</ref> Because we admitted the existence of a Hamiltonian operator, rotation to one of these bases turns the energy norm into a diagonal Dirichlet form.</p><p>For a mathematically inclined reader, the rest of the Section 1B is a reminder of the approximating property for the Banach space of observables. <ref type="bibr" target="#b11">(Kato, 1966</ref><ref type="bibr">, Chapter IX, Lindenstrauss and Tzafiri, 1977</ref><ref type="bibr" target="#b7">, Fabian, 2001</ref>, Chapter 15) However, the approximating property in conventional context is proven (or rejected) for the case of operators in general Banach spaces. For us, it is sufficient to deal with a much more limited situation of non-compact linear operators (observables) on a Hilbert space.</p><p>The truncation of this system to the first n vectors defines a projector P n and orthogonal projector Q n&gt;N on the Hilbert subspace orthogonal to the first n vectors. Obviously, for each n:</p><formula xml:id="formula_2">Det n' ( P n B P ' n )=0<label>(3)</label></formula><p>for an arbitrary non-singular matrix B on a finite-dimensional Hilbert subspace with dimension n'&gt;n engendered by the same sequence of projection operators.</p><p>Now we can formulate the first lemma.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Lemma 1</head><p>For any ε&gt;0, ᴲ ∃n&gt;0 , such that the expectation of an arbitrary observable obeys at all times:</p><formula xml:id="formula_3">|〈 Ψ| Â(t)-P n Â(t) P ' n |Ψ 〉| |〈 Ψ|Ψ〉| &lt;ε (4)</formula><p>This lemma is an automatic consequence of the approximation property of the Banach spaces. Yet, I emphasize demonstration more limited in scope but which is applicable when observables are unbounded operators.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Corollary 1 from Lemma 1</head><p>For any ε&gt;0 ∃n ' &gt;n such that Û n =P n U P ' n , |Det n ' Û n |=0 and U from Equation (2):</p><formula xml:id="formula_4">|〈 Ψ|U -Û n |Ψ 〉| 〈 Ψ|Ψ 〉 &lt;ε (6)</formula><p>Above, the Det n' Û n is the determinant of the operator U n acting on the n'-dimensional subspace of the original Hilbert space L. The Corollary 1 follows from taking Â0 = Î as an observable in Lemma 1. Note that this operator is not compact. Corollary 1 demonstrates that for any unitary operator of the form of Equation ( <ref type="formula">2</ref>), there is an operator with non-zero (in fact, infinite-dimensional kernel) which is arbitrarily close to the original U by the "natural" operator norm of the Banach space.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Construction of the measurement device</head><p>Here we shall quantify a "primitive" theory of measurement, which is a condensed version of a standard textbook theory of measurement <ref type="bibr" target="#b2">(Chuang and Nielsen, 2001)</ref> and is close to the axiomatic formulation by <ref type="bibr" target="#b15">Mackey (1960)</ref>.</p><p>Namely, a measurement device is a non-empty family of (weakly convex) measures μ α on a (locally) compact subalgebra C of the algebra of the observables, obeying a conventional system of axioms for measure. <ref type="bibr">(McKay, 1960)</ref> Then, the measurement operator for an observable Â(t ) is defined by:</p><formula xml:id="formula_5">M α = ∫ Â(t) d μ α (7)</formula><p>wherever this integral exists. Note that even if the integral of Equation ( <ref type="formula">7</ref>) is well-defined for t=0, it is not necessary that it exists for all t&gt;0. Thus, it makes sense to define a subalgebra κ t ⊆ C , for which Equation ( <ref type="formula">7</ref>) is well-defined for a given measurement device. The probability distribution P α for the measurement results is described by a conventional Born formula:</p><formula xml:id="formula_6">P α (t )= ∫ κ t 〈Ψ| Â(t)|Ψ〉 d μ α = Δ P α (t|κ t )<label>(8)</label></formula><p>The example of the measurement device is easy to define. Namely, for each finite-dimensional family of the state vectors, which can also be identified with functionals on the original Hilbert space L through conventional duality, { Ψ i } , i=1, N, a measurement device can be described by the following Equation ( <ref type="formula">9</ref>):</p><formula xml:id="formula_7">μ α (t)=Σ i ρ αi (t )|Ψ i 〈 〉 Ψ i | (9)</formula><p>Obviously, from the normalization condition:</p><formula xml:id="formula_8">∑ α ρ α , i (t )=1<label>(10)</label></formula><p>In 1957, Gleason proved a remarkable theorem that the expressions of Equation ( <ref type="formula">9</ref>), if we allow the index to span all basis vectors, under certain seemingly innocuous conditions exhaust all the possible measures <ref type="bibr" target="#b9">(Gleason, 1957</ref><ref type="bibr" target="#b15">, Mackey, 1960)</ref>. Because of that, the measures of the type (9) can be identified with all convex measures on finite-dimensional subspaces of L.</p><p>In the parlance of Mackey (1960, Chapter 2), any measurement device can be decomposed into (or, more, colloquially, answers to) a finite series of questions, which Mackey defined as projectors into one-dimensional subspaces of an original Hilbert space L. <ref type="foot" target="#foot_2">3</ref>This formulation of measurement theory agrees with an intuitive notion that a "sensible" measurement device has a finite number of internal states subject to experimental monitoring. Then, the (optional) time dependence of the coefficients ρ α, i (t) can be naively interpreted as the values of "dials" changed by the experimentalist in course of the measurement. The monitoring itself, however, can be accomplished at an infinite number of points-or even be continuous-in some contexts it might be beneficial to identify parameter α with the reading T of an internal clock of the device.</p><p>In the above formulation, there is no separate macroscopic measurement device obeying "classical laws" and the observed particle obeying quantum mechanics. "Macroscopic" simply means that the measurement device has one or more degrees of freedom, which are impossible or impractical to control quantum mechanically and for which one must use statistical description.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">Time Limits on the Distinguishability of the Quantum Observables</head><p>A possibility to approximate any Hermitian operator on a Hilbert state by a weakly compact (i.e. irreversible) operator does not mean, in general, that one cannot make measurements with a complete preservation of the initial observable. Yet, in this section, we demonstrate that it, in general, is incredibly difficult. In particular, we point out that more and more precise measurements have diminishing returns in terms of the Fisher information. <ref type="bibr" target="#b0">(Bickel and</ref><ref type="bibr">Doksum, 2000, Fröwis, 2012)</ref> This fact means that one cannot, in general, improve the resolution of quantum mechanical observables indefinitely, though this possibility may exist in very special cases.</p><p>A. Criterion for the efficiency of quantum measurement</p><p>The existence of many similar but less informative quantum states in the vicinity of the "true" state, which is the product of unitary evolution of an original one, does not necessarily mean the impossibility of distinguishing between them. However, to accomplish this distinction, one needs at least a theoretical opportunity to increase the precision of a quantum measurement procedure indefinitely. To investigate this matter, we need to elaborate further on the protocol of quantum measurement.</p><p>Every quantum mechanical measurement relies on several idealized steps. First, the measurement apparatus is prepared in a quantum certain state at t=0. Then, it is put in contact with the system undergoing the measurement (which is conventionally called particle) and the probabilities of transition of the measurement apparatus into its internal states are read out at some time t&gt;0.</p><p>To describe this situation, we need to distinguish between the Hamiltonian of the system undergoing the measurement H S and the Hamiltonian of the measurement apparatus-system interaction V. In this Section, we discuss the criteria for the quality of the quantum measurement. Let the total wavefunction be as follows:</p><formula xml:id="formula_9">|Ψ(t )〉= ∑ i =1 N c i | ψ i (t) 〉 + ∑ j=N +1 ∞ d j | ψ j (t) 〉 ≡P N |Ψ(t)〉+Q N |Ψ(t)〉<label>(11)</label></formula><p>or</p><formula xml:id="formula_10">|Ψ(t )〉= ∑ i =1 N c i e i E i t / ℏ e i V t / ℏ | ψ i (0) 〉 + ∑ j =N +1 ∞ d j e i E j t /ℏ e i V t / ℏ | ψ j (0) 〉 (12)</formula><p>Here, the index i refers to the (finite) number of eigenstates of the measurement apparatus, which are brought into contact with a particle, and the index j-to the potentially infinite number of eigenstates of the measured particle. P N and Q N are the orthogonal projectors on the Hilbert subspaces formed by the eigenstates of the unperturbed Hamiltonian. Interaction V is considered as perturbation.</p><p>Using generalized Born rule for the transition probability, we obtain:</p><formula xml:id="formula_11">P α (t )= ∑ i |c i | 2 ρ αi |〈 ψ i (0) | e i V t /ℏ | ψ i (0)〉| 2 + ∑ i , j c i d j e i (E i -E j )t / ℏ ρ α i |〈 ψ i (0) | e i V t / ℏ | ψ j (0)〉| 2 + ∑ i , j ci d j e -i( E i -E j )t /ℏ ρ α i |〈ψ j (0)|e i V t /ℏ |ψ i (0)〉| 2 + ∑ i |d j | 2 ρ αi |〈 ψ j ( 0)|e i V t /ℏ |ψ j ( 0) 〉| 2 (13)</formula><p>If the measurement apparatus and the measured system were never brought in contact with each other, the internal states of measurement apparatus also would evolve but according to the formula:</p><formula xml:id="formula_12">P ' α (t)= ∑ i |c i | 2 ρ αi |〈 ψ i (0) | e i V t / ℏ | ψ i (0)〉| 2 + ∑ i |d j | 2 ρ αi |〈 ψ j (0) | e i V t / ℏ | ψ j (0)〉| 2 (14)</formula><p>A natural criterion of the efficiency (quality) of our measurement would be the analog of the Kolmogorov-Smirnov distance <ref type="bibr" target="#b18">(Shorack and Wellner, 2009)</ref>:</p><formula xml:id="formula_13">Q=max t |P α (t )-P ' α (t )| (15)</formula><p>This criterion identifies the quality of measurement with the K-S distance between the distributions of the probability of internal states of the measurement device in cases of free evolution and the evolution affected by the interaction with a particle.</p><p>The quality of measurement is equal to:</p><formula xml:id="formula_14">Q=max t [.] | ∑ i , j c i d j e i (E i -E j )t / ℏ ρ αi |〈 ψ i (0)|e i V t /ℏ |ψ j (0)〉| 2 + ∑ i , j ci d j e -i( E i -E j )t /ℏ ρ α i |〈ψ j (0)|e i V t /ℏ |ψ i (0)〉| 2 | (<label>16</label></formula><formula xml:id="formula_15">)</formula><p>below we shall make a useful notation</p><formula xml:id="formula_16">γ ji = γij =e -i (E i -E j )t / ℏ . With it, Q=max t | ∑ i , j c i d j γ ij ρ αi |〈 ψ i (0)|e i V t / ℏ |ψ j (0)〉| 2 + ∑ i , j ci d j γ ji ρ αi |〈 ψ j ( 0)|e i V t / ℏ |ψ i (0)〉| 2 | (<label>17</label></formula><formula xml:id="formula_17">)</formula><p>We shall use this expression in the next section to prove that an arbitrarily accurate quantum measurement might take arbitrarily long time.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Temporal limits on the resolution of the quantum devices</head><p>In this section, we prove that the resolution of the quantum devices cannot be, in general, increased indefinitely if the measurement lasts a finite time. This limitation has an intimate connection with the Mandelstam-Tamm uncertainty relation. <ref type="bibr" target="#b14">(Mandelstam, Tamm, 1945)</ref> We compare the quality of the measurement achievable by a "perfect" measurement device and a "coarsened" measurement device, in which the interaction Hamiltonian is truncated to a finite number of states. The quality of the measurement made by a perfect device is expressed by the Equation ( <ref type="formula">18</ref>), in which the summation indexes are made explicit:</p><formula xml:id="formula_18">Q=max t [|q( t)|]=max t [.] [ | ∑ i =1, j= N +1 i= N , j =∞ c i d j γ ij ρ αi |〈ψ i (0) | e i V t ℏ | ψ j (0)〉| 2 + ∑ i=1, j =N +1 i =N , j=∞ ci d j γ ji ρ α i |〈 ψ i (0) | e i V t ℏ | ψ j ( 0)〉| 2 | ] (18)</formula><p>The quality of measurement by the coarse device is expressed by a similar formula with different limits</p><formula xml:id="formula_19">Q=max t =max t [|q (t)|] [ | ∑ i =1, j= N +1 i= N , j =N 1 c i d j γ ij ρ αi |〈ψ i (0) | e i V t ℏ | ψ j (0)〉| 2 + ∑ i=1, j =N +1 i =N , j= N 1 ci d j γ ji ρ α i |〈 ψ i (0) | e i V t ℏ | ψ j ( 0)〉| 2 | ] (19)</formula><p>By construction, Q⩾ Q⩾0 .</p><p>According to the triangle inequality:</p><formula xml:id="formula_20">0⩽F ≡|Q|-| Q|⩽max t (|q (t)-q( t)|) .<label>(20)</label></formula><p>It can be demonstrated that, in general, the fidelity factor of the measurement F, i.e. the difference of readout for a perfect and coarse devices is infinitesimal for any finite time of the measurement procedure.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Theorem 1</head><p>For any ε&gt;0 and sufficiently low correlations between the elements of the matrix</p><formula xml:id="formula_21">M ij =c i d j γ ij : ∑ j= N 1 ∞ ℜ[M ij ], ℑ[M ij ] → N 1 →∞ 0 (21)</formula><p>there exists a numerical constant A such that</p><formula xml:id="formula_22">F ⩽A t ε<label>(22)</label></formula><p>The condition of Equation ( <ref type="formula">21</ref>) on the stochasticity of the matrix elements M ij is natural to be called "Peres condition" after Asher Peres, who was first to connect non-integrability of the perturbation Hamiltonian with the irreversibility in quantum mechanics <ref type="bibr" target="#b16">(Peres, 1984)</ref>. This concludes our reasoning that experimental distinction between correct, i.e. information-preserving original state and its finite-dimensional approximation is a virtual impossibility. The above caveat is essential because our demonstration is provided in restrictive conditions, which can sometimes be violated.</p><p>Heuristically, Theorem 1 states a rather simple fact: for a general measurement procedure adding more and more eigenstates brings diminishing returns to the Fisher information <ref type="bibr" target="#b8">(Fröwis, 2012)</ref> obtained through that measurement. The proof requires a technical Lemma 2 (Appendix, see also <ref type="bibr" target="#b19">Schmudgen, 2012 and</ref><ref type="bibr" target="#b4">Derezinski, 2013)</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Lemma 2</head><p>The evolution operator of Equation ( <ref type="formula">2</ref>) is a smooth function of t in the complex band -∞&lt;Re(t)&lt;∞, 0≤Im(t)&lt;u&lt;∞.</p><p>Consequence of the proof of Theorem 1 is the following inequality. (Equation (A.10) of the Appendix) Because of the convergence of the series of matrix elements, for a large enough N 1 , the infinite sum ∑ N 1</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>∞</head><p>Ṽ ij converges to a finite limit. Then,</p><formula xml:id="formula_23">f i ⩽4 K ρ α , i | ∑ j =N 1 ∞ ℜ[M ij ] ( Ṽ ij t ℏ ) | ⩽C ε t ℏ | ∑ j= N 1 ∞ Ṽ ij | ⩽ C t ℏ ε<label>(23)</label></formula><p>Because the number of internal states of the measurement device is finite, so is F-fidelity of distinction between precise and coarse devices:</p><formula xml:id="formula_24">F &lt;At ε (23')</formula><p>In Equation ( <ref type="formula" target="#formula_23">23</ref>), A ,C , C , K &lt;∞ are numerical constants. Due to the Equation (22-22'), the quality of measurement is infinitesimal for any finite time. Note that our set of inequalities breaks down for interaction-dependent characteristic times defined by:</p><formula xml:id="formula_25">t&gt;t 0 = π 2 ℏ max i , N 1 ( Ṽ i , N 1 )<label>(24)</label></formula><p>because for the times longer than t 0 , the convexity of the sin(x) breaks down. The result is that, in general, one cannot make a distinction between "coarse" and "perfect" measurement device during a finite time of arbitrary experiment. Together with the conclusions of the Section 1, we deduce that the distinction between unitary operator on a Hilbert space and its finite-dimensional approximation (having infinite-dimensional kernel) is impossible.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Conclusion</head><p>We proved, albeit in a very simplified and restrictive framework, that within the confines of non-relativistic quantum mechanics, the distinction between a unitary operator and its finite-dimensional approximations cannot, in general, be observable. Relativistic framework intuitively seems only to complicate matters with the observability. However, it seems to this author that, at least, the demonstration where t is not a parameter but a coordinate on the future space-time cone can be instructive.</p><p>While the information is preserved during unitary quantum-mechanical evolution, in general there is no experimental possibility to reconstruct an original unitary operator from the values of any observable during a finite time of measurement. The loss of information about initial quantum state is inevitable.</p><p>Yet, the existence of symbolic Peres condition (stochastic distribution of eigenvalues, Section 2B) demonstrates that this conclusion is not universal and in some, well-designed experiments, complete reconstruction of an original unitary operator and backdating of a quantum state to its origin may be possible. Whether it is possible with all naturally occurring astrophysical systems is another question entirely.</p><p>∥ ∫ -∞ -λ 0 e -λ t ( V -i λ I ) -1 d λ∥+∥ ∫ λ 0 ∞ e -λ t ( V -i λ I ) -1 d λ∥&lt;ε (A.5)</p><p>For the n-th derivative, λ 0 can be replaced by λ 0 + 2n log λ 0 with the preservation of the same inequality.</p><p>Jourdan's lemma assures the convergence of (A.4) in the complex band.</p><p>Proof of Theorem 1 Separating, as usual, Hermitian and anti-Hermitian part of the interaction evolution operators <ref type="bibr" target="#b13">(Loudon, 2000</ref>)</p><formula xml:id="formula_26">F ≡ ∑</formula><formula xml:id="formula_27">e i V t / ℏ = ĉ os ( V t ℏ )+i ŝ in( V t ℏ ) (A.7)</formula><p>we obtain an equality: .8)   where we have used the operator identity ĉos 2 X + ŝin 2 X = 1 and the mutual orthogonality of the wave function systems of the apparatus {ψ i (0)}, i=1, N and the particle {ψ j ( 0)} , j= N +1, ∞ . This situation will be discussed below.</p><formula xml:id="formula_28">f i ⩽ | ∑ j =N 1 j =∞ c i d j γ ij ρ α i 〈 ψ i (0) | ŝ in( V t ℏ ) | ψ j (0)〉+ ∑ j= N 1 j=∞ ci d j γ ji ρ αi 〈 ψ i (0) | ŝ in ( V t ℏ ) | ψ j (0)〉 | (A</formula><p>Because of the convexity of the sin(x) function in the first quadrant 0≤x≤π, for sufficiently small t, we can apply Mond-Pečaric theorem <ref type="bibr">(Theorem 91, p. 62, Dragomir (2011)</ref>). The theorem places limitations on the convex functions of operators with the spectrum, which is concentrated on the closed interval on the real axis. The inequality in (A.8) can be replaced by the inequality containing the absolute values of matrix elements V ij&gt; N 1 :</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>1 i</head><label>1</label><figDesc>=N , j=∞ c i d j γ ij ρ αi |〈ψ i (0</figDesc></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="1" xml:id="foot_0"><p>Peter B. Lerner, Scitech Associates, LLC, Ithaca, NY. pblerner@syr.edu, pbl2@psu.edu</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="2" xml:id="foot_1"><p>In particular, operator H is not necessarily required to be bounded.(Derezinsky, 2013)   </p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="3" xml:id="foot_2"><p>The name of these projection operators as questions is justified by their eigenvalues, which can be only 0 or 1.</p></note>
+		</body>
+		<back>
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Proof of Lemma 1</head><p>First, note that for each n, 〈Ψ P ' n |P n Ψ 〉&lt;∞ and 〈Ψ Q ' n |Q n Ψ 〉&lt;∞ . I.e. for each δ&gt;0, ᴲ ∃n , such that | Σ n ' &gt;n c * n ' c n ' |&lt;δ where c n ' =〈 Ψ|P n ' Ψ 〉 . This follows from the convergence of the eigenfunction expansion. Second, for each ε&gt;0 ∃n , such that |〈 Ψ|Q n |Ψ〉|&lt;ε .</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Given that</head><p>the denominator of the Equation (4) of the main text :</p><p>where</p><p>Then it is sufficient to chose δ&lt;ε|〈Ψ|Ψ〉|/ 2 and n such that |〈 Ψ|Q n |Ψ〉|&lt;ε|〈Ψ|Ψ 〉|/2|〈 Ψ| Â(t)|Ψ〉| . The latter is always possible because states have a finite norm. The cross terms with P n and Q n are eliminated through orthogonality of the projectors.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Proof of Lemma 2</head><p>Following <ref type="bibr" target="#b19">Schmudgen (2012)</ref>, we assume that the interaction operator obeys the inequality for each</p><p>x ∈ L where A and B are numerical constants:</p><p>For the interaction operator, there exists a spectral representation (VIII. <ref type="bibr">1-2, Danford and Schwartz, 1971</ref>):</p><p>This representation can be differentiated in t any number of times without affecting its convergence. If the integral (A.4) exists then there is λ 0 such that:</p><p>where M ij =c i d j γ ij and Ṽ ij =|〈ψ i (0)| V|ψ j (0)〉| and K&lt;∞.</p><p>Also, from the Lemma2 we know that the evolution operator is a smooth function of t in the complex band -∞&lt;Re(t)&lt;∞, 0≤Im(t)&lt;u&lt;∞. Because of the convergence of the series of matrix elements, for a large enough N 1 , the infinite sum ∑ N 1</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>∞</head><p>Ṽ ij converges to a finite limit. Then, the Peres condition on the matrix elements M ij assures convergence of the fidelity in the channel i to zero:</p><p>In Equation (A.10), C , C&lt;∞ is a numerical constant. Due to the Equation (A.10) and finite number of the channels in any measurement device, quality of measurement is infinitesimal for any finite time.</p><p>Note that our set of inequalities breaks down for characteristic times defined by: <ref type="bibr">.11)</ref> because for the times longer than t 0 , the convexity of the sin(x) breaks down.</p><p>Quantum Mechanics, Black Bay Publishers.</p><p>Uffink, J. <ref type="bibr">(1993)</ref>, The rate of evolution of a quantum state, American Journal of Physics, 61, 935.</p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<monogr>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">J</forename><surname>Bickel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">A</forename><surname>Doksum</surname></persName>
+		</author>
+		<title level="m">Mathematical Statistics: Basic Ideas and Selected Topics</title>
+		<imprint>
+			<date type="published" when="2000">2000</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title/>
+	</analytic>
+	<monogr>
+		<title level="j">NJ</title>
+		<imprint>
+			<publisher>Prentice Hall</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<monogr>
+		<author>
+			<persName><forename type="first">I</forename><forename type="middle">L</forename><surname>Chuang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">A</forename><surname>Nielsen</surname></persName>
+		</author>
+		<title level="m">Quantum Computation and Quantum Information</title>
+		<imprint>
+			<publisher>Cambridge University Press</publisher>
+			<date type="published" when="2001">2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">C</forename><surname>Cohen-Tannoudji</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Diu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Laloë</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Quantum Mechanics</title>
+		<imprint>
+			<biblScope unit="volume">1</biblScope>
+			<date type="published" when="1977">1977</date>
+			<publisher>John Wiley and Sons</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<monogr>
+		<title level="m" type="main">Unbounded Linear Operators, Lecture notes</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Derezinski</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2013-06">June 2013</date>
+			<pubPlace>Warsaw, Poland</pubPlace>
+		</imprint>
+		<respStmt>
+			<orgName>University of Warsaw</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<monogr>
+		<title level="m" type="main">Inequalities for Functions of Selfadjoint Operators on Hilbert Spaces</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Dragomir</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2011-01">Jan. 2011</date>
+			<pubPlace>Melbourne, Australia</pubPlace>
+		</imprint>
+		<respStmt>
+			<orgName>Victoria University</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<monogr>
+		<title level="m" type="main">Linear Operators, Part I</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Dunford</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">T</forename><surname>Schwartz</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1971">1971</date>
+			<publisher>NY</publisher>
+			<pubPlace>New York</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<monogr>
+		<author>
+			<persName><forename type="first">M</forename><surname>Fabian</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Fabian</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Habala</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Hajek</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Montesinos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Zigler</surname></persName>
+		</author>
+		<title level="m">Functional Analysis and Infinite-Dimensional Geometry</title>
+		<meeting><address><addrLine>New York, NY</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2001">2001. 2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<monogr>
+		<title level="m" type="main">The kind of entanglement that speeds up quantum evolution</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Fröwis</surname></persName>
+		</author>
+		<idno>arxiv.org:1204.1212v2</idno>
+		<imprint>
+			<date type="published" when="2012-05-31">May 31, 2012</date>
+		</imprint>
+		<respStmt>
+			<orgName>University of Innsbruck Preprint</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Measures on the closed subspaces of a Hilbert space</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">M</forename><surname>Gleason</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Mathematics and Mechanics</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="page" from="885" to="893" />
+			<date type="published" when="1957">1957</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<author>
+			<persName><forename type="first">S</forename><surname>Kantrovitz</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Topics in Operator Semigroups</title>
+		<title level="s">Progress in Mathematics</title>
+		<imprint>
+			<date type="published" when="2010">2010</date>
+			<biblScope unit="volume">281</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<monogr>
+		<title level="m" type="main">Perturbation Theory of Linear Operators</title>
+		<author>
+			<persName><forename type="first">T</forename><surname>Kato</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1966">1966</date>
+			<publisher>FRG</publisher>
+			<pubPlace>Heidelberg</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<monogr>
+		<title level="m" type="main">Classical Banach Spaces, Vols. I</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Lindenstrauss</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Tzafiri</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1977">1977</date>
+			<publisher>Springer</publisher>
+			<biblScope unit="volume">II</biblScope>
+			<pubPlace>Heidelberg, FRG</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<monogr>
+		<author>
+			<persName><forename type="first">R</forename><surname>Loudon</surname></persName>
+		</author>
+		<title level="m">The Quantum Theory of Light</title>
+		<meeting><address><addrLine>Oxford</addrLine></address></meeting>
+		<imprint>
+			<publisher>UK</publisher>
+			<date type="published" when="2000">2000</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">L</forename><surname>Mandelstam</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Tamm</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Phys. USSR</title>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="page">249</biblScope>
+			<date type="published" when="1945">1945</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<monogr>
+		<title level="m" type="main">Mathematical Foundations of Quantum Mechanics</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Mackey</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1960">1960</date>
+			<publisher>Dover Publications</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Stability of quantum motion in chaotic and regular systems</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Peres</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">30</biblScope>
+			<biblScope unit="page" from="1610" to="1615" />
+			<date type="published" when="1984">1984</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<monogr>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">J</forename><surname>Sakurai</surname></persName>
+		</author>
+		<title level="m">Modern Quantum Mechanics</title>
+		<imprint>
+			<publisher>Addison-Wesley</publisher>
+			<date type="published" when="1995">1995</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<author>
+			<persName><forename type="first">G</forename><surname>Shorack</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">A</forename><surname>Wellner</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Empirical Processes With Applications to Statistics</title>
+		<imprint>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Unbounded Self-adjoint Operators on Hilbert Space</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Schmudgen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="s">Graduate Texts in Mathematics</title>
+		<imprint>
+			<date type="published" when="2012">2012</date>
+			<publisher>Germany</publisher>
+			<pubPlace>Heidelberg</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

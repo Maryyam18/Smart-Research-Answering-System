@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">An Efficient and Publicly Verifiable Id-Based Multi-Signcryption Scheme</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Munendra</forename><surname>Agrawal</surname></persName>
+							<email>munendra.agrawal1@gmail.com</email>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Mathematics</orgName>
+								<orgName type="institution">IBS</orgName>
+								<address>
+									<settlement>Khandari Agra-282002 (UP) -INDIA</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Prashant</forename><surname>Kushwah</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Mathematics</orgName>
+								<orgName type="institution">IBS</orgName>
+								<address>
+									<settlement>Khandari Agra-282002 (UP) -INDIA</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Sunder</forename><surname>Lal</surname></persName>
+							<email>sunder_lal2@rediffmail.com</email>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Mathematics</orgName>
+								<orgName type="institution">IBS</orgName>
+								<address>
+									<settlement>Khandari Agra-282002 (UP) -INDIA</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">An Efficient and Publicly Verifiable Id-Based Multi-Signcryption Scheme</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date/>
+						</imprint>
+					</monogr>
+					<idno type="MD5">72F9C1486BE06C9FF1D541596CA17567</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-28T12:42+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Identity based cryptography</term>
+					<term>Signcryption</term>
+					<term>Multi-Signcryption</term>
+					<term>Bilinear pairing</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Multi-signcryption is used when different senders wants to authenticate a single message without revealing it. This paper proposes a multi signcryption scheme in which no pairing is computed on the signcryption stage and the signatures can be verified publicly.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>broadcast an e-mail to the employees of the company independently. Once an employee receives several ciphertexts from different managers, an issue of message authentication will arise. In such case confidentiality and authenticity required simultaneously. Motivated by this Duan and Cao <ref type="bibr" target="#b10">[10]</ref> gave the first multi-receiver identity based signcryption scheme. Later on some more multi-receiver identity based signcryption schemes were proposed <ref type="bibr" target="#b12">[12,</ref><ref type="bibr" target="#b17">17,</ref><ref type="bibr" target="#b19">19,</ref><ref type="bibr" target="#b21">21]</ref>.</p><p>In this paper, we propose an identity based multi-signcryption scheme which is more efficient then the schemes S. Deva et. al <ref type="bibr" target="#b18">[18]</ref> and Zhang et. al <ref type="bibr" target="#b23">[23]</ref>. Our scheme needs no pairing computation on the signcryption stage. The scheme also possesses public verifiability for signature. We also convert our proposed scheme for multiple receivers, which we believe is the first multi-signcryption scheme for multiple receivers.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">Preliminaries:</head><formula xml:id="formula_0">Let 1</formula><p> be an additive group and 2  be a multiplicative group, of the same prime order q . A function</p><p>1 1 2 e:    is called a bilinear pairing if it satisfies the following properties: (i) * ab 1q P,Q , a, b ,e(aP, bQ) e(P,Q)  (ii) For any point 1 P , e(P, Q) 1  for all 1 Q  if only if P  , the identity of 1 </p><p>(iii) There exists an efficient algorithm to compute  is to compute abP .</p><p>Given two groups 1  and 2  of the same prime order q , a bilinear map Before giving the proposed multi-signcryption scheme, first we formalize Identity based Multi-Signcryption An Identity based Multi-Signcryption scheme consists of the following algorithms:</p><p>Setup: Given a security parameter k, the Private Key Generator (PKG) chooses a secret value randomly and generates master secret key msk and the public parameters params of the system. Key Extract: Given a user identity * ID {0,1} , the PKG computes the corresponding private key S and transmits it to the user in a secure way.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Signcrypt</head><p>: Different users with identities 1n L {ID ,..., ID } run this algorithm to signcrypt a message m to the receiver"s identity B ID to obtain signcryption . Unsigncrypt: The receiver B with identity B ID and private key B S runs this algorithm to obtain plaintext m , if is a valid signcryption from L to identity B ID otherwise return . For consistency, we require that if 1 n 1 n B signcrypt( , L {ID , ..., ID }, S , ..., S , ID ), m then 1 n B B</p><p>unsigncrypt( , L {ID ,..., ID }, ID , S ) m .</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.">The proposed scheme:</head><p>Setup: Given k is the security parameter, the PKG chooses the system parameter that includes two groups 12 ,  of same prime order q , a bilinear map </p><formula xml:id="formula_1">H :{0,1}  , 12 H : {0,1} l  , * 2 1 1 q H :{0,1} l    </formula><p>where l is the length of plaintext and ciphertext .</p><p>The system public parameters are x  and computes ii X x P ,</p><formula xml:id="formula_2">x i i Y and i i B U x (R Q ) .</formula><p>(ii) Sends i i i (X , Y , U ) to other signers through a secure channel.</p><p>(iii) After receiving from the other signers j j j (X , Y , U ) , user i ID computes (a (iii) Unforgeability: Signcryptext is generated using the secret key i S of each of the signers. Thus no one, not even the one among signers can generate a valid signcryptext without knowing the secret key of the signers.</p><formula xml:id="formula_3">) n i i1 XX , n i i1 YY , n i i1 QQ and n i i1 UU . (b) 1 c H (Y) m . (c) 2 h H (c, X, U) . (d) i i i Z hS x Q (iv) Each</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.">Efficiency Comparison:</head><p>We compare efficiency of our scheme with existing schemes <ref type="bibr" target="#b18">[18,</ref><ref type="bibr" target="#b23">23]</ref>. We consider the costly operations which include scalar multiplications in</p><p>1  ( 1  Mul), exponentiations in 2  ( 2  Exp) and pairing operations (Pairing) as shown below Signcrypt Unsigncrypt 1  Mul 2  Exp Pairing 1  Mul 2  Exp Pairing S. Deva et al. [18] 3n n n 0 1 4 Zhang et al. [23] 4n 0 n 0 1 4 Proposed Scheme 4n n 0 1 0 4 Table -1 6. Remarks:</p><p>(i) In the proposed schemes, we use the concept of Duan and Cao <ref type="bibr" target="#b10">[10]</ref> which they proposed to construct an Identity based Multi-receiver signcryption scheme.</p><p>(ii) One of the important advantages of the proposed scheme is that no pairing computation is needed for signcryption. This makes the scheme quite efficient.</p><p>(iii) To achieve efficiency in Zhang et al. scheme <ref type="bibr" target="#b23">[23]</ref>, only one signer will compute the signcryptext but in our scheme every user can generates own copy of signcryptext.</p><p>(iv) The proposed scheme is publicly verifiable. Any one who can access to the signcryptext can verify the signature on ciphertext c . Thus the proposed scheme is more applicable when signing a joint confidential contract between two or more organizations. Any one can verify the authenticity of the contract without getting any knowledge of it, however, only the authority can read the contract.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.">Identity Based Multi-Signcryption Scheme for Multiple Receiver:</head><p>An Identity based Multi-Signcryption scheme for Multi-Receivers consists of the following algorithms:</p><p>Setup: Given a security parameter k, the Private Key Generator (PKG) chooses a secret value randomly and generates master secret key msk and the public parameters params of the system.</p><p>Key Extract: Given a user identity * ID {0,1} , the PKG computes the corresponding private key S and transmits it to the user in a secure way. L {ID ' ,..., ID ' } , and to obtain signcryption .</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Signcrypt</head><p>Unsigncrypt: Each receiver with identity j ID' and private key j S' runs this algorithm to obtain plain text m if is a valid signcryption from L to identity j ID' otherwise return .</p><p>For consistency, we require that if</p><formula xml:id="formula_4">* 1 n 1 n 1 n '</formula><p>signcrypt( , L {ID ,..., ID },S ,...,S , L {ID ' ,..., ID ' }), m then</p><formula xml:id="formula_5">* 1 n 1 n ' 1 n '</formula><p>unsigncrypt( , L {ID ,..., Id }, L {ID ' ,..., ID ' },S' ,...,S' ) m .</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>The proposed scheme:</head><p>Setup: Given k is the security parameter, the PKG chooses the system parameter that includes two groups 12 ,  of same prime order q , a bilinear map</p><p>1 1 2 e:    , a generator 1 P  , randomly chosen Rq s  , R1 R (R P , )   and computes pub 1 P sP  and pub e(P , R) . The PKG also choose cryptographic hash functions * 01 H :{0,1}  , 12 H : {0,1} l  , ** 2q H :{0,1}  where l is the length of plaintext and ciphertext . The system public parameters are 1 2 pub 0 1 2 params q, , ,e, , P, P , , R, H , H , H l  Key Extract: Given a user identity * ID {0,1} then PKG compute public key ID 0 Q H (ID) and private key ID ID S sQ . Signcrypt: Given a message {0,1} l m , ' n receiver"s identity * 1' L {ID ' ,..., ID ' } n and n senders" identities 1 L {ID ,..., ID }, n each user i ID execute the following steps (i) Randomly chooses * iq x  and computes ii X x P , x i i Y and i, j i j U x (R Q' ) for j 1,..., ' n . (ii) Sends i i i,1 i,2 i, ' (X , Y , U , U ,..., U ) n to other signers through a secure channel. (iii)After receiving from the other signers i i i,1 i,2 i, ' (X , Y , U , U ,..., U ) n , user i ID computes (a) n i i1 XX , n i i1 YY , n i i1 QQ and n n n 1 i,1 2 i,2 n ' i,n ' i 1 i 1 i 1 U U , U U ,..., U U . (b) 1 c H (Y) m . (c) 2 1 2 n ' h H (c, X, U , U ,..., U ) . (d) i i i Z hS x Q . (iv) Each user sends i Z to other users. Every user computes Z and outputs ciphertext , where n i i1 ZZ and * 1 2 n ' c, X, Z, U , U ,..., U , L, L . Unsigncrypt: To unsigncrypt the ciphertext * 1 2 n ' c, X, Z, U , U ,..., U , L, L , the receiver with identity j ID' computes (i) 2 1 2 n ' h H (c, X, U , U ,..., U ) , and accepts iff (ii) Accept if pub e(P, Z) e(X hP ,Q) . It then extract j U from and computes (iii) 1 pub j j Y' e(P , U )e(X,S' ) , and recovers (iv) 1 c H (Y ') m 8. Security : (i) Confidentiality: Without knowing the secrete key of receiver, no one can compute n i i1 YY (x ... x ) 1n (x ... x ) 1n pub e(P , R) . It is only the specific receiver who can compute the actual value of Y using secrete key as 1 pub j j Y' e(P , U )e(X,S' ) = n 1 pub i, j j i1 e(P , U )e(X,S' ) n 1 pub i j j i1 e(P , x (R Q ' ))e(X,S' ) nn 1 pub i pub i j j i 1 i 1 e(P , x R)e(P x Q ' )e(X,S' ) 1 pub 1 n 1 n j j e(P ,(x ... x )R)e(sP,(x ... x )Q' )e(X,S' ) (x ... x ) 1 1n pub 1 n j j e(P , R) e((x ... x )P,sQ' )e(X,S' ) (x ... x ) 1 1n jj e(X,S' )e(X,S' ) (x ... x ) 1n</p><p>Y .</p><p>(ii) Public Verifiability: Any one who has access to the signcryptext can verify the signature on the ciphertext which it contains. First the verifier computes (iii) Unforgeability: Signcryptext is generated using the secret key i S of each the signers. Thus no one, not even the one among signers can generate a valid signcryptext without knowing the secret key of all the signers.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><figDesc>aP, bP)  for unknown * a, b  , the Computational Diffie-Hellman Problem (CDH Problem) in 1</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>1  and an element 2 H</head><label>12</label><figDesc>, three elements aP, bP,cP of 1  , the Decisional Bilinear Diffie-Hellman Problem (DBDH Problem) is to decide whether abc H e(P, P) .</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><figDesc>, R) . The PKG also chooses cryptographic hash functions * 01</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><figDesc>..., ID }, each user i ID executes the following steps (i) Randomly chooses * iq</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head>2 h</head><label>2</label><figDesc>user sends i Z to other users. Every user computes Z and outputs ciphertext , , Z, U, L . Unsigncrypt: To unsigncrypt the ciphertext c, X, Z, U, L , the receiver with identity B ID computes (i) 2 h H (c, X, U) , and accepts iff (ii) pub e(P, Z) e(X hP ,Q) . Confidentiality: Without knowing the secrete key of receiver, no one can compute n i i1 YY (x ... x ) 1n (x ... x ) 1n pub e(P , R) . It is only the specific receiver who can compute the actual value of Y using secrete key as 1 pub B Y' e(P , U)e(X,S ) , x (R Q ))e(X,S ) ,(x ... x )R)e(sP,(x ... x )Q )e(X,S ) Any one who has access to the signcryptext can verify the signature on the ciphertext which it contains. First the verifier computes hs Q )e(P, (x ... x )Q) 1n e(P, hsQ)e((x ... x )P, Q) e(hsP,Q)e(X,Q) pub e(hP ,Q)e(X,Q) pub e(X hP ,Q) .</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><head>:</head><figDesc>Any n users 1n L {ID ,..., ID } run this algorithm to signcrypt a message m to any ' n receiver"s with identities * 1 n '</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><figDesc>hs Q )e(P, (x ... x )Q) 1n e(P, hsQ)e((x ... x )P, Q) e(hsP,Q)e(X,Q) pub e(hP ,Q)e(X,Q) pub e(X hP ,Q) .</figDesc></figure>
+		</body>
+		<back>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<monogr>
+		<title level="m" type="main">Conclusion: We have proposed an efficient Identity Based Multi-Signcryption Scheme. We discuss its confidentiality, unforgeability and public verifiability in heuristic way and compare it with two existing Id-based multi-signcryption schemes. We also extend the proposed scheme to multi-signcryption scheme for multiple receivers</title>
+		<imprint/>
+	</monogr>
+	<note>References</note>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Efficient and provably-secure identity-based signatures and signcryption from bilinear maps, Asicrypto&quot;05</title>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">S L M</forename><surname>Barreto</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Libert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Mccullagh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">J</forename><surname>Quisquater</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="s">LNCS # 3788</title>
+		<imprint>
+			<biblScope unit="page" from="515" to="532" />
+			<date type="published" when="2005">2005</date>
+			<publisher>Springer-Verlag</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Efficient multi-receiver identity based encryption and its application to broadcast encryption</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Beak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Safavi-Naini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Susilo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">PKC 2005, LNCS # 3386</title>
+		<imprint>
+			<publisher>Springer-Verlag</publisher>
+			<date type="published" when="2005">2005</date>
+			<biblScope unit="page" from="380" to="397" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Formal proofs for the security of Signcryption</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Beak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Steinfeld</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zheng</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">PKC 2002, LNCS # 2274</title>
+		<imprint>
+			<publisher>Springer-Verlag</publisher>
+			<date type="published" when="2002">2002</date>
+			<biblScope unit="page" from="80" to="98" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Public key encryption in a multi-user setting: Security proofs and improvements</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Bellare</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Boldyreva</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Micali</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">EUROCRYPT&quot;2000, LNCS # 1807</title>
+		<imprint>
+			<publisher>Springer-Verlag</publisher>
+			<date type="published" when="2000">2000</date>
+			<biblScope unit="page" from="259" to="274" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Identity-based encryption scheme for Weil pairing</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Bohen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Franklin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">CRYPTO 2001, LNCS # 2139</title>
+		<imprint>
+			<publisher>Springer-Verlag</publisher>
+			<date type="published" when="2001">2001</date>
+			<biblScope unit="page" from="213" to="229" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Digital Multi Signature</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Boyed</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. IMA Conf. Crypto. Coding, Charendon Oxford</title>
+		<meeting>IMA Conf. Crypto. Coding, Charendon Oxford</meeting>
+		<imprint>
+			<date type="published" when="1989">1989</date>
+			<biblScope unit="page" from="241" to="246" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Multipurpose Identity based signcryption: A Swiss army knife for identity based cryptography</title>
+		<author>
+			<persName><forename type="first">X</forename><surname>Boyen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">CRYPTO 2003, LNCS # 2729</title>
+		<imprint>
+			<publisher>Springer-Verlag</publisher>
+			<date type="published" when="2003">2003</date>
+			<biblScope unit="page" from="389" to="399" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Improved identity-based signcryption</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Malone-Lee</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">PKC 2005, LNCS # 3386</title>
+		<imprint>
+			<publisher>Springer-Verlag</publisher>
+			<date type="published" when="2005">2005</date>
+			<biblScope unit="page" from="362" to="379" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Efficient forward and provably secure ID based signcryption scheme with public verifiability and public ciphertext authenticity. ISISC</title>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">S M</forename><surname>Chow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">M</forename><surname>Yiu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">C K</forename><surname>Hui</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">P</forename><surname>Chow</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="s">LNCS # 2971</title>
+		<imprint>
+			<biblScope unit="page" from="352" to="369" />
+			<date type="published" when="2003">2003. 2003</date>
+			<publisher>Springer-Verlag</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Efficient and provably secure multi receiver identity based signcryption</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Duan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Cao</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ACISP 2006, LNCS # 4058</title>
+		<imprint>
+			<publisher>Springer-Heidelberg</publisher>
+			<date type="published" when="2006">2006</date>
+			<biblScope unit="page" from="195" to="206" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Identity-based aggregate signature</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Gentry</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Ramzan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Public Key Cryptography-PKC 2006, LNCS # 3958</title>
+		<imprint>
+			<publisher>Springer-Verlag</publisher>
+			<date type="published" when="2006">2006</date>
+			<biblScope unit="page" from="275" to="273" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Anonymous Id based signcryption scheme for multiple receivers</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Lal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Kushwah</surname></persName>
+		</author>
+		<ptr target="http://eprint.iacr.org/2009/345.pdf" />
+	</analytic>
+	<monogr>
+		<title level="j">Cryptology ePrint Archive</title>
+		<imprint>
+			<date type="published" when="2009">2009/345. 2009</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">Report</note>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<author>
+			<persName><forename type="first">B</forename><surname>Libert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">J</forename><surname>Quisquater</surname></persName>
+		</author>
+		<ptr target="http://eprint.iacr.org/2003/023.pdf" />
+	</analytic>
+	<monogr>
+		<title level="m">New identity based signcryption schemes from pairings, IEE Information Theory Workshop</title>
+		<meeting><address><addrLine>Paris, France</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2003">2003/023. 2003</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">Report</note>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<monogr>
+		<title level="m" type="main">Identity-based signcryption</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Malone-Lee</surname></persName>
+		</author>
+		<idno>2002/098</idno>
+		<ptr target="http://eprint.iacr.org/2002/098.pdf" />
+		<imprint>
+			<date type="published" when="2002">2002</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">Cryptology ePrint Archive Report</note>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">A multi-signature scheme with message flexibility, order flexibility and order verifiability</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Mitomi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Miyaji</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Information Security and privacy, ACISP-2000, LNCS # 1841</title>
+		<imprint>
+			<publisher>Springer-Verlag</publisher>
+			<date type="published" when="2000">2000</date>
+			<biblScope unit="page" from="298" to="312" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Signcryption scheme for identity based cryptosystem</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Nalla</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">C</forename><surname>Reddy</surname></persName>
+		</author>
+		<ptr target="http://eprint.iacr.org/2003/066.pdf" />
+	</analytic>
+	<monogr>
+		<title level="j">Cryptology ePrint Archive</title>
+		<imprint>
+			<date type="published" when="2003">2003/066. 2003</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">Report</note>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">On the provable security of multiple receiver signcryption schemes</title>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">S D</forename><surname>Selvi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">S</forename><surname>Vivek</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Gopalkrishnan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">N</forename><surname>Karuturi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">P</forename><surname>Rangan</surname></persName>
+		</author>
+		<ptr target="http://eprint.iacr.org/2008/238.pdf" />
+	</analytic>
+	<monogr>
+		<title level="j">Cryptology ePrint Archive</title>
+		<imprint>
+			<date type="published" when="2008">2008/238. 2008</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">Report</note>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Breaking and Fixing of an Identity Based Multi-Signcryption Scheme</title>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">S D</forename><surname>Selvi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">S</forename><surname>Vivek</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">P</forename><surname>Rangan</surname></persName>
+		</author>
+		<ptr target="http://eprint.iacr.org/2009/235.pdf" />
+	</analytic>
+	<monogr>
+		<title level="j">Cryptology ePrint Archive</title>
+		<imprint>
+			<date type="published" when="2009">2009/235. 2009</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">Report</note>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">An efficient Identity based signcryption scheme for of multiple receivers</title>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">S D</forename><surname>Selvi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">S</forename><surname>Vivek</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Srinivasan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">P</forename><surname>Rangan</surname></persName>
+		</author>
+		<ptr target="http://eprint.iacr.org/2009/144.pdf" />
+	</analytic>
+	<monogr>
+		<title level="j">Cryptology ePrint Archive</title>
+		<imprint>
+			<date type="published" when="2009">2009/144. 2009</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">Report</note>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Identity-based cryptosystems and signature schemes</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Shamir</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Cryptology, CRYPTO-1984, LNCS # 196</title>
+		<imprint>
+			<publisher>Springer-Verlag</publisher>
+			<date type="published" when="1984">1984</date>
+			<biblScope unit="page" from="47" to="53" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Efficient identity based signcryption scheme for multiple receiver</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Bo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Xinyi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Mingwu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ATC 2007, LNCS # 4610</title>
+		<imprint>
+			<publisher>Springer-Verlag</publisher>
+			<date type="published" when="2007">2007</date>
+			<biblScope unit="page" from="13" to="21" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">A novel identity-based multi-signcryption scheme</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Mao</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Computer Communications</title>
+		<imprint>
+			<biblScope unit="volume">32</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="14" to="18" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">A Novel Identity-Based Multi-Signcryption Scheme</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Niu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">International Journal of Distributed Sensor Network</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="1550" to="1329" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Digital signcryption or how to achieve cost (signature &amp; encryption) &lt;&lt; cost (signature) + cost (encryption)</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zheng</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Cryptology, CRYPTO-1997, LNCS # 1294</title>
+		<imprint>
+			<publisher>Springer-Verlag</publisher>
+			<date type="published" when="1997">1997</date>
+			<biblScope unit="page" from="165" to="179" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

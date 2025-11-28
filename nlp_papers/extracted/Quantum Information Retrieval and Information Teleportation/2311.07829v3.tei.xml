@@ -1,0 +1,1021 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Quantum X-Secure T -Private Information Retrieval From MDS Coded Storage With Unresponsive and Byzantine Servers</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability  status="unknown">
+					<licence/>
+				</availability>
+				<date type="published" when="2025-09-25">25 Sep 2025</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author role="corresp">
+							<persName><forename type="first">Yuxiang</forename><surname>Lu</surname></persName>
+							<email>yuxiang.lu@uci.edu</email>
+							<affiliation key="aff0">
+								<orgName type="department">Center for Pervasive Communications and Computing (CPCC)</orgName>
+								<orgName type="institution">University of California Irvine</orgName>
+								<address>
+									<postCode>92697</postCode>
+									<settlement>Irvine</settlement>
+									<region>CA</region>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Syed</forename><forename type="middle">A</forename><surname>Jafar</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Center for Pervasive Communications and Computing (CPCC)</orgName>
+								<orgName type="institution">University of California Irvine</orgName>
+								<address>
+									<postCode>92697</postCode>
+									<settlement>Irvine</settlement>
+									<region>CA</region>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Quantum X-Secure T -Private Information Retrieval From MDS Coded Storage With Unresponsive and Byzantine Servers</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2025-09-25">25 Sep 2025</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">25C8E17BC2EDA11EBD35C1FA51B30CB7</idno>
+					<idno type="arXiv">arXiv:2311.07829v3[cs.IT]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-28T12:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Coded storage</term>
+					<term>PIR</term>
+					<term>QMAC</term>
+					<term>security</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>A communication-efficient protocol is introduced over a many-to-one quantum network for Q-E-B-MDS-X-TPIR, i.e., quantum private information retrieval with MDS-X-secure storage and T -private queries. The protocol is resilient to any set of up to E unresponsive servers (erased servers or stragglers) and any set of up to B Byzantine servers. The underlying coding scheme incorporates an enhanced version of a Cross Subspace Alignment (CSA) code, namely a Modified CSA (MCSA) code, into the framework of CSS codes. The error-correcting capabilities of CSS codes are leveraged to encode the dimensions that carry desired computation results from the MCSA code into the error space of the CSS code, while the undesired interference terms are aligned into the stabilized code space. The challenge is to do this efficiently while also correcting quantum erasures and Byzantine errors. The protocol achieves superdense coding gain over comparable classical baselines for Q-E-B-MDS-X-TPIR, recovers as special cases the state of art results for various other quantum PIR settings previously studied in the literature, and paves the way for applications in quantum coded distributed computation, where CSA code structures are important for communication efficiency, while security and resilience to stragglers and Byzantine servers are critical.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>Recent interest in entanglement assisted computation over quantum many to one (also referred to as quantum multiple access (QMAC)) networks adds fundamentally novel dimensions to the rapidly expanding theory of distributed communication and computation, beyond its classical cornerstones such as secret-sharing <ref type="bibr" target="#b0">[1]</ref>- <ref type="bibr" target="#b3">[4]</ref>, private information retrieval (PIR) <ref type="bibr" target="#b4">[5]</ref>- <ref type="bibr" target="#b10">[11]</ref>, coded distributed computation and computation networks <ref type="bibr" target="#b11">[12]</ref>- <ref type="bibr" target="#b13">[14]</ref>, and secure multiparty computation <ref type="bibr" target="#b14">[15]</ref>- <ref type="bibr" target="#b18">[19]</ref>. Ideas from these diverse perspectives are encapsulated in a variety of specialized coding structures -Reed-Solomon (RS) codes <ref type="bibr" target="#b19">[20]</ref>, Cross Subspace Alignment (CSA) codes <ref type="bibr" target="#b20">[21]</ref>, Lagrange Coded Computing <ref type="bibr" target="#b11">[12]</ref>, and CSS codes <ref type="bibr" target="#b21">[22]</ref>, <ref type="bibr" target="#b22">[23]</ref>, to name a few. Assimilating the specialized coding structures is essential for a unified theory that can facilitate a broader array of applications. This work represents such an endeavor, with the goal of developing a communication-efficient coding scheme (i.e., an efficient protocol) for Q-E-B-MDS-X-TPIR <ref type="bibr" target="#b20">[21]</ref>,</p><p>i.e., quantum X-secure 1 T -private information retrieval from MDS coded storage that is resilient to up to E unresponsive servers (equivalently referred to as erased servers) and up to B Byzantine servers. 2   In the Q-E-B-MDS-X-TPIR <ref type="bibr" target="#b20">[21]</ref> setting as shown in Fig. <ref type="figure" target="#fig_12">1</ref> there are N servers equipped beforehand (independent of the classical data) with optimally entangled quantum systems. Upon the commencement of the protocol, there are K classical messages W 1 , • • • , W K (files, datasets) that are distributed among the servers in an MDS coded and X-secure fashion. MDS coding implies that the messages together with some classical randomness Z (needed for security) are coded such that the storage size at each server is only a fraction 1/K c of the original size of the K messages. X-security means that even if any set of up to X servers collude they can learn nothing about the messages. A user (with its own private randomness Z ′ ) wishes to 1 X-security is a secret-sharing constraint. The messages are the secret and the storage at each server is its share of the secret, such that any set of up to X shares reveal nothing about the secret. There is another form of security, server secrecy <ref type="bibr" target="#b3">[4]</ref>, <ref type="bibr" target="#b8">[9]</ref>, <ref type="bibr" target="#b9">[10]</ref>, which requires that the user must not learn anything about any other message besides its desired message (also refered to as DB-privacy or symmetric privacy). Note that X-security is not related to server secrecy, and that we consider only the former (X-security) in this work. 2 When assembled with 'PIR', the abbreviation 'Q' stands for 'Quantum' (without 'Q', the setting is classical by default), 'E' stands for upto E erased servers ( unresponsive servers), 'B' stands for upto B Byzantine servers, 'MDS' stands for MDS coded storage, 'X' stands for X-secure storage (so that up to X colluding servers can learn nothing about the realizations of the stored messages) and 'T' stands for T -privacy constraint (so that up to T colluding servers can learn nothing about which message is desired). efficiently retrieve the θ th message (θ ∈ [K]) by querying the N servers in a T -private fashion.</p><p>T -privacy means that even if any set of up to T servers collude they can learn nothing about which message is desired by the user. The efficiency of the protocol is measured by the rate, defined as the number of desired message bits retrieved per qubit (a d-dimensional quantum system (sometimes called a qudit) corresponds to log 2 (d) qubits) of total download from the servers. Each server generates its response based on the user's queries and the storage available to that server, and encodes it into its own quantum system through local quantum operations.</p><p>The quantum systems are then sent as answers from the servers to the user. The protocol must tolerate up to E unresponsive servers, i.e., any set of up to E servers may be unresponsive, equivalently their answers are erased over the QMAC. The protocol must also tolerate any set of up to B Byzantine servers whose answers are subject to arbitrary errors. Note that while the user's queries are sent without knowledge of which servers may turn out to be unresponsive, once the user receives the quantum systems in response, it knows which servers' answers were erased (known-position error), i.e, which servers did not respond. The identities of the Byzantine servers are not directly revealed to the user from the answers. This corresponds to unknownposition errors in the context of error correcting codes. Resilience to unresponsive and Byzantine servers means that we require that regardless of which E servers are erased, and which B servers are Byzantine, the protocol must allow the user to recover its desired message by measuring the received quantum systems.</p><p>Our solution centers around CSS codes and the classical CSA coding scheme originally introduced for X-TPIR, i.e., PIR with X-secure storage and T -private queries <ref type="bibr" target="#b23">[24]</ref>, and subsequently applied to a number of classical variants of PIR, coded computing and private read-write designs for federated submodel learning <ref type="bibr" target="#b24">[25]</ref>. The classical CSA scheme was generalized to a quantum CSA scheme for Q-MDS-X-TPIR over the quantum many-to-one network in <ref type="bibr" target="#b25">[26]</ref>, <ref type="bibr" target="#b26">[27]</ref>, and its resilience to eavesdroppers was explored in <ref type="bibr" target="#b10">[11]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Challenges and Contributions</head><p>While we focus on Q-E-B-MDS-X-TPIR to motivate the protocol developed in this work, we expect the protocol to be much more broadly relevant. This is because the underlying challenge is how to efficiently transmit CSA coded classical symbols when there are quantum resources shared among servers, some of which can be unresponsive (stragglers) and/or Byzantine. CSA code structures are not limited to PIR. For example, CSA codes feature prominently in the broad Each server locally encodes its response into its quantum system and sends it back to the user. In the figure, unresponsive (blue) server's quantum system is not received, and the Byzantine (red) server applies an arbitrary quantum channel to its quantum system.</p><formula xml:id="formula_0">S1, • • • , SN = Encst (W1, • • • , WN , Z) Entangled Quantum Systems A1, • • • , AN X-security T -privacy Server 1 A 1 , S 1 • • • Server X A X , S X • • • Server T A T , S T • • • Server N A N , S N User θ, Z ′ W θ Q1 QX QT QN E n c s e r v 1 ( A 1 ) × M T ( A T ) E n c s e r v N ( A N ) Fig. 1. Q-E-B-MDS-X-TPIR. Quantum systems A1, • • • , AN</formula><p>area of coded distributed computation (CDC) <ref type="bibr" target="#b11">[12]</ref>, <ref type="bibr" target="#b27">[28]</ref>- <ref type="bibr" target="#b29">[30]</ref>. Thus, the protocol from this work could potentially be a useful stepping stone towards future studies of quantum CDC (QCDC). 3   Byzantine servers are more challenging in the quantum setting, because the same quantum entanglement that allows gains in communication efficiency under ideal conditions, also makes entangled protocols more susceptible to stragglers and Byzantine adversaries, as their actions impact not only their own quantum systems, but also the overall state of all entangled quantum systems. The challenges are listed as follows.</p><p>1) Compared with <ref type="bibr" target="#b25">[26]</ref>, <ref type="bibr" target="#b26">[27]</ref> that studied Q-MDS-X-TPIR, the main challenge is to achieve resilience to unresponsive and Byzantine servers. In classical settings, this is done by having the answers form an error correcting code (ECC) of the desired message symbols (and interfering 3 The MDS storage can be viewed as coded matrix A, and the T private queries as coded matrix B. The computation of AB is distributed among servers. The MDS constraint limits upload cost, X-security/T -privacy protect against curious servers, and resilience to unresponsive/Byzantine servers guarantees robustness of the distributed computation.</p><p>symbols introduced due to various constraints such as X-security, T -privacy and MDS storage) so that erasures or errors can be corrected first, after which the desired message symbols can be recovered. This idea is not directly applicable to quantum PIR schemes. Even though QPIR schemes are typically based on the stabilizer formalism <ref type="bibr" target="#b8">[9]</ref>, <ref type="bibr" target="#b9">[10]</ref>, <ref type="bibr" target="#b25">[26]</ref>, the error-correcting capabilities of stabilizer codes are not utilized to correct errors. Specifically, instead of the code space of a stabilizer code, in QPIR the information is encoded into the error space <ref type="bibr" target="#b30">[31]</ref>, and is extracted by the user by measuring the qudits (quantum digits, a specific representation of quantum systems that will be explained in Section II-A) with stabilizers to reveal the syndromes.</p><p>Thus, the received N answer qudits in QPIR are not in the stabilizer code space, even in the absence of erasures or errors.</p><p>2) Compared with <ref type="bibr" target="#b3">[4]</ref> that explored Q-TPIR with general access structure that involves resilience to E unresponsive servers as a special case, the main challenge is to come up with an efficient scheme that satisfies X-security and MDS storage constraints. Unlike the random coding based scheme that appears in <ref type="bibr" target="#b3">[4]</ref>, the CSA code structure is important to accommodate X-security and MDS storage. Note that even in the classical setting, CSA codes allow higher communication rates in PIR with these two constraints (e.g., the CSA code based scheme <ref type="bibr" target="#b20">[21]</ref>, <ref type="bibr" target="#b23">[24]</ref> can achieve higher rates than those achieved without CSA codes in <ref type="bibr" target="#b27">[28]</ref>, <ref type="bibr" target="#b31">[32]</ref>).</p><p>3) Utilizing CSA codes further prevents us from placing the answering qudits in the code space of a stabilizer code (without considering the erasure or Byzantine errors). Specifically, the CSA code is the direct sum of a Reed-Solomon code of interfering/undesired symbols and a Cauchy RS code of desired symbols. It is non-trivial to construct a CSS code upon two CSA codes CSA X , CSA Z , such that CSA ⊥ X ⊂ CSA Z . This is because the dual code of a CSA code should be dual to both the RS part and the Cauchy RS part, whose structures are not trivially compatible. Thus, our main contribution is a protocol that utilizes the error-correcting capabilities of CSS codes, i.e., the information carrying ability of their syndromes as the underlying framework.</p><p>Within this framework, the protocol exploits the RS sub-code of CSA codes to efficiently retrieve the desired computation results (desired message symbols in the PIR problem) that are encoded by classical codes, 4 while also tolerating quantum erasures and Byzantine errors. Intuitively, in the underlying classical CSA code based protocol, the answers from the servers are viewed 4 We refer to the desired message symbols as the computation results to emphasize that they are the outcome of the computation task, e.g., PIR.</p><p>as the RS sub-code of interfering symbols, with Cauchy RS code of desired message symbols added as "error." The syndrome of the RS sub-code uniquely identifies the "error" in the Cauchy RS code space together with the actual errors introduced by unresponsive or Byzantine servers.</p><p>From the quantum perspective, the shared qudits are initially in the code space of the CSS code constructed from the RS sub-codes of two instances of CSA codes. Servers apply Pauli operators to their qudits to encode the answers generated according to the two instances of the CSA code based classical scheme. The Pauli operators' components that correspond to RS sub-codes of interfering symbols are not detectable since they commute with stabilizers, while the component corresponding to desired message symbols, together with the errors introduced by unresponsive and Byzantine servers, are identified through syndrome measurement. In a nutshell, dimensions that carry desired computation results from the CSA code are encoded into the error space of the CSS code, while the undesired interference terms are aligned into the stabilized code space.</p><p>A technicality worth noting is that a key enhancement is made to the CSA code, transforming it into a Modified CSA (MCSA) code -whereby the RS sub-code is turned into a GRS subcode whose dual code is still a GRS code, so that a CSS code can be easily constructed on GRS X , GRS Z that are sub-codes of two MCSA codes, where GRS ⊥ X ⊂ GRS Z . This 'MCSA-CSS' construction can be found in Protocol 3 in this work.</p><p>While there is entanglement shared beforehand among the distributed servers (transmitters), it is important to note that the servers do not share any entanglement in advance with the user (the receiver). Intuitively, the shared entanglement among transmitters leads to a superdense coding gain in quantum PIR schemes allowing them to achieve in some cases twice the rate of their classical counterparts <ref type="bibr" target="#b8">[9]</ref>, <ref type="bibr" target="#b9">[10]</ref>, <ref type="bibr" target="#b25">[26]</ref>. The quantum scheme proposed in this paper also achieves the factor of 2 superdense coding gain compared with the classical scheme proposed in <ref type="bibr" target="#b20">[21]</ref>.</p><p>It is also noteworthy that the quantum PIR setting addressed in this paper recovers as special cases various other settings considered in the literature, such as Q-B-X-TPIR in <ref type="bibr" target="#b32">[33]</ref>, Q-E-TPIR in <ref type="bibr" target="#b3">[4]</ref>, Q-MDS-X-TPIR in <ref type="bibr" target="#b25">[26]</ref>, Q-MDS-TPIR in <ref type="bibr" target="#b9">[10]</ref>, and Q-TPIR in <ref type="bibr" target="#b8">[9]</ref>. Indeed, the protocol presented in this work achieves the state-of-the-art rates across all of the aforementioned special case scenarios.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Comparison to related works</head><p>The most closely related work is the conference version of this paper in <ref type="bibr" target="#b33">[34]</ref>, <ref type="bibr" target="#b34">[35]</ref> where Q-E-X-TPIR problem is studied based on the N -sum box abstraction of <ref type="bibr" target="#b25">[26]</ref>. The conference version allows neither MDS storage nor resilience to Byzantine servers. The conference version was then developed into a preliminary ArXiv version <ref type="bibr" target="#b35">[36]</ref> of this paper where the approach taken for resilience to Byzantine servers that apply arbitrary Pauli errors is to guess the identities of Byzantine servers, treat them as erasures and decode, and check if there exists a set of decoding results that agree. However, the resilience to arbitrary Byzantine errors (rather than just Pauli errors) is not explicit under the N -sum box abstraction. The present version further develops our approach, making the Byzantine resilience explicit. Instead of the N -sum box abstraction, here we directly utilize the fact that the syndrome measurement of a CSS code can reduce arbitrary errors (that affect fewer qudits than its minimum distance) to Pauli errors (Lemma 1).</p><p>Let us also note the parallel and independent work in <ref type="bibr" target="#b32">[33]</ref> that studies Q-B-X-TPIR through the lens of the N -sum box abstraction, as further evidence of interest in this problem.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Organization</head><p>Section II introduces the notation together with some basic concepts of quantum systems, classical error correcting codes and quantum information. Section III formalizes the Q-E-B-MDS-X-TPIR problem. Section IV presents our main result as Theorem 1. Section V revisits the CSA code based classical E-B-MDS-X-TPIR scheme which is crucial to our construction.</p><p>A modified CSA code (MCSA code) is presented in Section VI. The quantum protocol, namely MCSA-CSS, that builds upon the MCSA code and a CSS code, is presented in Section VII.</p><p>Section VIII concludes the paper. A or B will be replaced by ':' if they contain all the rows or columns, respectively. If A is a vector, we simply write A(S) to denote the sub-vector of A whose indices are in S. For two column vectors</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. PRELIMINARIES</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Miscellaneous</head><formula xml:id="formula_1">c 1 , c 2 , [c 1 ; c 2 ] ≜ [c ⊤ 1 c ⊤ 2 ] ⊤ , i.</formula><p>e., a longer column vector with c 1 stacked above c 2 . colspan(A) denotes the vector subspace spanned by the columns of A. If A is a projection matrix, then Im(A) = colspan(A). ker(A) is the kernel space of A.</p><p>A † is the conjugate transpose of A. For a length n vector</p><formula xml:id="formula_2">v = [v 1 v 2 • • • v n ] ⊤ , Diag(v) denotes the diagonal n × n matrix whose diagonal elements are entries of v. supp(v) ≜ {i | v i ̸ = 0} and wt(v) ≜ |supp(v)|.</formula><p>I N is the N × N identity matrix. For any random variable that is written in upper case (say, Z), we use the corresponding lower case (z) to denote its realization. The state of a quantum system A defined on Hilbert space H A is represented by a density operator ρ A ∈ D A where D A is a set of all positive semi-definite operators with trace 1 acting on H A .</p><p>A pure state can also be represented by a unit vector in H A . For a classical-quantum system XA, ρ A|X=x , or simply ρ A|x , denotes the density operator of A conditioned on the realization X = x. The label of the quantum system in the subscript may be omitted for compact notation if it is clear from the context. F q is a finite field with order q where q = p r is a prime power.</p><p>The field trace tr Fq/Fp (•) : F q → F p is an F p -linear map from F q to F p , and ω ≜ e 2π √ -1/p . If a quantum system A has dimension |A| = q, with {|a⟩} a∈Fq being its computational basis, we call it a q-dimensional qudit.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Classical Error Correcting Codes</head><formula xml:id="formula_3">Definition 1. [n, k, d] Code: An [n, k, d] classical code over F q is the column space of a rank k generator matrix G ∈ F n×k q , i.e., C = colspan(G). It has a rank n -k parity-check matrix H ∈ F n×n-k q such that H ⊤ G = 0. The dual code of C is C ⊥ = colspan(H). If an [n, k, d] code satisfies d = n -k + 1, we call it an [n, k] MDS (maximum distance separable) code. Definition 2. GRS Code: A Generalized Reed-Solomon Code C = GRS q,(α,u) n,k</formula><p>over F q is the column space of the generator matrix defined in <ref type="bibr" target="#b0">(1)</ref> where</p><formula xml:id="formula_4">α = (α 1 , α 2 , • • • , α n ) are n distinct elements in F q and u = (u 1 , u 2 , • • • , u n ) are n non-zero elements in F q . By definition, q ≥ n. G GRS q,(α,u) n,k ≜        u 1 u 1 α 1 • • • u 1 α k-1 1 u 2 u 2 α 2 • • • u 2 α k-1 2 . . . . . . . . . . . . u n u n α n • • • u n α k-1 n       <label>(1)</label></formula><formula xml:id="formula_5">Definition 3. CRS Code: A Cauchy Reed-Solomon Code C = CRS q,(α,f ,u) n,k</formula><p>over F q is the column space of the generator matrix defined in <ref type="bibr" target="#b1">(2)</ref> where</p><formula xml:id="formula_6">(α, f ) = (α 1 , α 2 , • • • , α n , f 1 , f 2 , • • • , f k ) are n + k distinct elements and u = (u 1 , u 2 , • • • , u n ) are n non-zero elements. By definition, q ≥ n + k. G CRS q,(α,f ,u) n,k ≜        u 1 f 1 -α 1 u 1 f 1 -α 1 • • • u 1 f k -α 1 u 2 f 1 -α 2 u 2 f 1 -α 2 • • • u 2 f k -α 2 . . . . . . . . . . . . un f 1 -αn un f 1 -αn • • • un f k -αn        (2)</formula><p>C. Quantum Information Definition 4. Quantum Channel: A quantum channel with input quantum system A and output quantum system B is a completely positive trace preserving mapping (CPTP) M :</p><formula xml:id="formula_7">D A → D B .</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>It can be represented by Kraus Operators</head><formula xml:id="formula_8">{K i } such that i K † i K i is an identiy matrix and M(ρ) = i K i ρK † i .</formula><p>Definition 5. Pauli Operators for Qudits <ref type="bibr" target="#b36">[37]</ref>: For any a, b ∈ F q , define the single qudit Pauli Operators X b , Z b ∈ C q×q so that</p><formula xml:id="formula_9">X b |a⟩ = |a + b⟩ , Z b |a⟩ = ω tr Fq /Fp (ba) |a⟩ .</formula><p>For n ∈ N and any</p><formula xml:id="formula_10">x = [x 1 • • • x n ] ⊤ , z = [z 1 • • • z n ] ⊤ ∈ F n×1 q</formula><p>, let the n-qudit Pauli Operators be defined as</p><formula xml:id="formula_11">X x Z z ≜ i∈[n] X x i Z z i .</formula><p>Note that</p><formula xml:id="formula_12">(X x Z z ) X x ′ Z z ′ = ω tr Fq /Fp (z ⊤ x ′ -x ⊤ z ′ ) X x ′ Z z ′ (X x Z z ) = ω tr Fq /Fp (z ⊤ x ′ ) X x+x ′ Z z+z ′<label>(3)</label></formula><p>Definition 6. CSS Code <ref type="bibr" target="#b21">[22]</ref>, <ref type="bibr" target="#b22">[23]</ref>, <ref type="bibr" target="#b37">[38]</ref>: A C = CSS(C X , C Z ) code encodes the state space of k q-dimensional qudits into a code space of n q-dimensional qudits</p><formula xml:id="formula_13">CSS (C X , C Z ) = colspan   x ⊥ ∈C ⊥ X |x ⊥ + z⟩ | z ∈ C Z   ,<label>(4)</label></formula><p>where</p><formula xml:id="formula_14">C X , C Z are classical [n, k X , d X ], [n, k Z , d Z ] linear codes with generator matrices G C X ∈ F n×k X q , G C Z ∈ F n×k Z q respectively, that satisfy C ⊥ X ⊂ C Z . The CSS (C X , C Z ) is a stabilizer code with stabilizers S = X a Z b | a ∈ C ⊥ X , b ∈ C ⊥ Z . Its minimum distance is d ≥ min(d X , d Z ).</formula><p>Definition 7. Stabilizer Measurement: For the CSS code in Definition 6, for any a ∈ C ⊤ X , b ∈ C ⊤ Z , according to [9, Appendix C, Fact 2)], the stabilizer X a Z b can be decomposed as</p><formula xml:id="formula_15">X a Z b = i∈Fp ω i P a,b i (5) where P a,b i i∈Fp</formula><p>are orthogonal projections such that</p><formula xml:id="formula_16">P a,b i P a,b j = 0 ∀i ̸ = j, (<label>6</label></formula><formula xml:id="formula_17">) i∈Fp P a,b i = I.<label>(7)</label></formula><p>Then the stabilizer measurement X a Z b is defined as the Projection-Valued Measurement (PVM, , the n-qudit pure state X x Z z |ψ⟩ is an eigenvector for all the stabilizers, and its syndrome measurement outcome is as follows, with H C X , H C Z being parity-check matrices for C X , C Z respectively.</p><formula xml:id="formula_18">s X = H ⊤ C Z x, s Z = H ⊤ C X z<label>(8)</label></formula><p>The following lemma will be useful.</p><formula xml:id="formula_19">Lemma 1. Consider any n-qudit state |ψ⟩ ∈ CSS (C X , C Z ) with the n qudits labeled as A [n] . For any x, z ∈ F n×1 q , S ⊂ [n], |S| ≤ min(d X , d Z ) -1 where d X , d Z are distances of C X , C Z respectively, suppose the n-qudit Pauli gate X x Z z is first applied to A [n]</formula><p>. Then for any quantum channel M S : D A S → D A S that is applied to qudits A S , the syndrome measurement reduces the quantum channel to some Pauli operators only affecting qudits A S , i.e.,</p><formula xml:id="formula_20">∀ |ψ⟩ ∈ CSS (C X , C Z ) ; x, z ∈ F n×1 q ; S ⊂ [n], |S| ≤ min(d X , d Z ) -1, M S : D A S → D A S , id [n]\S ⊗ M S X x Z z |ψ⟩ ⟨ψ| (X x Z z ) † synd.meas. -→ X ϵ X S Z ϵ Z S X x Z z |ψ⟩ ⟨ψ| (X x Z z ) † X ϵ X S Z ϵ Z S † (3) = X x+ϵ X S Z z+ϵ Z S |ψ⟩ ⟨ψ| X x+ϵ X S Z z+ϵ Z S † ,<label>(9)</label></formula><p>with the outcome being</p><formula xml:id="formula_21">s X = H ⊤ C Z x + ϵ X S , s Z = H ⊤ C X z + ϵ Z S ,<label>(10)</label></formula><p>where supp(ϵ</p><formula xml:id="formula_22">X S ) = supp(ϵ Z S ) = S.</formula><p>Though the lemma is conceptually somewhat standard, we provide a proof in Appendix A for the sake of completeness.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. PROBLEM STATEMENT</head><p>Let us start with the classical setting defined in <ref type="bibr" target="#b20">[21]</ref>. There are K messages W</p><p>1 , • • • , W K that are i.i.d. uniform over [M]. They are securely encoded with randomness Z ∈ Z to form the storage at N servers. For θ ∈ [K], the user wishes to privately retrieve the message W θ by querying the N servers. Local randomness Z ′ ∈ Z ′ is available to the user to generate private queries. For any n ∈ [N ], the random variables regarding the storage, query and answer (in the classical setting) at server n, denoted as S n , Q [θ]</p><p>n and A n with realizations being s n , q n , a n , are deterministic functions of the following 3 independent random variables, whose realizations will be denoted as w [K] , z, z ′ respectively.</p><p>[Messages] :</p><formula xml:id="formula_23">W [K] ∈ [M] K , [Storage Randomness] : Z ∈ Z, [User Randomness] : Z ′ ∈ Z ′ . (<label>11</label></formula><formula xml:id="formula_24">)</formula><p>The classical problem is similar to the quantum problem in Fig. <ref type="figure" target="#fig_12">1</ref>, but there are no entangled quantum systems shared among servers and the answers from servers are classical symbols.</p><p>Byzantine servers will return arbitrary classical symbols. Next we specify the storage, queries, servers' answers, and the user's decoding for both classical and quantum settings.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Classical Setting</head><p>MDS and X-Secure Storage: The storage at server n, n ∈ [N ] is denoted as</p><formula xml:id="formula_25">S n ∈ [S]. With encoding function Enc st : [M] K ×Z → [S] N , the storage S [N ] = Enc st (W [K] , Z) forms an [N, X + K c ] MDS code, such that [MDS Storage] H(W [K] | S S ) = 0, ∀S ⊂ [N ], |S| = X + K c ,<label>(12)</label></formula><formula xml:id="formula_26">H(S n ) = log 2 S = K log 2 (M)/K c , ∀n ∈ [N ]<label>(13)</label></formula><p>[X -Security]</p><formula xml:id="formula_27">I(W [K] ; S X ) = 0, ∀X ⊂ [N ], |X | ≤ X.<label>(14)</label></formula><p>i.e., any X + K c servers must be able to recover all the K-messages, the storage size at each server is 1/K c of the total size of the K messages, and any X or fewer servers can learn nothing about the messages. The encoding is done by, e.g., sources of the messages.</p><p>Remark 1. The storage forms a ramp secret sharing <ref type="bibr" target="#b39">[40]</ref> of the K-message database. We call it MDS and secure storage for comparison with Quantum MDS-PIR <ref type="bibr" target="#b9">[10]</ref>, as when X = 0, the above entropic constraints hold for an [N, K c ] MDS code where K c message symbols are encoded into N codeword symbols such that any K c codeword symbols recover the message and each codeword symbol is 1/K c of the message size (since there are K c message symbols).</p><p>When K c = 1, there is no MDS storage constraint.</p><p>Queries: A user wishes to retrieve the θ th , θ ∈ [K], message W θ from the servers by sending the T -private queries</p><formula xml:id="formula_28">Q [θ] 1 , Q [θ] 2 , • • • , Q [θ]</formula><p>N ∈ Q to the N servers such that any T or fewer servers learn nothing about θ. Mathematically, using the encoding function Enc user :</p><formula xml:id="formula_29">[K] × Z ′ → Q N , the user generates queries, (Q [θ] 1 , Q [θ] 2 , • • • , Q [θ] N ) = Enc user (θ, Z ′ ) (<label>15</label></formula><formula xml:id="formula_30">)</formula><p>where Z ′ ∈ Z ′ is the user's local randomness. Meanwhile, the T -privacy constraint must be satisfied such that</p><formula xml:id="formula_31">[T -Privacy] S T , Q [θ] T ∼ S T , Q [θ ′ ] T , ∀θ, θ ′ ∈ [K], T ⊂ [N ], |T | ≤ T.<label>(16)</label></formula><p>That is to say, for any θ ∈ [K], the joint distribution of the storage and queries at T or fewer servers are identical.</p><p>Answers: There is a set E ⊂ [N ] of unresponsive servers and another set B ⊂ [N ] of Byzantine servers. B, E are not necessarily disjoint. The user does not know E, B a priori, except that</p><formula xml:id="formula_32">|E| ≤ E, |B| ≤ B. (<label>17</label></formula><formula xml:id="formula_33">) Each server n ∈ [N ] \ (E ∪ B</formula><p>) generates the answer A n ∈ [d] using the encoding function</p><formula xml:id="formula_34">Enc servn : [S] × Q → [d]</formula><p>according to its storage and received query, i.e.,</p><formula xml:id="formula_35">A n = Enc servn S n , Q [θ] n , ∀n ∈ [N ] \ (E ∪ B).<label>(18)</label></formula><p>However, any unresponsive or Byzantine server n ∈ E ∪B generates an arbitrary answer</p><formula xml:id="formula_36">A n ∈ [d].</formula><p>Decoding: Upon receiving the answers A [N ]\E , the user decodes the desired message using a function that depends on E (since unresponsive servers can be identified by the user),</p><formula xml:id="formula_37">Dec E : [K]× [d] N -|E| × Z ′ → [M], i.e., Ŵ = Dec E (θ, A [N ]\E , Z).<label>(19)</label></formula><p>Thus, an E-B-MDS-X-TPIR scheme, is defined as</p><formula xml:id="formula_38">Ψ C Enc st , Enc user , Enc serv , {Dec E } E⊂[N ],|E|≤E .<label>(20)</label></formula><p>The rate of a classical E-B-MDS-X-TPIR scheme is defined as the number of desired message bits recovered per answer bit that is downloaded from the servers, i.e.,</p><formula xml:id="formula_39">R C ≜ log(M) N log(d) .<label>(21)</label></formula><p>A rate R C is said to be achievable if and only if there exists a scheme Ψ C with this rate such that</p><formula xml:id="formula_40">Pr( Ŵ ̸ = W θ ) = 0, ∀θ ∈ [K], E, B ⊂ [N ], |E| ≤ E, |B| ≤ B.<label>(22)</label></formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Quantum Setting</head><p>Shared Entanglement: In quantum setting, a composite quantum system  </p><formula xml:id="formula_41">A [N ] = A 1 A 2 • • • A N , with underlying Hilbert Space H A [N ] = n∈[N ] C d is initialized in the state ρ 0 A [N ] a priori,</formula><formula xml:id="formula_42">θ] n = q n , i.e.,</formula><p>Enc [sn,qn]  servn :</p><formula xml:id="formula_43">D An → D An .<label>(23)</label></formula><p>Unresponsive and Byzantine servers apply an arbitrary CPTP map,</p><formula xml:id="formula_44">M E∪B : D A E∪B → D A E∪B<label>(24)</label></formula><p>to their quantum subsystems. Note that Byzantine servers do not change their quantum systems' dimension, as otherwise the user can tell which servers are Byzantine and treat them as erasures instead.</p><p>Decoding: Upon receiving the quantum system</p><formula xml:id="formula_45">A [N ]\E with state ρ ′ A [N ]\E , the user measures with POVM Dec [θ,z ′ ] E = {Π θ,z ′ E ( ŵ), ŵ ∈ [M]</formula><p>} that depends on θ and the realization of its local randomness Z ′ = z ′ , with outcome random variable Ŵ as the decoding result. Thus, an E-B-MDS-X-TPIR scheme, is defined as</p><formula xml:id="formula_46">Ψ Q ρ 0 , Enc st , Enc user , Enc serv , {Dec E } E⊂[N ],|E|≤E .<label>(25)</label></formula><p>The rate of a Quantum E-B-MDS-X-TPIR scheme is defined as the number of desired message bits recovered per qubit that is downloaded from the servers, i.e.,</p><formula xml:id="formula_47">R Q ≜ log(M) N log(d) .<label>(26)</label></formula><p>A rate R Q is said to be achievable if there exists a scheme Ψ Q with this rate such that for</p><formula xml:id="formula_48">any θ ∈ [K], Pr( Ŵ ̸ = W θ ) = 0, ∀θ ∈ [K], E, B ⊂ [N ], |E| ≤ E, |B| ≤ B.<label>(27)</label></formula><p>A (quantum) E-B-MDS-X-TPIR problem is parameterized by (E, B, K c , X, T, N, K) where N, K are number of servers and messages respectively. We define the following constants for any E,B,K c ,X,T ,N ,K that will be used throughout this paper, where in the last line of (28),</p><formula xml:id="formula_49">we pick N + L distinct elements in F q . L ≜ N -(K c + E + 2B + X + T -1), V ≜ K c + X + T -1, F q , q = p r , q ≥ L + N, (α, f ) ≜ (α 1 , • • • , α N , f 1 , • • • , f L ) ∈ F N +L q . (<label>28</label></formula><formula xml:id="formula_50">)</formula><p>Remark 3. Since T -privacy is for the index θ, and X-security is for the shares of messages, both of which are classical even in the quantum setting, quantum analysis is not required while proving the privacy and security of the quantum protocol. Quantum considerations (e.g., CSS code formalism in Lemma 1), are essential only in the proof of correctness of the decoding process.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. MAIN RESULTS</head><p>The main result of this paper is a Q-E-B-MDS-X-TPIR scheme/protocol, namely MCSA-CSS.</p><p>This protocol interprets the classical CSA code based E-B-MDS-X-TPIR scheme of <ref type="bibr" target="#b20">[21]</ref> in such a way that desired message symbols appear as "errors" added to a code, combines the classical scheme with a CSS code, and decodes the desired message symbols, erasures and Byzantine errors simultaneously through the syndrome decoding of the CSS code. The scheme achieves a higher rate compared with its classical counterpart. As noted, our Q-E-B-MDS-X-TPIR protocol yields the state-of-art achievable rates under the various special cases corresponding to recently studied quantum PIR settings, e.g., Q-B-X-TPIR <ref type="bibr" target="#b32">[33]</ref>, Q-E-TPIR <ref type="bibr" target="#b3">[4]</ref>, Q-MDS-X-TPIR <ref type="bibr" target="#b25">[26]</ref>, Q-MDS-TPIR <ref type="bibr" target="#b9">[10]</ref>, and Q-TPIR <ref type="bibr" target="#b8">[9]</ref>, without server secrecy constraints. We have the following theorem <ref type="foot" target="#foot_0">5</ref> , where setting E = 0 or B = 0 corresponds to the case of no resilience to erasures or Byzantine servers, respectively, while setting K c = 1 or X = 0 corresponds to the case of no MDS or X-secure storage constraints, respectively.</p><p>Theorem 1. For quantum K c MDS X-secure T -private information retrieval with N servers out of which at most E servers are unresponsive and B servers are Byzantine, the rate</p><formula xml:id="formula_51">R Q =                                  2(N -E-2B-Kc-X+1) N , (N -E -2B) &gt; (K c + X + T -1) ≥ N/2 max N -2E-4B N , N -E-2B-Kc-X-T +1 N , (N -E -2B) ≥ N/2 &gt; (K c + X + T -1) N -E-2B-Kc-X-T +1 N , N/2 &gt; (N -E -2B) &gt; (K c + X + T -1)<label>(29)</label></formula><p>is achievable.</p><p>Proof. The achievability of the third regime</p><formula xml:id="formula_52">N/2 &gt; (N -E -2B) &gt; (K c + X + T -1)</formula><p>is trivial since a q-dimensional qudit can always be used to transmit a classical q-ary symbol and the classical scheme in <ref type="bibr" target="#b20">[21]</ref> can be directly applied. The achievability of the first regime version of <ref type="bibr" target="#b32">[33]</ref>. First of all, N -E-2B-Kc-X-T +1 N is always achievable by the classical scheme.</p><formula xml:id="formula_53">(N -E -2B) &gt; (K c + X + T -1) ≥ N/</formula><p>For the achievability of N -2E-4B N , intuitively, when N/2 &gt; (K c + X + T -1), one can always use the scheme that has more demanding privacy constraints, i.e., the scheme with T -privacy such that K c + X + T -1 = N/2 and T ≥ T . The Q-MDS-X-T PIR falls into the first regime and the rate can be calculated accordingly. Note that such a choice of T needs N to be even so that N/2 is an integer. The odd case will be resolved by Remark 8.</p><p>Remark 4. In the first regime, we note the rate of the quantum scheme is twice of the classical scheme, which matches the maximal superdense coding gain observed thus far in other quantum settings of PIR <ref type="bibr" target="#b8">[9]</ref>, <ref type="bibr" target="#b9">[10]</ref>, <ref type="bibr" target="#b25">[26]</ref> (compared with <ref type="bibr" target="#b5">[6]</ref>, <ref type="bibr" target="#b6">[7]</ref> and <ref type="bibr" target="#b20">[21]</ref> without unresponsive and Byzantine servers), secret sharing <ref type="bibr" target="#b3">[4]</ref> (compared with <ref type="bibr" target="#b0">[1]</ref>).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. CLASSICAL E-B-MDS-X-TPIR: CSA CODE</head><p>The classical version of this problem has been studied in <ref type="bibr" target="#b20">[21]</ref>, and the CSA code based classical scheme there is an essential building block of its quantum version. Let us briefly summarize it here, starting with an example.</p><p>A. Example 1:</p><formula xml:id="formula_54">E = 1, B = 0, K c = 2, X = 1, T = 1 with N = 6 Servers [21] Let L = N -(K c + E + X + T -1) = 2 and α 1 , • • • , α N =6 , f 1 , f L=2 be 8 distinct elements over F q (q ≥ 8). Let w [K] be the realizations of all the K messages W [K]</formula><p>. Each message has</p><formula xml:id="formula_55">L × K c = 4 symbols from F q , i.e., for any k ∈ [K], message w k = {w k (i, j)} i∈[2],j∈[2] contains 4 symbols from F q . Let ẇ1,1 , ẇ1,2 , ẇ2,1 , ẇ2,2 ∈ F 1×K</formula><p>q denote the row vectors that contain the 4 symbols of the K messages, respectively, i.e.,</p><formula xml:id="formula_56">w k =   ẇ1,1 e k K ẇ1,2 e k K ẇ2,1 e k K ẇ2,2 e k K  <label>(30)</label></formula><p>where e k K is the k th column vector of I K . Let the storage randomness Z = {Z 1,1 , Z 2,1 } be uniform over F 1×K q × F 1×K q and user random-</p><formula xml:id="formula_57">ness Z ′ = Z ′(κ) l,t</formula><p>l∈ <ref type="bibr" target="#b1">[2]</ref>,κ∈ <ref type="bibr" target="#b1">[2]</ref>,t=1</p><p>be uniform over F K×1 q 4 .</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Storage:</head><p>The storage at server n, n ∈ <ref type="bibr" target="#b5">[6]</ref>, conditioned on the realization of messages and storage randomness, is S n = s n where</p><formula xml:id="formula_58">s n = s n (1) s n (2) = 1 (f 1 -α n ) 2 ẇ1,1 + 1 f 1 -α n ẇ1,2 + z 1,1 1 (f 2 -α n ) 2 ẇ2,1 + 1 f 2 -α n ẇ2,2 + z 2,1 .<label>(31)</label></formula><p>Here</p><formula xml:id="formula_59">z 1,1 , z 2,1 ∈ F 1×K q are the realizations of random vectors Z 1,1 , Z 2,1 respectively. It is not difficult to see that for any l ∈ [2], (s 1 (l), s 2 (l), • • • , s 6 (l)) l ∈ [2] is a [6, 3] MDS code</formula><p>for ( ẇl,1 , ẇl,2 , z l,1 ), and the storage cost at each server is 1/K c = 1/2 of the K messages (s n (1), s n (2) ∈ F 1×K q while each of K messages contains 4 symbols from F q . At the same time we have a secret sharing of 1 (αn-f 1 ) 2 ẇl,1 + 1 αn-f 1 ẇl,2 with threshold 1, thus the MDS and X = 1 security constraint is satisfied.</p><p>Queries: The query generation contains K c = 2 iterations. The query sent from the user to server n, n ∈ <ref type="bibr" target="#b5">[6]</ref>, conditioned on the realization of the user's local randomness, is Q</p><formula xml:id="formula_60">[θ] n = q n where q n = q (1) n , q (2) n ,<label>(32)</label></formula><p>with the superscript indicating the iteration number, and</p><formula xml:id="formula_61">q (1) n =   q (1) n (1) q (1) n (2)   =   (f 1 -α n )e θ K + (f 1 -α n ) 2 z ′(1) 1,1 (f 2 -α n )e θ K + (f 2 -α n ) 2 z ′(1) 2,1   (<label>33</label></formula><formula xml:id="formula_62">)</formula><formula xml:id="formula_63">q (2) n =   q (2) n (1) q (2) n (2)   =   e θ K + (f 1 -α n ) 2 z ′(2) 1,1 e θ K + (f 2 -α n ) 2 z ′(2) 2,1  <label>(34)</label></formula><p>Here, e K,θ is the θ th column of I K , used for choosing the θ th entry of ẇ, and z</p><formula xml:id="formula_64">′(κ) l,t ∈ F K×1 q , l ∈ [2], κ ∈ [2], t = 1 is the realization of corresponding user randomness Z ′(κ)</formula><p>l,t . It is again not difficult to verify that the queries form secret sharing of e θ K with threshold 1. Thus, the query is 1-private.</p><p>Answer: The answer generation takes K c = 2 iterations. Conditioned on the realization of messages, storage and user randomness, the answer sent from server n is</p><formula xml:id="formula_65">A n = a n = a (1) n , a<label>(2) n</label></formula><p>where in iteration κ ∈ <ref type="bibr" target="#b1">[2]</ref>, the answer a (κ) n is just a symbol from F q . Specifically, in the first iteration, a (1)  n = s n q (1) n = s n (1)q (1)  n (1) + s n (2)q (1)</p><formula xml:id="formula_66">n (2) = 1 f 1 -α n ẇ1,1 e θ K + 1 f 2 -α n ẇ2,1 e θ K + ẇ1,1 z ′(1) 1,1 + ẇ2,1 z ′(1) 2,1 + ẇ1,2 e θ K + ẇ2,2 e θ K + (f 1 -α n ) ẇ1,2 z ′(1) 1,1 + z 1,1 e θ K + (f 2 -α n ) ẇ2,2 z ′(1) 2,1 + z 2,1 e θ K + (f 1 -α n ) 2 z 1,1 z ′(1) 1,1 + (f 2 -α n ) 2 z 2,1 z ′(1) 2,1<label>(35)</label></formula><formula xml:id="formula_67">= 1 f 1 -α n ẇ1,1 e θ K + 1 f 2 -α n ẇ2,1 e θ K + * + α n * +α 2 n *<label>(36)</label></formula><p>where the coefficients for rational terms are desired message symbols and the coefficients for α 0 n , α 1 n , α 2 n are interfering symbols whose specific forms are not important. The collection of the answers from the 6 servers can be represented as,</p><formula xml:id="formula_68">             a (1) 1 a (1) 2 a (1) 3 a (1) 4 a (1) 5 a (1) 6              =              1 f 1 -α 1 1 f 2 -α 1 1 α 1 α 2 1 1 f 1 -α 2 1 f 2 -α 2 1 α 2 α 2 2 1 f 1 -α 3 1 f 2 -α 3 1 α 3 α 2 3 1 f 1 -α 4 1 f 2 -α 4 1 α 4 α 2 4 1 f 1 -α 5 1 f 2 -α 5 1 α 5 α 2 5 1 f 1 -α 6 1 f 2 -α 6 1 α 6 α 2 6                        ẇ1,1 e θ K ẇ2,1 e θ K * * *           . (<label>37</label></formula><formula xml:id="formula_69">)</formula><p>Due to the fact that any 5 rows of the matrix in (37) form an invertible sub-matrix according to <ref type="bibr" target="#b20">[21]</ref>, the answers form a <ref type="bibr" target="#b5">[6,</ref><ref type="bibr" target="#b4">5]</ref> MDS code such that one erasure can be corrected and 2 desired message symbols w θ (:, 1) = [ ẇ1,1 e θ K ẇ2,1 e θ K ] ⊤ (together with the interfering symbols) can be decoded.</p><p>In the second iteration, the answer from each server is still a symbol in F q , where</p><formula xml:id="formula_70">a (2) n = s n q (2) n = s n (1)q (2) n (1) + s n (2)q (2) n (2) = 1 (f 1 -α n ) 2 ẇ1,1 e θ K + 1 (f 2 -α n ) 2 ẇ2,1 e θ K + 1 f 1 -α n ẇ1,2 e θ K + 1 f 2 -α n ẇ2,2 e θ K + * + α n * +α 2 n * .<label>(38)</label></formula><p>The details of derivation can be found in <ref type="bibr" target="#b20">[21]</ref> and are omitted here. Note that the first two terms in <ref type="bibr" target="#b37">(38)</ref> are already known from the first iteration of decoding. The 6 answers together can now be written as,</p><formula xml:id="formula_71">             a (2) 1 a (2) 2 a (2) 3 a (2) 4 a (2) 5 a (2) 6              =              1 f 1 -α 1 1 f 2 -α 1 1 α 1 α 2 1 1 f 1 -α 2 1 f 2 -α 2 1 α 2 α 2 2 1 f 1 -α 3 1 f 2 -α 3 1 α 3 α 2 3 1 f 1 -α 4 1 f 2 -α 4 1 α 4 α 2 4 1 f 1 -α 5 1 f 2 -α 5 1 α 5 α 2 5 1 f 1 -α 6 1 f 2 -α 6 1 α 6 α 2 6                        ẇ1,2 e θ K ẇ2,2 e θ K * * *           +              l∈[2] 1 (f l -α 1 ) 2 ẇl,1 e θ K l∈[2] 1 (f l -α 2 ) 2 ẇl,1 e θ K l∈[2] 1 (f l -α 3 ) 2 ẇl,1 e θ K l∈[2] 1 (f l -α 4 ) 2 ẇl,1 e θ K l∈[2] 1 (f l -α 5 ) 2 ẇl,1 e θ K l∈[2] 1 (f l -α 6 ) 2 ẇl,1 e θ K              σ (1) ,known . (<label>39</label></formula><formula xml:id="formula_72">)</formula><p>After subtracting σ (1) , w θ (:, 2) = [ ẇ1,2 e θ K ẇ2,2 e θ K ] ⊤ can be decoded similarly. The 2×2 desired message symbols are retrieved by downloading 6 × 2 answer symbols from the servers. The rate achieved is 1/3.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. CSA Code for E-B-MDS-X-TPIR</head><p>Recall the constants defined in <ref type="bibr" target="#b27">(28)</ref>. Each message has L × K c symbols from F q , i.e., for any <ref type="bibr">[Kc]</ref> . Let us define the length-K vector that contains the (l, κ) th symbol of all the K messages as</p><formula xml:id="formula_73">k ∈ [K], the realization of message W k , w k = (w k (i, j)) l∈[L],κ∈</formula><formula xml:id="formula_74">ẇl,κ ≜ w 1 (l, κ) w 2 (l, κ) • • • w K (l, κ) , ∀l ∈ [L], κ ∈ [K]. (<label>40</label></formula><formula xml:id="formula_75">)</formula><p>Then for any k ∈ [K], message w k can be represented as</p><formula xml:id="formula_76">w k =        ẇ1,1 e k K ẇ1,2 e k K • • • ẇ1,Kc e k K ẇ2,1 e k K ẇ2,2 e k K • • • ẇ2,Kc e k K . . . . . . . . . . . . ẇL,1 e k K ẇL,2 e k K • • • ẇL,Kc e k K        ∈ F L×Kc q . (<label>41</label></formula><formula xml:id="formula_77">)</formula><p>The sources of randomness included in this scheme, uniform over their respective alphabet, are as follows,</p><formula xml:id="formula_78">Z = {Z l,x } l∈[L],x∈[X] , Z l,x ∈ F K×1 q , Z ′ = {Z ′(κ) l,t } l∈[L],κ∈[Kc],t∈[T ] , Z ′(κ) l,t ∈ F 1×K q . (<label>42</label></formula><formula xml:id="formula_79">) We let z = {z l,x } l∈[L],x∈[X] , z ′ = {z ′(κ) l,t } l∈[L],κ∈[Kc]</formula><p>,t∈[T ] be the realizations. The CSA scheme in <ref type="bibr" target="#b20">[21]</ref> is summarized in the following protocol. The specific forms of storage, queries and answers generation functions can be found in Appendix B.</p><formula xml:id="formula_80">Protocol 1. E-B-MDS-X-TPIR: CSA { ẇl,κ } l∈[L],κ∈[Kc] , z, z ′ (Classical) 1) Storage: s [N ] ← StoreGen { ẇl,κ } l∈[L],κ∈[Kc] , z 2) Queries: q [N ] ← QueryGen (θ, z ′ ) 3) Answers: a [N ] = a (κ) [N ] κ∈[Kc] ← AnsGen s [N ] , q [N ] . Note that for all κ ∈ [K c ], the answers at iteration κ are specified in (43),      a (1) 1 . . . a (1) N      ≜a (κ) =        1 f 1 -α 1 • • • 1 f L -α 1 1 α 1 • • • α V -1 1 1 f 1 -α 2 • • • 1 f L -α 2 1 α 2 • • • α V -1 2 . . . . . . . . . . . . . . . . . . . . . 1 f 1 -α N • • • 1 f L -α N 1 α N • • • α V -1 N        ≜G CSA q,(α,f ) N,L,V              ẇ1,κ e θ K : ẇL,κ e θ K * : *              =[w θ (:,κ); * ] +        l∈[L],k∈[κ-1] ẇl,k e θ K (f l -α 1 ) κ-k+1 l∈[L],k∈[κ-1] ẇl,k e θ K (f l -α 2 ) κ-k+1 . . . l∈[L],k∈[κ-1] ẇl,k e θ K (f l -α N ) κ-k+1        ≜σ (κ-1) , known<label>(43)</label></formula><p>4) Corrupted Answers: In each iteration κ ∈ [K c ], the user receives â(κ) (answers from unresponsive servers can be replaced by 0).</p><formula xml:id="formula_81">â(κ) = a (κ) + ϵ (κ) E∪B = = G CSA q,(α,f ) N,L,V [w θ (:, κ); * ] + ϵ (κ) E∪B + σ (κ-1)<label>(44)</label></formula><p>where supp ϵ (â (κ)σ (κ-1) ).</p><p>In the 1 st iteration, σ (0) = 0 and the answers from N servers can be regarded as a codeword from C = CSA q,(α,f )</p><formula xml:id="formula_82">N,L,V code with G CSA q,(α,f ) N,L,V</formula><p>being the generator matrix, added with errors introduced by unresponsive and Byzantine servers as shown in (44). The generator matrix is defined in (43), and the vector * contains V = K c + X + T -1 symbols that are regarded as interference that arises due to MDS, security and privacy constraints. The specific forms of the interference terms are not important. According to the following proposition that states the CSA code is an</p><formula xml:id="formula_83">[N, L + V ] MDS code with minimum distance d = N -(L + V ) + 1 (28) = E + 2B + 1,</formula><p>the |E| ≤ E erasures and |B| ≤ B Byzantine errors can be corrected and the user is able to recover desired message symbols w θ (:, 1) by the decoding scheme of CSA code</p><formula xml:id="formula_84">Φ CSA E . Proposition 2. Any L + V rows of G CSA q,(α,f ) N,L,V</formula><p>defined in (43) form an invertible matrix, i.e., CSA q,(α,f ) <ref type="bibr" target="#b20">[21]</ref>.</p><formula xml:id="formula_85">N,L,V ≜ colspan G CSA q,(α,f ) N,L,V code is an [N, L + V ] MDS code</formula><p>In the κ th iteration, κ ∈ [K c ], the received N answers, after subtracting σ (κ-1) which solely depends on the decoding result in the previous iterations, again form a codeword from C = CSA q,(α,f ) N,L,V code, added with errors. Again, according to Proposition 2, the user is able to decode w θ (:, κ) in the κ th iteration.</p><p>The communication rate of the CSA code based scheme is over F q is the column space of the generator matrix defined in (46) where</p><formula xml:id="formula_86">R C = K c L K c N (28) = N -E -2B -K c -X -T + 1 N . (<label>45</label></formula><formula xml:id="formula_87">G CSA q,(α,f ) N,L,V is defined in (43), (α, f ) = (α 1 , α 2 , • • • , α N , f 1 , f 2 , • • • , f L ) are N + L distinct elements and u = (u 1 , u 2 , • • • , u N ) are N non-zero elements in F q . By definition, N ≥ L + V and q ≥ N + L. G MCSA q,(α,f ,u) N,L,V ≜ Diag(u)G CSA q,(α,f ) N,L,V . (<label>46</label></formula><formula xml:id="formula_88">)</formula><p>The specific form of the generator matrix can be found in (48). For this MCSA code, we have the following proposition.</p><formula xml:id="formula_89">Proposition 3. Any L + V rows of G MCSA q,(α,f ,u) N,L,V form an invertible matrix, i.e., MCSA q,(α,f ,u) N,L,V code is an [N, L + V ] MDS code. Proof. For any R ⊂ [N ], |R| = L + V , the L + V rows G MCSA q,(α,f ,u) N,L,V (R, :) = Diag(u(R))G CSA q,(α,f ) N,L,V (R, :)<label>(47)</label></formula><p>form an invertible matrix since Diag(u(R)) is invertible as</p><formula xml:id="formula_90">u i ̸ = 0, ∀i ∈ [N ],<label>and</label></formula><formula xml:id="formula_91">G CSA q,(α,f ) N,L,V is invertible according to Proposition 2.</formula><p>Let us specify the form of the answers from an MCSA based classical E-B-MDS-X-TPIR scheme next. Note that for all κ ∈ [K c ], the answers at iteration κ are specified in (48).</p><formula xml:id="formula_92">     a<label>(1) 1 . . . a (1) N</label></formula><formula xml:id="formula_93">     ≜a (κ) =        = G CRS q,(α,f ,u) N,L u 1 f 1 -α 1 • • • u 1 f L -α 1 = G GRS q,(α,u) N,V u 1 u 1 α 1 • • • u 1 α V -1 1 u 2 f 1 -α 2 • • • u 2 f L -α 2 u 2 u 2 α 2 • • • u 2 α V -1 2 . . . . . . . . . . . . . . . . . . . . . u N f 1 -α N • • • u N f L -α N u N u N α N • • • u N α V -1 N        =G MCSA q,(α,f ,u) N,L,V              ẇ1,κ e θ K : ẇL,κ e θ K * : *              =[w θ (:,κ); * ] +        l∈[L],k∈[κ-1] u 1 ẇl,k e θ K (f l -α 1 ) κ-k+1 l∈[L],k∈[κ-1] u 2 ẇl,k e θ K (f l -α 2 ) κ-k+1 . . . l∈[L],k∈[κ-1] u N ẇl,k e θ K (f l -α N ) κ-k+1        ≜σ (κ-1) , known<label>(48)</label></formula><p>Remark 5. For any κ ∈ [K c ], the answers at iteration κ specified in (48) are equal to the answers in (43) left-multiplied by the matrix Diag(u). Thus, any CSA based scheme can be easily converted to an MCSA based scheme by letting server n multiply its answer generated from CSA based scheme by u n . The generation of storage and queries remains unchanged.</p><p>Therefore, X-security and T -privacy follow from the CSA code based scheme. Meanwhile, the decodability of the desired message is guaranteed by Proposition 3, just as the decodability of CSA code based scheme is guaranteed by Proposition 2.</p><p>Remark 6. Compared with the generator matrix of the code defined in [26, Eq. ( <ref type="formula" target="#formula_29">15</ref>)] which is a square matrix, note that the generator matrix in this paper is not square to be able to correct errors introduced by unresponsive and Byzantine servers, and it is an enhanced version of the generator matrix of CSA code in [21, Eq. ( <ref type="formula">70</ref>)].</p><p>The MCSA code based scheme is specified in Protocol 2. The definition of { ẇl,κ</p><formula xml:id="formula_94">} l∈[L],κ∈[Kc] ,</formula><p>z, z ′ are the same as those in ( <ref type="formula" target="#formula_74">40</ref>) and (42). u = (u 1 , • • • , u N ) ∈ F N q are N non-zero elements<ref type="foot" target="#foot_1">foot_1</ref> in F q . Again, the storage, queries and answers generation functions are specified in Appendix B.</p><formula xml:id="formula_95">Protocol 2. E-B-MDS-X-TPIR: MCSA { ẇl,κ } l∈[L],κ∈[Kc] , z, z ′ , u (Classical) 1) Storage: s [N ] ← StoreGen { ẇl,κ } l∈[L],κ∈[Kc] , z 2) Queries: q [N ] ← QueryGen (θ, z ′ ) 3) Answers: ã[N] = ã(κ) [N ] κ∈[Kc] ← AnsGen s [N ] , q [N ] , a<label>(κ)</label></formula><formula xml:id="formula_96">[N ] ← u n ã(κ) [N ] , ∀n ∈ [N ], κ ∈ [K c ].</formula><p>The N answers at iteration κ ∈ [K c ] are as follows<ref type="foot" target="#foot_2">foot_2</ref> </p><formula xml:id="formula_97">a (κ) (48) = G MCSA q,(α,f ,u) N,L,V [w θ (:, κ); * ] + σ (κ-1)<label>(48)</label></formula><p>= G GRS q,(α,u)</p><formula xml:id="formula_98">N,V * +G CRS q,(α,f ,u) N,L w θ (:, κ) + σ (κ-1)<label>(49)</label></formula><p>4) Corrupted Answers: In each iteration κ ∈ [K c ], the user receives corrupted answers â(κ)</p><p>(answers from unresponsive servers can be replaced by 0).</p><formula xml:id="formula_99">â(κ) = a (κ) + ϵ (κ) E∪B (50) = G GRS q,(α,u) N,V * + G CRS q,(α,f ,u) N,L w θ (:, κ) + ϵ (κ) E∪B "error" +σ (κ-1)</formula><p>where supp ϵ (κ) E∪B = E ∪ B denotes the errors introduced by unresponsive and Byzantine servers.</p><p>5) Decoding: For any κ ∈ [K c ], user computes the syndrome</p><formula xml:id="formula_100">s (κ) ≜ H ⊤ GRS q,(α,u) N,V a (κ) = H ⊤ GRS q,(α,u) N,V G CRS q,(α,f ,u) N,L w θ (:, κ) + ϵ (κ) E∪B + H ⊤ GRS q,(α,u) N,V σ (κ-1) .<label>(51)</label></formula><p>and decodes the desired message through</p><formula xml:id="formula_101">Φ GRS E s (κ) -H ⊤ GRS q,(α,u) N,V σ (κ-1) known (51) = Φ GRS E H ⊤ GRS q,(α,u) N,V G CRS q,(α,f ,u) N,L w θ (:, κ) + ϵ (κ) E∪B = w θ (:, κ), ϵ<label>(κ)</label></formula><p>E∪B ,</p><p>where</p><formula xml:id="formula_103">Φ GRS E : F (N -V ) q → F L q × F N q</formula><p>is the mapping from the syndrome (after subtracting σ (κ-1) related terms) to the L desired message symbols and the error vector introduced by unresponsive and Byzantine server, when the unresponsive servers are those with indices in the set E.</p><p>Remark 7. Note that besides the difference while generating the answers in step 3, compared with Protocol 1, the interpretation of the answers and user's way of decoding are all different.</p><p>We will explain these in the following subsection.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. MCSA Classical E-B-MDS-X-TPIR-Another Interpretation</head><p>Though the MDS property of the MCSA code guarantees the decodability of message symbols when there are unresponsive and Byzantine servers, in order to make it compatible with the Q-E-B-MDS-X-TPIR scheme based on syndrome measurement of a CSS code, we interpret answers from MCSA code based classical E-B-MDS-X-TPIR scheme as the GRS code of the interfering symbols * , with CRS encoded desired message symbols added as "errors." With this interpretation, the decoding of the classical scheme is based on the syndrome decoding of a GRS code. Specifically, the corrupted answer (after subtracting σ which is known) in (50) can be interpreted as GRS q,(α,u) N,V encoded interfering symbols, corrupted by the "errors" caused by CRS encoded message symbols, erasures and Byzantine errors.</p><formula xml:id="formula_104">H GRS q,(α,u) N,V ∈ F N ×(N -V ) q</formula><p>is the parity check matrix of GRS q,(α,u) N,V , and (51) follows from H ⊤ G = 0.</p><p>Next let us prove Lemma 2 which guarantees the existence of the decoding function Φ GRS E in (52). Essentially, Lemma 2 says that all the correctable "errors" (including "errors" introduced by desired message symbols) have different syndromes. The "errors" introduced by desired messages are similar to erasures in the sense that we know their error basis (columns of G CRS ).</p><p>Thus, when L + E + 2B <ref type="bibr" target="#b27">(28)</ref> = N -V = d -1 where L is the dimension of the message symbols and d = N -V + 1 is the minimum distance of the the GRS code, all the "errors", including those caused by the desired message symbols, can be decoded from the syndrome. </p><formula xml:id="formula_105">) ̸ = (w ′ , ϵ ′ E∪B ′ ), where w, w ′ ∈ F L q , ϵ E∪B , ϵ ′ E∪B ′ ∈ F N ×1 q , supp(ϵ E∪B ) = E ∪ B and supp(ϵ E∪B ′ ) = E ∪ B ′ , i.e., H ⊤ GRS q,(α,u) N,V G CRS q,(α,f ,u) N,L w + ϵ E∪B ̸ = H ⊤ GRS q,(α,u) N,V G CRS q,(α,f ,u) N,L w ′ + ϵ ′ E∪B ′<label>(53)</label></formula><p>This implies the existence of the decoding function</p><formula xml:id="formula_106">Φ GRS E : F N ×1 q → F L×1 q × F N ×1 q in (52). Proof. See Appendix C. C. Example 2: E = 0, B = 1, K c = 1, X = 1, T = 1 with N = 6 Servers: Protocol 2 Let L = N -(K c +2B +X +T -1) = 2 and α 1 , • • • , α N =6 , f 1 , f L=2 be 8 distinct elements over F q (q ≥ 8). Also, let u 1 , u 2 , • • • , u 6 be 6 non-zero elements form F q . Let w [K] be the realizations of all the K messages W [K]</formula><p>. Each message has L × K c = 2 symbols from F q , i.e., for any</p><formula xml:id="formula_107">k ∈ [K], message w k = {w k (i, j)} i∈[2],j=1 contains 2 symbols from F q . Let ẇ1,1 , ẇ2,1 ∈ F 1×K</formula><p>q denote the row vectors that contain the 2 symbols of the K messages, respectively, i.e.,</p><formula xml:id="formula_108">w k =   ẇ1,1 e k K ẇ2,1 e k K  <label>(54)</label></formula><p>where e k K is the k th column vector of I K .</p><p>We skip the storage and queries. The (corrupted) answers from the servers have the following representation, where server 2 is Byzantine so that an error is added to its answer. Note that </p><formula xml:id="formula_109">V = K c + X + T -1 = 2,</formula><formula xml:id="formula_110">6 ⊤ =              u 1 f 1 -α 1 u 1 f 2 -α 1 u 1 u 1 α 1 u 2 f 1 -α 2 u 2 f 2 -α 2 u 2 u 2 α 2 u 3 f 1 -α 3 u 3 f 2 -α 3 u 3 u 3 α 3 u 4 f 1 -α 4 u 4 f 2 -α 4 u 4 u 4 α 4 u 5 f 1 -α 5 u 5 f 2 -α 5 u 5 u 5 α 5 u 6 f 1 -α 6 u 6 f 2 -α 6 u 6 u 6 α 6                     ẇ1,1 e θ K ẇ2,1 e θ K * *        +              0 ϵ 0 0 0 0              = G GRS q,(α,u) 6,2 * + G CRS q,(α,f ,u) 6,2 w θ (:, 1) + ϵ (1) {2} "error" (55)</formula><p>The error correcting capability of the [6, 2, 5] GRS code will be utilized to find the two desired message symbols and the server 2 introduced error ϵ, i.e., the syndrome H ⊤ GRS q,(α,u) 6,2 â(1) uniquely determines the w θ = w θ (:, 1) and ϵ</p><p>(1) {2} .</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VII. MCSA-CSS PROTOCOL FOR Q-E-B-MDS-X-TPIR</head><p>In this section, we propose the MCSA-CSS protocol for the Q-E-B-MDS-X-TPIR problem, based on syndrome measurement of a CSS code, that is constructed from GRS sub-codes of two MCSA codes. Exploiting the fact that the dual code of a GRS code is still a GRS code, a CSS code with N physical qudits can be constructed from two GRS codes. The N physical qudits are then delivered to N servers. 8 Two MCSA codes based classical PIR schemes are executed, and servers apply Pauli operators to the CSS code according to the answers from the classical scheme. The components of Pauli operators corresponding to the GRS sub-codes of interfering symbols are not detectable, because they commute with the stabilizers. This is due to the fact that the CSS code is constructed from the same GRS codes. However, the components associated with the Cauchy RS code encoded message symbols (regarded as "errors"), along with errors introduced by unresponsive and Byzantine servers, are identified through syndrome measurements. 8 Let us clarify that the CSS code is not used to deliver logical qudits to servers. The N physical qudits are initially in a constant pure state and are shared as quantum resources for improving communication efficiency.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. MCSA-CSS Protocol</head><p>The MCSA-CSS scheme is presented as Protocol 3. During one execution of the quantum scheme, two independent instances of classical schemes will be executed. Thus, each message has 2LK c symbols from F q , and the randomness also has twice the size as that in classical cases.</p><p>Let w [K] be the realizations of</p><formula xml:id="formula_111">W [K] , for any k ∈ [K]. We have w k = [w X k w Z k ] ∈ F L×2Kc q where w X k = w X k (l, κ) l∈[L],κ∈[Kc] , w Z k = w Z k (l, κ) l∈[L],κ∈[Kc] ∈ F L×Kc q (56)</formula><p>stand for the X, Z parts of message k respectively, so that each part has the same size to a message in the classical case. Similar to <ref type="bibr" target="#b39">(40)</ref>, define the length-K vector that contains the (l, κ) th symbol of all the K messages' ⋆ part (⋆ ∈ {X, Z}) as</p><formula xml:id="formula_112">ẇ⋆ l,κ ≜ [w ⋆ 1 (l, κ) w ⋆ 2 (l, κ) • • • w ⋆ K (l, κ)], ∀l ∈ [L], κ ∈ [K c ].<label>(57)</label></formula><p>Similarly, Z = {Z X , Z Z }, Z ′ = {Z ′X , Z ′Z }. Each Z ⋆ , Z ′⋆ , ⋆ ∈ {X, Z} is specified similarly according to (42) as follows</p><formula xml:id="formula_113">Z ⋆ = {Z ⋆ l,x } l∈[L],x∈[X] , Z ⋆ l,x ∈ F K×1 q , Z ′⋆ = {Z ′(κ)⋆ l,t } l∈[L],κ∈[Kc],t∈[T ] , Z ′(κ)⋆ l,t ∈ F 1×K q .<label>(58)</label></formula><p>Again, let z, z ′ be their realizations. Let us pick some constants u</p><formula xml:id="formula_114">= (u 1 , • • • , u N ) ∈ F N q s.t. u n ̸ = 0, ∀n ∈ [N ]. Meanwhile, set v = (v 1 , • • • , v N ) as v i = u -1 i j̸ =i (α i -α j ) -1 , ∀i ∈ [N ]. (<label>59</label></formula><formula xml:id="formula_115">)</formula><p>The protocol is specified as follows. Note that u, v are constants specified by the protocol.</p><formula xml:id="formula_116">Protocol 3. Q-E-B-MDS-X-TPIR: MCSA-CSS ẇX l,κ , ẇZ l,κ l∈[L],κ∈[Kc] , z, z ′ , u, v (Quantum) 1) Share Entanglement: For all κ ∈ [K c ], N q-dimensional qudits A (κ) [N ] , with initial state ρ 0 A (κ) [N ] = |ψ⟩ ⟨ψ| , |ψ⟩ ∈ CSS GRS q,(α,v) N,V , GRS q,(α,u) N,V<label>(60)</label></formula><p>are delivered to N servers so that server N gets A (κ) n . We let</p><formula xml:id="formula_117">ρ 0 A (κ) [N ] κ∈[Kc] = κ∈[Kc] ρ 0 A (κ) [N ]</formula><p>.</p><p>2) Storage, Queries, Answers: Two independent instances (indexed by X and Z) of Protocol 2 will be executed to generate storage, queries and corresponding classical answers. Specifically, execute Protocol 2 with following parameters, so that the storage, queries, and classical answers can be determined by corresponding steps in Protocol 2, which are, again, generated according to the 3 functions specified in Appendix B. E-B-MDS-X-TPIR:</p><formula xml:id="formula_118">MCSA ẇX l,κ l∈[L],κ∈[Kc] , z X , z ′X , u , E-B-MDS-X-TPIR: MCSA ẇZ l,κ l∈[L],κ∈[Kc] , z Z , z ′Z , v .<label>(61)</label></formula><p>For iteration κ ∈ [K c ], the following classical answers are generated according to (49) where</p><formula xml:id="formula_119">a (κ)⋆ = [a (κ)⋆ 1 • • • a (κ)⋆ N ] ⊤ ∈ F N ×1 q such that a (κ)⋆ N is known to server n for ⋆ ∈ {X, Z}. a (κ)X = G GRS q,(α,u) N,V * X +G CRS q,(α,f ,u) N,L w (κ)X θ (:, κ) + σ (κ-1)X , a (κ)Z = G GRS q,(α,v) N,V * Z +G CRS q,(α,f ,v) N,L w (κ)Z θ (:, κ) + σ (κ-1)Z . (62) Server n, n ∈ [N ] applies X a (κ)X n Z a (κ)Z n to qudit A (κ)</formula><p>n so that the N answer qudits are in the following state 9 .</p><formula xml:id="formula_120">ρ 1 A (κ) [N ] = X a (κ)X Z a (κ)X ρ 0 A (κ) [N ] X a (κ)X Z a (κ)X † .<label>(63)</label></formula><p>3) Corrupted Answers: For iteration κ ∈ [K c ], the user replaces the unreceived qudits A (κ) E</p><p>with |E| qudits that are in completely mixed state and labels them A</p><p>E . The received qudits 9 For ease of analysis, we assume unresponsive or Byzantine servers firstly behave as reliable servers that apply correct Pauli operators to their qudits and then apply a CPTP map M. There is no loss of generality since any actual CPTP map M ′ applied by the unreliable servers can be viewed as a composition of 1) applying correct Pauli operators, 2) reverting the Pauli operators,</p><p>3) applying M ′ where the composition of the last 2 steps is M.</p><p>are in the following state due to the quantum channels applied by unresponsive and Byzantine servers.</p><formula xml:id="formula_122">ρ 2 A (κ) [N ] = id ⊗ M E∪B (ρ 1 A (κ) [N ] )<label>(64)</label></formula><p>4) Decoding: For each iteration κ ∈ [K c ], the user performs syndrome measurement of</p><formula xml:id="formula_123">CSS GRS q,(α,u) N,V , GRS q,(α,v) N,V</formula><p>. The state becomes</p><formula xml:id="formula_124">ρ 3 A (κ) [N ] |s (κ)X ,s (κ)Z = X â(κ)X Z â(κ)Z ρ 0 A (κ) n X â(κ)X Z â(κ)Z † ,<label>(65)</label></formula><formula xml:id="formula_125">â(κ)⋆ = a (κ)⋆ + ϵ (κ)⋆ E∪B (66) where for ⋆ ∈ {X, Z}, for some ϵ (κ)⋆ E∪B ∈ F N ×1 q .</formula><p>The user obtains the syndrome</p><formula xml:id="formula_126">s (κ)X = H ⊤ GRS q,(α,u) N,V â(κ)X , s (κ)Z = H ⊤ GRS q,(α,v) N,V â(κ)Z<label>(67)</label></formula><p>and decodes the desired message symbols through</p><formula xml:id="formula_127">Φ GRS E s (κ)X -H ⊤ GRS q,(α,u) N,V σ (κ-1)X = w X θ (:, κ), ϵ (κ)X E∪B , Φ GRS E s (κ)Z -H ⊤ GRS q,(α,v) N,V σ (κ-1)Z = w Z θ (:, κ), ϵ (κ)Z E∪B .<label>(68)</label></formula><p>Remark 8. We require V = K c + X + T -1 ≥ N/2, i.e., interfering symbols occupy at least</p><p>half of the answer dimensions, so that the CSS code can be constructed from the GRS codes.</p><p>Consider the second regime of Theorem 1, i.e., (N -</p><formula xml:id="formula_128">E -2B) ≥ N/2 &gt; K c + X + T -1, where N is odd. Though it is not possible to find an integer T &gt; T such that K c + X + T -1 = N/2,</formula><p>one can find T 1 &gt; T, T 2 ≥ T, T 1 = T 2 + 1 such that the total interfering dimensions (this idea is also used in the preliminary ArXiv version of this paper [36, Theorem 1] and in the subsequent 2 nd version of <ref type="bibr" target="#b32">[33]</ref>)</p><formula xml:id="formula_129">K c + X + T 1 -1 + K c + X + T 2 -1 = N.<label>(69)</label></formula><p>This means that while constructing the two instances of the classical scheme, we have T 1 privacy for the X instance, and T 2 privacy for the Z instance. By such choice of T 1 , T 2 , during each of Before analyzing the protocol, let us provide an intuitive explanation. The CSS code is constructed based on the GRS sub-codes of two instances of MCSA codes designed for the PIR problem. Since the GRS sub-code corresponds to interfering symbols, the Pauli operators associated with these interfering symbols commute with the stabilizers of the CSS code and, therefore, cannot be detected through syndrome measurement. In contrast, the Pauli operators associated with message symbols, along with any erasures or Byzantine errors, shift the N qudits into an error space that can be uniquely identified through syndrome measurement.</p><formula xml:id="formula_130">K c iterations, in the first instance, L 1 = N -E -2B -K c -X -T 1 +</formula><p>In this interpretation, the message symbols act as sources of "errors." However, since these </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Analysis of MCSA-CSS Protocol</head><p>Let us first prove its correctness.</p><p>1) Existence of the CSS Code: According to <ref type="bibr">[20, (5.1.6</ref>) Theorem], with the choice of v in (59), we have GRS q,(α,u) N,V ⊥ = GRS q,(α,v) N,N -V ⊂ GRS q,(α,v) N,V when V ≥ N/2. Thus the</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>CSS GRS</head><p>q,(α,u) N,V</p><p>, GRS q,(α,v) N,V code exists.</p><p>2) Corrupted Answers: Without loss of generality we assume all the unresponsive and Byzantine servers first apply the correct Pauli Gates as other (reliable) servers, and then apply an arbitrary quantum channel afterwards, as an arbitrary quantum channel can be regarded as a composition of Pauli Gates with another quantum channel.</p><p>Recall that we replaced the unreceived qudits with qudits in completely mixed state. This can be viewed as if the unresponsive servers' answer qudits were received but went through a quantum depolarizing channel (Qudit Twirl, [</p><p>41, Exercise 4.7.6]). Thus the state derived in (64) is correct. P a,b i X x+µ Z z+τ |ψ⟩ ⟨ψ| X x+µ ′ Z z+τ ′ † P a,b i † =            P a,b i X x+µ Z z+τ |ψ⟩ 0 1×q n = 0 X x+µ Z z+τ |ψ⟩ ∈ Im(P a,b i ), X x+µ ′ Z z+τ ′ |ψ⟩ / ∈ Im(P a,b i ) 0 q n ×1 ⟨ψ| X x+µ ′ Z z+τ ′ † P a,b i † = 0 X x+µ Z z+τ |ψ⟩ / ∈ Im(P a,b i ), X x+µ ′ Z z+τ ′ |ψ⟩ ∈ Im(P a,b i ) X x+µ Z z+τ |ψ⟩ ⟨ψ| X x+µ ′ Z z+τ ′ † X x+µ Z z+τ |ψ⟩ , X x+µ ′ Z z+τ ′ |ψ⟩ ∈ Im(P a,b i ) (75) Thus, after the syndrome measurement, X x+µ Z z+τ |ψ⟩ ⟨ψ| X x+µ ′ Z z+τ ′ † exists if and only if for every stabilizer, X x+µ Z z+τ |ψ⟩ and X x+µ ′ Z z+τ ′ |ψ⟩ lie in the same eigen space, or equivalently, they correspond to the same syndrome (similar to Proposition 1)</p><formula xml:id="formula_131">H ⊤ C Z (x + µ) = H ⊤ C Z (x + µ ′ ) → H ⊤ C Z (µ -µ ′ ) = 0 → µ = µ ′ ,<label>(76)</label></formula><formula xml:id="formula_132">H ⊤ C X (z + τ ) = H ⊤ C X (z + τ ′ ) → H ⊤ C X (τ -τ ′ ) = 0 → τ = τ ′ ,<label>(77)</label></formula><p>where last the step of (76) follows from the fact that wt(µµ ′ ) ≤ min(d X , d Z ) -1 ≤ d Z -1, i.e., µµ ′ / ∈ C Z = ker(H C Z ) if µµ ′ ̸ = 0 (the last step of (77) follows similarly). After syndrome measurement, the n qudits are in the state,</p><formula xml:id="formula_133">ρ 2 = µ,τ ∈F c ′ µ,τ X x+µ Z z+τ |ψ⟩ ⟨ψ| X x+µ Z z+τ † .<label>(78)</label></formula><p>Suppose the outcome of syndrome measurement is</p><formula xml:id="formula_134">s X = H ⊤ C Z (x+ϵ X [d-1] ), s Z = H ⊤ C X (z+ϵ Z [d-1] ) with ϵ X [d-1] , ϵ Z [d-1] ∈ F.</formula><p>Then ∀µ, τ ∈ F, the term X x+µ Z z+τ |ψ⟩ ⟨ψ| (X x+µ Z z+τ ) † does not disappear if and only if,</p><formula xml:id="formula_135">H ⊤ C Z (x + µ) = H ⊤ C Z x + ϵ X [d-1] → µ = ϵ X [d-1] ,<label>(79)</label></formula><formula xml:id="formula_136">H ⊤ C X (z + τ ) = H ⊤ C X z + ϵ Z [d-1] → τ = ϵ Z [d-1] ,<label>(80)</label></formula><p>C. Proof of Lemma 2</p><p>We only need to prove </p><p>As a consequence, we only need to prove the following (N -V )×(N -V ) matrix is invertible.</p><formula xml:id="formula_138">H ⊤ GRS q,(α,u) N,V</formula><p>G CRS q,(α,f ,u) N,L I N (:, S)</p><p>For invertibility of (88), we first prove the following lemma.</p><p>Lemma 3. The following N × N matrix is invertible.</p><p>G GRS q,(α,u) N,V G CRS q,(α,f ,u) N,L I N (:, S)</p><p>Proof. On one hand, ) = colspan(G GRS q,(α,u) N,V</p><formula xml:id="formula_141">∀c ̸ = 0 ∈ colspan G GRS q,(α,u) N,V G CRS q,(α,f ,u) N,L<label>(48)</label></formula><p>).</p><p>A contradiction occurs since colspan([G CRS q,(α,f ,u) N,L I N (:, S)]) ∩colspan(G GRS q,(α,u) N,V ) = colspan(0) ̸ ∋ v ′ according to Lemma 3. Therefore, (88) is invertible.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><figDesc>Fig. 1. Q-E-B-MDS-X-TPIR. Quantum systems A1, • • • , AN are prepared in an optimally entangled state and distributed to servers in advance. Messages W1, • • • , WK , together with randomness Z are encoded into S1, • • • , SN in an X-secure fashion and distributed to N servers as their storage. To privately retrieve a desired message W θ , θ ∈ [K], a user sends to the servers random (based on its its local randomness Z ′ ) queries Q1, • • • , QN that are T -private. Each server locally encodes its response</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>For</head><figDesc>two integers a, b, the set {a, a+1, • • • , b} is denoted as [a : b]. For compact notation, [1 : b] is denoted as [b]. For a set S, |S| denotes its cardinality, and for any k ≤ |S|, S k ≜ {S | S ⊂ S, |S| = k}. For an r × c matrix A, A(A, B) denotes the sub-matrix of A whose row indices are in A and column indices in B.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>[ 39 ].Definition 8 .</head><label>398</label><figDesc>) with projections P a,b i i∈Fp Syndrome Measurement: For the CSS code defined in Definition 6, a syndrome measurement is the stabilizer measurement corresponding to all the (generator) stabilizers according to Definition 7. Proposition 1. (Well known) For any |ψ⟩ ∈ CSS (C X , C Z ) and any x, z ∈ F n×1 q</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><figDesc>and the subsystem A n is given to server n, n ∈ [N ]. MDS and Secure Storage: Same as the classical setting. Queries: Same as the classical setting. Answer: Again, there are unresponsive servers E and Byzantine servers B with E, B ⊂ [N ], |E| ≤ E, |B| ≤ B. Any reliable server applies to its own quantum subsystem a completely-positive and trace-preserving (CPTP) map as its encoder, based on the realizations of its storage S n = s n and received query Q</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head>[</head></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><head>Remark 2 .</head><label>2</label><figDesc>Both unresponsive and Byzantine servers apply arbitrary CPTP maps to their quantum systems. The difference is that the indices in E are directly known to the user after collecting all the answers since unresponsive servers do not respond, while the indices in B are unknown before decoding. Thus, the decoding POVM Dec [θ,z ′ ] E depends on E.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><head>2</head><label>2</label><figDesc>will be established by the scheme presented in Section VII.The achievability of the second regime, (N -E -2B) ≥ N/2 &gt; (K c + X + T -1), follows from a combination of the schemes for the first and third regimes, an idea that appears in the preliminary ArXiv version of this paper [36, Theorem 1, Remark 6] and in the subsequent 2 nd</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7"><head>5 )</head><label>5</label><figDesc>(κ) E∪B = E ∪ B denotes the errors introduced by unresponsive and Byzantine servers. Decoding: For each κ ∈ [K c ], the user decodes w(:, κ) = Φ CSA E</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8"><figDesc>) VI. MODIFIED CSA (MCSA) CODE In this section, we propose a Modified CSA (MCSA) Code which is still a classical error correction code, that is intended for classical E-B-MDS-X-TPIR protocol, but more compatible with our eventual Q-E-B-MDS-X-TPIR protocol construction, by turning the RS sub-code of CSA code into a GRS code and leveraging the fact that the dual code of a GRS code is still a GRS code. A. MCSA Code for E-B-MDS-X-TPIR Definition 9. MCSA Code (Classical): A Modified Cross Subspace Alignment code C = MCSA q,(α,f ,u) N,L,V</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9"><head>Lemma 2 .</head><label>2</label><figDesc>Let L + E + 2B = N -V , as stated in<ref type="bibr" target="#b27">(28)</ref>. For any given unresponsive servers E ⊂ [N ], |E| ≤ E and any two sets of Byzantine servers B, B ′ ⊂ [N ], |B|, |B ′ | ≤ B, the syndromes will differ for any two distinct pairs (w, ϵ E∪B</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10"><figDesc>and since K c = 1, there is only â(1) with σ (0) = 0.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_12"><head>1</head><label>1</label><figDesc>symbols of desired message are delivered, and in the second instance,L 2 = N -E -2B -K c -X -T 2 + 1 symbols are delivered. Thus, in total L 1 + L 2 (69) = N -2E -4B symbols are delivered. The rate R Q = (N -2E -4B)/N is thus achieved.The key is that the CSS code will be constructed from an [N, ⌊N/2⌋] GRS code and an [N, ⌈N/2⌉] GRS code.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_13"><head>"</head><figDesc>errors" introduced by message symbols have a known basis, they are no more detrimental than erasures. Combined with the fact that a Pauli error corresponds to both X and Z errors, each of which can carry classical messages, the CSS code used in Protocol 3 with minimum distance d ≥ min(d X , d Z ) = N -V + 1 can transmit 2L classical symbols, correct E erasures and B Byzantine errors as long as L + E + 2B (28) = N -V = min(d X , d Z ) -1 ≤ d -1.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_14"><figDesc>′′ , ϵ ′′ E∪B∪B ′ ) ̸ = (0, 0). (85) Note that since |E ∪ B ∪ B ′ | ≤ E + 2B, we can find a set S ⊂ [N ] where |S| = E + 2B andE ∪ B ∪ B ′ ⊂ S so that ϵ ′′ E∪B∪B ′ = I N (:, S)ϵ ′′ , ϵ ′′ ∈ F (E+2B)×1 q . (86)Thus, we only need to prove for all length-(L+E+2B(28)=N -V ) column vectors [w ′′ ; ϵ ′′ ] ̸ = 0 H ⊤ GRS q,(α,u) N,V G CRS q,(α,f ,u) N,Lw ′′ + I N (:, S)ϵ ′′</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_15"><head>∩</head><figDesc>is an [N, L + V ] MDS code according to Proposition 3. On the other hand,∀c ′ ̸ = 0 ∈ colspan(I N (:, S)), wt(c ′ ) ≤ |S| = rank (I N (:, S)) colspan(I N (:, S)) = colspan(0). (92)Combined with the following equationrank G GRS q,(α,u) N,V G CRS q,(α,f ,u) N,L = rank G MCSA q,(α,f ,u) N,L,V = L + V, rank (I N (:, S)) = E + 2B (28) = N -(L + V ) (93)the proof is complete. Now let us prove the invertibility of (88) through a contradiction. Suppose to the contrary, the matrix in (88) is not invertible, then there exists v ∈ F(N -V )×1 q , v ̸ = 0 such that hand, by definition v ′ ∈ colspan([G CRS q,(α,f ,u) N,L I N (:, S)]). Additionally, v ′ ̸ = 0 since [G CRS q,(α,f ,u) N,LI N (:, S)] has rank N -V according to Lemma 3 and because v ̸ = 0. On the other hand, v ′ ∈ ker(H ⊤ GRS q,(α,u) N,V</figDesc></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="5" xml:id="foot_0"><p>For ease of comparison with quantum PIR problems, similar to<ref type="bibr" target="#b3">[4]</ref> but unlike<ref type="bibr" target="#b20">[21]</ref>, the unreceived qudits from unresponsive servers are also counted in the download cost.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="6" xml:id="foot_1"><p>u is a constant vector included in the input to the protocol for ease of executing it twice with different parameters u, v in the quantum protocol.</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="7" xml:id="foot_2"><p>The notation w θ (:, κ) = w θ (:, κ) indicates that this represents a vector.</p></note>
+		</body>
+		<back>
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>3) State after Syndrome Measurement: The two underlying GRS codes of the CSS code have distance d X = d Z = N -V +1 ≥ N -(L+V )+1 <ref type="bibr" target="#b27">(28)</ref> = E +2B+1, thus min(d X , d Z ) ≥ E +2B+1.</p><p>Thus |E ∪ B| ≤ E + B ≤ min(d X , d Z ) -1, and according to Lemma 1, the error reduces to Pauli Operators and (65) is correct.</p><p>4) Syndrome and Decoding: Again, according to Lemma 1, (67) is correct and the decoding reduces to classical case by identifying (62), (66), (67) with (49), (50), (51). Thus the decodability is guaranteed by the decoder in Protocol 2.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>5) MDS, Security and Privacy:</head><p>The satisfaction of these constraints is ensured by Protocol 2, which, in turn, is guaranteed by Protocol 1, as demonstrated in <ref type="bibr" target="#b20">[21]</ref>. Note that the pre-shared entangled systems do not break the privacy or security since they are completely independent of the messages, randomness, and the index of the desired message.</p><p>Finally, consider the rate of the Q-E-B-MDS-X-TPIR scheme in Protocol 3. In each iteration κ ∈ [K c ], N qudits are downloaded, and 2L desired message symbols w (κ)X (:, κ), w (κ)Z (:, κ) are retrieved. Therefore, the overall rate is The initial state is ρ 0 = X x Z z |ψ⟩ ⟨ψ| (X x Z z ) † . After applying the quantum channel, using the Kraus representation of the channel, we have</p><p>where K i ∈ C q (d-1) ×q (d-1) and 0 has length (nd + 1).</p><p>Since the X α Z β α,β∈F</p><p>form a basis for the linear space of all q (d-1) × q (d-1) complex matrices <ref type="bibr" target="#b36">[37]</ref>, by representing K i as linear combinations of Pauli operators, ρ 1 can be further written as</p><p>where c, c are some coefficients that depend only on the Kraus Operators, and µ, τ , µ ′ , τ ′ are chosen from</p><p>After the PVM with orthogonal projections P a,b i i∈Fp corresponding to stabilizers X a Z b , in (72) we have</p><p>Note that X x+µ Z z+τ |ψ⟩ and X x+µ ′ Z z+τ ′ |ψ⟩ are eigenvectors of all stabilizers, and we have (75), i.e., after measuring with stabilizer X a Z b , X x+µ Z z+τ |ψ⟩ ⟨ψ| X x+µ ′ Z z+τ ′ † does not disappear if and only if X x+µ Z z+τ |ψ⟩ and X x+µ ′ Z z+τ ′ |ψ⟩ lie in the same eigen space of the stabilizer.</p><p>where the correctness of the last steps follows by the same reasoning as that for (76) and (77).</p><p>Thus, the state becomes</p><p>B. Storage, Queries, Answers Generation in <ref type="bibr" target="#b20">[21]</ref> StoreGen</p><p>n (1); q (f lα n ) Kc-κ e θ K (83)</p><p>AnsGen s [N ] , q</p><p>a n = {a (1)  n , a (2)  n , • • • , a (Kc) n } a (κ) n = s n q (κ) n ∈ F q (84)</p><p>Return a [N ] = a (κ)</p><p>[N ] κ∈ <ref type="bibr">[Kc]</ref> </p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">How to share a secret</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Shamir</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Commun. of the ACM</title>
+		<imprint>
+			<biblScope unit="volume">22</biblScope>
+			<biblScope unit="issue">11</biblScope>
+			<biblScope unit="page" from="612" to="613" />
+			<date type="published" when="1979">1979</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">How to share a quantum secret</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Cleve</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Gottesman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H.-K</forename><surname>Lo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Physical review letters</title>
+		<imprint>
+			<biblScope unit="volume">83</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page">648</biblScope>
+			<date type="published" when="1999">1999</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Theory of communication efficient quantum secret sharing</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Senthoor</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">K</forename><surname>Sarvepalli</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. on Inform. Theory</title>
+		<imprint>
+			<biblScope unit="volume">68</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="3164" to="3186" />
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Unified approach to secret sharing and symmetric private information retrieval with colluding servers in quantum systems</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Hayashi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Song</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. on Inform. Theory</title>
+		<imprint>
+			<biblScope unit="volume">69</biblScope>
+			<biblScope unit="issue">10</biblScope>
+			<biblScope unit="page" from="6537" to="6563" />
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Private information retrieval</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Chor</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Kushilevitz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Goldreich</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Sudan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of the ACM</title>
+		<imprint>
+			<biblScope unit="volume">45</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="965" to="981" />
+			<date type="published" when="1998">1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">The capacity of robust private information retrieval with colluding databases</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">A</forename><surname>Jafar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. on Inform. Theory</title>
+		<imprint>
+			<biblScope unit="volume">64</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="2361" to="2370" />
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Private information retrieval from coded databases with colluding servers</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Freij-Hollanti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><forename type="middle">W</forename><surname>Gnilke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Hollanti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">A</forename><surname>Karpuk</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SIAM J. on Appl. Algebra and Geometry</title>
+		<imprint>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="647" to="664" />
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Private information retrieval from coded storage systems with colluding, Byzantine, and unresponsive servers</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Tajeddine</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><forename type="middle">W</forename><surname>Gnilke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Karpuk</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Freij-Hollanti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Hollanti</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. on Inform. Theory</title>
+		<imprint>
+			<biblScope unit="volume">65</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="3898" to="3906" />
+			<date type="published" when="2019-06">June 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Capacity of quantum private information retrieval with colluding servers</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Hayashi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. on Inform. Theory</title>
+		<imprint>
+			<biblScope unit="volume">67</biblScope>
+			<biblScope unit="issue">8</biblScope>
+			<biblScope unit="page" from="5491" to="5508" />
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">On the capacity of quantum private information retrieval from MDS-coded and colluding servers</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Allaix</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Holzbaur</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Pllaha</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Hayashi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Hollanti</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE J. on Sel. Areas in Commun</title>
+		<imprint>
+			<biblScope unit="volume">40</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="885" to="898" />
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Quantum symmetric private information retrieval with secure storage and eavesdroppers</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Aytekin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Nomeir</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Vithana</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ulukus</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2023 IEEE Globecom Workshops (GC Wkshps)</title>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="1057" to="1062" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Lagrange coded computing: Optimal design for resiliency, security, and privacy</title>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Raviv</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">M M</forename><surname>Kalan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Soltanolkotabi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">A</forename><surname>Avestimehr</surname></persName>
+		</author>
+		<idno>PMLR</idno>
+	</analytic>
+	<monogr>
+		<title level="m">The 22nd International Conf. on Artificial Intelligence and Statistics</title>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="1215" to="1225" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Secure quantum network code without classical communication</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Hayashi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. on Inform. Theory</title>
+		<imprint>
+			<biblScope unit="volume">66</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="1178" to="1192" />
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">The capacity of classical summation over a quantum MAC with arbitrarily distributed inputs and entanglements</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Yao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">A</forename><surname>Jafar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. on Inform. Theory</title>
+		<imprint>
+			<biblScope unit="volume">70</biblScope>
+			<biblScope unit="issue">9</biblScope>
+			<biblScope unit="page" from="6350" to="6370" />
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<monogr>
+		<author>
+			<persName><forename type="first">R</forename><surname>Cramer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><forename type="middle">B</forename><surname>Damgård</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">B</forename><surname>Nielsen</surname></persName>
+		</author>
+		<title level="m">Secure Multiparty Computation and Secret Sharing</title>
+		<imprint>
+			<publisher>Cambridge University Press</publisher>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Communication complexity of private simultaneous quantum messages protocols</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kawachi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Nishimura</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. Conf. on Inform. Theoretic Cryptography (ITC 2021)</title>
+		<meeting>Conf. on Inform. Theoretic Cryptography (ITC 2021)</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="volume">199</biblScope>
+			<biblScope unit="page">19</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Private product computation using quantum entanglement</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Christensen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Popovski</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. on Quantum Eng</title>
+		<imprint>
+			<biblScope unit="volume">4</biblScope>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">On the capacity of secure K-user product computation over a quantum MAC</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Yao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">A</forename><surname>Jafar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Commun. Letters</title>
+		<imprint>
+			<biblScope unit="volume">27</biblScope>
+			<biblScope unit="issue">10</biblScope>
+			<biblScope unit="page" from="2598" to="2602" />
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Quantum private membership aggregation</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Aytekin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Nomeir</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ulukus</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2024 IEEE International Symposium on Information Theory (ISIT)</title>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2024">2024</date>
+			<biblScope unit="page" from="3314" to="3319" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<monogr>
+		<title level="m" type="main">The Theory of Error-Correcting Codes</title>
+		<author>
+			<persName><forename type="first">F</forename><forename type="middle">J</forename><surname>Macwilliams</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">J A</forename><surname>Sloane</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1977">1977</date>
+			<publisher>Elsevier</publisher>
+			<biblScope unit="volume">1</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title level="a" type="main">X-secure T -private information retrieval from MDS coded storage with Byzantine and unresponsive servers</title>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">A</forename><surname>Jafar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. on Inform. Theory</title>
+		<imprint>
+			<biblScope unit="volume">66</biblScope>
+			<biblScope unit="issue">12</biblScope>
+			<biblScope unit="page" from="7427" to="7438" />
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Good quantum error-correcting codes exist</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">R</forename><surname>Calderbank</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">W</forename><surname>Shor</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review A</title>
+		<imprint>
+			<biblScope unit="volume">54</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page">1098</biblScope>
+			<date type="published" when="1996">1996</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Multiple-particle interference and quantum error correction</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Steane</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Proc. the Royal Society of London. Series A: Mathematical, Physical and Eng. Sciences</title>
+		<imprint>
+			<biblScope unit="volume">452</biblScope>
+			<biblScope unit="page" from="2551" to="2577" />
+			<date type="published" when="1954">1954. 1996</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Cross subspace alignment and the asymptotic capacity of X-secure T -private information retrieval</title>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">A</forename><surname>Jafar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. on Inform. Theory</title>
+		<imprint>
+			<biblScope unit="volume">65</biblScope>
+			<biblScope unit="issue">9</biblScope>
+			<biblScope unit="page" from="5783" to="5798" />
+			<date type="published" when="2019-09">Sep. 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Private retrieval, computing, and learning: Recent progress and future challenges</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ulukus</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Avestimehr</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Gastpar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">A</forename><surname>Jafar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Tandon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Tian</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE J. on Sel. Areas in Commun</title>
+		<imprint>
+			<biblScope unit="volume">40</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="729" to="748" />
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">N -sum box: An abstraction for linear computation over many-to-one quantum networks</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Allaix</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Yao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Pllaha</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Hollanti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">A</forename><surname>Jafar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. on Inform. Theory</title>
+		<imprint>
+			<biblScope unit="volume">71</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="1121" to="1139" />
+			<date type="published" when="2025">2025</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Quantum cross subspace alignment codes via the N -sum box abstraction</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">A</forename><surname>Jafar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2023 57th Asilomar Conf. on Signals, Systems, and Computers</title>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="670" to="674" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Private polynomial computation from Lagrange encoding</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Raviv</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">A</forename><surname>Karpuk</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. on Inform. Forensics and Security</title>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="page" from="553" to="563" />
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">On the upload versus download cost for secure and private matrix multiplication</title>
+		<author>
+			<persName><forename type="first">W.-T</forename><surname>Chang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Tandon</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2019 IEEE Inform. Theory Workshop (ITW)</title>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="1" to="5" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Cross subspace alignment codes for coded distributed batch computation</title>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">A</forename><surname>Jafar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. on Inform. Theory</title>
+		<imprint>
+			<biblScope unit="volume">67</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="2821" to="2846" />
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<monogr>
+		<title level="m" type="main">Quantum error correction</title>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">A</forename><surname>Brun</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1910.03672</idno>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Private information retrieval for secure distributed storage systems</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Shin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Lee</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. on Inform. Forensics and Security</title>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="issue">12</biblScope>
+			<biblScope unit="page" from="2953" to="2964" />
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<monogr>
+		<title level="m" type="main">Quantum X-secure B-Byzantine T -colluding private information retrieval</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Nomeir</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Aytekin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ulukus</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2401.17252v2</idno>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title level="a" type="main">A coding scheme for straggler resilient quantum X-secure T -private information retrieval</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">A</forename><surname>Jafar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2024 IEEE International Conf. on Commun. (ICC)</title>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2024">2024</date>
+			<biblScope unit="page" from="2803" to="2808" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<monogr>
+		<title level="m" type="main">A coding scheme for straggler resilient quantum X-secure T -private information retrieval</title>
+		<idno type="arXiv">arXiv:2311.07829v1</idno>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<monogr>
+		<title level="m" type="main">A coding scheme for unresponsive and Byzantine server resilient quantum X-secure T -private information retrieval</title>
+		<idno type="arXiv">arXiv:2311.07829v2</idno>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<analytic>
+		<title level="a" type="main">Nonbinary stabilizer codes over finite fields</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ketkar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Klappenecker</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Kumar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Sarvepalli</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. on Inform. Theory</title>
+		<imprint>
+			<biblScope unit="volume">52</biblScope>
+			<biblScope unit="issue">11</biblScope>
+			<biblScope unit="page" from="4892" to="4914" />
+			<date type="published" when="2006">2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<monogr>
+		<title level="m" type="main">Quantum locally recoverable codes</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Golowich</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Guruswami</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2311.08653</idno>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<monogr>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">A</forename><surname>Nielsen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><forename type="middle">L</forename><surname>Chuang</surname></persName>
+		</author>
+		<title level="m">Quantum computation and quantum Inform</title>
+		<imprint>
+			<publisher>Cambridge university press</publisher>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<analytic>
+		<title level="a" type="main">Secret sharing system using (k, L, n) threshold scheme</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Yamamoto</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Electronics and Commun. in Japan (Part I: Commun.)</title>
+		<imprint>
+			<biblScope unit="volume">69</biblScope>
+			<biblScope unit="issue">9</biblScope>
+			<biblScope unit="page" from="46" to="54" />
+			<date type="published" when="1986">1986</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<monogr>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">M</forename><surname>Wilde</surname></persName>
+		</author>
+		<title level="m">Quantum Information theory</title>
+		<imprint>
+			<publisher>Cambridge university press</publisher>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>
