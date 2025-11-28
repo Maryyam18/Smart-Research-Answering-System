@@ -1,0 +1,1878 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Excitonic Insulator to Superconductor Phase Transition in Ultra-Compressed Helium</title>
+				<funder ref="#_zecvnEs">
+					<orgName type="full">Spanish Ministry of Science, Innovation and Universities</orgName>
+				</funder>
+				<funder ref="#_vFTzqbJ">
+					<orgName type="full">National Natural Science Foundation of China</orgName>
+				</funder>
+				<funder ref="#_jpWtdrk #_jKgvTW3">
+					<orgName type="full">unknown</orgName>
+				</funder>
+				<funder>
+					<orgName type="full">Department of Education, Universities and Research of the Eusko Jaurlaritza</orgName>
+				</funder>
+				<funder ref="#_qTxDSJ7">
+					<orgName type="full">Fundamental Research Funds for the Central Universities</orgName>
+				</funder>
+				<funder ref="#_3uE3mjp">
+					<orgName type="full">National Key R&amp;D Program of China</orgName>
+				</funder>
+				<funder ref="#_V6fZSun">
+					<orgName type="full">United Kingdom Car-Parrinello Consortium</orgName>
+				</funder>
+				<funder ref="#_gn5fZxW">
+					<orgName type="full">Barcelona Supercomputing Center</orgName>
+				</funder>
+				<funder ref="#_ftqcFpG">
+					<orgName type="full">University of the Basque Country UPV/EHU</orgName>
+				</funder>
+				<funder ref="#_pQ8vjgd">
+					<orgName type="full">European Research Council</orgName>
+					<orgName type="abbreviated">ERC</orgName>
+				</funder>
+				<funder>
+					<orgName type="full">National Supercomputer Service</orgName>
+				</funder>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability  status="unknown">
+					<licence/>
+				</availability>
+				<date type="published" when="2023-01-17">17 Jan 2023</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Cong</forename><surname>Liu</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Departament de Física</orgName>
+								<orgName type="institution">Universitat Politècnica de Catalunya</orgName>
+								<address>
+									<addrLine>Campus Nord</addrLine>
+									<postCode>B4-B5 08034</postCode>
+									<settlement>Barcelona</settlement>
+									<country key="ES">Spain</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Ion</forename><surname>Errea</surname></persName>
+							<affiliation key="aff1">
+								<orgName type="department" key="dep1">Fisika Aplikatua Saila</orgName>
+								<orgName type="department" key="dep2">Gipuzkoako Ingeniaritza Eskola</orgName>
+								<orgName type="institution">University of the Basque Country (UPV/EHU)</orgName>
+								<address>
+									<addrLine>Europa Plaza 1</addrLine>
+									<postCode>20018</postCode>
+									<settlement>Donostia San Sebastián</settlement>
+									<country key="ES">Spain</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Chris</forename><surname>Pickard</surname></persName>
+							<affiliation key="aff4">
+								<orgName type="department">Department of Materials Science and Metallurgy</orgName>
+								<orgName type="institution">University of Cambridge</orgName>
+								<address>
+									<postCode>CB30FS</postCode>
+									<settlement>Cambridge</settlement>
+									<country key="GB">United Kingdom</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Lewis</forename><forename type="middle">J</forename><surname>Conway</surname></persName>
+							<affiliation key="aff4">
+								<orgName type="department">Department of Materials Science and Metallurgy</orgName>
+								<orgName type="institution">University of Cambridge</orgName>
+								<address>
+									<postCode>CB30FS</postCode>
+									<settlement>Cambridge</settlement>
+									<country key="GB">United Kingdom</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Bartomeu</forename><surname>Monserrat</surname></persName>
+							<affiliation key="aff6">
+								<orgName type="department">Department of Materials Science and Metallurgy</orgName>
+								<orgName type="laboratory">Cavendish Laboratory</orgName>
+								<orgName type="institution">University of Cambridge</orgName>
+								<address>
+									<postCode>CB30HE</postCode>
+									<settlement>Cambridge</settlement>
+									<country>United Kingdom.;</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Yue-Wen</forename><surname>Fang</surname></persName>
+							<affiliation key="aff8">
+								<orgName type="department" key="dep1">Fisika Aplikatua Saila</orgName>
+								<orgName type="department" key="dep2">Gipuzkoako Ingeniaritza Eskola</orgName>
+								<orgName type="institution">University of the Basque Country (UPV/EHU)</orgName>
+								<address>
+									<addrLine>Europa Plaza 1</addrLine>
+									<postCode>20018</postCode>
+									<settlement>Donostia San Sebastián</settlement>
+									<country key="ES">Spain</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Chi</forename><surname>Ding</surname></persName>
+							<affiliation key="aff10">
+								<orgName type="department">School of Physics and Collaborative Innovation Center of Advanced Microstructures</orgName>
+								<orgName type="laboratory">National Laboratory of Solid State Microstructures</orgName>
+								<orgName type="institution">Nanjing University</orgName>
+								<address>
+									<postCode>210093</postCode>
+									<settlement>Nanjing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Qing</forename><surname>Lu</surname></persName>
+							<affiliation key="aff10">
+								<orgName type="department">School of Physics and Collaborative Innovation Center of Advanced Microstructures</orgName>
+								<orgName type="laboratory">National Laboratory of Solid State Microstructures</orgName>
+								<orgName type="institution">Nanjing University</orgName>
+								<address>
+									<postCode>210093</postCode>
+									<settlement>Nanjing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Jian</forename><surname>Sun</surname></persName>
+							<affiliation key="aff10">
+								<orgName type="department">School of Physics and Collaborative Innovation Center of Advanced Microstructures</orgName>
+								<orgName type="laboratory">National Laboratory of Solid State Microstructures</orgName>
+								<orgName type="institution">Nanjing University</orgName>
+								<address>
+									<postCode>210093</postCode>
+									<settlement>Nanjing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Jordi</forename><surname>Boronat</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Departament de Física</orgName>
+								<orgName type="institution">Universitat Politècnica de Catalunya</orgName>
+								<address>
+									<addrLine>Campus Nord</addrLine>
+									<postCode>B4-B5 08034</postCode>
+									<settlement>Barcelona</settlement>
+									<country key="ES">Spain</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Claudio</forename><surname>Cazorla</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Departament de Física</orgName>
+								<orgName type="institution">Universitat Politècnica de Catalunya</orgName>
+								<address>
+									<addrLine>Campus Nord</addrLine>
+									<postCode>B4-B5 08034</postCode>
+									<settlement>Barcelona</settlement>
+									<country key="ES">Spain</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff2">
+								<orgName type="department">Centro de Física de Materiales (CSIC-UPV/EHU)</orgName>
+								<address>
+									<addrLine>Manuel de Lardizabal pasealekua 5</addrLine>
+									<postCode>20018</postCode>
+									<settlement>Donostia San Sebastián</settlement>
+									<country key="ES">Spain</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff3">
+								<orgName type="department">Donostia International Physics Center (DIPC)</orgName>
+								<address>
+									<addrLine>Manuel de Lardizabal pasealekua 4</addrLine>
+									<postCode>20018</postCode>
+									<settlement>Donostia San Sebastián</settlement>
+									<country key="ES">Spain</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff5">
+								<orgName type="institution" key="instit1">Advanced Institute for Materials Research</orgName>
+								<orgName type="institution" key="instit2">Tohoku University</orgName>
+								<address>
+									<postCode>980-8577</postCode>
+									<settlement>Sendai</settlement>
+									<country key="JP">Japan</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff7">
+								<orgName type="institution">University of Cambridge</orgName>
+								<address>
+									<postCode>CB30FS</postCode>
+									<settlement>Cambridge</settlement>
+									<country key="GB">United Kingdom</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff9">
+								<orgName type="department">Centro de Física de Materiales (CSIC-UPV/EHU)</orgName>
+								<address>
+									<addrLine>Manuel de Lardizabal pasealekua 5</addrLine>
+									<postCode>20018</postCode>
+									<settlement>Donostia San Sebastián</settlement>
+									<country key="ES">Spain</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Excitonic Insulator to Superconductor Phase Transition in Ultra-Compressed Helium</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2023-01-17">17 Jan 2023</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">698E8734B99C5004D62B4F49E5DE87A9</idno>
+					<idno type="arXiv">arXiv:2301.06756v1[cond-mat.mtrl-sci]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-01T08:54+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract/>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Helium, the second most abundant element in the universe, exhibits an extremely large electronic band gap of about 20 eV at low pressures (≤ 0.1 GPa). While the metallization pressure of hcp helium has been accurately predicted, thus far little attention has been paid to the specific mechanisms driving the band-gap closure and electronic properties of this quantum crystal in the terapascal regime (1 TPa = 1, 000 GPa). Here, we employ state-of-the-art density functional theory and many-body perturbation theory calculations to fill up this knowledge gap. It is found that prior to reaching metallicity bulk solid helium becomes an excitonic insulator (EI), an exotic state of matter typically observed in low-dimensional systems in which electrostatically bound electron-hole pairs form spontaneously. Furthermore, it is shown that electron-phonon coupling (EPC) is significantly enhanced across the EI to metal phase transition as signaled by prominent phonon softening and giant EPC strength values (λ ∼ 10-100) estimated at specific reciprocal space points. Accordingly, we predict metallic helium to be a superconductor with a critical temperature of ≈ 30 K at 20 TPa and of ≈ 100 K at 100 TPa. These unforeseen phenomena have important consequences on the elastic, thermodynamic and transport properties of metallic helium hence may be critical for improving our fundamental understanding and modelling of celestial bodies.</p><p>In their final evolution stage, most stars in the Universe become white dwarfs (WDs) consisting of a mixture of helium, carbon, and oxygen atoms immersed in a sea of electrons. In small-radius WDs, fusion reactions beyond helium hardly occur hence their chemical composition is practically monoelemental. In the interior of WDs, pressure may reach values billions of times higher than that in the Earth's surface (∼ 10,000 GPa = 10 TPa), which currently are not accessible in experiments. Thus, theoretical modelling of light materials under extreme compression conditions, and in particular of helium, turns out to be critical for probing the interior of WDs and comprehend their physico-chemical evolution.</p><p>Highly accurate diffusion Monte Carlo (DMC) calculations predict solid helium to become a metal in the hexagonal closed packed (hcp) phase at a pressure of 25.7 TPa <ref type="bibr" target="#b0">[1]</ref>. By considering zero-point energy and * Corresponding author: claudio.cazorla@upc.edu electron-phonon coupling effects estimated with density functional theory (DFT) methods, such a metallization pressure increases up to 32.9 TPa at T = 0 K <ref type="bibr" target="#b1">[2]</ref>. Both experimental and theoretical studies have shown that the valence-band maximum (VBM) of 4 He appears on the line joining the reciprocal lattice points Γ (0, 0, 0) and M (q, 0, 0), while the conduction-band minimum (CBM) is located at the Γ point <ref type="bibr" target="#b1">[2,</ref><ref type="bibr" target="#b2">3]</ref>. Thus, the band gap of solid helium is indirect and according to previous DFT calculations the overlap between the conduction and valence bands when approaching metallization is characteristic of a semimetal (i.e., the density of electronic states at the Fermi level is negligible) <ref type="bibr" target="#b1">[2]</ref>. Meanwhile, the lattice phonons involving atomic displacements perpendicular to the hcp basal plane strongly couple to the electronic bands and at very high pressure these drive the widening of the band gap <ref type="bibr" target="#b1">[2]</ref>.</p><p>A detailed understanding of the electronic band structure properties of this archetypal quantum crystal <ref type="bibr" target="#b3">[4]</ref>, however, is still lacking. First, about half a century ago the existence of an exotic insulating phase called "excitonic insulator" (EI) was predicted in which electrons and holes spontaneously form bound pairs called excitons <ref type="bibr" target="#b4">[5]</ref>. The EI phase could be stabilized at sufficiently low temperatures in semiconductors with tinny band gaps or semimetals with very small band overlaps. Recently, experimental EI fingerprints have been reported for lowdimensional transition metal dichalcogenide structures exhibiting small band gaps <ref type="bibr" target="#b5">[6,</ref><ref type="bibr" target="#b6">7]</ref>; however, stabilization of a bulk EI state remains elusive. Owing to its semiconductor nature, absence of structural transformations and marked quantum character, ultra-compressed 4 He appears to be an excellent candidate in which a bulk EI state could emerge and genuine quantum manybody phenomena like high-temperature excitonic superconductivity and BEC-BCS crossover might occur <ref type="bibr" target="#b7">[8,</ref><ref type="bibr" target="#b8">9]</ref>. Is possibly solid helium a bulk EI in the TPa regime? And second, the substantial electron-phonon coupling and semimetal Fermi surface previously disclosed in solid helium suggest the possibility of superconductivity in this quantum crystal upon band-gap closure. Is metallic helium a superconductor? If so, what are the underlying physical mechanisms and corresponding critical temperature? Besides their fundamental interest, answering to these questions may have major consequences in the fields of planetary science and astrophysics since this new knowledge could improve our understanding of the thermal and chemical evolution of small-radius WDs <ref type="bibr" target="#b9">[10,</ref><ref type="bibr" target="#b10">11]</ref>.</p><p>In this Letter, we employ theoretical first-principles approaches based on DFT and many-body perturbation theory to advance knowledge on the electronic, elastic and superconductor properties of solid helium in the TPa regime. Our main finding is an unprecedented bulk excitonic insulator to superconductor phase transition driven by pressure in which the superconductor state can reach a critical temperature of ≈ 100 K under a compression of 100 TPa. It is worth noting that an exhaustive random sampling of the structural space of solid helium was performed at P = 100 TPa (AIRSS <ref type="bibr" target="#b11">[12,</ref><ref type="bibr" target="#b12">13]</ref>), with the finding that the hcp phase imperturbably remained the ground state (Methods).</p><p>We started by benchmarking different families of DFT functionals (i.e., semi-local, van der Waals corrected and hybrid) <ref type="bibr" target="#b3">[4]</ref> against the metallization pressure of solid he-</p><p>Γ M K Γ A L H A -40 -20 0 20 40 lium calculated with DMC methods, which amounts to 25.7 TPa (Fig. <ref type="figure" target="#fig_0">1a</ref>). In all the analyzed cases, the band gap decreases almost linearly under increasing pressure due to the steady enhancement of electronic delocalization among neighbouring atoms (Fig. <ref type="figure" target="#fig_0">1b</ref>). The semilocal PBE functional predicts a metallization pressure of 17 TPa, in consistent agreement with previous computational studies <ref type="bibr" target="#b0">[1,</ref><ref type="bibr" target="#b1">2]</ref>. Meanwhile, the hybrid functional B3LYP performs the best in comparison to the DMC benchmark by providing a metallization pressure of ≈ 24 TPa (Fig. <ref type="figure" target="#fig_0">1a</ref> and Fig. <ref type="figure" target="#fig_0">S1</ref>). Van der Waals corrections turn out to be practically negligible in the TPa regime (e.g., the two PBE and PBE-D3 curves practically overlap each with the other) due to the dominant role of interatomic repulsive interactions at short distances <ref type="bibr" target="#b13">[14]</ref>.</p><p>Based on these results, we adopted the hybrid functional B3LYP for our subsequent analysis of the electronic band structure of solid helium.</p><p>Unlike atomic hydrogen, hcp 4 He presents an indirect band gap with the VBM located at the reciprocal point Λ and the CBM at the center of the Brillouin zone (Γ point, Fig. <ref type="figure" target="#fig_0">1c</ref>), in consistent agreement with previous DFT cal-culations and experiments <ref type="bibr" target="#b1">[2,</ref><ref type="bibr" target="#b2">3]</ref>. It is noted that the direct band gap at the Λ point actually increases under compression (Fig. <ref type="figure" target="#fig_1">S2</ref>). Interestingly, when the energy gap between the VBM and CBM levels disappears a semimetal state characterized by an almost negligible density of states at the Fermi level emerges due to the fact that no additional electronic bands cross the Fermi surface (Fig. <ref type="figure" target="#fig_1">2a-c</ref>). At 1 TPa, the VBM consists exclusively of s-like orbitals while the CBM exhibits full p-like character (Fig. <ref type="figure" target="#fig_1">2a</ref>). Upon further compression, the VBM presents increasingly larger hybridization between s and p-like orbitals while the CBM conserves its pure p-like character (Fig. <ref type="figure" target="#fig_1">2b</ref>). At pressures higher than 24 TPa, electrons from the VBM at the Λ point are transferred to the CBM minimum at Γ in order to lower their energy, thus rendering a p-type semimetal system (Fig. <ref type="figure" target="#fig_1">2c</ref>).</p><p>The continuous pressure-driven closure of the band gap and subsequent stabilization of a semimetal state in hcp 4 He, suggest the possibility of spontaneous formation of excitons with finite momentum |q| = Λ-Γ at low temperatures. An exciton is a bound state formed by an excited electron (e -) in the conduction band and a hole (h + ) in the valence band that interact through attractive Coulomb forces. In narrow-gap semiconductors, a sufficient condition for the spontaneous formation of excitons is that the corresponding binding energy, E bind , is larger in absolute value than the band gap since then the total energy of the system can be lowered by promoting electrons to the conduction band in the absence of optical excitations <ref type="bibr" target="#b8">[9,</ref><ref type="bibr" target="#b14">15]</ref>. We computed the binding energy of an exciton in ultra-compressed hcp 4 He by relying on the Wannier-Mott model (Methods) since the dielectric constant of solid helium in the TPa regime is relatively high ( r &gt; 5, Fig. <ref type="figure" target="#fig_2">S3</ref>) and consequently electric field screening effects are large <ref type="bibr" target="#b15">[16]</ref>.</p><p>Our excitonic binding energy results obtained with the hybrid B3LYP functional and expressed as a function of pressure are shown in Fig. <ref type="figure" target="#fig_1">2d</ref>. It was found that the sufficient condition for spontaneous formation of excitons, namely, |E bind | &gt; E g , was fulfilled over a wide pressure interval of approximately 200 GPa prior to metallization. In view of this result, we performed many-body perturbation theory calculations within the GW approximation to explicitly and more accurately determine quasiparticle excitations in ultracompressed 4 He (Methods) <ref type="bibr" target="#b16">[17]</ref>. As it is shown in the inset of Fig. <ref type="figure" target="#fig_1">2d</ref>, GW calculations provided a much larger excitonic binding energy than calculated with the Wannier-Mott model and hybrid DFT functionals, namely, ≈ 0.4 eV. Moreover, the estimated pressure interval in which excitons can spontaneously form noticeably increased up to 600 GPa. Therefore, based in our hybrid DFT and many-body perturbation GW calculations we may conclude that on the verge of metallization hcp 4 He is a bulk excitonic insulator (EI). The same conclusion was reached when considering alternative structural phases for ultra-compressed solid helium (Fig. <ref type="figure">S4</ref>).</p><p>The emergence of a bulk EI state is expected to be accompanied by strong lattice distortions and instabilities due to arising electron-phonon interactions <ref type="bibr" target="#b17">[18,</ref><ref type="bibr" target="#b18">19]</ref>. We computed the phonon spectrum of hcp 4 He at different pressures using the semi-local PBE and PBEsol functionals (phonon calculations at this level of theory are feasible), as shown in Fig. <ref type="figure" target="#fig_2">3a</ref> and Fig. <ref type="figure">S5</ref>. Reassuringly, a distinct phonon softening appears at the reciprocal lattice point Λ between 15 and 20 TPa, that is, when semi-local DFT functionals predict that solid helium becomes a metal (Fig. <ref type="figure">S6</ref>). Interestingly, above 30 TPa additional phonon softenings emerge along the K-Γ and M -K reciprocal space directions; we found that around this pressure the energy gap between the CBM (located at Γ) and secondary VBM (located at Ω, Fig. <ref type="figure" target="#fig_1">2c</ref> and Fig. <ref type="figure">S6</ref>) vanished. Thus, in addition to validating our prediction for the stabilization of a bulk EI state, these findings corroborate the strong coupling between electrons and lattice vibrations previously disclosed in ultra-compressed solid helium <ref type="bibr" target="#b1">[2]</ref>. It is worth noting that quantum anharmonic effects in 4 He were assessed with the stochastic self-consistent harmonic approximation (SSCHA) method <ref type="bibr" target="#b19">[20]</ref><ref type="bibr" target="#b20">[21]</ref><ref type="bibr" target="#b21">[22]</ref><ref type="bibr" target="#b22">[23]</ref>, finding that these are of little relevance in the TPa regime (Methods and Fig. <ref type="figure">S7</ref>).</p><p>Besides lattice dynamics, the elastic, structural and thermodynamic properties of solid helium were also found to be influenced by the pressure-driven EI to metal phase transition (Fig. <ref type="figure">S8</ref>). In the insulating phase, the elastic constants of hcp 4 He display a practically linear dependence on pressure whereas in the metallic phase they depart from this behaviour and in some cases do not even display a monotonic increase under compression (e.g., C 13 ). Similar effects were also observed for the bulk and shear moduli, sound velocities, Debye temperature and heat capacity (Fig. <ref type="figure">S8</ref>). Regarding the structural features, it was found that the pressure evolution of the hcp lattice parameter ratio c/a drastically changes when the metallic phase is stabilized (Fig. <ref type="figure">S9</ref>). Thus, taking into account these unanticipated physical effects could have important consequences on current modelling of astrophysical bodies, in particular, of small-radius and heliumrich WDs <ref type="bibr" target="#b9">[10,</ref><ref type="bibr" target="#b10">11]</ref>.</p><p>Motivated by the findings described above, we explored the superconducting properties of ultra-compressed hcp 4 He. Accurate electron-phonon coupling (EPC) calculations were carried out using the techniques outlined in the Methods section, which essentially involve the Bardeen-Cooper-Schrieffer (BCS) theory of superconductivity and modified Allen-Dynes formula <ref type="bibr" target="#b23">[24]</ref>. Figure <ref type="figure" target="#fig_2">3b</ref> shows the Eliashberg spectral function, α 2 F , estimated at different pressures, from which the corresponding average EPC strength, λ, can be straightforwardly computed (Methods and Supplementary Information). At 20 TPa, this function exhibits two appreciable peaks: the most prominent appearing at low frequencies stems from the lowest-energy phonon band at the wave-vector q = (0.25, 0.43, 0), which is very close to the reciprocal space point Λ associated with phonon softening; the other peak emerging at higher frequencies stems from the second and third lowest-energy phonon bands at Γ. The EPC strength of these phonon modes, specially of that rendering the α 2 F maximum, are extremely high (i.e., the corresponding EPC strengths, λ qν , are of the order of 10 1 -10 2 ) due to their huge phonon linewidth and minute density of electronic states at the Fermi level (Methods, Supplementary Information and Fig. <ref type="figure">S6</ref>). However, since the number of phonon modes that appreciably contribute to α 2 F (or, equivalently, to λ) is quite reduced, the superconducting temperature estimated at P = 20 TPa is relatively low, namely, T c = 30 K (Fig. <ref type="figure" target="#fig_2">3c</ref> and Supplementary Information).</p><p>Interestingly, upon further compression, when the energy overlap between the conduction and valence bands is enhanced (Fig. <ref type="figure" target="#fig_1">2c</ref>), additional peaks appear in the Eliashberg spectral function that noticeably contribute to the average EPC strength, thus raising the superconducting critical temperature. For instance, at a pressure of 50 TPa, when multiple phonon softenings and α 2 F local maxima are observed (Figs. <ref type="figure" target="#fig_2">3a</ref>,<ref type="figure">b</ref>), we estimated a substantial superconducting critical temperature of 71 K (Fig. <ref type="figure" target="#fig_2">3c</ref> and Supplementary Information). Under higher compression the superconducting critical temperature  4 He. a Pressureinduced variation of the acoustic phonon branches (colored lines). The phonon calculations were performed with the semi-local PBEsol functional. The grey curves were calculated for the insulating phase at 15 TPa; the colored lines correspond to higher pressures but were re-scaled to facilitate the comparison. b Eliashberg spectral function, α 2 F , of metallic hcp 4 He. c Superconducting properties estimated with the semi-local PBEsol functional and parameters µ * = 0.10 and µ * = 0.13 (Methods). The critical superconducting temperature values, Tc (colored bars), obtained with the modified Allen-Dynes formula <ref type="bibr" target="#b23">[24]</ref> and the electron-phonon coupling strength parameter, λ (red stars), are represented in the left and right ordinate axis, respectively. d Qualitative sketch of the possible phase diagram of ultra-compressed solid helium based on work <ref type="bibr" target="#b8">[9]</ref> and the key physical findings presented in this work.</p><p>steadily increases, reaching a peak value of ≈ 100 K at the maximum pressure of 100 TPa considered in our calculations (Fig. <ref type="figure" target="#fig_2">3c</ref>). It is worth noting that within the pressure interval 20 ≤ P ≤ 30 TPa both T c and λ noticeably decrease; this transient effect is due to a dominant P -induced surge in the Fermi density of electronic states that drastically reduces the α 2 F peaks (Fig. <ref type="figure" target="#fig_2">3b</ref>, Methods and Table <ref type="table">S1</ref>).</p><p>An analogous EPC strength parameter and T c analysis was carried out for hcp xenon (Fig. <ref type="figure" target="#fig_0">S10</ref>) since this material is isoelectronic to solid helium and becomes metallic at experimentally accessible pressures of the order of 100 GPa. An EI to metal phase transition similar to that disclosed in ultra-compressed 4 He was also found for hcp Xe at 140 GPa. A noticeable phonon softening appeared at a higher pressure of 190 GPa, coinciding with the closure of a secondary band gap involving a s-like dominant CBM and p-like dominant VBM (i.e., of the same character than the primary band gap in solid helium). The EPC strength and superconducting critical temperature estimated for hcp Xe at 140 GPa are 0.75 and ≈ 10 K, respectively. Thus, bulk Xe seems to be a good candidate material in which to experimentally search for analogues of some of the key theoretical findings revealed in this work for ultra-compressed hcp 4 He.</p><p>Figure <ref type="figure" target="#fig_2">3d</ref> shows a sketch of the possible phase diagram of solid helium at pressures and temperatures that are relevant to astrophysical studies. At sufficiently high pressures and low temperatures, a bulk EI state is stabilized. Whether in such a state the spontaneously created electron-hole bound pairs form excitonic Bose-Einstein condensates or exhibit excitonic superconductivity close to zero temperature <ref type="bibr" target="#b7">[8,</ref><ref type="bibr" target="#b8">9]</ref>, is a matter that we cannot resolve with the DFT-based methods employed in this work (hence the questions marks in the figure). Upon further compression, hcp 4 He becomes a superconductor with a critical temperature that increases under pressure (made the exception of a small pressure interval following metallization, which has been neglected in the figure). At high enough temperatures, superconductor solid helium transforms into a p-type semimetal. These electronic phase transitions significantly impact the structural, elastic, thermodynamic and transport properties of hcp 4 He hence should be taken into consideration in advanced evolutionary models of stellar bodies like white dwarfs (WDs).</p><p>In conclusion, we have presented a comprehensive firstprinciples computational study of the physical properties of solid helium in the TPa regime, putting special emphasis on its electronic band-structure features. It was found that over a broad pressure range preceding metallization hcp 4 He becomes a bulk excitonic insulator in which electrostatically bound electron-hole pairs can form spontaneously. This bulk excitonic insulator state could host genuine quantum many-body phenomena like high-temperature excitonic superconductivity and excitonic BEC-BCS crossover, although additional advanced studies are necessary to fully assess these hypotheses. Upon band-gap closure, solid helium transitions into a superconductor state that possesses a critical temperature of the order of 10 1 -10 2 K, depending on compression. This pressure-induced EI to superconductor phase transition is accompanied by several elastic and structural anomalies. Thus, our theoretical findings besides conveying great fundamental interest are also of great relevance to the physics of celestial bodies, in particular, of small-radius WDs mostly containing metallic helium. Furthermore, it is argued that some analogues of the key theoretical findings revealed here for ultra-compressed helium could be experimentally observed in solid xenon.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>METHODS</head><p>First-principles calculations outline. Density functional theory (DFT) calculations were performed with the Vienna ab initio simulation package (VASP) <ref type="bibr" target="#b24">[25]</ref>. The projector augmented-wave (PAW) method <ref type="bibr" target="#b25">[26]</ref> was employed and the 1s 2 electrons in the He atoms were treated as valence. Different families of DFT functionals were tested among which we highlight the semi-local Perdew-Burke-Ernzerhof (PBE) <ref type="bibr" target="#b26">[27]</ref> and revised PBE for solids (PBEsol) <ref type="bibr" target="#b27">[28]</ref>, van der Waals corrected DFT-D3 <ref type="bibr" target="#b28">[29]</ref>, non-local dispersion corrected vdW-optB88 <ref type="bibr" target="#b29">[30]</ref>, vdW-DF-cx <ref type="bibr" target="#b30">[31]</ref>, rev-vdW-DF2 <ref type="bibr" target="#b31">[32]</ref>, and the hybrid HSE06 <ref type="bibr" target="#b32">[33]</ref>, B3LYP <ref type="bibr" target="#b33">[34]</ref> and HSEsol <ref type="bibr" target="#b34">[35]</ref>. A plane wave energy cutoff of 1500 eV was employed along with dense Monkhorst-Pack k-point sampling grids of resolution 2π×0.025 Å (Fig. <ref type="figure" target="#fig_0">S11</ref>). The energy and atomic forces in the structural relaxations were converged to within 10 -6 eV and 0.002 eV/ Å, respectively. For validation purposes, we compared our band gap results obtained with the PBE functional as implemented in the VASP code with a full-potential (linearized) augmented planewave method as implemented in the WIEN2k code <ref type="bibr" target="#b35">[36]</ref> (Fig. <ref type="figure" target="#fig_1">S12</ref>). Phonon calculations were performed with the small displacement method and the PHONOPY code <ref type="bibr" target="#b36">[37]</ref> by employing large supercells of 4 × 4 × 4.</p><p>The binding energy of an exciton was estimated with the Wannier-Mott formula:</p><formula xml:id="formula_0">E bind = -(m u * Ry)/(m 0 2 r ) ,<label>(1)</label></formula><p>where m u = (m e •m h )/(m e +m h ). In the equation above, m e and m h are the effective mass of the electron at the bottom of the conduction band and the hole at the top of the valence band, respectively. Ry represents the Rydberg constant (= 13.6 eV), m 0 the rest mass of the electron, and r the dielectric constant of the system as referred to vacuum. The electron and hole effective masses were computed like the inverse of the second derivative of the conduction and valence band energies with respect to crystal momentum module, |k|, along the reciprocal space path Λ-Γ. The Wannier-Mott formula is a good approximation for the exciton binding energy of materials possessing high dielectric constants <ref type="bibr" target="#b15">[16]</ref>, which is the case of hcp 4 He in the TPa regime (Fig. <ref type="figure" target="#fig_2">S3</ref>). The elastic tensor was determined at zero temperature by performing six finite lattice distortions and four atomic displacements of 0.01 Å along each Cartesian direction. The adiabatic bulk modulus, K, and shear modulus, G, were obtained by computing the Voigt-Reuss-Hill averages from the elastic tensor. The longitudinal and transverse sound velocities were calculated with the formulas v p = (K + 4  3 G)/ρ 1/2</p><p>and v s = [G/ρ] 1/2 , respectively, where ρ represents the atomic density of the system.</p><p>Crystal structure prediction analysis. The ab initio random structure searching (AIRSS) package <ref type="bibr" target="#b11">[12,</ref><ref type="bibr" target="#b12">13]</ref> was used to perform crystal structure searches for solid 4 He. The first-principles DFT code CASTEP <ref type="bibr" target="#b37">[38]</ref> was employed to perform the underlying electronic structure calculations based on the PBE functional <ref type="bibr" target="#b26">[27]</ref>. The searches were performed at 100 TPa, producing approximately 1000 relaxed structures and considering a total of 12 atoms in the simulation cell. The energy cutoff was set to 1000 eV and a specially designed hard OTFG potential was employed for the calculations. Under these conditions, it was found that the hexagonal P 6 3 /mmc (hcp) phase remained the ground state followed by a rhombohedral R3m phase with a higher relative energy of 0.131 eV/atom. Other energetically competitive structures were an hexagonal P 6m 2 (0.140 eV/atom) and a cubic Im3m (0.170 eV/atom) phase.</p><p>SSCHA calculations. Quantum anharmonic effects were assessed with the stochastic self-consistent harmonic approximation (SSCHA) method <ref type="bibr" target="#b19">[20]</ref><ref type="bibr" target="#b20">[21]</ref><ref type="bibr" target="#b21">[22]</ref><ref type="bibr" target="#b22">[23]</ref>. All the SSCHA calculations were evaluated at the pressure of 35 TPa and 0 K, conditions at which excellent convergence of the SSCHA minimization has been verified by an extra population including 800 supercell configurations. SSCHA calculations were performed with a 6×6×3 supercell including 216 atoms, which yields the dynamical matrices on a commensurate q-mesh of 6×6×3. The trial harmonic dynamical matrices used for initializing the free energy were obtained from the DFPT method as implemented in the Quantum Espresso (QE) code in the corresponding commensurate q-mesh. In the self-consistent calculations of the supercells, we used the same cutoff energy as the electron-phonon coupling calculations for the primitive cell, but the k-mesh was reduced accordingly and was tested for convergence. In the SSCHA iterations, except the first four populations in which only internal coordinates were optimized to speed up the minimization, the free energy in other populations was minimized with respect to all degrees of freedom of the crystal structure including the internal coordinates and the lattice cell parameters.</p><p>Many-body perturbation theory calculations. The excitonic binding energy was also estimated by means of highly accurate many-body perturbation theory calculations <ref type="bibr" target="#b38">[39]</ref> performed with the Yambo code <ref type="bibr" target="#b39">[40]</ref>. For this, we employed the generalized gradient approximation (GGA) as parameterized by PBE together with a plane-wave basis set and norm-conserving pseudopotential. The kinetic energy cutoff for the wave functions was set to 600 Ry. The Brillouin zone was sampled with a 64 × 64 × 32 k-mesh. Many-body quasiparticle GW corrections <ref type="bibr" target="#b40">[41]</ref> were calculated within the single-shot G 0 W 0 approximation, and the dynamic dielectric function was obtained with the plasmon-pole approximation. The exciton energies were calculated by solving the Bethe-Salpeter equation <ref type="bibr" target="#b16">[17]</ref> within the Tamm-Dancoff approximation <ref type="bibr" target="#b41">[42]</ref>.</p><p>The static screening in the direct term was calculated within the random-phase approximation with the inclusion of local field effects. We used 2 valence and 3 conduction bands to solve the Bethe-Salpeter equation matrix. For the GW band-structure calculations, we sampled the Brillouin zone with a 16 × 16 × 8 k-point grid. A kinetic energy cutoff of 90 Ry was used for the evaluation of the exchange part of the self-energy and of 150 Ry for the dielectric screening matrix size. About one hundred unoccupied bands were used to build the polarizability and integrate the self-energy. The exciton energies were mapped along high symmetry paths for different pressures, as it is shown in Fig. <ref type="figure" target="#fig_2">S13</ref> and summarized in Table <ref type="table">S2</ref>.</p><p>Electron-phonon coupling parameters and critical superconducting temperature. Electron phonon coupling (EPC) calculations were performed with the Quantum Espresso (QE) code <ref type="bibr" target="#b42">[43,</ref><ref type="bibr" target="#b43">44]</ref> by using ultrasoft pseudopotentials, an energy cutoff of 200 Ry for the kinetic energy and an energy cutoff of 2000 Ry for the charge density (convergence tests are shown in Table <ref type="table">S3</ref>). The equation of state of hcp 4 He computed with the VASP and QE codes show very good agreement, as it is illustrated in Fig. <ref type="figure">S9</ref>. The electron-phonon matrix elements were calculated in a 16 × 16 × 8 q-point grid with density functional perturbation theory (DFPT) <ref type="bibr" target="#b44">[45]</ref>. We adopted a dense and shifted k-point mesh of 80 × 80 × 40 to increase the convergence in the self-consistent calculations. For the EPC calculations, we further increased the k-point mesh up to 192 × 192 × 96 (convergence tests are shown in Table <ref type="table">S4</ref>) and to ensure k-point sampling convergence we employed the Methfessel-Paxton scheme with a smearing width of 0.02 Ry. The Dirac deltas on the band energies were substituted by Gaussian functions with a broadening of 0.002 Ry, which are necessary for the calculation of the EPC strength parameter λ (convergence tests are shown in Fig. <ref type="figure" target="#fig_0">S14</ref>). Convergence tests on the q-point grid sampling are also presented in Table <ref type="table">S5</ref>. For further validation purposes, we also performed calculations with a hardcore pseudopotential involving a realspace cutoff of r c = 0.37 a 0 <ref type="bibr" target="#b45">[46]</ref> and compared the results with those obtained with ultrasoft pseudopotentials, as it is shown in Fig. <ref type="figure" target="#fig_0">S15</ref>.</p><p>The Eliashberg spectral function, α 2 F (ω), accounts for the coupling between phonons and electrons in the Fermi surface like:</p><formula xml:id="formula_1">α 2 F (ω) = 1 2π N (E F )N qν qν γ qν ω qν δ(ω -ω qν ),<label>(2)</label></formula><p>where N (E F ) is the density of states at the Fermi level (per unit cell), γ qν the linewidth of the phonon mode ν at the wave vector q, and N qν the total number of qν points in the sum. The critical superconductor temperature, T c , was estimated with three different formulas: the McMillan formula <ref type="bibr" target="#b46">[47]</ref>, T M cM c , the Allen-Dynes formula <ref type="bibr" target="#b47">[48]</ref>, T AD c , and the modified Allen-Dynes formula <ref type="bibr" target="#b23">[24]</ref>, T mAD c :</p><formula xml:id="formula_2">T M cM c = ω log 1.20 × exp - 1.04 (1 + λ) λ -µ * (1 + 0.62λ) ,<label>(3)</label></formula><formula xml:id="formula_3">T AD c = f 1 f 2 T M cM c ,<label>(4)</label></formula><formula xml:id="formula_4">T mAD c = (1.0061 + 0.0663λ)T AD c ,<label>(5)</label></formula><p>where µ * is the Coulomb pseudopotential, for which we selected values within the widely accepted range of 0.10-0.13, and the parameters f 1 and f 2 are defined like:</p><formula xml:id="formula_5">f 1 = 1 + (λ/Λ 1 ) 3/2 1/3 f 2 = 1 + (ω 2 /ω log -1) λ 2 λ 2 + Λ 2 2 ,<label>(6)</label></formula><p>with ω2 = ω 2 1/2 , Λ 1 = 2.46 (1 + 3.8µ * ) and Λ 2 = 1.82 (1 + 6.3µ * ) (ω 2 /ω log ).</p><p>Meanwhile, the logarithmic average phonon frequency, ω log , is defined like:</p><formula xml:id="formula_6">ω log = exp 2 λ ∞ 0 dω ω α 2 F (ω)ln(ω) ,<label>(7)</label></formula><p>and the EPC strength, λ, is proportional to the first inverse momentum of the spectral function, namely:</p><formula xml:id="formula_7">λ = 2 ∞ 0 dω ω α 2 F (ω) = 1 N qν qν λ qν ,<label>(8)</label></formula><p>where</p><formula xml:id="formula_8">λ qν = γ qν π N (E F )ω 2 qν .<label>(9)</label></formula><p>The λ qν parameter in the equation above corresponds to the EPC strength of the phonon mode at wave vector q and phonon branch ν. All electron phonon coupling results are listed in Table <ref type="table">S1</ref>. The CBM level (red curve), which presents full p-like electronic character, is efficiently tuned by pressure. The VBM level (orange curve), which presents mixed s-p like electronic character, hardly reacts to pressure below the predicted metallization point of 24 TPa. TABLE <ref type="table">S1</ref>. The EPC strength parameter λ, electronic density of states at the Fermi level N (EF ) (per formula unit), logarithmic average phonon frequency ω log , and critical superconducting temperature for metallic hcp 4 He at different pressures, P . The critical superconducting temperature was calculated with different approaches using µ * = 0.10 and 0.13 (the latter case within parentheses). T </p><formula xml:id="formula_9">P (TPa) λ ω log (K) N (EF ) T M cM c (K) T AD c (K) T mAD c (K)<label>20</label></formula><p>0.45 3888 0.011294 30 (16) 31 (16) 32 (17) 30 0.22 4614 0.047406 2 (1) 2 (1) 2 (1) 40 0.38 4597 0.059410 16 (7) 16 (7) 17 (7) 50 0.52 5182 0.057635 71 (44) 73 (44) 76 (47) 100 0.52 6842 0.051989 97 (61) 99 (62) 103 (65) 0 6 12 18 24 30 36 Pressure (TPa) 25 27 29 31 33 E g (eV) B3LYP FIG. S2. Direct band gap at the reciprocal space point Λ point calculated in hcp 4 He as a function of pressure. The results were obtained with the hybrid B3LYP functional.</p><p>TABLE S2. The band gap (Eg), excitonic energy (Ee) and excitonic binding energy (E bind ) obtained with GW calculations at several different pressure points (P ). Band gaps are directly computed from the valence band maximum (VBM) and conduction band minimum (CBM). P (TPa) VBM (eV) CBM (eV) Eg (eV) Ee (eV) E bind (eV) 19.50 -0.77697 0.16674 0.94371 --19.75 -0.16201 0.61332 0.77533 0.27661 0.49872 20.00 -0.08247 0.53441 0.61688 0.13751 0.47937 20.25 0.05131 0.37315 0.32184 -0.18292 0.50476 20.50 0.11935 0.29978 0.18043 -0.31057 0.49043 20.75 0.19766 0.13734 -0.06032 --21.00 0.28342 0.01436 -0.26906 -- . Pressure evolution of the effective mass of electrons and holes and the relative dielectric constant in hcp 4 He. Solid curves are calculated with the semi-local PBEsol functional while the cyan points correspond to hybrid B3LYP calculations. It is found that the choice of the DFT functional does not appreciably affect the estimated effective masses of the electrons and holes as obtained from the curvature of the valence and conduction bands respectively. Thus, the choice of the DFT functional only influences noticeably the band gap. TABLE <ref type="table">S3</ref>. Cutoff energy convergence tests. Electronic density of states at the Fermi level, N (EF ) (per formula unit), Fermi energy level, EF , and EPC parameters calculated for the phonon at the wave vector Γ with branch index 4 and q = (0.25, 0.53, 0) with branch index 1 considering the Monkhorst-Pack (MP) grid scheme and a Gaussian broadening of 0.002 Ry at 20 TPa.</p><p>q Cutoff energy N (EF ) EF λqν γqν (Ry) (states/spin/Ry/formula) (eV) (GHz) (0,0,0) 100 0.011124 78.268714 39.9965 5191.84 200 0.011294 78.267634 40.5615 5344.54 300 0.011296 78.267626 40.5664 5345.93 400 0.011295 78.267614 40.5634 5345.21 (0.25,0.43,0) 100 0.011124 78.268714 135.1200 8891.19 200 0.011294 78.267634 140.5567 9375.37 300 0.011296 78.267626 140.5894 9378.88 400 0.011295 78.267614 140.5688 9377.09 TABLE S4. Test on the k-mesh convergence for Γ and Λ points with a Gaussian broadening of 0.002 Ry at a pressure of 20 TPa. k-mesh λΓ λΛ 96×96×48 35.9302 0.0011 112×112×56 35.1325 0.5302 128×128×64 38.2727 66.0029 144×144×72 33.4231 57.1476 160×160×80 40.1960 113.5229 176×176×88 39.1550 220.7670 192×192×96 40.5855 139.7354 256×256×128 44.5449 141.41328 TABLE S5. Test on the q-mesh convergence for ω log and Tc with Coulomb pseudopotential µ * = 0.10 at a pressure of 50 TPa. q-mesh λ ω log (K) Tc (K) 6×6×3 1.45 6300 695 8×8×4 1.75 5047 658 12×12×6 0.33 5772 7 14×14×7 0.39 5441 21 16×16×8 0.52 5203 72 Γ M K Γ A L H A 0 50 100 150 200 250 <ref type="figure">S5</ref>. The phonon spectrum of hcp 4 He calculated at different pressures using the semi-local PBEsol functional in VASP. The Λ and Ω reciprocal space points, which are not a highly symmetric, correspond to the VBM and the secondary VBM levels, respectively.  The Λ and Ω reciprocal space points, which are not highly symmetric, correspond to the VBM and secondary VBM levels, respectively. A red-magenta-blue color scale is used to represent the dominant character of the valence and conduction bands; red denotes s-like character and blue p-like. The last panel shows the pressure-induced energy evolution of the relevant reciprocal space points Λ, Γ and Ω point, as referred to the Fermi surface.</p><formula xml:id="formula_10">ω (THz) Λ Ω 12TPa Γ M K Γ A L H A Λ Ω 16TPa Γ M K Γ A L H A Λ Ω 20TPa Γ M K Γ A L H A Λ Ω 22TPa Γ M K Γ A L H A 0 50 100 150 200 250 ω (THz) Λ Ω 26TPa Γ M K Γ A L H A Λ Ω 28TPa Γ M K Γ A L H A Λ Ω 30TPa Γ M K Γ A L H A Λ Ω 32TPa FIG.</formula><formula xml:id="formula_11">E -E F (eV) Λ Ω 12TPa Γ M K Γ A L H A Λ Ω 16TPa Γ M K Γ A L H A Λ Ω 20TPa Γ M K Γ A L H A Λ Ω 22TPa Γ M K Γ A L H A -40 -20 0 20 40 E -E F (eV) Λ Ω 26TPa Γ M K Γ A L H A Λ Ω 28TPa Γ M K Γ A L H A Λ Ω</formula><p>Γ M K Γ A L H A 0 50 100 150 200 250 300 ω (THz)</p><p>Λ Ω harmonic anharmonic FIG. <ref type="figure">S7</ref>. Quantum anharmonic effects on the phonon spectrum of ultra-compressed hcp 4 He. The comparison between the harmonic (dashed black lines) and the anharmonic (solid red lines) phonon spectra. The harmonic phonon spectra are taken from the DFPT calculations and the anharmonic phonon spectra are calculated from the free energy Hessian dynamical matrix D F up to the third-order force constants. of the crystal calculated at fixed volume V . CV was calculated within the temperature interval 0 ≤ T ≤ 10, 000 K. d Elastic sound wave velocity: longitudinal wave velocity (vp) and transverse wave velocity (vs). e Debye temperature (ΘD) estimated for metallic helium. f Temperature-dependence of the equation of state of hcp 4 He as estimated with the quasi-harmonic approximation. The vertical dashed line in the figures marks the metallization pressure (i.e., 15 TPa as obtained with the semi-local PBEsol functional). In the insulating phase, the pressure-dependence of the elastic constants and moduli are almost linear. In the metallic state, lattice distortions occur and those curves depart from the pressure-dependent linear behaviour; there is also a crossing between the C12 and C13 lines. 100 120 140 160 180 200 Pressure (GPa) -1.5 -1.0 -0.5 0.0 0.5 1.0 1.5 E -EF (eV) a Eg VBM CBM Γ M K Γ A L H A -4 -2 0 2 4 E -EF (eV) 140 GPa b Γ M K Γ A L H A -4 -2 0 2 4 E -EF (eV) 190 GPa c 0 2 4 6 8 10 ω (THz) 0.0 0.2 0.4 0.6 0.8 α 2 F (ω) d λ=0.75 Γ M K Γ A L H A 0 2 4 6 8 10 12 ω (THz) 140 GPa e Γ M K Γ A L H A 0 2 4 6 8 10 12 ω (THz) 190 GPa f p s FIG. S10. Excitonic insulator state and superconductivity in solid hcp xenon. a Band gap, VBM and CBM pressure-induced evolution. b-c Projected electronic band structure and e-f Phonon spectrum of hcp Xe at 140 and 190 GPa calculated with the semi-local PBEsol functional. d Eliashberg spectral function, α 2 F (ω), estimated at 140 GPa along with the integrated electron-phonon coupling constant λ.</p><p>In analogy to helium, solid xenon also maintains the hcp crystal structure at high pressures (i.e., ∼ 100 GPa). For the electronic band structure and phonon spectrum calculations, we considered the electrons 5s 2 5p 6 as valence states and used the semi-local PBEsol DFT functional with a plane wave cutoff of 300 eV. For EPC calculations, we used ultrasoft pseudopotentials, a plane-wave cut-off energy of 50 Ry for the kinetic energy and of 500 Ry for the charge density. We adopted a dense and shifted k-point mesh of 16 × 16 × 8 for the self-consistent calculation and then a denser 32 × 32 × 16 grid for further EPC calculations. As it is shown the figure, solid xenon becomes metallic at an experimentally accessible pressure of 140 GPa. Its band gap is also indirect with the VBM located at the Γ point and the CBM at K point. VBM and CBM exhibit pure electronic p-like character while the secondary CBM s-like. No phonon softening occurs at 140 GPa as the band gap closure involves p-p orbital interactions. Meanwhile, phonon softening is observed at 190 GPa upon closure of the secondary band gap which involves s-p orbital interactions, in analogy to solid helium. The Eliashberg spectral function calculated at 140 GPa shows that the electron phonon coupling strength (λ = 0.75) mainly stems from the low-frequency region (i.e., 2-6 THz). In this case, the resulting critical superconducting temperature is 10 K.  ) and an all-electron approach (blue line, results obtained with the WIEN2K code). The full-potential (linearized) augmented plane-wave method is consistent with the employed pseudopotential PBE approach when evaluating band structure closure under such a high pressure. 0 50 100 150 200 250 λ Γ 96×96×48 112×112×56 128×128×64 144×144×72 160×160×80 176×176×88 192×192×96 256×256×128 0.000 0.002 0.004 0.006 0.008 0.010 Gaussian Broadening (Ry) 0 50 100 150 200 250 λ Λ </p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>FIG. 1 .</head><label>1</label><figDesc>FIG. 1. DFT benchmarking for the metallization pressure of hcp 4 He. a Electronic band gap, Eg, expressed as a function of pressure and calculated with different DFT functionals. Negative Eg values indicate overlapping between the VBM and CBM levels. The grey region indicates the stability range of metallic helium as calculated with QMC methods [1]. b Electronic localization function (ELF isosurface = 0.8, yellow) of solid helium at 12 and 36 TPa in a red-green-blue color scale with red denoting high electronic density and blue low electronic density. c Lowest conduction (red) and highest valence (blue) bands expressed as a function of reciprocal wave vector in the kz = 0 plane; the grey and transparent plane represents the Fermi surface.</figDesc><graphic coords="2,104.81,52.07,406.50,310.70" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>FIG. 2 .</head><label>2</label><figDesc>FIG.2. Band-gap closure and emergence of the excitonic insulator state in hcp4 He. a-c Evolution of the electronic band structure under compression calculated with the hybrid B3LYP functional. A red-magenta-blue color scale is employed for representing the orbital character of the relevant electronic bands with blue for s-and red for p-like. The Λ and Ω reciprocal space points indicate the location of the primary and secondary VBM. The inset highlights the migration of electrons (e -) and formation of holes (h + ) along the reciprocal space line K-Λ-Γ near the Fermi surface. d Comparison of the exciton binding energy, E bind , and band gap calculated with B3LYP DFT and many-body perturbation theory within the GW approximation. The blue regions indicate the pressure range in which the sufficient condition for spontaneous formation of excitons is fulfilled.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>FIG. 3 .</head><label>3</label><figDesc>FIG.3. Electron-phonon coupling and superconducting properties of ultra-compressed hcp4 He. a Pressureinduced variation of the acoustic phonon branches (colored lines). The phonon calculations were performed with the semi-local PBEsol functional. The grey curves were calculated for the insulating phase at 15 TPa; the colored lines correspond to higher pressures but were re-scaled to facilitate the comparison. b Eliashberg spectral function, α 2 F , of metallic hcp4 He. c Superconducting properties estimated with the semi-local PBEsol functional and parameters µ * = 0.10 and µ * = 0.13 (Methods). The critical superconducting temperature values, Tc (colored bars), obtained with the modified Allen-Dynes formula<ref type="bibr" target="#b23">[24]</ref> and the electron-phonon coupling strength parameter, λ (red stars), are represented in the left and right ordinate axis, respectively. d Qualitative sketch of the possible phase diagram of ultra-compressed solid helium based on work<ref type="bibr" target="#b8">[9]</ref> and the key physical findings presented in this work.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><figDesc>FIG. S1. Evolution of VBM and CBM levels in hcp4 He expressed as a function of compression and calculated with the hybrid B3LYP functional. The dashed line represents the Fermi energy level. The crossing of the two curves indicates metallization. The CBM level (red curve), which presents full p-like electronic character, is efficiently tuned by pressure. The VBM level (orange curve), which presents mixed s-p like electronic character, hardly reacts to pressure below the predicted metallization point of 24 TPa.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><figDesc>M cM c was calculated with the McMillan formula (3), T AD c with the Allen-Dynes formula (4), and T mAD c with the modified Allen-Dynes formula (5).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><figDesc>FIG. S3. Pressure evolution of the effective mass of electrons and holes and the relative dielectric constant in hcp4 He. Solid curves are calculated with the semi-local PBEsol functional while the cyan points correspond to hybrid B3LYP calculations. It is found that the choice of the DFT functional does not appreciably affect the estimated effective masses of the electrons and holes as obtained from the curvature of the valence and conduction bands respectively. Thus, the choice of the DFT functional only influences noticeably the band gap.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><figDesc>FIG. S4. Electronic band-structure properties calculated for 4 He considering other possible crystal structures, namely, bodycentered cubic (bcc), face-centered cubic (fcc), and double hexagonal closed packed (dhcp). a Band gap expressed as a function of pressure and calculated with the semi-local PBEsol functional. b-d Projected electronic band structure of metallic helium calculated in the bcc, fcc and dhcp phases, respectively.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8"><figDesc>FIG. S6. Projected electronic band structure of hcp4 He at different pressures calculated with the semi-local PBEsol functional. The Λ and Ω reciprocal space points, which are not highly symmetric, correspond to the VBM and secondary VBM levels, respectively. A red-magenta-blue color scale is used to represent the dominant character of the valence and conduction bands; red denotes s-like character and blue p-like. The last panel shows the pressure-induced energy evolution of the relevant reciprocal space points Λ, Γ and Ω point, as referred to the Fermi surface.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10"><figDesc>FIG. S8. Elastic properties of hcp4 He expressed as a function of pressure and calculated with the semi-local PBEsol functional. a Elastic constants {Cij}. b Bulk modulus (K), shear modulus (G), and Young's modulus (E). c The heat capacity (CV ) of the crystal calculated at fixed volume V . CV was calculated within the temperature interval 0 ≤ T ≤ 10, 000 K. d Elastic sound wave velocity: longitudinal wave velocity (vp) and transverse wave velocity (vs). e Debye temperature (ΘD) estimated for metallic helium. f Temperature-dependence of the equation of state of hcp4 He as estimated with the quasi-harmonic approximation. The vertical dashed line in the figures marks the metallization pressure (i.e., 15 TPa as obtained with the semi-local PBEsol functional). In the insulating phase, the pressure-dependence of the elastic constants and moduli are almost linear. In the metallic state, lattice distortions occur and those curves depart from the pressure-dependent linear behaviour; there is also a crossing between the C12 and C13 lines.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11"><figDesc>FIG. S9. Comparison of the equation of state of hcp4 He obtained with two different DFT software: Quantum Expresso (QE, circles) and VASP (curves). The length of the a and b lattice parameters and total volume expressed as a function of pressure and calculated with the QE and VASP codes agree remarkably well. The agreement between the two DFT codes on the value of the c/a ratio, however, is not satisfactory within the pressure range 20 ≤ P ≤ 30 TPa.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_12"><figDesc>FIG. S11. Energy cutoff tests performed with the VASP code and the semi-local PBEsol functional. Results are shown for the a enthalpy, b band gap and c-d phonon spectrum of solid helium at 20 TPa. It is found that an energy cutoff of 1500 eV guarantees convergence in all the quantities to the desired level of accuracy.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_13"><figDesc>FIG. S12.Comparison of the PBE band gap evolution obtained with a PAW pseudopotential (red line, results obtained with the VASP code) and an all-electron approach (blue line, results obtained with the WIEN2K code). The full-potential (linearized) augmented plane-wave method is consistent with the employed pseudopotential PBE approach when evaluating band structure closure under such a high pressure.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_14"><figDesc>FIG. S13. Pressure evolution of the excitonic energy obtained with GW calculations. The interpolated exciton energies are mapped into different q-point with colorful curves indicating different bands. The exciton in path K-Γ has the lowest energy with a value of -0.31 eV at 20.25 TPa, which is negative, indicating that the exciton state is bound.</figDesc></figure>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div><p>ACKNOWLEDGEMENTS C.C. acknowledges support from the <rs type="funder">Spanish Ministry of Science, Innovation and Universities</rs> under the fellowship <rs type="grantNumber">RYC2018-024947-I. C.L</rs> and C.C. thankfully acknowledge the computer resources at <rs type="person">MareNostrum</rs> and the technical support provided by <rs type="funder">Barcelona Supercomputing Center</rs> (<rs type="grantNumber">RES-FI-1-0006</rs> and <rs type="grantNumber">RES-FI-2022-2-0003</rs>). J.S. gratefully acknowledges the financial support from the <rs type="funder">National Key R&amp;D Program of China</rs> (grant nos. <rs type="grantNumber">2022YFA1403201</rs>), the <rs type="funder">National Natural Science Foundation of China</rs> (grant nos. <rs type="grantNumber">12125404</rs>, <rs type="grantNumber">11974162</rs>, and <rs type="grantNumber">11834006</rs>), and the <rs type="funder">Fundamental Research Funds for the Central Universities</rs>. Part of the calculations were carried out using supercomputers at the <rs type="institution">High Performance Computing Center of Collaborative Innovation Center of Advanced Microstructures</rs>, the high-performance supercomputing center of <rs type="affiliation">Nanjing University</rs>. L.J.L gratefully acknowledges the computational resources provided by the <rs type="funder">National Supercomputer Service</rs> through the <rs type="funder">United Kingdom Car-Parrinello Consortium</rs> (<rs type="grantNumber">EP/P022561/1</rs>). I.E. and Y.-W.F. acknowledge funding from the <rs type="funder">European Research Council (ERC)</rs> under the European Union's <rs type="programName">Horizon 2020 research and innovation program</rs> (Grant Agreement No. <rs type="grantNumber">802533</rs>) and the <rs type="funder">Department of Education, Universities and Research of the Eusko Jaurlaritza</rs> and the <rs type="funder">University of the Basque Country UPV/EHU</rs> (Grant No. <rs type="grantNumber">IT1527-22</rs>). C.L and C.C. acknowledge interesting discussions and kind assistance from <rs type="person">Raymond C. Clay</rs> III on ultra-compressed helium pseudopotentials.</p></div>
+			</div>
+			<listOrg type="funding">
+				<org type="funding" xml:id="_zecvnEs">
+					<idno type="grant-number">RYC2018-024947-I. C.L</idno>
+				</org>
+				<org type="funding" xml:id="_gn5fZxW">
+					<idno type="grant-number">RES-FI-1-0006</idno>
+				</org>
+				<org type="funding" xml:id="_3uE3mjp">
+					<idno type="grant-number">RES-FI-2022-2-0003</idno>
+				</org>
+				<org type="funding" xml:id="_vFTzqbJ">
+					<idno type="grant-number">2022YFA1403201</idno>
+				</org>
+				<org type="funding" xml:id="_jpWtdrk">
+					<idno type="grant-number">12125404</idno>
+				</org>
+				<org type="funding" xml:id="_jKgvTW3">
+					<idno type="grant-number">11974162</idno>
+				</org>
+				<org type="funding" xml:id="_qTxDSJ7">
+					<idno type="grant-number">11834006</idno>
+				</org>
+				<org type="funding" xml:id="_V6fZSun">
+					<idno type="grant-number">EP/P022561/1</idno>
+				</org>
+				<org type="funding" xml:id="_pQ8vjgd">
+					<idno type="grant-number">802533</idno>
+					<orgName type="program" subtype="full">Horizon 2020 research and innovation program</orgName>
+				</org>
+				<org type="funding" xml:id="_ftqcFpG">
+					<idno type="grant-number">IT1527-22</idno>
+				</org>
+			</listOrg>
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>ADDITIONAL INFORMATION</head><p>Supplementary Information is available in the online version of the paper.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>COMPETING FINANCIAL INTERESTS</head><p>The authors declare no competing financial interests.</p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">First-Principles Studies of the Metallization and the Equation of State of Solid Helium</title>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">A</forename><surname>Khairallah</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Militzer</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.101.106407</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">101</biblScope>
+			<biblScope unit="page">106407</biblScope>
+			<date type="published" when="2008">2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Electron-Phonon Coupling and the Metallization of Solid Helium at Terapascal Pressures</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Monserrat</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">D</forename><surname>Drummond</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">J</forename><surname>Pickard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">J</forename><surname>Needs</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.112.055504</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">112</biblScope>
+			<biblScope unit="page">55504</biblScope>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Electronic Structure of Crystalline He at High Pressures</title>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">K</forename><surname>Mao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">L</forename><surname>Shirley</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Ding</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Eng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><forename type="middle">Q</forename><surname>Cai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Chow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Xiao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Shu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">J</forename><surname>Hemley</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Kao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">L</forename><surname>Mao</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.105.186404</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">105</biblScope>
+			<biblScope unit="page">186404</biblScope>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Simulation and understanding of atomic and molecular quantum crystals</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Cazorla</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Boronat</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/RevModPhys.89.035003</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Rev. Mod. Phys</title>
+		<imprint>
+			<biblScope unit="volume">89</biblScope>
+			<biblScope unit="page">35003</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Excitonic Insulator</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Jérome</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">M</forename><surname>Rice</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Kohn</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRev.158.462</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev</title>
+		<imprint>
+			<biblScope unit="volume">158</biblScope>
+			<biblScope unit="page">462</biblScope>
+			<date type="published" when="1967">1967</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Strongly correlated excitonic insulator in atomic double layers</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">X</forename><surname>Nguyen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zeng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Watanabe</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Taniguchi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">H</forename><surname>Macdonald</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">F</forename><surname>Mak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Shan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">598</biblScope>
+			<biblScope unit="page">585</biblScope>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Evidence for a monolayer excitonic insulator</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C.-L</forename><surname>Chiu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Jäck</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Lei</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Klemenz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><forename type="middle">A</forename><surname>Cevallos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Onyszczak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Fishchenko</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Farahi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Xie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Watanabe</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Taniguchi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">A</forename><surname>Bernevig</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">J</forename><surname>Cava</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">M</forename><surname>Schoop</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Yazdani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Wu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature Physics</title>
+		<imprint>
+			<biblScope unit="volume">18</biblScope>
+			<biblScope unit="page">87</biblScope>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Hightemperature superfluidity with indirect excitons in van der waals heterostructures</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">M</forename><surname>Fogler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">V</forename><surname>Butov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">S</forename><surname>Novoselov</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/ncomms5555</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature communications</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="page">4555</biblScope>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Possibility of an excitonic insulator at the semiconductor-semimetal transition</title>
+		<author>
+			<persName><forename type="first">F</forename><forename type="middle">X</forename><surname>Bronold</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Fehske</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevB.74.165107</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. B</title>
+		<imprint>
+			<biblScope unit="volume">74</biblScope>
+			<biblScope unit="page">165107</biblScope>
+			<date type="published" when="2006">2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Models of lowmass helium white dwarfs including gravitational settling, thermal and chemical diffusion, and rotational mixing</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">G</forename><surname>Istrate</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Marchant</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">M</forename><surname>Tauris</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Langer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">J</forename><surname>Stancliffe</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Grassitelli</surname></persName>
+		</author>
+		<idno type="DOI">10.1051/0004-6361/201628874</idno>
+	</analytic>
+	<monogr>
+		<title level="j">A&amp;A</title>
+		<imprint>
+			<biblScope unit="volume">595</biblScope>
+			<biblScope unit="page">35</biblScope>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Pure-helium 3D model atmospheres of white dwarfs</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Cukanovaite</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P.-E</forename><surname>Tremblay</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Freytag</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H.-G</forename><surname>Ludwig</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Bergeron</surname></persName>
+		</author>
+		<idno type="DOI">10.1093/mnras/sty2383</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Monthly Notices of the Royal Astronomical Society</title>
+		<imprint>
+			<biblScope unit="volume">481</biblScope>
+			<biblScope unit="page">1522</biblScope>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">High-pressure phases of silane</title>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">J</forename><surname>Pickard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">J</forename><surname>Needs</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Let</title>
+		<imprint>
+			<biblScope unit="volume">97</biblScope>
+			<biblScope unit="page">45504</biblScope>
+			<date type="published" when="2006">2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Ab initio random structure searching</title>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">J</forename><surname>Pickard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">J</forename><surname>Needs</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Phys.: Condens. Matter</title>
+		<imprint>
+			<biblScope unit="volume">23</biblScope>
+			<biblScope unit="page">53201</biblScope>
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">First-principles modeling of quantum nuclear effects and atomic interactions in solid 4 he at high pressure</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Cazorla</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Boronat</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. B</title>
+		<imprint>
+			<biblScope unit="volume">91</biblScope>
+			<biblScope unit="page">24103</biblScope>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Topological excitons</title>
+		<author>
+			<persName><forename type="first">V</forename><forename type="middle">M</forename><surname>Pereira</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nat. Phys</title>
+		<imprint>
+			<biblScope unit="volume">18</biblScope>
+			<biblScope unit="page">6</biblScope>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Wannier-mott excitations in semiconductors</title>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">C</forename><surname>La Rocca</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/S1079-4050(03)31002-6</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Thin films and Nanostructures</title>
+		<imprint>
+			<biblScope unit="volume">31</biblScope>
+			<biblScope unit="page">97</biblScope>
+			<date type="published" when="2003">2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Electron-hole excitations and optical spectra from first principles</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Rohlfing</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">G</forename><surname>Louie</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevB.62.4927</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. B</title>
+		<imprint>
+			<biblScope unit="volume">62</biblScope>
+			<biblScope unit="page">4927</biblScope>
+			<date type="published" when="2000">2000</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Antiferroelectric distortion with anomalous phonon softening in the excitonic insulator ta2nise5</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Nakano</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Hasegawa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Tamura</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Katayama</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Tsutsui</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Sawa</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevB.98.045139</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. B</title>
+		<imprint>
+			<biblScope unit="volume">98</biblScope>
+			<biblScope unit="page">45139</biblScope>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Excitonic and lattice contributions to the charge density wave in 1t -TiSe2 revealed by a phonon bottleneck</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Hedayat</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">J</forename><surname>Sayers</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Bugini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Dallera</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Wolverson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Batten</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Karbassi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Friedemann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Cerullo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Van Wezel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">R</forename><surname>Clark</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Carpene</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">Da</forename><surname>Como</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevResearch.1.023029</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Research</title>
+		<imprint>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page">23029</biblScope>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Anharmonic free energies and phonon dispersions from the stochastic selfconsistent harmonic approximation: Application to platinum and palladium hydrides</title>
+		<author>
+			<persName><forename type="first">I</forename><surname>Errea</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Calandra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Mauri</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevB.89.064302</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. B</title>
+		<imprint>
+			<biblScope unit="volume">89</biblScope>
+			<biblScope unit="page">64302</biblScope>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Second-order structural phase transitions, free energy curvature, and temperature-dependent anharmonic phonons in the self-consistent harmonic approximation: Theory and stochastic implementation</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Bianco</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Errea</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Paulatto</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Calandra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Mauri</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevB.96.014111</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. B</title>
+		<imprint>
+			<biblScope unit="volume">96</biblScope>
+			<biblScope unit="page">14111</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Pressure and stress tensor of complex anharmonic crystals within the stochastic self-consistent harmonic approximation</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Monacelli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Errea</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Calandra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Mauri</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevB.98.024106</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. B</title>
+		<imprint>
+			<biblScope unit="volume">98</biblScope>
+			<biblScope unit="page">24106</biblScope>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">The stochastic self-consistent harmonic approximation: Calculating vibrational properties of materials with full quantum and anharmonic effects</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Monacelli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Bianco</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Cherubini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Calandra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Errea</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Mauri</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/1361-648X/ac066b</idno>
+	</analytic>
+	<monogr>
+		<title level="j">J. Phys.: Condens. Matter</title>
+		<imprint>
+			<biblScope unit="volume">33</biblScope>
+			<biblScope unit="page">363001</biblScope>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">High-throughput discovery of high-temperature conventional superconductors</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">M</forename><surname>Shipley</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">J</forename><surname>Hutcheon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">J</forename><surname>Needs</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">J</forename><surname>Pickard</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevB.104.054501</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. B</title>
+		<imprint>
+			<biblScope unit="volume">104</biblScope>
+			<biblScope unit="page">54501</biblScope>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Efficient iterative schemes for ab initio total-energy calculations using a plane-wave basis set</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Kresse</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Furthmüller</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevB.54.11169</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. B</title>
+		<imprint>
+			<biblScope unit="volume">54</biblScope>
+			<biblScope unit="page">11169</biblScope>
+			<date type="published" when="1996">1996</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Projector augmented-wave method</title>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">E</forename><surname>Blöchl</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevB.50.17953</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. B</title>
+		<imprint>
+			<biblScope unit="volume">50</biblScope>
+			<biblScope unit="page">17953</biblScope>
+			<date type="published" when="1994">1994</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Generalized Gradient Approximation Made Simple</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">P</forename><surname>Perdew</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Burke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Ernzerhof</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.77.3865</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">77</biblScope>
+			<biblScope unit="page">3865</biblScope>
+			<date type="published" when="1996">1996</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Restoring the Density-Gradient Expansion for Exchange in Solids and Surfaces</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">P</forename><surname>Perdew</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ruzsinszky</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">I</forename><surname>Csonka</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><forename type="middle">A</forename><surname>Vydrov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">E</forename><surname>Scuseria</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">A</forename><surname>Constantin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Burke</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.100.136406</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">100</biblScope>
+			<biblScope unit="page">136406</biblScope>
+			<date type="published" when="2008">2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">A consistent and accurate ab initio parametrization of density functional dispersion correction (DFT-D) for the 94 elements H-Pu</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Grimme</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Antony</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ehrlich</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Krieg</surname></persName>
+		</author>
+		<idno type="DOI">10.1063/1.3382344</idno>
+	</analytic>
+	<monogr>
+		<title level="j">The Journal of Chemical Physics</title>
+		<imprint>
+			<biblScope unit="volume">132</biblScope>
+			<biblScope unit="page">154104</biblScope>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Chemical accuracy for the van der Waals density functional</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Klimeš</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">R</forename><surname>Bowler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Michaelides</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/0953-8984/22/2/022201</idno>
+	</analytic>
+	<monogr>
+		<title level="j">J. Phys.: Condens. Matter</title>
+		<imprint>
+			<biblScope unit="volume">22</biblScope>
+			<biblScope unit="page">22201</biblScope>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Exchange functional that tests the robustness of the plasmon description of the van der Waals density functional</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Berland</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Hyldgaard</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevB.89.035412</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. B</title>
+		<imprint>
+			<biblScope unit="volume">89</biblScope>
+			<biblScope unit="page">35412</biblScope>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Van der Waals density functional made accurate</title>
+		<author>
+			<persName><forename type="first">I</forename><surname>Hamada</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevB.89.121103</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. B</title>
+		<imprint>
+			<biblScope unit="volume">89</biblScope>
+			<biblScope unit="page">121103</biblScope>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Influence of the exchange screening parameter on the performance of screened hybrid functionals</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">V</forename><surname>Krukau</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><forename type="middle">A</forename><surname>Vydrov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">F</forename><surname>Izmaylov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">E</forename><surname>Scuseria</surname></persName>
+		</author>
+		<idno type="DOI">10.1063/1.2404663</idno>
+	</analytic>
+	<monogr>
+		<title level="j">J. Chem. Phys</title>
+		<imprint>
+			<biblScope unit="volume">125</biblScope>
+			<biblScope unit="page">224106</biblScope>
+			<date type="published" when="2006">2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Ab Initio Calculation of Vibrational Absorption and Circular Dichroism Spectra Using Density Functional Force Fields</title>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">J</forename><surname>Stephens</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><forename type="middle">J</forename><surname>Devlin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">F</forename><surname>Chabalowski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">J</forename><surname>Frisch</surname></persName>
+		</author>
+		<idno type="DOI">10.1021/j100096a001</idno>
+	</analytic>
+	<monogr>
+		<title level="j">J. Phys. Chem</title>
+		<imprint>
+			<biblScope unit="volume">98</biblScope>
+			<biblScope unit="page">11623</biblScope>
+			<date type="published" when="1994">1994</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Improved hybrid functional for solids: The HSEsol functional</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Schimka</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Harl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Kresse</surname></persName>
+		</author>
+		<idno type="DOI">10.1063/1.3524336</idno>
+	</analytic>
+	<monogr>
+		<title level="j">J. Chem. Phys</title>
+		<imprint>
+			<biblScope unit="volume">134</biblScope>
+			<biblScope unit="page">24116</biblScope>
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<analytic>
+		<title level="a" type="main">WIEN2k: An APW+lo program for calculating the properties of solids</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Blaha</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Schwarz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Tran</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Laskowski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">K H</forename><surname>Madsen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">D</forename><surname>Marks</surname></persName>
+		</author>
+		<idno type="DOI">10.1063/1.5143061</idno>
+	</analytic>
+	<monogr>
+		<title level="j">J. Chem. Phys</title>
+		<imprint>
+			<biblScope unit="volume">152</biblScope>
+			<biblScope unit="page">74101</biblScope>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<analytic>
+		<title level="a" type="main">First principles phonon calculations in materials science</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Togo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Tanaka</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.scriptamat.2015.07.021</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Scripta Materialia</title>
+		<imprint>
+			<biblScope unit="volume">108</biblScope>
+			<biblScope unit="page">1</biblScope>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<analytic>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">J</forename><surname>Clark</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">D</forename><surname>Segall</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">J</forename><surname>Pickard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">J</forename><surname>Hasnip</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">I J</forename><surname>Probert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Refson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">C</forename><surname>Payne</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">First principles methods using castep</title>
+		<imprint>
+			<date type="published" when="2005">2005</date>
+			<biblScope unit="volume">220</biblScope>
+			<biblScope unit="page">567</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Electronic excitations: density-functional versus many-body green&apos;sfunction approaches</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Onida</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Reining</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Rubio</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/RevModPhys.74.601</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Rev. Mod. Phys</title>
+		<imprint>
+			<biblScope unit="volume">74</biblScope>
+			<biblScope unit="page">601</biblScope>
+			<date type="published" when="2002">2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<analytic>
+		<title level="a" type="main">yambo: An ab initio tool for excited state calculations</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Marini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Hogan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Grüning</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Varsano</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.cpc.2009.02.003</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Computer Physics Communications</title>
+		<imprint>
+			<biblScope unit="volume">180</biblScope>
+			<biblScope unit="page">1392</biblScope>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<analytic>
+		<title level="a" type="main">Electron correlation in semiconductors and insulators: Band gaps and quasiparticle energies</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">S</forename><surname>Hybertsen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">G</forename><surname>Louie</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevB.34.5390</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. B</title>
+		<imprint>
+			<biblScope unit="volume">34</biblScope>
+			<biblScope unit="page">5390</biblScope>
+			<date type="published" when="1986">1986</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Non-adiabatic meson theory of nuclear forces</title>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">M</forename><surname>Dancoff</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRev.78.382</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev</title>
+		<imprint>
+			<biblScope unit="volume">78</biblScope>
+			<biblScope unit="page">382</biblScope>
+			<date type="published" when="1950">1950</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b42">
+	<analytic>
+		<title level="a" type="main">QUANTUM ESPRESSO: A modular and opensource software project for quantum simulations of materials</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Giannozzi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Baroni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Bonini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Calandra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Car</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Cavazzoni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Ceresoli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">L</forename><surname>Chiarotti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Cococcioni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Dabo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">D</forename><surname>Corso</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>De Gironcoli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Fabris</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Fratesi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Gebauer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">U</forename><surname>Gerstmann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Gougoussis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kokalj</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lazzeri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Martin-Samos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Marzari</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Mauri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Mazzarello</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Paolini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Pasquarello</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Paulatto</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Sbraccia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Scandolo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Sclauzero</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">P</forename><surname>Seitsonen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Smogunov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Umari</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">M</forename><surname>Wentzcovitch</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/0953-8984/21/39/395502</idno>
+	</analytic>
+	<monogr>
+		<title level="j">J. Phys.: Condens. Matter</title>
+		<imprint>
+			<biblScope unit="volume">21</biblScope>
+			<biblScope unit="page">395502</biblScope>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b43">
+	<analytic>
+		<title level="a" type="main">Advanced capabilities for materials modelling with Quantum ESPRESSO</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Giannozzi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Andreussi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Brumme</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Bunau</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">B</forename><surname>Nardelli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Calandra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Car</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Cavazzoni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Ceresoli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Cococcioni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Colonna</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Carnimeo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">D</forename><surname>Corso</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>De Gironcoli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Delugas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">A</forename><surname>Distasio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ferretti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Floris</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Fratesi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Fugallo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Gebauer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">U</forename><surname>Gerstmann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Giustino</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Gorni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Kawamura</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H.-Y</forename><surname>Ko</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kokalj</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Küçükbenli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lazzeri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Marsili</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Marzari</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Mauri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">L</forename><surname>Nguyen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H.-V</forename><surname>Nguyen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Otero-De-La-Roza</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Paulatto</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Poncé</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Rocca</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Sabatini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Santra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Schlipf</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">P</forename><surname>Seitsonen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Smogunov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Timrov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Thonhauser</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Umari</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Vast</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Baroni</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/1361-648X/aa8f79</idno>
+	</analytic>
+	<monogr>
+		<title level="j">J. Phys.: Condens. Matter</title>
+		<imprint>
+			<biblScope unit="volume">29</biblScope>
+			<biblScope unit="page">465901</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b44">
+	<analytic>
+		<title level="a" type="main">Phonons and related crystal properties from density-functional perturbation theory</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Baroni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>De Gironcoli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Corso</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Giannozzi</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/RevModPhys.73.515</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Rev. Mod. Phys</title>
+		<imprint>
+			<biblScope unit="volume">73</biblScope>
+			<biblScope unit="page">515</biblScope>
+			<date type="published" when="2001">2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b45">
+	<analytic>
+		<title level="a" type="main">Benchmarking density functionals for hydrogen-helium mixtures with quantum monte carlo: Energetics, pressures, and forces</title>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">C</forename><surname>Clay</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Holzmann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">M</forename><surname>Ceperley</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">A</forename><surname>Morales</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevB.93.035121</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. B</title>
+		<imprint>
+			<biblScope unit="volume">93</biblScope>
+			<biblScope unit="page">35121</biblScope>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b46">
+	<analytic>
+		<title level="a" type="main">McMillan&apos;s equation and the Tc of superconductors</title>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">C</forename><surname>Dynes</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/0038-1098(72)90603-5</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Solid State Communications</title>
+		<imprint>
+			<biblScope unit="volume">10</biblScope>
+			<biblScope unit="page">615</biblScope>
+			<date type="published" when="1972">1972</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b47">
+	<analytic>
+		<title level="a" type="main">Transition temperature of strong-coupled superconductors reanalyzed</title>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">B</forename><surname>Allen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">C</forename><surname>Dynes</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevB.12.905</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. B</title>
+		<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="page">905</biblScope>
+			<date type="published" when="1975">1975</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>
