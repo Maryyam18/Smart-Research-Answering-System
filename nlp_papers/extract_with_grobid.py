@@ -7,7 +7,7 @@ import time
 GROBID_URL = "http://localhost:8070/api/processFulltextDocument"
 
 # MAIN FOLDER
-BASE = "E:/5th_Semester/SPM/Smart_Research_Answering_System/nlp_papers"
+BASE = "C:/D/semester5/SPM/project/code/code_orginal_for deploymant/Smart-Research-Answering-System/nlp_papers"
 
 # YOUR 4 DOMAINS (exact folder names)
 DOMAINS = [

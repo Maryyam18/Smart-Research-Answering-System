@@ -3,17 +3,31 @@
 from sentence_transformers import SentenceTransformer
 import psycopg2
 from pgvector.psycopg2 import register_vector
-
+import os
 print("Loading BAAI/bge-small-en-v1.5...")
 model = SentenceTransformer("BAAI/bge-small-en-v1.5")
 
+#   DB_HOST = 
+#     DB_PORT = 
+#     DB_USER = 
+#     DB_PASSWORD = 
+#     DB_NAME = 
+
+
 # CONNECT WITH AUTOCOMMIT OFF FROM THE BEGINNING — THIS FIXES THE ERROR
+# conn = psycopg2.connect(
+#     host=os.getenv("DB_HOST"),
+#     port=os.getenv("DB_PORT"),
+#     user=os.getenv("DB_USER"),
+#     password=os.getenv("DB_PASSWORD"),
+#     dbname=os.getenv("DB_NAME")
+# )
 conn = psycopg2.connect(
-    host="localhost",
-    port=5432,
-    user="postgres",
-    password="hello098",
-    dbname="smart_research"
+    host=os.getenv("DB_HOST"),
+    port=os.getenv("DB_PORT"),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD"),
+    dbname=os.getenv("DB_NAME")
 )
 conn.autocommit = False  # ← Must be set right after connect
 register_vector(conn)
