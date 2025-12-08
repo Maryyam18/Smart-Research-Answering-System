@@ -8,7 +8,8 @@ def get_conn():
         port=settings.DB_PORT,
         user=settings.DB_USER,
         password=settings.DB_PASSWORD,
-        dbname=settings.DB_NAME
+        dbname=settings.DB_NAME,
+        sslmode='require'
     )
     register_vector(conn)
     return conn
