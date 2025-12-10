@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">A Survey of Open-Source Power System Dynamic Simulators with Grid-Forming Inverter for Machine Learning Applications</title>
+				<funder ref="#_RMrVGwq">
+					<orgName type="full">U.S. Department of Energy&apos;s Office of Electricity</orgName>
+				</funder>
+				<funder>
+					<orgName type="full">National Renewable Energy Laboratory</orgName>
+				</funder>
+				<funder ref="#_rjsBNcJ">
+					<orgName type="full">U.S. Department of Energy (DOE)</orgName>
+				</funder>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability  status="unknown">
+					<licence/>
+				</availability>
+				<date type="published" when="2024-12-11">11 Dec 2024</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Tong</forename><surname>Su</surname></persName>
+							<email>tongsu@uconn.edu</email>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Electrical and Computer Engineering</orgName>
+								<orgName type="institution">University of Connecticut</orgName>
+								<address>
+									<postCode>06269</postCode>
+									<settlement>Storrs</settlement>
+									<region>CT</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="institution">National Renewable Energy Laboratory</orgName>
+								<address>
+									<postCode>80401</postCode>
+									<settlement>Golden</settlement>
+									<region>CO</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Alaa</forename><surname>Selim</surname></persName>
+							<email>alaa.selim@uconn.edu</email>
+							<affiliation key="aff1">
+								<orgName type="institution">National Renewable Energy Laboratory</orgName>
+								<address>
+									<postCode>80401</postCode>
+									<settlement>Golden</settlement>
+									<region>CO</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Junbo</forename><surname>Zhao</surname></persName>
+							<affiliation key="aff1">
+								<orgName type="institution">National Renewable Energy Laboratory</orgName>
+								<address>
+									<postCode>80401</postCode>
+									<settlement>Golden</settlement>
+									<region>CO</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">A Survey of Open-Source Power System Dynamic Simulators with Grid-Forming Inverter for Machine Learning Applications</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2024-12-11">11 Dec 2024</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">5E92BA5A8AF13ABCDFCB58772591D6A6</idno>
+					<idno type="arXiv">arXiv:2412.08065v1[eess.SY]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-28T12:52+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Open-source power system dynamic simulator</term>
+					<term>grid-forming inverter</term>
+					<term>machine learning application</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>The emergence of grid-forming (GFM) inverter technology and the increasing role of machine learning in power systems highlight the need for evaluating the latest dynamic simulators. Open-source simulators offer distinct advantages in this field, being both free and highly customizable, which makes them well-suited for scientific research and validation of the latest models and methods. This paper provides a comprehensive survey and comparison of the latest open-source simulators that support GFM, with a focus on their capabilities and performance in machine-learning applications.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>T HE effective implementation of machine learning models, such as deep learning (DL) and reinforcement learning (RL) relies heavily on the availability and quality of the data. As machine learning methods gain prominence in power system studies, the role of data has become increasingly critical. Given the challenges of obtaining real-world power system data, most research relies on data generated by power system simulators. This is especially true for time-domain simulations (TDSs), as existing power grids operate far from the stability boundaries, making collecting sufficient data on instability events challenging. In addition, there is always a risk of perturbations or faults occurring at various locations for large power systems. Dynamic simulators can provide a detailed and interactive power system model, enabling engineers to anticipate and analyze various fault scenarios and system responses. This includes simulations ranging from simple single-device faults to complex interactions involving multiple devices. Through these simulations, the future safety state of the system and the effectiveness of control strategies can be assessed <ref type="bibr" target="#b0">[1]</ref>. Machine learning methods require a large amount of data from power system simulators to accurately model power system dynamics and implement control following perturbations <ref type="bibr" target="#b1">[2]</ref>, <ref type="bibr" target="#b2">[3]</ref>.</p><p>Power system simulators can be categorized into commercial and open-source simulators. Commercial simulators typically require a license but offer comprehensive user documentation, extensive functionality, highly specialized tools, as well as frequent software updates and feature upgrades. However, the advantage of open-source simulators is that they are usually free and highly customizable. Users can modify and improve the code according to specific needs, and new methods and technologies may be adopted more quickly. For example, ANDES is significantly easier to use for developing differential-algebraic equation (DAE)-based power system dynamic models compared to most commercial simulators, while maintaining high numerical efficiency <ref type="bibr" target="#b3">[4]</ref>. Considering the ease of access and flexible scalability, open-source dynamic simulators are essential for academic research.</p><p>The existing power system simulator includes functionalities, such as power flow (PF), continuation power flow (CPF), optimal power flow (OPF), small-signal stability analysis (SSSA), and TDS. PF, CPF, and OPF are primarily based on static models to analyze the steady-state behavior under specific load and generation conditions. By contrast, SSSA and TDS utilize dynamic models to evaluate the system's dynamic response and stability following perturbations. Static modelsbased simulators have been well-developed, like MATPOWER <ref type="bibr" target="#b4">[5]</ref>, Pandapower <ref type="bibr" target="#b5">[6]</ref>, PowerSimulations.jl <ref type="bibr" target="#b6">[7]</ref>, PyPSA <ref type="bibr" target="#b7">[8]</ref>, PowerModels <ref type="bibr" target="#b8">[9]</ref>, PowerModelsDistribution.jl <ref type="bibr" target="#b9">[10]</ref>, OpenDSS <ref type="bibr" target="#b10">[11]</ref> and GridLAB-D <ref type="bibr" target="#b11">[12]</ref>. Among these, PowerModelsDistribution.jl, OpenDSS and GridLAB-D are primarily used for distribution systems. Due to the evolution of dynamic model structures and control methods, along with the level of modeling details required to capture specific phenomena of interest, there are variations in the support for dynamic models across different simulators. <ref type="bibr" target="#b12">[13]</ref>- <ref type="bibr" target="#b14">[15]</ref> have conducted comprehensive surveys of various power system dynamic simulators, such as power system toolbox (PST) <ref type="bibr" target="#b15">[16]</ref> and power system analysis toolbox (PSAT) <ref type="bibr" target="#b14">[15]</ref>. However, with the evolution of power systems and the emergence of new models, such as those for inverter-based resources (IBRs), there is a need to conduct surveys on the latest dynamic simulators in recent years.</p><p>This paper first introduces the definitions of TDSs, IBRs, and machine learning applications. It then surveys five leading open-source power system dynamic simulators that support grid-forming (GFM) inverters. Numerical studies are conducted on the IEEE 14-bus system to compare the performance of the simulators with different GFM controls.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. POWER SYSTEM DYNAMIC SIMULATION AND MACHINE LEARNING APPLICATIONS</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Time-Domain Simulation</head><p>TDS is categorized into quasi-static phasor (QSP) simulation and electromagnetic transient (EMT) simulation, distinguished by the simulation speed and the level of modeling details necessary for capturing specific phenomena of interest. QSP simulations represent the dynamics of transmission system circuits as discrete changes between steady-state operating points and are used for studying low-frequency phenomena, ranging from inertial response to frequency regulation. EMT simulations incorporate sufficient detail to capture fast dynamic phenomena, enabling the analysis of line dynamics, converter switching, machine fluxes, and lightning surges <ref type="bibr" target="#b0">[1]</ref>. Furthermore, QSP simulation is divided into the positive sequence, root mean square (RMS) unbalanced, dq0-model with algebraic network, and RMS dynamic phasors. On the other hand, EMT is categorized into dq0-model, dynamic Phasors, and waveform simulation (ignores or includes switching model). The classification of TDS is shown in Fig. <ref type="figure" target="#fig_0">1</ref>. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>TDS</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Inverter-Based Resource</head><p>Traditional inverters use grid-following (GFL) control, relying on the phase-locked loop (PLL) to estimate and track the angle of the terminal voltage and regulate the injected current into the grid. However, GFL inverters, while unable to actively control voltage and frequency, behave similarly to a current source. When facing a contingency, GFL will act with a delay and cannot mimic the instantaneous response of synchronous generators (SGs), which leads to poorer system response performance <ref type="bibr" target="#b16">[17]</ref>. On the other hand, GFM can directly control their voltage and frequency output to inherently enhance system stability and respond to load variations <ref type="bibr" target="#b17">[18]</ref>. The GFM source acts as a controllable voltage source and does not need the stiff terminal voltage assumption made in GFL <ref type="bibr" target="#b18">[19]</ref>. In emergencies like grid failure or islanded mode, GFM inverters establish the grid voltage, which then serves as the reference voltage for the rest of the system.</p><p>Several GFM controls have been proposed in recent years. Droop control, which mimics the speed droop mechanism present in SGs is widely used. Then, virtual synchronous machine (VSM) control emulates the dynamics and control of SGs and can provide inertia. Matching control structurally matches the differential equations of an inverter to those of an SG. However, virtual oscillator control (VOC) mimics the synchronizing behavior of Liénard-type oscillators and can globally synchronize an IBR-based power system. Furthermore, dispatchable VOC (dVOC) has been proposed to address the issue that the nominal power injection of VOC cannot be specified <ref type="bibr" target="#b16">[17]</ref>. The structures of the most widely used droop control and VSM control are shown in Fig. <ref type="figure" target="#fig_1">2</ref>  <ref type="bibr" target="#b19">[20]</ref>. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Machine Learning Application</head><p>Generally, the applications of machine learning in power systems can be divided into two categories: one focuses on forecasting, prediction, estimation, and surrogate modeling, primarily using DL; the other involves optimization, regulation, and control based on RL <ref type="bibr" target="#b1">[2]</ref>, <ref type="bibr" target="#b2">[3]</ref>. DL methods typically require a large amount of data to accurately fit the dynamic trajectory of power systems following perturbations. However, since power systems operate with significant safety margins, dynamic data post-fault is difficult to obtain, and most existing research relies on data generated by power system simulators. To generate data, random or distribution-based Monte Carlo sampling of power system variables is necessary to cover a wide range of possible operating scenarios. These power system variables include SG and IBR active power outputs, SG and IBR bus voltage magnitudes, active and reactive power demands of loads, IBR control modes and parameters, as well as fault or perturbation locations and types, etc. RL are traditionally categorized into four types: model-based, modelfree, value iteration, and policy iteration RL <ref type="bibr" target="#b2">[3]</ref>. When considering constraints, safe RL has been proposed to maximize rewards while ensuring constraint satisfaction through a series of specially designed techniques <ref type="bibr" target="#b20">[21]</ref>. DL depends on dynamic simulators to perform TDSs for various scenarios and perturbations, generating large amounts of simulation data to train machine learning models. In contrast, RL requires extensive interaction with the environment, performing actions, receiving rewards and states, and iteratively training the model. The environment here can be a real-world system, a dynamic simulator, or a DL-based surrogate model. The interaction between DL, RL, and simulators is shown in Fig. <ref type="figure" target="#fig_2">3</ref>.</p><p>Therefore, when applied to machine learning tasks, dynamic simulators must be flexible enough to allow users to easily modify all parameters through code, perform simulations, read results, and operate quickly. Typically, the time required to generate data is closely related to several factors including computer performance, the scale of the system, simulation duration, simulation step size, DAEs solver algorithm, programming language, complexity of the dynamic models, and the type of TDSs. For instance, QSP-based TDSs are signif- icantly faster than EMT-based TDSs, and multi-GPU parallel processing is typically faster than single-GPU processing.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. POWER SYSTEM DYNAMIC SIMULATOR</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. ANDES</head><p>ANDES is an open-source Python library for power system modeling, computation, and analysis, and it supports PF, TDS (QSP), and SSSA for transmission systems. AN-DES implements a hybrid symbolic-numeric framework for rapid prototyping of DAE-based models, including the full second-generation renewable models: REGCA1 (Renewable energy generator model type A), REGCP1 (Renewable energy generator model (REGC A) with PLL), REGCV1 (Voltagecontrolled voltage-source converter (VSC) with double-loop PI control and VSM control), REGCV2 (Voltage-controlled VSC with lag transfer functions-based inner-loop current PI controllers and VSM control), REGF1 (GFM-droop), REGF2 (GFM-VSM), and REGF3 (GFM-dVOC) <ref type="bibr" target="#b3">[4]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. PowerSimulationsDynamics.jl</head><p>PowerSimulationsDynamics.jl (PSID.jl) is a Julia package designed for dynamic modeling of power systems with low inertia renewable energy sources (RESs) and features an extensive library of SG, inverter, and load models. It aims to provide a flexible modeling framework to accommodate various device models based on specific needs, streamline the construction of large-scale DAEs to enhance efficiency and reduce redundancy, and leverage Julia's computational capabilities to boost performance in large-scale simulations. The supported TDS includes positive sequence QSP and dq0model EMT <ref type="bibr" target="#b21">[22]</ref>. The supported inverters include REGCA1, GFM-Droop, GFM-VSM, and GFM-dVOC <ref type="bibr" target="#b23">[24]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Dynaωo</head><p>Dynaωo has five submodules: DynaFlow for steady-state calculations, DySym for short-circuit calculations, DynaWaltz for long-term stability simulations, DynaSwing for shortterm stability studies, and DynaWave for stability studies and system design with a high penetration of power electronicsbased components (quasi-EMT). The supported inverters include WECC PV, WTG4A, WTG4B, GridFormingConvert-erMatchingControl (GFM-Matching), GridFormingConverter-DroopControl (GFM-Droop) and GridFormingConverterDis-patchableVirtualOscillatorControl (GFM-dVOC) <ref type="bibr" target="#b22">[23]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D. OpenDSS</head><p>OpenDSS is a powerful open-source tool for dynamic simulations in unbalanced distribution systems, widely used for high-penetration DERs, restoration actions, and GFM control. It supports three dynamic modes: (1) Default mode using builtin generator models (e.g., model=1 for second-order SGs or model=7 for IBRs), (2) DynamicExp function (available in OpenDSS v9) to define custom DAEs for advanced controls, and (3) User-written DLL files for flexible modeling SGs and GFMs. These DLL files can be created in either the Delphi programming language or Free Pascal <ref type="bibr" target="#b24">[25]</ref>, allowing detailed modeling and control of internal structures and dynamic state variables. OpenDSS also includes a COM interface, enhancing integration with other software platforms. Configurations are specified in OpenDSS scripts with support for CSV and COMTRADE formats, and OpenDSS's API compatibility with Python and MATLAB enables further customization <ref type="bibr" target="#b10">[11]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>E. GridLAB-D</head><p>GridLAB-D is an open-source tool tailored for dynamic simulations in distribution systems, supporting TDS of QSP models. It enables analysis of time-dependent behaviors such as load variability, demand response, and distributed energy resource integration, with basic models for PV, battery, wind systems, and GFM with droop control for stability studies. GridLAB-D utilizes the GLM (GridLAB-D Model) format for model configurations and supports XML for data exchange, ensuring compatibility with external tools. Additionally, its Python and C/C++ API integration allows for extended dynamic simulation and custom module development <ref type="bibr" target="#b11">[12]</ref>.</p><p>We conducted a comprehensive comparison of these simulators based on two main aspects: (1) Base functions and</p><p>TABLE I COMPARISON OF DYNAMIC SIMULATORS: BASE FUNCTIONS AND MODELS Simulator Language UM PF SSSA TDS RES model Parallel ANDES [4] Python ✗ ✓ ✓ QSP (positive sequence) REGCA1, REGCP1, REGCV1, REGCV2, GFM-Droop, GFM-VSM, GFM-dVOC ✓ PSID.jl [22] Julia ✗ ✓ ✓ QSP (positive sequence)/ EMT (dq0-model) REGCA1, GFM-Droop, GFM-VSM, GFM-dVOC / Dynaωo [23] C++/ Modelica ✗ ✓ ✓ QSP and quasi-EMT WECC PV, WTG4A, WTG4B, GFM-Matching, GFM-Droop, GFM-dVOC / OpenDSS [11] Delphi ✓ ✓ ✗ QSP (positive sequence) GFM-Droop, GFM-VSM, PV models, storage models, customized models (.dll) / GridLAB-D [12] C/C++ ✓ ✓ ✗ QSP (positive sequence) Basic PV, Battery, Wind, GFM-Droop (limited) ✓ ✓, ✗ and / represent that the simulator has, does not have, and does not mention this function, respectively.</p><p>TABLE II COMPARISON OF DYNAMIC SIMULATORS: MACHINE LEARNING APPLICATIONS Simulator Manual Interaction with external code Supported external data format Simulation time (1/1000 samples) ANDES Detailed descriptions of all functions, models, and parameters Easily implement Python-based parameter modification and result retrieval MATPOWER, PSS/E, JSON 1.27s/224s PSID.jl Detailed descriptions of all functions, models, and parameters Easily implement Julia-based parameter modification and result retrieval MATPOWER, PSS/E, JSON 0.05s/31.1s Dynaωo Brief overview without descriptions of models or parameters Executed via terminal command line, with limited code-based interaction Unknown 0.34s/374s OpenDSS Comprehensive documentation on functions and models Supports interaction with external scripts in Python and MATLAB for parameter modification and data retrieval CSV, COMTRADE / GridLAB-D Detailed documentation with examples for functions and models Supports integration with Python and C/C++ for extensive customization and external module development CSV, XML, JSON /</p><p>The simulation times for OpenDSS and GridLAB-D are not applicable (indicated as "/") because they are primarily designed for distribution networks.</p><p>model, including programming language, support for unbalanced modeling (UM), PF, SSSA, type of TDS, RES models, and parallel computing capabilities, as shown in Table <ref type="table">I</ref>;</p><p>(2) Machine learning applications, focusing on whether they provide detailed manuals, allow flexible code-based parameter modification and result retrieval, supported external data formats, and their simulation time (IEEE 14-bus system; step size 0.01s; simulation duration 10s), as shown in Table <ref type="table">II</ref>. It should be noted that, due to Python's slower speed compared to Julia and C++, ANDES has the longest simulation time for a single run. However, with multi-CPU parallelization, the simulation time for 1,000 samples remains competitive.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. SIMULATION COMPARISON AND CASE STUDIES</head><p>Since ANDES and PSID.jl provide detailed manuals and programming guidance, TDSs were performed on these two simulators using a modified IEEE 14-bus system, where generators 1-4 are SGs and generator 5 is set as SG, GFM-Droop, and GFM-VSM sequentially. The fault is configured as a generation trip of generator 4, beginning at 1s, with a total simulation duration of 10s. The modified 14-bus system structure, ANDES simulation results, and PSID.jl simulation results are shown in Fig. <ref type="figure" target="#fig_2">3</ref>, <ref type="figure" target="#fig_3">4</ref>, and 5, respectively. The simulation results of the two simulators are very similar, with differences arising from variations in dynamic models and control parameters.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. CONCLUSION</head><p>This paper presents an in-depth comparison of the latest open-source dynamic simulators that support GFM inverters, with a focus on their suitability for machine learning applications. This survey offers machine learning professionals practical guidance on power system data generation and interaction with dynamic simulators. 7LPH +] 7LPH P0: 7LPH Q09DU 7LPH VSX 7LPH +] 7LPH P0: 7LPH Q09DU 7LPH VSX 7LPH +] 7LPH P0: 7LPH Q09DU 7LPH VSX Fig.  <ref type="figure">5</ref>. PSID.jl simulation results: from top to bottom, the three rows correspond to G5 configured as SG, GFM-Droop, and GFM-VSM, respectively; From left to right are the speed ω, active power generation P , and reactive power generation Q of the SG or GFM, followed by the voltage V of all buses.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Fig. 1 .</head><label>1</label><figDesc>Fig. 1. Classification of power system TDS.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Fig. 2 .</head><label>2</label><figDesc>Fig. 2. Structure of the GFM control: (a) Droop control. (b) VSM control.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>Fig. 3 .</head><label>3</label><figDesc>Fig. 3. Framework of interaction between DL, RL, and dynamic simulators.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>Fig. 4 .</head><label>4</label><figDesc>Fig.<ref type="bibr" target="#b3">4</ref>. ANDES simulation results: from top to bottom, the three rows correspond to G5 configured as SG, GFM-Droop, and GFM-VSM, respectively; From left to right are the speed ω, active power generation P , and reactive power generation Q of the SG or GFM, followed by the voltage V of all buses.</figDesc></figure>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div><head>ACKNOWLEDGMENTS</head><p>The views expressed in the article do not necessarily represent the views of the DOE or the <rs type="institution">U.S. Government</rs>. The U.S. Government retains, and the publisher, by accepting the article for publication, acknowledges that the U.S. Government retains a nonexclusive, paid-up, irrevocable, worldwide license to publish or reproduce the published form of this work or allow others to do so for U.S. Government purposes.</p></div>
+			</div>
+			<div type="funding">
+<div><p>This work was authored by the <rs type="funder">National Renewable Energy Laboratory</rs>, operated by <rs type="institution">Alliance for Sustainable Energy, LLC</rs>, for the <rs type="funder">U.S. Department of Energy (DOE)</rs> under Contract No. <rs type="grantNumber">DE-AC36-08GO28308</rs>. This material is based upon work supported by the <rs type="funder">U.S. Department of Energy's Office of Electricity</rs> under the <rs type="projectName">OPEN COG Grid</rs> project.</p></div>
+			</div>
+			<listOrg type="funding">
+				<org type="funding" xml:id="_rjsBNcJ">
+					<idno type="grant-number">DE-AC36-08GO28308</idno>
+				</org>
+				<org type="funded-project" xml:id="_RMrVGwq">
+					<orgName type="project" subtype="full">OPEN COG Grid</orgName>
+				</org>
+			</listOrg>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Revisiting power systems time-domain simulation methods and models</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">D</forename><surname>Lara</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Henriquez-Auba</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Ramasubramanian</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Dhople</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">S</forename><surname>Callaway</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Sanders</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Power Syst</title>
+		<imprint>
+			<biblScope unit="volume">39</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="2421" to="2437" />
+			<date type="published" when="2024-03">Mar. 2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Machine learning driven smart electric power systems: Current trends and new perspectives</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">S</forename><surname>Ibrahim</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Dong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Yang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Appl. Energy</title>
+		<imprint>
+			<biblScope unit="volume">272</biblScope>
+			<biblScope unit="page">115237</biblScope>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Reinforcement learning for selective key applications in power systems: Recent advances and future challenges</title>
+		<author>
+			<persName><forename type="first">X</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Qu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Tang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Low</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Smart Grid</title>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="2935" to="2958" />
+			<date type="published" when="2022-07">Jul. 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Hybrid symbolic-numeric framework for power system modeling and analysis</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Cui</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Tomsovic</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Power Syst</title>
+		<imprint>
+			<biblScope unit="volume">36</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="1373" to="1384" />
+			<date type="published" when="2021-03">Mar. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">MAT-POWER: Steady-state operations, planning, and analysis tools for power systems research and education</title>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">D</forename><surname>Zimmerman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">E</forename><surname>Murillo-Sánchez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">J</forename><surname>Thomas</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Power Syst</title>
+		<imprint>
+			<biblScope unit="volume">26</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="12" to="19" />
+			<date type="published" when="2011-02">Feb. 2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Pandapower-an open-source Python tool for convenient modeling, analysis, and optimization of electric power systems</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Thurner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Scheidler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Schäfer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J.-H</forename><surname>Menke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Dollichon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Meier</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Meinecke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Braun</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Power Syst</title>
+		<imprint>
+			<biblScope unit="volume">33</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="6510" to="6521" />
+			<date type="published" when="2018-11">Nov. 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">PowerSystems.jl-a power system data management package for large scale modeling</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">D</forename><surname>Lara</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Barrows</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Thom</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Krishnamurthy</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Callaway</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SoftwareX</title>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="page">100747</biblScope>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">PyPSA: Python for power system analysis</title>
+		<author>
+			<persName><forename type="first">T</forename><surname>Brown</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Hörsch</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Schlachtberger</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Open Res. Softw</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<date type="published" when="2018-01">Jan. 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">PowerModels.jl: An open-source framework for exploring power flow formulations</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Coffrin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Bent</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Sundar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Ng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lubin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. Power Syst</title>
+		<meeting>Power Syst</meeting>
+		<imprint>
+			<date type="published" when="2018-06">Jun. 2018</date>
+			<biblScope unit="page" from="1" to="8" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">PowerModelsDistribution. jl: An open-source framework for exploring distribution power flow formulations</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">M</forename><surname>Fobes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Claeys</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Geth</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Coffrin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Electric Power Syst. Res</title>
+		<imprint>
+			<biblScope unit="volume">189</biblScope>
+			<biblScope unit="page">106664</biblScope>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">An open source platform for collaborating on smart grid research</title>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">C</forename><surname>Dugan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">E</forename><surname>Mcdermott</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. IEEE Power Energy Soc. General Meeting</title>
+		<meeting>IEEE Power Energy Soc. General Meeting</meeting>
+		<imprint>
+			<date type="published" when="2011">2011</date>
+			<biblScope unit="page" from="1" to="7" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">GridLAB-D: an agent-based simulation framework for smart grids</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">P</forename><surname>Chassin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">C</forename><surname>Fuller</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Djilali</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Appl. Math</title>
+		<imprint>
+			<biblScope unit="volume">2014</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+	<note>Art. no. 492320</note>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Review: Power system analysis software tools</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Bam</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Jewell</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. IEEE Power Energy Soc. General Meeting</title>
+		<meeting>IEEE Power Energy Soc. General Meeting</meeting>
+		<imprint>
+			<date type="published" when="2005">2005</date>
+			<biblScope unit="page" from="139" to="144" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">A survey and statistical analysis of smart grid co-simulations</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Vogt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Marten</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Braun</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Appl. Energy</title>
+		<imprint>
+			<biblScope unit="volume">222</biblScope>
+			<biblScope unit="page" from="67" to="78" />
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">An open source power system analysis toolbox</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Milano</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Power Syst</title>
+		<imprint>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="1199" to="1206" />
+			<date type="published" when="2005-08">Aug. 2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">A toolbox for power system dynamics and control engineering education and research</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">H</forename><surname>Chow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">W</forename><surname>Cheung</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Power Syst</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="1559" to="1564" />
+			<date type="published" when="1992-11">Nov. 1992</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Frequency stability of synchronous machines and grid-forming power converters</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Tayyebi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Groß</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Anta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Kupzog</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Dörfler</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE J. Emerg. Sel. Topics Power Electron</title>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="1004" to="1018" />
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Comparison of grid following and grid forming control for a high inverter penetration power system</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Pattabiraman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Lasseter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Jahns</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Power Energy Soc. Gen. Meeting</title>
+		<imprint>
+			<biblScope unit="page" from="1" to="5" />
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Grid-forming inverters: Are they the key for high renewable penetration?</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Matevosyan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Badrzadeh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Prevost</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Quitmann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Ramasubramanian</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Urdal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Achilles</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Macdowell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">H</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Vital</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Power Energy Mag</title>
+		<imprint>
+			<biblScope unit="volume">17</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="89" to="98" />
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Transient stability of voltagesource converters with grid-forming control: A design-oriented study</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Pan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Shi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE J. Emerg. Sel. Topics Power Electron</title>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="1019" to="1033" />
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<monogr>
+		<title level="m" type="main">A review of safe reinforcement learning methods for modern power systems</title>
+		<author>
+			<persName><forename type="first">T</forename><surname>Su</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Scaglione</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Xie</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2407.00304</idno>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<monogr>
+		<title level="m" type="main">PowerSimulationsDynamics.jl-an open source modeling package for modern power systems with inverter-based resources</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">D</forename><surname>Lara</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Henriquez-Auba</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Bossart</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">S</forename><surname>Callaway</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Barrows</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2308.02921</idno>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Towards an open-source solution using modelica for time-domain simulation of power systems</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Guironnet</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Saugier</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Petitrenaud</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Xavier</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Panciatici</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. IEEE PES Innovative Smart Grid Technol. Conf. Europe</title>
+		<meeting>IEEE PES Innovative Smart Grid Technol. Conf. Europe</meeting>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="1" to="6" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Small-signal stability impacts of load and network dynamics on grid-forming inverters</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Henriquez-Auba</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">D</forename><surname>Lara</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">S</forename><surname>Callaway</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Power Energy Soc. Innov. Smart Grid Technol. Conf</title>
+		<imprint>
+			<biblScope unit="page" from="1" to="5" />
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<monogr>
+		<title level="m" type="main">Getting Started with Lazarus and Free Pascal: a beginners and intermediate guide to Free Pascal using Lazarus IDE</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Abiola-Ellison</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2015">2015</date>
+			<publisher>CreateSpace Independent Publishing Platform</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

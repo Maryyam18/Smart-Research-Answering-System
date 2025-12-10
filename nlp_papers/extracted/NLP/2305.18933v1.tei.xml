@@ -1,0 +1,1347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">A Multilingual Evaluation of NER Robustness to Adversarial Inputs</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability  status="unknown">
+					<licence/>
+				</availability>
+				<date type="published" when="2023-05-30">30 May 2023</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Akshay</forename><surname>Srinivasan</surname></persName>
+						</author>
+						<author role="corresp">
+							<persName><forename type="first">Sowmya</forename><surname>Vajjala</surname></persName>
+							<email>sowmya.vajjala@nrc-cnrc.gc.ca</email>
+						</author>
+						<author>
+							<affiliation key="aff0">
+								<orgName type="institution">University of Ottawa</orgName>
+								<address>
+									<country key="CA">Canada</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff1">
+								<orgName type="institution">National Research Council</orgName>
+								<address>
+									<country key="CA">Canada</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff2">
+								<orgName type="institution">National Research Council</orgName>
+								<address>
+									<country key="CA">Canada</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">A Multilingual Evaluation of NER Robustness to Adversarial Inputs</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2023-05-30">30 May 2023</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">CB07ECD82F834083749FE8821516A078</idno>
+					<idno type="DOI">10.6084/m9</idno>
+					<idno type="arXiv">arXiv:2305.18933v1[cs.CL]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-28T12:22+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Adversarial evaluations of language models typically focus on English alone. In this paper, we performed a multilingual evaluation of Named Entity Recognition (NER) in terms of its robustness to small perturbations in the input. Our results showed the NER models we explored across three languages (English, German and Hindi) are not very robust to such changes, as indicated by the fluctuations in the overall F1 score as well as in a more finegrained evaluation. With that knowledge, we further explored whether it is possible to improve the existing NER models using a part of the generated adversarial data sets as augmented training data to train a new NER model or as fine-tuning data to adapt an existing NER model. Our results showed that both these approaches improve performance on the original as well as adversarial test sets. While there is no significant difference between the two approaches for English, re-training is significantly better than fine-tuning for German and Hindi.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>NLP systems are traditionally evaluated and compared against a gold standard, which is generally immutable. Recent research has shown that even the NLP systems that perform well on the standard test set show a significant drop in performance even for small perturbations in the input test data, across a range of NLP tasks <ref type="bibr" target="#b10">(Gardner et al., 2020)</ref>. Although this strand of research covered many tasks, it has been exclusively focused on English, with a few exceptions (e.g., <ref type="bibr" target="#b30">Shmidman et al. (2020)</ref>, for Hebrew). Further, to our knowledge, the primary usage of such adversarial test sets have been in either evaluating NLP models or in usage as additional, augmented data to improve model robustness, without much focus on using the new data for fine-tuning, instead of re-training. A better understanding of fine-tuning with adversarial test sets is important, and useful in most real-world scenarios, where we may not have access to the original training data while having access to the trained model itself.</p><p>Named Entity Recognition (NER) is among the most common NLP tasks both in research and in industry applications <ref type="bibr" target="#b20">(Lorica and Nathan, 2021)</ref>. Although much progress has been made on NER over the past decades, existing NER systems were also shown to be sensitive to small changes in input data in the past <ref type="bibr" target="#b19">(Lin et al., 2021;</ref><ref type="bibr" target="#b34">Vajjala and Balasubramaniam, 2022)</ref>. Table <ref type="table">1</ref> shows an example of how predictions can change with minor changes in input, for one of the state of the art NER models<ref type="foot" target="#foot_0">foot_0</ref> . Going by the original sentence, all three sentences should carry the LOC tag for the entity in the sentence. However, that is not the case, as the outputs shows. Clearly, small, and seemingly harmless changes are changing model predictions.</p><p>Original: It was the second costly blunder by Syria_LOC in four minutes . Altered: It was the second costly blunder by Hyderabad_ORG in four minutes . Altered: It was the second costly blunder by Hyderabad_LOC in four hours .</p><p>Table 1: Illustration of an NER model's predictions with minor changes to an original test set sentence</p><p>Even recent large language models such as Chat-GPT struggle with sequence tagging tasks such as NER, across multiple languages <ref type="bibr" target="#b26">(Qin et al., 2023;</ref><ref type="bibr" target="#b16">Lai et al., 2023;</ref><ref type="bibr" target="#b37">Wu et al., 2023)</ref>, which clearly illustrates that NER is far from being considered solved. In this backdrop, considering the significance of NER in research and practical scenarios, a better understanding of how a model's predictions change with slight changes in input becomes an important issue to address. Hence, we explore the following questions in this paper:</p><p>1. How does the performance of NER models across three languages change with small changes to the original input?</p><p>2. How does retraining an NER model with adversarial data augmentation compare with adversarial fine-tuning of NER across languages?</p><p>Our contributions are summarized as follows:</p><p>• We conducted the first comparative study of the robustness of NER models beyond English, covering three languages, in a space where all previous work focused on English alone.</p><p>• We report first results on the comparison between data augmentation and adversarial finetuning for NER, for all the three languages.</p><p>• We show how existing methods for data augmentation can be repurposed to develop language-agnostic methods to generate adversarial test sets for NER.</p><p>Starting with a conceptual background (Section 2), we describe our methods for adversarial dataset creation (Section 3) and the general experimental setup (Section 4) followed by a detailed discussion of our results (Section 5) and a summary (Section 6), focusing on the ethical impacts, limitations and broader impact towards the end.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Related Work</head><p>Evaluating using multiple datasets is one of the ways to assess the robustness and generalization capabilities of NLP models. Developing challenge sets, and generating adversarial datasets that can potentially cause a model to fail, are some possibilities in this direction <ref type="bibr" target="#b13">(Isabelle et al., 2017;</ref><ref type="bibr" target="#b8">Ettinger et al., 2017;</ref><ref type="bibr" target="#b11">Glockner et al., 2018;</ref><ref type="bibr" target="#b10">Gardner et al., 2020)</ref>. Adversarial data generation in NLP focuses on surfacelevel perturbations to the input text, proposing various means of insertion/deletion/swapping of words/characters/sentences <ref type="bibr" target="#b15">(Jia and Liang, 2017;</ref><ref type="bibr" target="#b9">Gao et al., 2018;</ref><ref type="bibr" target="#b27">Ribeiro et al., 2018)</ref>. Other approaches such as paraphrasing <ref type="bibr" target="#b14">(Iyyer et al., 2018)</ref>, generating semantically similar text using other deep learning models <ref type="bibr" target="#b39">(Zhao et al., 2018;</ref><ref type="bibr" target="#b23">Michel et al., 2019)</ref>, using a human-in-the-loop <ref type="bibr">(Wallace et al., 2019b)</ref> were also explored in the past. While many of the proposed methods are black-box approaches, assuming no knowledge about the NLP models themselves, some of the approaches are white box, with more access to the inner workings of a model <ref type="bibr" target="#b18">(Liang et al., 2018;</ref><ref type="bibr" target="#b2">Blohm et al., 2018;</ref><ref type="bibr">Wallace et al., 2019a)</ref>, and some models implement both <ref type="bibr" target="#b17">(Li et al., 2019)</ref>. We focus on one specific NLP task -NER, and only work on blackbox methods in this paper.</p><p>In terms of the strategies to protect models against adversarial attacks, the most common approach followed by past NLP research has been to incorporate adversarial data into the training process, through data augmentation, or using adversarial training as a regularization method (See <ref type="bibr" target="#b12">Goyal et al. (2022) and</ref><ref type="bibr">Zhang et al. (2020)</ref> for a detailed overview). Using adversarial data for full re-training of a model (as is the case with data augmentation) assumes access to the original data and the model, which is not practical in many realworld scenarios. One possibility to explore in such cases is to test whether using adversarial data to fine-tune a trained NER model improves its robustness. We compare using the adversarial data (through data augmentation) for re-training an NER model versus using it only for fine-tuning a previously trained NER model in this paper.</p><p>Adversarial Testing and Data Augmentation in NER: Adversarial testing approaches for NER in the previous work was entirely done for English datasets, and primarily focused on methods replace entities in the original test set with new ones using gazetteers or other means <ref type="bibr" target="#b0">(Agarwal et al., 2020;</ref><ref type="bibr" target="#b34">Vajjala and Balasubramaniam, 2022)</ref>. <ref type="bibr" target="#b19">Lin et al. (2021)</ref> used entity linking and masked language models coupled with an existing NER model to generate adversarial test sets for NER. More recently, <ref type="bibr" target="#b3">Das and Paik (2022)</ref> used grammatical case information to generate adversarial test sets for NER. <ref type="bibr" target="#b31">Simoncini and Spanakis (2021)</ref> proposed other ways to make small changes to the context around entities in a sentence, to generate adversarial test sets. Other related work <ref type="bibr" target="#b22">(Mathew et al., 2019;</ref><ref type="bibr" target="#b6">Ding et al., 2020;</ref><ref type="bibr" target="#b40">Zhu et al., 2021)</ref> focused on data augmentation for NER, that require training of new, additional models. While we use our adversarial datasets for data augmentation too later in the paper, the novelty of the current research, compared to this existing body of work focusing on NER, comes in two forms:</p><p>1. While all previous work exclusively focused on English NER so far, we perform experiments with three languages -English, German and Hindi.</p><p>2. The approaches we used are lightweight, language agnostic means to generated adversarial test sets for NER, which do not rely on the availability of additional tools like entity linkers, and do not also need any additional training to generate the datasets.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">Adversarial Test Set Creation</head><p>Our adversarial dataset creation methods can be broadly classified into two approaches -replacing entities and changing contexts. All except one method work for all the three languages we tested, and can be easily expanded to add other languages. Relevant code and generated datasets are provided as supplementary material<ref type="foot" target="#foot_1">foot_1</ref> .</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1">Replacing Entities</head><p>We implemented two methods that replace the entity occurrences in the test set with another entity of the same category, keeping the rest of the sentence unchanged. Thus, they don't change the grammatical structure of the sentence and tell us how much the NER systems learn beyond memorizing the entities.</p><p>Random Sampling (RS) All the entity occurrences of the same type are shuffled throughout the test set in this approach. This is a simple and easily portable method across languages, which could serve as a strong baseline.</p><p>Gazetteers (Faker) This approach replaces existing entities with new entities of the same type using an existing gazetteer. Faker<ref type="foot" target="#foot_2">foot_2</ref> is a python library that generates fake data for various application purposes, which supports multiple languages, and regions. We used it to replace the Person and Location entities in all the datasets, in all three languages we experimented with. Vajjala and Balasubramaniam (2022) used Faker for adversarial NER test sets, but they used only English (on OntoNotes dataset). We randomly choose among three locale settings for English (USA, Canada, India) and German (Germany, Austria, and Switzerland) respectively for replacement. For Hindi, there was only one locale setting provided (HI-IN).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2">Changing the Context</head><p>These approaches deal with changing the context in which the entities occur in a sentence by making small changes to the tokens around it.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Masking (Mask)</head><p>We leveraged transformer based pre-trained language models trained with a masked language modeling objective to change the context in the original test datasets. We masked up to three randomly chosen non-entity tokens per sentence, and used the language model to generate those tokens, thereby creating new sentences with the same entities, but slightly altered contexts.</p><p>Since there are multilingual pre-trained language models available, this approach is applicable to multiple languages.</p><p>Paraphrasing (Para) The objective behind this approach is to alter the structure of the input sentences, while keeping the named entities intact. About 500 sentences were randomly chosen from the test set and fed to an online, subscription based english paraphraser, Quillbot<ref type="foot" target="#foot_3">foot_3</ref> , which was shown to generate better paraphrases than other approaches such as back-translation or using GPT-3 in recent research <ref type="bibr" target="#b29">(Shiri et al., 2022)</ref> and in our initial evaluations. The paraphrased output obtained for each sentence is then taken and the entity tokens from the original test set are mapped to the entity tokens of the paraphrased sentences with the respective entity tags, leaving the rest of the tokens as O. Limiting to 500 sentences is primarily due to the fact that Quillbot did not provide an API, and there is a limit to the amount of text one can paraphrase per request, even with subscription.</p><p>There are some challenges with this approach, though. While Quillbot's paraphrases when we choose the "Fluency" setting are of good quality, and are always grammatically correct, they sometimes alter the entities themselves (e.g., United States can become U.S. in the paraphrased version) or change the original tokenization of the dataset. In such cases where an automatic mapping between the entity tags from the original sentence and tokens of the paraphrased sentence failed, we discarded the sentence from our test set. Note that this</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Test set Sentence</head><p>Orig "We suspect that these killings are linked to politics," spokesman Bala Naidoo told Reuters.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>RS</head><p>"We suspect that these killings are linked to politics," spokesman Deborah Compagnoni told Watford. Faker "We suspect that these killings are linked to politics," spokesman Jeremy Shukla told Reuters.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Mask</head><p>"We suspect the these killings are linked to politics," spokesman Bala Naidoo tells Reuters, Para "We assume that these killings are political in nature", spokesman Bala Naidoo told Reuters.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>M+R</head><p>now we suspect that these killings are connected in politics, now spokesman Deborah Compagnoni told Watford.</p><p>Table 2: Adversarial variations generated for a test sentence from conll03-En approach is compatible only with English and we aren't aware of any reliable paraphrasers for other languages. To our knowledge, full paraphrasing wasn't used for adversarial test sets in NER before.</p><p>A total of 399 sentences from conll03-en, 373 sentences from mconer21-en, and 378 sentences from wnut17 were finally used as test sets.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3">Changing Entity + Context</head><p>Masking + Random Sampling (M+R) All the previous approaches focused on either trying to alter the context alone or replace the entities alone. This approach, does both by combining masking with random sampling. Since both these approaches are straightforward and can work across languages, they can be combined to create a new adversarial test set in all three languages. Table <ref type="table">2</ref> shows one example of how the various approaches alter a single sentence from one of the English datasets. As with most data augmentation or adversarial generation approaches in NLP, some of the generated text may contain minor grammatical errors, as seen in in Mask and M+R settings. However, Compared to other common approaches such as those that involve insertion/deletion/swapping of words/characters or back-translation, the potential errors introduced by masking alone are minor. Further even the original datasets themselves contain sentences with such minor errors. So, we don't foresee this affecting the main findings of the paper. A publicly available NER model<ref type="foot" target="#foot_4">foot_4</ref> predicts correctly for all these sentences.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">Experimental Setup</head><p>We experimented with three English, two German, and one Hindi NER datasets<ref type="foot" target="#foot_5">foot_5</ref> . The first half of our experiments focused on testing the NER models on adversarial test sets, following which we compared the effects of adversarial fine-tuning and data augmentation on the performance of the NER models. All the experiments were carried out on a high performing computing resource that ran an Nvidia A100 GPU with 32 GB RAM. Further details on the experimental setup are as follows.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1">Datasets</head><p>NER datasets from three popular shared tasks -conll03 <ref type="bibr" target="#b32">(Tjong Kim Sang and De Meulder, 2003)</ref>, multiconer21 <ref type="bibr" target="#b21">(Malmasi et al., 2022)</ref> and wnut17 <ref type="bibr" target="#b4">(Derczynski et al., 2017)</ref> were considered and their corresponding language subsets for English (conll03-en, mconer21-en, wnut17), German (conll03-de, mconer21-de) and Hindi (mconer21hi) were used. Conll03 datasets have a tag set with four entity types (PER, LOC, ORG and MISC), and multiconer21 and wnut17 share the tag set consisting of six entity types (PER, LOC, CORP, GRP, CREATIVE-WORK and PROD). While the sentences in conll03 came from news articles, multiconer21 was collected from three domains (wikipedia sentences, questions, search queries), and wnut17 consisted of sentences from social media sources such as twitter, youtube and reddit. 7  We created five adversarial test sets for each of the three English datasets, four adversarial sets for each of the two German datasets and the Hindi dataset respectively, resulting in a total of 27 adversarial test sets covering three languages and six datasets.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">NER Models</head><p>We used a combination of existing state of the art NER models (if available) and fine-tuning authors' familiarity with the languages, which is essential for qualitative analysis 7 Some statistics about the datasets are shown in Appendix A.1. a pre-trained language model for all the languages/datasets. They are explained below.</p><p>TNER and Fine-tuned BERT: TNER<ref type="foot" target="#foot_6">foot_6</ref> is a Python library to train transformer based language models for NER tasks <ref type="bibr" target="#b33">(Ushio and Camacho-Collados, 2021)</ref>, which has pre-trained for mconer21-en, wnut17-en and conll03-en datasets. We use these models to perform our experiments for English NER. We will refer to this approach as tner. While TNER's model hub had publicly available models for other languages as well, the performance of the models was lower compared to the state of the art, and hence, we fine-tuned the multilingual BERT <ref type="bibr" target="#b5">(Devlin et al., 2019)</ref> model hosted on Huggingface<ref type="foot" target="#foot_7">foot_7</ref> for NER on German (conll03-de, mconer21-de) and Hindi (mconer21-hi) datasets. We will refer to this approach as mbertft.</p><p>We followed the same approach for the later retraining (i.e., training the NER model again using the original training data augmented with adversarial data) and fine-tuning (using adversarial data is used only to fine-tune the existing NER model) experiments in Section 5.4, and report the results with tner for English and mbertft for German and Hindi, as this setup gave the best results even in those experiments. For adversarial fine-tuning, tner and mbertft were fine-tuned for 4 epochs, learning rate was set to 0.0001 and the batch size was set to 16. For the Adversarial re-training however, the models were trained for 6 epochs since it is being trained from scratch, while the other hyper parameters were kept the same. The hyperparameter settings were from the original BERT paper <ref type="bibr" target="#b5">(Devlin et al., 2019)</ref>. We used 60% of the adversarial test set for data augmentation+training/fine-tuning and used the remaining 40% to test the approaches. For both adversarial fine-tuning and re-training, we report the average F1 score over 10 runs, with different random seeds, and compare them in terms of statistical significance using a paired t-test.</p><p>Stanza: Stanza <ref type="bibr" target="#b25">(Qi et al., 2020)</ref> is a Python based NLP toolkit that hosts a few pre-trained NER models trained with a BiLSTM+CRF architecture. We evaluated Stanza's pre-trained conll-en and conllde models using our generated adversarial test sets.</p><p>Flair: Flair is a popular NLP library that is widely used for performing NLP tasks <ref type="bibr" target="#b1">(Akbik et al., 2019)</ref>. We evaluated the pre-trained NER models provided by Flair for conll-en and conll-de.</p><p>There are other NER models that offer slightly better performance than Flair/Stanza/BERT-fine tuning, and there are other large language models to explore, but we focused on publicly available/downloadable models for NER and and easily re-implementatble benchmarks (e.g., BERT finetuning) in this paper. It would be interesting to extend this to cover additional methods in future, but we limit to a smaller set of models to maintain a manageable number of experiments and do a meaningful analysis later.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3">Evaluation</head><p>Micro-F1 score from seqeval <ref type="bibr" target="#b24">(Nakayama, 2018)</ref> was used as the evaluation metric to test the robustness of the NER models, as it is the most commonly reported measure for this task.</p><p>Nervaluate: Nervaluate<ref type="foot" target="#foot_8">foot_8</ref> is a Python library for performing a more fine-grained evaluation of NER, and is based on the metrics from a SemEval 2013 task <ref type="bibr" target="#b28">(Segura-Bedmar et al., 2013)</ref>. Apart from giving a single F1 score, it calculates the efficiency of the model using five error categories: correct, incorrect, partially correct, missing labels (an entity tagged as non-entity) and spurious labels(a nonentity tagged as entity). The error metrics are reported in four formats: strict (both entity span and entity type match), exact (entity span matches, irrespective of the type), partial (partial span match, irrespective of the type), and type (some overlap between gold annotation and system prediction). We used nervaluate to compare the performance of NER on the original and adversarial test sets, to understand what kind of errors affect their performance.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">Results</head><p>Our experiments aimed at understanding the robustness of NER models to adversarial test sets and exploring whether adversarial data augmentation and fine tuning will help boost the performance on adversarial test sets. The results of these experiments are discussed below.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1">Adversarial Testing</head><p>Adversarial test sets were created by implementing the approaches mentioned in Section 3 and tested on pre-trained NER models for all the three English datasets, and for conll03-de. As described earlier, we also fine-tuned a multilingual bert model for German and Hindi datasets. Tables 3, 4 and 5 summarize the performance of all the NER models we tested on, for English, German and Hindi respectively, in terms of the micro-F1 score.</p><p>conll03-en wnut17 mconer21 test set tner stanza flair tner tner Orig 0.91 0.92 0.92 0.60 0.81 RS 0.87 0.89 0.89 0.63 0.76 Faker 0.84 0.85 0.86 0.64 0.79 Mask 0.84 0.85 0.85 0.58 0.75 Para 0.80 0.72 0.78 0.65 0.64 M+R 0.82 0.85 0.83 0.53 0.77 Table 3: English NER performance (Micro-F1) conll03-de mconer21 test set mbertft stanza flair mbertft Orig 0.83 0.85 0.83 0.70 RS 0.80 0.82 0.78 0.58 Faker 0.81 0.85 0.81 0.55 Mask 0.78 0.81 0.81 0.53 M+R 0.75 0.80 0.76 0.50 Table 4: German NER performance (Micro-F1)</p><p>For English NER, results from Table <ref type="table">3</ref> show a clear drop in NER model performance for two out of the three datasets (conll03 and mconer21), with the largest drop seen in the test set obtained by paraphrasing using Quillbot. However, it is important to note that the size of the test set for paraphrasing is far smaller (399, 373 and 378 sentences respectively for conll-03, mconer21 and wnut17) than the original test set, as explained earlier in Section 4. So, the drop is not directly comparable with other test sets which are larger in size.</p><p>Apart from this, there are also differences among individual methods for all the datasets. For example, Faker dataset appears to have had a stronger</p><p>Test set mconer21-hi Orig 0.62 RS 0.55 Faker 0.61 Mask 0.52 M+R 0.48</p><p>Table 5: Hindi NER performance (Micro-F1)</p><p>effect on all the three models trained on conll03-en dataset compared to multiconer-en dataset. Considering that there is generally similar drop across all three models of conll03-en, we would speculate that the difference in performance is due to the differences in the dataset composition and entity categories.</p><p>For wnut17, the drop is largest for M+R, followed by Mask. Considering that only those test sets involving masking resulted in a drop for this dataset, we could safely attribute this drop to the difference in the nature of the data that the masked language model was exposed to, compared to the very noisy social media data in wnut17. An interesting aspect of testing with wnut17 model is that the model's performance was better on 3 out of 5 adversarial test sets, compared to the original test set. We believe it is important to note in this context that the NER model for wnut17 also has the lowest performance on the original test set among the three datasets and wnut17 is the noisiest data of them all (social media content). Considering that a model with a much lower overall F1 score, and trained on the most noisy dataset among the three, was still relatively more robust to three of the adversarial test sets, future research should perhaps also take a closer look at other, additional means of evaluating NER models instead of using the standard F1 score as the sole criterion to choose the best model, as was also suggested by other recent research on the topic. <ref type="bibr" target="#b34">(Vajjala and Balasubramaniam, 2022)</ref>.</p><p>For both German and Hindi NER (Table <ref type="table">4</ref> and <ref type="table">Table 5</ref>), we observe that the drop is the highest for masking+random sampling datasets in both the languages. Between the two German datasets, the drop in f1 scores for adversarial datasets appear to be much larger for mconer21 than conll03. A possible reason could be the poorer performance of the original mconer21 model itself.</p><p>While there are several other interesting results to compare and discuss across languages and datasets, overall, these results indicate that the NER models are not fully robust when tested against new test sets created with easily replicable, generally language-agnostic approaches. Their performance drop is larger when context altering approaches are employed. One question we asked ourselves at this point is: what exactly are the adversarial test sets changing in the model performance? </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2">Fine-Grained Evaluation</head><p>We used nervaluate to understand what aspect of NER performance is mainly affected by the adversarial data. Since there are many models, train and test sets, we choose one train/test set and model combination for this analysis. Figure <ref type="figure" target="#fig_0">1</ref> shows the analysis for TNER's pre-trained NER model trained on conll03-en dataset, as a comparison between the original test set and the M+R adversarial test set (Figures <ref type="figure">2</ref> and <ref type="figure">3</ref> in the appendix show the same analysis for German and Hindi respectively).</p><p>Apart from the overall decline in performance, a closer look at the 'correct' and 'incorrect' categories indicate that this NER model's performance resulted in a larger drop for 'organization' entity type in English. This could be because of the ambiguity involved in the entity type itself, as not every 'organization' entity suits every context in which that entity type appears. Surprisingly, although the 'misc' category suffers from the same problem, we don't see a large dip for that category.</p><p>Figure <ref type="figure" target="#fig_0">1</ref> also indicates that there are more missed entities in the adversarial test set compared to spurious labels (non-entities tagged as one of the entity types). We compared the "strict" versus "exact" evaluation schema in nervaluate, to understand whether this increase in missed entities is a result of getting the span right, but identifying the entity type wrong. This comparison showed that while there is a 9% drop in the overall F1 score between the original and the adversarial test sets with 'strict' evaluation, there is only a 3% drop in terms of identifying the entity spans correctly (More details in Table <ref type="table">9</ref> in the Appendix. Tables <ref type="table">10</ref> and <ref type="table">11</ref> in the appendix show this comparison for German and Hindi datasets).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.3">Qualitative Error Analysis</head><p>Apart from quantitative analysis, we also did some manual analysis to understand what kind of transformations led NER models to predict erroneous tags. Table <ref type="table">6</ref> shows some of the correctly tagged examples taken from conll03-en test set and their adversarial counterparts with some tagging errors, using Stanza's NER model.</p><p>When the entity 'Nicole' was replaced with the entity 'Major' (Examples a and b), the first one resulted in the model missing the entity (Major not recognised as person), and the second example saw the replaced entity 'Timor-Leste' (another name for the country East Timor) being mis-identified as an ORG instead of a LOC. While the transformed sentence in c appears very different from its source, there is only one entity, and a human reader would not find it difficult to identify the entity. However, the model missed identifying it altogether. Finally, both the masked examples (d and e) made very minor changes to the original sentence. But the model predictions changed from ORG -&gt; LOC for the entity 'Victoria' in a sentence, and LOC -&gt; ORG for the entity 'Indianapolis' in the other. In the last two cases, it can be argued that the original labels are ambiguous themselves. While that is, indeed, the case, the issue we particularly highlight is the way model predictions changed because of textual changes that should not really cause label changes. Similar trends can be observed in German and Hindi as well (Examples for German and Hindi are in the appendix in Table <ref type="table">12</ref> and Figure <ref type="figure">4</ref>). While it is definitely possible to do further qualitative analysis, we would speculate that combining this kind of analysis with explainable NLP approaches may give a more complete picture in (a) Orig: Nicol P ER was full of praise for his opponent who has battled testicular cancer to return to the circuit . RS: Major notidentif ied was full of praise for his opponent who has battled testicular cancer to return to the circuit . (b) Orig: [Nader Jokhadar] P ER had given Syria LOC the lead with a well-struck header in the seventh minute . Faker: [Roger Turner] P ER had given [Timor-Leste] ORG the lead with a well-struck header in the seventh minute . (c) Orig: The richest parts of the property to the north and south of the central region have been estimated by Bre-X ORG to contain 57 million ounces of gold . Para: Bre-X notidentif ied estimates that the richest areas of the property to the north and south of the centre region contain 57 million ounces of gold</p><p>. (d) Orig: Tasmania LOC 352 by three ( [David Boon] P ER 106 not out , [Shaun Young] P ER 86 not out , [Michael DiVenuto] P ER 119 ) v Victoria ORG . Mask: Tasmania LOC 352 by three ( [David Boon] P ER 106 not out , [Shaun Young] P ER 86 not out , [Michael DiVenuto] P ER 119 ) v Victoria LOC : (e) Orig:Indianapolis LOC closes with games at [Kansas City] LOC and Cincinnati LOC . Mask: Indianapolis ORG begins with games at [Kansas City] LOC and Cincinnati LOC .</p><p>Table 6: Examples of cases where a NER model fails on adversarial instances</p><p>the future on why NER model predictions fluctuate even for minimal perturbations in input text.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.4">Adversarial Fine-Tuning</head><p>One approach to make models more robust to adversarial inputs is to include such data in building the model itself. We explored two methods in that direction: a) augmenting the training data with part of the adversarial dataset and re-training the NER model from scratch b) using adversarial data to finetune an existing NER model. The second method is especially useful in real-world scenarios where we have access to a trained model, but not to the original training data itself. We compared both the methods for all three languages, training one NER model per language (with conll-en, conll-de, and mconer-hi datasets respectively), and compared the performance with the M+R test set and the original test set in each case. As mentioned in Section 4, 60% of the adversarial test set was used for augmented re-training/fine-tuning and the remaining 40% was used as test data. Table <ref type="table">7</ref> summarizes the results of this experiment.</p><p>While there are no significant differences between adversarial fine-tuning and re-training for English, and both give a 5% performance boost on adversarial test set without compromising on the original test set performance, for both German and Hindi, re-training was significantly better than finetuning with both test sets (p&lt;0.001</p><p>). A possible orig. adv. finetuning aug. retraining conll-en Original 0.91 0.90 0.90 Adv Test 0.82 0.87 0.87 conll-de Original 0.83 0.84 0.89 * Adv Test 0.75 0.81 0.85 * mconer-hi Original 0.62 0.64 0.70 * Adv Test 0.48 0.55 0.58 * Table 7: Micro-F1 score for Adversarial fine-tuning versus re-training (* indicates a statistically significant difference)</p><p>reason for this difference could lie in the relatively superior performance of the original model itself.</p><p>Re-training could be more useful when the performance of the original model is poor, as was the case for German and Hindi. Interestingly, just finetuning still improved performance on adversarial test sets by over 5% for all languages.</p><p>To connect these results back to our second research question (Section 1), considering that finetuning still resulted in better adversarial test set performance in all cases, and since that would not require access to the original training data itself, it could be a feasible, easily implementable approach to improve the robustness of NER models without compromising on the original model performance. Re-training can be preferred when we have access to the original data and the model. Note that in both the cases, we are assuming no means to procure additional manually labeled training data, and the focus is on improving an NER model's robustness to adversarial input without compromising on its performance on normal test data.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6">Conclusions and Discussion</head><p>We explored simple, language agnostic approaches to generate adversarial test sets for NER and demonstrated their generalizability by testing on six datasets covering three languages -English, German and Hindi. While exact results differ depending on language/datasets, our key findings from these experiments can be summarized as follows:</p><p>1. NER models for all three languages are sensitive to adversarial input.</p><p>2. Adversarial fine-tuning and re-training could improve the performance of NER models both on original and adversarial test sets, without requiring additional manual labeled data.</p><p>The proposed approaches and tested languages/models are by no means comprehensive, and extending this work to include more NER models, adding new languages, and developing new adversarial data generation methods for NER is an obvious next step, as the current results provide enough evidence on the sensitivity of state of the art NER models to adversarial inputs. The methods we employed for adversarial fine-tuning/re-training too are just a starting point towards exploring the use of adversarial data in building more robust NER systems. We only explored one paraphraser for this task. The usefulness of the recent generative language models for creating such test data can be an interesting next step in this direction.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7">Limitations</head><p>The adversarial test sets based on masked language models can introduce new noise into the sentence context, as there is no way to automatically ensure grammatical correctness. However, there were many cases where such introduction of noise did not affect the predictions, in all three languages. Further, adversarial datasets are expected to introduce such noise, as is seen in other research on the topic for other tasks such as sentiment analysis, and the goal of such research is also to understand model robustness in the presence some noise. It is relevant to mention in this context that the NER datasets we considered already consist of other noise and ungrammatical examples such as score cards of sporting matches (conll03-en), social media content (wnut17) and fully lowercased sentences with weakly supervised annotations (mconer21). Further, masking does not alter the entities themselves, and only changes the non-entity tokens. So, the NER models still see the same entities. While there are no established means of quantifying the quality of adversarial datasets to our knowledge, exploring human-in-the-loop approaches to select appropriate examples to include in the final adversarial test set can be one way to address the issue.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8">Ethics and Impact Statement</head><p>The paper described the creation of several adversarial test sets for three languages. We used publicly available datasets for this purpose, and the research did not involve human participants. All the datasets we generated and the code to generate them are shared as supplementary material<ref type="foot" target="#foot_9">foot_9</ref> , for replication and to further this line of research. Our goal in this paper was to study the sensitivity of state of the art NER systems to adversarial data, and suggest ways to overcome it. As such, the generated datasets are expected to be used only for that purpose, and the limitations of current approaches are discussed in the previous section. Apart from this, since the paper focuses on more foundational question of evaluating NER systems in general, we do not foresee any other potential risks involved with this research.</p><p>Broader Impact Considering the number of practical usecases of NER across industries, and the growth of multilingual NLP, NER evaluation beyond English is more important than ever before. In this paper, we explored a previously unexplored space for Named Entity Recognition, i.e., evaluating NER systems beyond English for their sensitivity to adversarial input, which will hopefully lead into better evaluation strategies when developing NER systems across languages in future.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Figure 1 :</head><label>1</label><figDesc>Figure 1: The performance (micro-F1) of an English NER model on original and M+R adversarial test sets</figDesc><graphic coords="7,70.87,70.87,453.53,162.04" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0"><graphic coords="13,70.87,77.31,453.54,162.98" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0"><graphic coords="13,70.87,295.02,453.54,162.98" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0"><graphic coords="14,70.87,291.85,453.54,224.31" type="bitmap" /></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="1" xml:id="foot_0"><p>https://huggingface.co/flair/ ner-english</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="2" xml:id="foot_1"><p>https://dx.doi.org/10.6084/m9. figshare.22674079</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="3" xml:id="foot_2"><p>https://faker.readthedocs.io/</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="4" xml:id="foot_3"><p>https://quillbot.com/</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="5" xml:id="foot_4"><p>https://huggingface.co/flair/ ner-english</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="6" xml:id="foot_5"><p>While it is theoretically possible to add more languages to this paper, the choice of these languages is motivated by the</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="8" xml:id="foot_6"><p>https://github.com/asahi417/tner</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="9" xml:id="foot_7"><p>https://huggingface.co/ bert-base-multilingual-uncased</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="10" xml:id="foot_8"><p>https://github.com/MantisAI/ nervaluate</p></note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="11" xml:id="foot_9"><p>https://dx.doi.org/10.6084/m9. figshare.22674079</p></note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div><head>Acknowledgements</head><p>We thank <rs type="person">Justin Lee</rs> and <rs type="person">Gabriel Bernier-Colborne</rs> for their feedback on an earlier draft, and <rs type="person">Edwin Thomas</rs> for feedback on the final draft of the paper.</p></div>
+			</div>			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A Appendix</head><p>A.1 Dataset Statistics:</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Dataset</head><p># train # dev # test <ref type="bibr" target="#b32">(Erik F. Tjong Kim and Fien, 2003)</ref> conll03-en 14,987 3,466 3,684 conll03-de 12,705 3,068 3,160 wnut17 12  3394 1009 1287 <ref type="bibr" target="#b21">(Malmasi et al., 2022)</ref>      </p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<monogr>
+		<title level="m" type="main">Entity-switched datasets: An approach to auditing the in-domain robustness of named entity recognition models</title>
+		<author>
+			<persName><forename type="first">Oshin</forename><surname>Agarwal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yinfei</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Byron</forename><forename type="middle">C</forename><surname>Wallace</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ani</forename><surname>Nenkova</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2004.04123</idno>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">FLAIR: An easy-to-use framework for state-of-theart NLP</title>
+		<author>
+			<persName><forename type="first">Alan</forename><surname>Akbik</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tanja</forename><surname>Bergmann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Duncan</forename><surname>Blythe</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kashif</forename><surname>Rasul</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Stefan</forename><surname>Schweter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Roland</forename><surname>Vollgraf</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">NAACL 2019, 2019 Annual Conference of the North American Chapter of the Association for Computational Linguistics (Demonstrations)</title>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="54" to="59" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Comparing attentionbased convolutional and recurrent neural networks: Success and limitations in machine reading comprehension</title>
+		<author>
+			<persName><forename type="first">Matthias</forename><surname>Blohm</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Glorianna</forename><surname>Jagfeld</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ekta</forename><surname>Sood</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xiang</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ngoc</forename><forename type="middle">Thang</forename><surname>Vu</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/K18-1011</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 22nd Conference on Computational Natural Language Learning</title>
+		<meeting>the 22nd Conference on Computational Natural Language Learning<address><addrLine>Brussels, Belgium</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="108" to="118" />
+		</imprint>
+	</monogr>
+	<note>Association for Computational Linguistics</note>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Resilience of named entity recognition models under adversarial attack</title>
+		<author>
+			<persName><forename type="first">Sudeshna</forename><surname>Das</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jiaul</forename><surname>Paik</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/2022.dadc-1.1</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the First Workshop on Dynamic Adversarial Data Collection</title>
+		<meeting>the First Workshop on Dynamic Adversarial Data Collection<address><addrLine>Seattle, WA</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="1" to="6" />
+		</imprint>
+	</monogr>
+	<note>Association for Computational Linguistics</note>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Results of the WNUT2017 shared task on novel and emerging entity recognition</title>
+		<author>
+			<persName><forename type="first">Leon</forename><surname>Derczynski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Eric</forename><surname>Nichols</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Marieke</forename><surname>Van Erp</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nut</forename><surname>Limsopatham</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/W17-4418</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 3rd Workshop on Noisy User-generated Text</title>
+		<meeting>the 3rd Workshop on Noisy User-generated Text<address><addrLine>Copenhagen, Denmark</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="140" to="147" />
+		</imprint>
+	</monogr>
+	<note>Association for Computational Linguistics</note>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Bert: Pre-training of deep bidirectional transformers for language understanding</title>
+		<author>
+			<persName><forename type="first">Jacob</forename><surname>Devlin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ming-Wei</forename><surname>Chang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kenton</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kristina</forename><surname>Toutanova</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies</title>
+		<title level="s">Long and Short Papers</title>
+		<meeting>the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="4171" to="4186" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">DAGA: Data augmentation with a generation approach for low-resource tagging tasks</title>
+		<author>
+			<persName><forename type="first">Bosheng</forename><surname>Ding</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Linlin</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lidong</forename><surname>Bing</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Canasai</forename><surname>Kruengkrai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hai</forename><surname>Thien</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shafiq</forename><surname>Nguyen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Luo</forename><surname>Joty</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chunyan</forename><surname>Si</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Miao</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/2020.emnlp-main.488</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)</title>
+		<meeting>the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)</meeting>
+		<imprint>
+			<publisher>Online. Association for Computational Linguistics</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="6045" to="6057" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Introduction to the conll-2003 shared task: Language independent named entity recognition</title>
+		<author>
+			<persName><forename type="first">Sang</forename><surname>Erik</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tjong</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">De</forename><surname>Meulder Fien</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">InProceedings of the seventh conference on Natural language learning at HLT-NAACL</title>
+		<imprint>
+			<date type="published" when="2003">2003</date>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="page" from="142" to="147" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Towards linguistically generalizable NLP systems: A workshop and shared task</title>
+		<author>
+			<persName><forename type="first">Allyson</forename><surname>Ettinger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sudha</forename><surname>Rao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hal</forename><surname>Daumé</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Iii</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Emily</forename><forename type="middle">M</forename><surname>Bender</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/W17-5401</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the First Workshop on Building Linguistically Generalizable NLP Systems</title>
+		<meeting>the First Workshop on Building Linguistically Generalizable NLP Systems<address><addrLine>Copenhagen, Denmark</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="1" to="10" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Black-box generation of adversarial text sequences to evade deep learning classifiers</title>
+		<author>
+			<persName><forename type="first">Ji</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jack</forename><surname>Lanchantin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mary</forename><forename type="middle">Lou</forename><surname>Soffa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yanjun</forename><surname>Qi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2018 IEEE Security and Privacy Workshops (SPW)</title>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="50" to="56" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Evaluating models&apos; local decision boundaries via contrast sets</title>
+		<author>
+			<persName><forename type="first">Matt</forename><surname>Gardner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yoav</forename><surname>Artzi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Victoria</forename><surname>Basmov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jonathan</forename><surname>Berant</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ben</forename><surname>Bogin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sihao</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pradeep</forename><surname>Dasigi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dheeru</forename><surname>Dua</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yanai</forename><surname>Elazar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ananth</forename><surname>Gottumukkala</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nitish</forename><surname>Gupta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hannaneh</forename><surname>Hajishirzi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Gabriel</forename><surname>Ilharco</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Daniel</forename><surname>Khashabi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kevin</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jiangming</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nelson</forename><forename type="middle">F</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Phoebe</forename><surname>Mulcaire</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Qiang</forename><surname>Ning</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sameer</forename><surname>Singh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Noah</forename><forename type="middle">A</forename><surname>Smith</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sanjay</forename><surname>Subramanian</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Reut</forename><surname>Tsarfaty</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Eric</forename><surname>Wallace</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ally</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ben</forename><surname>Zhou</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/2020.findings-emnlp.117</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Findings of the Association for Computational Linguistics: EMNLP 2020</title>
+		<imprint>
+			<publisher>Online. Association for Computational Linguistics</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="1307" to="1323" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Breaking NLI systems with sentences that require simple lexical inferences</title>
+		<author>
+			<persName><forename type="first">Max</forename><surname>Glockner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Vered</forename><surname>Shwartz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yoav</forename><surname>Goldberg</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/P18-2103</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics</title>
+		<meeting>the 56th Annual Meeting of the Association for Computational Linguistics<address><addrLine>Melbourne, Australia</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="page" from="650" to="655" />
+		</imprint>
+	</monogr>
+	<note>Short Papers)</note>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<monogr>
+		<author>
+			<persName><forename type="first">Shreya</forename><surname>Goyal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sumanth</forename><surname>Doddapaneni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Mitesh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Balaraman</forename><surname>Khapra</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Ravindran</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2203.06414</idno>
+		<title level="m">A survey in adversarial defences and robustness in nlp</title>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">A challenge set approach to evaluating machine translation</title>
+		<author>
+			<persName><forename type="first">Pierre</forename><surname>Isabelle</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Colin</forename><surname>Cherry</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">George</forename><surname>Foster</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/D17-1263</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2017 Conference on Empirical Methods in Natural Language Processing</title>
+		<meeting>the 2017 Conference on Empirical Methods in Natural Language Processing<address><addrLine>Copenhagen, Denmark</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="2486" to="2496" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Adversarial example generation with syntactically controlled paraphrase networks</title>
+		<author>
+			<persName><forename type="first">Mohit</forename><surname>Iyyer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">John</forename><surname>Wieting</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kevin</forename><surname>Gimpel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Luke</forename><surname>Zettlemoyer</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/N18-1170</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies</title>
+		<title level="s">Long Papers</title>
+		<meeting>the 2018 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies<address><addrLine>Louisiana</addrLine></address></meeting>
+		<imprint>
+			<publisher>New Orleans</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="1875" to="1885" />
+		</imprint>
+	</monogr>
+	<note>Association for Computational Linguistics</note>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Adversarial examples for evaluating reading comprehension systems</title>
+		<author>
+			<persName><forename type="first">Robin</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Percy</forename><surname>Liang</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/D17-1215</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2017 Conference on Empirical Methods in Natural Language Processing</title>
+		<meeting>the 2017 Conference on Empirical Methods in Natural Language Processing<address><addrLine>Copenhagen, Denmark</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="2021" to="2031" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<monogr>
+		<author>
+			<persName><forename type="first">Dac</forename><surname>Viet</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nghia Trung</forename><surname>Lai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Amir</forename><surname>Ngo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ben</forename><surname>Pouran</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hieu</forename><surname>Veyseh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Franck</forename><surname>Man</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Trung</forename><surname>Dernoncourt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Thien Huu</forename><surname>Bui</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Nguyen</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2304.05613</idno>
+		<title level="m">Chatgpt beyond english: Towards a comprehensive evaluation of large language models in multilingual learning</title>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Textbugger: Generating adversarial text against real-world applications</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Ji</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">26th Annual Network and Distributed System Security Symposium</title>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Deep text classification can be fooled</title>
+		<author>
+			<persName><forename type="first">Bin</forename><surname>Liang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hongcheng</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Miaoqiang</forename><surname>Su</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pan</forename><surname>Bian</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xirong</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Wenchang</forename><surname>Shi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IJCAI</title>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">RockNER: A simple method to create adversarial examples for evaluating the robustness of named entity recognition models</title>
+		<author>
+			<persName><forename type="first">Wenyang</forename><surname>Bill Yuchen Lin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jun</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ryan</forename><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xiang</forename><surname>Moreno</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Ren</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/2021.emnlp-main.302</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing</title>
+		<meeting>the 2021 Conference on Empirical Methods in Natural Language Processing</meeting>
+		<imprint>
+			<publisher>Dominican Republic. Association for Computational Linguistics</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="3728" to="3737" />
+		</imprint>
+		<respStmt>
+			<orgName>Online and Punta Cana</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<monogr>
+		<title level="m" type="main">2021 nlp survey report</title>
+		<author>
+			<persName><forename type="first">Ben</forename><surname>Lorica</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Paco</forename><surname>Nathan</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">Technical report</note>
+	<note>Gradient Flow</note>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">SemEval-2022 task 11: Multilingual complex named entity recognition (MultiCoNER)</title>
+		<author>
+			<persName><forename type="first">Shervin</forename><surname>Malmasi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Anjie</forename><surname>Fang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Besnik</forename><surname>Fetahu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sudipta</forename><surname>Kar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Oleg</forename><surname>Rokhlenko</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/2022.semeval-1.196</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 16th International Workshop on Semantic Evaluation (SemEval-2022)</title>
+		<meeting>the 16th International Workshop on Semantic Evaluation (SemEval-2022)<address><addrLine>Seattle, United States</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="1412" to="1437" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<monogr>
+		<author>
+			<persName><forename type="first">Joel</forename><surname>Mathew</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shobeir</forename><surname>Fakhraei</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">José</forename><surname>Luis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ambite</forename></persName>
+		</author>
+		<idno type="arXiv">arXiv:1906.00282</idno>
+		<title level="m">Biomedical named entity recognition via reference-set augmented bootstrapping</title>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">On evaluation of adversarial perturbations for sequence-to-sequence models</title>
+		<author>
+			<persName><forename type="first">Paul</forename><surname>Michel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xian</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Graham</forename><surname>Neubig</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Juan</forename><surname>Pino</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/N19-1314</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies</title>
+		<title level="s">Long and Short Papers</title>
+		<meeting>the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies<address><addrLine>Minneapolis</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="3103" to="3114" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<monogr>
+		<title level="m" type="main">seqeval: A python framework for sequence labeling evaluation</title>
+		<author>
+			<persName><forename type="first">Hiroki</forename><surname>Nakayama</surname></persName>
+		</author>
+		<ptr target="https://github.com/chakki-works/seqeval" />
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+	<note>Software available from</note>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Stanza: A Python natural language processing toolkit for many human languages</title>
+		<author>
+			<persName><forename type="first">Peng</forename><surname>Qi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuhao</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuhui</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jason</forename><surname>Bolton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christopher</forename><forename type="middle">D</forename><surname>Manning</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics: System Demonstrations</title>
+		<meeting>the 58th Annual Meeting of the Association for Computational Linguistics: System Demonstrations</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<monogr>
+		<title level="m" type="main">Is chatgpt a general-purpose natural language processing task solver</title>
+		<author>
+			<persName><forename type="first">Chengwei</forename><surname>Qin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Aston</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhuosheng</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jiaao</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michihiro</forename><surname>Yasunaga</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Diyi</forename><surname>Yang</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2302.06476</idno>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Semantically equivalent adversarial rules for debugging NLP models</title>
+		<author>
+			<persName><forename type="first">Marco</forename><surname>Tulio Ribeiro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sameer</forename><surname>Singh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Carlos</forename><surname>Guestrin</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/P18-1079</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics</title>
+		<meeting>the 56th Annual Meeting of the Association for Computational Linguistics<address><addrLine>Melbourne, Australia</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="856" to="865" />
+		</imprint>
+	</monogr>
+	<note>Long Papers)</note>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Extraction of drug-drug interactions from biomedical texts (DDIExtraction 2013)</title>
+		<author>
+			<persName><forename type="first">Isabel</forename><surname>Segura-Bedmar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Paloma</forename><surname>Martínez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">María</forename><surname>Herrero-Zazo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Seventh International Workshop on Semantic Evaluation</title>
+		<meeting>the Seventh International Workshop on Semantic Evaluation<address><addrLine>Atlanta, Georgia, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2013">2013. SemEval 2013</date>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="page" from="341" to="350" />
+		</imprint>
+	</monogr>
+	<note>SemEval-2013 task Second Joint Conference on Lexical and Computational Semantics (*SEM)</note>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Paraphrasing techniques for maritime qa system</title>
+		<author>
+			<persName><forename type="first">Fatemeh</forename><surname>Shiri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Terry</forename><surname>Yue Zhuo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhuang</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shirui</forename><surname>Pan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Weiqing</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Reza</forename><surname>Haffari</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuan-Fang</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Van</forename><surname>Nguyen</surname></persName>
+		</author>
+		<idno type="DOI">10.23919/FUSION49751.2022.9841287</idno>
+	</analytic>
+	<monogr>
+		<title level="m">2022 25th International Conference on Information Fusion (FUSION)</title>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="1" to="8" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">A novel challenge set for Hebrew morphological disambiguation and diacritics restoration</title>
+		<author>
+			<persName><forename type="first">Avi</forename><surname>Shmidman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Joshua</forename><surname>Guedalia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shaltiel</forename><surname>Shmidman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Moshe</forename><surname>Koppel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Reut</forename><surname>Tsarfaty</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/2020.findings-emnlp.297</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Findings of the Association for Computational Linguistics: EMNLP 2020</title>
+		<imprint>
+			<publisher>Online. Association for Computational Linguistics</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="3316" to="3326" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Se-qAttack: On adversarial attacks for named entity recognition</title>
+		<author>
+			<persName><forename type="first">Walter</forename><surname>Simoncini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Gerasimos</forename><surname>Spanakis</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/2021.emnlp-demo.35</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing: System Demonstrations</title>
+		<meeting>the 2021 Conference on Empirical Methods in Natural Language Processing: System Demonstrations</meeting>
+		<imprint>
+			<publisher>Dominican Republic. Association for Computational Linguistics</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="308" to="318" />
+		</imprint>
+		<respStmt>
+			<orgName>Online and Punta Cana</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Introduction to the CoNLL-2003 shared task: Language-independent named entity recognition</title>
+		<author>
+			<persName><forename type="first">Erik</forename><forename type="middle">F</forename><surname>Tjong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kim</forename><surname>Sang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Fien</forename><surname>De</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Meulder</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Seventh Conference on Natural Language Learning at HLT-NAACL 2003</title>
+		<meeting>the Seventh Conference on Natural Language Learning at HLT-NAACL 2003</meeting>
+		<imprint>
+			<date type="published" when="2003">2003</date>
+			<biblScope unit="page" from="142" to="147" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Tner: An all-round python library for transformerbased named entity recognition</title>
+		<author>
+			<persName><forename type="first">Asahi</forename><surname>Ushio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jose</forename><surname>Camacho-Collados</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 16th Conference of the European Chapter</title>
+		<meeting>the 16th Conference of the European Chapter</meeting>
+		<imprint>
+			<publisher>the Association for Computational Linguistics: System Demonstrations</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="53" to="62" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<analytic>
+		<title level="a" type="main">What do we really know about state of the art ner?</title>
+		<author>
+			<persName><forename type="first">Sowmya</forename><surname>Vajjala</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ramya</forename><surname>Balasubramaniam</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Language Resources and Evaluation Conference</title>
+		<meeting>the Language Resources and Evaluation Conference<address><addrLine>Marseille, France</addrLine></address></meeting>
+		<imprint>
+			<publisher>European Language Resources Association</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="5983" to="5993" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Universal adversarial triggers for attacking and analyzing NLP</title>
+		<author>
+			<persName><forename type="first">Eric</forename><surname>Wallace</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shi</forename><surname>Feng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nikhil</forename><surname>Kandpal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Matt</forename><surname>Gardner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sameer</forename><surname>Singh</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/D19-1221</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)</title>
+		<meeting>the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)<address><addrLine>Hong Kong, China</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="2153" to="2162" />
+		</imprint>
+	</monogr>
+	<note>Association for Computational Linguistics</note>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<analytic>
+		<title level="a" type="main">Trick me if you can: Human-in-the-loop generation of adversarial examples for question answering</title>
+		<author>
+			<persName><forename type="first">Eric</forename><surname>Wallace</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pedro</forename><surname>Rodriguez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shi</forename><surname>Feng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ikuya</forename><surname>Yamada</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jordan</forename><surname>Boyd-Graber</surname></persName>
+		</author>
+		<idno type="DOI">10.1162/tacl_a_00279</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Transactions of the Association for Computational Linguistics</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="page" from="387" to="401" />
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<monogr>
+		<author>
+			<persName><forename type="first">Shijie</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ozan</forename><surname>Irsoy</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Steven</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Vadim</forename><surname>Dabravolski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mark</forename><surname>Dredze</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sebastian</forename><surname>Gehrmann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Prabhanjan</forename><surname>Kambadur</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">David</forename><surname>Rosenberg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Gideon</forename><surname>Mann</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2303.17564</idno>
+		<title level="m">Bloomberggpt: A large language model for finance</title>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Adversarial attacks on deeplearning models in natural language processing: A survey</title>
+		<author>
+			<persName><forename type="first">Emma</forename><surname>Wei</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Quan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ahoud</forename><surname>Sheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chenliang</forename><surname>Alhazmi</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Intelligent Systems and Technology (TIST)</title>
+		<imprint>
+			<biblScope unit="volume">11</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="1" to="41" />
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<analytic>
+		<title level="a" type="main">Generating natural adversarial examples</title>
+		<author>
+			<persName><forename type="first">Zhengli</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dheeru</forename><surname>Dua</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sameer</forename><surname>Singh</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Learning Representations</title>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<analytic>
+		<title level="a" type="main">Improving low-resource named entity recognition via label-aware data augmentation and curriculum denoising</title>
+		<author>
+			<persName><forename type="first">Wenjing</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jian</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jinan</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yufeng</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yujie</forename><surname>Zhang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Chinese Computational Linguistics: 20th China National Conference, CCL 2021</title>
+		<meeting><address><addrLine>Hohhot, China</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2021-08-13">2021. August 13-15, 2021</date>
+			<biblScope unit="page" from="355" to="370" />
+		</imprint>
+	</monogr>
+	<note>Proceedings</note>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

@@ -1,0 +1,1235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Teleportation of Post-Selected Quantum States</title>
+				<funder ref="#_mahuQzx">
+					<orgName type="full">Vaidman</orgName>
+				</funder>
+				<funder>
+					<orgName type="full">European Research Council</orgName>
+					<orgName type="abbreviated">ERC</orgName>
+				</funder>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability  status="unknown">
+					<licence/>
+				</availability>
+				<date type="published" when="2024-03-06">6 Mar 2024</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Daniel</forename><surname>Collins</surname></persName>
+							<idno type="ORCID">0009-0009-0365-4206</idno>
+							<affiliation key="aff0">
+								<orgName type="laboratory">H. H. Wills Physics Laboratory</orgName>
+								<orgName type="institution">University of Bristol</orgName>
+								<address>
+									<addrLine>Tyndall Avenue</addrLine>
+									<postCode>BS8 1TL</postCode>
+									<settlement>Bristol</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Teleportation of Post-Selected Quantum States</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2024-03-06">6 Mar 2024</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">C3241687F74591017D2F4AC8F4349DC6</idno>
+					<idno type="arXiv">arXiv:2303.12456v4[quant-ph]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-28T12:39+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Teleportation allows Alice to send a pre-prepared quantum state to Bob using only pre-shared entanglement and classical communication. Here we show that it is possible to teleport a state which is also post-selected. Post-selection of a state Φ means that after Alice has finished her experiment she performs a measurement and only keeps runs of the experiment where the measurement outcome is Φ. We also demonstrate pre and postselected port-based teleportation, and use it as a quantum memory for such states. Finally we use these protocols to perform instantaneous non-local quantum computation on pre and post-selected systems, and significantly reduce the entanglement required to instantaneously measure an arbitrary non-local variable of spatially separated pre and post-selected systems.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>Learn to see things backwards, inside out, and upside down</p><p>The Tao of Leadership John Heider</p><p>Teleportation is one of the most surprising and fundamental protocols of quantum mechanics. In classical mechanics Alice can send a state to Bob without having any prior knowledge of it by measuring it as accurately as desired, sending the measurement results in a classical message to Bob, and having Bob recreate the state. However in quantum mechanics the uncertainty relation limits the accuracy to which one can simultaneously measure all components of the state. Thus it appears as if the only way to transfer the state from Alice to Bob is by transferring a particle explicitly carrying the state, e.g. by a fibre optic cable which sends polarized photons from Alice to Bob, and which maintains coherence between different polarizations for each photon. To great surprise it was shown by Bennett et al. <ref type="bibr" target="#b0">[1]</ref> that a state can be faithfully transferred from Alice to Bob without transferring any quantum particles, by using pre-shared entanglement, local measurements, classical communication and local unitary operations. This has been experimentally performed many times starting with <ref type="bibr" target="#b1">[2,</ref><ref type="bibr" target="#b2">3]</ref> (see <ref type="bibr" target="#b3">[4]</ref> for a review). Teleportation is now used as a fundamental building block for many tasks in quantum information and computation.</p><p>Usually when we talk about states in quantum mechanics we are thinking of states which are prepared in advance, i.e. pre-selected. However Aharonov et al. <ref type="bibr" target="#b4">[5,</ref><ref type="bibr" target="#b5">6]</ref> showed that quantum mechanics also allows a post-selection of the state, which behaves quite differently to any postselection in classical mechanics. Post-selection means that we run an experiment on a system which ends with some sort of measurement, and only look at runs of the experiment where the measurement gives a particular outcome. This post-selection is quite natural, e.g. we send photons through some optical circuit and only keep results where one of the final detectors receives a photon, we may select one polarization more than another through Polarization Dependent Loss <ref type="bibr" target="#b6">[7]</ref>. However it gives us information about the system at intermediate times which is impossible with pre-selection alone. For example if we pre-select a particle with a well defined position and postselect it with a well defined momentum we will be able to predict the outcome of a position or momentum measurement of the particle at intermediate times with arbitrary accuracy, i.e. better than the uncertainly principle allows for preselected states. This is quite different to deterministic classical mechanics, where all the information about a system can be pre-selected, and a post-selection is equivalent to a pre-selection.</p><p>Having post-selected on a particular state, we can then evolve this final state backwards in time, and use it to retrodict the outcomes of measurements at earlier times. We don't have to do this: we can make the same predictions using the usual pre-selected states, evolving the system forwards in time and conditioning on the final measurement. However we find this time reversed method of thinking useful, and believe it allows us to more easily find interesting physics.</p><p>Post-Selection is a key part of the single photon source used for many quantum optic experiments <ref type="bibr" target="#b7">[8]</ref>, internally creating a pair of photons via spontaneous parametric down-conversion, then postselecting on one photon from the pair being detected, leaving the other as a single photon. Combined with weak measurements <ref type="bibr" target="#b8">[9]</ref>, post-selected states led to a method for improving the precision of certain measuring devices <ref type="bibr" target="#b9">[10]</ref> which was used in the first observation of the spin Hall effect of light <ref type="bibr" target="#b10">[11]</ref>, and to measure the linear travel of a piezoelectric actuator down to the diameter of a Uranium nucleus <ref type="bibr" target="#b11">[12]</ref>. Process matrices are equivalent to certain quantum systems between definite pre and post-selected states <ref type="bibr" target="#b12">[13]</ref>. Postselected states are also used for the intuition behind several curious paradoxical effects, e.g. the quantum pigeonhole principle <ref type="bibr" target="#b13">[14]</ref> and the quantum cheshire cat <ref type="bibr" target="#b14">[15]</ref>.</p><p>In this paper we describe teleportation of a post-selected state. It was previously known <ref type="bibr" target="#b15">[16]</ref> that this could be accomplished for a 2 dimensional system with probability 1/4. However like the original teleportation, we shall show that this can be done with certainty. We then extend this to pre and post-selected states. This is a fundamental protocol, which can then be used as a building block for more complex tasks. We also extend port-based teleportation to pre and post-selected states, show how this can be used as a quantum memory for such states, and discuss instantaneous measurements and computation of pre and post-selected states.</p><p>Note that if teleportation was a unitary operation, we could reverse the unitary to teleport the post-selected state backwards in time. However since teleportation involves measurements and classical communication which cannot be sent backwards in time we cannot simply time-reverse the usual teleportation. Also note that a paper with a related title, "Quantum mechanics of time travel through postselected teleportation" <ref type="bibr" target="#b16">[17]</ref>, creates a loop in time by post-selecting on one particular outcome of the regular (pre-selected) teleportation protocol, so that the current (pre-selected) state of a particle was sent into its past. Here we teleport a postselected state to a different location.</p><p>Port-Based Teleportation, introduced by Ishizaka and Hiroshima <ref type="bibr" target="#b17">[18,</ref><ref type="bibr" target="#b18">19]</ref>, is one of the most useful and surprising variants of teleportation. In normal teleportation Bob initially receives Alice's state scrambled by a unitary σ i , and has to wait for Alice's classical message i before he can unscramble it. This means that he cannot use Alice's state in any further experiments (measurements, computations, etc) without waiting for that message (except for the rare cases where his experiment commutes with σ i ). Port-Based teleportation instead uses n entangled pairs (ports) between Alice and Bob, and teleports Alice's state unscrambled into Bob's i th port, where i is known to Alice. Bob can run his further experiments without waiting for Alice so long as he does it n times: once on each port. Then when he receives Alice's message he can classically select which set of experimental results to keep.</p><p>Port-Based Teleportation has proved useful for a variety of tasks, for example it was used to make a universal programmable quantum processor <ref type="bibr" target="#b17">[18]</ref>, for instantaneous non-local quantum computation, instantaneous non-local measurements and new attacks on position-based cryptography <ref type="bibr" target="#b19">[20]</ref>, for proving any communication complexity problem with a large quantum advantage gives rise to a Bell Inequality <ref type="bibr" target="#b20">[21]</ref>, and for limitations on quantum channel discrimination <ref type="bibr" target="#b21">[22]</ref>. It can be done either deterministically as described above, where the state is always teleported but with some error, or probabilistically where the state is either teleported perfectly or the teleportation fails with an error message. <ref type="bibr" target="#b18">[19]</ref>. The choice of shared entangled state used for the teleportation and the measurement have been optimized in <ref type="bibr" target="#b22">[23,</ref><ref type="bibr" target="#b23">24,</ref><ref type="bibr" target="#b24">25,</ref><ref type="bibr" target="#b25">26,</ref><ref type="bibr" target="#b26">27]</ref>. A multiport variation allowing teleportation of many states simultaneously into different ports was introduced in <ref type="bibr" target="#b27">[28,</ref><ref type="bibr" target="#b28">29,</ref><ref type="bibr" target="#b29">30]</ref>.</p><p>We show how to port-based teleport a pre and post-selected state. This can be done either deterministically or probabilistically. We show how to use this as a quantum memory for the state. We then show how to perform instantaneous non-local computation of pre and post-selected systems. Instantaneous means that we perform the quantum parts of the experiments simultaneously at spatially separated locations, and then use classical communication to select the final results.</p><p>Finally, we demonstrate one use of this to significantly reduce the amount of entanglement required to show that any verification measurement of spatially separated pre and post-selected systems may be performed instantaneously. A verification measurement is one which gives the same results as a normal measurement, only it may leave the system in any output state, potentially destroying it completely. Whether an arbitrary non-local variable of pre-selected spatially separated systems is measurable has been debated since Landau and Peierls <ref type="bibr" target="#b30">[31]</ref> in 1931, and is important in demonstrating in a direct fashion that an entangled state is a good description of a spatially separated system in a given relativistic frame at a given time.</p><p>After significant progress in <ref type="bibr" target="#b31">[32,</ref><ref type="bibr" target="#b32">33,</ref><ref type="bibr" target="#b33">34,</ref><ref type="bibr" target="#b34">35,</ref><ref type="bibr" target="#b35">36,</ref><ref type="bibr" target="#b36">37,</ref><ref type="bibr" target="#b37">38,</ref><ref type="bibr" target="#b38">39,</ref><ref type="bibr" target="#b39">40]</ref>, Vaidman <ref type="bibr" target="#b40">[41]</ref> showed that any non-local verification measurement can be performed instantaneously on an arbitrary preselected state. The procedure used enormous amounts of entanglement, which was significantly reduced in <ref type="bibr" target="#b41">[42,</ref><ref type="bibr" target="#b19">20,</ref><ref type="bibr" target="#b42">43]</ref>. It was extended to pre and post-selected systems in <ref type="bibr" target="#b15">[16]</ref>, which we improve upon here.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Pre and Post-Selected Teleportation</head><p>Time Bell Measurement Ψ⟩ A B a Φ + ⟩ Classical Measurement Result i Ψ⟩ Bob applies unitary σ i to system B Alice Bob B Figure 1: Teleportation of a pre-selected state |Ψ⟩ from A to B. Vertical arrows indicate the flow of the state.</p><p>First we review how to teleport a pre-selected state, shown diagrammatically in Fig <ref type="figure">1</ref>.</p><p>For simplicity we start with a qubit which has been pre-prepared in an unknown pure state, say</p><formula xml:id="formula_0">|Ψ⟩ A = α |0⟩ A + β |1⟩ A , (<label>1</label></formula><formula xml:id="formula_1">)</formula><p>where α and β are complex and |α| 2 + |β| 2 = 1.</p><p>Alice and Bob also pre-share a maximally entangled state</p><formula xml:id="formula_2">Φ + aB = 1 √ 2 (|0⟩ a |0⟩ B + |1⟩ a |1⟩ B ). (<label>2</label></formula><formula xml:id="formula_3">)</formula><p>The joint state |Ψ⟩ A Φ + aB can be written as</p><formula xml:id="formula_4">1 2 { 1 √ 2 (|0⟩ A |0⟩ a + |1⟩ A |1⟩ a )(α |0⟩ B + β |1⟩ B ) + 1 √ 2 (|0⟩ A |0⟩ a -|1⟩ A |1⟩ a )(α |0⟩ B -β |1⟩ B ) + 1 √ 2 (|0⟩ A |1⟩ a + |1⟩ A |0⟩ a )(α |1⟩ B + β |0⟩ B ) + 1 √ 2 (|0⟩ A |1⟩ a -|1⟩ A |0⟩ a )(α |1⟩ B -β |0⟩ B )}<label>(3)</label></formula><p>which can also be written as</p><formula xml:id="formula_5">1 2 i σ a i Φ + Aa σ B i |Ψ⟩ B (<label>4</label></formula><formula xml:id="formula_6">)</formula><p>where i ∈ {0, 1, 2, 3}, and σ i is a unitary operation which flips |0⟩ and |1⟩ if i ∈ {2, 3} and applies a phase of -1 to</p><formula xml:id="formula_7">|1⟩ if i ∈ {1, 3}. Note that (σ i ) 2 = 1.</formula><p>To teleport Alice measures the joint system Aa in the Bell Basis σ a i Φ + Aa and sends the measurement outcome i to Bob via 2 bits of classical communication. Bob then applies σ i to his system B to recreate Alice's original state |Ψ⟩ in system B. He can then perform whatever experiment on the state he desires, and will get the same outcomes as if he started with |Ψ⟩ B .</p><p>A procedure to teleport a post-selected state ⟨Φ| should work as follows. Alice starts with a post-selected state. What that means is that she starts with a system in the totally uncertain pre-selected density matrix 1/d where d is the dimension of the system. Next she does the teleportation. Finally she does the post-selection by performing a measurement which with some probability has outcome Φ, and Alice and Bob only keep the experimental results for runs with that outcome. Bob will also have a system which starts in the pre-prepared density matrix 1/d. He wants to be able to run experiments on his system and know that so long as the post-selection succeeds, his system will behave with the same post-selection as if he had applied it directly himself. Further, the probability of the post-selection succeeding is the same as if he applied it himself. This is what we mean by the teleportation succeeding with certainty. To do this may at first appear impossible, since if Bob performs the Bell measurement from the usual teleportation on a joint system bB he has no opportunity to apply σ i on B to correct for any outcome other than Φ + . Our main result is a protocol to teleport with certainty, as shown in Fig <ref type="figure" target="#fig_0">2</ref>. Similar to the usual teleportation of preselected states, Alice and Bob pre-share the maximally entangled state Φ + Ab . Bob has another system B which will end up in the post-selected state. This time Bob performs the Bell Measurement, which he does on on the joint system bB after he's finished his experiments on B. He then sends the classical measurement result to Alice, who performs the correction σ i on her system A. Finally Alice applies the post-selection. This procedure guarantees that B was in the post-selected state ⟨Φ| prior to the Bell Measurement.</p><p>In the usual teleportation one can think of the movement of the state as starting with Alice, going forward in time in system A until the Bell Measurement, then going backward in time (scrambled by σ i ) in system a until getting to the entangled state, then going forward in time in B until σ i is applied after which the state is successfully teleported. In the teleportation of a postselected state one can think of the state starting with Alice, going backwards in time in system A with σ i applied, then backwards further until the entangled state, then forwards in time in system b until the Bell Measurement which undoes σ i , and finally backwards in time in system B as the successfully teleported state.</p><p>The teleportation actions in the two procedures are the same if we swap the roles of Alice and Bob, and hence the equations of the postselected teleportation work in the same way as the pre-selected teleportation. One way to check this mathematically starts by noting that the Bell Measurement with outcome i is a projection onto the state bB Φ + σ b i which occurs with probability</p><formula xml:id="formula_8">1 4 .</formula><p>Working backwards in time, the post-selected teleportation does:</p><formula xml:id="formula_9">A ⟨Φ| → A ⟨Φ| σ A i → A ⟨Φ| σ A i bB Φ + σ b i → A ⟨Φ| bB Φ + σ A i σ b i Φ + Ab = A ⟨Φ| bB Φ + Φ + Ab = 1 2 B ⟨Φ|<label>(5)</label></formula><p>as desired. In the second line the Bell measurement acts as the preparation of a post-selected state. This procedure is optimal in its usage of entanglement and classical communication, as proved in Appendix A. The extension to higher dimensions is straightforward and follows the method in <ref type="bibr" target="#b0">[1]</ref>. Entanglement swapping and teleportation of mixed states work as usual.</p><p>Teleporting a pre and post-selected state from A to B is essentially a matter of combining the previous two protocols, as shown in Fig 3 . 
+The only minor change is that here we used Swap(A, ã) to move the entangled state Φ + ãb into Ab for the post-selected teleportation.</p><p>This teleportation works for entangled pre and post-selected states, e.g.</p><formula xml:id="formula_10">α ⟨Φ 1 | |Ψ 1 ⟩ + β ⟨Φ 2 | |Ψ 2 ⟩ [6]</formula><p>, and for mixed pre and post-selected states <ref type="bibr" target="#b43">[44]</ref>. It straightforwardly generalizes to higher dimensions.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">Port-Based Teleportation</head><p>Here we show how to port-based teleport a postselected state, and then a pre and post-selected state. We then use this as a quantum memory for such states. We start by reviewing port-based teleportation of a pre-selected state, as shown in Fig 4. Alice and Bob pre-share n entangled states Φ + a i B i , with i = 1..n. Alice performs a POVM on the joint system Aa 1 ..a n . The outcome i tells her that |Ψ⟩ A has been teleported into |Ψ⟩ B i . There are two main variations of the port-based teleportation. In the deterministic version, the teleported state is unmodified, except for some noise which can be made arbitrarily small with sufficiently large n. In the probabilistic version, the teleportation either succeeds perfectly or with an arbitrarily small probability Alice's POVM gives a failure outcome, 0. Unlike usual teleportation there are several POVMs and initial entangled states which could be used, and the most efficient procedures do not use the maximally entangled state. However schematically the procedure is always the same. In all cases Bob can perform his further experiments, n times in parallel, without waiting for Alice to perform the quantum part of the teleportation. After the quantum part is finished Alice can send i as a classical message to Bob to tell him which of his results to keep. This will take some time as it's limited by the speed of light.</p><p>In the post-selected teleportation described in section 2, Bob performs his experiments at the start, but Alice cannot apply the post selection without waiting for Bob's classical message. Suppose the system A will be post-selected into A ⟨Φ|. Alice and Bob have a pre-shared entangled state Φ + Ab . Bob has systems B i where i = 1..n (the n ports), and in each of them runs his experiment. He then applies the usual portbased teleportation POVM on the joint system bB 1 B 2 ..B n . POVM outcome i tells him that the post-selected state was teleported into system B i (up to the usual port-based error in the deterministic version, and perfectly unless we get the failure outcome 0 in the probabilistic version), and so his experiment was run with that post-selection. Unlike most teleportation protocols, it seems as though Bob does not need any classical communication from Alice. However he does need one message: that the post selection succeeded. Finally, note that the POVM is a method for transforming a pre-selected state into a post-selected state in channel i without any scrambling, which we shall use as a primitive in later protocols.</p><formula xml:id="formula_11">Time Ψ⟩ A2 Alice Bob A2 Φ + ⟩ Φ + ⟩ Φ + ⟩ ⟨Φ A Φ + ⟩ A Swap(A, A 2 ) A A1 A1 Φ + ⟩ a i ãi a 1 ã1 a n ãn Φ + ⟩ a i ãi a 1 ã1 Φ + ⟩ a n ãn Bij ⟨Φ b 1 b1 b i bi b n bn b i bi b n bn b 1 b1 Ψ⟩ bij bi1 Bi1 bin Bin Φ + ⟩ bij Bij Φ + ⟩ bin Bin Φ + ⟩ bi1 Bi1 POVM i j(i) POVM i</formula><p>Next we do port-based teleportation on a pre and post-selected state A ⟨Φ| |Ψ⟩ A , as shown in Fig 6 . We cannot simply do pre-selected teleportation followed by post-selected teleportation, as the pre and post-selections could end up in different ports. We thus need to somehow move the pre and post-selected states together. For this we will use pre-selected port-based teleportation on a d 2 dimensional system, where d is the dimension of the Hilbert space of A. In stages:</p><p>1. Alice converts her pre and post-selected state A ⟨Φ| |Ψ⟩ A into a pre-selected state |Φ * ⟩ A 1 |Ψ⟩ A 2 by swapping |Ψ⟩ A into |Ψ⟩ A 2 and then preparing Φ + AA 1 . Here " * " means complex conjugation in the |0⟩ / |1⟩ basis. 2. Alice pre-selected port-based teleports the joint system |Φ * ⟩ A 1 |Ψ⟩ A 2 to Bob, and it arrives in port i (the outcome of her POVM) as |Φ * ⟩ b i |Ψ⟩ bi . 3. For each i Bob performs the port-based P OV M i , with outcome j(i), to convert this into the post-selected state B i,j ⟨Φ| b i,j ⟨Ψ * | in port (i, j).</p><p>4. Bob transforms each (i, j) into the original pre and post-selected state B i,j ⟨Φ| |Ψ⟩ B i,j by pre-preparing the state Φ + B i,j b i,j , and leaving system b i,j otherwise untouched.</p><p>5. Alice sends i to Bob using classical communication, and Bob picks out the results from port (i, j).</p><p>Thus we have teleported a pre and postselected state from A into port B i,j with i known to Alice and j(i) known to Bob. Neither Alice nor Bob have to wait for one another before completing the quantum part of their experiments, including the post-selection. As before, these methods work for entangled and mixed pre and postselected states. As the protocols are built upon the usual port-based teleportation POVM and pre-shared entangled state, we can use whichever port-based variant we like, deterministic or probabilistic, or multi-port.</p><p>One use of this protocol is as a quantum memory for (pre and) post-selected states. We may be given a state, and wish to store it for later use with a quantum channel which we can use multiple times. This is in a sense a time-reversed application corresponding to the storage of a quantum channel for usage later on a pre-selected quantum state, for which the optimal protocol is described in <ref type="bibr" target="#b44">[45]</ref>. We can store the pre and postselected state by following Alice's steps in the port-based teleportation protocol just described in Fig 6 . Later on, when we have the channel ready to use, we perform Bob's steps of the teleportation protocol, applying the channel in every single port B i,j . Finally we read out the results from port (i, j). Depending upon whether we use deterministic or probabilistic port-based teleportation, this will have the same noise or probabil-</p><formula xml:id="formula_12">Time Ψ⟩ A2 Alice Bob ⟨Φ A Swap(A, A 2 ) A A1 a i 1 a i 2 ⟨Φ b i 1 Ψ⟩ Υ⟩ ⟨Ω Bell Measurement Φ + ⟩ Φ + ⟩ Φ + ⟩ A3 A4 a i 3 a i 4 σ k Result k Φ + ⟩ ⊗4 b i 2 b i 3 b i 4 Υ⟩ ⟨Ω Φ + ⟩ ⊗2 B ij 1 B ij 2 b ij 1 b ij 2 B B B1 POVM i POVM i j(i) b</formula><p>Swap(b, B) Bob can perform any computation or measurement on the joint system, doing it n 2 times (once on each port). We have omitted the other ports and POVMs from the picture for compactness.</p><p>ity of failure as our teleportation protocol, which can be made as small as desired by increasing the number of ports. We do not claim this protocol is optimal, and leave such an investigation for future work.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">Instantaneous Non-Local Computation and Measurement</head><p>We show in Fig 7 <ref type="figure">how</ref> to perform an arbitrary instantaneous quantum computation or measurement on two spatially separated pre and postselected systems, generalizing the result for preselected systems in <ref type="bibr" target="#b19">[20]</ref>. "Instantaneous" means that we perform the quantum parts of the experiments simultaneously at spatially separated locations, and then use classical communication to select the final results. Whilst the quantum part is instantaneous, the classical communication takes time. The protocol can be extended to any number of parties. Suppose Alice and Bob wish to perform a joint computation on systems A and B which are in a pre and post-selected state A ⟨Φ| |Ψ⟩ A for Alice and B ⟨Ω| |Υ⟩ B for Bob. They could try to use a port-based teleportation from Bob's system B to Alice's ancilla system a i to move the whole state together on Alice's side to allow her to perform the computation. However this puts the state into the system Aa i where i is known only to Bob, and Alice cannot make an arbitrary bipartite measurement simultaneously on Aa 0 , Aa 1 etc as they will disturb each another on A. In-</p><p>stead they could try (non-port based) teleporting Bob's state to Alice (without initially doing any unscrambling as that requires waiting for classical communication), and then port-based teleporting the joint state back to Bob. However both ⟨Φ| and |Ψ⟩ are scrambled, and Bob only knows how to unscramble |Ψ⟩. Instead they skip the step causing the scrambling of |Ψ⟩, which gives the successful protocol shown in Fig 7. Alice and Bob 1. Start by bringing Alice and Bob's systems together on Alice's side as a 4 system pre-selection |Φ * ⟩ A 1 |Ψ⟩ A 2 σ A 3 k |Υ⟩ A 3 |Ω * ⟩ A 4 , where |Υ⟩ is scrambled by σ k known to Bob. 2. Alice port-based teleports this joint state to Bob as a single d 4 dimensional system into port i, |Φ * ⟩ b i 1</p><formula xml:id="formula_13">|Ψ⟩ b i 2 σ b i 3 k |Υ⟩ b i 3 |Ω * ⟩ b i 4</formula><p>, where i is known to Alice.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.">Bob applies σ k on b i</head><p>3 for each i to unscramble</p><formula xml:id="formula_14">|Υ⟩ b i 3 .</formula><p>4. For each i Bob performs the port-based P OV M i , with outcome j(i), to convert this into the post-selected state</p><formula xml:id="formula_15">B ij 1 ⟨Φ| b ij 1 ⟨Ψ * | b ij 2 ⟨Υ * | B ij 2</formula><p>⟨Ω| in port (i, j).</p><p>5. Bob transforms each (i, j) into the original pre and post-selected state</p><formula xml:id="formula_16">B i,j 1 ⟨Φ| |Ψ⟩ B i,j 1 B i,j 2 ⟨Ω| |Υ⟩ B i,j 2 by pre-preparing the state Φ + B i,j 1 b i,j 1 Φ + B i,j 2 b i,j 2</formula><p>and leaving systems b i,j 1 and b i,j 2 otherwise untouched.</p><p>Bob can perform whatever computation or measurement, von Neumann or POVM, he wants on the joint pre and post-selected system B ij 1 B ij 2 , repeating it for all ports (i, j). If he wishes he can use pre and post-selected port-based teleportation to send all the systems B ij 1 back to Alice, using the multi-port variation <ref type="bibr" target="#b27">[28,</ref><ref type="bibr" target="#b28">29,</ref><ref type="bibr" target="#b29">30]</ref> for efficiency. At the end Alice knows i and Bob knows j(i), so they can pick the right results via classical communication. That completes the protocol, which again works on arbitrary initial entangled states, pure or mixed.</p><p>This port-based protocol is exponentially more efficient in terms of entanglement than the previously known instantaneous measurement protocol for pre and post-selected states <ref type="bibr" target="#b15">[16]</ref>. This exponential gap was shown in <ref type="bibr" target="#b19">[20]</ref> for the preselected case. The ebits of entanglement used to instantaneously measure a system of m qubits for Alice (i.e. dimension d = 2 m ) and m for Bob, whilst making the probability of failure less than ϵ, scales with m as shown in table 1. Our protocol is more efficient still for POVMs as it uses the same entanglement as a von Neumann measurement, whereas the previous protocol requires writing the POVM as a von Neumann measurement using an ancilla, then teleporting the ancilla and system to be measured together back and forth as one higher dimensional system.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Protocol Type</head><p>Original Port-Based Pre 4m2 ln(1/ϵ)4m2 4m -6m (2m/ϵ)2 4m Pre&amp;Post 8m2 ln(1/ϵ)8m2 8m -14m (4m/ϵ)2 8m Table <ref type="table">1</ref>: Approximate entanglement (ebits) used to perform an instantaneous measurement on m qubits for Alice and m for Bob with ϵ probability of success. The port-based numbers are an upper bound. The portbased scheme is exponentially better in m.</p><p>To calculate that upper bound of the entanglement usage for the port-based instantaneous measurement for pre-selected systems, we start from the optimal probability of success of portbased teleportation, given by theorem 4 in <ref type="bibr" target="#b23">[24]</ref>, as p = 1 -(d 2 -1)/(n + d 2 -1), where n is the number of ports. The measurement protocol first teleports m qubits from Bob to Alice, using m ebits. Then it port-based teleports all 2m qubits back from Alice to Bob as a single d = 2 2m dimensional system in n ports, using at most 2mn ebits (the optimal port-based teleportation uses a non-maximally entangled state whose entanglement will be upper bounded by this). Setting p = 1 -ϵ, ϵ small so we can ignore the entanglement usage of the original teleportation, and ignoring terms which are small compared to 2 4m , we have an upper bound on the entanglement usage of (2m/ϵ)2 4m . The entanglement usage of measuring m pre and post-selected qubits is similar, with m replaced by 2m, as each pre and post-selected qubit is mapped into 2 pre-selected qubits before being port-based teleported.</p><p>To calculate the entanglement usage of the original <ref type="bibr">(Vaidman)</ref> protocol to measure m preselected qubits for Alice and m for Bob, we follow section 1.3 of <ref type="bibr" target="#b19">[20]</ref>. The probability of success in each round of the protocol is 2 -4m (except for the first round, which is 2 -2m ). Then the number of rounds, r, needed to make the probability of failure equal to a given ϵ is roughly ln(1/ϵ)2 4m , where ln is the natural logarithm. The entanglement usage of round r (after the first couple of rounds) is roughly 4m2 4m(r-2)+2m . Putting these together gives the result in table 1. The entanglement usage of the original protocol for pre and post-selected qubits <ref type="bibr" target="#b15">[16]</ref> was calculated along similar lines.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">Conclusion</head><p>We have shown how to teleport pre and postselected states with certainty. We have also shown how to teleport them port-based. We then showed how to perform instantaneous non-local quantum computation on a pre and post-selected state. This allows us to store a post-selected state in a quantum memory for later usage, and to perform the quantum part of any non-local verification measurement instantaneously using exponentially less entanglement than the previous protocol. We believe that these protocols will prove useful for other quantum information processing tasks.</p><p>which described post-selected teleportation, similar to our section 2. Our paper goes further, extending the results to post-selected port-based teleportation, and using it as a quantum memory for post-selected states, instantaneous computation, and instantaneous measurement.</p><p>states". J. Phys. A: Math. Theor. 40, <ref type="bibr">3275-3284 (2007)</ref>.</p><p>[47] Charles H. Bennett and Stephen J. Wiesner.</p><p>"Communication via one-and two-particle operators on einstein-podolsky-rosen states". Phys. Rev. Lett. 69, <ref type="bibr">2881-2884 (1992)</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A Optimality of Resources</head><p>Here we prove that the post-selected teleportation described in Fig 2 is optimal in terms of entanglement and classical communication resource.</p><p>First to prove that a maximally entangled pair Φ + AB is necessary, we show how to use the postselected teleportation to create a maximally entangled pair Φ + AB between Alice and Bob. As entanglement cannot be created by local operations and classical communication, it must have been there initially. Suppose we start with an entangled pair on Alice's side Φ + Aa 1 , another on Bob's side Φ + bB and teleport system a 2 of the post-selected state a 1 a 2 Φ + to system b. This gives us</p><p>a 1 b Φ + Φ + Aa 1 Φ + bB = Φ + AB (6)</p><p>i.e. the same entanglement as we used in the teleportation. The post-selection may not always succeed, so we apply it by performing the Bell Measurement with outcome j on a 1 a 2 , and teleporting whichever Bell state is the outcome of the measurement. Alice can then apply a local rotation σ j to turn this into Φ + AB , completing the proof.</p><p>To prove the teleportation is optimal in using two bits of classical communication from Alice to Bob, we shall show Bob can communicate two bits to Bob using Super Dense Coding <ref type="bibr">[47]</ref>. We start with an an entangled pair on Alice's side Φ + a 1 a 2 , and an entangled pair between Alice and Bob Φ + AB . Bob can encode his message i by applying σ B i to system B. They teleport Alice's system a 3 in the post-selection a 2 a 3 Φ + to system B. After the teleportation Alice will have</p><formula xml:id="formula_17">a 2 B Φ + Φ + a 1 a 2 σ B i Φ + AB = σ a 1 i Φ + Aa 1 . (<label>7</label></formula><formula xml:id="formula_18">)</formula><p>She can perform a Bell measurement on Aa 1 to read the message. The post-selection may not always succeed, so we perform it by applying the Bell measurement on a 2 a 3 . Getting different outcomes of the Bell measurement on a 2 a 3 simply permutes the outcomes of the Bell measurement on Aa 1 in a deterministic way, so Alice will always be able to read the message and receive 2 bits from Bob.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Figure 2 :</head><label>2</label><figDesc>Figure 2: Teleportation of a post-selected state ⟨Φ| from A to B. The classical communication goes from Bob to Alice, the opposite of the usual pre-selected teleportation.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Figure 3 :</head><label>3</label><figDesc>Figure 3: Teleportation of a pre and post-selected state ⟨Φ| |Ψ⟩ from A to B</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>Figure 4 :</head><label>4</label><figDesc>Figure 4: Port-based teleportation of a pre-selected state |Ψ⟩ from A to B i . Outcome i of the POVM moves |Ψ⟩ into a i and hence B i .</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>Figure 5 :</head><label>5</label><figDesc>Figure 5: Port-based teleportation of a post-selected state ⟨Φ| from A to B i .</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head>Figure 6 :</head><label>6</label><figDesc>Figure 6: Port-based teleportation of a pre and post-selected state ⟨Φ| |Ψ⟩ from A to port B ij . Alice's POVM has outcome i. Bob performs n POVMs: for compactness we only draw the i th , P OV M i with outcome j(i). Each port-based channel transmits the state in two systems together, e.g. A 1 and A 2 , so has dimension d 2 where d is the dimension of the original system A.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><head>Figure 7 :</head><label>7</label><figDesc>Figure 7: Instantaneous Computation/Measurement on a pre and post-selected state ⟨Φ| |Ψ⟩ for Alice and ⟨Ω| |Υ⟩ for Bob. Alice and Bob move their initial states into port B ij on Bob's side, with i known to Alice and j(i) to Bob.Bob can perform any computation or measurement on the joint system, doing it n 2 times (once on each port). We have omitted the other ports and POVMs from the picture for compactness.</figDesc></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0"><p>Accepted in Quantum 2024-02-28, click title to verify. Published under CC-BY 4.0.</p></note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div><head n="6">Acknowledgements</head><p>We thank <rs type="person">Sandu Popescu</rs> for helpful discussions and advice. We are supported by the <rs type="funder">ERC</rs> Advanced Grant FLQuant.</p><p>Note Added After completing this work we became aware of an earlier paper by <rs type="funder">Vaidman</rs> <ref type="bibr" target="#b45">[46]</ref> </p></div>
+			</div>
+			<listOrg type="funding">
+				<org type="funding" xml:id="_mahuQzx">
+					<idno type="grant-number">46</idno>
+				</org>
+			</listOrg>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Teleporting an unknown quantum state via dual classical and einstein-podolsky-rosen channels</title>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">H</forename><surname>Bennett</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Brassard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Crepeau</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Jozsa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">K</forename><surname>Peres</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Wootters</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.70.1895</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">70</biblScope>
+			<biblScope unit="page" from="1895" to="1899" />
+			<date type="published" when="1993">1993</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Experimental realization of teleporting an unknown pure quantum state via dual classical and einsteinpodolsky-rosen channels</title>
+		<author>
+			<persName><surname>Boschi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Branca</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>De Martini</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Hardy</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Popescu</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.80.1121</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">80</biblScope>
+			<biblScope unit="page" from="1121" to="1125" />
+			<date type="published" when="1998">1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Experimental quantum teleportation</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Bouwmeester</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Pan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Mattle</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Eibl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Wein-Furter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Zeilinger</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/37539</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">390</biblScope>
+			<biblScope unit="page" from="575" to="579" />
+			<date type="published" when="1997">1997</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Advances in quantum teleportation</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Pirandola</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Eisert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Weedbrook</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Furusawa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">L</forename><surname>Braunstein</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/nphoton.2015.154</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Nature Photonics</title>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="page" from="641" to="652" />
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Time symmetry in the quantum process of measurement</title>
+		<author>
+			<persName><forename type="first">Yakir</forename><surname>Aharonov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Peter</forename><forename type="middle">G</forename><surname>Bergmann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Joel</forename><forename type="middle">L</forename><surname>Lebowitz</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRev.134.B1410</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev</title>
+		<imprint>
+			<biblScope unit="volume">134</biblScope>
+			<biblScope unit="page" from="1410" to="B1416" />
+			<date type="published" when="1964">1964</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Multiple-time states and multiple-time measurements in quantum mechanics</title>
+		<author>
+			<persName><forename type="first">Yakir</forename><surname>Aharonov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sandu</forename><surname>Popescu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jeff</forename><surname>Tollaksen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lev</forename><surname>Vaidman</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.79.052110</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">79</biblScope>
+			<biblScope unit="page">52110</biblScope>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Optical telecom networks as weak quantum measurements with postselection</title>
+		<author>
+			<persName><surname>Brunner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Acin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Collins</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Gisin</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Scarani</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.91.180402</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">91</biblScope>
+			<date type="published" when="2003">2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Experimental realization of a localized one-photon state</title>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">K</forename><surname>Hong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Mandel</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.56.58</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">56</biblScope>
+			<biblScope unit="page" from="58" to="60" />
+			<date type="published" when="1986">1986</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">How the result of a measurement of a component of the spin of a spin-1/2 particle can turn out to be 100</title>
+		<author>
+			<persName><surname>Aharanov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Albert</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Vaidman</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.60.1351</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">60</biblScope>
+			<biblScope unit="page" from="1351" to="1354" />
+			<date type="published" when="1988">1988</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Weak value controversy</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Vaidman</surname></persName>
+		</author>
+		<idno type="DOI">10.1098/rsta.2016.0395</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Philos. Trans. R. Soc., A</title>
+		<imprint>
+			<biblScope unit="page">375</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Observation of the spin hall effect of light via weak measurements</title>
+		<author>
+			<persName><forename type="first">Onur</forename><surname>Hosten</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Paul</forename><surname>Kwiat</surname></persName>
+		</author>
+		<idno type="DOI">10.1126/science.1152697</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Science</title>
+		<imprint>
+			<biblScope unit="volume">319</biblScope>
+			<biblScope unit="page" from="787" to="790" />
+			<date type="published" when="2008">2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Ultrasensitive beam deflection measurement via interferometric weak value amplification</title>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">Ben</forename><surname>Dixon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">David</forename><forename type="middle">J</forename><surname>Starling</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andrew</forename><forename type="middle">N</forename><surname>Jordan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">John</forename><forename type="middle">C</forename><surname>Howell</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.102.173601</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">102</biblScope>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Connecting processes with indefinite causal order and multi-time quantum states</title>
+		<author>
+			<persName><forename type="first">Ralph</forename><surname>Silva</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yelena</forename><surname>Guryanova</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Anthony</forename><forename type="middle">J</forename><surname>Short</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Paul</forename><surname>Skrzypczyk</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nicolas</forename><surname>Brunner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sandu</forename><surname>Popescu</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/1367-2630/aa84fe</idno>
+	</analytic>
+	<monogr>
+		<title level="j">New J. Phys</title>
+		<imprint>
+			<biblScope unit="volume">19</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Quantum violation of the pigeonhole principle and the nature of quantum correlations</title>
+		<author>
+			<persName><forename type="first">Yakir</forename><surname>Aharonov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Fabrizio</forename><surname>Colombo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sandu</forename><surname>Popescu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Irene</forename><surname>Sabadini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Daniele</forename><forename type="middle">C</forename><surname>Struppa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jeff</forename><surname>Tollaksen</surname></persName>
+		</author>
+		<idno type="DOI">10.1073/pnas.1522411112</idno>
+	</analytic>
+	<monogr>
+		<title level="j">PNAS</title>
+		<imprint>
+			<biblScope unit="volume">113</biblScope>
+			<biblScope unit="page" from="532" to="535" />
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Quantum cheshire cats</title>
+		<author>
+			<persName><forename type="first">Yakir</forename><surname>Aharonov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sandu</forename><surname>Popescu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Daniel</forename><surname>Rohrlich</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Paul</forename><surname>Skrzypczyk</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/1367-2630/15/11/113015</idno>
+	</analytic>
+	<monogr>
+		<title level="j">New J. Phys</title>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Nonlocal measurements in the time-symmetric quantum mechanics</title>
+		<author>
+			<persName><forename type="first">Lev</forename><surname>Vaidman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Izhar</forename><surname>Nevo</surname></persName>
+		</author>
+		<idno type="DOI">10.1142/S0217979206034108</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Int. J. Mod. Phys. B</title>
+		<imprint>
+			<biblScope unit="volume">20</biblScope>
+			<date type="published" when="2005">2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Quantum mechanics of time travel through post-selected teleportation</title>
+		<author>
+			<persName><forename type="first">Seth</forename><surname>Lloyd</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lorenzo</forename><surname>Maccone</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Raul</forename><surname>Garcia-Patron</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Vittorio</forename><surname>Giovannetti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yutaka</forename><surname>Shikano</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevD.84.025007</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. D</title>
+		<imprint>
+			<biblScope unit="volume">84</biblScope>
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Asymptotic teleportation scheme as a universal programmable quantum processor</title>
+		<author>
+			<persName><forename type="first">Satoshi</forename><surname>Ishizaka</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tohya</forename><surname>Hiroshima</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.101.240501</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">101</biblScope>
+			<biblScope unit="page">240501</biblScope>
+			<date type="published" when="2008">2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Quantum teleportation scheme by selecting one of multiple output ports</title>
+		<author>
+			<persName><forename type="first">Satoshi</forename><surname>Ishizaka</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tohya</forename><surname>Hiroshima</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.79.042306</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">79</biblScope>
+			<biblScope unit="page">42306</biblScope>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Simplified instantaneous non-local quantum computation with applications to position-based cryptography</title>
+		<author>
+			<persName><forename type="first">Salman</forename><surname>Beigi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Robert</forename><surname>Koenig</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/1367-2630/13/9/093036</idno>
+	</analytic>
+	<monogr>
+		<title level="j">New J. Phys</title>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Quantum communication complexity advantage implies violation of a bell inequality</title>
+		<author>
+			<persName><forename type="first">Harry</forename><surname>Buhrman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lukasz</forename><surname>Czekaj</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andrzej</forename><surname>Grudka</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michal</forename><surname>Horodecki</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pawel</forename><surname>Horodecki</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Marcin</forename><surname>Markiewicz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Florian</forename><surname>Speelman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sergii</forename><surname>Strelchuk</surname></persName>
+		</author>
+		<idno type="DOI">10.1073/pnas.1507647113</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Proc. Natl. Acad. Sci</title>
+		<imprint>
+			<biblScope unit="volume">113</biblScope>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Fundamental limits to quantum channel discrimination</title>
+		<author>
+			<persName><forename type="first">Stefano</forename><surname>Pirandola</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Riccardo</forename><surname>Laurenza</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Cosmo</forename><surname>Lupo</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41534-019-0162-y</idno>
+	</analytic>
+	<monogr>
+		<title level="m">npj Quantum Information</title>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page">5</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Higher-dimensional performance of portbased teleportation</title>
+		<author>
+			<persName><forename type="first">Zhi-Wei</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Samuel</forename><forename type="middle">L</forename><surname>Braunstein</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/srep33004</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Sci. Rep</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Portbased teleportation in arbitrary dimension</title>
+		<author>
+			<persName><forename type="first">Michal</forename><surname>Studzinski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sergii</forename><surname>Strelchuk</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Marek</forename><surname>Mozrzymas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michal</forename><surname>Horodecki</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41598-017-10051-4</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Sci. Rep</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Optimal port-based teleportation</title>
+		<author>
+			<persName><forename type="first">Marek</forename><surname>Mozrzymas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michal</forename><surname>Studzinski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sergii</forename><surname>Strelchuk</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michal</forename><surname>Horodecki</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/1367-2630/aab8e7</idno>
+	</analytic>
+	<monogr>
+		<title level="j">New J. Phys</title>
+		<imprint>
+			<biblScope unit="volume">20</biblScope>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">A simplified formalism of the algebra of partially transposed permutation operators with applications</title>
+		<author>
+			<persName><forename type="first">Marek</forename><surname>Mozrzymas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michal</forename><surname>Studzinski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michal</forename><surname>Horodecki</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/1751-8121/aaad15</idno>
+	</analytic>
+	<monogr>
+		<title level="j">J. A: Math. Theor</title>
+		<imprint>
+			<biblScope unit="volume">51</biblScope>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Asymptotic performance of port-based teleportation</title>
+		<author>
+			<persName><forename type="first">Matthias</forename><surname>Christandl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Felix</forename><surname>Leditzky</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christian</forename><surname>Majenz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Graeme</forename><surname>Smith</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Florian</forename><surname>Speelman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michael</forename><surname>Walter</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/s00220-020-03884-0</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Commun. Math. Phys</title>
+		<imprint>
+			<biblScope unit="volume">381</biblScope>
+			<biblScope unit="page" from="379" to="451" />
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Multiport based teleportation -transmission of a large amount of quantum information</title>
+		<author>
+			<persName><forename type="first">Piotr</forename><surname>Kopszak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Marek</forename><surname>Mozrzymas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michal</forename><surname>Studzinski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michal</forename><surname>Horodecki</surname></persName>
+		</author>
+		<idno type="DOI">10.22331/q-2021-11-11-576</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Quantum</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Efficient multi port-based teleportation schemes</title>
+		<author>
+			<persName><forename type="first">Michal</forename><surname>Studzinski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Marek</forename><surname>Mozrzymas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Piotr</forename><surname>Kopszak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michal</forename><surname>Horodecki</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/TIT.2022.3187852</idno>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Inf. Theory</title>
+		<imprint>
+			<biblScope unit="volume">68</biblScope>
+			<biblScope unit="page" from="7892" to="7912" />
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Optimal Multi-port-based Teleportation Schemes</title>
+		<author>
+			<persName><forename type="first">Marek</forename><surname>Mozrzymas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michał</forename><surname>Studziński</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Piotr</forename><surname>Kopszak</surname></persName>
+		</author>
+		<idno type="DOI">10.22331/q-2021-06-17-477</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Quantum</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="page">477</biblScope>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Erweiterung des unbestimmtheitsprinzips für die relativistische quantentheorie</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Landau</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Peierls</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/BF01391513</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Zeitschrift für Physik</title>
+		<imprint>
+			<biblScope unit="volume">69</biblScope>
+			<biblScope unit="page" from="56" to="69" />
+			<date type="published" when="1931">1931</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Zur frage der messbarkeit der elektromagnetischen feldgrössen</title>
+		<author>
+			<persName><forename type="first">Niels</forename><surname>Henrik</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">David</forename><surname>Bohr</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Rosenfeld</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Det Kgl. Danske Videnskabernes Selskab Mathematisk-fysiske Meddelelser</title>
+		<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="page" from="1" to="65" />
+			<date type="published" when="1933">1933</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<analytic>
+		<title level="a" type="main">States and observables in relativistic quantum field theories</title>
+		<author>
+			<persName><forename type="first">Yakir</forename><surname>Aharonov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">David</forename><forename type="middle">Z</forename><surname>Albert</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevD.21.3316</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. D</title>
+		<imprint>
+			<biblScope unit="volume">21</biblScope>
+			<biblScope unit="page" from="3316" to="3324" />
+			<date type="published" when="1980">1980</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Can we make sense out of the measurement process in relativistic quantum mechanics?</title>
+		<author>
+			<persName><forename type="first">Yakir</forename><surname>Aharonov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">David</forename><forename type="middle">Z</forename><surname>Albert</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevD.24.359</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. D</title>
+		<imprint>
+			<biblScope unit="volume">24</biblScope>
+			<biblScope unit="page" from="359" to="370" />
+			<date type="published" when="1981">1981</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Is the usual notion of time evolution adequate for quantum-mechanical systems? i</title>
+		<author>
+			<persName><forename type="first">Yakir</forename><surname>Aharonov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">David</forename><forename type="middle">Z</forename><surname>Albert</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevD.29.223</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. D</title>
+		<imprint>
+			<biblScope unit="volume">29</biblScope>
+			<biblScope unit="page" from="223" to="227" />
+			<date type="published" when="1984">1984</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Is the usual notion of time evolution adequate for quantum-mechanical systems? ii. relativistic considerations</title>
+		<author>
+			<persName><forename type="first">Yakir</forename><surname>Aharonov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">David</forename><forename type="middle">Z</forename><surname>Albert</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevD.29.228</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. D</title>
+		<imprint>
+			<biblScope unit="volume">29</biblScope>
+			<biblScope unit="page" from="228" to="234" />
+			<date type="published" when="1984">1984</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<analytic>
+		<title level="a" type="main">Measurement process in relativistic quantum theory</title>
+		<author>
+			<persName><forename type="first">Yakir</forename><surname>Aharonov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">David</forename><forename type="middle">Z</forename><surname>Albert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lev</forename><surname>Vaidman</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevD.34.1805</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. D</title>
+		<imprint>
+			<biblScope unit="volume">34</biblScope>
+			<biblScope unit="page" from="1805" to="1813" />
+			<date type="published" when="1986">1986</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Causality constraints on nonlocal quantum measurements</title>
+		<author>
+			<persName><forename type="first">Sandu</forename><surname>Popescu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lev</forename><surname>Vaidman</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.49.4331</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">49</biblScope>
+			<biblScope unit="page" from="4331" to="4338" />
+			<date type="published" when="1994">1994</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Nonlocal variables with product-state eigenstates</title>
+		<author>
+			<persName><forename type="first">Berry</forename><surname>Groisman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lev</forename><surname>Vaidman</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/0305-4470/34/35/313</idno>
+	</analytic>
+	<monogr>
+		<title level="j">J. Phys. A: Math. Gen</title>
+		<imprint>
+			<biblScope unit="volume">34</biblScope>
+			<biblScope unit="page">6881</biblScope>
+			<date type="published" when="2001">2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<analytic>
+		<title level="a" type="main">Measurements of semilocal and nonmaximally entangled states</title>
+		<author>
+			<persName><forename type="first">Berry</forename><surname>Groisman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Benni</forename><surname>Reznik</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.66.022110</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">66</biblScope>
+			<biblScope unit="page">22110</biblScope>
+			<date type="published" when="2002">2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<analytic>
+		<title level="a" type="main">Instantaneous measurement of nonlocal variables</title>
+		<author>
+			<persName><surname>Vaidman</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.90.010402</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">90</biblScope>
+			<biblScope unit="page">10402</biblScope>
+			<date type="published" when="2003">2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Entanglement consumption of instantaneous nonlocal quantum measurements</title>
+		<author>
+			<persName><forename type="first">A J</forename><surname>S R Clark</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Connor</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Jaksch</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Popescu</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/1367-2630/12/8/083034</idno>
+	</analytic>
+	<monogr>
+		<title level="j">New J. Phys</title>
+		<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="page">83034</biblScope>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b42">
+	<analytic>
+		<title level="a" type="main">Bounds on instantaneous nonlocal quantum computation</title>
+		<author>
+			<persName><forename type="first">Alvin</forename><surname>Gonzales</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Eric</forename><surname>Chitambar</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/TIT.2019.2950190</idno>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Inf. Theory</title>
+		<imprint>
+			<biblScope unit="volume">66</biblScope>
+			<biblScope unit="page" from="2951" to="2963" />
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b43">
+	<analytic>
+		<title level="a" type="main">Pre-and postselected quantum states: Density matrices, tomography, and kraus operators</title>
+		<author>
+			<persName><forename type="first">Ralph</forename><surname>Silva</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yelena</forename><surname>Guryanova</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nicolas</forename><surname>Brunner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Noah</forename><surname>Linden</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Anthony</forename><forename type="middle">J</forename><surname>Short</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sandu</forename><surname>Popescu</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.89.012121</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">89</biblScope>
+			<biblScope unit="page">12121</biblScope>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b44">
+	<analytic>
+		<title level="a" type="main">Optimal probabilistic storage and retrieval of unitary channels</title>
+		<author>
+			<persName><forename type="first">Michal</forename><surname>Sedlak</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alessandro</forename><surname>Bisio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mario</forename><surname>Ziman</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.122.170502</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">122</biblScope>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b45">
+	<monogr>
+		<title level="m" type="main">Backward evolving quantum</title>
+		<author>
+			<persName><forename type="first">Lev</forename><surname>Vaidman</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

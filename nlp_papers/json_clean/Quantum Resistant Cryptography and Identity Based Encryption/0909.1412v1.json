@@ -1,0 +1,104 @@
+{
+  "paperid": "0909.1412v1",
+  "title": "An Efficient and Publicly Verifiable Id-Based Multi-Signcryption Scheme",
+  "authors": [
+    "Agrawal",
+    "Kushwah",
+    "Lal",
+    "Barreto",
+    "Libert",
+    "Mccullagh",
+    "Quisquater",
+    "Beak",
+    "Safavi-Naini",
+    "Susilo",
+    "Beak",
+    "Steinfeld",
+    "Zheng",
+    "Bellare",
+    "Boldyreva",
+    "Micali",
+    "Bohen",
+    "Franklin",
+    "Boyed",
+    "Boyen",
+    "Chen",
+    "Malone-Lee",
+    "Chow",
+    "Yiu",
+    "Hui",
+    "Chow",
+    "Duan",
+    "Cao",
+    "Gentry",
+    "Ramzan",
+    "Lal",
+    "Kushwah",
+    "Libert",
+    "Quisquater",
+    "Malone-Lee",
+    "Mitomi",
+    "Miyaji",
+    "Nalla",
+    "Reddy",
+    "Selvi",
+    "Vivek",
+    "Gopalkrishnan",
+    "Karuturi",
+    "Rangan",
+    "Selvi",
+    "Vivek",
+    "Rangan",
+    "Selvi",
+    "Vivek",
+    "Srinivasan",
+    "Rangan",
+    "Shamir",
+    "Yu",
+    "Bo",
+    "Xinyi",
+    "Mingwu",
+    "Zhang",
+    "Mao",
+    "Zhang",
+    "Yang",
+    "Niu",
+    "Zheng"
+  ],
+  "year": 2024,
+  "abstract": "Multi-signcryption is used when different senders wants to authenticate a single message without revealing it. This paper proposes a multi signcryption scheme in which no pairing is computed on the signcryption stage and the signatures can be verified publicly.",
+  "sections": [
+    {
+      "heading": "",
+      "text": "broadcast an e-mail to the employees of the company independently. Once an employee receives several ciphertexts from different managers, an issue of message authentication will arise. In such case confidentiality and authenticity required simultaneously. Motivated by this Duan and Cao [10] gave the first multi-receiver identity based signcryption scheme. Later on some more multi-receiver identity based signcryption schemes were proposed [12,17,19,21]. In this paper, we propose an identity based multi-signcryption scheme which is more efficient then the schemes S. Deva et. al [18] and Zhang et. al [23]. Our scheme needs no pairing computation on the signcryption stage. The scheme also possesses public verifiability for signature. We also convert our proposed scheme for multiple receivers, which we believe is the first multi-signcryption scheme for multiple receivers."
+    },
+    {
+      "heading": "Preliminaries:",
+      "text": " be an additive group and 2  be a multiplicative group, of the same prime order q . A function 1 1 2 e:    is called a bilinear pairing if it satisfies the following properties: (i) * ab 1q P,Q , a, b ,e(aP, bQ) e(P,Q)  (ii) For any point 1 P , e(P, Q) 1  for all 1 Q  if only if P  , the identity of 1  (iii) There exists an efficient algorithm to compute  is to compute abP . Given two groups 1  and 2  of the same prime order q , a bilinear map Before giving the proposed multi-signcryption scheme, first we formalize Identity based Multi-Signcryption An Identity based Multi-Signcryption scheme consists of the following algorithms: Setup: Given a security parameter k, the Private Key Generator (PKG) chooses a secret value randomly and generates master secret key msk and the public parameters params of the system. Key Extract: Given a user identity * ID {0,1} , the PKG computes the corresponding private key S and transmits it to the user in a secure way."
+    },
+    {
+      "heading": "Signcrypt",
+      "text": ": Different users with identities 1n L {ID ,..., ID } run this algorithm to signcrypt a message m to the receiver\"s identity B ID to obtain signcryption . Unsigncrypt: The receiver B with identity B ID and private key B S runs this algorithm to obtain plaintext m , if is a valid signcryption from L to identity B ID otherwise return . For consistency, we require that if 1 n 1 n B signcrypt( , L {ID , ..., ID }, S , ..., S , ID ), m then 1 n B B unsigncrypt( , L {ID ,..., ID }, ID , S ) m ."
+    },
+    {
+      "heading": "The proposed scheme:",
+      "text": "Setup: Given k is the security parameter, the PKG chooses the system parameter that includes two groups 12 ,  of same prime order q , a bilinear map where l is the length of plaintext and ciphertext . The system public parameters are x  and computes ii X x P , (ii) Sends i i i (X , Y , U ) to other signers through a secure channel. (iii) After receiving from the other signers j j j (X , Y , U ) , user i ID computes (a (iii) Unforgeability: Signcryptext is generated using the secret key i S of each of the signers. Thus no one, not even the one among signers can generate a valid signcryptext without knowing the secret key of the signers."
+    },
+    {
+      "heading": "Efficiency Comparison:",
+      "text": "We compare efficiency of our scheme with existing schemes [18,23]. We consider the costly operations which include scalar multiplications in 1  ( 1  Mul), exponentiations in 2  ( 2  Exp) and pairing operations (Pairing) as shown below Signcrypt Unsigncrypt 1  Mul 2  Exp Pairing 1  Mul 2  Exp Pairing S. Deva et al. [18] 3n n n 0 1 4 Zhang et al. [23] 4n 0 n 0 1 4 Proposed Scheme 4n n 0 1 0 4 Table -1 6. Remarks: (i) In the proposed schemes, we use the concept of Duan and Cao [10] which they proposed to construct an Identity based Multi-receiver signcryption scheme. (ii) One of the important advantages of the proposed scheme is that no pairing computation is needed for signcryption. This makes the scheme quite efficient. (iii) To achieve efficiency in Zhang et al. scheme [23], only one signer will compute the signcryptext but in our scheme every user can generates own copy of signcryptext. (iv) The proposed scheme is publicly verifiable. Any one who can access to the signcryptext can verify the signature on ciphertext c . Thus the proposed scheme is more applicable when signing a joint confidential contract between two or more organizations. Any one can verify the authenticity of the contract without getting any knowledge of it, however, only the authority can read the contract."
+    },
+    {
+      "heading": "Identity Based Multi-Signcryption Scheme for Multiple Receiver:",
+      "text": "An Identity based Multi-Signcryption scheme for Multi-Receivers consists of the following algorithms: Setup: Given a security parameter k, the Private Key Generator (PKG) chooses a secret value randomly and generates master secret key msk and the public parameters params of the system. Key Extract: Given a user identity * ID {0,1} , the PKG computes the corresponding private key S and transmits it to the user in a secure way. L {ID ' ,..., ID ' } , and to obtain signcryption ."
+    },
+    {
+      "heading": "Signcrypt",
+      "text": "Unsigncrypt: Each receiver with identity j ID' and private key j S' runs this algorithm to obtain plain text m if is a valid signcryption from L to identity j ID' otherwise return . For consistency, we require that if signcrypt( , L {ID ,..., ID },S ,...,S , L {ID ' ,..., ID ' }), m then unsigncrypt( , L {ID ,..., Id }, L {ID ' ,..., ID ' },S' ,...,S' ) m ."
+    },
+    {
+      "heading": "The proposed scheme:",
+      "text": "Setup: Given k is the security parameter, the PKG chooses the system parameter that includes two groups 12 ,  of same prime order q , a bilinear map 1 1 2 e:    , a generator 1 P  , randomly chosen Rq s  , R1 R (R P , )   and computes pub 1 P sP  and pub e(P , R) . The PKG also choose cryptographic hash functions * 01 H :{0,1}  , 12 H : {0,1} l  , ** 2q H :{0,1}  where l is the length of plaintext and ciphertext . The system public parameters are 1 2 pub 0 1 2 params q, , ,e, , P, P , , R, H , H , H l  Key Extract: Given a user identity * ID {0,1} then PKG compute public key ID 0 Q H (ID) and private key ID ID S sQ . Signcrypt: Given a message {0,1} l m , ' n receiver\"s identity * 1' L {ID ' ,..., ID ' } n and n senders\" identities 1 L {ID ,..., ID }, n each user i ID execute the following steps (i) Randomly chooses * iq x  and computes ii X x P , x i i Y and i, j i j U x (R Q' ) for j 1,..., ' n . (ii) Sends i i i,1 i,2 i, ' (X , Y , U , U ,..., U ) n to other signers through a secure channel. (iii)After receiving from the other signers i i i,1 i,2 i, ' (X , Y , U , U ,..., U ) n , user i ID computes (a) n i i1 XX , n i i1 YY , n i i1 QQ and n n n 1 i,1 2 i,2 n ' i,n ' i 1 i 1 i 1 U U , U U ,..., U U . (b) 1 c H (Y) m . (c) 2 1 2 n ' h H (c, X, U , U ,..., U ) . (d) i i i Z hS x Q . (iv) Each user sends i Z to other users. Every user computes Z and outputs ciphertext , where n i i1 ZZ and * 1 2 n ' c, X, Z, U , U ,..., U , L, L . Unsigncrypt: To unsigncrypt the ciphertext * 1 2 n ' c, X, Z, U , U ,..., U , L, L , the receiver with identity j ID' computes (i) 2 1 2 n ' h H (c, X, U , U ,..., U ) , and accepts iff (ii) Accept if pub e(P, Z) e(X hP ,Q) . It then extract j U from and computes (iii) 1 pub j j Y' e(P , U )e(X,S' ) , and recovers (iv) 1 c H (Y ') m 8. Security : (i) Confidentiality: Without knowing the secrete key of receiver, no one can compute n i i1 YY (x ... x ) 1n (x ... x ) 1n pub e(P , R) . It is only the specific receiver who can compute the actual value of Y using secrete key as 1 pub j j Y' e(P , U )e(X,S' ) = n 1 pub i, j j i1 e(P , U )e(X,S' ) n 1 pub i j j i1 e(P , x (R Q ' ))e(X,S' ) nn 1 pub i pub i j j i 1 i 1 e(P , x R)e(P x Q ' )e(X,S' ) 1 pub 1 n 1 n j j e(P ,(x ... x )R)e(sP,(x ... x )Q' )e(X,S' ) (x ... x ) 1 1n pub 1 n j j e(P , R) e((x ... x )P,sQ' )e(X,S' ) (x ... x ) 1 1n jj e(X,S' )e(X,S' ) (x ... x ) 1n Y . (ii) Public Verifiability: Any one who has access to the signcryptext can verify the signature on the ciphertext which it contains. First the verifier computes (iii) Unforgeability: Signcryptext is generated using the secret key i S of each the signers. Thus no one, not even the one among signers can generate a valid signcryptext without knowing the secret key of all the signers."
+    }
+  ]
+}

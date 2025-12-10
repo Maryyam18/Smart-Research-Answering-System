@@ -1,0 +1,1237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">A gentle introduction to Quantum Natural Language Processing</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><roleName>UPM</roleName><forename type="first">Shervin</forename><surname>Le Du</surname></persName>
+						</author>
+						<author>
+							<persName><roleName>PhD</roleName><forename type="first">Senaida</forename><forename type="middle">Hernández</forename><surname>Santana</surname></persName>
+						</author>
+						<author>
+							<persName><roleName>PhD</roleName><forename type="first">Giannicola</forename><surname>Scarpa</surname></persName>
+						</author>
+						<title level="a" type="main">A gentle introduction to Quantum Natural Language Processing</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date/>
+						</imprint>
+					</monogr>
+					<idno type="MD5">F78AF3C3453AA8C1CE30820AD0ECFC1B</idno>
+					<note type="submission">A thesis submitted for the degree of : Master in Quantum Computing Technology</note>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-28T12:21+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract/>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Abstract</head><p>The main goal of this master's thesis is to introduce Quantum Natural Language Processing (QNLP) in a way understandable by both the NLP engineer and the quantum computing practitioner. QNLP is a recent application of quantum computing that aims at representing sentences' meaning as vectors encoded into quantum computers. To achieve this, the distributional meaning of words is extended by the compositional meaning of sentences (DisCoCat model) : the vectors representing words' meanings are composed through the syntactic structure of the sentence. This is done using an algorithm based on tensor products. We see that this algorithm is inefficient on classical computers but scales well using quantum circuits. After exposing the practical details of its implementation, we go through three use-cases.</p><p>First we show that the DisCoCat framework has been used to do sentence similarity. While its straightforward implementation using quantum nearest neighbor is theoretically possible, its full implementation requires quantum RAM, a technology not yet available. We therefore review a hybrid classicalquantum workflow that was proposed to overcome that technical limitation. It encodes the dataset into a single superposition state and the distances within the amplitudes of the superposition.</p><p>Second, we show how the measured output of quantum circuits have been successfully used to do binary sentence classification. We see that sentences are mapped into quantum circuits with the use of parameters for rotation gates (R x , R z ) which can be optimized classically for a given task and dataset (question-answering in our case). While this is the first QNLP algorithm implemented on a quantum computer, our replication of the experiments leads us to raise some concerns as to the model's universality and scalability. We also see solutions have been proposed to offer better scalability at the price of increasing the size of circuits.</p><p>Finally, we see an extension that was proposed to encode hyperonomy (hierarchical word structure denoting supertype) using mixed states and ordering of positive operators. We see that when used within the DisCoCat framework, this model performs well at predicting sentence entailment While this thesis was designed to be a review of the literature about QNLP, we also introduce original experiments on question-answering. After replicating previous experiments on hand-labelled sentences, we extend the words' mappings to add coverage for logical connectors. These play a central role in compositionality as they allow to combine sentences in a way that the truth value of the whole is predictable from ones of its parts. The model we introduce to account for those, while being simplistic, is a promising implementation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. Introduction</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Historical Background</head><p>The idea of Natural Language Processing (NLP) goes back as far as the birth Computer Science. Alan Turing, who is considered the father of Computer Science, proposed in 1950 what is now called the Turing test. <ref type="bibr" target="#b53">[55]</ref> This sets the goal for Artificial Intelligence to become indistinguishable of humans on tasks involving natural language understanding and generation.</p><p>In the meanwhile, the 50's and 60's saw the rise of formal linguistics. This branch aims at formalizing linguistic structures into a mathematical model. The most famous protagonist of this emerging field is likely Noam Chomsky. His best known contribution being to formal grammar with the elaboration of Context-Free Grammars (CFG). <ref type="bibr" target="#b13">[15]</ref> CFGs are made of a vocabulary and production rules, and are designed to produce (and recognize) every grammatical sentences for a given set of rules.</p><p>The parallel rise of computers and formalization of grammar lead to an initial enthusiasm as to the the perspectives of NLP. At the time, the algorithms were always rule-based : linguistic experts would design by hand the vocabulary and the set of linguistic rules that would be implemented on a computer to complete a given task. <ref type="bibr" target="#b14">[16]</ref> In the broader perspective of Artificial Intelligence (AI), the rule-based techniques can be linked to the so-called symbolic approach : the algorithms are designed to mimic the cognitive steps of a human doing the same task. This means the algorithm should read and produce human-readable resources (rules, databases etc.). <ref type="bibr" target="#b12">[14]</ref> In the geopolitical context of the cold-war, the main targeted application of NLP was machine translation from Russian to English. In 1954, a proof of concept experiment lead by Georgetown University and IBM allowed the translation of 49 carefully selected Russian sentences. <ref type="bibr" target="#b14">[16]</ref> The authors claimed that machine translation could be solved within the end of the decade. However, in 1964, concerned by the lack of substantial progress, the US government required the Automatic Language Processing Advisory Committee (ALPAC) to lead an investigation on the state of the technology. In 1966, in its report, the ALPAC concludes that it is slower, less accurate and twice as expensive as human translation, and that "there is no immediate or predictable prospect of useful machine translation". <ref type="bibr" target="#b0">[1]</ref> This report brought most researches on machine translation to an end and concluded the initial optimism for symbolic approaches in NLP.</p><p>In the 90's a change of paradigm was operating in the field of NLP. The computational power had increased considerably, and the number of available linguistic data as well (especially with the birth of internet). Concurrently, NLP shifted from being a rule-driven technology to a data-driven one. <ref type="bibr" target="#b14">[16]</ref> Algorithms were designed to produce their own "rules" in order to fit as close as possible to the existing data. This marks the rise of Machine Learning era and the decline of symbolic AI. Indeed the rules produced by the algorithms are no longer built in some correspondence to cognitive models. Unsurprisingly, many of the early successes of this new era of statistical NLP are in the field of machine translation. Noticeably, IBM's alignment models were used to map each words to its translation inside a multilingual corpora and provided a way to train efficient statistical model of translation. <ref type="bibr" target="#b3">[4]</ref> These models would remain the state-of-the art in machine translation for over two decades.</p><p>However, during the past decade a technological revolution has taken place in the field of algorithmics that has set a new baseline to the performance of AI. The exponential increase of the computational power that can be used in parallel, noticeably through the development of GPUs and cloud computing, has enabled the efficient implementation of what is known as neural networks. These are also data-driven, but the key difference is that their structure rely on an analogy to the structure of the brain at the neuronal scale. Neural networks stack layers of artificial neurons that interconnect to one another. The algorithm runs into two steps : feed-forward, where the network predicts the answer to a given problem, and back-propagation, where given the actual correct answer to the task, the network readjusts the weights of every connection inside the network to improve its future predictions. <ref type="bibr" target="#b11">[13]</ref> As opposed to symbolic AI, this approach has been called connectionist because it relies on mimicking the low level structure of the brain instead of the high-level steps of cognition. Up to the date, neural network technologies remain the state-of-art of many major tasks in NLP.</p><p>The last decade has also known the development of a relatively new type of hardware : quantum computers ; and field : quantum computing. This development has lead to increased efforts and financing of these emerging technologies. The main motivation is to discover and implement algorithms that run more efficiently on these hardwares than on classical computers. The most famous example is Shor's algorithm, which enables finding the prime factors of a given number exponentially faster than any known classical algorithm would. <ref type="bibr" target="#b46">[48]</ref> Designing quantum algorithms for NLP tasks is a sub-field of quantum computing now called quantum natural language processing (QNLP). Around 2008, QNLP is being pioneered in a collective effort of three researchers of the University of Oxford : Mehrnoosh Sadrzadeh, Stephen Clark and Bob Coecke. Mehrnoosh Sarzadeh was working on grammar algebra: a mathematical formalism to account for grammar in natural languages.</p><p>Stephan Clark was working on word embedding : a technique to consistently model words as elements of a vectorial space in order to encode fundamental aspects of their meanings. Bob Coecke was working on categorical quantum mechanics : a way to describe quantum mechanics in terms of processes that can be composed together. In Mehrnoosh et al. (2010) they lay the foundations of what will become the Distributional Compositional Category (DisCoCat) model : a model that combines embedded words along the grammatical structure of a sentence to encode its meaning. <ref type="bibr" target="#b32">[34]</ref> The algorithm which is proposed by the authors to implement this model has an exponential speed-up when implemented on a quantum computer. With this model that encodes linguistic structure into quantum circuits, there is a claim for putting symbolic AI back on stage and thus to provide algorithms that no longer act like black boxes as neural networks do.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Outline of the Thesis</head><p>In the following sections, we will first define the DisCoCat model in further details, then go through three NLP use-cases that can be formulated in the Dis-CoCat framework along with some experiments and proofs of concepts for each of them. We will discuss the advantages and drawbacks of the quantum algorithms as compared to their classical counterparts. Finally, we will discuss the open challenges and perspectives for the field of QNLP.</p><p>In this work we will also introduce a series of experiments of our own: we first reproduce previous experiments made on question answering and adapt them to include hand-labelled data, we then propose an implementation to account for sentences composed through logical connectors. <ref type="bibr" target="#b26">[28]</ref> Logical connectors play a central role in both linguistics and mathematics as they enable combining propositions into new ones. This work was conceived as a gentle introduction to the QNLP field. It is aimed at both the NLP engineer and the quantum computer research scientist who want to get a general overview of the basis and the current state of this growing field. We assume some familiarity with basic linear algebra concepts. To the reader unfamiliar with these, we recommend referring to Lay (2016). <ref type="bibr" target="#b20">[22]</ref> To the one who wants to deepen his knowledge of quantum computing we recommend Nielsen &amp; Chuang (2010) <ref type="bibr" target="#b5">[6]</ref> and to the one unfamiliar with syntax theory, we recommend Chomsky and Lightfoot (2009). <ref type="bibr" target="#b4">[5]</ref> </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. DisCoCat Framework</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Syntactic Structure &amp; Lambek's Pregroup Algebra</head><p>Speech is always displayed linearly : in time for its spoken form, visually when it is written. Yet sentences have an underlying tree structure in which nouns complement verbs, adjectives complement nouns etc. Every word has a type and possibly dependents that complement its meaning. The underlying dependency structure of a sentence is referred to as syntax tree. <ref type="bibr" target="#b4">[5]</ref> The most straightforward representation of a syntactic tree is by displaying the words in an acyclic graph, hierarchically from its root to its leaves. Another way is by recursively enclosing the dependents into brackets. This is the format we will retain here.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Example: "Time flies like an arrow." [Time] flies [like [[an] arrow]]</head><p>Grammar refers to the rules for combining words that are permitted in such a syntactic tree for a given language. A typical problem in formal linguistics is one of knowing if a given sentence has a valid structure for a given grammar. For instance "Time ants like an arrow" does not break down into any valid syntax tree because it has no word that can consistently be typed as a verb. On the other hand, one sentence can be derived into various valid syntax trees which induce different meanings. For instance "John saw the man on the mountain with a telescope" can be interpreted differently depending on whether you link "with a telescope" to "John", "a man" or "the mountain".</p><p>The task of looking for all valid syntactic trees of a given sentence is referred to as parsing. In his work, Lambek provides a parsing method for natural languages which formally corresponds to the contraction operation in a pregroup algebra. <ref type="bibr" target="#b19">[21]</ref> A pregroup algebra is a partially ordered algebra (A, 1, •, _ l , _ r , ≤) such that (A, 1, •) is a monoid satisfying :</p><formula xml:id="formula_0">x l • x ≤ 1 x • x r 1 ≤ (contraction) 1 ≤ x • x l 1 ≤ x r • x (expansion)</formula><p>In a pregroup grammar like Lambek's, each word has a type. This type is made of an atomic type optionally decorated to its left (resp. right) by invert types that cancel-out when concatenated appropriately to their left (resp. right). We will indicate such an inverts with a superscript to the left (resp. right):</p><p>Example:</p><p>"arrow": -1 det . n , once concatenated to its left with a det, the remaining atomic type is noun "like": adv . n -1 , once concatenated to its right with a noun, the remaining atomic type is adverb</p><p>The fact that the invert cancels out to the left or right asymmetrically is the reason the grammar's algebra is a pregroup and not a group. The parsing of a sentence is successful when all of its elements cancel out and only the special symbol S is left.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Example:</head><p>"an" : det "time" : n "arrow" : -1 det . n "flies" : -1 n . S . adv -1 "like" : adv . n -1</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>[Time] flies [like [[an] arrow]] :</head><formula xml:id="formula_1">[n] . -1 n . S . adv -1 . [adv . n -1 . [[det] . -1 det . n]] [n] → . -1 n . S . adv -1 . [adv . n -1 . [n]] [n] → . -1 n . S . adv -1 . [adv] S →</formula><p>We see here that the parsing is successful.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Word Embedding and Distributional Hypothesis</head><p>When it comes to Natural Language Processing (NLP), most algorithms for sequence modeling simply discard the syntactic structure from their inputs. Bag of words and naive Bayes implementations are based on limiting context words to a given length. <ref type="bibr" target="#b55">[57]</ref> Recurrent Neural Networks offer the possibility to increase this length by order of magnitude, <ref type="bibr" target="#b11">[13]</ref> especially when attention mechanism is implemented. <ref type="bibr" target="#b54">[56]</ref> Yet none of the traditional techniques involve a grammar aware method. We can arguably affirm that discarding the underlying structure leads to increased uninterpretability of the algorithm's prediction. <ref type="bibr" target="#b35">[37]</ref> While the sentence syntax is not generally encoded into the algorithm's inputs, there have been extensive efforts in encoding words' meaning into it. "Word meaning" in itself can be understood in different ways. The most intuitive interpretation is the cognitive one, <ref type="bibr" target="#b57">[59]</ref> that we experience as humans every time we speak : the meaning of a word is what links it to the object it refers to. Second, we can consider the lexical meaning. <ref type="bibr" target="#b49">[51]</ref> It can be thought as the one we can find in a dictionary: definition, grammatical category, synonyms, antonyms, gender, number etc. Some aspects of the cognitive meaning can be derived from the linguistic one, as the latter is its linguistic modelization. In NLP, a widely accepted paradigm refers to word meaning within the distributional hypothesis. <ref type="bibr" target="#b44">[46]</ref> The latter states that words which have similar meanings appear in similar contexts. The interest is shifted from describing words' meanings to comparing words' meanings among them. In the following sections of this work, this is the paradigm in which distributional and word meaning have to be understood.</p><p>With the distributional hypothesis in mind, a very standard NLP pre-processing step is of building a vectorial space in which to represent individual word meaning. <ref type="bibr" target="#b16">[18]</ref> Vectorial spaces offer a structure to operate sums and subtraction between vectors, as well as a notion of orthogonality and distance between vectors. <ref type="bibr" target="#b20">[22]</ref> With the correct mapping from words to vectors, we can ensure that the linear operations and properties from vector spaces approach meaningful lexicographic equivalents :</p><formula xml:id="formula_2">Example: [cat] + [baby] [kitten] ≈ dist([cat], [jaguar] feline ) dist([cat], [car]) ⪅ [jaguar] feline • [jaguar] car 0 ≈</formula><p>This task of consistently mapping individual words into a vector space modelizing their meanings is referred to as word-embedding. A straightforward implementation comes directly from the distributional hypothesis <ref type="bibr" target="#b16">[18,</ref><ref type="bibr" target="#b58">60]</ref> : we chose a set of context words, for instance the 2000 most common words of a corpus. These words then form the basis of the vector space in the following manner : for every word of the corpus, we count the frequency at which it appears 'near' to each context word. The latter frequencies are the coordinates of that word along the basis vectors.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Example:</head><p>Let the corpus:</p><p>"kings have crowns" , "kings eat bones" "queens have crown" , "queens eat fish" "cats sleep on beds", "cats eat fish on beds" "dogs eat bones" , "dogs sleep on beds" Let the basis : ["crowns", "beds", "bones", "fish"]</p><p>The other words are then represented as : kings = [0.5, 0, 0. With this vectorial representation of words based on the distributional hypothesis, we expect to capture some insights into their lexical features (word similarity, opposite words etc.) that can be leveraged by further NLP algorithms. <ref type="bibr" target="#b16">[18]</ref> In other words, the meanings of the individual words are modeled during the word-embedding step. Yet generally no equivalent modelization of the data is used to account for the meaning arising from syntactic structure.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Towards Sentence Embedding and Quantum Advantage</head><p>Once provided with a way to model word meaning through word embedding, we can legitimately ask if an equivalent exists to capture sentences' meaning. We will refer to the latter as the meaning arising from composing the words' meanings within a syntactic structure. From now on, this is the paradigm in which compositional and sentence meaning will be referred to. We essentially want a mathematical representation for sentences that we can calculate from its words' embeddings (distributional meaning of words) and its underlying syntactic structure (compositional meaning of sentences).</p><p>In P. Smolensky (1990), the author suggests using a representation based on tensor product : Tensor Product Representation (TPR), to capture syntactic bindings across sentences. <ref type="bibr" target="#b47">[49,</ref><ref type="bibr" target="#b48">50]</ref> Tensor product is here understood as the Kronecker product, denoted by . Given two matrices A, B we define A B to be ⊗ ⊗ the block matrix where every element of A is multiplied by B (Fig. <ref type="figure">2</ref>.1). TPR is a structure where every unit of a sentence can be part of the representation of every constituent. It can be compositionally encoded from the numerical vectors representing the composing words, and hence offers the ideal framework to build-up a structure to embed not only words, but also sentences.  <ref type="formula">2010</ref>), the authors introduce the CSC algorithm, which develops another implementation of tensor based representation of the meaning of a sentence. <ref type="bibr" target="#b32">[34]</ref> This algorithm can be implemented on a quantum computer. Let the linear map Σ ii| (Fig. <ref type="figure">2</ref>.2), ⟨ which is the sum over all the basis vectors of the space N. We call this linear map a cap. It formally describes the state of log n EPR pairs (a generalization of quantum entanglement). If the basis is of size n and is orthonormal, the cap can simply be thought of as a row vector of size n 2 , filled of 0, and valued 1 at the positions ii|.</p><p>⟨ The steps of the CSC algorithm are detailed in Fig. <ref type="figure">2</ref>.3. Fig. 2.3 (Zeng &amp; Coecke, 2016) : the steps of the CSC algorithm. On the one hand, we calculate the tensor product of the words' vectors in the order they appear in the sentence. On the other hand, we parse the sentence and tensor the caps representing the bindings in the sentence. Finally, we compose the two tensor products.</p><p>On a classical machine the complexity of calculating full tensor products in a way that does not introduce further assumptions or inaccuracies is exponential. <ref type="bibr" target="#b58">[60]</ref> So, as sentences increases in length, the CSC algorithm computational cost grows at an exponential rate. On a quantum device however, qubits intrinsically represent tensor products (Table <ref type="table">2</ref>.1), <ref type="bibr" target="#b58">[60]</ref> and offer a way of implementing this algorithm that scales linearly with the size of the input.</p><p>For a sentence like "Mary likes words", considering a basis of size 2000 for the vector space N, storing the tonsorial product on a classical machine would require 2000 3 bits : 8 x 10 9 bits. In a quantum computer however, this can be stored in log 2 (2000 3 ) qubits : 33 qubits. Considering 10'000 sentences, the classical storage required raises to 8 x 10 <ref type="bibr" target="#b11">13</ref> , whereas the number of qubits only increases to 47. <ref type="bibr" target="#b58">[60]</ref> Table <ref type="table">2</ref>.1 (Zeng &amp; Coecke, 2016) : Rough comparisons of the storage necessary for representing verbal phrases in quantum and classical frameworks.</p><p>The approach we have introduced consists in calculating the representation for a sentence from the vectorial representation of the words composing it along its syntactic structure. This approach is known by the name of distributional compositional categorical model of natural language meaning (DisCo-Cat). Quantum theory (as formulated by categorical quantum mechanics) has a mathematical structure very similar to DisCoCat's. <ref type="bibr" target="#b6">[7,</ref><ref type="bibr" target="#b7">8,</ref><ref type="bibr" target="#b9">10,</ref><ref type="bibr" target="#b35">37]</ref> This framework enables mappings from the pregroup grammar to quantum circuits. Such mappings will be referred to as functors. <ref type="bibr" target="#b27">[29,</ref><ref type="bibr" target="#b36">38]</ref> This means that NLP tasks formulated in the DisCoCat framework can be instantiated as quantum computations using functors.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. Use-case: Sentence Similarity</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Trying to leverage Quantum Nearest Neighbor Algorithm</head><p>A well-known classical algorithm used in Machine Learning is the nearest neighbor algorithm. Given a collection of vectors within a vectorial space, the task is to find the nearest neighbor(s) of a given vector. Nearest neighbor can be applied for clustering or label prediction (when there is a finite number of labels). <ref type="bibr" target="#b2">[3]</ref> The naive approach has a complexity of O(MN), with M being the number of dimensions and N the number of vectors in the collection. In Wiebe et al. ( <ref type="formula">2015</ref>), the authors have introduced a quantum variant for this algorithm that shows a quadratic speedup under certain conditions to its classical counterpart. <ref type="bibr" target="#b56">[58]</ref> However, the overhead from CSC algorithm would mitigate this speedup if applied naively. In Zeng &amp; Coecke (2016), using some rewriting of the diagram resulting from CSC (Fig. <ref type="figure" target="#fig_4">3</ref>.1) the authors provide a way to effectively leverage the quadratic speedup of the quantum version of nearest neighbors. <ref type="bibr" target="#b58">[60]</ref> Fig. Nevertheless, this algorithm will require further developing of quantum RAM to be taken full advantage of. Indeed once the tensorial representation for a sentence is instantiated on a quantum device, it should be stored in memory to be later retrieved in linear time during the calculations of nearest neighbors. Unfortunately, quantum RAM currently remains unrealized.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. A Hybrid Classical-Quantum Workflow for Sentence Similarity</head><p>In O'Riordan et al. (2020), the authors provide a hybrid classical-quantum workflow to implement sentence similarity on "noun-verb-noun" sentences without quantum RAM. <ref type="bibr" target="#b15">[17,</ref><ref type="bibr" target="#b37">39,</ref><ref type="bibr" target="#b38">40]</ref> First, distance is defined as the hamming distance. The dataset will be mapped into bitstrings, but the mapping must ensure that the hamming distances between the bitstrings reflect the underlying compositional and distributional relations between the sentences they represent. The authors provide pre-processing steps to ensure the aforementioned requirement is met (Fig. <ref type="figure" target="#fig_4">3</ref>.2). Following method from Trugenberger (2001), the authors then encode the dataset of bitstrings into a quantum register in the form of a unique superposition state representing the full dataset (Fig. <ref type="figure" target="#fig_4">3</ref>.3). <ref type="bibr" target="#b52">[54]</ref> This superposition state representing the full dataset is called the test-pattern. Following same method, we encode a target vector into a similar superposition state. The target vector is the sentence we want to know the closest vector to within the dataset.</p><p>Finally, the hamming distance between the target's state and each state representing a sentence in the dataset is encoded into the amplitudes of each state of the superposition. These are then retrieved through amplitude measurement, which is repeated multiple times in order to build a statistical distribution of the results. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Proof of Concept</head><p>Using the workflow described in the previous section, the authors design a proof of concept experiment using the Intel Quantum Simulator to handle the quantum circuit workload. <ref type="bibr" target="#b15">[17,</ref><ref type="bibr" target="#b37">39,</ref><ref type="bibr" target="#b38">40]</ref> Considering the basis vocabulary is made up of only 4 nouns, 4 verbs and 2 adverbs, the authors arbitrarily map each word to bitstrings, ensuring the hamming distances are consistent to intuitive distances between them (Table <ref type="table">3</ref>.1).</p><p>Because the authors only intend to design a proof of concept, instead of projecting the words onto the basis states using a formal word embedding method, they arbitrarily choose the components for each word in terms of the basis vectors. (Table <ref type="table">3</ref>.2)</p><p>They decide to restrict the dataset to two sentences : { J= "John rests inside", M= "Mary walks outside"}. By simply tensoring the words of each sentences, the latter are mapped to quantum states:</p><formula xml:id="formula_3">|J (½) ( |0 (|10 + |11 ) (|00 + |10 ) ) ⟩ → ⟩ ⊗ ⟩ ⟩ ⊗ ⟩ ⟩ = (½) ( |01100 + |01000 + |01110 + |01010 ) ⟩ ⟩ ⟩ ⟩ |M (½) ( |1 (|00 + |01 ) (|01 + |11 ) ) ⟩ → ⟩ ⊗ ⟩ ⟩ ⊗ ⟩ ⟩ = (½) ( |10011 + |10111 + |10001 + |10101 ) ⟩ ⟩ ⟩ ⟩</formula><p>These states are then encoded into a superposition state representing the full dataset :</p><formula xml:id="formula_4">|m = (1/ ⟩ 2 √ ) (|J + |M ) ⟩ ⟩ = (1/ 2) (|01100 + |01000 + |01110 + |01010 + |10011 + |10111 + |10001 + |10101 ) √ ⟩ ⟩ ⟩ ⟩ ⟩ ⟩ ⟩ ⟩</formula><p>Finally, using the steps described in Fig. <ref type="figure" target="#fig_4">3</ref>.3, they are able to build the probability distribution of the closest states (Fig. <ref type="figure" target="#fig_4">3</ref>.4). Note that the dataset is made of two sentences corresponding to superposition states of 4 basis states each. On the other hand, the probability distribution only gives the hamming distance with the basis states. To infer the hamming distance with a superposition state one should sum-up the probabilities of the basis states that compose it.</p><p>Authors also run a more substantial experiment based on the corpus of sentences in Alice in Wonderland, increasing the nouns basis from 2 to 8 and increasing the basis states for sentences from 8 to 75. They use this new example to run the full algorithm, including the classical pre-processing part they eluded in the previous experiment. The only addition being the classical part of the algorithm, we won't detail this experiment any further here.</p><p>Table <ref type="table">3</ref>.1. (O'Riordan, 2020) : arbitrary mapping of the basis words to bitstrings. The mapping must ensure words we consider similar have closer bitstrings than words we consider as opposite. For instance, bitstrings for "adult" and "child" have the maximal hamming distance while ones for "sit" and "sleep" are closer to each other.</p><p>Table <ref type="table">3</ref>.2. (O'Riordan, 2020) : Using the bitstrings of the basis words, new words are described as superposition states of the basis words. For instance, "Walk" is modeled as a superposition of "stand" and "move." Fig. <ref type="figure" target="#fig_4">3</ref>.4 (O'Riordan, 2019) : the distribution of the closest basis states to "adult(s) stand inside" (orange) and to "child(ren) move inside" (green) are each sampled 5 x 104 times. For "adult(s) stand inside", we can see that the basis states composing |J have a higher overall probability than the ones composing ⟩ |M . Thus, for this example we can conclude the closest sentence within the ⟩ database is "John rests inside". For the other example we can show its closest sentence within the database is "Mary walks outside"</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. Use-case: Question Answering</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Using DisCoPy to model Question-Answering</head><p>Question answering is the task of building systems that automatically answer questions formulated in natural language. If we restrain to yes/no questions, we can train a Machine Learning algorithm on a set of propositions with a binary label representing their truth value, and then use it to evaluate the truth values of sentences it has never seen before.</p><p>When using the DisCoCat framework to map syntactic tree of a sentence into a quantum circuit, this is typically done with the choice of certain parameters (phase of R x , R z , ... ). The optimization of these parameters with regards to a given task is a classical optimization problem. One use-case of such a parameterized quantum computation in QNLP is question answering.</p><p>Using DisCoCat for question answering has been explored in much detail in K. Meichanetzidis et al (2020). <ref type="bibr" target="#b35">[37]</ref> The authors have further provided a proof of concept experiment of their algorithm. <ref type="bibr" target="#b34">[36,</ref><ref type="bibr" target="#b35">37,</ref><ref type="bibr" target="#b40">42,</ref><ref type="bibr" target="#b41">43]</ref> They ran the experiment using the discopy python library, which is a library they had previously designed to simulate DisCoCat framework on classical computers. <ref type="bibr" target="#b10">[11,</ref><ref type="bibr">12,</ref><ref type="bibr" target="#b39">41,</ref><ref type="bibr" target="#b50">52]</ref> Subsequently, they also have it run on a real quantum device. <ref type="bibr" target="#b33">[35,</ref><ref type="bibr" target="#b35">37]</ref> Let's first see how this task is handled by them on the quantum simulator. In the following we slightly reordered the steps followed by the authors in their notebook. <ref type="bibr" target="#b21">[23,</ref><ref type="bibr" target="#b34">36,</ref><ref type="bibr" target="#b40">42,</ref><ref type="bibr" target="#b41">43,</ref><ref type="bibr" target="#b51">53]</ref> We took the liberty to do so for pedagogic reasons only.</p><p>1) First, define the atomic pregroup types (typically 's' and 'n').</p><p>2) Assign a number of qubits for each atomic pregroup type. In their work, 's' is always set to 0 qubits, because the qubit for the sentence is only intended to be measured, and hence is to be considered as a scalar.</p><p>3) Construct the finite vocabulary. For each word assign a pregroup type, using atomic pregroup types and invert types. 4) Every pregroup type will be mapped to a quantum circuit. Explicitly define the quantum circuits (Fig. <ref type="figure" target="#fig_7">4</ref>.1, 4.2 and 4.3). 5) Explicit the mapping from each entry in the vocabulary to its corresponding quantum circuit. 6) Because the circuit is parameterized, define a function which takes a set of parameters as inputs, and outputs a functor from the grammar category to the category of quantum circuits. The functor outputs the quantum circuit that encodes the syntactic tree of any given grammatical sentence it is inputted with (Fig. <ref type="figure" target="#fig_7">4</ref>.4). 7) Create another functor to evaluate the circuits. 8) Instantiate the dataset: a random set of grammatical syntax trees generated by the CFG. Ideally, we want these sentences to have their truth values labelled by hand, making sure that the truth values among the sentences are consistent. Alternatively, and this is what is done in by the authors in their proof of concept experiment, one can use the functor defined at steps 6 and 7 with arbitrary parameters to produce the labels (Fig. <ref type="figure" target="#fig_7">4</ref>.5). 9) Use classical optimization techniques to choose the best parameters for the quantum circuits defined at step 4. In their work, the authors have used gradient descent. 10) Apply the functors from steps 6 and 7 on the test set, using parameters calculated at step 9. In their work, the testing score obtained is close to 100%.</p><p>Note that in further experiments, the authors switch to using a hand-labelled dataset (see following subsection for further discussion on this topic). <ref type="bibr" target="#b33">[35,</ref><ref type="bibr" target="#b35">37]</ref> Aside from that, in their work K. Meichanetzidis et al (2020) also adapt their experiment to have it run on a real quantum device instead of a simulator. <ref type="bibr" target="#b33">[35,</ref><ref type="bibr" target="#b35">37]</ref> By doing so, they run the first-ever QNLP experiment on a quantum computer. To do so, they compile the circuits to make it compatible with the processor's topology and to minimize the most noisy operations. The corpus they consider is called K 16 : a corpus of 16 sentences using 6 words. The experiment demonstrates a convergence of the cost function similar to the one observed on quantum simulators (Fig. <ref type="figure" target="#fig_7">4</ref>.6). Fig. <ref type="figure" target="#fig_7">4</ref>.1 (Oxford Quantum Group, 2020b): the circuit for the GHZ state has three outputs that can represent the three syntactic relations that has a relative pronoun like "who" <ref type="bibr" target="#b43">[45]</ref> Fig. <ref type="figure" target="#fig_7">4</ref>.2 (Le Du, 2021a): the circuit has one unique output that can represent the syntactic relation that has an intransitive verb like "is rich". Note that the circuit contains a R x gate whose phase is to be chosen. Fig. <ref type="figure" target="#fig_7">4</ref>.3 (Le Du, 2021a): the circuit has two outputs that can represent the syntactic relations that has a transitive verb like "love". Note that the circuit contains a R x gate whose phase is to be chosen. Fig. 4.5 (Oxford Quantum Group, 2020b): arbitrarily choosing (0.5, 1.0) as parameters the authors assign a truth value to a set of 20 sentences generated using a Context Free Grammar. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Our Original Experiments 1. Using Hand-Labelled Data</head><p>The first experiment we lead is directly inspired by the notebook described in previous section. <ref type="bibr" target="#b22">[24]</ref> At step 8 of the algorithm, instead of instantiating labels from a functor using arbitrary parameters, we provide hand-labelled ones, ensuring logical consistency among the truth values (Fig. 4.7). This kind of arbitrary hand-labelled data is a less artificial case than the one provided in the original experiment. But by changing the dataset in this way, the gradient descent algorithm only obtains a training score of 77% and a testing score of 80%.</p><p>In the second experiment, we run the latter experiment introducing into the model one more intransitive verb : "is happy" and hence a new parameter. <ref type="bibr" target="#b23">[25]</ref> In this case, we see the fitting score further falls to 62%. This leads to initial concerns as to the scalability of the model when the number of parameters increases (Table <ref type="table">4</ref>.1).</p><p>In their work, K. Meichanetzidis et al. ( <ref type="formula">2020</ref>) have had some success in addressing the problem of scalability (Fig. <ref type="figure" target="#fig_7">4</ref>.8). <ref type="bibr" target="#b35">[37]</ref> Indeed, they manage to further improve the fitting score of their model by increasing the number of qubits assigned to the pregroup types (set to 1 in our experiments) and the depth of the circuit corresponding to each word (alternating layers of Hadamard gates and layers of controlled-Z rotation gates). While this is a promising workaround for the problem of the scalability of the model, it is only achieved at the cost of scaling-up the underlying circuits. This is problematic as it introduces further technical challenges because the size of quantum computers is currently limited.  Fig. 4.8 (K. Meichanetzidis et al., 2020): evolution of the mean cost function L( ) along the number of SPSA iterations of the optimization algorithm, ⟨ θ ⟩ against the corpus K 30 made of 30 sentences using a vocabulary of 7 words. Results are averaged over 20 realizations. Python is used as backend. Top graph</p><p>shows the evolution when assigning 1 qubit for pregroup type n. The bottom one, when assigning 2 qubits for it. We see that the loss function decreases when adding more qubits to their representations (except for d=1). Moreover, we see that for a fixed number of qubits to represent n, the loss function decreases when increasing the depth d of the circuit corresponding to each word.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">Addition of Logical Connectors</head><p>Next, we run further experiments to model a different type of word : logical connectors. <ref type="bibr" target="#b24">[26,</ref><ref type="bibr" target="#b25">27]</ref> Under the DisCoCat framework the implementation of logical operators are of a great interest : they allow to compose recursively new sentences. In the context of question answering they have a second interest : they allow us to build sentences whose truth value can be logically deduced from its components. For instance, if "Alice loves Bob" is False, we expect "Alice does not love Bob" to be True.</p><p>The three logical connectors on which we focus in our experiments are : negation (not), conjunction (and), and disjunction (or). We will here propose an implementation for them and run proofs of concept experiments on this extended model. Note that we will limit to conjunction and disjunction of verbal phrases only, this is to say cases where there is one common subject for all the verbal phrases (i.e. "dogs chase cats and don't purr").</p><p>First, we change the assignment at step 1. Indeed, because 's' will be used as an input for logical connectors, 's' type has to be represented as a qubit instead of a scalar. We then give to the negation word the type -1 n • n, and to conjunction and disjunction the type -1 s • n. This enables a CFG to compose syntactic trees that have logical connectors in it (Fig. <ref type="figure" target="#fig_7">4</ref>.9). Fig. <ref type="figure" target="#fig_7">4</ref>.9 (Le Du, 2021e) : after attributing appropriate types to logical connectors, we enable the Context Free Grammar to account for them.</p><p>Because the verbs now have the possibility to link to a logical connector, we need the circuits that represent them to have an extra output. Intransitive verbs are mapped to the circuit previously used for transitive verbs, and transitive verbs are mapped to the circuit for the GHZ state.</p><p>Because all of our logical operators have two relations (Fig. <ref type="figure" target="#fig_7">4</ref>.9), we map them to the circuit we now use for intransitive verbs. Note that we introduce a new parameter for each logical connector. We therefore expect lower results than in previous experiment. Once each elementary circuit is defined, we can define the functor that maps any grammatical syntactic tree to its corresponding quantum circuit (Fig. <ref type="figure" target="#fig_7">4</ref>.10). We also define the functor which will be used to evaluate the circuits. Fig. <ref type="figure" target="#fig_7">4</ref>.10 (Le Du, 2021e) : the quantum circuit that encodes the syntactic tree of the grammatical sentence "dogs chase cats and don't purr". This quantum circuit is the output of the functor we have constructed to map syntactic trees to the quantum circuits encoding them.</p><p>The output of the circuit's evaluation through the second functor is a qubit. We use it to make the prediction as to the truth value of the corresponding sentence, by looking at whether the qubit is closer to |0 or |1 . Because this ex ⟩ ⟩ periment is meant to remain a proof of concept, we did not implement a proper optimization algorithm, and ran instead a random exploration of the space of the parameters. We do so because calculating gradients of the loss function with the jax library turned out to be technically harder to do with the aforementioned definition of the prediction function (see the Conclusions for further discussion on the issue). Despite this limitation of our approach, we find that when implementing only one logical door (negation), the total fitting score with the best parameters found is of 70%, and expectedly falls to 62% when implementing the three of them together (Table <ref type="table">4</ref>.2). Table <ref type="table">4</ref>.2 : comparison of the scores implementing one vs three logical operators. A dataset of 20 sentences was used in the first case, and of 100 sentences in the second.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.">Discussion</head><p>As compared to classical algorithms for question answering, one can appreciate the interpretability of the function underlying the prediction. Indeed, the shape of the quantum circuit is directly inspired by the shape of the syntactic structure of the sentence it represents.</p><p>On the other hand, a legitimate concern can be addressed as to whether this framework corresponds to a universal model. For a chosen set of parameters, the algorithm gives a prediction of the truth value (0 or 1) of every example in the dataset. If the dataset is of size N, the output of the algorithm will be an element of {0, 1} N . But given that the correct assignment of truth values is arbitrary among {0, 1} N , we should attach a particular importance to proof or disproof the universality of the model, which could be defined as its ability to output any arbitrary element of {0, 1} N .</p><p>To our knowledge, no such proof of universality exists. Nevertheless, we have seen that methods have been proposed to address the problem of scalability by increasing the size of the circuit. <ref type="bibr" target="#b35">[37]</ref> While this is promising for the modeling properties of the aforementioned framework, this is done at the cost of increasing the hardware requirements. This is a problem at a time where quantum computers have limits to the number of qubits and gates they can implement.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. Use-case: Compositional Hyperonomy and Entailment</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Encoding Hyperonomy and Entailment into Positive Operators</head><p>Encoding semantically relevant features into the input of NLP Algorithms is an important pre-processing step. We have seen it in the example of word embedding and through the efforts put into providing a framework which encodes the syntactic structure of sentences. Other semantical features we haven't seen yet include hyperonomy and entailement. Hyperonomy refers to the relation between two words in which one is the supertype of the other (e.g. 'cat' 'felin', 'felin' 'animal'). For a given object, hyperonym refers to its → → supertype, while hyponym refers to its subtype. Entailment on the other hand refers to two sentences for which one cannot be true without the other one being true as well (e.g. 'Garfield is a lazy cat.' entails 'There are lazy animals').</p><p>Up until now, the settings we have considered had each word encoded into a deterministic sequence of qubits. This is to say each word was encoded into a pure state. Nevertheless, we can design a setting where instead of being deterministic, the sequence of qubits encoding a word is probabilistic. In this case the words are said to be encoded into mixed states. In quantum mechanics, uncertainity about the state of a system is expressed in what is called density matrices. A matrix is a density matrix if it meets following requirements : ρ</p><formula xml:id="formula_5">• v V, ∀ ∈ ⟨v| |v ρ ⟩ 0 , ≥ • is self-adjoint, 1 ρ • has trace 1.</formula><p>ρ</p><p>Matrices satisfying only the two first conditions are called positive operators.</p><p>The density matrix of a pure state |v⟩ is given by its outer product : |v⟩⟨v|. And the density operator of a mixed state is the weighted sum of the states composing it :</p><p>Mixed states and their matrix representation are leveraged in M. Lewis (2019)  to provide an extension to the DisCoCat framework that also encodes hyperonomy and entailment within its structure. <ref type="bibr" target="#b28">[30,</ref><ref type="bibr" target="#b30">32,</ref><ref type="bibr" target="#b31">33]</ref> To do so, the author considers the vectors representing elementary words (Fig. <ref type="figure" target="#fig_11">5</ref>.1) to be the pure states, and conceptualizes a hyperonym as a mixture state of all its hyponyms. The author uses positive operators instead of density matrix because she implements another normalization process than having the trace equal to 1. The positive operator of a word corresponding to a pure state is constructed through the outer product with itself (Fig. <ref type="figure" target="#fig_11">5</ref>.2), while the positive operator of a hyperonym is built by summing over the matrix representations of all its hyponyms (Fig. <ref type="figure" target="#fig_11">5</ref>.3). <ref type="bibr" target="#b1">[2]</ref> Fig. <ref type="figure" target="#fig_11">5</ref>.1 (M. Lewis, 2019) : vectors representing the pure states "pug", "goldfish" and "tabby" expressed using the basis of words {"furry", "domestic", "working", "aquatic"} Fig. 5.3 (M. Lewis, 2019): construction of the positive operator of a hyperonym.</p><p>By building these operators in this way, the author ensures them to have two key properties. <ref type="bibr" target="#b28">[30,</ref><ref type="bibr" target="#b30">32,</ref><ref type="bibr" target="#b31">33]</ref> First that the ordering of the positive operators can be interpreted as a hyperonomy relation of the words they represent (the ordering of positive operators being defined as : A B B -A 0). Second, that ≤ ⇔ ≥ when using positive operators for words, the compositions introduced in the DisCoCat framework are well defined and result in a positive operator as well.</p><p>When using this extension, the output of a circuit is no longer deterministic. By multiplying measurements of it, we can induce the positive operator for the represented sentence. The author further shows that the ordering of such positive operators representing sentences can be interpreted as an entailment relation. <ref type="bibr" target="#b28">[30,</ref><ref type="bibr" target="#b30">32,</ref><ref type="bibr" target="#b31">33]</ref> Therefore, the author is able to use her framework to predict entailment of sentences. Table 5.3 (M. Lewis [QNLP], 2019) : comparison of accuracy of various models for entailment predictions against KS2016 dataset (using various sentences involving negations of the noun or the verbs). The three first models are the supervised approaches the five following are models using positive operators.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VI -Conclusions</head><p>Throughout this work we have examined the DisCoCat framework, which is used to encode into a quantum circuit the meaning of a sentence (derived from the words' embeddings and the underlying syntactic structure). In particular, we have seen its applications through three use-cases: sentence similarity, question-answering and entailment prediction.</p><p>For the task of question-answering, we have presented our original experiments implementing logical connectors. We have done so in order to test the DisCoCat model against logical compositions in which the truth value of the composed sentence should be directly predictable from the truth value of the elements. We have discussed some concerns as to the scalability and the universality of the model used for the task, but have seen that these have been partly addressed in other experiments by scaling-up the circuits. While this raises valid further preoccupations at a time where the size of quantum computers are limited, we have proposed a promising implementation of logical connectors in the DisCoCat framework.</p><p>Our discussion has been a gentle survey of the literature, where we have introduced original experiments. We have first seen how the DisCoCat framework models the meaning of a sentence by combining the vectors representing its words' meanings along its syntactic structure. We then went through a DisCo-Cat inspired hybrid classical-quantum workflow to calculate sentence similarity. We further explored how to use DisCoCat to achieve question-answering. This method has shown improved understandability in comparison to classical alternatives. Finally we have presented a possible extension to the DisCo-Cat's model that can capture word hyperonomy and sentence entailment.</p><p>As we have seen throughout this work, the area of QNLP is still mainly at stage of proofs of concepts. Only one of the three use case we discussed has ever run on a real quantum computer. There is a need to scale to larger problems and to apply these methods to real industry cases. Generally, QNLP faces the same limitations as the rest of the quantum computing field: unrealized quantum RAM, limitation in the number of qubits, absence of fault tolerant universal quantum machine etc., which lead recent researches to focus on noisy intermediate-scale quantum applications. QNLP also faces specific challenges such as the implementation of logical operators, in particular conversational logical operators. Indeed logical operators have more subtle meaning than their mathematical counterparts : "Bob is not not rich" doesn't mean he is rich. Various recent works have focused on logical operators. <ref type="bibr" target="#b29">[31,</ref><ref type="bibr" target="#b42">44,</ref><ref type="bibr" target="#b45">47]</ref> We are conscious that as such, our experiments are merely proofs of concept. Just as the other experiments on question answering did, we could try increas-ing the size of our circuits to improve the scores. Still following what has been done previously, we could run the experiments on an actual quantum computer instead of a quantum simulator. This is particularly true now that the team from Cambridge Quantum Computing has released the brand new lambeq python library which allows to encode DisCoCat instances directly on quantum devices. <ref type="bibr" target="#b17">[19,</ref><ref type="bibr" target="#b18">20]</ref> We should also provide a non trivial exploration of the space of the parameters by computing the gradients of the qubits outputed by the circuits to run a gradient descent. Finally, we could explore more subtle implementations of logical connectors in order to account for their conversational meaning.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><figDesc>5, 0] queens = [0.5, 0, 0, 0.5] cats = [0, 1, 0, 0.5] dogs = [0, 0.5, 0.5, 0] have = [1, 0, 0, 0] eat = [ 0, 0.25, 0.5, 0.5] sleep = [0, 1, 0, 0]</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Fig. 2 . 1 :</head><label>21</label><figDesc>Fig. 2.1 : Definition of tensor product Based on Lambek's pregroup algebra, in Mehrnoosh et al. (2010), the authors introduce the CSC algorithm, which develops another implementation of tensor based representation of the meaning of a sentence.<ref type="bibr" target="#b32">[34]</ref> This algorithm can be implemented on a quantum computer. Let the linear map Σ ii| (Fig.2.2), ⟨ which is the sum over all the basis vectors of the space N. We call this linear map a cap. It formally describes the state of log n EPR pairs (a generalization of quantum entanglement). If the basis is of size n and is orthonormal, the cap can simply be thought of as a row vector of size n 2 , filled of 0, and valued 1 at the positions ii|.⟨ The steps of the CSC algorithm are detailed in Fig.2.3.</figDesc><graphic coords="14,215.85,375.90,163.60,58.50" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>Fig. 2 . 2 (</head><label>22</label><figDesc>Fig. 2.2 (Zeng &amp; Coecke, 2016) : Definition of a cap</figDesc><graphic coords="14,223.30,620.95,148.70,66.10" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>3 . 1 (</head><label>31</label><figDesc>Fig. 3.1 (Zeng &amp; Coecke, 2016) : instead of directly calculating the output state of the CSC algorithm, the diagram is rewritten into an equivalent diagram. The problem of looking for the nearest neighbor of "kids play football" among {"sports", "politics"} is brought to the one of looking for the nearest neighbor of "play" among {|kids |sports |football , |kids |politics |football } ⟩ ⊗ ⟩ ⊗ ⟩ ⟩ ⊗ ⟩ ⊗ ⟩</figDesc><graphic coords="17,168.10,359.55,259.10,95.25" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head>Fig. 3 .</head><label>3</label><figDesc>Fig. 3.2. (O'Riordan et al., 2020) : the classical procedure to consistently transform the dataset of sentences into a dataset of bitstrings. The key part of this procedure is to choose consistent mapping of the basis words into bitstrings, and this is done by calculating the shortest Hamiltonian cycle in the fully connected graph defined at step 5.</figDesc><graphic coords="18,160.00,260.70,275.35,374.65" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><head>Fig. 3 .</head><label>3</label><figDesc>Fig. 3.3. (O'Riordan, 2019) : an iterative process is applied to the dataset of bitstrings in order to encode it into a quantum register in the form of a superposition state. This is done to overcome the limitation of not having access to quantum RAM.</figDesc><graphic coords="19,117.60,249.55,361.00,190.60" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><head>Fig 4 . 4 (</head><label>44</label><figDesc>Fig 4.4 (Oxford Quantum Group, 2020a): quantum circuit encoding the syntactic tree of the sentence "Alice who loves Bob is rich"</figDesc><graphic coords="24,305.80,380.85,224.65,145.50" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7"><head>Fig. 4 .</head><label>4</label><figDesc>Fig. 4.6 (K. Meichanetzidis et al., 2020): evolution of the mean cost function L( ) along the number of SPSA iterations of the optimization algorithm, ⟨ θ ⟩ against the corpus K 16 made of 16 sentences using a vocabulary of 6 words. Results are averaged over 20 realizations. Backends used are ibmq's quantum processors : ibmq toronto and ibmq montreal. The graph shows the cost function converges to 0 as the number of SPSA iterations increase.</figDesc><graphic coords="25,144.85,407.35,305.65,213.20" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8"><head>Table 4 . 1 :</head><label>41</label><figDesc>comparison of the scores of the original experiment with our first two experiments. The same dataset of 20 sentences is used in each experiment.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9"><head>Fig. 4 . 7 ( 5 Fig. 4 .</head><label>4754</label><figDesc>Fig. 4.7 (Le Du, 2021b) : we manually assign a truth value to the same set of 20 sentences as in Fig. 4.5</figDesc><graphic coords="27,218.20,92.20,158.90,183.15" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10"><head>Fig. 5 . 2 (</head><label>52</label><figDesc>Fig. 5.2 (Bankova et al., 2019) : building the positive operator representing the elementary word "cat"</figDesc><graphic coords="32,184.05,355.55,227.20,97.30" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11"><head>Fig. 5 .</head><label>5</label><figDesc>Fig. 5.4 (M. Lewis, 2020) : proposed formula to encode negation of words within paradigm of encoding words into positive operators</figDesc><graphic coords="34,121.65,139.25,352.05,143.30" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0"><graphic coords="1,55.90,216.05,483.50,224.30" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0"><graphic coords="15,56.80,92.65,484.25,251.45" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0"><graphic coords="21,153.90,435.80,295.75,190.00" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0"><graphic coords="29,129.35,92.65,336.60,213.90" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0"><graphic coords="33,305.30,393.90,504.85,268.90" type="bitmap" /></figure>
+		</body>
+		<back>
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Experiments</head><p>In her experiments, the positive operators are built using GloVe vectors for elementary words and WordNet to derive hyponomy. <ref type="bibr" target="#b28">[30,</ref><ref type="bibr" target="#b30">32]</ref> The calculations are realized on a classical computer. The resulting model is then tested against BLESS, WBLESS and BIBLESS datasets for hyperonomy relations, and the KS2016 dataset for entailment. These datasets are made up of pairs of words (resp. sentences), that are labelled 0 or 1, depending on whether they are in a hyperonomy (resp. entailment) relation.</p><p>At the word level (Table <ref type="table">5</ref>.1), the model does not outperform best supervised model for hyperonomy prediction, although differences are minimal (0.01 accuracy). However, at the sentence level (Table <ref type="table">5</ref>.2), the model for entailment prediction outperforms previous best scores on the dataset.</p><p>By introducing an error term to the definition of ordering for positive operators, Martha Lewis further proposes an extension to her own model to account for graded hyperonomy. Hyperonomy is no longer a binary relation between two words, but is rather a weighted one. For instance, with this extension, "whale" could be modeled as only 70% hyponym of "mammal".</p><p>In M. Lewis, 2020, the author also provides an extension to her own model to account for negating words: by subtracting its positive operator to the identity operator (Fig. <ref type="figure">5</ref>.4). <ref type="bibr" target="#b29">[31,</ref><ref type="bibr" target="#b30">32]</ref> This model is tested against KS2016 dataset (Table <ref type="table">5</ref>.3) and shows good results (93% average accuracy), thus showing compatibility with compositional hyperonomy. Table <ref type="table">5</ref>.1 (M. Lewis [QNLP], 2019): comparison of accuracy of various models for hyperonomy prediction against three datasets (BLESS, WB-LESS and BIBLESS). The four first models are the supervised approaches, the two following are symbolic models and the three last ones are the models using positive operators. Table <ref type="table">5</ref>.2 (M. Lewis [QNLP], 2019): comparison of accuracy of various models for entailment prediction against KS2016 dataset (using sentences of type SV, VO and SVO). The three first models are the supervised approaches, the five following are models using positive operators.</p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<monogr>
+		<title level="m" type="main">Language and machines: computers in translation and linguistics. National Academy of Sciences</title>
+		<ptr target="https://www.nap.edu/html/alpac_lm/ARC000005.pdf" />
+		<imprint>
+			<date type="published" when="1966">1966</date>
+		</imprint>
+	</monogr>
+	<note>Automatic Language Processing Advisory Committee</note>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Graded hyponymy for compositional distributional semantics</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Bankova</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Coecke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lewis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Marsden</surname></persName>
+		</author>
+		<idno type="DOI">10.15398/jlm.v6i2.230</idno>
+		<ptr target="https://doi.org/10.15398/jlm.v6i2.230" />
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Language Modelling</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<monogr>
+		<title level="m" type="main">Mastering Machine Learning Algorithms -Second Edition</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Bonaccorso</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<publisher>Packt Publishing</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">A statistical approach to language translation</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Brown</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Cocke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">D</forename><surname>Pietra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><forename type="middle">D</forename><surname>Pietra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Jelinek</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Mercer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Roossin</surname></persName>
+		</author>
+		<idno type="DOI">10.3115/991635.991651</idno>
+		<ptr target="https://doi.org/10.3115/991635.991651" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 12th Conference on Computational Linguistics -. Published</title>
+		<meeting>the 12th Conference on Computational Linguistics -. Published</meeting>
+		<imprint>
+			<date type="published" when="1988">1988</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<monogr>
+		<author>
+			<persName><forename type="first">N</forename><surname>Chomsky</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">W</forename><surname>Lightfoot</surname></persName>
+		</author>
+		<title level="m">Syntactic Structures</title>
+		<imprint>
+			<publisher>De Gruyter</publisher>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<monogr>
+		<author>
+			<persName><forename type="first">I</forename><forename type="middle">L</forename><surname>Chuang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">A</forename><surname>Nielsen</surname></persName>
+		</author>
+		<title level="m">Quantum Computation and Quantum Information</title>
+		<imprint>
+			<publisher>Cambridge University Press</publisher>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Categorical quantum mechanics</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Coecke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Abramsky</surname></persName>
+		</author>
+		<ptr target="https://arxiv.org/abs/0808.1023" />
+	</analytic>
+	<monogr>
+		<title level="m">Handbook of Quantum Logic and Quantum Structures</title>
+		<imprint>
+			<date type="published" when="2008">2008</date>
+			<biblScope unit="volume">2</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">B</forename><surname>Coecke</surname></persName>
+		</author>
+		<ptr target="https://youtu.be/TLOnABayXpg" />
+	</analytic>
+	<monogr>
+		<title level="j">Physics from Compositional Logic</title>
+		<imprint>
+			<date type="published" when="2020-01-01">2020. January 1</date>
+			<publisher>Copernicus Center for Interdisciplinary Studies</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<monogr>
+		<author>
+			<persName><forename type="first">B</forename><surname>Coecke</surname></persName>
+		</author>
+		<ptr target="https://youtu.be/wqDzn_kzQTc" />
+		<title level="m">Q2B 2020 | Quantum Natural Language Processing | Bob Coecke | University of Oxford</title>
+		<imprint>
+			<date type="published" when="2021-02-15">2021, February 15</date>
+		</imprint>
+	</monogr>
+	<note>QC Ware</note>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<monogr>
+		<author>
+			<persName><forename type="first">B</forename><surname>Coecke</surname></persName>
+		</author>
+		<ptr target="https://youtu.be/mL-hWbwVphk" />
+		<title level="m">Bob Coecke: Quantum Natural Language Processing</title>
+		<imprint>
+			<date type="published" when="2020-05-07">2020. May 7</date>
+		</imprint>
+	</monogr>
+	<note>Topos Institute</note>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">DisCoPy: Monoidal Categories in Python</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>De Felice</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Toumi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Coecke</surname></persName>
+		</author>
+		<idno type="DOI">10.4204/eptcs.333.13</idno>
+		<ptr target="https://doi.org/10.4204/eptcs.333.13" />
+	</analytic>
+	<monogr>
+		<title level="m">Electronic Proceedings in Theoretical Computer Science</title>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="volume">333</biblScope>
+			<biblScope unit="page" from="183" to="197" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<monogr>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Goldberg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Hirst</surname></persName>
+		</author>
+		<title level="m">Neural Network Methods in Natural Language Processing</title>
+		<imprint>
+			<publisher>Morgan &amp; Claypool</publisher>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<monogr>
+		<title level="m" type="main">Expert systems</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Hayes-Roth</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Murray</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Adelman</surname></persName>
+		</author>
+		<idno type="DOI">10.1036/1097-8542.248550</idno>
+		<ptr target="https://doi.org/10.1036/1097-8542.248550" />
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<monogr>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">E</forename><surname>Hopcroft</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">D</forename><surname>Ullman</surname></persName>
+		</author>
+		<title level="m">Introduction to Automata Theory, Languages and Computation</title>
+		<meeting><address><addrLine>Sd)</addrLine></address></meeting>
+		<imprint>
+			<publisher>Addison-Wesley Pub</publisher>
+			<date type="published" when="1979">1979</date>
+		</imprint>
+	</monogr>
+	<note>st ed.</note>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<monogr>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">J</forename><surname>Hutchins</surname></persName>
+		</author>
+		<title level="m">Concise History of the Language Sciences: From the Sumerians to the Cognitivists</title>
+		<meeting><address><addrLine>Pergamon</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="1995">1995</date>
+		</imprint>
+	</monogr>
+	<note>st ed.</note>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<monogr>
+		<ptr target="https://github.com/ICHEC/QNLP" />
+		<title level="m">GitHub -ICHEC/QNLP: ICHEC Quantum natural language processing (QNLP) toolkit. GitHub</title>
+		<imprint>
+			<publisher>Irish Centre for High End Computing</publisher>
+			<date type="published" when="2019-01">2019. January</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<monogr>
+		<author>
+			<persName><forename type="first">D</forename><surname>Jurafsky</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">H</forename><surname>Martin</surname></persName>
+		</author>
+		<title level="m">Speech and Language Processing An Introduction to Natural Language Processing, Computational Linguistics, and Speech Recognition</title>
+		<imprint>
+			<publisher>Prentice Hall</publisher>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+	<note>nd ed.</note>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<monogr>
+		<author>
+			<persName><forename type="first">D</forename><surname>Kartsaklis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Fan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Yeung</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Pearson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Lorenz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Toumi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>De Felice</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Meichanetzidis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Clark</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Coecke</surname></persName>
+		</author>
+		<ptr target="https://arxiv.org/abs/2110.04236" />
+		<title level="m">lambeq: An Efficient High-Level Python Library for Quantum NLP. Lambeq: An Efficient High-Level Python Library for Quantum NLP</title>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<monogr>
+		<author>
+			<persName><forename type="first">D</forename><surname>Kartsaklis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Fan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Yeung</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Pearson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Lorenz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Toumi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>De Felice</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Meichanetzidis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Clark</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Coecke</surname></persName>
+		</author>
+		<ptr target="https://github.com/CQCL/lambeq" />
+		<title level="m">CQCL / lambeq. GitHub</title>
+		<imprint>
+			<date type="published" when="2021-10">2021b, October</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">The Mathematics of Sentence Structure</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Lambek</surname></persName>
+		</author>
+		<idno type="DOI">10.2307/2310058</idno>
+		<ptr target="https://doi.org/10.2307/2310058" />
+	</analytic>
+	<monogr>
+		<title level="j">The American Mathematical Monthly</title>
+		<imprint>
+			<biblScope unit="volume">65</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="154" to="170" />
+			<date type="published" when="1958">1958</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<monogr>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">C</forename><surname>Lay</surname></persName>
+		</author>
+		<title level="m">Linear algebra and its applications</title>
+		<imprint>
+			<publisher>Pearson</publisher>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">bob-is-rich.ipynb (Jupyter notebook)</title>
+		<author>
+			<persName><forename type="first">Le</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename></persName>
+		</author>
+		<ptr target="https://github.com/sheldu45/QNLP/blob/master/Question%20Answering/0%20-%20Bob%20is%20rich/bob_is_rich.ipynb" />
+	</analytic>
+	<monogr>
+		<title level="j">GitHub</title>
+		<imprint>
+			<date type="published" when="2021">2021a</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">bob-is-rich hand-labelled.ipynb (Jupyter notebook)</title>
+		<author>
+			<persName><forename type="first">Le</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename></persName>
+		</author>
+		<ptr target="https://github.com/sheldu45/QNLP/tree/master/Question%20Answering/1%20-%20Bob-is-rich%20%20hand-labelled" />
+	</analytic>
+	<monogr>
+		<title level="j">GitHub</title>
+		<imprint>
+			<date type="published" when="2021">2021b</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">bob who is rich is happy.ipynb (Jupyter notebook)</title>
+		<author>
+			<persName><forename type="first">Le</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename></persName>
+		</author>
+		<ptr target="https://github.com/sheldu45/QNLP/tree/master/Question%20Answering/" />
+	</analytic>
+	<monogr>
+		<title level="j">GitHub</title>
+		<imprint>
+			<date type="published" when="2021">2021c</date>
+		</imprint>
+	</monogr>
+	<note>2%20-%20Bob%20who%20is%20rich%20is%20happy</note>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Cats don&apos;t chase Dogs.ipynb (Jupyter notebook)</title>
+		<author>
+			<persName><forename type="first">Le</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename></persName>
+		</author>
+		<ptr target="https://github.com/sheldu45/QNLP/tree/master/Question%20Answering/" />
+	</analytic>
+	<monogr>
+		<title level="j">GitHub</title>
+		<imprint>
+			<date type="published" when="2021">2021d</date>
+		</imprint>
+	</monogr>
+	<note>3%20-%20Cats%20don&apos;t%20chase%20Dogs</note>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Dogs chase Cats and don&apos;t purr.ipynb (Jupyter notebook)</title>
+		<author>
+			<persName><forename type="first">Le</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename></persName>
+		</author>
+		<ptr target="https://github.com/sheldu45/QNLP/tree/master/Question%20Answering/" />
+	</analytic>
+	<monogr>
+		<title level="j">GitHub</title>
+		<imprint>
+			<date type="published" when="2021">2021e</date>
+		</imprint>
+	</monogr>
+	<note>4%20-%20Dogs%20chase%20Cats%20and%20don&apos;t %20purr</note>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">GitHub -sheldu45/QNLP</title>
+		<author>
+			<persName><forename type="first">Le</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename></persName>
+		</author>
+		<ptr target="https://github.com/sheldu45/QNLP" />
+	</analytic>
+	<monogr>
+		<title level="j">GitHub</title>
+		<imprint>
+			<date type="published" when="2021-10">2021b, October</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<monogr>
+		<title level="m" type="main">Basic Category Theory</title>
+		<author>
+			<persName><forename type="first">T</forename><surname>Leinster</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2014">2014</date>
+			<publisher>Cambridge University Press</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Compositional Hyponymy with Positive Operators</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lewis</surname></persName>
+		</author>
+		<idno type="DOI">10.26615/978-954-452-056-4_075</idno>
+		<ptr target="https://doi.org/10.26615/978-954-452-056-4_075" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of Recent Advances in Natural Language Processing</title>
+		<meeting>Recent Advances in Natural Language Processing</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="638" to="347" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Towards logical negation for compositional distributional semantics</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lewis</surname></persName>
+		</author>
+		<ptr target="https://arxiv.org/pdf/2005.04929.pdf" />
+	</analytic>
+	<monogr>
+		<title level="j">IfCoLoG Journal of Logics and Their Applications</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<monogr>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lewis</surname></persName>
+		</author>
+		<ptr target="https://youtu.be/XahGR5DST1k" />
+		<title level="m">QNLP 2019: Compositional Hyponymy with Positive Operators -Martha Lewis</title>
+		<imprint>
+			<date type="published" when="2019-12-19">2019, December 19</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<analytic>
+		<title level="a" type="main">QPL 2021 Gdańsk]</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lewis</surname></persName>
+		</author>
+		<ptr target="https://youtu.be/89d7mz11JWA" />
+	</analytic>
+	<monogr>
+		<title level="m">Martha Lewis -Natural Language Processing and Quantum Theory</title>
+		<imprint>
+			<date type="published" when="2021-06-21">2021. June 21</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Mathematical Foundations for a Compositional Distributional Model of Meaning</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Mehrnoosh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Clark</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Coecke</surname></persName>
+		</author>
+		<ptr target="https://arxiv.org/abs/1003.4394" />
+	</analytic>
+	<monogr>
+		<title level="j">Lambek Festschirft, Special Issue of Linguistic Analysis</title>
+		<imprint>
+			<date type="published" when="2010">2010. 2010</date>
+		</imprint>
+	</monogr>
+	<note>Published</note>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Konstantinos Meichanetzidis, Alexis Toumi</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Meichanetzidis</surname></persName>
+		</author>
+		<ptr target="https://youtu.be/NJFYXZyeMj0" />
+	</analytic>
+	<monogr>
+		<title level="m">Giovanni de Felice: QNLP Implementations</title>
+		<imprint>
+			<date type="published" when="2020-09-21">2020. September 21</date>
+		</imprint>
+	</monogr>
+	<note>QNLP20 Cambridge Quantum]</note>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<monogr>
+		<author>
+			<persName><forename type="first">K</forename><surname>Meichanetzidis</surname></persName>
+		</author>
+		<ptr target="https://youtu.be/3UKqpL7Z0Uc" />
+		<title level="m">QNLP 2019: Towards NLP on Quantum Hardware -Konstantinos Meichanetzidis &amp; Alexis Toumi</title>
+		<imprint>
+			<date type="published" when="2019-12-19">2019, December 19</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<monogr>
+		<author>
+			<persName><forename type="first">K</forename><surname>Meichanetzidis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Toumi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>De Felice</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Coecke</surname></persName>
+		</author>
+		<ptr target="https://arxiv.org/abs/2012.03756" />
+		<title level="m">Grammar-Aware Question-Answering on Quantum Computers</title>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<monogr>
+		<title level="m" type="main">Category Theory, Category Theory II, Category Theory III. B Milewski&apos;s Youtube Playlists</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Milewski</surname></persName>
+		</author>
+		<ptr target="https://www.youtube.com/user/DrBartosz/playlists" />
+		<imprint>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<analytic>
+		<title level="a" type="main">A hybrid classical-quantum workflow for natural language processing</title>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">J</forename><surname>O'riordan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Doyle</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Baruffa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Kannan</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/2632-2153/abbd2e</idno>
+		<ptr target="https://doi.org/10.1088/2632-2153/abbd2e" />
+	</analytic>
+	<monogr>
+		<title level="j">Machine Learning: Science and Technology</title>
+		<imprint>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<monogr>
+		<title level="m" type="main">QNLP 2019: Calculating sentence similarity using a hybrid classical-quantum workflow -Lee</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>O'riordan</surname></persName>
+		</author>
+		<ptr target="https://youtu.be/rG0_SKCx09A" />
+		<imprint>
+			<date type="published" when="2019-12-19">2019, December 19</date>
+		</imprint>
+	</monogr>
+	<note>QNLP]</note>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<analytic>
+		<title level="a" type="main">GitHub -oxford-quantumgroup/discopy: a toolbox for computing with monoidal categories</title>
+		<ptr target="https://github.com/oxford-quantum-group/discopy" />
+	</analytic>
+	<monogr>
+		<title level="j">GitHub</title>
+		<imprint>
+			<date type="published" when="2019-10">2019, October</date>
+		</imprint>
+		<respStmt>
+			<orgName>Oxford Quantum Group</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<analytic>
+		<title level="a" type="main">discopy/alice-loves-bob.ipynb (Jupyter notebook)</title>
+		<author>
+			<orgName type="collaboration">Oxford Quantum Group</orgName>
+		</author>
+		<ptr target="https://github.com/oxford-quantum-group/discopy/blob/main/docs/notebooks/alice-loves-bob.ipynb" />
+	</analytic>
+	<monogr>
+		<title level="j">GitHub</title>
+		<imprint>
+			<date type="published" when="2020-10">2020a, October</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b41">
+	<analytic>
+		<title level="a" type="main">bob-is-rich.ipynb (Jupyter notebook)</title>
+		<author>
+			<orgName type="collaboration">Oxford Quantum Group</orgName>
+		</author>
+		<ptr target="https://github.com/oxford-quantum-group/discopy/blob/main/docs/notebooks/bob-is-rich.ipynb" />
+	</analytic>
+	<monogr>
+		<title level="j">GitHub</title>
+		<imprint>
+			<date type="published" when="2020-11">2020b, November</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b42">
+	<monogr>
+		<title level="m" type="main">Conversational Negation using Worldly Context in Compositional Distributional Semantics</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Rodatz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">A</forename><surname>Shaikh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Yeh</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+	<note>in press</note>
+</biblStruct>
+
+<biblStruct xml:id="b43">
+	<analytic>
+		<title level="a" type="main">The Frobenius anatomy of word meanings II: possessive relative pronouns</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Sadrzadeh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Clark</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Coecke</surname></persName>
+		</author>
+		<idno type="DOI">10.1093/logcom/exu027</idno>
+		<ptr target="https://doi.org/10.1093/logcom/exu027" />
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Logic and Computation</title>
+		<imprint>
+			<biblScope unit="volume">26</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="785" to="815" />
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b44">
+	<analytic>
+		<title level="a" type="main">The distributional hypothesis</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Sahlgren</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Rivista Di Linguistica</title>
+		<imprint>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="33" to="53" />
+			<date type="published" when="2008">2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b45">
+	<monogr>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">A</forename><surname>Shaikh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Yeh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Rodatz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Coecke</surname></persName>
+		</author>
+		<title level="m">Composing Conversational Negation. ACT 2021</title>
+		<imprint/>
+	</monogr>
+	<note>in press</note>
+</biblStruct>
+
+<biblStruct xml:id="b46">
+	<analytic>
+		<title level="a" type="main">Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer</title>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">W</forename><surname>Shor</surname></persName>
+		</author>
+		<idno type="DOI">10.1137/s0097539795293172</idno>
+		<ptr target="https://doi.org/10.1137/s0097539795293172" />
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Journal on Computing</title>
+		<imprint>
+			<biblScope unit="volume">26</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="1484" to="1509" />
+			<date type="published" when="1997">1997</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b47">
+	<analytic>
+		<title level="a" type="main">Tensor product variable binding and the representation of symbolic structures in connectionist systems</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Smolensky</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/0004-3702(90)90007-m</idno>
+		<ptr target="https://doi.org/10.1016/0004-3702" />
+	</analytic>
+	<monogr>
+		<title level="j">Artificial Intelligence</title>
+		<imprint>
+			<biblScope unit="volume">46</biblScope>
+			<biblScope unit="issue">1-2</biblScope>
+			<biblScope unit="page">90007</biblScope>
+			<date type="published" when="1990">1990</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b48">
+	<monogr>
+		<author>
+			<persName><forename type="first">P</forename><surname>Smolensky</surname></persName>
+		</author>
+		<ptr target="https://youtu.be/HzqUIP5xV_k" />
+		<title level="m">Towards Understandable Neural Networks for High Level AI Tasks</title>
+		<imprint>
+			<publisher>Microsoft Research</publisher>
+			<date type="published" when="2016-06-22">2016. June 22</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b49">
+	<monogr>
+		<title level="m" type="main">Lexical Semantics. The Cambridge Handbook of Cognitive Linguistics</title>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">R</forename><surname>Taylor</surname></persName>
+		</author>
+		<idno type="DOI">10.1017/9781316339732.017</idno>
+		<ptr target="https://doi.org/10.1017/9781316339732.017" />
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="246" to="261" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b50">
+	<monogr>
+		<title level="m" type="main">Alexis Toumi: DisCoPy: Monoidal Categories in Python</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Toumi</surname></persName>
+		</author>
+		<ptr target="https://youtu.be/kPar2nQVFnY" />
+		<imprint>
+			<date type="published" when="2020-07-08">2020, July 8</date>
+		</imprint>
+	</monogr>
+	<note>Applied Category Theory]</note>
+</biblStruct>
+
+<biblStruct xml:id="b51">
+	<monogr>
+		<author>
+			<persName><forename type="first">A</forename><surname>Toumi</surname></persName>
+		</author>
+		<ptr target="https://youtu.be/5jK8qEQvR-o" />
+		<title level="m">PyData Berlin</title>
+		<imprint>
+			<date type="published" when="2020-09-21">2020. September 21. September 2020</date>
+		</imprint>
+	</monogr>
+	<note>PyData</note>
+</biblStruct>
+
+<biblStruct xml:id="b52">
+	<analytic>
+		<title level="a" type="main">Probabilistic Quantum Memories</title>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">A</forename><surname>Trugenberger</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/physrevlett.87.067901</idno>
+		<ptr target="https://doi.org/10.1103/physrevlett.87.067901" />
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review Letters</title>
+		<imprint>
+			<biblScope unit="volume">87</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<date type="published" when="2001">2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b53">
+	<analytic>
+		<title level="a" type="main">Computing Machinery and Intelligence</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">M</forename><surname>Turing</surname></persName>
+		</author>
+		<idno type="DOI">10.1093/mind/lix.236.433</idno>
+		<ptr target="https://doi.org/10.1093/mind/lix.236.433" />
+	</analytic>
+	<monogr>
+		<title level="j">Mind</title>
+		<imprint>
+			<biblScope unit="issue">236</biblScope>
+			<biblScope unit="page" from="433" to="460" />
+			<date type="published" when="1950">1950</date>
+		</imprint>
+	</monogr>
+	<note>LIX</note>
+</biblStruct>
+
+<biblStruct xml:id="b54">
+	<analytic>
+		<title level="a" type="main">Attention is all you need</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Vaswani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Shazeer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Parmar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Uszkoreit</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Jones</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">N</forename><surname>Gomez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Kaiser</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Polosukhin</surname></persName>
+		</author>
+		<ptr target="https://arxiv.org/abs/1706.03762" />
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Neural Information Processing Systems</title>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b55">
+	<monogr>
+		<author>
+			<persName><forename type="first">S</forename><surname>Watanabe</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Chien</surname></persName>
+		</author>
+		<title level="m">Bayesian Speech and Language Processing</title>
+		<imprint>
+			<publisher>Cambridge University Press</publisher>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b56">
+	<analytic>
+		<title level="a" type="main">Quantum algorithms for nearest-neighbor methods for supervised and unsupervised learning</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Wiebe</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kapoor</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">M</forename><surname>Svore</surname></persName>
+		</author>
+		<idno type="DOI">10.26421/qic15.3-4-7</idno>
+		<ptr target="https://doi.org/10.26421/qic15.3-4-7" />
+	</analytic>
+	<monogr>
+		<title level="j">Quantum Information and Computation</title>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="issue">3 &amp; 4</biblScope>
+			<biblScope unit="page" from="316" to="356" />
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b57">
+	<monogr>
+		<author>
+			<persName><forename type="first">C</forename><surname>William</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">A</forename><surname>Cruse</surname></persName>
+		</author>
+		<title level="m">Cognitive Linguistics</title>
+		<meeting><address><addrLine>Cambridge</addrLine></address></meeting>
+		<imprint>
+			<publisher>Cambridge University Press</publisher>
+			<date type="published" when="2004">2004</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b58">
+	<analytic>
+		<title level="a" type="main">Quantum Algorithms for Compositional Natural Language Processing</title>
+		<author>
+			<persName><forename type="first">W</forename><surname>Zeng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Coecke</surname></persName>
+		</author>
+		<idno type="DOI">10.4204/eptcs.221.8</idno>
+		<ptr target="https://doi.org/10.4204/eptcs.221.8" />
+	</analytic>
+	<monogr>
+		<title level="m">Electronic Proceedings in Theoretical Computer Science</title>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="volume">221</biblScope>
+			<biblScope unit="page" from="67" to="75" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

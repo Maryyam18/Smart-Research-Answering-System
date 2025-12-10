@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Evaluation of Run-Time Energy Efficiency using Controlled Approximation in a RISC-V Core</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">A</forename><surname>Delavari</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">School of Electrical Engineering</orgName>
+								<orgName type="institution">Iran University of Science and Technology Tehran</orgName>
+								<address>
+									<country key="IR">Iran</country>
+								</address>
+							</affiliation>
+						</author>
+						<author role="corresp">
+							<persName><forename type="first">F</forename><surname>Ghoreishy</surname></persName>
+							<email>farazghoreishy@elec.iust.ac.ir</email>
+							<affiliation key="aff0">
+								<orgName type="department">School of Electrical Engineering</orgName>
+								<orgName type="institution">Iran University of Science and Technology Tehran</orgName>
+								<address>
+									<country key="IR">Iran</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">H</forename><forename type="middle">S</forename><surname>Shahhoseini</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">School of Electrical Engineering</orgName>
+								<orgName type="institution">Iran University of Science and Technology Tehran</orgName>
+								<address>
+									<country key="IR">Iran</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">S</forename><surname>Mirzakuchaki</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">School of Electrical Engineering</orgName>
+								<orgName type="institution">Iran University of Science and Technology Tehran</orgName>
+								<address>
+									<country key="IR">Iran</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Evaluation of Run-Time Energy Efficiency using Controlled Approximation in a RISC-V Core</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date/>
+						</imprint>
+					</monogr>
+					<idno type="MD5">4BB6A7735C05811D09B51C5D5989AD8B</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-28T12:52+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Embedded systems</term>
+					<term>RISC-V</term>
+					<term>approximate computing</term>
+					<term>low-power design</term>
+					<term>energy efficient embedded systems</term>
+					<term>very large scale integration</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>The limited energy available in most embedded systems poses a significant challenge in enhancing the performance of embedded processors and microcontrollers. One promising approach to address this challenge is the use of approximate computing, which can be implemented in both hardware and software layers to balance the trade-off between performance and power consumption. In this study, the impact of dynamic hardware approximation methods on the run-time energy efficiency of a RISC-V embedded processor with specialized features for approximate computing is investigated. The results indicate that the platform achieves an average energy efficiency of 13.3 pJ/instruction at a 500MHz clock frequency adhering approximation in 45nm CMOS technology. Compared to accurate circuits and computation, the approximate computing techniques in the processing core resulted in a significant improvement of 9.21% in overall energy efficiency, 60.83% in multiplication instructions, 14.64% in execution stage, and 9.23% in overall power consumption.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>The increasing demand for energy-efficient and low-power embedded systems has driven research efforts towards enhancing the overall performance of embedded processors, especially microcontrollers. This is an important challenge, as the limited energy available in most embedded applications imposes constraints on the design and operation of these devices. A promising approach to address this challenge is the use of approximate computing, which can be implemented in both hardware and software layers to balance the trade-off between performance and power consumption. Approximation is allowed in error-resilient applications such as image processing <ref type="bibr" target="#b0">[1]</ref>, neural networks <ref type="bibr" target="#b1">[2]</ref>, Processing in Memory (PIM) <ref type="bibr" target="#b2">[3]</ref> and etc.</p><p>The RISC-V instruction set architecture has emerged as a popular choice for embedded processor designers, offering a flexible platform for a wide range of applications <ref type="bibr" target="#b3">[4]</ref>  <ref type="bibr" target="#b4">[5]</ref>. The integration of RISC-V and approximate computing techniques presents an opportunity to further improve the energy efficiency and performance of embedded processors.</p><p>This study investigates the impact of dynamic hardware approximation methods on the run-time energy efficiency of a RISC-V embedded processor with specialized features for approximate computing. The results demonstrate that the platform achieves a significant improvement in energy efficiency, area, and power consumption compared to accurate circuits and computation, highlighting the potential of this approach for enhancing the performance of embedded systems. Main contributions of this paper are as follows:</p><p>• Utilizing a RISC-V embedded processor platform Hardware/Software interface method using standard RISC-V CSRs and special programming conventions for approximate computing. • Design of error-configurable adder/subtracter and multiplier circuit for the experimental setup. • Analysis and evaluation of approximation and faultinjection methods efficiency at core level, in an embedded processor.</p><p>In the remainder of this paper, we will present: a review of related previous works in this subject (Section II), a description of the experimental setup used in this research (Section III), the results of the experiments and a comparison of the findings (Section IV), and an overall summary of the project along with concluding remarks (Section V).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. RELATED WORKS</head><p>Approximate computing has enhanced energy efficiency in many applications in recent years. There has been exploration into combining RISC-V with approximate computing methods. Software adaptations have proposed ISA extensions <ref type="bibr" target="#b5">[6]</ref> and multi-level accuracy control mechanisms to enable this. The AxPIKE ISA simulator <ref type="bibr" target="#b6">[7]</ref> enables incorporating hardware approximation at the instruction level to assess quality-energy trade-offs. Other studies have characterized RISC-V architecture extensions that orchestrate diverse circuit-level approximation techniques, especially approximate multipliers <ref type="bibr" target="#b7">[8]</ref>. Customized RISC-V cores have also integrated approximate multipliers to demonstrate energy-efficient execution of neural networks <ref type="bibr" target="#b8">[9]</ref>.</p><p>There have been investigations on the advantages of multicore systems that combine exact and approximate compute cores <ref type="bibr" target="#b9">[10]</ref>. This heterogeneous approach aims to leverage the benefits of approximation while maintaining the precision of exact computation. <ref type="bibr" target="#b10">[11]</ref> proposes an approach to improve the performance of multi-core systems by configurable approximate arithmetic logic units, with a machine learning based framework for online power regulation and quality monitoring to adjust the frequency and precision of the arithmetic units and maximize performance.</p><p>The proposed design here involves a RISC-V core where each execution unit can dynamically switch between accurate and approximate circuits and also if applicable control the error level of integrated approximate execution units. This combines the efficiency gains of dynamic approximation with the precision of exact computation all within a single reconfigurable core.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. EXPERIMENTAL SETUP</head><p>The considered platform for these experiments is an embedded processor named phoeniX <ref type="bibr" target="#b11">[12]</ref> which supports RV32IEM standard instruction set of the open-source and license-free RISC-V ISA. The chosen core is a 3-stage pipelined scalar processor with specialized and novel features for approximate computing, in order to be a general platform for fault-tolerant applications and approximation-enhanced low-power design studies. In this study, "fault-tolerant" refers to applications that can accommodate errors (specifically approximations) resulting from their functions and data. Pipeline stages are considered as Instruction Fetch (IF) and Decode (ID), Execution (EXE) and Memory access with Write-back (MEM/WB). The high-level architecture of the processor's execution stage within the pipeline is illustrated in Fig. <ref type="figure" target="#fig_0">1</ref>. Execution stage consists of Arithmetic Logic Unit, Multiplier Unit and Divider Unit due to the support of RV32IEM instruction set. These three computational units share a unique method for adhering and controlling approximation in circuitlevel. The approximation level is determined from a customized special-purpose control status registers addressed in 0x800, 0x801 and 0x802 in standard RISC-V CSR addressing space <ref type="bibr" target="#b4">[5]</ref>. Each execution unit can host four arithmetic circuit (accurate or approximate) supported by the standard signaling conventions of the processor's execution engine. The execution unit's active circuit and target result along with approximation control logic for each is determined by the value in the CSRs, which the decoding and framing is explained further in this paper.</p><p>These CSRs are named alucsr, mulcsr and divcsr, designed for enabling and controlling approximation level of the dynamically configurable circuits. Each field of CSRs is responsible for a feature in approximation control and advancement. Bit 0 is for enabling approximation, in which approximate arithmetic is used when signal value is 1, and will perform accurate arithmetic with value of 0. Bits 2 to 1 are for determination of selected circuit, for controlling result multiplexer and switching off unused circuits. Bits 3 to 7 are used for dynamic truncation control in arithmetic circuits which may support this technique. Bits 8 to 11 and bits 12 to 15 are also custom fields of control status registers for designer-defined control logic and features. In the end, bits 16 to 31 are responsible for dynamic error control in case of integration of error controllable arithmetic circuits within the core.</p><p>Each execution unit can embed up to 4 arithmetic circuit with platform's special conventions for circuit integration. Circuits can be accurate, approximate with static configurations and error, or dynamic error-configurable such as selected circuits in this study. The platform can adhere and synchronize execution process with different circuit which may vary in timing and other hardware specifications. Block diagram of the execution units' structure is shown in Fig. <ref type="figure">2</ref> In this experiment an error-configurable multiplier, alongside an accurate multiplier, and fully accurate division circuit is considered, because of the importance of multiplication and accumulation in most computational workloads, including fault-tolerant applications. The accurate multiplier is positioned in the default slot (Circuit I), while the approximate multiplier is placed in the secondary slot (Circuit II). The remaining slots are unutilized and remained empty in this configuration.</p><p>Circuit I ACC (Default) Circuit IV ACC/APX Circuit II ACC/APX Circuit III ACC/APX 7 3 7 opcode funct3 funct7 32 rs1 32 rs2 32 execsr 1 busy Instruction Determination Logic (opcode/funct3/funct7) execsr [31:16] [15:12] [11:8] [7:3] [2:1] [0] Execution Unit Busy MUX Execution Unit Result MUX 32 result Fig. 2. Error control, circuit switching, and hardware approximation level determination based on custom CSR values in EXE stage of processor</p><p>After determination of the operating circuit through the respected CSRs of each execution unit, the other circuits will be switched off in order to exclude redundant processing of data and unnecessary static and dynamic power consumption. It is important to note that all execution units including adders in ALU Arithmetic Logic Unit, Multiplier Unit and Divider unit are capable of approximation features explained, except for addition required in address generation and other control flow instructions which uses an accurate adder because approximation is not allowed in such operations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Dynamic Accuracy-Controllable Carry Select Adder</head><p>The adder/subtracter integrated within the processor, is a fast and low power carry select adder, with improved performance by decreasing the critical path in comparison with conventional design. Also, the proposed adder, depicted in Fig. <ref type="figure" target="#fig_1">3</ref>, is an error-controllable design which can be used in different applications due to controllable accuracy of the results. The adder inside arithmetic logic unit is responsible for addition and subtraction of I/E extension of RISC-V instruction set architecture. In the experiments, the adder was set to default mode which enables accurate addition. In fact, the proposed adder can perform both accurate and approximate addition in a single circuit, without any need of additional hardware for circuit switching in the execution. The ECA shown in Fig. <ref type="figure" target="#fig_1">3</ref> is a 4-bit error controllable ripple carry adder, in which the fundamental full-adders have an additional control signal in comparison with conventional full adder. This full adder as shown in Fig. <ref type="figure" target="#fig_2">4</ref>, can perform accurately when the error control signal is high (logical value 1), but may produce inaccurate result by decreasing or increasing carry value when the signal is low. When using approximation, the error in the final result is applied unevenly, as in half the input scenarios, the approximate result is lower than the accurate result by one, and in the other half, the approximate result is higher than the accurate result by one.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Dynamic Accuracy-Controllable Array Multiplier</head><p>For this setup, an original low-power approximate 8x8 unsigned multiplier with reduced circuital path and area in comparison with a conventional Wallace tree multiplier is designed. The design also incorporates the full-adder presented in Fig. <ref type="figure" target="#fig_2">4</ref>. The unbiased error of the adder (having both positive and negative error in results, in error enabled modes) improves the multiplier with Error Rate (ER) and Mean Relative Error Distance (MRED) <ref type="bibr" target="#b12">[13]</ref>  <ref type="bibr" target="#b13">[14]</ref> in term of accuracy. The fulladder illustrated in Fig. <ref type="figure" target="#fig_2">4</ref>, is integrated in the final addition stage, after partial product generation and compression stages of Wallace multiplier which is shown in Fig. <ref type="figure">5</ref>.</p><p>The ripple carry adder's error in the final stage can be controlled using the error control signals of the full-adders. 7-bits of the 12-bit addition is controllable, which gives 128 configurations and error levels in one circuit, which means 128 configurations of dynamic power consumption. The mode with all error control signals equal to zero is the configuration with lowest power consumption, which also has the highest application-level quality in error (ER and MRED). .</p><formula xml:id="formula_0">Partial Product Reduction (Wallace Tree) ↓ 4:2 Compressors • • • • • • • • • • • • • • • •</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>8-bit Operands</head><p>Partial Product Generation (PPG) with AND Gates Final Addition Stage (Ripple Carry Adder) The proposed Multiplier has an area of 269µm² with a range of power between 70.2µW and 101.3µW in different configurations. Fig. <ref type="figure">6</ref> shows ER and MRED for all configurations of the proposed design.</p><formula xml:id="formula_1">• • • • • • • • • • • • • • • • 16-bit Result</formula><p>Table <ref type="table">I</ref> shows an analysis in terms of hardware (power, delay and area) and accuracy efficiency. The proposed design showcases the best result in terms of critical path delay and area occupation. Additionally, in one of the configurations the design has a power consumption of 70.2µW which is the lowest in the comparison. The design in <ref type="bibr" target="#b9">[10]</ref> produces the best results in accuracy efficiency criteria. The 6th Iranian International Conference on Microelectronics (IICM2024) 0 1 2 3 4 5 6 7 8 9 10 0 16 32 48 64 80 96 112 128 MRED Approximation Factors 35 40 45 50 55 60 65 70 0 16 32 48 64 80 96 112 128 Error Rate [%] Approximation Factors Fig. 6. Error Rate and Mean Relative Error Distance (MRED) analysis of the proposed multiplier in all dynamic configurations (128 Approximation Factors)</p><p>TABLE I HARDWARE -ACCURACY EFFICIENCY COMPARISON OF PROPOSED MULTIPLIER AND SIMILAR APPROXIMATE MULTIPLIERS Multipliers Power (µW) Delay (ns) Area (µm²) ER (%) MRED (%) Proposed Design 70.2 -101.3 0.64 269.6 36.16 -65.06 0.85 -8.94 [15] 81.2 0.64 27.8.8 32.42 0.18 [16] 156.7 0.80 323.9 48.35 1.26 [16] 143.5 0.77 301.6 69.73 2.83</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Hierarchical 32×32 Approximate Multiplier Design</head><p>For final integration of multiplier within the core, a 32bit multiplier architecture consisting of several 8-bit modules is designed. The method used for creation of the 32-bit architecture is a hierarchical configuration of 8-bit multipliers. The original 8-bit multiplier is used over multiple cycles to perform 16-bit multiplication. This hardware is replicated four times to perform a 32-bit multiplication. There is also an accurate multiplier integrated within the core in order to have a comprehensive comparison in term of power and energy efficiency gains, using dynamic circuit switching feature which is presented in the paper. The accurate multiplier circuit is an original 32-bit multiplier implemented with DesignWare software, offered by Synopsys Design Compiler.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. RESULTS AND COMPARISON</head><p>The processor and it's approximate and accurate execution units are implemented in 45nm CMOS technology using Design Compiler, enabling a clock frequency of 500MHz which is considered for this set of experiments. All power and energy consumption data reported in this paper are extracted with post-synthesis simulation based on switching activity files.</p><p>Before delving into the main experiment and comparisons, Fig. <ref type="figure">7</ref> is shown for an estimation of the power distribution in the processor, excluding memories and register files.</p><p>It can be concluded from Fig. <ref type="figure">7</ref> that the execution stage has the highest power consumption in the inner core microarchitecture. In the target processor, the execution stage, including the arithmetic logic unit, multiplier unit (with 2 multipliers), and divider unit, have the largest share of the power distribution chart, accounting for 80%. The results provide motivation for using approximation techniques not just in software or memory approaches, but also at the circuit level. The execution stage, excluding memories and register files, consumes the most power within the inner modules. This is the reason for the focus of this study, the impact of user-controlled circuit level approximation on the overall performance of a processor.</p><p>4% 2% 2% 2% 3% 57% 14% 9% 3% 2% 2% Hazard Forward Unit Load Store Unit Control Status Unit Jump Branch Unit Address Generator Divider Unit ACC Multiplier Unit ACC/APX Arithmetic Logic Unit ACC/APX Immediate Generator Instruction Decoder Fetch Unit</p><p>Note: [%] in the figure is the share within the modules (not the processor).</p><p>• Rest of the core (pipeline latches, internal core logic etc.) = 22.6 % • Modules including Register Files = 77% Fig. <ref type="figure">7</ref>. Modules power distribution in the processor's inner modules excluding memories and register files Fig. <ref type="figure">8</ref> presents a detailed breakdown of instruction types following compilation. The average code size is comprised of 221992 instructions and utilization of multiplication is 242 instructions per code in average. Multiplication instructions are 6.47% of arithmetic instruction (addition/multiplication/division) in average. Approximation is enabled exclusively for multiplication instructions, specifically the mul and mulh instructions. Both of these instructions are classified as Rtype, meaning they operate with registers without involving any immediate values. They utilize the same circuitry, which is determined by the mulcsr setting in the program. In contrast, addition instructions (add and addi) operate in accurate mode.</p><p>237 247 236 252 237 239 776 778 808 763 769 753 2666 2671 2726 2637 2657 2636 57 57 60 59 53 58 2564 2550 2777 2523 2542 2508 2738 2722 2842 2713 2722 2706 0 200 400 600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 2DConv3x3 2DConv5x5 fir_int iir_int matMul_int nr_solver Instructions after Compilation mul/mulh add addi div/divu/rem/remu lw sw</p><p>Fig. <ref type="figure">8</ref>. Number of arithmetic and memory accessing instructions after code compilation using GCC compiler <ref type="bibr" target="#b16">[17]</ref> with constant options There is a selected set of standard applications using a notable load of multiplication within the calculation process.</p><p>The 6th Iranian International Conference on Microelectronics (IICM2024) Some of these applications are regarded as fault-tolerant applications due to their inherent resilience against error in accumulative workload. As an example, 2D convolutions are used in image processing applications and filters, which are perfect examples of applications allowed to adhere approximation. All of the programs are compiled using standard GCC-GNU <ref type="bibr" target="#b16">[17]</ref> compiler for RISC-V with similar compilation options. Duration for execution of each code and the instruction count is measured using RISC-V standard CSRs in order to calculate energy efficiency of the processor in each application. Energy efficiency in this study is regarded as the consumed power in a limited time period per instructions executed in the program.</p><p>Fig. <ref type="figure">9</ref> illustrates energy efficiency in each program in pJ/instructions using both accurate and approximate multipliers. Circuit switching was done utilizing the mulcsr circuit selection field. The approximate multiplier is set to a default accuracy with error control field of CSR equal to 0x7E. Fig. <ref type="figure" target="#fig_0">10</ref> shows the impact of approximate multiplication on total power consumption of the embedded processor. In every application, the approximate multiplication has decreased overall power consumption. The conserved power in each application highlights the efficiency of approximation techniques in scenarios where a reasonable margin of calculation error is permissible. The selected error-level (0x7E) of the multiplier has an MRED of 0.85% and ER of 36.2%.</p><p>14.289 14.739 14.924 15.428 14.334 14.946 13.929 13.036 13.460 13.532 13.949 12.784 13.600 12.771 10 11 12 13 14 15 16 17 2DConv3x3 2DConv5x5 fir_int iir_int matMul_int nr_solver factorial Energy Efficiency [pJ/inst.] Accurate MUL Approximate MUL Fig. 9. Energy efficiency comparison of applications executed with accurate and approximate multiplication</p><p>Fig. <ref type="figure" target="#fig_0">10</ref> shows the impact of approximate multiplication on total power consumption of the embedded processor. In every application, the approximate multiplication has decreased overall power consumption. The saved power in each application showcases the effectiveness of approximation in applications where error in calculations are allowed by a reasonable margin. The selected error-level of the multiplier has an MRED of 0.85% and ER of 36.2%.</p><p>Overall improvements in term of power consumption are illustrated in Fig. <ref type="figure" target="#fig_0">11</ref>. This analysis was carried out from 3 separate perspectives: Total improvement (processor's power consumption), Execution stage of the processor, and the Multiplier Unit (multiplication operation solely). The percentage of improvement in each considered hardware is written next to</p><p>5.679 5.475 5.481 5.286 5.919 5.262 5.366 5.181 5.000 4.970 4.779 5.279 4.788 4.920 4 4.5 5 5.5 6 6.5 2DConv3x3 2DConv5x5 fir_int iir_int matMul_int nr_solver factorial Total Power Consumption @1.1V-500MHZ [mW] Compiled with riscv64-unknown-gcc 8.3.0, GCC-8.3.0 Flags: -c -O2 -mabi=ilp32 -march=rv32im Accurate MUL Approximate MUL Fig. 10. Overall power consumption comparison of the processor, executing applications using accurate and approximate multiplication 8.769 8.676 9.323 9.591 10.813 9.008 8.312 68.046 57.991 58.259 54.402 71.167 58.005 57.955 16.245 13.832 14.269 12.762 18.050 13.075 14.260 0 5 10 15 20 25 30 35 40 45 50 55 60 65 70 75 80 85 2DConv3x3 2DConv5x5 fir_int iir_int matMul_int nr_solver factorial Improvement in Power Consumption [%] Compiled with riscv64-unknown-gcc 8.3.0, GCC-8.3.0 Flags: -c -O2 -mabi=ilp32 -march=rv32im, Processor Running @1.1V-500MHz Total MUL inst. EXE stage Fig. 11. Power consumption improvements by approximation, in the processor's overall power, execution stage and multiplication instructions each column. Power consumption in each execution unit and the execution stage of the core are presented in Table II and Table III in both accurate and approximate modes.</p><p>From the results, it is indicated that there is an average improvement of 9.213% in energy-efficiency in comparison with accurate calculation. By selecting the desired circuit in each execution unit though CSRs, the other circuits will be turned off, decreasing the dynamic and static power consumption of unused units near to zero. The highest improvement is formatMul int with 10.813% percent with a power consumption of 5.279mW with approximate multiplier.</p><p>The overall power consumption during the execution stage of the pipelined processor is reduced by 18.05% through the use of approximate multiplication, with the multiplication process alone achieving a significant improvement of 71.16% within this stage. The most significant improvement in these metrics is resulted from thematMul int and 2Dconv3x3.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. CONCLUSION</head><p>This study examines the impact of dynamic hardware approximation on the energy efficiency of a RISC-V embedded processor with specialized capabilities for approximate computing. The findings demonstrate an average 9.21% improvement in the processor's run-time energy efficiency, along</p><p>TABLE II POWER CONSUMPTION OF EXECUTION UNITS IN ACCURATE MULTIPLICATION MODE Applications Power Consumption [mW] MUL ALU DIV EXE Stage 2DConv3x3 0.435 0.626 0.601 1.662 2DConv5x5 0.438 0.627 0.605 1.670 fir int 0.448 0.598 0.622 1.668 iir int 0.443 0.592 0.634 1.669 matMul int 0.437 0.646 0.507 1.590 nr solver 0.431 0.589 0.632 1.652 factorial 0.440 0.593 0.615 1.648 TABLE III POWER CONSUMPTION OF EXECUTION UNITS IN APPROXIMATE MULTIPLICATION MODE Applications Power Consumption [mW] MUL ALU DIV EXE Stage 2DConv3x3 0.139 0.638 0.615 1.392 2DConv5x5 0.184 0.636 0.619 1.439 fir int 0.187 0.607 0.636 1.43 iir int 0.202 0.605 0.649 1.456 matMul int 0.126 0.655 0.522 1.303 nr solver 0.181 0.6 0.655 1.436 factorial 0.185 0.602 0.626 1.413</p><p>with a 14.64% reduction in overall power consumption during the execute stage of the scalar core. These results confirm that approximate computing, particularly through hardwareapproximated arithmetic circuits, is a promising approach for dynamic energy management in embedded processors. The research highlights the potential of such techniques to optimize power usage without compromising computational performance, making them particularly valuable in resourceconstrained environments. This study further reinforces the growing relevance of hardware approximation in addressing energy efficiency challenges in modern embedded systems.</p><p>The results highlight the potential of integrating RISC-V processors and approximate computing for enhancing the performance of energy-constrained embedded systems in execution process. The ability to dynamically adjust approximation offers a flexible approach to manage accuracy and efficiency. Future work could explore extending these techniques across the processor architecture and to a wider range of embedded applications. Further hardware optimization and advanced error management could lead to even greater efficiency gains. Automating the process of accuracy and energy control using real-time monitoring systems within the processor can be a promising solution to address the accuracy/efficiency trade-off in embedded cores. Overall, this study demonstrates the sig-nificant outlook for RISC-V embedded processors leveraging approximate computing.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Fig. 1 .</head><label>1</label><figDesc>Fig. 1. Execution stage high-level block diagram of the processor including accurate and approximate arithmetic circuits</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Fig. 3 .</head><label>3</label><figDesc>Fig. 3. Error controllable low-power and fast carry select adder</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>Fig. 4 .</head><label>4</label><figDesc>Fig. 4. Proposed full-adder with error signal used in 4-bit ripple carry adders of the CSA circuit</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>Fig. 5 . 8 -</head><label>58</label><figDesc>Fig. 5. 8-bit multiplier's high level block diagram</figDesc></figure>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div><head>ACKNOWLEDGMENT</head><p>The authors would like to express their appreciation to <rs type="person">A. M. H. Monazzah</rs> for their valuable insights, which have significantly enhanced the quality of this paper.</p></div>
+			</div>			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Design of approximate adders and multipliers for error tolerant image processing</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Anusha</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Deepa</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Microprocessors and Microsystems</title>
+		<imprint>
+			<biblScope unit="volume">72</biblScope>
+			<biblScope unit="page">102940</biblScope>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">ACE-CNN: Approximate carry disregard multipliers for energy-efficient CNN-Based image classification</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Shakibhamedan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Amirafshar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">S</forename><surname>Baroughi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">S</forename><surname>Shahhoseini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Taherinejad</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE Transactions on Circuits and Systems I: Regular Papers</title>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">ReApprox-PIM: Reconfigurable approximate Look-Up-Table (LUT)-Based Processing-in-Memory (PIM) machine learning accelerator</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bavikadi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">R</forename><surname>Sutradhar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Indovina</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ganguly</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">M P</forename><surname>Dinakarrao</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems</title>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<author>
+			<persName><forename type="first">A</forename><surname>Waterman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Asanovic</surname></persName>
+		</author>
+		<ptr target="https://riscv.org/specifications/privileged-isa/" />
+	</analytic>
+	<monogr>
+		<title level="m">Privileged Architecture</title>
+		<title level="s">The RISC-V Instruction Set Manual</title>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="volume">II</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">RISC-V Instruction Set Architecture Extensions: A Survey</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Cui</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Wei</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Access</title>
+		<imprint>
+			<biblScope unit="volume">11</biblScope>
+			<biblScope unit="page" from="24696" to="24711" />
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Approxrisc: An approximate computing infrastructure for RISC-V</title>
+		<author>
+			<persName><forename type="first">T</forename><surname>Trevisan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">RISC-V Workshop in</title>
+		<meeting><address><addrLine>Barcelona</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2018-05">May 2018</date>
+		</imprint>
+	</monogr>
+	<note>poster</note>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">AxPIKE: Instruction-level Injection and Evaluation of Approximate Computing</title>
+		<author>
+			<persName><forename type="first">I</forename><surname>Felzmann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">F</forename><surname>Filho</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Wanner</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2021 Design, Automation &amp; Test in Europe Conference &amp; Exhibition (DATE)</title>
+		<meeting><address><addrLine>Grenoble, France</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="491" to="494" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<monogr>
+		<title level="m" type="main">RISC-V Core with Approximate Multiplier for Error-Tolerant Applications</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Verma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Sharma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">P</forename><surname>Das</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="239" to="246" />
+			<pubPlace>Maspalomas, Spain</pubPlace>
+		</imprint>
+	</monogr>
+	<note>2022 25th Euromicro Conference on Digital System Design (DSD)</note>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">MARLIN: A Co-Design Methodology for Approximate ReconfigurabLe Inference of Neural Networks at the Edge</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Guella</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Valpreda</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Caon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Masera</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Martina</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/TCSI.2024.3365952</idno>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE Transactions on Circuits and Systems I: Regular Papers</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">AxE: An approximate-exact multi-processor system-on-chip platform</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">S</forename><surname>Baroughi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Huemer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">S</forename><surname>Shahhoseini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Taherinejad</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2022 25th Euromicro Conference on Digital System Design</title>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="60" to="66" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Performance Improvement of Processor Through Configurable Approximate Arithmetic Units in Multicore Systems</title>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">A K</forename><surname>Gharavi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Safari</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Access</title>
+		<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="page" from="43907" to="43917" />
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">A Reconfigurable Approximate Computing RISC-V Platform for Fault-Tolerant Applications</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Delavari</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Ghoreishy</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">S</forename><surname>Shahhoseini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Mirzakuchaki</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2024 27th Euromicro Conference on Digital System Design (DSD)</title>
+		<meeting><address><addrLine>Paris, France</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+			<biblScope unit="page" from="81" to="89" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Comparison and extension of approximate 4-2 compressors for lowpower approximate multipliers</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">G M</forename><surname>Strollo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Napoli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">D</forename><surname>Caro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Petra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">D</forename><surname>Meo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Circuits Syst. I, Reg. Papers</title>
+		<imprint>
+			<biblScope unit="volume">67</biblScope>
+			<biblScope unit="issue">9</biblScope>
+			<biblScope unit="page" from="3021" to="3034" />
+			<date type="published" when="2020-09">Sep. 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Design and analysis of energy-efficient dynamic range approximate logarithmic multipliers for machine learning</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Yin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Waris</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Han</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Lombardi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Sustain. Comput</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="612" to="625" />
+			<date type="published" when="2021-10">Oct. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">An Approximate Carry Disregard Multiplier with Improved Mean Relative Error Distance and Probability of Correctness</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Amirafshar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">S</forename><surname>Baroughi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">S</forename><surname>Shahhoseini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Taherinejad</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2022 25th Euromicro Conference on Digital System Design (DSD)</title>
+		<meeting><address><addrLine>Maspalomas, Spain</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="46" to="52" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Hybrid Partial Product-Based High-Performance Approximate Recursive Multipliers</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Waris</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Han</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Lombardi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE Transactions on Emerging Topics in Computing</title>
+		<imprint>
+			<date type="published" when="2022-03">1 Jan.-March 2022</date>
+			<biblScope unit="volume">10</biblScope>
+			<biblScope unit="page" from="507" to="513" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<monogr>
+		<title level="m" type="main">GNU toolchain for RISC-V, including GCC</title>
+		<author>
+			<persName><forename type="first">Risc-V</forename><surname>Collaboration</surname></persName>
+		</author>
+		<ptr target="https://github.com/riscv-collab/riscv-gnu-toolchain" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

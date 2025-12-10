@@ -1,0 +1,1339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Quantum-Resistant Networks Using Post-Quantum Cryptography</title>
+				<funder ref="#_uUXv6Ta">
+					<orgName type="full">University of Pittsburgh</orgName>
+				</funder>
+				<funder ref="#_acutqY8">
+					<orgName type="full">NASA</orgName>
+				</funder>
+				<funder ref="#_R6Jyn49">
+					<orgName type="full">unknown</orgName>
+				</funder>
+				<funder ref="#_6gGTYkD">
+					<orgName type="full">DOE Office of Science User Facility</orgName>
+				</funder>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability  status="unknown">
+					<licence/>
+				</availability>
+				<date type="published" when="2025-10-28">28 Oct 2025</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Xin</forename><surname>Jin</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Computer Science</orgName>
+								<orgName type="institution">University of Pittsburgh</orgName>
+								<address>
+									<postCode>15260</postCode>
+									<settlement>Pittsburgh</settlement>
+									<region>PA</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Nitish</forename><surname>Kumar</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Chandra</forename><surname>§1</surname></persName>
+							<affiliation key="aff1">
+								<orgName type="department">Department of Informatics and Networked Systems</orgName>
+								<orgName type="institution">University of Pittsburgh</orgName>
+								<address>
+									<postCode>15260</postCode>
+									<settlement>Pittsburgh</settlement>
+									<region>PA</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Mohadeseh</forename><surname>Azari</surname></persName>
+							<affiliation key="aff1">
+								<orgName type="department">Department of Informatics and Networked Systems</orgName>
+								<orgName type="institution">University of Pittsburgh</orgName>
+								<address>
+									<postCode>15260</postCode>
+									<settlement>Pittsburgh</settlement>
+									<region>PA</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Kaushik</forename><forename type="middle">P</forename><surname>Seshadreesan</surname></persName>
+							<affiliation key="aff1">
+								<orgName type="department">Department of Informatics and Networked Systems</orgName>
+								<orgName type="institution">University of Pittsburgh</orgName>
+								<address>
+									<postCode>15260</postCode>
+									<settlement>Pittsburgh</settlement>
+									<region>PA</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author role="corresp">
+							<persName><forename type="first">Junyu</forename><surname>Liu</surname></persName>
+							<email>junyuliu@pitt.edu</email>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Computer Science</orgName>
+								<orgName type="institution">University of Pittsburgh</orgName>
+								<address>
+									<postCode>15260</postCode>
+									<settlement>Pittsburgh</settlement>
+									<region>PA</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Quantum-Resistant Networks Using Post-Quantum Cryptography</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2025-10-28">28 Oct 2025</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">FFDE9D2E8D5742FDFF8550123D2D587E</idno>
+					<idno type="arXiv">arXiv:2510.24534v1[quant-ph]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-28T12:46+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Quantum Networks</term>
+					<term>Post-Quantum Cryptography</term>
+					<term>Quantum Memory</term>
+					<term>Coherence Time</term>
+					<term>Entanglement Distribution 1</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Quantum networks rely on both quantum and classical channels for coordinated operation. Current architectures employ entanglement distribution and key exchange over quantum channels but often assume that classical communication is sufficiently secure. In practice, classical channels protected by traditional cryptography remain vulnerable to quantum adversaries, since large-scale quantum computers could break widely used public-key schemes and reduce the effective security of symmetric cryptography. This perspective presents a quantum-resistant network architecture that secures classical communication with post-quantum cryptographic techniques while supporting entanglementbased communication over quantum channels. Beyond cryptographic protection, the framework incorporates continuous monitoring of both quantum and classical layers, together with orchestration across heterogeneous infrastructures, to ensure end-to-end security. Collectively, these mechanisms provide a pathway toward scalable, robust, and secure quantum networks that remain dependable against both classical and quantum-era threats.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. Introduction</head><p>Quantum entanglement is a fundamental resource in quantum communication, enabling protocols that achieve information transfer beyond the capabilities of classical systems. Quantum key distribution (QKD) <ref type="bibr" target="#b0">[1]</ref>, <ref type="bibr" target="#b1">[2]</ref>, quantum teleportation <ref type="bibr" target="#b2">[3]</ref>, and entanglement swapping <ref type="bibr" target="#b3">[4]</ref> demonstrate how quantum states can be transmitted securely across distance based on the principles such as superposition and the nocloning theorem <ref type="bibr" target="#b4">[5]</ref>. These advances have laid the groundwork for large-scale quantum networks, where entanglement distribution serves as the foundation for secure communication and distributed quantum information processing <ref type="bibr" target="#b5">[6]</ref>, <ref type="bibr" target="#b6">[7]</ref>.</p><p>Most quantum applications, in addition to relying on quantum channels, also depend critically on classical channels for exchanging information. Classical communication is required for reconciliation in QKD <ref type="bibr" target="#b7">[8]</ref>, for transmitting syndrome data in quantum error correction <ref type="bibr" target="#b8">[9]</ref>, <ref type="bibr" target="#b9">[10]</ref>, and for exchanging measurement outcomes in entanglement purification <ref type="bibr" target="#b10">[11]</ref>. This reliance creates a significant vulnerability: while the quantum components of these protocols may be intrinsically resistant to eavesdropping, the classical components continue to depend on conventional cryptography, which is threatened 1 :These authors contributed equally. by quantum adversaries <ref type="bibr" target="#b11">[12]</ref>. If attackers possess quantum computational power, classical authentication and coordination mechanisms can be compromised, undermining the very security that quantum applications are designed to provide.</p><p>Classical cryptography secures current digital communication, but these protocols are vulnerable in the presence of quantum computers. Shor's algorithm <ref type="bibr" target="#b12">[13]</ref>, <ref type="bibr" target="#b13">[14]</ref> can solve integer factorization and discrete logarithms in polynomial time, breaking the hardness assumptions underlying RSA <ref type="bibr" target="#b14">[15]</ref>, Diffie Hellman key exchange <ref type="bibr" target="#b15">[16]</ref>, the Digital Signature Algorithm (DSA) <ref type="bibr" target="#b16">[17]</ref>, and elliptic curve cryptography (ECC) <ref type="bibr" target="#b17">[18]</ref>. In addition, Grover's algorithm <ref type="bibr" target="#b18">[19]</ref> provides a quadratic speedup for brute force search, reducing the effective security level of symmetric key ciphers and hash functions by half; for instance, AES 128 offers only about 64 bits of security against a quantum adversary <ref type="bibr" target="#b19">[20]</ref>. Together, these results show that conventional cryptographic primitives cannot provide long term security in a quantum era.</p><p>In response to the looming threat posed by quantum computers, the U.S. National Institute of Standards and Technology (NIST) initiated its Post-Quantum Cryptography (PQC) standardization project in 2016 <ref type="bibr" target="#b20">[21]</ref>. After several evaluation rounds, NIST announced in July 2022 the first algorithms selected for standardization: CRYSTALS-Kyber as a key encapsulation mechanism and CRYSTALS-Dilithium as a digital signature scheme <ref type="bibr" target="#b21">[22]</ref>, <ref type="bibr" target="#b22">[23]</ref>, together with SPHINCS+ <ref type="bibr" target="#b23">[24]</ref>, a stateless hash-based signature system. These algorithms were formally adopted as Federal Information Processing Standards (FIPS) in 2024 <ref type="bibr" target="#b24">[25]</ref>. The selections reflect the current consensus that lattice-based cryptography offers the most practical combination of efficiency and security, while SPHINCS+ was included to ensure diversification beyond lattice-based assumptions.</p><p>Although quantum protocols are designed to provide information-theoretic security, practical implementations have revealed exploitable weaknesses. Side-channel attacks such as detector efficiency mismatch <ref type="bibr" target="#b25">[26]</ref>, time-shift strategies <ref type="bibr" target="#b26">[27]</ref>, and bright-illumination attacks <ref type="bibr" target="#b27">[28]</ref> demonstrate that adversaries can manipulate devices without triggering disturbance detection. Fei et al. <ref type="bibr" target="#b28">[29]</ref> showed that manin-the-middle attacks on calibration phase vulnerabilities can enable basis dependent efficiency mismatches that leak key information. Source side vulnerabilities have also been investigated: Trojan horse probing of transmitters allows adversaries to inject light and retrieve internal settings, while injection locking attacks can force lasers to operate under the attacker's influence <ref type="bibr" target="#b29">[30]</ref>- <ref type="bibr" target="#b31">[32]</ref>. Together, these findings show that quantum protocols cannot be regarded as intrinsically secure in practice, as weaknesses in physical components and other real world constraints create exploitable vulnerabilities.</p><p>Various countermeasures against quantum side channel and device level attacks have been proposed, such as measurement device independent QKD and decoy state methods <ref type="bibr" target="#b32">[33]</ref>- <ref type="bibr" target="#b34">[35]</ref>, but these remain an active area of research, and new approaches continue to be developed. In contrast, the protection of the classical channels that underpin the quantum communication protocols has received comparatively less attention, even though they represent a critical vulnerability. Ensuring the authenticity and confidentiality of reconciliation messages and coordination signals requires solutions capable of withstanding adversaries equipped with quantum computational capabilities. The security of the classical layer in the quantum era remains a missing link in current designs, and addressing this gap through post quantum cryptographic protocols is essential. The main challenges in deploying these protocols include achieving interoperability with existing infrastructure, balancing efficiency tradeoffs, and ensuring seamless integration with quantum specific operations, all of which are necessary steps toward building fully robust quantum networks <ref type="bibr" target="#b35">[36]</ref>, <ref type="bibr" target="#b36">[37]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. Quantum Resistant Networks</head><p>A quantum network consists of nodes such as quantum processors, repeaters, or end user devices interconnected by quantum channels that distribute entanglement across the network (See Fig. <ref type="figure" target="#fig_0">1</ref>). These quantum links enable protocols such as entanglement swapping and quantum teleportation. While quantum channels carry qubits and entanglement, the successful execution of network operations critically depends on classical communication. For example, in teleportation or entanglement swapping, the outcomes of Bell state measurements must be transmitted to remote nodes so that corrective operations can be applied <ref type="bibr" target="#b6">[7]</ref>. Similarly, classical channels are indispensable for synchronization and control signaling across the network.</p><p>Protecting this classical layer against adversaries equipped with quantum computers requires embedding post quantum cryptography (PQC) into each stage of the protocol stack. Without PQC, authentication and confidentiality of measurement outcomes, synchronization data, or routing messages would be vulnerable to interception or manipulation, undermining the security guarantees of the quantum layer itself. The challenge, however, is that PQC introduces computational overhead for encryption and decryption in addition to the intrinsic latency of classical message exchange. Because qubits must be stored in quantum memories while awaiting these classical signals, the timing of classical communication becomes tightly coupled to the coherence limits of available memory technologies. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Timing Constraints for PQC Protected Communication</head><p>In quantum networks, qubits are often stored in quantum memories while waiting for classical information needed to complete distributed operations such as teleportation or entanglement swapping. If the classical message arrives too late, the stored quantum state decoheres and the protocol fails. When post quantum cryptography (PQC) is used to protect classical communication, additional delay is introduced by cryptographic operations. To ensure correct functioning, the total delay must remain below the memory coherence time.</p><p>a) Notation used in following equations:</p><p>• T encrypt : time required to encrypt or authenticate the classical message before transmission. • T comm : classical communication delay, including propagation through the channel and processing in the network. • T decrypt : time required to decrypt or verify the received message. • T coh : coherence time of the quantum memory storing the qubit during the wait. • i: index of a repeater or round of communication.</p><p>• P: set of repeaters whose Bell state measurement (BSM) results are sent to the end node. • L: number of dependent rounds of classical communication in a sequential protocol. b) Single-hop case: For a single sender-receiver pair, the qubit in memory must survive the combined time for encryption, transmission, and decryption:</p><formula xml:id="formula_0">T encrypt + T comm + T decrypt &lt; T coh .</formula><p>This form applies to simple two-node protocols such as quantum teleportation.</p><p>c) Multi-hop with parallel communication: In repeaterbased networks, many BSMs may be performed simultaneously at different nodes, and their outcomes are broadcast in parallel. The end node must wait until the last relevant message arrives. The condition becomes</p><formula xml:id="formula_1">max i∈P T encrypt,i + T comm,i→end + T decrypt,end &lt; T (end) coh .</formula><p>Here, the maximum determines the constraint because all messages are sent simultaneously, and the slowest one sets the waiting time.</p><p>d) Protocols with sequential signaling: Some protocols, such as certain entanglement purification or multi-round handshake schemes, may require multiple dependent rounds of classical communication. In such cases, the delays accumulate:</p><formula xml:id="formula_2">L i=1 T encrypt,i + T comm,i + T decrypt,i &lt; T coh .</formula><p>This cumulative bound applies whenever each round must be completed before the next begins.</p><p>In summary, the appropriate inequality depends on the protocol structure: the single-hop case for one-shot exchanges, the parallel case when multiple classical information are broadcast simultaneously, and the sequential case when classical messages must be exchanged in a round-by-round fashion.</p><p>Designing PQC integration strategies that respect these timing constraints requires careful attention to cryptographic overheads. Practical approaches include minimizing encryption and verification latency, exploiting parallelism where protocol structure allows, and pre-establishing secure keys so that cryptographic operations do not lie on the critical path of quantum communication. Aligning PQC operations with quantum state preparation and memory usage is essential to ensure that the total classical delay remains within the coherence window. Addressing these challenges is necessary for quantum networks to be resilient against adversaries equipped with quantum computational capabilities.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>PQC algorithm selection for heterogeneous network nodes</head><p>A single PQC algorithm will not be suitable for all scenarios in a large scale quantum resistant network. Different types of network nodes such as resource constrained quantum processors, high throughput quantum switches, and routers operating over satellite or fiber based communication channels require different PQC choices depending on their computational power, link latency, memory limits, and required security level. Edge nodes such as user terminals may prefer lightweight algorithms (for example, lattice based KEMs with smaller key sizes such as Kyber512) that minimize encryption and decryption times. In contrast, core nodes or quantum repeaters, which have greater processing capacity and stricter security requirements, can afford more computationally intensive algorithms such as FrodoKEM 1344. Selecting PQC algorithms therefore requires balancing key size, computational load, and expected attack complexity to match the capabilities and roles of heterogeneous devices in the network <ref type="bibr" target="#b37">[38]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Quantum Memory Hierarchy and Architectural Adaptations</head><p>A hierarchy of quantum memories is critical for integrating PQC while preserving overall network performance. Just as classical computing employs a tiered memory structure (cache, RAM, disk) to balance speed and capacity, quantum networks can utilize memories with different coherence times and access speeds at different layers. Long lived quantum memories, such as those based on trapped ions or error corrected logical qubits, are best suited for backbone nodes where repeaters must store entangled states while awaiting classical feedforward messages from neighboring links. In contrast, short lived quantum memories, such as photonic or atomic ensemble memories, can be used to buffer rapidly generated local entanglement between adjacent nodes, which is swapped forward almost immediately once both links succeed. This layered approach allows PQC protected classical communication to be processed within coherence constraints by aligning memory lifetimes with the expected classical delays at each level of the network <ref type="bibr" target="#b38">[39]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. Man-In-The-Middle for hybrid quantum-classical network Hybrid Quantum-Classical Adversary Model</head><p>We consider a hybrid adversary capable of exploiting both the quantum and classical layers of the network. On the quantum side, the adversary may intercept qubits in transit and load them into a quantum memory, which requires a finite interception and storage latency denoted by T Eve . The stored qubits can only be preserved for the coherence time of the adversary's memory, T Eve coh . On the classical side, the adversary may manipulate coordination messages, such as teleportation corrections or entanglement swapping, by spoofing, delaying, or relaying PQC-protected communication. The additional delay introduced by these manipulations is denoted by T pqc . The total adversarial delay is therefore</p><formula xml:id="formula_3">∆t = T Eve + T pqc .</formula><p>A man-in-the-middle attack can only succeed if the adversary is able to complete both the quantum interception and the classical manipulation before decoherence occurs, that is if</p><formula xml:id="formula_4">∆t &lt; T Eve coh .</formula><p>If this bound is exceeded, the adversary's stored quantum states undergo decoherence, resulting in increased quantum bit error rates (QBER) or reduced entanglement fidelity, thereby making the intrusion detectable. By explicitly accounting for finite coherence times and PQC-induced delays, this model moves beyond earlier idealized assumptions and establishes a framework for analyzing realistic joint quantum-classical attack vectors in quantum networks.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Mitigation Strategies for Hybrid MITM Attacks</head><p>Robust defense against hybrid man-in-the-middle adversaries requires coordinated measures across both the quantum and classical layers <ref type="bibr" target="#b39">[40]</ref>. All classical coordination traffic should be protected with post-quantum cryptographic authentication to prevent spoofing, replay, etc. To move beyond static threshold tests, anomaly detection techniques such as machine learning models trained on expected error patterns, fidelity distributions, timing statistics, etc., can provide early warning of subtle intrusions that might otherwise remain hidden. At the network level, robustness can be further enhanced through multipath routing of both quantum states and classical information, which forces an adversary to compromise multiple channels simultaneously. Taken together, these measures create a layered defense framework that significantly increases the cost and complexity of sustaining hybrid quantum classical attacks.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. Towards Securing Large Scale Quantum Networks PQC-Orchestrated Key Infrastructure at Scale</head><p>A robust Key Management System (KMS) is required to orchestrate network-wide key establishment and frequent re-keying, scaling from point-to-point links to multi-node topologies <ref type="bibr" target="#b40">[41]</ref>. In a fully connected network, each node must exchange new keys with every other node, leading to H(N ) ∼ O(N 2 ) handshakes per re-key cycle. To control this growth, hierarchical or orchestrated key infrastructures can be employed, reducing complexity toward near-linear scaling. The design objective is to minimize T key (the time for key rotation) while keeping T auth low and H(N ) tractable as N grows. Achieving this balance ensures that the classical coordination layer of the quantum network remains quantum resistant without imposing prohibitive latency or overhead.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Physical Constraints to Secure Quantum Networks</head><p>Maintaining high-quality entanglement across long distances and heterogeneous links (optical fiber, free space, and satellite based channels) is a central challenge for largescale quantum networks. Routing protocols must incorporate entanglement swapping at intermediate nodes together with techniques such as entanglement purification or local error correction <ref type="bibr" target="#b41">[42]</ref>. Two key constraints are the quantum memory coherence time T coh (the maximum time a stored qubit remains coherent) and the entanglement generation rate R e (the rate of producing entangled pairs per link). For secure operation, the total end-to-end entanglement distribution time T dist must remain below the coherence time, i.e., T dist &lt; T coh , ensuring that stored pairs are still usable when multi-hop processes are completed. Synchronization across hops is also necessary so that multiple links generate entanglement within a common window, effectively requiring R e T coh ≫ 1, which guarantees that many attempts can succeed within one memory lifetime and reduces adversarial opportunities to exploit timing gaps.</p><p>Another critical factor is the fidelity of the quantum state. The end-to-end fidelity F end of an L-hop entangled link decreases with each swap operation and is strongly constrained by the lowest-quality link or memory in the chain. Transmission losses, imperfect swapping, and memory decoherence degrade quantum states with time, and without active entanglement distillation they can quickly push F end below application thresholds. From a security standpoint, low fidelity not only limits performance but also obscures the distinction between natural noise and malicious interference, making adversarial actions harder to detect. Ensuring that fidelity remains above threshold is therefore essential for both reliable and secure operation of large-scale quantum networks.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. Conclusion</head><p>This perspective discusses how achieving fully quantumresistant networks requires moving beyond treating cryptography, entanglement distribution, and network control as separate components. Future systems must integrate these elements into a unified architecture capable of sustaining end-to-end security under realistic timing and adversarial constraints. We have discussed how post-quantum cryptographic techniques can be embedded into protocol lifecycles, how a hybrid adversary model exposes vulnerabilities overlooked by traditional approaches, and how scalable routing together with machine learning methods can strengthen reliability. A fully quantum-resistant network will also depend on advances in quantum memory technologies, efficient PQC implementations, and coordinated control frameworks spanning heterogeneous infrastructures.</p><p>At the same time, significant research challenges remain. Open problems include scaling deployment to ultra-long distances, maintaining robustness under high levels of noise, developing routing algorithms for complex and dynamic topologies, and mitigating failure scenarios such as repeater congestion under multi-user access. Addressing these issues is critical before quantum-resistant networking can move from conceptual proposals to practical, global-scale systems.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Fig. 1 .</head><label>1</label><figDesc>Fig. 1. Schematic of a quantum network represented as nodes connected by edges. Each edge consists of a quantum channel (solid line) and a PQCprotected classical channel (dotted line), ensuring secure communication between nodes.</figDesc><graphic coords="2,347.54,50.54,179.92,150.53" type="bitmap" /></figure>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div><head>Acknowledgments</head><p>JL is supported in part by the <rs type="funder">University of Pittsburgh</rs>, <rs type="affiliation">School of Computing and Information, Department of Computer Science, Pitt Cyber, Pitt Momentum, PQI Community Collaboration Awards</rs>, <rs type="person">John C. Mascaro</rs> <rs type="grantName">Faculty Scholar in Sustainability</rs>, <rs type="funder">NASA</rs> under award number <rs type="grantNumber">80NSSC25M7057</rs>, and <rs type="institution">Fluor Marine Propulsion LLC (U.S. Naval Nuclear Laboratory)</rs> under award number <rs type="grantNumber">140449-R08</rs>. This research used resources of the <rs type="institution" subtype="infrastructure">Oak Ridge Leadership Computing Facility</rs>, which is a <rs type="funder">DOE Office of Science User Facility</rs> supported under Contract <rs type="grantNumber">DE-AC05-00OR22725</rs>.</p></div>
+			</div>
+			<listOrg type="funding">
+				<org type="funding" xml:id="_uUXv6Ta">
+					<orgName type="grant-name">Faculty Scholar in Sustainability</orgName>
+				</org>
+				<org type="funding" xml:id="_acutqY8">
+					<idno type="grant-number">80NSSC25M7057</idno>
+				</org>
+				<org type="funding" xml:id="_6gGTYkD">
+					<idno type="grant-number">140449-R08</idno>
+				</org>
+				<org type="funding" xml:id="_R6Jyn49">
+					<idno type="grant-number">DE-AC05-00OR22725</idno>
+				</org>
+			</listOrg>
+
+			<listOrg type="infrastructure">
+				<org type="infrastructure">					<orgName type="extracted">Oak Ridge Leadership Computing Facility</orgName>
+				</org>
+			</listOrg>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Unconditional security of quantum key distribution over arbitrarily long distances</title>
+		<author>
+			<persName><forename type="first">H.-K</forename><surname>Lo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">F</forename><surname>Chau</surname></persName>
+		</author>
+		<idno type="DOI">10.1126/science.283.5410.2050</idno>
+		<ptr target="https://www.science.org/doi/abs/10.1126/science.283.5410.2050" />
+	</analytic>
+	<monogr>
+		<title level="j">Science</title>
+		<imprint>
+			<biblScope unit="volume">283</biblScope>
+			<biblScope unit="issue">5410</biblScope>
+			<biblScope unit="page" from="2050" to="2056" />
+			<date type="published" when="1999">1999</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Quantum cryptography: Public key distribution and coin tossing</title>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">H</forename><surname>Bennett</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Brassard</surname></persName>
+		</author>
+		<ptr target="https://www.sciencedirect.com/science/article/pii/S0304397514004241" />
+	</analytic>
+	<monogr>
+		<title level="j">Theoretical Computer Science</title>
+		<imprint>
+			<biblScope unit="volume">560</biblScope>
+			<biblScope unit="page" from="7" to="11" />
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+	<note>Aspects of Quantum Cryptography -celebrating 30 years of BB84</note>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Teleporting an unknown quantum state via dual classical and einstein-podolsky-rosen channels</title>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">H</forename><surname>Bennett</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Brassard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Crépeau</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Jozsa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Peres</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">K</forename><surname>Wootters</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.70.1895</idno>
+		<ptr target="https://link.aps.org/doi/10.1103/PhysRevLett.70.1895" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">70</biblScope>
+			<biblScope unit="page" from="1895" to="1899" />
+			<date type="published" when="1993-03">Mar 1993</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<monogr>
+		<title level="m" type="main">Entanglement swapping systems toward a quantum internet</title>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">I</forename><surname>Davis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Valivarthi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Cameron</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Pena</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Xie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Narvaez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Lauk</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Taylor</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Youssef</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Kapoor</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Korzh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Sinclair</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Shaw</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Spentzouris</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Spiropulu</surname></persName>
+		</author>
+		<ptr target="https://arxiv.org/abs/2503.18906" />
+		<imprint>
+			<date type="published" when="2025">2025</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">A single quantum cannot be cloned</title>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">K</forename><surname>Wootters</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">H</forename><surname>Zurek</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/299802a0</idno>
+		<ptr target="https://doi.org/10.1038/299802a0" />
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">299</biblScope>
+			<biblScope unit="issue">5886</biblScope>
+			<biblScope unit="page" from="802" to="803" />
+			<date type="published" when="1982-10">Oct 1982</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">The quantum internet</title>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">J</forename><surname>Kimble</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/nature07127</idno>
+		<ptr target="https://doi.org/10.1038/nature07127" />
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">453</biblScope>
+			<biblScope unit="issue">7198</biblScope>
+			<biblScope unit="page" from="1023" to="1030" />
+			<date type="published" when="2008-06">Jun 2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Quantum internet: A vision for the road ahead</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Wehner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Elkouss</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Hanson</surname></persName>
+		</author>
+		<idno type="DOI">10.1126/science.aam9288</idno>
+		<ptr target="https://www.science.org/doi/abs/10.1126/science.aam9288" />
+	</analytic>
+	<monogr>
+		<title level="j">Science</title>
+		<imprint>
+			<biblScope unit="volume">362</biblScope>
+			<biblScope unit="issue">6412</biblScope>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Appending information reconciliation for quantum key distribution</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B.-Y</forename><surname>Tang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S.-C</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W.-R</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H.-C</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Liu</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevApplied.18.044022</idno>
+		<ptr target="https://link.aps.org/doi/10.1103/PhysRevApplied.18.044022" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Appl</title>
+		<imprint>
+			<biblScope unit="volume">18</biblScope>
+			<biblScope unit="page">44022</biblScope>
+			<date type="published" when="2022-10">Oct 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Error correcting codes in quantum theory</title>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">M</forename><surname>Steane</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.77.793</idno>
+		<ptr target="https://link.aps.org/doi/10.1103/PhysRevLett.77.793" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">77</biblScope>
+			<biblScope unit="page" from="793" to="797" />
+			<date type="published" when="1996-07">Jul 1996</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<monogr>
+		<title level="m" type="main">An introduction to quantum error correction and fault-tolerant quantum computation</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Gottesman</surname></persName>
+		</author>
+		<ptr target="https://arxiv.org/abs/0904.2557" />
+		<imprint>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Purification of noisy entanglement and faithful teleportation via noisy channels</title>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">H</forename><surname>Bennett</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Brassard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Popescu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Schumacher</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">A</forename><surname>Smolin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">K</forename><surname>Wootters</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.76.722</idno>
+		<ptr target="https://link.aps.org/doi/10.1103/PhysRevLett.76.722" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">76</biblScope>
+			<biblScope unit="page" from="722" to="725" />
+			<date type="published" when="1996-01">Jan 1996</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Cybersecurity in an era with quantum computers: Will we be ready?</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Mosca</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Security &amp; Privacy</title>
+		<imprint>
+			<biblScope unit="volume">16</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="38" to="41" />
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Polynomial-time algorithms for prime factorization and discrete logarithms on a quantum computer</title>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">W</forename><surname>Shor</surname></persName>
+		</author>
+		<idno type="DOI">10.1137/S0097539795293172</idno>
+		<ptr target="https://doi.org/10.1137/S0097539795293172" />
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Journal on Computing</title>
+		<imprint>
+			<biblScope unit="volume">26</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="1484" to="1509" />
+			<date type="published" when="1997">1997</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Algorithms for quantum computation: discrete logarithms and factoring</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Shor</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings 35th Annual Symposium on Foundations of Computer Science</title>
+		<meeting>35th Annual Symposium on Foundations of Computer Science</meeting>
+		<imprint>
+			<date type="published" when="1994">1994</date>
+			<biblScope unit="page" from="124" to="134" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">A method for obtaining digital signatures and public-key cryptosystems</title>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">L</forename><surname>Rivest</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Shamir</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Adleman</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/359340.359342</idno>
+		<ptr target="https://doi.org/10.1145/359340.359342" />
+	</analytic>
+	<monogr>
+		<title level="j">Commun. ACM</title>
+		<imprint>
+			<biblScope unit="volume">21</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="120" to="126" />
+			<date type="published" when="1978-02">Feb. 1978</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">New directions in cryptography</title>
+		<author>
+			<persName><forename type="first">W</forename><surname>Diffie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Hellman</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Information Theory</title>
+		<imprint>
+			<biblScope unit="volume">22</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="644" to="654" />
+			<date type="published" when="1976">1976</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Digital signature standard (dss)</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Pub</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Fips pub</title>
+		<imprint>
+			<date type="published" when="2000">2000</date>
+			<biblScope unit="page" from="186" to="192" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<monogr>
+		<title level="m" type="main">Elliptic curve cryptosystems</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Koblitz</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1987">1987</date>
+			<biblScope unit="volume">48</biblScope>
+			<biblScope unit="page" from="203" to="209" />
+		</imprint>
+	</monogr>
+	<note>Mathematics of computation</note>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">A fast quantum mechanical algorithm for database search</title>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">K</forename><surname>Grover</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/237814.237866</idno>
+		<ptr target="https://doi.org/10.1145/237814.237866" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Twenty-Eighth Annual ACM Symposium on Theory of Computing, ser. STOC &apos;96</title>
+		<meeting>the Twenty-Eighth Annual ACM Symposium on Theory of Computing, ser. STOC &apos;96<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="1996">1996</date>
+			<biblScope unit="page" from="212" to="219" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<monogr>
+		<title level="m" type="main">A comparative study of classical and post-quantum cryptographic algorithms in the era of quantum computing</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Scrivano</surname></persName>
+		</author>
+		<ptr target="https://arxiv.org/abs/2508.00832" />
+		<imprint>
+			<date type="published" when="2025">2025</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<monogr>
+		<author>
+			<persName><forename type="first">L</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Jordan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y.-K</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Moody</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Peralta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">A</forename><surname>Perlner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Smith-Tone</surname></persName>
+		</author>
+		<title level="m">Report on post-quantum cryptography. US Department of Commerce</title>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="volume">12</biblScope>
+		</imprint>
+		<respStmt>
+			<orgName>National Institute of Standards and Technology</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Crystals -kyber: A cca-secure module-lattice-based kem</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Bos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Ducas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Kiltz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Lepoint</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Lyubashevsky</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Schanck</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Schwabe</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Seiler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Stehle</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2018 IEEE European Symposium on Security and Privacy</title>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="353" to="367" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">CRYSTALS -dilithium: Digital signatures from module lattices</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Ducas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Lepoint</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Lyubashevsky</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Schwabe</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Seiler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Stehle</surname></persName>
+		</author>
+		<ptr target="https://eprint.iacr.org/2017/633" />
+	</analytic>
+	<monogr>
+		<title level="j">Cryptology ePrint Archive</title>
+		<imprint>
+			<date type="published" when="2017">2017/633, 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<monogr>
+		<title level="m" type="main">Sphincs+-submission to the nist post-quantum project</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Hulsing</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Bernstein</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Dobraunig</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Eichlseder</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Fluhrer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Gazdag</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Kampanakis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Kolbl</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Lange</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lauridsen</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">A survey on latticebased key establishment schemes: Types, evolution and advances</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Angom</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Kar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Debbarma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Biswas</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2025 IEEE International Conference on Interdisciplinary Approaches in Technology and Management for Social Innovation (IATMSI)</title>
+		<imprint>
+			<date type="published" when="2025">2025</date>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page" from="1" to="6" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Effects of detector efficiency mismatch on security of quantum cryptosystems</title>
+		<author>
+			<persName><forename type="first">V</forename><surname>Makarov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Anisimov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Skaar</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.74.022313</idno>
+		<ptr target="https://link.aps.org/doi/10.1103/PhysRevA.74.022313" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">74</biblScope>
+			<biblScope unit="page">22313</biblScope>
+			<date type="published" when="2006-08">Aug 2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Quantum hacking: Experimental demonstration of time-shift attack against practical quantum-key-distribution systems</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C.-H</forename><forename type="middle">F</forename><surname>Fung</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Qi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H.-K</forename><surname>Lo</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.78.042333</idno>
+		<ptr target="https://link.aps.org/doi/10.1103/PhysRevA.78.042333" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">78</biblScope>
+			<biblScope unit="page">42333</biblScope>
+			<date type="published" when="2008-10">Oct 2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Hacking commercial quantum cryptography systems by tailored bright illumination</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Lydersen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Wiechers</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Wittmann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Elser</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Skaar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Makarov</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/nphoton.2010.214</idno>
+		<ptr target="https://doi.org/10.1038/nphoton.2010.214" />
+	</analytic>
+	<monogr>
+		<title level="j">Nature Photonics</title>
+		<imprint>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="issue">10</biblScope>
+			<biblScope unit="page" from="686" to="689" />
+			<date type="published" when="2010-10">Oct 2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Quantum man-in-the-middle attack on the calibration process of quantum key distribution</title>
+		<author>
+			<persName><forename type="first">Y.-Y</forename><surname>Fei</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X.-D</forename><surname>Meng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Ma</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41598-018-22700-3</idno>
+		<ptr target="https://doi.org/10.1038/s41598-018-22700-3" />
+	</analytic>
+	<monogr>
+		<title level="j">Scientific Reports</title>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page">4283</biblScope>
+			<date type="published" when="2018-03">Mar 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Trojan-horse attacks threaten the security of practical quantum cryptography</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Jain</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Anisimova</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Khan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Makarov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Marquardt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Leuchs</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/1367-2630/16/12/123030</idno>
+		<ptr target="https://dx.doi.org/10.1088/1367-2630/16/12/123030" />
+	</analytic>
+	<monogr>
+		<title level="j">New Journal of Physics</title>
+		<imprint>
+			<biblScope unit="volume">16</biblScope>
+			<biblScope unit="issue">12</biblScope>
+			<biblScope unit="page">123030</biblScope>
+			<date type="published" when="2014-12">dec 2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Practical security bounds against the trojan-horse attack in quantum key distribution</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lucamarini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Choi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">B</forename><surname>Ward</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">F</forename><surname>Dynes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><forename type="middle">L</forename><surname>Yuan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">J</forename><surname>Shields</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevX.5.031030</idno>
+		<ptr target="https://link.aps.org/doi/10.1103/PhysRevX.5.031030" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. X</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="page">31030</biblScope>
+			<date type="published" when="2015-09">Sep 2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Hacking quantum key distribution via injection locking</title>
+		<author>
+			<persName><forename type="first">X.-L</forename><surname>Pang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A.-L</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C.-N</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J.-P</forename><surname>Dou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X.-M</forename><surname>Jin</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevApplied.13.034008</idno>
+		<ptr target="https://link.aps.org/doi/10.1103/PhysRevApplied.13.034008" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Appl</title>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="page">34008</biblScope>
+			<date type="published" when="2020-03">Mar 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Practical decoy state for quantum key distribution</title>
+		<author>
+			<persName><forename type="first">X</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Qi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H.-K</forename><surname>Lo</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevA.72.012326</idno>
+		<ptr target="https://link.aps.org/doi/10.1103/PhysRevA.72.012326" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">72</biblScope>
+			<biblScope unit="page">12326</biblScope>
+			<date type="published" when="2005-07">Jul 2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Side-channel-free quantum key distribution</title>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">L</forename><surname>Braunstein</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Pirandola</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.108.130502</idno>
+		<ptr target="https://link.aps.org/doi/10.1103/PhysRevLett.108.130502" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">108</biblScope>
+			<biblScope unit="page">130502</biblScope>
+			<date type="published" when="2012-03">Mar 2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Measurement-device-independent quantum key distribution</title>
+		<author>
+			<persName><forename type="first">H.-K</forename><surname>Lo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Curty</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Qi</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.108.130503</idno>
+		<ptr target="https://link.aps.org/doi/10.1103/PhysRevLett.108.130503" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">108</biblScope>
+			<biblScope unit="page">130503</biblScope>
+			<date type="published" when="2012-03">Mar 2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<analytic>
+		<title level="a" type="main">A quantum-classical codesign framework for security enhanced quantum networks</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2024 5th Information Communication Technologies Conference (ICTC)</title>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+			<biblScope unit="page" from="76" to="81" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<analytic>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Xue</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">S L</forename><surname>Wei</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Lu</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/COMST.2023.3294240</idno>
+		<ptr target="https://doi.org/10.1109/COMST.2023.3294240" />
+	</analytic>
+	<monogr>
+		<title level="m">Entanglement-assisted quantum networks: Mechanics, enabling technologies, challenges, and research directions</title>
+		<imprint>
+			<date type="published" when="2023-10">Oct. 2023</date>
+			<biblScope unit="volume">25</biblScope>
+			<biblScope unit="page" from="2133" to="2189" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<monogr>
+		<title level="m" type="main">A comparative performance evaluation of kyber, sntrup761, and frodokem for post-quantum cryptography</title>
+		<author>
+			<persName><forename type="first">S</forename></persName>
+		</author>
+		<ptr target="https://arxiv.org/abs/2508.10023" />
+		<imprint>
+			<date type="published" when="2025">2025</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Quantum memories: emerging applications and recent advances</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Heshami</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">G</forename><surname>England</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">C</forename><surname>Humphreys</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">J</forename><surname>Bustard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><forename type="middle">M</forename><surname>Acosta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Nunn</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">J</forename><surname>Sussman</surname></persName>
+		</author>
+		<idno type="DOI">10.1080/09500340.2016.1148212</idno>
+		<idno>pMID: 27695198</idno>
+		<ptr target="https://doi.org/10.1080/09500340.2016.1148212" />
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Modern Optics</title>
+		<imprint>
+			<biblScope unit="volume">63</biblScope>
+			<biblScope unit="issue">20</biblScope>
+			<date type="published" when="2005">2005-2028, 2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<analytic>
+		<title level="a" type="main">Secure quantum key distribution with realistic devices</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H.-K</forename><surname>Lo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J.-W</forename><surname>Pan</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/RevModPhys.92.025002</idno>
+		<ptr target="https://link.aps.org/doi/10.1103/RevModPhys.92.025002" />
+	</analytic>
+	<monogr>
+		<title level="j">Rev. Mod. Phys</title>
+		<imprint>
+			<biblScope unit="volume">92</biblScope>
+			<biblScope unit="page">25002</biblScope>
+			<date type="published" when="2020-05">May 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<analytic>
+		<title level="a" type="main">Sok: Gamebased security models for group key exchange</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Poettering</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Rösler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Schwenk</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Stebila</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/978-3-030-75539-3_7</idno>
+		<ptr target="https://doi.org/10.1007/978-3-030-75539-37" />
+	</analytic>
+	<monogr>
+		<title level="m">Topics in Cryptology -CT-RSA 2021: Cryptographers&apos; Track at the RSA Conference 2021, Virtual Event</title>
+		<meeting><address><addrLine>Berlin, Heidelberg</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer-Verlag</publisher>
+			<date type="published" when="2021">May 17-20, 2021. 2021</date>
+			<biblScope unit="page" from="148" to="176" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Advances in quantum entanglement purification</title>
+		<author>
+			<persName><forename type="first">P.-S</forename><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Zhong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y.-B</forename><surname>Sheng</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/s11433-022-2065-x</idno>
+		<ptr target="https://doi.org/10.1007/s11433-022-2065-x" />
+	</analytic>
+	<monogr>
+		<title level="j">Science China Physics, Mechanics &amp; Astronomy</title>
+		<imprint>
+			<biblScope unit="volume">66</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page">250301</biblScope>
+			<date type="published" when="2023-04">Apr 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>
