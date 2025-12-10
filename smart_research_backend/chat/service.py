@@ -15,7 +15,6 @@ def create_new_session(user_id: int):
     conn.close()
     return session_id
 
-
 def save_message(session_id: int, sender: str, content: str):
     conn = get_conn()
     cur = conn.cursor()
@@ -26,7 +25,6 @@ def save_message(session_id: int, sender: str, content: str):
     conn.commit()
     cur.close()
     conn.close()
-
 
 def get_chat_history(session_id: int, limit: int = 50):
     conn = get_conn()
@@ -43,28 +41,20 @@ def get_chat_history(session_id: int, limit: int = 50):
     conn.close()
     return rows
 
-
 def process_user_message(session_id: int, user_msg: str, mode: str = "simple"):
-    """
-    Process a user message with optional mode:
-    mode="simple" (default) or mode="deep"
-    """
     # Save user message
     save_message(session_id, "user", user_msg)
 
-    # Load chat history
-    history = get_chat_history(session_id)
+    # Call retriever with session_id as int
+    result = answer_query({
+        "query": user_msg,
+        "mode": mode,
+        "session_id": int(session_id)   # <-- Ye important hai, int mein convert
+    })
 
-    # Build prompt for RAG / LLM
-    context = ""
-    for sender, content, _ in history:
-        context += f"{sender.upper()}: {content}\n"
-    prompt = context + f"USER: {user_msg}\nASSISTANT:"
+    answer = result["answer"]
 
-    # Get answer from RAG with mode
-    answer = answer_query({"query": user_msg, "mode": mode})["answer"]
-
-    # Save assistant message
+    # Save assistant reply
     save_message(session_id, "assistant", answer)
 
     return answer
