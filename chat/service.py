@@ -1,47 +1,45 @@
-from database.connection import get_conn
+
 from retrieval.retriever import answer_query
+from supabaseclient import get_client
 
 def create_new_session(user_id: int):
-    conn = get_conn()
-    cur = conn.cursor()
-    cur.execute("""
-        INSERT INTO chat_sessions (user_id)
-        VALUES (%s)
-        RETURNING id
-    """, (user_id,))
-    session_id = cur.fetchone()[0]
-    conn.commit()
-    cur.close()
-    conn.close()
-    return session_id
+    supabase = get_client()
+
+    result = (
+        supabase.table("chat_sessions")
+        .insert({"user_id": user_id})
+        .execute()
+    )
+    
+    if not result.data:
+        raise Exception("Failed to create chat session")
+
+    return result.data[0]["id"]
 
 
 def save_message(session_id: int, sender: str, content: str):
-    conn = get_conn()
-    cur = conn.cursor()
-    cur.execute("""
-        INSERT INTO chat_messages (session_id, sender, content)
-        VALUES (%s, %s, %s)
-    """, (session_id, sender, content))
-    conn.commit()
-    cur.close()
-    conn.close()
+    supabase = get_client()
+
+    supabase.table("chat_messages").insert({
+        "session_id": session_id,
+        "sender": sender,
+        "content": content
+    }).execute()
 
 
 def get_chat_history(session_id: int, limit: int = 50):
-    conn = get_conn()
-    cur = conn.cursor()
-    cur.execute("""
-        SELECT sender, content, created_at
-        FROM chat_messages
-        WHERE session_id=%s
-        ORDER BY created_at ASC
-        LIMIT %s
-    """, (session_id, limit))
-    rows = cur.fetchall()
-    cur.close()
-    conn.close()
-    return rows
+    supabase = get_client()
+
+    result = (
+        supabase.table("chat_messages")
+        .select("sender, content, created_at")
+        .eq("session_id", session_id)
+        .order("created_at", asc=True)
+        .limit(limit)
+        .execute()
+    )
+
+    return [(row["sender"], row["content"], row["created_at"]) for row in result.data]
 
 
 def process_user_message(session_id: int, user_msg: str, mode: str = "simple"):

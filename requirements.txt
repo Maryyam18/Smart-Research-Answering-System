@@ -11,3 +11,4 @@ email-validator
 pydantic==2.8.0 
 huggingface-hub==0.17.3
 sentence-transformers==2.2.2
+supabase

@@ -1,49 +1,48 @@
 from fastapi import APIRouter, HTTPException
 from auth.models import SignupModel, LoginModel
 from auth.utils import hash_password, verify_password, create_token
-from database.connection import get_conn
+from supabaseclient import get_client
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 
 @router.post("/signup")
 def signup(data: SignupModel):
-    conn = get_conn()
-    cur = conn.cursor()
+    supabase = get_client()
+    existing = supabase.table("users").select("id").eq("email", data.email).execute()
 
-    cur.execute("SELECT id FROM users WHERE email=%s", (data.email,))
-    if cur.fetchone():
+    if existing.data:
         raise HTTPException(400, "Email already registered")
 
     hashed = hash_password(data.password)
+    result = supabase.table("users").insert({
+        "name": data.name,
+        "email": data.email,
+        "password_hash": hashed
+    }).execute()
 
-    cur.execute("""
-        INSERT INTO users(name, email, password_hash)
-        VALUES (%s, %s, %s)
-        RETURNING id
-    """, (data.name, data.email, hashed))
+    if not result.data:
+        raise HTTPException(500, "Failed to create user")
 
-    user_id = cur.fetchone()[0]
-    conn.commit()
-    cur.close(); conn.close()
+    user_id = result.data[0]["id"]
+
 
     token = create_token(user_id, data.email)
     return {"message": "Signup successful", "token": token}
 
 @router.post("/login")
 def login(data: LoginModel):
-    conn = get_conn()
-    cur = conn.cursor()
+    supabase = get_client()
 
-    cur.execute("SELECT id, password_hash FROM users WHERE email=%s", (data.email,))
-    row = cur.fetchone()
+    result = supabase.table("users").select("*").eq("email", data.email).execute()
 
-    if not row:
+    if not result.data:
         raise HTTPException(400, "Invalid email or password")
 
-    user_id, stored_hash = row
+    user = result.data[0]
+    
 
-    if not verify_password(data.password, stored_hash):
+    if not verify_password(data.password, user["password_hash"]):
         raise HTTPException(400, "Invalid email or password")
 
-    token = create_token(user_id, data.email)
+    token = create_token(user["id"], user["email"])
     return {"message": "Login successful", "token": token}

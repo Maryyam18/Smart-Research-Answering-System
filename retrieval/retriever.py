@@ -1,8 +1,7 @@
 from sentence_transformers import SentenceTransformer
 from groq import Groq
-from database.connection import get_conn
 from autocorrect import gemini_autocorrect  # autocorrect module
-
+from supabaseclient import get_client
 from config import settings
 
 DOMAINS = {
@@ -25,24 +24,43 @@ def make_ref(title, authors, year):
     return f"{title} by {a}, {year}"
 
 def retrieve(q: str, domain: str = "all"):
-    conn = get_conn()
-    cur = conn.cursor()
+    supabase = get_client()
+
     q_emb = model.encode(q, normalize_embeddings=True)
 
-    sql = """
-        SELECT title, authors, year, enriched_text, paperid, embedding <=> %s
-        FROM papers WHERE embedding IS NOT NULL
-    """
-    params = [q_emb]
+    query_builder = (
+        supabase.table("papers")
+        .select("title, authors, year, enriched_text, paperid, embedding")
+        .not_.is_("embedding", None)
+    )
 
     if domain != "all":
-        sql += " AND domain=%s"
-        params.append(domain)
+        query_builder = query_builder.eq("domain", domain)
 
-    sql += " ORDER BY embedding <=> %s LIMIT %s"
-    cur.execute(sql, params + [q_emb, TOP_K])
-    results = cur.fetchall()
-    cur.close(); conn.close()
+    # sql += " ORDER BY embedding <=> %s LIMIT %s"
+    # cur.execute(sql, params + [q_emb, TOP_K])
+    # results = cur.fetchall()
+    # cur.close(); conn.close()
+    
+    response = query_builder.execute()
+    rows = response.data
+
+    # Convert rows into same structure as old SQL result:
+    results = []
+    for r in rows:
+        emb = r["embedding"]
+
+        # compute cosine distance manually
+        dist = 1 - float(model.similarity(q_emb, emb))
+
+        results.append([
+            r["title"],
+            r["authors"],
+            r["year"],
+            r["enriched_text"],
+            r["paperid"],
+            dist   # equivalent to SQL embedding <=> %s
+        ])
 
     seen = set()
     good = []
