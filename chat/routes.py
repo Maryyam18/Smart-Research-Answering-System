@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, Header
 from auth.utils import verify_token
-from chat.service import create_new_session, process_user_message, get_chat_history
+from chat.service import create_new_session, process_user_message, get_chat_history, process_user_message_query
 
 router = APIRouter(prefix="/chat", tags=["Chat"])
 
@@ -28,7 +28,7 @@ def new_chat(user=Depends(get_current_user)):
 
 
 @router.post("/message")
-def send_message(data: dict, user=Depends(get_current_user)):
+async def send_message(data: dict, user=Depends(get_current_user)):
     if "session_id" not in data or "message" not in data:
         raise HTTPException(400, "session_id and message required")
 
@@ -36,7 +36,19 @@ def send_message(data: dict, user=Depends(get_current_user)):
     user_msg = data["message"]
     mode = data.get("mode", "simple")  # Default to simple
 
-    answer = process_user_message(session_id, user_msg, mode)
+    answer = await process_user_message(session_id, user_msg, mode)
+    return {"answer": answer}
+
+@router.post("/messageQuery")
+async def send_message(data: dict):
+    if "message" not in data:
+        raise HTTPException(400, "message required")
+
+    
+    user_msg = data["message"]
+    mode = data.get("mode", "simple")  # Default to simple
+
+    answer = await process_user_message_query( user_msg, mode)
     return {"answer": answer}
 
 

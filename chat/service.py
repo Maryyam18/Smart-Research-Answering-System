@@ -42,7 +42,7 @@ def get_chat_history(session_id: int, limit: int = 50):
     return [(row["sender"], row["content"], row["created_at"]) for row in result.data]
 
 
-def process_user_message(session_id: int, user_msg: str, mode: str = "simple"):
+async def process_user_message(session_id: int, user_msg: str, mode: str = "simple"):
     """
     Process a user message with optional mode:
     mode="simple" (default) or mode="deep"
@@ -60,9 +60,23 @@ def process_user_message(session_id: int, user_msg: str, mode: str = "simple"):
     prompt = context + f"USER: {user_msg}\nASSISTANT:"
 
     # Get answer from RAG with mode
-    answer = answer_query({"query": user_msg, "mode": mode})["answer"]
+    answer = await answer_query({"query": user_msg, "mode": mode})["answer"]
 
     # Save assistant message
     save_message(session_id, "assistant", answer)
+
+    return answer
+
+async def process_user_message_query( user_msg: str, mode: str = "deep"):
+    """
+    Process a user message with optional mode:
+    mode="simple" (default) or mode="deep"
+    """
+    # Build prompt for RAG / LLM
+    context = ""
+    prompt = context + f"USER: {user_msg}\nASSISTANT:"
+
+    # Get answer from RAG with mode
+    answer = await answer_query({"query": user_msg, "mode": mode})["answer"]
 
     return answer

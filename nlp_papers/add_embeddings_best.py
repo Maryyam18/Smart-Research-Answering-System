@@ -1,102 +1,84 @@
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from supabase import create_client
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
+model = GoogleGenerativeAIEmbeddings(model="text-embedding-004")
 
-from sentence_transformers import SentenceTransformer
-import psycopg2
-from pgvector.psycopg2 import register_vector
+# Supabase credentials
 
-print("Loading BAAI/bge-small-en-v1.5...")
-model = SentenceTransformer("BAAI/bge-small-en-v1.5")
-
-# CONNECT WITH AUTOCOMMIT OFF FROM THE BEGINNING — THIS FIXES THE ERROR
-conn = psycopg2.connect("postgresql://postgres:FjVNfezkEHRizOhjeiNgzkVMvvLxEAlt@ballast.proxy.rlwy.net:30732/railway")
- 
-conn.autocommit = False  # ← Must be set right after connect
-register_vector(conn)
+SUPABASE_URL = "https://cujbuzouhjytygwghdjg.supabase.co"
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN1amJ1em91aGp5dHlnd2doZGpnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2OTUxMTYsImV4cCI6MjA4MDI3MTExNn0.P0ow8BB44CNl_Y5Hkasw6W06Skv4D9J5jtLF4ndNb7k"
+supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 print("Adding required columns...")
-with conn.cursor() as c:
-    c.execute("ALTER TABLE papers ADD COLUMN IF NOT EXISTS enriched_text TEXT;")
-    c.execute("ALTER TABLE papers ADD COLUMN IF NOT EXISTS chunk_index INTEGER;")
-    conn.commit()
+# You need to run this manually in Supabase SQL Editor once:
+# ALTER TABLE papers ADD COLUMN IF NOT EXISTS enriched_text TEXT;
+# ALTER TABLE papers ADD COLUMN IF NOT EXISTS chunk_index INTEGER;
 
-print("Clearing old embeddings...")
-with conn.cursor() as c:
-    c.execute("UPDATE papers SET embedding = NULL, enriched_text = NULL, chunk_index = NULL;")
-    conn.commit()
+
 
 print("Starting PERFECT embedding (this will take 4-8 minutes)...\n")
 
+# Get all paperids in order
+res = supabase.table("papers").select("paperid, id").execute()
+papers = res.data
+
+# Group rows by paperid
+from collections import defaultdict
+paper_dict = defaultdict(list)
+for row in papers:
+    paper_dict[row["paperid"]].append(row["id"])
+
 total_embedded = 0
 
-# Get all paperids in correct order
-with conn.cursor() as cur:
-    cur.execute("SELECT paperid, MIN(id) FROM papers GROUP BY paperid ORDER BY MIN(id)")
-    paper_list = cur.fetchall()
+for i, (paperid, row_ids) in enumerate(paper_dict.items(), 1):
+    print(f"[{i}/{len(paper_dict)}] Processing: {paperid}")
 
-for i, (paperid, _) in enumerate(paper_list, 1):
-    print(f"[{i}/{len(paper_list)}] Processing: {paperid}")
-
-    # Load all chunks for this paper
-    with conn.cursor() as cur:
-        cur.execute("""
-            SELECT id, chunk_text, title, domain
-            FROM papers WHERE paperid = %s ORDER BY id
-        """, (paperid,))
-        rows = cur.fetchall()
-
+    # Fetch all chunks for this paper
+    rows_res = supabase.table("papers").select("id, chunk_text, title, domain").eq("paperid", paperid).order("id").execute()
+    rows = rows_res.data
     if not rows:
         continue
 
-    title = rows[0][2]
-    domain = rows[0][3]
+    title = rows[0]["title"]
+    domain = rows[0]["domain"]
 
     texts_to_embed = []
-    row_and_index = []  # (row_id, final_chunk_index)
+    row_and_index = []
     display_index = 0
 
-    for row_id, raw_text, _, _ in rows:
+    for r in rows:
+        raw_text = r["chunk_text"]
         if not raw_text or len(raw_text.strip()) < 30:
             continue
-
         clean = raw_text.strip()
-
         if display_index == 0:
             enriched = f"Title: {title} | Domain: {domain} | {clean}"
         else:
             enriched = clean
-
         texts_to_embed.append(enriched)
-        row_and_index.append((row_id, display_index))
+        row_and_index.append((r["id"], display_index))
         display_index += 1
 
     if not texts_to_embed:
         continue
 
-    # Generate embeddings
-    embeddings = model.encode(texts_to_embed, normalize_embeddings=True, batch_size=16)
+    embeddings = model.embed_documents(texts_to_embed)
 
-    # ONE SINGLE TRANSACTION PER PAPER
-    try:
-        with conn.cursor() as cur:
-            for (row_id, idx), vector in zip(row_and_index, embeddings):
-                cur.execute("""
-                    UPDATE papers SET
-                        enriched_text = %s,
-                        chunk_index = %s,
-                        embedding = %s
-                    WHERE id = %s
-                """, (texts_to_embed[idx], idx, vector.tolist(), row_id))
-            conn.commit()
-        print(f"Embedded {len(texts_to_embed)} chunks (index 0–{display_index-1})")
-    except Exception as e:
-        print(f"Failed for {paperid}: {e}")
-        conn.rollback()
-        continue
+
+    # Update rows one by one (Supabase does not support multi-row transactions easily)
+    for (row_id, idx), vector in zip(row_and_index, embeddings):
+        supabase.table("papers").update({
+            "enriched_text": texts_to_embed[idx],
+            "chunk_index": idx,
+            "embedding": vector
+        }).eq("id", row_id).execute()
 
     total_embedded += len(texts_to_embed)
+    print(f"Embedded {len(texts_to_embed)} chunks (index 0–{display_index-1})")
     print(f"Total embedded: {total_embedded}\n")
-
-conn.close()
 
 print("="*85)
 print("EMBEDDING 100% SUCCESSFUL AND PERFECT")

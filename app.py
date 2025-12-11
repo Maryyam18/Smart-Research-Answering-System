@@ -51,12 +51,14 @@ class AnswerRequest(BaseModel):
 # Endpoints
 # ----------------------
 @app.post("/answer")
-def answer(req: AnswerRequest, user=Depends(require_token)):
-    return answer_query({
+async def answer(req: AnswerRequest, user=Depends(require_token)):
+    return await answer_query({
         "query": req.query,
         "mode": req.mode,
         "domain": req.domain
     })
+
+
 
 @app.get("/")
 def home():
