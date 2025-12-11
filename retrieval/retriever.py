@@ -51,8 +51,17 @@ def make_ref(title, authors, year):
 
 def cosine_similarity(vec1, vec2):
     """Compute cosine similarity between two vectors."""
-    vec1 = np.array(vec1)
-    vec2 = np.array(vec2)
+    import json
+    
+    # Convert to numpy arrays, handling JSON strings if necessary
+    if isinstance(vec1, str):
+        vec1 = json.loads(vec1)
+    if isinstance(vec2, str):
+        vec2 = json.loads(vec2)
+    
+    vec1 = np.array(vec1, dtype=np.float32)
+    vec2 = np.array(vec2, dtype=np.float32)
+    
     return np.dot(vec1, vec2) / (np.linalg.norm(vec1) * np.linalg.norm(vec2))
 
 def retrieve(q: str, domain: str = "all"):
