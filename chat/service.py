@@ -77,6 +77,7 @@ async def process_user_message_query( user_msg: str, mode: str = "deep"):
     prompt = context + f"USER: {user_msg}\nASSISTANT:"
 
     # Get answer from RAG with mode
-    answer = await answer_query({"query": user_msg, "mode": mode})["answer"]
+    result = await answer_query({"query": user_msg, "mode": mode})
+    answer = result["answer"]
 
     return answer
