@@ -1,0 +1,920 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Quantum Symmetric Private Information Retrieval with Secure Storage and Eavesdroppers</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability  status="unknown">
+					<licence/>
+				</availability>
+				<date type="published" when="2023-08-21">21 Aug 2023</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Alptug</forename><surname>Aytekin</surname></persName>
+							<email>aaytekin@umd.edu</email>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Electrical and Computer Engineering</orgName>
+								<orgName type="institution">University of Maryland</orgName>
+								<address>
+									<postCode>20742</postCode>
+									<settlement>College Park</settlement>
+									<region>MD</region>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Mohamed</forename><surname>Nomeir</surname></persName>
+							<email>mnomeir@umd.edu</email>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Electrical and Computer Engineering</orgName>
+								<orgName type="institution">University of Maryland</orgName>
+								<address>
+									<postCode>20742</postCode>
+									<settlement>College Park</settlement>
+									<region>MD</region>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Sajani</forename><surname>Vithana</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Electrical and Computer Engineering</orgName>
+								<orgName type="institution">University of Maryland</orgName>
+								<address>
+									<postCode>20742</postCode>
+									<settlement>College Park</settlement>
+									<region>MD</region>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Sennur</forename><surname>Ulukus</surname></persName>
+							<email>ulukus@umd.edu</email>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Electrical and Computer Engineering</orgName>
+								<orgName type="institution">University of Maryland</orgName>
+								<address>
+									<postCode>20742</postCode>
+									<settlement>College Park</settlement>
+									<region>MD</region>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Quantum Symmetric Private Information Retrieval with Secure Storage and Eavesdroppers</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2023-08-21">21 Aug 2023</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">165B14FD0FB0DF5C14B8C4912BCFF5FF</idno>
+					<idno type="arXiv">arXiv:2308.10883v1[cs.IT]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-28T12:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>We consider both the classical and quantum variations of X-secure, E-eavesdropped and T -colluding symmetric private information retrieval (SPIR). This is the first work to study SPIR with X-security in classical or quantum variations. We first develop a scheme for classical X-secure, E-eavesdropped and T -colluding SPIR (XSETSPIR) based on a modified version of cross subspace alignment (CSA), which achieves a rate of R = 1 -X+max(T,E) N . The modified scheme achieves the same rate as the scheme used for X-secure PIR with the extra benefit of symmetric privacy. Next, we extend this scheme to its quantum counterpart based on the N -sum box abstraction. This is the first work to consider the presence of eavesdroppers in quantum private information retrieval (QPIR). In the quantum variation, the eavesdroppers have better access to information over the quantum channel compared to the classical channel due to the over-the-air decodability. To that end, we develop another scheme specialized to combat eavesdroppers over quantum channels. The scheme proposed for X-secure, E-eavesdropped and T -colluding quantum SPIR (XSETQSPIR) in this work maintains the super-dense coding gain from the shared entanglement between the databases, i.e., achieves a rate of RQ = min 1, 2 1 -X+max(T,E) N .</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>In the private information retrieval (PIR) problem introduced in <ref type="bibr" target="#b0">[1]</ref>, a user wishes to retrieve a message out of K messages stored in N databases without revealing the index of the required message to any of the databases. The optimal rate of PIR with N databases and K replicated messages is shown to be C(N, K) = (1 + 1 N + . . . + 1 N K-1 ) -1 in <ref type="bibr" target="#b1">[2]</ref>. Subsequently, several variations of this problem have been studied with different requirements for the databases and the user. In <ref type="bibr" target="#b2">[3]</ref>, symmetric PIR (SPIR) is introduced, where the user is not allowed to obtain any information about the message set other than the required message. The capacity of SPIR is shown to be 1 -1</p><p>N in <ref type="bibr" target="#b2">[3]</ref>, which is also C(N, ∞). In <ref type="bibr" target="#b3">[4]</ref>, T -colluding PIR is introduced where any T databases can share the queries received from the user to learn the required message index. The capacity of T -colluding PIR is shown to be (1 + T N + . . . + T K-1 N K-1 ) -1 in <ref type="bibr" target="#b3">[4]</ref>, which is also C( N T , K). T -colluding SPIR is considered in <ref type="bibr" target="#b4">[5]</ref> and its capacity is shown to be 1 -T N , which is C( N T , ∞). In <ref type="bibr" target="#b5">[6]</ref>, the E-eavesdropped, T -colluding SPIR is introduced. In this setting, there is an eavesdropper that can listen to all answers from any E databases to the user. The capacity for this case is shown to be 1 -max(T,E) N in <ref type="bibr" target="#b5">[6]</ref>. The problem of X-secure PIR is introduced in <ref type="bibr" target="#b6">[7]</ref>, where the messages need to be hidden from the databases themselves even when X databases share their complete datasets. In <ref type="bibr" target="#b7">[8]</ref>, the asymptotic capacity of Xsecure T -colluding PIR, i.e., the capacity when K → ∞, is shown to be 1 -X+T N . Some other variations of the PIR and SPIR problems have been studied and different applications have been introduced in <ref type="bibr" target="#b8">[9</ref>]- <ref type="bibr" target="#b22">[23]</ref>; see also <ref type="bibr" target="#b23">[24]</ref>.</p><p>The problem of quantum PIR (QPIR) is recently introduced in <ref type="bibr" target="#b24">[25]</ref>. In this model, the message bits are sent over a quantum channel from the databases to the user, and the databases can share entanglement between them. <ref type="bibr" target="#b24">[25]</ref> shows that the capacity of symmetric QPIR (SQPIR) is 1 when the number of databases is N ≥ 2. Variations of QPIR include T -colluding QPIR with and without coded storage <ref type="bibr" target="#b25">[26]</ref>- <ref type="bibr" target="#b27">[28]</ref>, QPIR with noisy channels <ref type="bibr" target="#b28">[29]</ref>, and several other variations analogous to their classical counterparts <ref type="bibr" target="#b29">[30]</ref>- <ref type="bibr" target="#b31">[32]</ref>. Most recently, <ref type="bibr" target="#b32">[33]</ref> has proposed a mathematical abstraction for the entanglement between transmitters sending information to a common receiver over separate quantum channels. The work in <ref type="bibr" target="#b32">[33]</ref> shows that the entanglement between N transmitters that use Pauli operators to encode classical messages to quantum states can be represented mathematically as a multiple input multiple output (MIMO) multiple access channel (MAC) with 2N inputs and N outputs, i.e., a matrix with N × 2N dimensions. In addition, this matrix must have elements from a finite field, and must satisfy the strong self orthogonal (SSO) property. Using these properties, <ref type="bibr" target="#b32">[33]</ref> shows that the rate of X-secure T -colluding QPIR for their proposed scheme is</p><formula xml:id="formula_0">R Q = min 1, 2 1 -X+T N . This is a doubling of the classical rate R C = 1 -X+T N in the regime of interest.</formula><p>In this paper, we focus on both classical and quantum variations of the SPIR problem with a passive eavesdropper which listens to queries and answers going into and out of any of the E databases. In addition, up to T databases collude, and up to X databases communicate. This is the first work that considers X-secure SPIR in general, even in the classical domain, and even without E-eavesdropped and Tcolluding databases. We show that the rate of the modified CSA scheme (modified for the symmetric privacy) R is the same as the rate of the CSA scheme proposed in <ref type="bibr" target="#b7">[8]</ref> with the extra benefit of symmetric privacy, i.e., R = 1 -X+max(T,E) N . In addition, this is the first work to consider the presence of eavesdroppers in QPIR. We develop a QPIR scheme that maintains privacy and security against eavesdroppers, colluding databases and communicating databases. Our proposed quantum scheme achieves the maximum super-dense coding gain when an entangled state is shared between the databases, i.e., R Q = min 1, 2 1 -X+max(T,E) N . The QPIR problem with eavesdroppers is more complex compared to the classical PIR problem with eavesdroppers due to the over-theair decodability imposed by the N -sum box abstraction. The quantum scheme we propose in this work achieves double the rate of its classical counterpart.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. PRELIMINARIES</head><p>In this section, we state some important definitions related to quantum physics and quantum information theory <ref type="bibr" target="#b33">[34]</ref>. We use these quantities subsequently to formulate the X-secure E-eavesdropped T -colluding QSPIR.</p><p>Definition 1 (Quantum density matrices) For a general quantum system A, that can be in the state |ψ j with probability p j , the quantum density matrix ρ A is defined as,</p><formula xml:id="formula_1">ρ A = j p j |ψ j ψ j | ,<label>(1)</label></formula><p>with p j ≥ 0, j p j = 1.</p><p>Definition 2 (Von Neumann entropy) For the density matrix ρ, Von Neumann entropy is defined as,</p><formula xml:id="formula_2">S(ρ) = -tr(ρ log ρ) = H(Λ),<label>(2)</label></formula><p>where tr(.) is the trace operator, Λ are the eigenvalues of ρ, and H(•) is the Shannon entropy. For a quantum system A with density matrix ρ A , we define S(A) = S(ρ A ).</p><p>Definition 3 (Quantum relative entropy) The relative entropy between two density matrices ρ and σ is defined as,</p><formula xml:id="formula_3">D(ρ σ) = tr(ρ(log ρ -log σ)).<label>(3)</label></formula><p>Definition 4 (Quantum conditional entropy) The conditional entropy of a quantum system A with respect to a system B is defined as,</p><formula xml:id="formula_4">S(A|B) = S(A, B) -S(B).<label>(4)</label></formula><p>Definition 5 (Quantum mutual information) The quantum mutual information between two quantum systems A and B is defined as,</p><formula xml:id="formula_5">S(A; B) = S(A) + S(B) -S(A, B) (5) = S(A) -S(A|B).<label>(6)</label></formula><p>In the next section, we formulate the problem in both classical and quantum variations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. PROBLEM FORMULATION</head><p>The system consists of N databases and a user who wants to retrieve a message. Out of the N databases, T are allowed to collude, i.e., share the user's queries, and X are allowed to communicate, i.e., share their storage to decode the messages.</p><p>In addition, any E links are accessible to the eavesdroppers that can listen to E of the user's queries and databases' answers. The system contains K messages, W 1 , . . . , W K , of equal length L, that are independent and identically distributed (i.i.d.). The messages are generated uniformly at random from the field F q , with q = p r , where p is any prime number. Thus,</p><formula xml:id="formula_6">H(W k ) = L, k ∈ [1 : K],<label>(7)</label></formula><formula xml:id="formula_7">H(W [1:K] ) = K k=1 H(W k ) = KL.<label>(8)</label></formula><p>The messages W [1:K] need to be secure against any X communicating databases,</p><formula xml:id="formula_8">I(W [1:K] ; S X ) = 0,<label>(9)</label></formula><p>where S X denotes all of the stored data in subset X databases satisfying |X | ≤ X. The user wants to retrieve a message W θ , where θ is chosen uniformly at random from [1 : K], and sends a query to each database (Q</p><formula xml:id="formula_9">[θ] 1 , . . . , Q [θ] N ) denoted by Q [θ] [1:N ] .</formula><p>As the user does not know the messages, the queries are generated independent of the message content,</p><formula xml:id="formula_10">I(W [1:K] ; Q [θ] [1:N ] ) = 0, θ ∈ [1 : K].<label>(10)</label></formula><p>In addition, we require that the index of the retrieved message by the user is private against any T colluding databases,</p><formula xml:id="formula_11">I(θ; Q [θ] T ) = 0, θ ∈ [1 : K],<label>(11)</label></formula><p>where</p><formula xml:id="formula_12">T ⊂ [1 : N ], |T | ≤ T .</formula><p>Upon receiving the queries, the nth database replies with a deterministic answer string A</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>[θ]</head><p>n based on its received query Q</p><formula xml:id="formula_13">[θ]</formula><p>n , shared common randomness between the databases S, and stored data, S n , n ∈ [1 : N ],</p><formula xml:id="formula_14">H(A [θ] n |S n , Q [θ] n , S) = 0, θ ∈ [1 : K].<label>(12)</label></formula><p>When the user receives all answer strings A</p><p>[θ]</p><p>[1:N ] , the required message must be decodable based on the answer strings and the sent queries,</p><formula xml:id="formula_15">H(W θ |A [θ] [1:N ] , Q [θ] [1:N ] ) = 0, θ ∈ [1 : K].<label>(13)</label></formula><p>In addition, the symmetric privacy constraint requires that the user gains no information about the message set except for the required message,</p><formula xml:id="formula_16">I(W θ C ; A [θ] [1:N ] |Q [θ] [1:N ] , θ) = 0, θ ∈ [1 : K],<label>(14)</label></formula><p>where W θ C denotes all other messages aside from the required message W θ .</p><p>Finally, the scheme must be private and secure against an eavesdropper who can listen to any set of E queries and E answers,</p><formula xml:id="formula_17">I(θ; Q [θ] E1 , A [θ] E2 ) = 0, θ ∈ [1 : K],<label>(15)</label></formula><p>and</p><formula xml:id="formula_18">I(W [1:K] ; A [θ] E1 |Q [θ] E2 ) = 0, θ ∈ [1 : K],<label>(16)</label></formula><p>where</p><formula xml:id="formula_19">E 1 , E 2 ⊂ [1 : N ], |E 1 |, |E 2 | ≤ E.</formula><p>The rate R of any scheme satisfying the above requirements is defined as the ratio between the length of the required message and the average length of the answer strings,</p><formula xml:id="formula_20">R = L H(A [θ] [1:N ] ) .<label>(17)</label></formula><p>In the X-secure, E-eavesdropped, T -colluding quantum symmetric PIR (XSETQSPIR) problem, we follow the system models introduced in the literature <ref type="bibr" target="#b24">[25]</ref>- <ref type="bibr" target="#b26">[27]</ref>, <ref type="bibr" target="#b30">[31]</ref>. The databases store S n , n ∈ [1 : N ], as classical bits and share an entangled state of N quantum bits denoted by ρ. The user sends the queries Q (ρ), where tr(•) is the trace operator, replies to the user queries over a separate quantum channel. Upon receiving the query, the nth database performs the quantum operation Enc n based on the received query, storage and A 0 n to produce the quantum state</p><formula xml:id="formula_21">A [θ] n , n ∈ [1 : N ], as follows, A [θ] n = Enc n (Q [θ] n , S n , A 0 n , Λ n , S), θ ∈ [1 : K],<label>(18)</label></formula><p>where Enc n is the nth database's encoder, and Λ n is a masking random variable sent by the user to the databases. 1  The final received state at the user is given as,</p><formula xml:id="formula_22">A [θ] [1:N ] = A [θ] 1 ⊗ . . . ⊗ A [θ] N , θ ∈ [1 : K],<label>(19)</label></formula><p>where ⊗ is the tensor product. Since the storage is in the form of classical bits and the queries are sent over classical channels, constraints ( <ref type="formula" target="#formula_8">9</ref>)-( <ref type="formula" target="#formula_11">11</ref>) must hold. It is also required that the index of the required message be secure against the received queries and masking random variables Λ </p><formula xml:id="formula_23">I(θ; Q [θ] T , Λ T ) = 0, θ ∈ [1 : K].<label>(20)</label></formula><p>Additionally, the Von Neumann entropy of the required message W θ given the queries and the answers must be zero,</p><formula xml:id="formula_24">S(W θ |A [θ] [1:N ] , Q [θ] [1:N ] , Λ [1:N ] ) = 0, θ ∈ [1 : K],<label>(21)</label></formula><p>and for symmetric privacy, the quantum mutual information between the other messages W θ C and the received quantum densities A</p><p>[θ]</p><p>[1:N ] must satisfy,</p><formula xml:id="formula_25">S(W θ C ; A [θ] [1:N ] |Q [θ] [1:N ] , θ, Λ [1:N ] ) = 0, θ ∈ [1 : K].<label>(22</label></formula><p>) In addition, for the eavesdroppers who listen to any E classical and quantum channels, the privacy and security requirements must be satisfied,</p><formula xml:id="formula_26">S(θ; Q [θ] E1 , A [θ] E2 , Λ E3 ) = 0, θ ∈ [1 : K],<label>(23)</label></formula><formula xml:id="formula_27">S(W [1:K] ; A [θ] E1 |Q [θ] E2 , Λ E3 ) = 0, θ ∈ [1 : K],<label>(24)</label></formula><p>where</p><formula xml:id="formula_28">E 1 , E 2 , E 3 ⊂ [1 : N ] and |E 1 |, |E 2 |, |E 3 | ≤ E.</formula><p>Then, 1 The main reason for the masking random variables is to fight over-the-air decodability in quantum channels. It is discussed in detail in Section V-B.</p><p>the XSETQSPIR rate R Q for the retrieval scheme satisfying ( <ref type="formula" target="#formula_8">9</ref>)-( <ref type="formula" target="#formula_11">11</ref>) and ( <ref type="formula" target="#formula_23">20</ref>)-( <ref type="formula" target="#formula_27">24</ref>) is defined as</p><formula xml:id="formula_29">R Q = H(W θ ) dim(A [θ] 1 ⊗ . . . ⊗ A [θ] N ) .<label>(25)</label></formula><p>In this paper, we follow the encoding and decoding structure using the N -sum box abstraction introduced recently in <ref type="bibr" target="#b32">[33]</ref>. In the encoding stage, the databases use Pauli operators X(a) = q-1 j=0 |j + a j|, and Z(a) = q-1 j=0 ω tr(aj) |j j|, where q = p r with p as any prime number, a ∈ F q and ω = exp(2πi/p). In the decoding stage, the user applies projective value measurement (PVM) defined on the quotient space of the stabilizer group L(V) defined by</p><formula xml:id="formula_30">L(V) = {c v W (v) : v ∈ V}, (<label>26</label></formula><formula xml:id="formula_31">)</formula><p>where V is a self orthogonal subspace in</p><formula xml:id="formula_32">F 2N q , W (v) = X(v 1 )Z(v N +1 ) ⊗ . . . ⊗ X(v N )Z(v 2N ),<label>(27)</label></formula><p>and c v ∈ C is chosen such that L(V) is an Abelian subgroup of HW N q with c v I q N being an element of the stabilizer group if c v = 1, where HW N q is the Heisenberg-Weyl group defined as,</p><formula xml:id="formula_33">HW N q = {c W (s) : s ∈ F 2N q , c ∈ C \ {0}}.<label>(28)</label></formula><p>In the next section, we state our main results for this problem, both for the classical and the quantum variations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. MAIN RESULTS</head><p>Theorem 1 For classical X-secure, E-eavesdropped, Tcolluding SPIR (XSETSPIR) with N databases, the rate given by</p><formula xml:id="formula_34">R = 1 - X + max(T, E) N ,<label>(29)</label></formula><p>is achievable, using modified cross subspace alignment (CSA) with message length L = N -max(T, E) -X.</p><p>Remark 1 When X = 0 and E = 0, the proposed scheme achieves the optimal rate for T -colluding SPIR, R = 1 -T N , found in <ref type="bibr" target="#b2">[3]</ref>, <ref type="bibr" target="#b4">[5]</ref>.</p><p>Remark 2 When X = 0, the proposed scheme achieves the optimal rate for E-eavesdropped, T -colluding SPIR, R = 1max(T,E) N , found in <ref type="bibr" target="#b5">[6]</ref>.</p><p>Remark 3 For X ≥ 1 the exact capacity of X-secure PIR with a fixed number of messages K is still an open problem.</p><p>Theorem 2 For X-secure, E-eavesdropped, T -colluding quantum SPIR (XSETQSPIR) with N databases which are allowed to share entanglement and have quantum channels for answer strings, the rate given by</p><formula xml:id="formula_35">R Q = min 1, 2 1 - X + max(T, E) N ,<label>(30)</label></formula><p>is achievable with modified quantum CSA.</p><p>Remark 4 When X = 0 and E = 0, the proposed scheme achieves the capacity of T -colluding QSPIR, R Q = min 1, 2 1 -T N , found in <ref type="bibr" target="#b25">[26]</ref>.</p><p>V. ACHIEVABLE SCHEME Before describing the achievable scheme for the quantum X-secure, E-eavesdropped, T -colluding SPIR, we first introduce the classical scheme which uses the modified classical CSA to solve the classical version of the problem.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Achievable Scheme in the Classical Setting: XSETSPIR</head><p>Consider a total of N databases with the T -colluding, Eeavesdropped and X-secure setting. Let the message length L be L = N -X -M , where M = max(E, T ). The storage at each database n denoted by S n is,</p><formula xml:id="formula_36">S n =      W •,1 + X i=1 (f 1 -α n ) i R 1i W •,2 + X i=1 (f 2 -α n ) i R 2i . . . W •,L + X i=1 (f L -α n ) i R Li      , (<label>31</label></formula><formula xml:id="formula_37">)</formula><p>where W •,j = [W 1,j , . . . , W K,j ] T is a vector representing the jth bit of all K messages, with W i,j being the jth bit of message i, R ij are uniform independent random vectors with the same dimensions as W •,j , and {f i } L i=1 , {α n } N n=1 are globally known distinct constants from F q .</p><p>The user wishes to retrieve W θ while protecting its privacy from any T colluding databases and E eavesdroppers. The user sends the query</p><formula xml:id="formula_38">Q [θ]</formula><p>n to the nth database as,</p><formula xml:id="formula_39">Q [θ] n =      L i=1 (fi-αn) f1-αn e θ + M i=1 (f 1 -α n ) i Z 1i . . . L i=1 (fi-αn) fL-αn e θ + M i=1 (f L -α n ) i Z Li      , (<label>32</label></formula><formula xml:id="formula_40">)</formula><p>where e θ is a vector of length K with a 1 in the θth index and zero otherwise, and Z ij are uniform independent random vectors of length K each, chosen by the user.</p><p>Since the databases want to hide any information about the messages other than the user-required message, they agree on X + M -1 independent uniform random variables Z ′ 1 , . . . , Z ′ X+M-1 before the retrieval process starts, i.e., they share common randomness, where all X + M -1 common randomness variables Z ′ i are random noise symbols from F q . Each database n, n ∈ [1 : N ], then computes the answer to be sent to the user as,</p><formula xml:id="formula_41">A [θ] n = S t n Q [θ] n + P n (33) = γ n L i=1 1 f i -α n W θ,i + X+M-1 i=0 α i n (I i + Z ′ i ) ,<label>(34)</label></formula><p>where</p><formula xml:id="formula_42">γ n = L i=1 (f i -α n ), P n = X+M-1 i=0 α i n Z ′ i , and I i is the coefficient of α i n in the polynomial resulting from the product S t n Q [θ]</formula><p>n . After receiving all the answer strings from the N databases, the user has the following answer vector, from which the required L symbols of W θ can be obtained, as</p><formula xml:id="formula_43">X + M + L = N , A [θ] = [A [θ] 1 , . . . , A [θ] N ] t (35) = B N (α, f ) × [W θ,1 , . . . , W θ,L , I 0 + Z ′ 0 , . . . , I X+M-1 + Z ′ X+M-1 ] t ,<label>(36)</label></formula><p>where t represents the transpose operation, α = [α 1 , . . . , α N ] t , f = [f 1 , . . . , f N ] t , and B N (α, f ) is an N ×N invertible matrix given by,</p><formula xml:id="formula_44">B N (α, f ) = diag(γ)       1 f1-α1 . . . 1 fL-α1 1 α 1 . . . α X+M-1 1 1 f1-α2 . . . 1 fL-α2 1 α 2 . . . α X+M-1 2 . . . . . . . . . . . . . . . . . . . . . 1 f1-αN . . . 1 fL-αN 1 α N . . . α X+M-1 N       ,<label>(37)</label></formula><p>where γ = [γ 1 , . . . , γ N ] t . The main difference between the N -L interference symbols here and the interference symbols in <ref type="bibr" target="#b7">[8]</ref> is that they are contaminated with random noise unknown to the user, i.e., Z ′ i terms, which leak no information to the user except for the required L bits.</p><p>Remark 5 Compared to the CSA scheme, the proposed symmetric CSA scheme achieves the same rate with the extra benefit of symmetric privacy.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Achievable Scheme in the Quantum Setting: XSETQSPIR</head><p>To develop the quantum scheme based on the N -sum box abstraction <ref type="bibr" target="#b32">[33]</ref>, we first recall some important definitions in <ref type="bibr" target="#b32">[33]</ref>.</p><p>Definition 6 (QCSA matrix) The quantum CSA (QCSA) matrix of size N × N and elements from F q designed to retrieve 2L symbols in the quantum PIR scheme is defined as follows</p><formula xml:id="formula_45">D N (α, β, f )[i, j] = βi fj -αi , j ≤ L, β i α j-L-1 i , L &lt; j ≤ N,<label>(38)</label></formula><formula xml:id="formula_46">where α = [α 1 , . . . , α N ] t , β = [β 1 , . . . , β N ] t , f = [f 1 , . . . , f N ] t , α 1 , . . . , α N , f 1 , . . . , f L are distinct, β 1 , . . . , β N are non-zero and L ≤ N 2 .</formula><p>Definition 7 (Dual QCSA matrices) The matrices H u N and</p><formula xml:id="formula_47">H v N are defined as H u N = D N (α, u, f ) and H v N = D N (α, v, f ). Then, H u N and H v N are dual QCSA matrices if: 1) u 1 , . . . , u N are non-zero, 2) u 1 , . . . , u N are distinct, 3) for each v j , j ∈ [1 : N ], v j = 1 u j    N i=1 i =j (α j -α i )    -1 . (<label>39</label></formula><formula xml:id="formula_48">)</formula><p>Using these definitions, we restate the N -sum box feasibility theorem from <ref type="bibr" target="#b32">[33,</ref><ref type="bibr">Thm. 6]</ref>.</p><p>Theorem 3 For any dual QCSA matrices H u N and H v N , there exists a feasible N -sum box transfer matrix G(u, v) of size N × 2N given as follows,</p><formula xml:id="formula_49">G(u, v) = G N H u N 0 0 H v N -1 ,<label>(40)</label></formula><p>where</p><formula xml:id="formula_50">G N =     I L 0 L×ν 0 0 0 0 0 0 I µ-L 0 0 0 0 0 0 I L 0 L×µ 0 0 0 0 0 0 I ν-L     , ν = ⌈N/2⌉, µ = ⌊N/2⌋</formula><p>, I L is the identity matrix of size L × L, and 0 A,B is the all zeros matrix of size A × B.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Remark 6</head><p>We explain the the main concept behind Theorem 3 as follows: If u and v are chosen such that H u N and H v N are dual QCSA matrices, then there exists an N -entangled qubit shared between the N databases such that the quantum channels between the databases and the user can be represented by G(u, v).</p><p>Remark 7 A main difference between the quantum channel and the classical channel is that the decoding is done over-theair. This implies that if the eavesdropper listens to E answers, there is a possibility that it can get up to E out of the L symbols. This means that the eavesdropper is more powerful in the quantum variation compared to the classical variation. Now, we are ready to describe the XSETQSPIR scheme. The storage at each database is slightly modified compared to the classical case. The storage in the quantum scheme S Q is given as,</p><formula xml:id="formula_51">S Q = [S n (1) t , S n (2) t ] t ,<label>(41)</label></formula><p>where S n (1) and S n (2) are as in <ref type="bibr" target="#b30">(31)</ref>, i.e., each containing L = N -X -M ≤ N 2 new symbols of the K messages, along with new random noise vectors. In other words, the length of the messages considered in the quantum scheme is twice of what was considered in the classical case. To retrieve the required message, the user sends the query Q</p><formula xml:id="formula_52">[θ]</formula><p>n to database n, which is of the same form as in the classical scheme in <ref type="bibr" target="#b31">(32)</ref>. Each database n, n ∈ [1 : N ], then generates the noise added answers as in <ref type="bibr" target="#b32">(33)</ref>,</p><formula xml:id="formula_53">Â[θ] n (1) = S n (1) t Q [θ] n + P n (1) (42) Â[θ] n (2) = S n (2) t Q [θ] n + P n (2)<label>(43)</label></formula><p>where</p><formula xml:id="formula_54">P n (1) = X+M-1 i=0 α i n Z ′ i (1), P n (2) = X+M-1 i=0 α i n Z ′ i (2) (44)</formula><p>with all Z ′ i (j) being random noise symbols. To prevent the eavesdropper from decoding over-the-air, the user sends two masking variables to each database n, given by,</p><formula xml:id="formula_55">Λ n (κ) = γ n 1 f 1 -α n λ 1 (κ) + . . . + 1 f L -α n λ L (κ) + λ L+1 (κ) + α n λ L+2 (κ) + . . . + α N -L-1 n λ N (κ) ,<label>(45)</label></formula><p>for κ ∈ <ref type="bibr" target="#b0">[1,</ref><ref type="bibr" target="#b1">2]</ref>, where λ n (κ), n ∈ [1 : N ], κ ∈ [1 : 2] are uniform independent random variables generated by the user. Then, each database generates two answer instances A</p><formula xml:id="formula_56">[θ] n (1), A [θ] n<label>(2)</label></formula><p>,</p><formula xml:id="formula_57">A [θ] n (1) = Â[θ] n (1) + Λ n (1)<label>(46)</label></formula><formula xml:id="formula_58">A [θ] n (2) = Â[θ] n (2) + Λ n (2).<label>(47)</label></formula><p>The N initial answers from the N databases are written compactly as,</p><formula xml:id="formula_59">A=[A [θ] 1 (1), . . . , A [θ] N (1), A [θ] 1 (2), . . . , A [θ] N (2)] t (48) = diag(γ) 0 0 diag(γ) D N 0 0 D N X(1) X(2)<label>(49)</label></formula><p>where</p><formula xml:id="formula_60">D N = D N (α, 1 N , f ), γ = [γ 1 , . . . , γ N ] t ,<label>and</label></formula><formula xml:id="formula_61">X(i) =             W θ,1 (i) + λ 1 (i) W θ,2 (i) + λ 2 (i) . . . W θ,L (i) + λ L (i) I 0 (i) + Z ′ 0 (i) + λ L+1 (i) . . . I X+M-1 (i) + Z ′ X+M-1 (i) + λ N (i)             . (<label>50</label></formula><formula xml:id="formula_62">) for i ∈ [1 : 2].</formula><p>Then, to make use of the entanglement and quantum channels, the answers are modified as,</p><formula xml:id="formula_63">Ã = diag(u) 0 0 diag(v) diag(γ) 0 0 diag(γ) -1 A,<label>(51)</label></formula><p>where u = [u 1 , . . . , u N ] t and v = [v 1 , . . . , v N ] t are chosen such that they satisfy Definition 7. These answers are sent through the quantum channels using the encoder defined by the Pauli operators, i.e., each database sends its answer instances Ãn (1), Ãn (2), n ∈ [1 : N ] as follows,</p><formula xml:id="formula_64">A [θ] n = Z( Ãn (2))X( Ãn (1))A 0 n .<label>(52)</label></formula><p>Based on the properties of the quantum channel, the N symbols received by the user, denoted by y are given as, Remark 8 In this scheme, we use the fact that the length of each message sub-packet L must satisfy both L = N -X -max(T, E), and L ≤ N 2 . If L &gt; N 2 , we drop the extra databases as in <ref type="bibr" target="#b32">[33]</ref>.</p><formula xml:id="formula_65">y = G(u, v) Ã (53) = G(u, v) H u N 0 0 H v N X<label>(</label></formula><p>Remark 9 Note that since u and v can be globally known, the no-cloning theorem cannot be invoked, thus the eavesdropper can listen to quantum channels.</p><p>Remark 10 Due to the over-the-air decoding, the user needs to send masking variables, λ 1 , . . . , λ N , to the N databases, thus N 2 bits in total. However, in our proposed scheme the user needs only to send 1 bit to each database over the nonsecure channel, i.e., N bits in total, to achieve the same goal.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VI. CONCLUSIONS</head><p>In this paper, we studied the classical and quantum variations of the X-secure, E-eavesdropped, and T -colluding symmetric PIR. In the classical variation, we developed a scheme that achieves symmetric privacy at the same rate as the state-of-the-art scheme that solves the same problem without symmetric privacy. In the quantum variation, we uncovered how the eavesdroppers have better access to the transmitted answer strings due to the over-the-air decodability imposed by the N -sum box abstraction. To that end, we designed a scheme that represses over-the-air decodability while maintaining the super-dense coding gain, i.e., doubling the rate compared to the classical variation.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><figDesc>N ] over a classical channel to each of the N databases, and each database n, n ∈ [1 : N ], with the quantum system A 0 n = tr j=[1:N ] j =n</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>[ 1 :</head><label>1</label><figDesc>N ] for any T ⊂ [1 : N ], |T | ≤ T colluding databases,</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><figDesc>= [W θ,1 (1) + λ 1 (1), . . . , W θ,L (1) + λ L (1), I ′ (1),W θ,1 (2) + λ 1 (2), . . . , W θ,L (2) + λ L (2), I ′ (2)] t , (56)where I ′ (1) represents the last ⌊N/2⌋-L interference symbols of X(1) in (50), and I ′ (2) represent the last ⌈N/2⌉ -L interference symbols of X(2) in (50). As the user already knows the values of λ ℓ (κ) for ℓ ∈ [1 : L] and κ ∈<ref type="bibr" target="#b1">[2]</ref>, the user obtains the 2L symbols of the required message W θ , denoted by W θ,1 (1), . . . , W θ,L (1), W θ,1 (2), . . . , W θ,L (2).</figDesc></figure>
+		</body>
+		<back>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Private information retrieval</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Chor</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Kushilevitz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Goldreich</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Sudan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Jour. of the ACM</title>
+		<imprint>
+			<biblScope unit="volume">45</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="965" to="981" />
+			<date type="published" when="1998-11">November 1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">The capacity of private information retrieval</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">A</forename><surname>Jafar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Info. Theory</title>
+		<imprint>
+			<biblScope unit="volume">63</biblScope>
+			<biblScope unit="issue">7</biblScope>
+			<biblScope unit="page" from="4075" to="4088" />
+			<date type="published" when="2017-07">July 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">The capacity of symmetric private information retrieval</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">A</forename><surname>Jafar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Info. Theory</title>
+		<imprint>
+			<biblScope unit="volume">65</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="322" to="329" />
+			<date type="published" when="2018-06">June 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Private information retrieval from MDS coded data with colluding servers: Settling a conjecture by Freij-Hollanti et al</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">A</forename><surname>Jafar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Info. Theory</title>
+		<imprint>
+			<biblScope unit="volume">64</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="1000" to="1022" />
+			<date type="published" when="2017-12">December 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Symmetric private information retrieval from MDS coded distributed storage with non-colluding and colluding servers</title>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Skoglund</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Info. Theory</title>
+		<imprint>
+			<biblScope unit="volume">65</biblScope>
+			<biblScope unit="issue">8</biblScope>
+			<biblScope unit="page" from="5160" to="5175" />
+			<date type="published" when="2019-03">March 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">The capacity of private information retrieval with eavesdroppers</title>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Skoglund</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Info. Theory</title>
+		<imprint>
+			<biblScope unit="volume">65</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="3198" to="3214" />
+			<date type="published" when="2018-12">December 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Private information retrieval for secure distributed storage systems</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Shin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Lee</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Info. Foren. Security</title>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="issue">12</biblScope>
+			<biblScope unit="page" from="2953" to="2964" />
+			<date type="published" when="2018-05">May 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Cross subspace alignment and the asymptotic capacity of X-secure T -private information retrieval</title>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">A</forename><surname>Jafar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Info. Theory</title>
+		<imprint>
+			<biblScope unit="volume">65</biblScope>
+			<biblScope unit="issue">9</biblScope>
+			<biblScope unit="page" from="5783" to="5798" />
+			<date type="published" when="2019-05">May 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">The capacity of private information retrieval under arbitrary collusion patterns for replicated databases</title>
+		<author>
+			<persName><forename type="first">X</forename><surname>Yao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Kang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Info. Theory</title>
+		<imprint>
+			<biblScope unit="volume">67</biblScope>
+			<biblScope unit="issue">10</biblScope>
+			<biblScope unit="page" from="6841" to="6855" />
+			<date type="published" when="2021-07">July 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">The capacity of private information retrieval from Byzantine and colluding databases</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Banawan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ulukus</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Info. Theory</title>
+		<imprint>
+			<biblScope unit="volume">65</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="1206" to="1219" />
+			<date type="published" when="2018-09">September 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Private information retrieval through wiretap channel II: Privacy meets security</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Banawan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ulukus</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Info. Theory</title>
+		<imprint>
+			<biblScope unit="volume">66</biblScope>
+			<biblScope unit="issue">7</biblScope>
+			<biblScope unit="page" from="4129" to="4149" />
+			<date type="published" when="2020-02">February 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Multi-message private information retrieval: Capacity results and near-optimal schemes</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Banawan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ulukus</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Info. Theory</title>
+		<imprint>
+			<biblScope unit="volume">64</biblScope>
+			<biblScope unit="issue">10</biblScope>
+			<biblScope unit="page" from="6842" to="6862" />
+			<date type="published" when="2018-04">April 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">The capacity of private information retrieval from coded databases</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Banawan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ulukus</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Info. Theory</title>
+		<imprint>
+			<biblScope unit="volume">64</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="1945" to="1956" />
+			<date type="published" when="2018-01">January 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">The capacity of private information retrieval from uncoded storage constrained databases</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">A</forename><surname>Attia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Kumar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Tandon</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Info. Theory</title>
+		<imprint>
+			<biblScope unit="volume">66</biblScope>
+			<biblScope unit="issue">11</biblScope>
+			<biblScope unit="page" from="6617" to="6634" />
+			<date type="published" when="2020-09">September 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">The capacity of private information retrieval from heterogeneous uncoded caching databases</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Banawan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Arasli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y.-P</forename><surname>Wei</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ulukus</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Info. Theory</title>
+		<imprint>
+			<biblScope unit="volume">66</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="3407" to="3416" />
+			<date type="published" when="2020-06">June 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Private information retrieval in graphbased replication systems</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Raviv</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Tamo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Yaakobi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Info. Theory</title>
+		<imprint>
+			<biblScope unit="volume">66</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="3590" to="3602" />
+			<date type="published" when="2019-11">November 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Improved storage for efficient private information retrieval</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Banawan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Arasli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ulukus</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE ITW</title>
+		<imprint>
+			<date type="published" when="2019-08">August 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Private information retrieval for a multi-message scenario with private side information</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">J</forename><surname>Siavoshani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">P</forename><surname>Shariatpanahi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Ali Maddah-Ali</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. on Commun</title>
+		<imprint>
+			<biblScope unit="volume">69</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="3235" to="3244" />
+			<date type="published" when="2021-01">January 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Fundamental limits of cacheaided private information retrieval with unknown and uncoded prefetching</title>
+		<author>
+			<persName><forename type="first">Y.-P</forename><surname>Wei</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Banawan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ulukus</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Info. Theory</title>
+		<imprint>
+			<biblScope unit="volume">65</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="3215" to="3232" />
+			<date type="published" when="2018-11">November 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Symmetric private information retrieval at the private information retrieval rate</title>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ulukus</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Jour. on Selected Areas in Info. Theory</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="350" to="361" />
+			<date type="published" when="2022-06">June 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Semantic private information retrieval</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Vithana</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Banawan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ulukus</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Info. Theory</title>
+		<imprint>
+			<biblScope unit="volume">68</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="2635" to="2652" />
+			<date type="published" when="2021-12">December 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Singleserver multi-message individually-private information retrieval with side information</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Heidarzadeh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Kadhe</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">El</forename><surname>Rouayheb</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Sprintson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE ISIT</title>
+		<imprint>
+			<date type="published" when="2019-07">July 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Private information retrieval from MDS coded data in distributed storage systems</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Tajeddine</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Gnilke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">El</forename><surname>Rouayheb</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Info. Theory</title>
+		<imprint>
+			<biblScope unit="volume">64</biblScope>
+			<biblScope unit="issue">11</biblScope>
+			<biblScope unit="page" from="7081" to="7093" />
+			<date type="published" when="2018-03">March 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Private retrieval, computing and learning: Recent progress and future challenges</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ulukus</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Avestimehr</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Gastpar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">A</forename><surname>Jafar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Tandon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Tian</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Jour. on Selected Areas in Commun</title>
+		<imprint>
+			<biblScope unit="volume">40</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="729" to="748" />
+			<date type="published" when="2022-03">March 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Capacity of quantum private information retrieval with multiple servers</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Hayashi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Info. Theory</title>
+		<imprint>
+			<biblScope unit="volume">67</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="452" to="463" />
+			<date type="published" when="2021-09">September 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Capacity of quantum private information retrieval with colluding servers</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Hayashi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Info. Theory</title>
+		<imprint>
+			<biblScope unit="volume">67</biblScope>
+			<biblScope unit="issue">8</biblScope>
+			<biblScope unit="page" from="5491" to="5508" />
+			<date type="published" when="2021-05">May 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Capacity of quantum symmetric private information retrieval with collusion of all but one of servers</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Hayashi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Jour. on Selected Areas in Info. Theory</title>
+		<imprint>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="380" to="390" />
+			<date type="published" when="2021-01">January 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">On the capacity of quantum private information retrieval from mdscoded and colluding servers</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Allaix</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Holzbaur</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Pllaha</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Hayashi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Hollanti</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Jour. on Selected Areas in Commun</title>
+		<imprint>
+			<biblScope unit="volume">40</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="885" to="898" />
+			<date type="published" when="2022-01">January 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Quantum private information retrieval over a collective noisy channel</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Shi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Modern Physics Letters A</title>
+		<imprint>
+			<biblScope unit="volume">38</biblScope>
+			<biblScope unit="issue">01</biblScope>
+			<biblScope unit="page">2350001</biblScope>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Quantum private information retrieval for quantum messages</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Hayashi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE ISIT</title>
+		<imprint>
+			<date type="published" when="2021-09">September 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Private information retrieval from colluding and byzantine servers with binary reed-muller codes</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Saarela</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Allaix</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Freij-Hollanti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Hollanti</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE ISIT</title>
+		<imprint>
+			<date type="published" when="2022-08">August 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<analytic>
+		<title level="a" type="main">High-rate quantum private information retrieval with weakly self-dual star product codes</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Allaix</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Holzbaur</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Pllaha</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Hollanti</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE ISIT</title>
+		<imprint>
+			<date type="published" when="2021-07">July 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<monogr>
+		<title level="m" type="main">N -sum box: An abstraction for linear computation over many-to-one quantum networks</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Allaix</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Yao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Pllaha</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Hollanti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Jafar</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2304.07561</idno>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<monogr>
+		<author>
+			<persName><forename type="first">M</forename><surname>Nielsen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Chuang</surname></persName>
+		</author>
+		<title level="m">Quantum Computation and Quantum Information: 10th Anniversary Edition</title>
+		<imprint>
+			<publisher>Cambridge University Press</publisher>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

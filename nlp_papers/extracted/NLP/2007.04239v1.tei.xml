@@ -1,0 +1,1976 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">A SURVEY ON TRANSFER LEARNING IN NATURAL LANGUAGE PROCESSING A PREPRINT</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability  status="unknown">
+					<licence/>
+				</availability>
+				<date type="published" when="2020-05-31">31 May 2020</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Zaid</forename><surname>Alyafeai</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Computer Science King Fahd</orgName>
+								<orgName type="institution">University of Petroleum and Minerals Dhahran</orgName>
+								<address>
+									<postCode>31261</postCode>
+									<country key="SA">Saudi Arabia</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Maged</forename><forename type="middle">Saeed</forename><surname>Alshaibani</surname></persName>
+							<affiliation key="aff1">
+								<orgName type="department">Department of Computer Science King Fahd</orgName>
+								<orgName type="institution">University of Petroleum and Minerals Dhahran</orgName>
+								<address>
+									<postCode>31261</postCode>
+									<country key="SA">Saudi Arabia</country>
+								</address>
+							</affiliation>
+						</author>
+						<author role="corresp">
+							<persName><forename type="first">Irfan</forename><surname>Ahmad</surname></persName>
+							<email>irfan.ahmad@kfupm.edu.sa</email>
+							<affiliation key="aff2">
+								<orgName type="department">Department of Computer Science King Fahd</orgName>
+								<orgName type="institution">University of Petroleum and Minerals Dhahran</orgName>
+								<address>
+									<postCode>31261</postCode>
+									<country key="SA">Saudi Arabia</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">A SURVEY ON TRANSFER LEARNING IN NATURAL LANGUAGE PROCESSING A PREPRINT</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2020-05-31">31 May 2020</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">32952CDD7255E48FA489626DC77B8611</idno>
+					<idno type="arXiv">arXiv:2007.04239v1[cs.CL]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-28T12:20+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Transfer Learning</term>
+					<term>NLP</term>
+					<term>Survey</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Deep learning models usually require a huge amount of data. However, these large datasets are not always attainable. This is common in many challenging NLP tasks. Consider Neural Machine Translation, for instance, where curating such large datasets may not be possible specially for low resource languages. Another limitation of deep learning models is the demand for huge computing resources. These obstacles motivate research to question the possibility of knowledge transfer using large trained models. The demand for transfer learning is increasing as many large models are emerging. In this survey, we feature the recent transfer learning advances in the field of NLP. We also provide a taxonomy for categorizing different transfer learning approaches from the literature.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>Humans have been communicating for thousands of years using natural languages. It is estimated that there are currently around 6,500 spoken languages around the world <ref type="bibr" target="#b22">(Johnson, 2013)</ref>. As the main method for communication, automating language understanding is a fundamental concept that has been studied for many years in the literature. As a result, many tasks, shown in Table <ref type="table">1</ref>, have been introduced to verify and validate these studies. Deep learning is employed to serve and craft models for these tasks as their complexity is, by an order of magnitude, out of the scope of the traditional machine learning algorithms. Training a deep learning model is not always affordable due to the huge computing resources and large datasets requirements for these models. This motivates to start exploring other directions to transfer knowledge from one deep learning model to another.</p><p>The general idea of transfer learning, formally defined in section 5, is to transfer parameters or knowledge from one trained model to another. Based on the availability of labeled dataset, transfer learning can be divided into transductive and inductive transfer learning (see section 5). These approaches are general and can be applied to many tasks in machine learning. For instance, (Pan and <ref type="bibr" target="#b42">Yang, 2009)</ref> surveyed the literature for the transfer learning methods followed in recommendation systems with auxiliary data. Moreover, <ref type="bibr" target="#b73">(Xu and Yang, 2011)</ref> discussed multi tasking and transfer learning in the domain of bioinformatics using machine learning and data mining techniques. Recently transfer learning has been applied heavily in natural language processing. <ref type="bibr" target="#b36">(Malte and Ratadiya, 2019)</ref> discussed the evolution of transfer learning in natural language processing. They mainly focus on the most dominant approach for transfer learning which is sequential fine tuning. However, we believe that transfer learning in NLP should be studied more thoroughly with highlights to all transfer learning approaches.</p><p>In the past few years, language models have evolved and they achieved much better results compared to traditional language models. These trained language models were used to transfer knowledge to solve many natural language processing tasks. In this survey, we highlight the latest advances, summarize them and categorize each one in the corresponding category of transfer learning. We follow a similar taxonomy developed by <ref type="bibr" target="#b70">(Weiss et al., 2016)</ref> and (Pan and <ref type="bibr" target="#b42">Yang, 2009)</ref> in categorizing and analyzing the literature. Since there is a huge number of papers related to natural language processing we focused only on the recent papers with a reasonable number of citations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Background</head><p>In this section we give a brief background of different models used for natural language processing. We divided the models into three categories based on the main architecture used . We also can think of recurrent-based models as being traditional because they have been recently replaced with parallelized architectures like attention-based and CNN-based models.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.1">Recurrent-Based Models</head><p>Recurrent neural networks (RNNs) were first introduced as a way to process sequential data. The basic idea is learn the sequence context by passing the previous model state along with each input. RNNs showed good results in many tasks like time-series classification <ref type="bibr" target="#b20">(Hüsken and Stagge, 2003)</ref>, text generation <ref type="bibr" target="#b63">(Sutskever et al., 2011)</ref>, biological modeling <ref type="bibr" target="#b60">(Spoerer et al., 2017)</ref>, speech recognition <ref type="bibr" target="#b15">(Graves et al., 2013)</ref>, translation <ref type="bibr" target="#b1">(Bahdanau et al., 2014)</ref> and music classification <ref type="bibr" target="#b7">(Choi et al., 2017)</ref>. Another variant of RNNs is the multi level hierarchical network introduced by <ref type="bibr" target="#b56">(Schmidhuber., 1992)</ref>. RNNs, unfortunately, suffers from an intrinsic problem. As many other machine learning algorithms, RNNs are optimized using back-propagation <ref type="bibr" target="#b54">(Rumelhart et al., 1988)</ref> and due to their sequential nature, the error decays severely as it travels back through the recurrent layers. This problem is known as the vanishing gradient problem <ref type="bibr" target="#b17">(Hochreiter, 1998)</ref>. Many ideas were introduced to recover RNNs from issue. One idea was to use Rectivited Linear Unit (ReLU) as a replacement for the Sigmoid function <ref type="bibr">(Glorot et al., 2011)</ref>. Another idea the introduction of Long Short Term Memory (LSTM) architecture <ref type="bibr" target="#b13">(Gers et al., 1999)</ref>. The architecture is composed of multiple units with different numbers of gates, input, output and forget gates, in each unit. Each unit also outputs a state that can be used on the next input in the sequence. <ref type="bibr" target="#b57">Schuster and Paliwal (1997)</ref> introduces bidirectional LSTMs that can process sequences from forward and backward directions hoping that the network may develop better understanding from both sequence directions. Although this architecture can handle long sequence dependencies well, it has a clear disadvantage of being extremely slow due to the huge number of parameters to train. This leads to the development of Gated Recurrent Networks (GRUs) <ref type="bibr" target="#b6">(Cho et al., 2014)</ref> as a faster version of LSTMs. The reason why GRU are faster is that they only uses two gates, update and output. The authors, moreover, show that GRU architecture can be even beat LSTMs on some tasks such as automatic capturing the grammatical properties of the input sentences.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2">Attention-Based Models</head><p>Recurrent neural networks suffer from the problem of being sequential and slow. Moreover, they can't capture longer dependencies because of vanishing gradients <ref type="bibr" target="#b17">(Hochreiter, 1998)</ref>. Moreover, RNNs treat each sequence of words as having the same weight with respect to the current processed word. Additionally, sequence activations are aggregated in one vector which causes the learning process to forget about words that were fed in the past. The main idea of attention is allowing each word to attend differently to inputs based on a similarity score. Attention can be applied between different sequences or in the same sequence (self-attention). Generally attention can take many forms <ref type="bibr" target="#b19">(Hu, 2019)</ref> but in this section we focus on two main formulations:</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2.1">Soft Attention</head><p>Soft attention general assigns weights to different inputs from a given sequence. Given a set of queries Q, keys K and values V we can evaluate an attention score using the following formula</p><formula xml:id="formula_0">Attention(Q, K, V ) = softmax( Qk T √ d k )V<label>(1)</label></formula><p>The operation of attention can be broken out into three steps:</p><p>Table <ref type="table">1</ref>: Definitions of many natural language processing tasks.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Task Description</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Summarization</head><p>The process of extracting the more important points in a set of documents and providing a shorter, more compact version</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Question Answering and Classification</head><p>Given a question and a certain context, we want to index the answer to the question in the given context. This is usually called abstractive question answering. On the other hand, generative question answering considers the problem as a generative task. Another related task is question classification where we classify questions semantically to different categories.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Text Entailment</head><p>Given a pair of sentences, we want to predict whether the truth of the first sentence implies the truth of the second sentence.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Semantic Role Labeling</head><p>A labeling task where each word is given its semantic role in the current context.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Co-reference Resolution</head><p>The process of collecting expressions that refer to the same object.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Named Entity Extraction and Recognition</head><p>The task of extracting entities (extraction) along with their labels (recognition).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Sentiment Analysis</head><p>To classify sentences or paragraphs according to the sentiment, e.g., positive, negative or neutral.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Reading Comprehension</head><p>A similar problem to question answering where for a given context we want to comprehend it by answering questions correctly.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Translation</head><p>The process of pairing each given sentence in a language A to another sentence in language B that has the same meaning.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Sentence Pair Classification</head><p>Classify if a given pair of sentences are semantically equivalent.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Natural Language Understanding</head><p>Considers how effective models are on different tasks including question answering, sentiment analysis, and textual entailment, etc. <ref type="bibr" target="#b67">(Wang et al., 2018)</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>User Intent Classification</head><p>Association of text to a specific purpose or goal.</p><p>Natural Language Inference Determine if given a premise whether the hypothesis is entailment, contradiction, or neutral.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Part of Speech Tagging</head><p>Label each word to its corresponding part of speech based on its meaning and context.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Document Grounded Dialog Response</head><p>Given web document and conversation history what is the proper response ?</p><p>1. Similarity: this is calculated using the dot product which evaluates a similarity score between the two vectors Q and K. Then the result is divided by a normalization factor which is a parameter related to the size of the model. 2. Probability: which is calculated using the softmax function. This calculates a probability score for each given sequence showing how much each word in the keys attends to a given word in the queries. Note, the set of queries and keys could be the same, we call this self-attention <ref type="bibr" target="#b66">(Vaswani et al., 2017)</ref>. 3. Weighting: The weights calculated from the previous step is multiplied by the value matrix V . This approach is typically called "Scaled Dot-Product Attention" as mentioned in the transformers paper <ref type="bibr" target="#b66">(Vaswani et al., 2017)</ref>. There exists other types of soft attention like additive attention. In general, additive attention computes the attention scores using a feed-forward neural network <ref type="bibr" target="#b1">(Bahdanau et al., 2014)</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2.2">Hard Attention</head><p>Compared to soft attention, hard attention is considered a non-differentiable process. Hence, the gradients are estimated using a stochastic process and not gradient descent. Formally, given s t which indicates the position to attend to given the current word at position t. We also define s t,i as one-hot encoding vector that sets to 1 at the i-the location if we want to attend to that position. We then can consider the attention locations as latent variables that can be modelled using a multinoulli distribution parameterized by α i and z t as a random variable where,</p><formula xml:id="formula_1">p(s t,i = 1|s j&lt;t , a) = α t,i<label>(2)</label></formula><formula xml:id="formula_2">z t = i s t,i a i<label>(3)</label></formula><p>We then can optimize the log-likelihood using a lower bound on the objective function <ref type="bibr" target="#b72">(Xu et al., 2015)</ref>.</p><p>Positional Encoding In language modeling, we have a sequence of words with fixed positions for each word. However, the attention process we accounted for so far doesn't apply any information about the position of each word. Compare this to RNNs where they by default apply a sequence of words, hence they inherently encode the positions of them. On the other hand, in attention based models, encoded words can be treated out of order which might result in a randomization effect. One simple solution is to encode each word using some information about its position with respect to the current sequence. After we embed each word using an embedding matrix, we extract the positions using the following formula: </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.3">CNN-Based Models</head><p>Convolutional neural networks (CNNs) were traditional proposed to be applied in image recognition tasks like character recognition <ref type="bibr" target="#b30">(LeCun et al., 1998)</ref>. The main ingredient of CNNs are convolutional and max-pooling layers for subsampling. The convolutional layers are responsible for extracting features and the pooling layers are used to reduced the spatial size of the extracted features. CNNs have been successfully applied in other fields in computer vision like image synthesis <ref type="bibr" target="#b14">(Goodfellow et al., 2014)</ref>, object detection <ref type="bibr" target="#b50">(Redmon et al., 2016)</ref>, colorization <ref type="bibr" target="#b77">(Zhang et al., 2016)</ref>, etc.</p><p>Although it is less intuitive, CNNs were also applied for natural language processing tasks. <ref type="bibr" target="#b24">(Kim, 2014)</ref> applied CNNs for the task of sentence classification. Convolutional layers are applied on features extracted from word embeddings learned from Word2Vec embeddings <ref type="bibr" target="#b39">(Mikolov et al., 2013)</ref>. It was successful for many tasks like movie reviews, question classification, etc. Similarily, character-level CNNs were used for text classification <ref type="bibr" target="#b78">(Zhang et al., 2015)</ref>.</p><p>CNNs where also combined with other architectures like LSTMs <ref type="bibr" target="#b72">(Xu et al., 2015)</ref> and attention <ref type="bibr" target="#b76">(You et al., 2016)</ref>. Convolutional neural networks have been successful also in language modeling <ref type="bibr" target="#b9">(Dauphin et al., 2017)</ref>. They proposed a model with gated convolutional layers that can preserve larger contexts and can be parallelized compared to traditional recurrent neural networks.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">Language Models</head><p>Language modeling refers to the process of learning a probability distribution over set of tokens taken from a fixed vocabulary. Let (x 1 , x 2 , • • • , x n ) be a sequence of tokens, we want to learn a probability distribution of the form</p><formula xml:id="formula_3">P (x 1 , x 2 , • • • , x n ) .</formula><p>The joint distribution is usually evaluated using the chain rule</p><formula xml:id="formula_4">P (x) = Π t P (x t |x &lt;t )<label>(6)</label></formula><p>Where x &lt; t represents all the tokens before the current token. Even though this is the most used technique there exists many other approaches in the literature:</p><p>Unidirectional LM We consider only tokens that are to the left or right of the current context. For instance, given (x 1 , x 2 , x 3 , x 4 ), in order to predict x 3 we only use (x 1 , x 2 ) as a left context and x 4 as a right context. This can be applied in self attention by using triangular matrices such that the weights are zeros when we multiply by the current features. This is usually called auto-regressive encoding.</p><p>Bidirectional LM Every token can attend to any other token in the current context. For x 3 in (x 1 , x 2 , x 3 , x 4 ) it sees the context of (x 1 , x 2 , x 4 ). The task of next word prediction becomes now trivial because any token can attend to the next word prediction. To prevent that, in the literature they usually use masked language models.</p><p>Masked LM Usually used in bidirectional LM where we randomly mask some tokens in the current context. The task is then to predict these masked tokens. The masked tokens are labeled as <ref type="bibr">[MASK]</ref>. For instance, we will have the following representation</p><formula xml:id="formula_5">(x 1 , x 2 , [MASK],</formula><p>x 4 ) and we want to predict the masked token as x 3 . This is usually called denoising auto-encoding.</p><p>Sequence-to-sequence LM The input is usually split into two separate parts. Every token in the first part can see the context of any other token in that part. However, in the second part, every token can only attend to tokens to the left. For example, given the input</p><formula xml:id="formula_6">[SOS]x 1 x 2 [EOS]x 3 x 4 x 5 [EOS].</formula><p>Token x 1 can attend to any token from the first four while x 4 can only attend to the first 5.</p><p>Permutation LM This model attempts to combine the benefits of auto-regressive and auto-encoding. For a given sequence X of size T it can be factorized into T ! unique sequences. For instance, suppose we have a sequence (x 1 , x 2 , x 3 , x 4 ) then a possible permutation will be of the form (x 2 , x 3 , x 1 , x 4 ). Then for a given token x 1 it can be conditioned on x 3 and x 2 only. Each permutation can be sampled randomly at each iteration step.</p><p>Encoder-Decoder LM While other approaches are usually implemented using a single stack of encoder/decoder blocks, in this approach both blocks are used. This task is powerful as it can be used for classification and generation <ref type="bibr" target="#b47">(Raffel et al., 2019)</ref>. Given a set of sequences (x 1 , x 2 , x 3 , x 4 ) encoded using an encoder we want to predict the next sequences (x 2 , x 3 , x 4 , x 5 ) using a decoder. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">Datasets</head><p>There exists many datasets in the literature that are used for NLP tasks. In Table <ref type="table" target="#tab_1">3</ref> we summarize some of the datasets used in the literature. Note that many datasets are not publicly available so they are not included. As noticed in the table <ref type="table" target="#tab_1">3</ref>, the size of these datasets is quite large especially for those which came after 2012. This is due to the de facto deep learning requirement to train on such huge datasets.</p><p>The development of some of these datasets is improving over time. The first version of SQuAD, which can be considered as a solved task as some trained models, for instance <ref type="bibr" target="#b29">(Lan et al., 2019)</ref>, can outperform humans. SQuAD 2.0 has 50K more questions compared to the previous version.</p><p>Other types of datasets provides a complete overview of many language understanding tasks, GLUE is a good example of such datasets where it comprises 9 tasks. Such types of datasets provide the model with more comprehensive insights about the language. Such dataset can be considered as a benchmark where many language models can compete to reach human level. In the next year, SuperGLUE is considered as an improvement where more challening tasks are included. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">Transfer Learning</head><p>In this section we give an introduction to transfer learning. We mainly follow the same discussion and notations adopted in <ref type="bibr" target="#b70">(Weiss et al., 2016)</ref> and (Pan and <ref type="bibr" target="#b42">Yang, 2009)</ref> . We define a Domain D as a tuple (X, P (X)) where X is the feature space and P (X) is the marginal probability of the feature space. We also define a task as a tuple (y, P (y|x)) where y are the labels and P (y|x) is the conditional distribution that we try to learn in our machine learning objective. As an example, consider the task of document classification. Then we can consider X as the feature space of all the documents in the dataset. P (X) is the distribution of the documents in the dataset. For each feature x ∈ X we associate a label y which is an integer. The task is associated with an objective function P (y|x) which is optimized to learn the labels of the documents given the feature vector for each document. Given a source domain-task tuple (D s , T s ) and different target domain-task pair (D t , T t ), we define transfer learning as the process of using the source domain and task in the learning process of the target domain task. In Table <ref type="table" target="#tab_2">4</ref> we compare between different scenarios when the domain pair is different or the task pair is different. </p><formula xml:id="formula_7">X s = X t</formula><p>The source domain could be English and the target could be Arabic.</p><formula xml:id="formula_8">P (X s ) = P (X t )</formula><p>The review could be written in the topic of hotels in the first domain while on restaurants on the target domain.</p><p>y s = y t As an example, the reviews in the source task might be binary while in the target task is categorical.</p><formula xml:id="formula_9">P (y s |x s ) = P (y t |x t )</formula><p>For example, given a specific review in the domain task might have a label negative while in the target task it has a label neutral.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1">Transductive Transfer Learning</head><p>We have the same task where mostly we don't have labeled data in the target domain or we have a few labeled samples in the target task. Transductive transfer learning can be divided into two categories as shown in Figure <ref type="figure" target="#fig_1">1</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1.1">Domain Adaptation</head><p>Refers to the process of adapting to a new domain. This usually happens when we want to learn a different data distribution in the target domain. For instance, in the field of sentiment classification, the review could be written on the topic of hotels in the first domain while on restaurants in the target domain. Domain adaptation is especially useful if the new task to train-on has a different distribution or the amount of labeled data is scarce.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1.2">Cross-lingual Learning</head><p>Refers to the process of adapting to a different language in the target domain. This usually happens, when we want to use a high-resource language to learn corresponding tasks in a low-resource language. For instance, cross-lingual language modelling has been studied to see the effect on low-resource languages <ref type="bibr" target="#b0">(Adams et al., 2017)</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2">Inductive Transfer Learning</head><p>We have different tasks in the source and the target domain where we have labeled data in the target domain only. Figure <ref type="figure">2</ref>. Illustrates a taxonomy for dividing the different approaches that are mentioned in the literature.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2.1">Sequential Transfer Learning</head><p>Refers to the process of learning multiple tasks in a sequential fashion. For instance, given a pretrained model M we want to transfer the learning to multiple tasks</p><formula xml:id="formula_10">(T 1 , T 2 , • • • , T n ).</formula><p>At each time step t we learn a specific task T t . Opposed to multi-task learning, it is slow but can be advantageous especially when not all the tasks are available at the time of training. Sequential transfer learning can be further split into four categories.</p><p>1. Fine-tuning given a pretrained model M with weights W for a new target task T we will use M to learn a new function f that maps the parameters f (W ) = W . The parameters can be changed on all layers or on some layers. The learning rate could be different for the different layers (discriminative fine tuning). For most of the tasks, we may add a new set of parameters K such that f (W, K) = W • K .</p><p>2. Adapter modules given a pretrained model M with weights W for a new target task T we will initialize a new set of parameters that are less in magnitude than W , i.e., K W . We assume that it can decompose K and W into smaller modules K = {k} n and W = {w} n reflecting the layers in the trained model M . Then we can define a function</p><formula xml:id="formula_11">f (K, W ) = k 1 • w 1 • • • • k n • w n</formula><p>Note that the set of original weights W = {w} n are kept unchanged during this process while the set of weights K are modified to K = {k } n . 3. Feature based only cares about learning some kind of representations on different levels like character, word, sentence or paragraph embeddings. The set of embeddings E from a model M are kept unchanged, i.e., f (W, E) = E • W where W is modified using fine tuning. (a) Character Embeddings The characters are used for learning the embeddings. These models can be used to solve the open vocabulary problem (Ling et al., 2015). (b) Word Embeddings The document is splitted by words and the words are encoded to create the embed-</p><p>dings. This is the most used approach with many techinques like Word2Vec <ref type="bibr" target="#b39">(Mikolov et al., 2013)</ref> and GloVe <ref type="bibr" target="#b43">(Pennington et al., 2014)</ref>. (c) Sentence Embeddings Sentences are used to create single vector representatiosn. For instance, the word vectors can be combined with N-grams to create sentence embeddings like Sent2Vec <ref type="bibr" target="#b41">(Pagliardini et al., 2017)</ref> 4. Zero-shot is the simplest approach across all the previous ones. Given a pretrained model M with W we make the assumptions that we cannot change the parameters W or add new parameters K. In simple terms, we don't apply any training procedure to optimize/learn new parameters.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2.2">Multi-Tasks Learning</head><p>Refers to the process of learning multiple tasks at the same time. For instance, given a pretrained model M , we want to transfer the learning to multiple tasks</p><formula xml:id="formula_12">(T 1 , T 2 , • • • , T n ).</formula><p>All tasks are learnt in a parallel fashion. It can be argued that learning multiple tasks from a given dataset can be better than learning tasks independently <ref type="bibr" target="#b12">(Evgeniou and Pontil, 2004</ref>).</p><p>In the following section we provide a detailed literature review where we discuss the studies in each category.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6">Related Work</head><p>There are many studies in the literature that discuss transfer learning in natural language processing. However, there are many overlaps in the mentioned studies and we did our best in order to divide them into their corresponding categories.</p><p>6.1 Transductive Transfer Learning 6.1.1 Cross Lingual Transfer Learning <ref type="bibr" target="#b23">(Kim et al., 2017)</ref> proposed a model for pos-tagging in a cross lingual setting where the input and output languages have different input sizes. The approach doesn't exploit any knowledge about the linguistic relation between the source Figure <ref type="figure">2</ref>: Inductive Transfer Learning and target languages. They create two bidirectional LSTMs (BLSTMs) one is called common where the parameters are shared between the languages and the private BLSTM where the parameters are language-specific. The outputs of the two modules are used to extract POS tagging using cross-entropy loss optimization. They force the common BLSTM to be language-agnostic using language adversarial training <ref type="bibr" target="#b5">(Chen et al., 2018)</ref>. They show that this approach improves the results for POS tagging on 14 languages without any linguistic knowledge about the relation between the source and target languages. <ref type="bibr" target="#b58">(Schuster et al., 2018)</ref>, presented a new dataset of 57k annotated utterances in English, Spanish, and Thai categorized in the following domains: weather, alarm, and reminder. This dataset is used to evaluate three different cross-lingual transfer methods on the task of user intent classification and time slot detection. These methods are: translating the training data, using cross-lingual pretrained embeddings, and novel methods of using multilingual machine translation encoders as contextual word representations. The results found on evaluating these approaches on the given dataset shows that the latter two methods outperform the translation method on a low resource target language, i.e., the target language has only several hundred training examples. This encourages investing more effort in building more sophisticated cross-lingual models.</p><p>6.1.2 Domain Adaptation <ref type="bibr" target="#b53">(Ruder et al., 2017)</ref> applied a teacher-student model for transferring knowledge from multiple domains to a single domain in an unsupervised approach. The student model is a multi-layer prerceptraon (MLP) that is trained in such way that it maximizes the similarity between the multiple source domains and the target domain. They use three measures for domain similarity which are Jensen-Shannon divergence <ref type="bibr" target="#b51">(Remus, 2012)</ref>, Renyi divergence <ref type="bibr" target="#b65">(Van Asch and Daelemans, 2010)</ref> and Maximum Mean Discrepancy <ref type="bibr" target="#b64">(Tzeng et al., 2014)</ref>. They achieve state-of-the-art results on 8 out of 12 domain pairs for single source unsupervised domain adaptation.</p><p>(Shah et al., 2018) applied adversarial domain adaptation for the detection of duplicate questions. Their approach consists of three components where the first component encodes the question. The encoder is optimized to fool the domain classifier that the question is form the target domain. The second component is a similarity function which calculates the probability that both questions are similar or duplicate. And a domain adaptation component which is responsible of decreasing the difference between the target and source domain distributions. The authors achieve an average improvement of around 5.6% over the best benchmark for different pairs of domains. <ref type="bibr" target="#b34">(Ma et al., 2019)</ref> considered the task of domain shift from pretrained BERT to other target domains. They use two steps where in the first step they classify the data points with similarity score to the source domain. Then, they use the classified data points to progressively train a model with increasing level of difficulty where lower difficulty means that the data point is similar to the target domain while higher means it is different. The later approach is called curriculum learning in the literature <ref type="bibr" target="#b2">(Bengio et al., 2009)</ref>. They tested their approach against four different large public datasets with varying domains and they outperformed other approaches on most transfer tasks in addition to faster training time.</p><p>6.2 Inductive Transfer Learning 6.2.1 Sequential Fine Tuning (Lee et al., 2017) experimented the performance of transfer learning on the patient note de-identification task. This task is a variant of named entity recognition task where the model needs to find the patient's sensitive information in order to deidnetify. The transfer-learned model consists of a concatenated tokens embeddings and charachter embeddings feed to an LSTM unit. The output of this unit, then, goes through a fully connected layer for the seek of labels prediction. The output of this fully connected layer, labels vectors for each token, is finally fed to sequence optimization layer that outputs the most likely label of each token. The aforementioned model was trained on, initially, MIMIC dataset <ref type="bibr" target="#b21">(Johnson et al., 2016)</ref>, then, for the sake of fine tuning transfer learning, on i2b2 dataset <ref type="bibr" target="#b62">(Stubbs et al., 2015)</ref>. They have conducted two experiments for two different goals. The goal of the first experiment was to quantify transferability by comparing the transfer learning approach against training the model on the target set only, the non transfer learning approach. While in the second one, they aimed to analyze the importance of each network layers' parameters when transfer learning on the target dataset. For the first experiment, they found out that transfer learning outperforms the non transfer learning approach on small train set sizes on the f1-score scale. This confirms the knowledge transferability.</p><p>For the second experiment, the results show that transferring parameters of the bottom-most layers, mostly up to the LSTM unit, is as efficient as transferring the whole network. The work concludes that fine tuning the bottom-most layers, i.e. features layers, hold the most model knowledge.</p><p>( <ref type="bibr" target="#b37">McCann et al., 2017)</ref>, tested the transferability of word vectors trained on machine translation datasets with different sizes. The trained model was an attention-based sequence-to-sequence model for English to German translation based on a research conducted by <ref type="bibr" target="#b25">(Klein et al., 2017)</ref>. The architecture of this model, referred to as encoder, is a two layer bidirectional LSTM referred to as MT-LSTM. The resulting vectors out of this model are called Context Vectors, CoVe for short. Based on the size of the training dataset used, the vectors are of three variants, CoVe-S, CoVe-M, and CoVe-L.</p><p>All of these datasets are tokenized using Moses Toolkit <ref type="bibr" target="#b26">(Koehn et al., 2007)</ref>. The performance of this model and its variants was evaluated on two different NLP tasks: sentiment analysis, entailment and question classification and question answering tasks. The authors built a specific architecture using MT-LSTM for the purpose of classification.</p><p>For question answering task, they used the Dynamic Coattention Network proposed by <ref type="bibr" target="#b71">(Xiong et al., 2016)</ref> where the input is converted to CoVe vectors. The results produced by these models are competent to other models while some of these results outperforms the current state-of-the-art results in the literature.</p><p>( <ref type="bibr" target="#b28">Lakew et al., 2018)</ref> proposed a method to transfer knowledge across neural machine translation models using a shared dynamic vocabulary. They have introduced two transfer learning approaches with different goals for each approach. The first approach, referred to as progressive adaptation (progAdapt) will dynamically update the embeddings of the target language based on the source language using an algorithm referred to as Dynamic Vocabulary update. The purpose of this approach is to maximize performance on the new target tasks from parameters learned from the previous tasks.</p><p>The second approach, referred to as progressive growth (progGrow), is to initialize the translation model of the target language having the constraint that the performance of the source language model is maintained. This is achieved by feeding a language pair at a time to the model then updating the embeddings just as in progAdapt. The dataset used for the experiments was retrieved from WIT and TED corpus.</p><p>(Howard and <ref type="bibr">Ruder, 2018)</ref> proposed an approach to universal fine-tuning for text classification called ULMFiT. They follow a similar approach to the computer vision transfer learning task where a model is trained on ImageNet then fine-tuned to by adding classification layers at the end. They propose a system for universal fine-tuning that can achieve good results even on smaller datasets. They start by pretraining a AWD-LSTM model <ref type="bibr" target="#b38">(Merity et al., 2017)</ref> on a large dataset. Then they fine-tune the model for a specific task by adding classification layers at the end. Then, they apply discriminative fine-tuning which works by applying different learning rates for different blocks in the pretrained model. The last layers in the model apply a higher learning rate than first layers. For training, they use slanted triangular learning rate (STLR), which increases linearly at the beginning then decreases at some point. Finally they apply gradual unfreezing which prevents catastrophic forgetting by unfreezing layers starting from the last layer. They show that their approach achieves state of the art on six text classification datasets. <ref type="bibr" target="#b10">(Devlin et al., 2018)</ref> designed a model which is based on bidirectional encoder representation (BERT). They base their results on training BERT on large corpus of text then fine tune it by adding a small number of classification layers. This allows universal task fine tuning without substantial architecture modification. They base their results on learning bidirectional representations using a masked language model (MLM). To prevent bidirectional layers from attending to previous words, they mask out randomly some tokens and the objective is to predict the masked tokens. The authors argue that bidirectional representations are crucial for language understanding which makes it robust for different tasks like question answering. BERT architecture follows the transformer model <ref type="bibr" target="#b66">(Vaswani et al., 2017)</ref>. To make BERT robust for different tasks they change the input representation to be a sentence-pair with some reserved token as a separator. Compared to traditional approaches, they train their models on two unsupervised tasks which are regular language model (LM) and next sentence prediction(NSP). For fine tuning, they simply plug the required inputs and outputs representations that are compatible for the tasks. For tasks that require only one input they use the empty string as the second pair. They provide empirical evidence that BERT achieves state-of-the-art results on eleven natural language tasks. <ref type="bibr" target="#b45">(Peters et al., 2018)</ref> introduced deep contextualized word representations as word embeddings for language models (ELMo). They show that by applying deeper architectures they can achieve much better results than shallow words embeddings. Moreover, higher layers capture semantic relations while lower layers learn syntactic aspects like part of speech tagging. ELMo is based on bidirectional representations concatenated with the previous layer representation as a skip connection. For evaluation they test ELMo against benchmark tasks including question answering, textual entailment, semantic role labeling, coreference resolution etc. They show that ELMo significantly improves performance on all six tasks. <ref type="bibr">(Liu et al., 2019b)</ref> made some modifications to BERT to become robustly optimized (RoBERTa). The authors made a replication study to the BERT model <ref type="bibr" target="#b10">(Devlin et al., 2018)</ref> with a few modifications. First, they trained the model on longer sequences over larger batch size and on more data. Second, they removed the next sentence prediction objective. Finally, they dynamically changed the masking pattern for each input sequence. They collected a large dataset of size 160GB (CC-News) which is comparable to other privately used datasets. They reached the conclusion that BERT was undertrained and with the previous modifications they can match or exceed other models published after BERT. They achieved state-of-the-art results on (question answering) SQuAD , (language understanding) GLUE and (reading comprehension) RACE. <ref type="bibr" target="#b8">(Dai et al., 2019)</ref> introduced a new approach for preserving extra-long dependencies in language models (Transformer-XL). The main objective is to prevent context fragmentation which arises as a side-effect of training a language model on fixed size segments. Moreover, they used relative positional encoding instead of absolute positional encoding. In order to implement the idea, they follow the architecture of a Transformer <ref type="bibr" target="#b66">(Vaswani et al., 2017)</ref> with the difference that later segments are conditioned on the previous segments. This allowed the model to learn dependencies up to 450% more than vanilla transformers. Moreover, the evaluation speed is much faster than vanilla transformers. <ref type="bibr" target="#b74">(Yang et al., 2019)</ref> suggested a modification to traditional language modeling by creating a permutation language model called XLNet. The approach focuses on taking the best of both Autoregressive Language Modeling (AR) and Denoising Autoencoding (DA) while solving the main issue of two paradigms. The authors recognized that they should apply bidirectional encoding but without using masks like BERT because they want to limit the ability of such powerful language models. Mainly, they condition the current input on a permutation of all current tokens using masked attention. Moreover, to prevent two inputs from being conditioned on the same factorization they use target-aware representations where the representations are conditioned on the target positions as well. In order to preserve longer dependencies they use the architecture Transformer-XL. The authors show that XLNet outperforms BERT on 20 tasks by a large margin including question answering, natural language inference, sentiment analysis, and document ranking. <ref type="bibr" target="#b11">(Dong et al., 2019)</ref> proposed a model for unified pretrained language model (UNILM). The main idea is combining different training objectives to pretrain a model in a unified way. They mainly combine four objectives: Unidirectional, Bidirectional and Sequence-to-Sequence (refer to section 2). They evaluate the UNILM model on different tasks including abstractive summarization, generative question answering and document-grounded dialog response generation. They achieve state-of-the-art results on all of the previous tasks.</p><p>( <ref type="bibr" target="#b52">Roberts et al., 2020)</ref> studied the knowledge retrieval performance of large language models. They investigated that in the domain of open-domain question answering with the constraint that we cannot look up any external resources to answer the questions. This task is similar to a closed-book exam where students are not allowed to look up books for answering exam questions. As a pretrained model they used the T5 model by <ref type="bibr" target="#b47">(Raffel et al., 2019)</ref> which has 11 billion parameters. The hypothesis is that such a large language model with a huge number of parameters can store knowledge and hence we can extract this knowledge for a specific task. Moreover, T5 is a text-to-text model which makes it suitable for an open domain question answering task. Fore prediction, the token with the highest probability is decoded as the next prediction at a specific time step. They map this task to the T5 model by using the question as an input with the task-specific label and predict the answer as an output. They show that this approach outperforms models that explicitly look up answers using an external domain.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.2.2">Adapter Modules</head><p>( <ref type="bibr" target="#b18">Houlsby et al., 2019)</ref> investigated how to make fine-tuning more parameter-efficient. In an online setting, tasks that arrive in stream can be trained efficiently with minimal parameters increase. These models are called compact models because they require a few number of parameters to fine tune. They typically call their approach "Adapter-based tuning" which can achieve 2x lesser parameters compared to traditional fine tuning with comparable accuracy. This allows training on different tasks in a sequential manner without the need for all the datasets for all tasks. The adapter based approach works by injecting layers in-between the layers of the pretrained model. The weights of the pretrained model are kept frozen, on the other hand, the new weights are initialized using a near-identity function. This prevented the model from failing to train. The adapbter based modules consist of feedforward layers, nonlinearity and a skip connection. They tested their approach by using BERT as a pre-trained model and 26 diverse text classification tasks.</p><p>(Stickland and <ref type="bibr" target="#b61">Murray, 2019)</ref> applied adapter modules to share the parameters between different tasks by fine-tuning the BERT model. They propose projected attention layers (PALs) which are low dimensional multi-head attention layers that are trained with the attention layers of BERT in parallel. They also add task-specific residual adapter modules <ref type="bibr" target="#b49">(Rebuffi et al., 2018)</ref> within BERT to jointly learn multiple tasks. They evaluated their models against GLUE tasks while obtaining state-of-the-art results on text entailment. (Semnani and Sadagopan, 2019) fine-tuned Bert on the task of question answering which they call BERT-A. They applied a combination of adapter modules <ref type="bibr" target="#b18">(Houlsby et al., 2019)</ref> and projected attention layers <ref type="bibr" target="#b61">(Stickland and Murray, 2019)</ref> in order to reduce the cost of retraining the BERT model. They applied answer pointers where the start token is fed into a GRU in order to predict the end token <ref type="bibr" target="#b69">(Wang and Jiang, 2016)</ref>. They were able to reduce the number of parameters to 0.57% compared to retraining all the parameters of BERT while achieving comparable results to state-of-the-art results on question answering.</p><p>6.2.3 Feature Based <ref type="bibr" target="#b40">(Mou et al., 2016)</ref> studied the transferability of models on similar tasks. They studied two general transferring methods: initializing models with parameters trained on other models (INIT) and training the same architecture on different tasks (MULT). The first experiment was an LSTM-RNN to classify sentences according to their sentiment. The datasets used in this experiment are IMDB, MR, and QC. IMDB and MR are for sentiment classification while QC is a small dataset for 6-way question classification. Transfer learning occurs between IMDB → MR and IMDB → QC with variant types of transferring methods, i.e., word embeddings are initialized using Word2Vec, randomly initialized, transferred but fine-tuned and transferred but frozen. The paper reports accuracy enhancement for each task with no more than 6%.</p><p>The second experiment was a sentence pair classification. The model was a CNN-pair from Siamese architecture. The dataset used is SNLI <ref type="bibr" target="#b3">(Bowman et al., 2015)</ref>, a large dataset for sentence entailment recognition, SICK a small dataset with the same purpose as SNLI, and MSRP a small dataset for paraphrase detection. The transfer learning task was applied on SNLI → SICK and SNLI → MSRP. Improvements in the results was around 6%. For layer transfer analysis (MULT), the paper showed a slight improvement for similar tasks but not for semantically different tasks. Combining both methods was not promising, according to their conclusion. <ref type="bibr" target="#b44">(Peters et al., 2017)</ref>, utilized a semi supervised transfer learning approach for the task of sequence labeling. The model they used is a pre-trained neural language model that was trained in an unsupervised approach. The model is a bidirectional language model where both forward and backward hidden states are concatenated together. The output of this model is, then, augmented to token representations and fed to a supervised sequence tagging model (TagLM). The sequence tagging model is then trained in a supervised way to output the tag of each sequence. The dataset used to conduct the experiments was CoNLL 2003 NER and CoNLL 200 chunking. They achieve state-of-the-art results on both tasks compared to other forms of transfer learning.</p><p>6.2.4 Zero-shot <ref type="bibr" target="#b46">(Radford et al., 2019)</ref> proposed a large model for unsupervised multi-task learning. They train a set of large models ranging from 117 million parameters to 1.5 billion parameters which they call (GPT-2). They show that given a large model trained on large corpus can achieve zero-shot knowledge transfer without any fine-tuning. For such a task they created a dataset of size 40 GB text. For the language model, they use a similar architecture to the transformer model <ref type="bibr" target="#b66">(Vaswani et al., 2017)</ref> and GPT model <ref type="bibr">(Radford et al., 2018)</ref>. The performance improvement follows a log-linear fashion as the capacity of the model increases. The largest model (GPT-2), achieves state-of-the-art results on 7 out of 8 different datasets. These tasks include summarization, reading comprehension, translation, and question answering.</p><p>More recently <ref type="bibr" target="#b4">(Brown et al., 2020)</ref> was proposed with the largest model that has 175 billion parameters. The authors show that bigger models with bigger datasets (45TB of compressed plain-text) can achieve near state of the art results in a zero-shot setting. GPT-3 has a similar architecture to GPT-2 with the exception that they use "alternating dense and locally banded sparse attention patterns". <ref type="bibr" target="#b75">(Yin et al., 2019)</ref> studied zero-shot transfer on text classification. They first modeled each classification task as a text entailment problem where the positive class means there is an entailment and negative class means there is non.</p><p>Then they used a pretrained Bert model on text classification in a zero-shot scenario to classify texts in different tasks like topic categorization, emotion detection, and situation frame detection. They compare there approach against unsupervised tasks like Word2Vec <ref type="bibr" target="#b39">(Mikolov et al., 2013)</ref> and they achieve better results in two out of the three tasks.</p><p>6.2.5 Multi-task Fine Tuning <ref type="bibr">(Liu et al., 2019a)</ref> studied multi task deep neural networks (MT-DNN). The training procedure takes two stages. The first stage uses a BERT model to train a language understanding model. The second stage contains adding 4 models for task specific adaptation. These tasks include Single-Sentence Classification, Text Similarity, Pairwise Text Classification and Reverlance Ranking. For each task they added a task-specific objective that is minimized jointly during the training procedure. They evaluated the MT-DNN model on different GLUE tasks. They also compared applying the MT-DNN without fine tuning and with fine tuning and they found out that with fine-tuning they achieve the best results. They show that compared to BERT, large MT-DNN achieves state-of-the-art results on GLUE tasks. <ref type="bibr" target="#b47">(Raffel et al., 2019)</ref> explored the effect of using unified text-to-text transfer transformer (T5). They follow a similar architecture to the Transformers model <ref type="bibr" target="#b66">(Vaswani et al., 2017)</ref> with an encoder-decoder network. However, they used fully-visible masking instead of casual masking especially for inputs that require predictions based on a prefix like translation. Basically, they remove the necessity of masking for some tasks. To train the models, they created a dataset that is extracted from the common crawl dataset. Namely, they produced around 750GB dataset by cleaning a huge number of web documents. To train such a large dataset they used a huge number of parameters; hence the largest model contains around 11 billion parameters. To perform well on different tasks, they used multi-task pretrained models where the models were explicitly trained on different tasks by using prefixes like: "Translate English to German". By fine tuning on different tasks like summarization, text classification, question answering, etc. they achieve state-of-the-art results on these tasks. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7">Conclusion</head><p>In this paper, we provided a review of transfer learning in natural language processing. We discussed the possible language models, datasets, and the tasks that were tackled in the research related to transfer learning. Moreover, we provided a taxonomy for transfer learning that divides it into inductive and transductive transfer learning. We then divided each category into multiple levels and then collected the related papers in each corresponding category. Although there might be different definitions in the literature, we tried our best to incorporate the best definition that is agreed upon across different studies. In general, we see that compared to RNN-based and CNN-based language models, it seems that attention-based models are much more dominant in the literature. Additionally, we see that BERT seems the defacto architecture for language modelling as it appears in many tasks. This is due to its bidirectional architectures which makes it successful in many down-stream tasks. Regarding transfer learning, sequential fine-tuning seems to be dominant in the literature as compared to other approaches like zero-shot. Moreover, it seems that mutli-task fine tuning is gaining more attention in the last few years. As stated in many studies, training on multiple tasks at the same time can give much better results. Regarding datasets, text classification datasets seem to be more widely used compared to other tasks in NLP. This is due to the fact that it is easier to fine-tune models in such tasks.</p><p>For future research, we make some observations and outlooks in the field of transfer learning for NLP. For specific tasks like sentiment classification, abstractive question answering, parts-of-speech tagging, we recommend using bidirectional models like BERT. On the other hand, for generative tasks like summarization, generative question answering, text generation, etc. we recommend using models like GPT-2, T5 and similar architectures. We also believe that some transfer learning techniques are underrated like zero-shot which seems to perform really well on multiple tasks <ref type="bibr" target="#b46">(Radford et al., 2019)</ref>. Moreover, adapter modules can replace sequential fine-tuning because they perform equally good but provide faster and more compact models as compared to traditional fine tuning. Finally, while language models keep getting bigger and bigger, we believe that more research should be put on trying to reduce the size of such models which will make them deploy-able on embedded devices and on the web. Deploying knowledge distillation <ref type="bibr" target="#b16">(Hinton et al., 2015)</ref> techniques can prove useful in such circumstances for reducing the size of large language models.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>PE</head><figDesc>' as the position within the sequence which takes the values 0 • • • n -1 and i as the position within the embedding dimension which takes values 0 • • • d m -1.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Figure 1 :</head><label>1</label><figDesc>Figure 1: Transductive Transfer Learning</figDesc><graphic coords="8,114.00,72.00,384.00,216.00" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0"><graphic coords="9,114.00,72.00,384.00,216.00" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0"><head>Table 2 :</head><label>2</label><figDesc>A comparison between the different pretrained models in the literature</figDesc><table><row><cell>Language Model</cell><cell>Transformer ELMo GPT-2 BERT UNILM T5 XLM</cell></row><row><cell>Unidirectional</cell><cell></cell></row><row><cell>Bidirectional</cell><cell></cell></row><row><cell>Masked</cell><cell></cell></row><row><cell>Sequence to Sequence</cell><cell></cell></row><row><cell>Permutation</cell><cell></cell></row><row><cell>Encoder-Decoder</cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1"><head>Table 3 :</head><label>3</label><figDesc>Summary of different datasets used for transfer learning.</figDesc><table><row><cell>Reference</cell><cell>Dataset</cell><cell>Task</cell><cell>Size</cell></row><row><cell>(Rajpurkar et al., 2018)</cell><cell>SQuAD 2.0</cell><cell>Question Answering</cell><cell>150,000 questions</cell></row><row><cell>(Wang et al., 2018)</cell><cell>GLUE</cell><cell cols="2">General language Understanding multiple tasks</cell></row><row><cell>(Wang et al., 2019)</cell><cell>SuperGLUE</cell><cell>Challening language Under-</cell><cell>multiple tasks</cell></row><row><cell></cell><cell></cell><cell>standing</cell><cell></cell></row><row><cell>(Lai et al., 2017)</cell><cell>RACE</cell><cell>Question Answering</cell><cell>100,000 questions</cell></row><row><cell>(Maas et al., 2011)</cell><cell>IMDB</cell><cell>Sentiment Analysis</cell><cell>50,000 reviews</cell></row><row><cell>(Sang and De Meulder, 2003)</cell><cell cols="2">CoNLL -2003 Named Entity Recognition</cell><cell>301,418 tokens for English</cell></row><row><cell>(Bowman et al., 2015)</cell><cell>SNLI</cell><cell>Natural Language Inference</cell><cell>570,000 pairs</cell></row><row><cell>(Johnson et al., 2016)</cell><cell>MIMIC-III</cell><cell>patient notes deidentification</cell><cell>60,000 care unit admissions</cell></row><row><cell></cell><cell></cell><cell>(Named Entity Recognition)</cell><cell></cell></row><row><cell>(Stubbs et al., 2015)</cell><cell>i2b2-2016</cell><cell>patient notes deidentification</cell><cell>41,142</cell></row><row><cell></cell><cell></cell><cell>(Named Entity Recognition)</cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2"><head>Table 4 :</head><label>4</label><figDesc>All possible combinations for the domain and task pair.</figDesc><table><row><cell>Scenario</cell><cell>Example in Sentiment classification</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3"><head>Table 5 :</head><label>5</label><figDesc>Summary of literature categorized in pretrained models used, tasks tackled and type of transfer learning approach.</figDesc><table><row><cell>Reference</cell><cell>Base Model</cell><cell>NLP Tasks</cell><cell>Transfer Learning</cell></row><row><cell>(Mou et al., 2016)</cell><cell>LSTM-RNN</cell><cell>Sentiment analysis</cell><cell>Fine Tuning</cell></row><row><cell></cell><cell>Siamese CNN</cell><cell>Sentence pair classification</cell><cell>Features Based</cell></row><row><cell>(Peters et al., 2017)</cell><cell>CNN-LSTM</cell><cell>Named Entity recognition</cell><cell>Features Based</cell></row><row><cell>(Lee et al., 2017)</cell><cell>LSTM</cell><cell>Named Entity recognition</cell><cell>Fine Tuning</cell></row><row><cell>(Ruder et al., 2017)</cell><cell>MLP</cell><cell>Sentiment analysis</cell><cell>Domain Adaptation</cell></row><row><cell>(McCann et al., 2017)</cell><cell>OpenNMT</cell><cell>Sentiment analysis</cell><cell>Fine Tuning</cell></row><row><cell></cell><cell></cell><cell>Entailment</cell><cell></cell></row><row><cell></cell><cell></cell><cell>Question Classification</cell><cell></cell></row><row><cell></cell><cell></cell><cell>Question Answering</cell><cell></cell></row><row><cell>(Kim et al., 2017)</cell><cell>BLSTM</cell><cell>Part of Speech Tagging</cell><cell>Cross Lingual Fine Tuning</cell></row><row><cell>(McCann et al., 2017)</cell><cell>OpenNMT</cell><cell>Sentiment analysis</cell><cell>Fine Tuning</cell></row><row><cell></cell><cell></cell><cell>Entailment</cell><cell></cell></row><row><cell></cell><cell></cell><cell>Question classification</cell><cell></cell></row><row><cell></cell><cell></cell><cell>Question answering</cell><cell></cell></row><row><cell>(Schuster et al., 2018)</cell><cell>ELMoCoVe</cell><cell>User Intent Classification</cell><cell>Cross-lingual Fine Tuning</cell></row><row><cell>(Lakew et al., 2018)</cell><cell>OpenNMT</cell><cell>Translation</cell><cell>Fine Tuning</cell></row><row><cell></cell><cell></cell><cell></cell><cell>Domain Adaptation</cell></row></table></figure>
+		</body>
+		<back>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Cross-lingual word embeddings for low-resource language modeling</title>
+		<author>
+			<persName><forename type="first">Oliver</forename><surname>Adams</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Adam</forename><surname>Makarucha</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Graham</forename><surname>Neubig</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Steven</forename><surname>Bird</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Trevor</forename><surname>Cohn</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 15th Conference of the European Chapter</title>
+		<title level="s">Long Papers</title>
+		<meeting>the 15th Conference of the European Chapter</meeting>
+		<imprint>
+			<publisher>the Association for Computational Linguistics</publisher>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="937" to="947" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<monogr>
+		<title level="m" type="main">Neural machine translation by jointly learning to align and translate</title>
+		<author>
+			<persName><forename type="first">Dzmitry</forename><surname>Bahdanau</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kyunghyun</forename><surname>Cho</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yoshua</forename><surname>Bengio</surname></persName>
+		</author>
+		<idno>CoRR, abs/, 1409:0473</idno>
+		<imprint>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Curriculum learning</title>
+		<author>
+			<persName><forename type="first">Yoshua</forename><surname>Bengio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jérôme</forename><surname>Louradour</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ronan</forename><surname>Collobert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jason</forename><surname>Weston</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 26th annual international conference on machine learning</title>
+		<meeting>the 26th annual international conference on machine learning</meeting>
+		<imprint>
+			<date type="published" when="2009">2009</date>
+			<biblScope unit="page" from="41" to="48" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<monogr>
+		<title level="m" type="main">A large annotated corpus for learning natural language inference</title>
+		<author>
+			<persName><forename type="first">Gabor</forename><surname>Samuel R Bowman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christopher</forename><surname>Angeli</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Potts</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Manning</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1508.05326</idno>
+		<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<monogr>
+		<title level="m" type="main">Language models are few-shot learners</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Tom</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Benjamin</forename><surname>Brown</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nick</forename><surname>Mann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Melanie</forename><surname>Ryder</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jared</forename><surname>Subbiah</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Prafulla</forename><surname>Kaplan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Arvind</forename><surname>Dhariwal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pranav</forename><surname>Neelakantan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Girish</forename><surname>Shyam</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Amanda</forename><surname>Sastry</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sandhini</forename><surname>Askell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ariel</forename><surname>Agarwal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Gretchen</forename><surname>Herbert-Voss</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tom</forename><surname>Krueger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rewon</forename><surname>Henighan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Aditya</forename><surname>Child</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Daniel</forename><forename type="middle">M</forename><surname>Ramesh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jeffrey</forename><surname>Ziegler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Clemens</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christopher</forename><surname>Winter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mark</forename><surname>Hesse</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Eric</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mateusz</forename><surname>Sigler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Scott</forename><surname>Litwin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Benjamin</forename><surname>Gray</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jack</forename><surname>Chess</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christopher</forename><surname>Clark</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sam</forename><surname>Berner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alec</forename><surname>Mccandlish</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ilya</forename><surname>Radford</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dario</forename><surname>Sutskever</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Amodei</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Adversarial deep averaging networks for cross-lingual sentiment classification</title>
+		<author>
+			<persName><forename type="first">Xilun</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yu</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ben</forename><surname>Athiwaratkun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Claire</forename><surname>Cardie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kilian</forename><surname>Weinberger</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Transactions of the Association for Computational Linguistics</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="page" from="557" to="570" />
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<monogr>
+		<title level="m" type="main">On the properties of neural machine translation: Encoderdecoder approaches</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Cho</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Van Merrienboer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Bahdanau</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Bengio</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Convolutional recurrent neural networks for music classification</title>
+		<author>
+			<persName><forename type="first">Keunwoo</forename><surname>Choi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">György</forename><surname>Fazekas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mark</forename><surname>Sandler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kyunghyun</forename><surname>Cho</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2017 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</title>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="2392" to="2396" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<monogr>
+		<title level="m" type="main">Transformer-xl: Attentive language models beyond a fixed-length context</title>
+		<author>
+			<persName><forename type="first">Zihang</forename><surname>Dai</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+	<note>preprint, arXiv</note>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Language modeling with gated convolutional networks</title>
+		<author>
+			<persName><forename type="first">Angela</forename><surname>Yann N Dauphin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michael</forename><surname>Fan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">David</forename><surname>Auli</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Grangier</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 34th International Conference on Machine Learning</title>
+		<meeting>the 34th International Conference on Machine Learning</meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="volume">70</biblScope>
+			<biblScope unit="page" from="933" to="941" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Pre-training of deep bidirectional transformers for language understanding</title>
+		<author>
+			<persName><forename type="first">Jacob</forename><surname>Devlin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">arXiv</title>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Unified language model pre-training for natural language understanding and generation</title>
+		<author>
+			<persName><forename type="first">Li</forename><surname>Dong</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Neural Information Processing Systems</title>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Regularized multi-task learning</title>
+		<author>
+			<persName><forename type="first">Theodoros</forename><surname>Evgeniou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Massimiliano</forename><surname>Pontil</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the tenth ACM SIGKDD international conference on Knowledge discovery and data mining</title>
+		<meeting>the tenth ACM SIGKDD international conference on Knowledge discovery and data mining</meeting>
+		<imprint>
+			<date type="published" when="2004">2004</date>
+			<biblScope unit="page" from="109" to="117" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Learning to forget: Continual prediction with lstm</title>
+		<author>
+			<persName><forename type="first">F</forename><forename type="middle">A</forename><surname>Gers</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Schmidhuber</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Cummins</surname></persName>
+		</author>
+		<idno>PMLR:</idno>
+	</analytic>
+	<monogr>
+		<title level="m">th International Conference on Artificial Neural Networks</title>
+		<editor>
+			<persName><forename type="middle">Xavier</forename><surname>Icann</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Antoine</forename><surname>Glorot</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Yoshua</forename><surname>Bordes</surname></persName>
+		</editor>
+		<imprint>
+			<publisher>Institution of Engineering and Technology</publisher>
+			<date type="published" when="1999-06-14">1999. 14 June. 2011</date>
+			<biblScope unit="volume">99</biblScope>
+			<biblScope unit="page" from="315" to="323" />
+		</imprint>
+	</monogr>
+	<note>Bengio. Deep sparse rectifier neural networks</note>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Generative adversarial nets</title>
+		<author>
+			<persName><forename type="first">Ian</forename><surname>Goodfellow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jean</forename><surname>Pouget-Abadie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mehdi</forename><surname>Mirza</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Bing</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">David</forename><surname>Warde-Farley</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sherjil</forename><surname>Ozair</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Aaron</forename><surname>Courville</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yoshua</forename><surname>Bengio</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in neural information processing systems</title>
+		<imprint>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="2672" to="2680" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Speech recognition with deep recurrent neural networks</title>
+		<author>
+			<persName><forename type="first">Alex</forename><surname>Graves</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Abdel-Rahman</forename><surname>Mohamed</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Geoffrey</forename><surname>Hinton</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2013 IEEE international conference on acoustics, speech and signal processing</title>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2013">2013</date>
+			<biblScope unit="page" from="6645" to="6649" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<monogr>
+		<title level="m" type="main">Distilling the knowledge in a neural network</title>
+		<author>
+			<persName><forename type="first">Geoffrey</forename><surname>Hinton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Oriol</forename><surname>Vinyals</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jeff</forename><surname>Dean</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1503.02531</idno>
+		<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">The vanishing gradient problem during learning recurrent neural nets and problem solutions</title>
+		<author>
+			<persName><forename type="first">Sepp</forename><surname>Hochreiter</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">International Journal of Uncertainty, Fuzziness and Knowledge-Based Systems</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="issue">02</biblScope>
+			<biblScope unit="page" from="107" to="116" />
+			<date type="published" when="1998">1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Jeremy Howard and Sebastian Ruder. Fine-tuned language models for text classification</title>
+		<author>
+			<persName><forename type="first">Neil</forename><surname>Houlsby</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">arXiv</title>
+		<imprint>
+			<date type="published" when="2018">2019. 2018</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">preprint</note>
+	<note>Parameter-efficient transfer learning for nlp preprint 1, arXiv</note>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">An introductory survey on attention mechanisms in nlp problems</title>
+		<author>
+			<persName><forename type="first">Dichao</forename><surname>Hu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of SAI Intelligent Systems Conference</title>
+		<meeting>SAI Intelligent Systems Conference</meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="432" to="448" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Recurrent neural networks for time series classification</title>
+		<author>
+			<persName><forename type="first">Michael</forename><surname>Hüsken</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Peter</forename><surname>Stagge</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Neurocomputing</title>
+		<imprint>
+			<biblScope unit="volume">50</biblScope>
+			<biblScope unit="page" from="223" to="235" />
+			<date type="published" when="2003">2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">W</forename><surname>Alistair</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tom</forename><forename type="middle">J</forename><surname>Johnson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lu</forename><surname>Pollard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Shen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mengling</forename><surname>Lehman Li-Wei</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mohammad</forename><surname>Feng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Benjamin</forename><surname>Ghassemi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Peter</forename><surname>Moody</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Leo</forename><surname>Szolovits</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Roger</forename><forename type="middle">G</forename><surname>Anthony Celi</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Mark</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Mimic-iii, a freely accessible critical care database. Scientific data</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page">160035</biblScope>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<monogr>
+		<author>
+			<persName><forename type="first">David</forename><surname>Cassels</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Johnson</forename></persName>
+		</author>
+		<title level="m">What is language policy? Language policy</title>
+		<imprint>
+			<date type="published" when="2013">2013</date>
+			<biblScope unit="page" from="3" to="25" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Cross-lingual transfer learning for pos tagging without cross-lingual resources</title>
+		<author>
+			<persName><forename type="first">Joo-Kyung</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Young-Bum</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ruhi</forename><surname>Sarikaya</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Eric</forename><surname>Fosler-Lussier</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2017 conference on empirical methods in natural language processing</title>
+		<meeting>the 2017 conference on empirical methods in natural language processing</meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="2832" to="2838" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<monogr>
+		<title level="m" type="main">Convolutional neural networks for sentence classification</title>
+		<author>
+			<persName><forename type="first">Yoon</forename><surname>Kim</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1408.5882</idno>
+		<imprint>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<monogr>
+		<title level="m" type="main">OpenNMT: Open-source toolkit for neural machine translation</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Klein</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Deng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Senellart</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">M</forename><surname>Rush</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+	<note>ArXiv e-prints</note>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Open source toolkit for statistical machine translation</title>
+		<author>
+			<persName><forename type="first">Philipp</forename><surname>Koehn</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 45th annual meeting of the association for computational linguistics companion volume proceedings of the demo and poster sessions</title>
+		<meeting>the 45th annual meeting of the association for computational linguistics companion volume proceedings of the demo and poster sessions</meeting>
+		<imprint>
+			<date type="published" when="2007">2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<monogr>
+		<title level="m" type="main">Race: Large-scale reading comprehension dataset from examinations</title>
+		<author>
+			<persName><forename type="first">Guokun</forename><surname>Lai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Qizhe</forename><surname>Xie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hanxiao</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yiming</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Eduard</forename><surname>Hovy</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1704.04683</idno>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Transfer learning in multilingual neural machine translation with dynamic vocabulary</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Surafel</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Lakew</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">arXiv</title>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<monogr>
+		<title level="m" type="main">Albert: A lite bert for self-supervised learning of language representations</title>
+		<author>
+			<persName><forename type="first">Zhenzhong</forename><surname>Lan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mingda</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sebastian</forename><surname>Goodman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kevin</forename><surname>Gimpel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Piyush</forename><surname>Sharma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Radu</forename><surname>Soricut</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1909.11942</idno>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Gradient-based learning applied to document recognition</title>
+		<author>
+			<persName><forename type="first">Yann</forename><surname>Lecun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Léon</forename><surname>Bottou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yoshua</forename><surname>Bengio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Patrick</forename><surname>Haffner</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Proceedings of the IEEE</title>
+		<imprint>
+			<biblScope unit="volume">86</biblScope>
+			<biblScope unit="issue">11</biblScope>
+			<biblScope unit="page" from="2278" to="2324" />
+			<date type="published" when="1998">1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<monogr>
+		<title level="m" type="main">Transfer learning for named-entity recognition with neural networks</title>
+		<author>
+			<persName><forename type="first">Ji</forename><surname>Young</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lee</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Franck</forename><surname>Dernoncourt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Peter</forename><surname>Szolovits</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<monogr>
+		<title level="m" type="main">Finding function in form: Compositional character models for open vocabulary word representation</title>
+		<author>
+			<persName><forename type="first">Wang</forename><surname>Ling</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tiago</forename><surname>Luís</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Luís</forename><surname>Marujo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ramón</forename><surname>Fernandez Astudillo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Silvio</forename><surname>Amir</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chris</forename><surname>Dyer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alan</forename><forename type="middle">W</forename><surname>Black</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Isabel</forename><surname>Trancoso</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1508.02096</idno>
+		<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<monogr>
+		<title level="m" type="main">Multi-task deep neural networks for natural language understanding</title>
+		<author>
+			<persName><forename type="first">Xiaodong</forename><surname>Liu</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+	<note>preprint, arXiv, 2019a. Yinhan Liu et al. Roberta: A robustly optimized bert pretraining approach. preprint, arXiv</note>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Domain adaptation with bert-based domain classification and data selection</title>
+		<author>
+			<persName><forename type="first">Xiaofei</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Peng</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhiguo</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ramesh</forename><surname>Nallapati</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Bing</forename><surname>Xiang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2nd Workshop on Deep Learning Approaches for Low-Resource NLP</title>
+		<meeting>the 2nd Workshop on Deep Learning Approaches for Low-Resource NLP</meeting>
+		<imprint>
+			<date type="published" when="2019">2019. 2019</date>
+			<biblScope unit="page" from="76" to="83" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Learning word vectors for sentiment analysis</title>
+		<author>
+			<persName><forename type="first">Raymond</forename><forename type="middle">E</forename><surname>Andrew L Maas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Peter</forename><forename type="middle">T</forename><surname>Daly</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dan</forename><surname>Pham</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andrew</forename><forename type="middle">Y</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christopher</forename><surname>Ng</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Potts</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 49th annual meeting of the association for computational linguistics: Human language technologies</title>
+		<meeting>the 49th annual meeting of the association for computational linguistics: Human language technologies</meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2011">2011</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="142" to="150" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<analytic>
+		<title level="a" type="main">Evolution of transfer learning in natural language processing</title>
+		<author>
+			<persName><forename type="first">Aditya</forename><surname>Malte</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pratik</forename><surname>Ratadiya</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">arXiv</title>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Learned in translation: Contextualized word vectors</title>
+		<author>
+			<persName><forename type="first">Bryan</forename><surname>Mccann</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Neural Information Processing Systems</title>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<monogr>
+		<title level="m" type="main">Regularizing and optimizing lstm language models</title>
+		<author>
+			<persName><forename type="first">Stephen</forename><surname>Merity</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nitish</forename><surname>Shirish Keskar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Richard</forename><surname>Socher</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<monogr>
+		<author>
+			<persName><forename type="first">Tomas</forename><surname>Mikolov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kai</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Greg</forename><surname>Corrado</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jeffrey</forename><surname>Dean</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1301.3781</idno>
+		<title level="m">Efficient estimation of word representations in vector space</title>
+		<imprint>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<monogr>
+		<author>
+			<persName><forename type="first">Lili</forename><surname>Mou</surname></persName>
+		</author>
+		<title level="m">How transferable are neural networks in nlp applications? preprint, arXiv</title>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b41">
+	<monogr>
+		<title level="m" type="main">Unsupervised learning of sentence embeddings using compositional n-gram features</title>
+		<author>
+			<persName><forename type="first">Matteo</forename><surname>Pagliardini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Prakhar</forename><surname>Gupta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Martin</forename><surname>Jaggi</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1703.02507</idno>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b42">
+	<analytic>
+		<title level="a" type="main">A survey on transfer learning</title>
+		<author>
+			<persName><forename type="first">Jialin</forename><surname>Sinno</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Qiang</forename><surname>Pan</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Yang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on knowledge and data engineering</title>
+		<imprint>
+			<biblScope unit="volume">22</biblScope>
+			<biblScope unit="issue">10</biblScope>
+			<biblScope unit="page" from="1345" to="1359" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b43">
+	<analytic>
+		<title level="a" type="main">Glove: Global vectors for word representation</title>
+		<author>
+			<persName><forename type="first">Jeffrey</forename><surname>Pennington</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Richard</forename><surname>Socher</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christopher</forename><forename type="middle">D</forename><surname>Manning</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2014 conference on empirical methods in natural language processing (EMNLP)</title>
+		<meeting>the 2014 conference on empirical methods in natural language processing (EMNLP)</meeting>
+		<imprint>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="1532" to="1543" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b44">
+	<monogr>
+		<title level="m" type="main">Semi-supervised sequence tagging with bidirectional language models</title>
+		<author>
+			<persName><forename type="first">Matthew</forename><forename type="middle">E</forename><surname>Peters</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b45">
+	<analytic>
+		<title level="a" type="main">Alec Radford et al. Improving language understanding by generative pre-training</title>
+		<author>
+			<persName><forename type="first">Matthew</forename><forename type="middle">E</forename><surname>Peters</surname></persName>
+		</author>
+		<ptr target="https://s3-us-west-2.amazonaws.com/openai-assets/researchcovers/languageunsupervised/language" />
+	</analytic>
+	<monogr>
+		<title level="m">Deep contextualized word representations. preprint, arXiv</title>
+		<imprint>
+			<date type="published" when="2018">2018. 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b46">
+	<analytic>
+		<title level="a" type="main">Language models are unsupervised multitask learners</title>
+		<author>
+			<persName><forename type="first">Alec</forename><surname>Radford</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">OpenAI Blog</title>
+		<imprint>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page">8</biblScope>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b47">
+	<analytic>
+		<title level="a" type="main">Exploring the limits of transfer learning with a unified text-to-text transformer</title>
+		<author>
+			<persName><forename type="first">Colin</forename><surname>Raffel</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">arXiv</title>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b48">
+	<monogr>
+		<title level="m" type="main">Know what you don&apos;t know: Unanswerable questions for squad</title>
+		<author>
+			<persName><forename type="first">Pranav</forename><surname>Rajpurkar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Robin</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Percy</forename><surname>Liang</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1806.03822</idno>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b49">
+	<analytic>
+		<title level="a" type="main">Efficient parametrization of multi-domain deep neural networks</title>
+		<author>
+			<persName><forename type="first">Hakan</forename><surname>Sylvestre-Alvise Rebuffi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andrea</forename><surname>Bilen</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Vedaldi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition</title>
+		<meeting>the IEEE Conference on Computer Vision and Pattern Recognition</meeting>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="8119" to="8127" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b50">
+	<analytic>
+		<title level="a" type="main">You only look once: Unified, real-time object detection</title>
+		<author>
+			<persName><forename type="first">Joseph</forename><surname>Redmon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Santosh</forename><surname>Divvala</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ross</forename><surname>Girshick</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ali</forename><surname>Farhadi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE conference on computer vision and pattern recognition</title>
+		<meeting>the IEEE conference on computer vision and pattern recognition</meeting>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="779" to="788" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b51">
+	<analytic>
+		<title level="a" type="main">Domain adaptation using domain similarity-and domain complexity-based instance selection for cross-domain sentiment analysis</title>
+		<author>
+			<persName><forename type="first">Robert</forename><surname>Remus</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2012 IEEE 12th international conference on data mining workshops</title>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2012">2012</date>
+			<biblScope unit="page" from="717" to="723" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b52">
+	<monogr>
+		<title level="m" type="main">How much knowledge can you pack into the parameters of a language model? preprint, arXiv</title>
+		<author>
+			<persName><forename type="first">Adam</forename><surname>Roberts</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Colin</forename><surname>Raffel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Noam</forename><surname>Shazeer</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b53">
+	<monogr>
+		<author>
+			<persName><forename type="first">Sebastian</forename><surname>Ruder</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Parsa</forename><surname>Ghaffari</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">John</forename><forename type="middle">G</forename><surname>Breslin</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1702.02052</idno>
+		<title level="m">Knowledge adaptation: Teaching to adapt</title>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b54">
+	<analytic>
+		<title level="a" type="main">Learning represen-tations by back-propagating errors</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">E</forename><surname>Rumelhart</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">E</forename><surname>Hinton</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">J</forename><surname>Williams</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Cognitive modeling</title>
+		<imprint>
+			<biblScope unit="page" from="213" to="223" />
+			<date type="published" when="1988">1988</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b55">
+	<monogr>
+		<title level="m" type="main">Introduction to the conll-2003 shared task: Language-independent named entity recognition</title>
+		<author>
+			<persName><forename type="first">F</forename><surname>Erik</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Fien</forename><surname>Sang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Meulder</forename><surname>De</surname></persName>
+		</author>
+		<idno>arXiv preprint cs/0306050</idno>
+		<imprint>
+			<date type="published" when="2003">2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b56">
+	<analytic>
+		<title level="a" type="main">Learning complex, extended sequences using the principle of history compression</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Schmidhuber</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Neural Computation</title>
+		<imprint>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="page" from="234" to="242" />
+			<date type="published" when="1992">1992</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b57">
+	<analytic>
+		<title level="a" type="main">Bidirectional recurrent neural networks</title>
+		<author>
+			<persName><forename type="first">Mike</forename><surname>Schuster</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kuldip K</forename><surname>Paliwal</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE transactions on Signal Processing</title>
+		<imprint>
+			<biblScope unit="volume">45</biblScope>
+			<biblScope unit="issue">11</biblScope>
+			<biblScope unit="page" from="2673" to="2681" />
+			<date type="published" when="1997">1997</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b58">
+	<analytic>
+		<title level="a" type="main">Cross-lingual transfer learning for multilingual task oriented dialog</title>
+		<author>
+			<persName><forename type="first">Sebastian</forename><surname>Schuster</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Sina Semnani and Kaushik Sadagopan. Bert-a: Finetuning bert with adapters and data augmentation</title>
+		<imprint>
+			<date type="published" when="2018">2018. 2019</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b59">
+	<monogr>
+		<title level="m" type="main">Adversarial domain adaptation for duplicate question detection</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Darsh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tao</forename><surname>Shah</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alessandro</forename><surname>Lei</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Salvatore</forename><surname>Moschitti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Preslav</forename><surname>Romeo</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Nakov</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1809.02255</idno>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b60">
+	<analytic>
+		<title level="a" type="main">Recurrent convolutional neural networks: a better model of biological object recognition</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Courtney</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Patrick</forename><surname>Spoerer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nikolaus</forename><surname>Mcclure</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Kriegeskorte</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Frontiers in psychology</title>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="page">1551</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b61">
+	<monogr>
+		<title level="m" type="main">Bert and pals: Projected attention layers for efficient adaptation in multi-task learning</title>
+		<author>
+			<persName><forename type="first">Asa</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Cooper</forename><surname>Stickland</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Iain</forename><surname>Murray</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1902.02671</idno>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b62">
+	<analytic>
+		<title level="a" type="main">Automated systems for the de-identification of longitudinal clinical narratives: Overview of 2014 i2b2/uthealth shared task track 1</title>
+		<author>
+			<persName><forename type="first">Amber</forename><surname>Stubbs</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christopher</forename><surname>Kotfila</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Özlem</forename><surname>Uzuner</surname></persName>
+		</author>
+		<idno>58: S11-S19</idno>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of biomedical informatics</title>
+		<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b63">
+	<analytic>
+		<title level="a" type="main">Generating text with recurrent neural networks</title>
+		<author>
+			<persName><forename type="first">Ilya</forename><surname>Sutskever</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">James</forename><surname>Martens</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Geoffrey</forename><forename type="middle">E</forename><surname>Hinton</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 28th international conference on machine learning (ICML-11)</title>
+		<meeting>the 28th international conference on machine learning (ICML-11)</meeting>
+		<imprint>
+			<date type="published" when="2011">2011</date>
+			<biblScope unit="page" from="1017" to="1024" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b64">
+	<monogr>
+		<title level="m" type="main">Deep domain confusion: Maximizing for domain invariance</title>
+		<author>
+			<persName><forename type="first">Eric</forename><surname>Tzeng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Judy</forename><surname>Hoffman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ning</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kate</forename><surname>Saenko</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Trevor</forename><surname>Darrell</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1412.3474</idno>
+		<imprint>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b65">
+	<analytic>
+		<title level="a" type="main">Using domain similarity for performance estimation</title>
+		<author>
+			<persName><forename type="first">Vincent</forename><surname>Van</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Asch</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Walter</forename><surname>Daelemans</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2010 Workshop on Domain Adaptation for Natural Language Processing</title>
+		<meeting>the 2010 Workshop on Domain Adaptation for Natural Language Processing</meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2010">2010</date>
+			<biblScope unit="page" from="31" to="36" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b66">
+	<analytic>
+		<title level="a" type="main">Attention is all you need</title>
+		<author>
+			<persName><forename type="first">Ashish</forename><surname>Vaswani</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in neural information processing systems</title>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b67">
+	<monogr>
+		<title level="m" type="main">Glue: A multi-task benchmark and analysis platform for natural language understanding</title>
+		<author>
+			<persName><forename type="first">Alex</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Amanpreet</forename><surname>Singh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Julian</forename><surname>Michael</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Felix</forename><surname>Hill</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Omer</forename><surname>Levy</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Samuel R Bowman</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1804.07461</idno>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b68">
+	<analytic>
+		<title level="a" type="main">Superglue: A stickier benchmark for general-purpose language understanding systems</title>
+		<author>
+			<persName><forename type="first">Alex</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yada</forename><surname>Pruksachatkun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nikita</forename><surname>Nangia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Amanpreet</forename><surname>Singh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Julian</forename><surname>Michael</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Felix</forename><surname>Hill</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Omer</forename><surname>Levy</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Samuel</forename><surname>Bowman</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Neural Information Processing Systems</title>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="3261" to="3275" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b69">
+	<monogr>
+		<author>
+			<persName><forename type="first">Shuohang</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jing</forename><surname>Jiang</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1608.07905</idno>
+		<title level="m">Machine comprehension using match-lstm and answer pointer</title>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b70">
+	<analytic>
+		<title level="a" type="main">A survey of transfer learning</title>
+		<author>
+			<persName><forename type="first">Karl</forename><surname>Weiss</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Taghi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dingding</forename><surname>Khoshgoftaar</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Big data</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b71">
+	<monogr>
+		<title level="m" type="main">Dynamic coattention networks for question answering</title>
+		<author>
+			<persName><forename type="first">Caiming</forename><surname>Xiong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Victor</forename><surname>Zhong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Richard</forename><surname>Socher</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1611.01604</idno>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b72">
+	<analytic>
+		<title level="a" type="main">Show, attend and tell: Neural image caption generation with visual attention</title>
+		<author>
+			<persName><forename type="first">Kelvin</forename><surname>Xu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International conference on machine learning</title>
+		<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b73">
+	<analytic>
+		<title level="a" type="main">A survey of transfer and multitask learning in bioinformatics</title>
+		<author>
+			<persName><forename type="first">Qian</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Qiang</forename><surname>Yang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Computing Science and Engineering</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="257" to="268" />
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b74">
+	<analytic>
+		<title level="a" type="main">Xlnet: Generalized autoregressive pretraining for language understanding</title>
+		<author>
+			<persName><forename type="first">Zhilin</forename><surname>Yang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in neural information systems</title>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b75">
+	<monogr>
+		<title level="m" type="main">Benchmarking zero-shot text classification: Datasets, evaluation and entailment approach</title>
+		<author>
+			<persName><forename type="first">Wenpeng</forename><surname>Yin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jamaal</forename><surname>Hay</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dan</forename><surname>Roth</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1909.00161</idno>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b76">
+	<analytic>
+		<title level="a" type="main">Image captioning with semantic attention</title>
+		<author>
+			<persName><forename type="first">Quanzeng</forename><surname>You</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hailin</forename><surname>Jin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhaowen</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chen</forename><surname>Fang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jiebo</forename><surname>Luo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE conference on computer vision and pattern recognition</title>
+		<meeting>the IEEE conference on computer vision and pattern recognition</meeting>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="4651" to="4659" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b77">
+	<analytic>
+		<title level="a" type="main">Colorful image colorization</title>
+		<author>
+			<persName><forename type="first">Richard</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Phillip</forename><surname>Isola</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alexei</forename><forename type="middle">A</forename><surname>Efros</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">European conference on computer vision</title>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="649" to="666" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b78">
+	<analytic>
+		<title level="a" type="main">Character-level convolutional networks for text classification</title>
+		<author>
+			<persName><forename type="first">Xiang</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Junbo</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yann</forename><surname>Lecun</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in neural information processing systems</title>
+		<imprint>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="649" to="657" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

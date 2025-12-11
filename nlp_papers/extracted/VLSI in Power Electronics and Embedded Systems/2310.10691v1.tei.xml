@@ -1,0 +1,795 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Enhancing ML model accuracy for Digital VLSI circuits using diffusion models: A study on synthetic data generation</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability  status="unknown">
+					<licence/>
+				</availability>
+				<date type="published" when="2023-10-15">15 Oct 2023</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Prasha</forename><surname>Srivastava</surname></persName>
+							<email>prasha.srivastava@research.iiit.ac.in</email>
+							<affiliation key="aff0">
+								<orgName type="institution">IIIT</orgName>
+								<address>
+									<region>Hyderabad</region>
+									<country key="IN">India</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Pawan</forename><surname>Kumar</surname></persName>
+							<email>pawan.kumar@iiit.ac.in</email>
+							<affiliation key="aff1">
+								<orgName type="institution">IIIT</orgName>
+								<address>
+									<region>Hyderabad</region>
+									<country key="IN">India</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Zia</forename><surname>Abbas</surname></persName>
+							<email>zia.abbas@iiit.ac.in</email>
+							<affiliation key="aff2">
+								<orgName type="institution">IIIT</orgName>
+								<address>
+									<region>Hyderabad</region>
+									<country key="IN">India</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Enhancing ML model accuracy for Digital VLSI circuits using diffusion models: A study on synthetic data generation</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2023-10-15">15 Oct 2023</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">4A036C9FA64E62C6486B1FDB1FBF54CE</idno>
+					<idno type="arXiv">arXiv:2310.10691v1[cs.LG]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-28T12:50+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Generative AI has seen remarkable growth over the past few years, with diffusion models being state-of-the-art for image generation. This study investigates the use of diffusion models in generating artificial data generation for electronic circuits for enhancing the accuracy of subsequent machine learning models in tasks such as performance assessment, design, and testing when training data is usually known to be very limited. We utilize simulations in the HSPICE design environment with 22nm CMOS technology nodes to obtain representative real training data for our proposed diffusion model. Our results demonstrate the close resemblance of synthetic data using diffusion model to real data. We validate the quality of generated data, and demonstrate that data augmentation certainly effective in predictive analysis of VLSI design for digital circuits.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Related Works</head><p>Data scarcity is defined as the inadequacy in quantity or diversity of training data, which can restrict the learning ability of an ML model. It is a universal issue which affects the deployment of AI/ML in multiple domains as discussed by A. Munappy et al. <ref type="bibr" target="#b12">[13]</ref>. Many of the proposed AI/ML applications in VLSI design domain <ref type="bibr" target="#b7">[8,</ref><ref type="bibr" target="#b9">10,</ref><ref type="bibr" target="#b11">12]</ref> rely on a large amount of training data. For example in <ref type="bibr" target="#b11">[12]</ref> and <ref type="bibr" target="#b13">[14]</ref> authors have achieved precise training with 15K and 50K samples respectively. Hence in VLSI domain, training data scarcity stemming from cost, time, and quality constraints poses a challenge which needs to be addressed. Many studies have proposed synthetic data generation to create large scale training datasets in various other domains and provide a significant improvement to existing AI/ML models <ref type="bibr" target="#b14">[15,</ref><ref type="bibr" target="#b15">16,</ref><ref type="bibr" target="#b16">17,</ref><ref type="bibr" target="#b17">18,</ref><ref type="bibr" target="#b18">19,</ref><ref type="bibr" target="#b19">20,</ref><ref type="bibr" target="#b20">21,</ref><ref type="bibr" target="#b21">22,</ref><ref type="bibr" target="#b22">23]</ref>. To the best of our knowledge, this is the first time a data augmentation for circuit data is studied with latest diffusion models.</p><p>Generative models such as Variational Autoencoders (VAE) <ref type="bibr" target="#b2">[3]</ref>, Generative Adversarial Networks (GAN) <ref type="bibr" target="#b0">[1]</ref>, and Diffusion Probabilistic models <ref type="bibr" target="#b3">[4]</ref> are known to produce large and diverse synthetic data for image datasets. Diffusion models have been observed to have an edge over other generative models in terms of quality for image data generation <ref type="bibr" target="#b23">[24]</ref>. Diffusion models have found applications in various domains ranging from computer vision, natural language generation, temporal data modeling, to interdisciplinary applications in other scientific disciplines <ref type="bibr" target="#b24">[25]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">The dataset</head><p>We gathered extensive datasets covering design, process, and performance parameters for twelve core digital cells, see Table <ref type="table" target="#tab_0">1</ref>. These parameters are meticulously chosen to enable subsequent performance assessment using a predictive ML model, validating the utility of dataset. For training, we employ simulated data from Electronic Design Automation (EDA) tool HSPICE <ref type="bibr" target="#b25">[26]</ref>. Training data for Digital cells (Table <ref type="table" target="#tab_0">1</ref>) comprises vectors of random values, drawn from Gaussian distributions of process parameters. We account for ±10% variations at 3σ in CMOS standard cells at 22nm High-K MGK via Predictive Technology Models (PTM). Twelve process parameters (PMOS and NMOS) are included. In addition to statistical distributions, temperature samples spanning -55</p><p>• C to 125 • C and supply voltage deviations of ±10% from the nominal (0.8V) are integrated. Load capacitance varies similarly to process parameters. We perform propagation delay estimations via HSPICE Monte-Carlo simulations to obtain training data, encompassing PVT (Process, Voltage, Temperature) variations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">Synthetic circuit-data generation using Diffusion Models</head><p>Parametric data from VLSI designs is continuous data that holds valuable insights for ML-driven automation of VLSI performance assessment, design, and testing. As mentioned before, this paper aims to apply denoising diffusion probabilistic models for generating synthetic data for VLSI designs, enhancing the training of ML models in data-scarce scenarios. This indirectly advances automation in VLSI design tasks. Our work illustrates the development of an accurate diffusion model-based synthetic data generation method for delay estimations in various 22nm CMOS technology-based digital VLSI circuits. The methodology can be divided broadly into the following steps </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1">Formulation of a Denoising Diffusion Probabilistic Model tailored for VLSI circuit-data</head><p>Diffusion models define a Markov chain of diffusion steps to slowly add random noise to data and then learn to reverse the diffusion process to construct desired data samples from the noise. Diffusion models have two processes to follow:</p><p>Forward Process -Here, random noise is incrementally added to data over multiple time steps. This sequential noise introduction is mathematically characterized as follows:</p><formula xml:id="formula_0">x t = √ 1 -β t •x t-1 + √ β t •ϵ.</formula><p>Where x t represents the data at time step t, where 0 &lt; t &lt; T and T are the total number of steps. This process starts with the original data x 0 and iteratively adds noise over T steps, with β t controlling the amount of noise added at each step. The variance schedule β t determines the trade-off between introducing noise and maintaining data fidelity. As t increases, the noise contribution becomes more significant due to the increasing value of β t .</p><p>Reverse process -This phase involves predicting the noise added to each data point during the forward process. A neural network, denoted as f θ , predicts noise ϵ t from noisy data x t as ϵ t = f θ (x t )</p><p>Generating new data -New data samples are generated by performing the reverse process on random noise samples ϵ t drawn from N (0, I). The reverse process reconstructs data by iteratively removing predicted noise contributions:</p><formula xml:id="formula_1">x t-1 = xt- √ βt•ϵt √ 1-βt .</formula><p>The number of steps T controls the balance between data fidelity and noise injection, influencing the quality of generated samples.</p><p>Existing models deal with very complex data modalities such as images. For image generation a UNET architecture with residual connections was proposed. Since our target dataset is relatively less complex than images, we propose a simple encoder-decoder architecture <ref type="bibr" target="#b26">[27]</ref> instead of a UNET for reverse denoising process.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Qualitative evaluation of generated artificial data</head><p>The quality assessment of synthetic data involves evaluating measures like inception score, Frechet inception distance, average log-likelihood, Parzen window estimates, and visual fidelity. However, these metrics primarily cater to image data, making it unclear which measure is optimal for other data modalities. Theis et al. <ref type="bibr" target="#b27">[28]</ref> suggested that evaluation for generative models should align with the intended application. Thus, we evaluate diffusion models for circuit data by directly comparing them to the source of our data, which is the simulator. We extract specific features from the synthetic dataset, designating them as input features, while the rest are deemed output features. Subsequently, we feed the input features into the simulator and compare the resulting output feature values with the generated output feature values. Our evaluation metric in this study is the mean absolute percentage error. Refer to Figure <ref type="figure" target="#fig_0">1</ref> for a visual representation of the comprehensive evaluation procedure for the generated data.</p><p>The diffusion model is trained using just 500 real data samples. Subsequently, artificial samples are generated and used for performance evaluation. Training continues through epochs until desired performance is reached, with hyperparameter adjustment for subpar results. 5 Experimental setup and model architecture</p><p>We use Python-3.8.16 and Google Colab for the training of Diffusion Denoising Probabilistic models. Moreover, our implementation uses Keras-2.9.0 and Tensorflow-2.9.2. As discussed in 4.1, a diffusion model is devised for each dataset, encompassing forward and reverse processes for circuit data. For the forward process, we adopt a variance of β t , transitioning linearly from 0.001 to 0.02, following the approach by Ho et al. <ref type="bibr" target="#b3">[4]</ref> The reverse process is realized using an encoder-decoder architecture <ref type="bibr" target="#b26">[27]</ref> with continuous batch normalization. The model utilizes Leaky ReLu activation.</p><p>Training data undergoes noise addition through the forward process, gradually transforming to pure noise, and the reverse process learns to de-noise and predict original distribution. After training the diffusion model, the synthetic data is then generated by first sampling a pure random noise then using trained reverse diffusion model to generate the desired sample.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6">Results</head><p>As discussed in 4.2, the output feature values from the model and the simulator are compared to get the right idea of performance. We start the hyper-parameter search by finding the optimal number of layers. Table <ref type="table">2</ref> depicts the model's performance across varying hidden layer counts. A fivelayer architecture emerges as the best choice for the NOT gate dataset featuring 17 attributes. This architecture also holds well for datasets up to 19 attributes. It was observed that for datasets featuring 21 attributes, a six-layered architecture boosts the learning capacity effectively. Our subsequent exploration involves different learning rates. Figure <ref type="figure">2</ref> indicates that a learning rate near 0.0005 ensures consistently low percentage errors across all features. The Table <ref type="table" target="#tab_2">3</ref> provides the mean absolute percentage errors (MAPE) attained for all datasets, it can be seen that low MAPE is obtained for the various datasets. Additionally, Figure <ref type="figure" target="#fig_2">3</ref> showcases that density distribution of generated and original data for the NOT dataset exhibit a high degree of proximity. Furthermore Table <ref type="table" target="#tab_3">4</ref> shows a significant improvement in a gradient-boosting regression (GBR) model using artificial data, to predict CMOS NOT gate delays. Thus, validating the proposed approach's efficacy in predicting parameters that concern digital circuit design. For brevity, the data generation with other generative models such as GANs or VAEs were not as effective, and hence not shown in results.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7">Conclusion</head><p>Achieving model accuracy hinges on high-quality training data, yet obtaining ample data for electronic circuits can be expensive or practically difficult to obtain.   </p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Figure 1 :</head><label>1</label><figDesc>Figure 1: Evaluation process for artificially generated data.</figDesc><graphic coords="3,145.08,72.00,321.84,101.04" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Table 2 :Figure 2 :</head><label>22</label><figDesc>Figure 2: Performance of model with different learning rates w.r.t. HSPICE for delay in AND gate dataset. It can be seen that learning rate of 0.0005 ensures low percentage errors across all features.</figDesc><graphic coords="4,108.00,161.31,437.76,82.08" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>Figure 3 :</head><label>3</label><figDesc>Figure 3: Distribution plots of artificially generated data and original data for delay dataset from NOT gate showing close resemblance between two.</figDesc><graphic coords="5,108.00,307.12,423.36,221.76" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0"><head>Table 1 :</head><label>1</label><figDesc>List of digital circuit datasets used in this work.(Input parameters for evaluation: Supply voltage, Temperature, Channel length, Transistor width, Physical and electrical equivalent of oxide thickness, Nominal gate oxide thickness, Source/Drain junction depth, and Channel doping concentration, Load capacitance; Output parameters for evaluation: Propagation Delays)</figDesc><table><row><cell>Dataset</cell><cell cols="2">Parameters Dataset</cell><cell>Parameters</cell></row><row><cell>NOT gate delay</cell><cell>17</cell><cell cols="2">Three input AND-OR circuit delay 21</cell></row><row><cell cols="2">Two input NAND gate delay 19</cell><cell>Full adder delay</cell><cell>21</cell></row><row><cell>Two input AND gate delay</cell><cell>19</cell><cell>2:1 Multiplexer delay</cell><cell>21</cell></row><row><cell>Two input NOR gate delay</cell><cell>19</cell><cell>Three input NAND gate delay</cell><cell>21</cell></row><row><cell>Two input OR gate delay</cell><cell>19</cell><cell>Three input AND gate delay</cell><cell>21</cell></row><row><cell>Two input XOR gate delay</cell><cell>19</cell><cell>Three input NOR gate delay</cell><cell>21</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2"><head>Table 3 :</head><label>3</label><figDesc>Percentage error obtained for different digital circuit datasets used in this work. Here, the error is calculated with respect to the HSPICE. Here A=delay lh node a, B=delay hl node a, C=delay lh node b, D=delay hl node b, E=delay lh node c, F=delay hl node c.</figDesc><table><row><cell>Delay dataset</cell><cell></cell><cell cols="4">Mean Absolute Percentage Error</cell><cell></cell></row><row><cell></cell><cell>A</cell><cell>B</cell><cell>C</cell><cell>D</cell><cell>E</cell><cell>F</cell></row><row><cell>NOT gate</cell><cell>3.9</cell><cell>3.12</cell><cell>-</cell><cell>-</cell><cell>-</cell><cell>-</cell></row><row><cell>Two input NAND gate</cell><cell cols="2">4.41 6.3</cell><cell cols="2">4.54 7.52</cell><cell>-</cell><cell>-</cell></row><row><cell>Two input AND gate</cell><cell cols="2">5.76 4.12</cell><cell cols="2">5.13 5.84</cell><cell>-</cell><cell>-</cell></row><row><cell>Two input NOR gate</cell><cell cols="2">5.14 2.52</cell><cell cols="2">3.92 6.05</cell><cell>-</cell><cell>-</cell></row><row><cell>Two input OR gate</cell><cell cols="2">3.77 3.5</cell><cell cols="2">5.57 4.42</cell><cell>-</cell><cell>-</cell></row><row><cell>Two input XOR gate</cell><cell cols="2">0.34 3.44</cell><cell cols="2">4.04 2.94</cell><cell>-</cell><cell>-</cell></row><row><cell cols="3">Three input AND-OR circuit 7.96 4.83</cell><cell cols="2">4.74 8.33</cell><cell>4.3</cell><cell>8.55</cell></row><row><cell>FULL ADDER</cell><cell cols="2">2.85 2.85</cell><cell cols="2">3.62 5.93</cell><cell cols="2">2.15 4.42</cell></row><row><cell>2:1 MULTIPLEXER</cell><cell cols="2">3.81 3.27</cell><cell cols="2">2.91 5.53</cell><cell cols="2">3.68 4.03</cell></row><row><cell>Three input NAND gate</cell><cell cols="2">7.73 4.66</cell><cell cols="4">6.15 5.404 7.37 3.26</cell></row><row><cell>Three input AND gate</cell><cell cols="2">4.04 4.64</cell><cell cols="2">5.33 2.92</cell><cell cols="2">3.91 3.02</cell></row><row><cell>Three input NOR gate</cell><cell cols="4">4.57 5.007 5.11 6.46</cell><cell cols="2">3.74 5.13</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3"><head>Table 4 :</head><label>4</label><figDesc>Comparison of performance of a predictive gradient boosting regression model with and without artificial data. (A higher R2 score denoted by ↑ and a lower MSE, RMSE, MAE and MAPE denoted by ↓ are preferred.) 58×10-25 2.22×10 -25 2.25×10 -25 1.38×10 -25 50.87↓ 37.84↓ RMSE 6.77×10 -13 4.71×10 -13 4.75×10 -13 3.72×10 -13 29.84↓ 21.02 ↓ MAE 5.16×10 -13 3.32×10 -13 3.44×10 -13 2.52×10 -13 33.33↓ Our study proposes a variant of diffusion model for generating a) synthetic data, b) validation method, and c) subsequently predicting delay estimations in 22nm CMOS technology-based digital VLSI circuits. More specifically, the training data is obtained by various simulations in the HSPICE with 22nm CMOS technology nodes. The technique's efficacy is proven through extensive experiments on twelve essential digital circuit designs, showcasing notably low mean absolute percentage errors with respect to HSPICE circuit simulator. It is also observed that artificial data distribution closely resembles the original data distribution. Improvement in a GBR's performance using the proposed augmented data is also demonstrated.</figDesc><table><row><cell>Metric</cell><cell></cell><cell>Real data</cell><cell cols="2">Real + Artificial data</cell><cell cols="2">Improvement (%)</cell></row><row><cell></cell><cell>delay lh</cell><cell>delay hl</cell><cell>delay lh</cell><cell>delay hl</cell><cell cols="2">delay lh delay hl</cell></row><row><cell cols="2">R2 score 0.93</cell><cell>0.95</cell><cell>0.976</cell><cell>0.973</cell><cell>4.95 ↑</cell><cell>2.42 ↑</cell></row><row><cell>MSE</cell><cell cols="6">4.24.10↓</cell></row><row><cell>MAPE</cell><cell>0.106</cell><cell>0.103</cell><cell>0.099</cell><cell>0.083</cell><cell>6.60↓</cell><cell>19.42↓</cell></row></table></figure>
+		</body>
+		<back>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Generative adversarial nets</title>
+		<author>
+			<persName><forename type="first">I</forename><surname>Goodfellow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Pouget-Abadie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Mirza</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Warde-Farley</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Ozair</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Courville</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Bengio</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Neural Information Processing Systems</title>
+		<editor>
+			<persName><forename type="first">Z</forename><surname>Ghahramani</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">M</forename><surname>Welling</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">C</forename><surname>Cortes</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">N</forename><surname>Lawrence</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">K</forename><surname>Weinberger</surname></persName>
+		</editor>
+		<imprint>
+			<publisher>Curran Associates, Inc</publisher>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="volume">27</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Adaptive consensus optimization method for gans</title>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">K</forename><surname>Danisetty</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">R</forename><surname>Mylaram</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Kumar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2023 International Joint Conference on Neural Networks (IJCNN)</title>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="1" to="8" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">An introduction to variational autoencoders</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">P</forename><surname>Kingma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Welling</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Foundations and Trends® in Machine Learning</title>
+		<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="307" to="392" />
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<monogr>
+		<title level="m" type="main">Denoising diffusion probabilistic models</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Ho</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Jain</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Abbeel</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Ai/ml algorithms and applications in vlsi design and technology</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Amuru</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Zahra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">V</forename><surname>Vudumula</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">K</forename><surname>Cherupally</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">R</forename><surname>Gurram</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ahmad</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Abbas</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Integration</title>
+		<imprint>
+			<biblScope unit="volume">93</biblScope>
+			<biblScope unit="page">102048</biblScope>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Design optimization of analog integrated circuits by using artificial neural networks</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Jafari</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Sadri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Zekri</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2010 International Conference of Soft Computing and Pattern Recognition</title>
+		<imprint>
+			<date type="published" when="2010">2010</date>
+			<biblScope unit="page" from="385" to="388" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">An artificial neural network assisted optimization system for analog design space exploration</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Lin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems</title>
+		<imprint>
+			<biblScope unit="volume">39</biblScope>
+			<biblScope unit="issue">10</biblScope>
+			<biblScope unit="page" from="2640" to="2653" />
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Automated design of analog circuits using machine learning techniques</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Devi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Tilwankar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Zele</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2021 25th International Symposium on VLSI Design and Test</title>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="1" to="6" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Review: Machine learning techniques in analog/rf integrated circuit design, synthesis, layout, and test</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Afacan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Lourenço</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Martins</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Dündar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Integration</title>
+		<imprint>
+			<biblScope unit="volume">77</biblScope>
+			<biblScope unit="page" from="113" to="130" />
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Technology independent circuit sizing for fundamental analog circuits using artificial neural networks</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Kahraman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Yildirim</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Ph.D. Research in Microelectronics and Electronics</title>
+		<imprint>
+			<biblScope unit="page" from="1" to="4" />
+			<date type="published" when="2008">2008. 2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Fast and efficient resnn and genetic optimization for pvt aware performance enhancement in digital circuits</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Agarwal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Jain</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Amuru</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Abbas</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2022 International Symposium on VLSI Design, Automation and Test (VLSI-DAT)</title>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="1" to="4" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">An efficient gradient boosting approach for pvt aware estimation of leakage power and propagation delay in cmos/finfet digital cells</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Amuru</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">S</forename><surname>Ahmed</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Abbas</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2020 IEEE International Symposium on Circuits and Systems (ISCAS)</title>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="1" to="5" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Data management challenges for deep learning</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Munappy</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Bosch</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><forename type="middle">H</forename><surname>Olsson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Arpteg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Brinne</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2019 45th Euromicro Conference on Software Engineering and Advanced Applications (SEAA)</title>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="140" to="147" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Statistical variation aware leakage and total power estimation of 16 nm vlsi digital circuits based on regression models</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Amuru</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Zahra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Abbas</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">VLSI Design and Test</title>
+		<editor>
+			<persName><forename type="first">A</forename><surname>Sengupta</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">S</forename><surname>Dasgupta</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">V</forename><surname>Singh</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">R</forename><surname>Sharma</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">S</forename><forename type="middle">Kumar</forename><surname>Vishvakarma</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Singapore; Singapore</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="565" to="578" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Understanding data augmentation for classification: when to warp?</title>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">C</forename><surname>Wong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Gatt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Stamatescu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">D</forename><surname>Mcdonnell</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2016 international conference on digital image computing: techniques and applications (DICTA)</title>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="1" to="6" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Data augmentation for improving deep learning in image classification problem</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Mikołajczyk</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Grochowski</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2018 international interdisciplinary PhD workshop (IIPhDW)</title>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="117" to="122" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Data augmentation using biwgan, feature extraction and classification by hybrid 2dcnn and bilstm to detect non-technical losses in smart grids</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Asif</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Nazeer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Javaid</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">H</forename><surname>Alkhammash</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Hadjouni</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Access</title>
+		<imprint>
+			<biblScope unit="volume">10</biblScope>
+			<biblScope unit="page" from="27467" to="27483" />
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Data augmentation and cnn classification for automatic covid-19 diagnosis from ct-scan images on small dataset</title>
+		<author>
+			<persName><forename type="first">W</forename><surname>Tan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Guo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">arXiv</title>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title level="a" type="main">A survey on image data augmentation for deep learning</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Shorten</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">M</forename><surname>Khoshgoftaar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Big Data</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="page" from="1" to="48" />
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<monogr>
+		<title level="m" type="main">Training deep face recognition systems with synthetic data</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kortylewski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Schneider</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Gerig</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Egger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Morel-Forster</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Vetter</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1802.05891</idno>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title level="a" type="main">3dvae-ersg: 3d variational autoencoder for extremely rare signal generation</title>
+		<author>
+			<persName><forename type="first">T</forename><surname>Chalongvorachai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Woraratpanya</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2021 13th International Conference on Information Technology and Electrical Engineering (ICITEE)</title>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="177" to="182" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">A heavy-tailed distribution data generation method based on generative adversarial network</title>
+		<author>
+			<persName><forename type="first">X</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Zhou</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2021 IEEE 10th Data Driven Control and Learning Systems Conference (DDCLS)</title>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="535" to="540" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Using synthetic data to improve facial expression analysis with 3d convolutional networks</title>
+		<author>
+			<persName><forename type="first">I</forename><surname>Abbasnejad</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Sridharan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Nguyen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Denman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Fookes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Lucey</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2017 IEEE International Conference on Computer Vision Workshops (ICCVW)</title>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="1609" to="1618" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<monogr>
+		<title level="m" type="main">Diffusion models beat gans on image synthesis</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Dhariwal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Nichol</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<monogr>
+		<title level="m" type="main">Diffusion models: A comprehensive survey of methods and applications</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Hong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Cui</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M.-H</forename><surname>Yang</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<monogr>
+		<title level="m" type="main">Hspice circuit simulator</title>
+		<ptr target="https://cseweb.ucsd.edu/classes/wi10/cse241a/assign/hspice_sa.pdf" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">D</forename><surname>Bank</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Koenigstein</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Giryes</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<monogr>
+		<title level="m" type="main">A note on the evaluation of generative models</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Theis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">V D</forename><surname>Oord</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Bethge</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

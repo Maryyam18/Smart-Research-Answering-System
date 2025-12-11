@@ -1,0 +1,892 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Quantum teleportation in high dimensions</title>
+				<funder ref="#_Y3FYCJK">
+					<orgName type="full">Chinese Academy of Sciences</orgName>
+				</funder>
+				<funder>
+					<orgName type="full">National Natural Science Foundation of China</orgName>
+				</funder>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Yi-Han</forename><surname>Luo</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Han-Sen</forename><surname>Zhong</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Manuel</forename><surname>Erhard</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Xi-Lin</forename><surname>Wang</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Li-Chao</forename><surname>Peng</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Mario</forename><surname>Krenn</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Xiao</forename><surname>Jiang</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Li</forename><surname>Li</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Nai-Le</forename><surname>Liu</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Chao-Yang</forename><surname>Lu</surname></persName>
+							<email>cylu@ustc.edu.cn</email>
+						</author>
+						<author>
+							<persName><forename type="first">Anton</forename><surname>Zeilinger</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Jian-Wei</forename><surname>Pan</surname></persName>
+							<email>pan@ustc.edu.cn</email>
+						</author>
+						<author>
+							<affiliation key="aff0">
+								<orgName type="department">Hefei National Laboratory for Physical Sciences at Microscale and Department of Modern Physics</orgName>
+								<orgName type="laboratory">CAS Centre for Excellence in Quantum Information and Quantum Physics</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<postCode>230026 230026</postCode>
+									<settlement>Hefei Hefei</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff1">
+								<orgName type="department">Institute for Quantum Optics and Quantum Information (IQOQI)</orgName>
+								<orgName type="institution">Austrian Academy of Sciences</orgName>
+								<address>
+									<addrLine>Boltzmanngasse 3</addrLine>
+									<postCode>A-1090</postCode>
+									<settlement>Vienna Austria</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff2">
+								<orgName type="department">Faculty of Physics</orgName>
+								<orgName type="institution">University of Vienna</orgName>
+								<address>
+									<addrLine>Boltzmanngasse 5</addrLine>
+									<postCode>1090</postCode>
+									<settlement>Vienna</settlement>
+									<country key="AT">Austria</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Quantum teleportation in high dimensions</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date/>
+						</imprint>
+					</monogr>
+					<idno type="MD5">AB1ABD34F5ACA50FB998C8E19B9D7747</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-28T12:37+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Quantum teleportation allows a "disembodied" transmission of unknown quantum states between distant quantum systems. Yet, all teleportation experiments to date were limited to a two-dimensional subspace of quantized multiple levels of the quantum systems. Here, we propose a scheme for teleportation of arbitrarily high-dimensional photonic quantum states, and demonstrate an example of teleporting a qutrit. Measurements over a complete set of 12 qutrit states in mutually unbiased bases yield a teleportation fidelity of 0.75(1), which is well above both optimal single-copy qutrit-state-estimation limit of 1/2 and maximal qubit-qutrit overlap of 2/3, thus confirming a genuine and non-classical three-dimensional teleportation. Our work will enable advanced quantum technologies in high dimensions, since teleportation plays a central role in quantum repeaters and quantum networks. The laws of quantum mechanics forbid precise measurement or perfect cloning of unknown quantum states (1). With the help of shared entanglement and classical communication channel, however, quantum teleportation in principle allows faithful transfer of the unknown quantum states from one particle to another at a distance (2), without physical transmission of the object</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>itself. There have been numerous experiments on the teleportation of quantum states of single photons <ref type="bibr" target="#b2">(3)</ref><ref type="bibr" target="#b3">(4)</ref><ref type="bibr" target="#b4">(5)</ref><ref type="bibr" target="#b5">(6)</ref><ref type="bibr" target="#b6">(7)</ref><ref type="bibr" target="#b7">(8)</ref>, atoms <ref type="bibr" target="#b8">(9)</ref>, trapped ions <ref type="bibr" target="#b9">(10,</ref><ref type="bibr" target="#b10">11)</ref>, defects in solid states <ref type="bibr" target="#b11">(12)</ref>, and superconducting circuits <ref type="bibr" target="#b12">(13)</ref>. All these quantum systems naturally possess not only multiple degrees of freedom, but also, many degrees of freedom can have high quantum numbers <ref type="bibr" target="#b13">(14)</ref> beyond the simplified two-level qubit subspace. However, all experiments to date were limited to two-dimensional subspaces, the qubits <ref type="bibr" target="#b2">(3)</ref><ref type="bibr" target="#b3">(4)</ref><ref type="bibr" target="#b4">(5)</ref><ref type="bibr" target="#b5">(6)</ref><ref type="bibr" target="#b6">(7)</ref><ref type="bibr" target="#b7">(8)</ref><ref type="bibr" target="#b8">(9)</ref><ref type="bibr" target="#b9">(10)</ref><ref type="bibr" target="#b10">(11)</ref><ref type="bibr" target="#b11">(12)</ref><ref type="bibr" target="#b12">(13)</ref>. After the teleportation of two-particle composite state <ref type="bibr" target="#b5">(6)</ref> and two degrees of freedom <ref type="bibr" target="#b6">(7)</ref>, the teleportation of high-dimensional quantum states remained the final obstacle for teleporting a quantum particle intact.</p><p>The ability of coherent control of high-dimensional (HD) quantum states is important for developing advanced quantum technologies. Compared to the conventional two-level systems, HD states can offer extended possibilities such as both higher capacity and noise resilience in quantum communications <ref type="bibr" target="#b14">(15,</ref><ref type="bibr" target="#b15">16)</ref>, more efficient quantum simulation <ref type="bibr" target="#b16">(17)</ref> and computation <ref type="bibr" target="#b17">(18)</ref>, as well as larger violation of Bell inequality <ref type="bibr" target="#b18">(19)</ref>. Recent years have witnessed an increasing capability to generate and measure HD entangled states <ref type="bibr" target="#b18">(19)</ref><ref type="bibr" target="#b19">(20)</ref><ref type="bibr" target="#b20">(21)</ref><ref type="bibr" target="#b21">(22)</ref><ref type="bibr" target="#b22">(23)</ref><ref type="bibr" target="#b23">(24)</ref>. However, the previous work is predominantly limited in the coherent control of single particle HD state. A joint projection of two independent particles with unknown states into maximally entangled HD states, which requires some forms of controlled interactions and will play a crucial role in the HD teleportation, dense coding, and quantum computing, is more challenging and remains largely unexplored experimentally.</p><p>Here, we propose an efficient and extendable scheme for teleportation of arbitrarily HD photonic quantum states, and we report the first experimental teleportation of a qutrit, which is equivalent to a spin-1 system. We start by describing our protocol of HD quantum teleportation.</p><p>For the sake of simplicity, here we explain it using the example of a three-level system, where the underlying physics can be generalized to arbitrary N-level systems <ref type="bibr" target="#b24">(25)</ref>, as elaborated in detail in the supplementary materials. Suppose Alice wishes to teleport to Bob the quantum state</p><formula xml:id="formula_0">2 a 1 a a a 0 | | 0 |1 | 2           [1]</formula><p>of a single photon, where |0 , |1 , and |2 are encoded by three different paths of the photon (c.f. Fig. <ref type="figure" target="#fig_4">1</ref>), their subscripts label the photon, and their coefficients are complex numbers that fulfil</p><p>2 2 2 0 1 2 1      . The quantum resource required for teleporting this state is a HD entangled state previously shared between Alice and Bob, for example, bc bc bc b 00 c | | 00 |11 | 22 ( ) / 3</p><formula xml:id="formula_1">        . [2]</formula><p>This is one of the three-dimensional (3D) Bell states which, together with other eight orthogonal ones <ref type="bibr" target="#b24">(25)</ref>, forms a complete orthonormal basis of the bipartite 3D Hilbert space.</p><p>Conceptually within the theoretical framework of Bennett et al. <ref type="bibr" target="#b1">(2)</ref>, the most crucial step for the HD teleportation is performing a joint measurement of photon a and b, a process called 3D Bell-state measurement (BSM). With equal probabilities of 1/9, the 3D-BSM projects photon a and b into one of the nine 3D Bell states randomly. Alice can then broadcast the 3D-BSM result classically, which allows Bob to accordingly apply a unitary single-particle 3D transform <ref type="bibr" target="#b25">(26)</ref> to reconstruct the original quantum states (eqn.1) at his location <ref type="bibr" target="#b24">(25)</ref>. In general,</p><p>for an N-level bipartite system, there exists Recall that in the teleportation of qubits, the four Bell states can be grouped into three symmetric and one anti-symmetric state under particle exchange, which facilitate the discrimination using linear optics <ref type="bibr" target="#b26">(27)</ref>. In the 3D case already, however, the situation becomes fundamentally more complicated. There are three Bell states that are symmetric and the other six are neither symmetric nor anti-symmetric. In theory, it was shown <ref type="bibr" target="#b27">(28)</ref> that it is impossible to discriminate two-photon HD Bell states with linear optics only when the dimensions 3.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>N </head><p>To overcome such a linear optical limitation <ref type="bibr" target="#b28">(29)</ref>, here we utilize N-2 additional single photons, so-called ancillary photons, and a multiport beam splitter (BS) with N-input-N-output all-to-all connected ports <ref type="bibr" target="#b28">(29)</ref>, which is a generalisation of the quantum Fourier transform. A detailed derivation of the HD-BSM procedure is shown in <ref type="bibr" target="#b24">(25)</ref>.</p><p>To get a deeper insight on how the high-dimensional Bell-state measurement works, we use the fact that in reverse a Bell state is generated. This simplifies the analysis because in this case we can focus on one specific "click-pattern" as an example, and send single photons backwards from these detectors. We choose to propagate three indistinguishable single photons from the output ports ' ' ' 0 1 2 { , , } a a a backwards through the multi-port, as shown in Fig. <ref type="figure" target="#fig_4">1</ref>. Then we condition onto cases where in each input port one and only one photon exists. Due to the all-toall connection in the multi-port, the resulting state contains all length-2 permutations of the 3D states <ref type="bibr" target="#b24">(25)</ref>. Detection of the ancillary photon in the superposition state</p><formula xml:id="formula_2">x x x (| 0 |1 | ) / 3 2      ,</formula><p>results in the obtained state (normalization omitted):</p><formula xml:id="formula_3">a b b a b b a b b | 0 |1 | 2 |1 | 0 | 2 ( ) ( ) ( | 2 | 0 |1 )               [3]</formula><p>The unitary transformation of this state to a target 3D Bell state (Eqn.2) requires an expanded Hilbert space of four dimensions. The extra fourth level |3 , is added to assist the physical realization of the unitary transformation (see 31</p><p>U  in Fig. <ref type="figure" target="#fig_4">1</ref>), and erased afterwards, which leads to the target 3D Bell state (Eqn. 2) <ref type="bibr" target="#b24">25)</ref>. The analysis holds exactly the same if the three indistinguishable photons are "incident" from ports</p><formula xml:id="formula_4">ab ab ab a 00 b | | 00 |11 | 22 ( ) / 3        <label>(</label></formula><formula xml:id="formula_5">' ' ' 0 1 2 { , , } b b b or ' ' ' 0 1 2 { , , } x x x .</formula><p>Thus, in the experiment, a simultaneous click of the three detectors in the ports ' ' ' </p><formula xml:id="formula_6">0 1 2 { , , } a a a , ' ' ' 0 1 2 { , , } b b b or ' ' '</formula><formula xml:id="formula_7">| | 0 |1 | 2           .</formula><p>This state is already identical to the original state of photon a without the need of any additional unitary corrections. The success probability of the HD-BSM using this scheme is 1/81.</p><p>Combining with active feed-forward techniques increases the success probability to 1/9 for linear optics.</p><p>Figure <ref type="figure" target="#fig_0">2</ref> shows the experimental set-up for the 3D quantum teleportation. A femtosecond pulsed laser beam is split into two parts to simultaneously create two photon pairs. The first part of the pump beam is divided into three paths by two beam-displacers which are then focused on the same β-borate-borate (BBO1) crystal. We select the case where in total one photon pair is produced by type-II beam-like spontaneous parametric down-conversion (30) but without knowing at which one of the three paths, which generates the desired entangled state bc 00 |  used as the quantum channel for the 3D teleportation. To ensure long-term phase stability between the three paths, we specifically design and fabricate interferometers with small (4 mm) separation between the three paths. Hence, air fluctuations and disturbances act collectively on all paths such that the qutrits are effectively protected in a decoherence-free space.</p><p>Before being sent to the HD-BSM, photon b from the entangled qutrits first undergoes the unitary transformation 31 U  , which is experimentally realized using a network of polarising beam splitters and half-wave plates (HWPs). The details are shown in supplementary materials <ref type="bibr" target="#b24">(25)</ref>. Another pump beam from the same laser passes through BBO2 and creates the second photon pair. One of them is used for the preparation of an arbitrary superposition of the three paths as the input state a to be teleported. The other one is used as the ancillary qutrit x in the HD-BSM.</p><p>The experimental realization of the HD-BSM puts stringent technological requirements on phase stability, efficiency, and precision. To meet these demands, the HD-BSM is operated in hybrid polarisation-path encoding and employs a fully connected three-input and three-output ultra-low-loss multi-port interferometer. As shown in Fig. <ref type="figure" target="#fig_0">2</ref>, in the input, single photons a and b are initialised in horizontal polarization, while photon x is in vertical polarization. Photon a is first combined with photon x using a PBS. The combined beams pass through a HWP set at 22.5 0 , and are superposed with photon b on a partially-polarisation-dependent beam splitter (pPDBS) which totally reflects vertically polarised photons and partially-with a ratio of 1/3reflects horizontally polarised photons. One of the output ports of the pPDBS is detected by three detectors directly, while the other port is further sent through a quarter-wave plate set at 45 0 and then split by a polarising beam splitter and detected by six detectors. It is straightforward to check that all the three photons from the inputs a, b, and x are evenly distributed to each of the output with a ratio of 1/3, realizing the most important function of the multiport.</p><p>The all-to-all multiport in Fig. <ref type="figure" target="#fig_0">2</ref> involves three-photon nine-path Hong-Ou-Mandel interferences at the polarising beam splitter and the pPDBS. All nine paths are synchronized to arrive within ~10 fs of each other, a delay much smaller than the coherence time of the narrowband (3 nm) filtered single photons (~450 fs). The use of compact and precisely aligned beam-displacers ensures a good spatial overlap in all multi-path interferences simultaneously.</p><p>Verifications of all two-photon Hong-Ou-Mandel interference combinations at the pPDBS with an average visibility of 0.82(1) are presented in supplementary materials <ref type="bibr" target="#b24">(25)</ref>. These visibilities in combination with the entanglement source (with a measured fidelity of 0.94(1)) quantify the quality of the three-dimensional teleportation experiment <ref type="bibr" target="#b24">(25)</ref>. see supplementary materials for details.</p><p>It is necessary to prove that the teleportation experiment works universally for all possible superposition states in the general form of a |  (eqn. <ref type="bibr" target="#b0">[1]</ref>) and has a performance exceeding that using only classical methods. Classically, the optimal single-copy state-estimation fidelity of a three-level quantum system (31) is 0.5 when averaging over the whole Hilbert space.</p><p>Sampling only over partial state space in biased bases, however, would allow the classical strategy to make use of the biased information to obtain an average state estimation fidelity higher than 0.5. It is therefore important to carefully choose a minimal set of input states such that the random sampling of which leads to the same classical limit as sampling over the whole state space. Such a minimal set of states lies in mutually unbiased bases <ref type="bibr" target="#b31">(32)</ref>. For a threedimensional system, we need to measure 12 states from four mutually unbiased bases:</p><p>(1)</p><formula xml:id="formula_8">( 2 ) ( 3) ( 4 ) {1,2,3} 22 {1,2,3} {1,2,3} 222 {1,2,3}</formula><p>: (1, 0, 0), (0,1, 0), (0, 0,1) : (1,1,1), ( <ref type="figure" target="#fig_4">1</ref>, , <ref type="figure">)</ref>, <ref type="figure" target="#fig_4">(1</ref>, , <ref type="figure">)   : (</ref> ,<ref type="figure" target="#fig_4">1</ref>,<ref type="figure" target="#fig_4">1)</ref>, <ref type="figure" target="#fig_4">(1</ref>, ,<ref type="figure" target="#fig_4">1)</ref>, <ref type="figure" target="#fig_4">(1</ref>,<ref type="figure" target="#fig_4">1</ref>, <ref type="figure">)   : (</ref> ,<ref type="figure" target="#fig_4">1</ref>,<ref type="figure" target="#fig_4">1)</ref>, <ref type="figure" target="#fig_4">(1</ref>, ,<ref type="figure" target="#fig_4">1)</ref>, <ref type="figure" target="#fig_4">(1</ref>,<ref type="figure" target="#fig_4">1</ref>, )</p><formula xml:id="formula_9">B B B B       . [4]</formula><p>Here the vectors ( 0 1 2 ,,</p><formula xml:id="formula_10">   ) denote the state c c c 0 1 2 | 0 |1 | 2         , exp( 2 / 3) i  </formula><p>, where the normalising constant is omitted. We measure fidelities of the final teleported states, defined as the overlap of the experimentally measured density matrix c  with the ideal input Fig. Figure <ref type="figure">3A</ref> shows the teleportation results of group for the teleported state |0 , |1 , and |2 , respectively. However, the measurements for the other three groups, which involves equal superpositions of all the three levels, are more complicated. To experimentally access the fidelity of these states in the general form</p><formula xml:id="formula_11">12 ( 0 exp( ) 1 exp( ) 2 ) / 3 ii       ,<label>[5]</label></formula><p>we decompose the density matrix into three parts, 012 021 120</p><formula xml:id="formula_12">( ) / 3        , where ||| ijk ij ij ij ij kk                , ( exp | | | ( ) ) / 2 j ij i i ij          .</formula><p>The decomposition unitarily transforms the qutrits into two-dimensional superposition states and one computational state. Our measurement apparatus allows a simultaneous three-outcome readout, directly accessing one of the ijk  <ref type="bibr" target="#b24">(25)</ref>. We show in Fig. <ref type="figure">3B</ref>, <ref type="figure">C</ref>, and D the measurement results for three representative states from the group of</p><formula xml:id="formula_13">( 2) {1,2,3} B ,<label>(3) {1,2,3} B , and ( 4)</label></formula><p>{1,2,3} B , respectively.</p><p>The other six states are presented in Figure <ref type="figure">S6</ref>. We note that all reported measurements are without background or accidental count subtraction. The fidelity imperfection is mainly from double pair emissions, spatial mode mismatch in the multi-photon multi-path interferences, and interferometric noise in the state preparation and measurements <ref type="bibr" target="#b24">(25)</ref>.</p><p>The fidelities of all the 12 states are displayed in Fig. <ref type="figure" target="#fig_8">4</ref>, which are the minimal set allowing us to faithfully derive the teleportation fidelity for the three-level quantum system. In the current experiment, the averaged fidelity is calculated to be 0.75(1), well above the classical limit of 0.5 which can be obtained with the best classical strategy.</p><p>Proving the universality and non-classicality is already sufficient for teleporting qubits.</p><p>However, for the N-dimensional teleportation, it is important to further verify that all Ndimensions still can form a coherent superposition and thus survived the teleportation intact.</p><p>Hence, a genuine N-dimensional teleportation should be distinguished from lower-dimensional cases by excluding the hypotheses that the teleported state could be represented with less dimensions. For our specific 3D teleportation, we can calculate that the maximal overlap between any two-level superposition and the genuine three-level states is 2/3 <ref type="bibr" target="#b24">(25)</ref>. The teleportation fidelity measured in our work exceeds this threshold by 9 standard deviations, thus conclusively establishing a genuine three-dimensional quantum teleportation.</p><p>To summarize, we have for the first time demonstrated the possibility to completely teleport the multiple quantized levels of a quantum system. Our generalized scheme <ref type="bibr" target="#b24">(25)</ref> can readily be applied to other degrees of freedom, such as photon's orbital angular momentum <ref type="bibr" target="#b32">(33)</ref>. Future implementations with higher dimensions would be suitable to be implemented in integrated photonics platforms <ref type="bibr" target="#b21">(22,</ref><ref type="bibr" target="#b23">24)</ref>. It would also be interesting to investigate in the future the teleportation of multiple atomic levels in trapped ions <ref type="bibr" target="#b9">(10,</ref><ref type="bibr" target="#b10">11)</ref> and cold atoms ( <ref type="formula">9</ref>). An intriguing idea appears upon combining our approach with the teleportation of a two-particle composite state <ref type="bibr" target="#b5">(6)</ref> and two degrees of freedom <ref type="bibr" target="#b6">(7)</ref>, which makes it possible to realise the dream of teleporting a complex quantum system completely.</p><p>The ability to perform the HD-BSM developed in this work provides a new possibility for fundamental test of Bell's inequalities and advanced quantum information technologies. As an example, the to-be-teleported HD quantum state can itself be fully undefined, such as being part of a two-particle HD entanglement. This leads to entanglement swapping <ref type="bibr" target="#b33">(34)</ref>, where heralded by a HD-BSM click, two remote HD particles can be entangled with no direct interaction. Such a scheme can distribute entanglement over long distances and can enable an event-ready Bell test. Remarkably, the created HD entanglement can tolerate a higher detection inefficiency than the qubit case <ref type="bibr" target="#b18">(19,</ref><ref type="bibr" target="#b34">35)</ref>, and would provide significant advantages in long-distance Bell test closing both locality and detection loopholes <ref type="bibr" target="#b35">(36)</ref><ref type="bibr" target="#b36">(37)</ref><ref type="bibr" target="#b37">(38)</ref> and device-independent quantum key distribution <ref type="bibr" target="#b38">(39)</ref>.</p><p>Note added: After completing our work, we became aware of an independent experiment arXiv:1904.12249. holds a quantum state a |  encoded in three dimensions (depicted by three paths) that she wishes to teleport to Bob. To do so, they first share a three-dimensional, maximally entangled state. Then Alice performs a high-dimensional Bell-state measurement (HD-BSM) on her photons. Conceptually, our approach upon realising a HD-BSM consists of two parts: A unitary transformation in an expanded state space ( 31 U  ), and a multi-port beam splitter that enables collective quantum interference between Alice's teleportee photon (a), her part of the entangled state (b) and an additional ancillary photon (x). Specific "click-patterns" of different detectors indicate successful projections into one of the nine entangled Bell states. Alice can now transmit the classical-information of her "click-pattern" to Bob, who performs a unitary transformation (U3) on his photon to recover the original state of Alice's teleportee photon.   Fig. 2 15 Fig. 3 </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>References and Notes</head><note type="other">Figure captions</note></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>2 N</head><label>2</label><figDesc>HD Bell states. An unambiguous HD-BSMposes a new challenge both theoretically and experimentally.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>0 1 2 {</head><label>2</label><figDesc>, , } x x x indicates an unambiguous projection of the input photons a and b to the 3D Bell state ab 00 |  , which projects Bob's photon c onto 2</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>.</head><figDesc>Conditioned on the detection of a specific "click-pattern" within the HD-BSM (see Fig.1), we register the counts of Bob's photon and analyse its properties. The verifications of the teleportation results are based on four-fold coincidence detections which in our experiment occur with a rate of ~0.11 Hz. In each setting, the typical data accumulation time is 20-40 minutes, which allows to sufficiently suppress Poisson noise.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><figDesc>be straightforwardly measured in the computational basis. The extracted fidelities are 0.76(3), 0.81(3), and 0.78<ref type="bibr" target="#b2">(3)</ref> </figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head>Fig. 1 .|</head><label>1</label><figDesc>Fig. 1. Principle scheme for teleportation of three-dimensional quantum states. Alice</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><head>Fig. 2 .Fig. 4 .</head><label>24</label><figDesc>Fig. 2. Experimental set-up to teleport path-encoded qutrits. An ultraviolet pulsed laser is</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><figDesc>Figures:</figDesc><graphic coords="14,144.65,131.47,305.91,283.35" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7"><head>1 Fig. 2 15Fig. 3</head><label>123</label><figDesc>Fig. 1</figDesc><graphic coords="14,107.65,455.39,379.99,315.05" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8"><head>Fig. 4</head><label>4</label><figDesc>Fig. 4</figDesc><graphic coords="15,70.85,118.41,453.58,246.75" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0"><graphic coords="16,70.85,119.40,453.40,586.90" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0"><graphic coords="17,70.85,78.00,453.40,586.90" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0"><graphic coords="18,70.85,78.00,453.40,586.90" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0"><graphic coords="19,70.85,78.00,453.40,586.90" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0"><graphic coords="20,70.85,78.00,453.40,586.90" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0"><graphic coords="21,70.85,78.00,453.40,586.90" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0"><graphic coords="22,70.85,78.00,453.40,586.90" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0"><graphic coords="23,70.85,78.00,453.60,297.75" type="bitmap" /></figure>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div><head>Acknowledgements</head><p>: This work was supported by the <rs type="funder">National Natural Science Foundation of China</rs>, the <rs type="funder">Chinese Academy of Sciences</rs>, and the <rs type="programName">National Fundamental Research Program</rs>.</p></div>
+			</div>
+			<listOrg type="funding">
+				<org type="funding" xml:id="_Y3FYCJK">
+					<orgName type="program" subtype="full">National Fundamental Research Program</orgName>
+				</org>
+			</listOrg>
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>crystal (BBO1) shared between Alice and Bob. The teleportee and ancillary photon are produced in a second non-linear crystal (BBO2). All 12 input qutrit states to be teleported and the ancilla-photon are prepared using polarisation dependent beam-displacers (BDs) controlled by half-and quarter-waver plates (HWP, QWP). The expanded unitary transformation 31 U  is implemented in a four-dimensional hybrid polarisation-path state space. A polarising beam splitter (PBS) traces out the additionally employed fourthdimension. All three photons (a, b, x) enter the three-dimensional multi-port beamsplitter which consists of nested interferometers implemented in polarisation and path degree-offreedom. A specifically designed partially polarising beam splitter (pPDBS) ensures equally distributed input ports to all output ports. Simultaneous "click-patterns" of detectors</p><p>x indicates a successful BSM and heralds a teleported photon at Bob's side. No active feed-forward scheme was implemented here. Adjusting the HWP and QWP in Bob's measurement apparatus allows for a complete analysis of the teleported qutrits. </p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">K</forename><surname>Wootters</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">H</forename><surname>Zurek</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">299</biblScope>
+			<biblScope unit="page">802</biblScope>
+			<date type="published" when="1982">1982</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">H</forename><surname>Bennett</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">70</biblScope>
+			<biblScope unit="page">1895</biblScope>
+			<date type="published" when="1993">1993</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">D</forename><surname>Bouwmeester</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">390</biblScope>
+			<biblScope unit="page">575</biblScope>
+			<date type="published" when="1997">1997</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">A</forename><surname>Furusawa</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Science</title>
+		<imprint>
+			<biblScope unit="volume">282</biblScope>
+			<biblScope unit="page">706</biblScope>
+			<date type="published" when="1998">1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">I</forename><surname>Marcikic</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>De Riedmatten</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Tittel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Zbinden</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Gisin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">421</biblScope>
+			<biblScope unit="page">509</biblScope>
+			<date type="published" when="2003">2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">Q</forename><surname>Zhang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nat. Physics</title>
+		<imprint>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="page">678</biblScope>
+			<date type="published" when="2006">2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">X.-L</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">518</biblScope>
+			<biblScope unit="page">516</biblScope>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">J.-G</forename><surname>Ren</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">549</biblScope>
+			<biblScope unit="page">70</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<monogr>
+		<author>
+			<persName><forename type="first">X.-H</forename><surname>Bao</surname></persName>
+		</author>
+		<title level="m">Proc. Natl. Acad. Sci</title>
+		<meeting>Natl. Acad. Sci</meeting>
+		<imprint>
+			<date type="published" when="2012">2012</date>
+			<biblScope unit="volume">109</biblScope>
+			<biblScope unit="page">20347</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">M</forename><surname>Riebe</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">429</biblScope>
+			<biblScope unit="page">734</biblScope>
+			<date type="published" when="2004">2004</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">M</forename><surname>Barrett</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">429</biblScope>
+			<biblScope unit="page">737</biblScope>
+			<date type="published" when="2004">2004</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">W</forename><surname>Pfaff</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Science</title>
+		<imprint>
+			<biblScope unit="volume">345</biblScope>
+			<biblScope unit="page">532</biblScope>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">L</forename><surname>Steffen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">500</biblScope>
+			<biblScope unit="page">319</biblScope>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">R</forename><surname>Fickler</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Science</title>
+		<imprint>
+			<biblScope unit="volume">338</biblScope>
+			<biblScope unit="page">640</biblScope>
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">N</forename><surname>Cerf</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Bourennane</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Karlsson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Gisin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">88</biblScope>
+			<biblScope unit="page">127902</biblScope>
+			<date type="published" when="2002">2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">I</forename><surname>Ali-Khan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">J</forename><surname>Broadbent</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">C</forename><surname>Howell</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">98</biblScope>
+			<biblScope unit="page">60503</biblScope>
+			<date type="published" when="2007">2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">M</forename><surname>Neeley</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Science</title>
+		<imprint>
+			<biblScope unit="volume">325</biblScope>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">P</forename><surname>Lanyon</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nat. Physics</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="page">134</biblScope>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">D</forename><surname>Collins</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Gisin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Linden</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Massar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Popescu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">88</biblScope>
+			<biblScope unit="page">40404</biblScope>
+			<date type="published" when="2002">2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<monogr>
+		<author>
+			<persName><forename type="first">M</forename><surname>Krenn</surname></persName>
+		</author>
+		<title level="m">Proc. Natl. Acad. Sci</title>
+		<meeting>Natl. Acad. Sci</meeting>
+		<imprint>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="volume">111</biblScope>
+			<biblScope unit="page">6243</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">Z.-D</forename><surname>Xie</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nat. Photonics</title>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="page">536</biblScope>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">M</forename><surname>Kues</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">546</biblScope>
+			<biblScope unit="page">622</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">M</forename><surname>Erhard</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nat. Photonics</title>
+		<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="page">759</biblScope>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">J</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Science</title>
+		<imprint>
+			<biblScope unit="volume">360</biblScope>
+			<biblScope unit="page">285</biblScope>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<monogr>
+		<title level="m" type="main">See Supplemental Material for details</title>
+		<imprint>
+			<biblScope unit="page" from="40" to="43" />
+		</imprint>
+	</monogr>
+	<note>which includes Ref</note>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">M</forename><surname>Reck</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">73</biblScope>
+			<biblScope unit="page">58</biblScope>
+			<date type="published" when="1994">1994</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">H</forename><surname>Weinfurter</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Europhys. Lett</title>
+		<imprint>
+			<biblScope unit="volume">25</biblScope>
+			<biblScope unit="page">559</biblScope>
+			<date type="published" when="1994">1994</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">J</forename><surname>Calsamiglia</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">65</biblScope>
+			<biblScope unit="page">30301</biblScope>
+			<date type="published" when="2002">2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">M</forename><surname>Żukowski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Zeilinger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Horne</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. A</title>
+		<imprint>
+			<biblScope unit="volume">55</biblScope>
+			<biblScope unit="page">2564</biblScope>
+			<date type="published" when="1997">1997</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">X.-L</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">117</biblScope>
+			<biblScope unit="page">210502</biblScope>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">D</forename><surname>Bruß</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Macchiavello</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Lett. A</title>
+		<imprint>
+			<biblScope unit="volume">253</biblScope>
+			<biblScope unit="page">249</biblScope>
+			<date type="published" when="1999">1999</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">I</forename><forename type="middle">D</forename><surname>Ivanovic</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Phys. A: Math. Gen</title>
+		<imprint>
+			<biblScope unit="volume">14</biblScope>
+			<biblScope unit="page">3241</biblScope>
+			<date type="published" when="1981">1981</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">M</forename><surname>Yao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">J</forename><surname>Padgett</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Adv. Opt. Photonics</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page">16</biblScope>
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">M</forename><surname>Żukowski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Zeilinger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Horne</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ekert</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">71</biblScope>
+			<biblScope unit="page">4287</biblScope>
+			<date type="published" when="1993">1993</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">T</forename><surname>Vé Rtesi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Pironio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Brunner</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">104</biblScope>
+			<biblScope unit="page">60401</biblScope>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">B</forename><surname>Hensen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">526</biblScope>
+			<biblScope unit="page">682</biblScope>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">K</forename><surname>Shalm</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">115</biblScope>
+			<biblScope unit="page">250402</biblScope>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">M</forename><surname>Giustina</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">115</biblScope>
+			<biblScope unit="page">250401</biblScope>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ací N</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Gisin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Masanes</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">97</biblScope>
+			<biblScope unit="page">120405</biblScope>
+			<date type="published" when="2006">2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

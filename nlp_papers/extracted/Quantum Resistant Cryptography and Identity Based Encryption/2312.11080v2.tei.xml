@@ -1,0 +1,1787 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Assessment of cryptographic approaches for a quantum-resistant Galileo OSNMA</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Javier</forename><surname>Junquera-Sánchez</surname></persName>
+							<idno type="ORCID">0000-0002-4597-6539</idno>
+							<affiliation key="aff0">
+								<orgName type="institution" key="instit1">National Institute for Aerospace Technology (INTA) Carlos Hernando-Ramiro . National Institute for Aerospace Technology (INTA) Oscar Gamallo-Palomares . National Institute for Aerospace Technology (INTA) José-Antonio Gómez-Sánchez . National Institute for Aerospace Technology (INTA)</orgName>
+								<orgName type="institution" key="instit2">National Institute for Aerospace Technology</orgName>
+								<address>
+									<addrLine>Ajalvir road, km 4</addrLine>
+									<postCode>28850</postCode>
+									<settlement>Torrejón de Ardoz Madrid</settlement>
+									<country key="ES">Spain</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff0">
+								<orgName type="institution" key="instit1">National Institute for Aerospace Technology (INTA) Carlos Hernando-Ramiro . National Institute for Aerospace Technology (INTA) Oscar Gamallo-Palomares . National Institute for Aerospace Technology (INTA) José-Antonio Gómez-Sánchez . National Institute for Aerospace Technology (INTA)</orgName>
+								<orgName type="institution" key="instit2">National Institute for Aerospace Technology</orgName>
+								<address>
+									<addrLine>Ajalvir road, km 4</addrLine>
+									<postCode>28850</postCode>
+									<settlement>Torrejón de Ardoz Madrid</settlement>
+									<country key="ES">Spain</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Assessment of cryptographic approaches for a quantum-resistant Galileo OSNMA</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date/>
+						</imprint>
+					</monogr>
+					<idno type="MD5">813F801700FEB8F0C48740C6DC961113</idno>
+					<idno type="DOI">10.33012/navi.648</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-28T12:44+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>As time goes on, quantum computing becomes more of a reality, bringing several cybersecurity challenges. Modern cryptography is based on the computational complexity of specific mathematical problems, but as new quantum-based computers appear, classical methods might not be enough to secure communications. In this paper, we analyse the state of the Galileo Open Service Navigation Message Authentication (OSNMA) to overcome these new threats. This analysis and its assessment have been performed using OSNMA documentation, reviewing the available Post Quantum Cryptography (PQC) algorithms competing in the National Institute of Standards and Technology (NIST) standardization process, and studying the possibility of its implementation in the Galileo service. The main barrier to adopting the PQC approaches is the size of both the signature and the key. The analysis shows that OSNMA is not yet prepared to face the quantum threat, and a significant change would be required. This work concludes by assessing different transitory countermeasures that can be implemented to sustain the system's integrity in the short term.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>Galileo is the global navigation satellite system (GNSS) developed by the European Union (EU) to provide positioning and timing information worldwide. Galileo provides Europe sovereignty over its navigation capabilities, avoiding any dependence on the other available GNSS, namely GPS (USA), GLONASS (Russia) and BeiDou (China) <ref type="bibr" target="#b44">(Langley et al., 2017)</ref>. Galileo is the only GNSS under civil control, and, in addition to its well-known Open Service (OS), public and free of charge, offers other innovative services. Regarding security, the most relevant service is the Open Service Navigation Message Authentication (OSNMA), as currently, no other GNSS service offers a similar capability. OSNMA is freely accessible to all Galileo users and protects them against spoofing attacks intending to fake the real position and time of the receiver. For this purpose, OSNMA authenticates the data transmitted in the Galileo OS navigation messages (I/NAV), ensuring that it comes from the system itself and has not been modified. This is accomplished by transmitting authentication-specific data in previously reserved fields of the I/NAV message.</p><p>The OSNMA service is based on two building blocks:</p><p>1. Time Efficient Stream Loss-Tolerant Authentication <ref type="bibr" target="#b57">(Perrig et al., 2005)</ref> (TESLA): a protocol that allows the authentication of messages using symmetric keys, as long as they do not become disclosed in a defined period of time.</p><p>2. Public-key cryptography: for secure authentication of the TESLA keys, establishing the root of trust over the long-term.</p><p>Even though the trade-offs of TESLA have been discussed in other works <ref type="bibr" target="#b50">(Neish et al., 2018)</ref>, its security depends on the correct selection of parameters <ref type="bibr" target="#b25">(Fernández-Hernández et al., 2021)</ref>, and it is required to be bootstrapped using Public Key Cryptography (PKC) <ref type="bibr" target="#b28">(Fries and Tschofenig, 2006)</ref>. In this context, the reliability of OSNMA is crucial, as there are plans for using it to support other Galileo services, such as the Assisted Commercial Authentication Service (ACAS) ().</p><p>However, with the evolution of quantum computers capable of running algorithms, like Shor's <ref type="bibr" target="#b63">(Shor, 1994)</ref>, the "classical" public-key cryptosystems (e.g. relying on mathematical problems such as discrete logarithm, integer factorization, etc.) will not be secure anymore. In particular, if an eventual quantum computer is built with the capability to implement these algorithms, the public key cryptosystem used in OSNMA (i.e. elliptic curves) would become vulnerable <ref type="bibr" target="#b11">(Chen et al., 2023)</ref>, putting at risk the whole system <ref type="bibr" target="#b18">(Eledlebi et al., 2022)</ref>.</p><p>All the relying symmetric cryptography elements would be weakened by other quantum computing algorithms, like Grover's <ref type="bibr" target="#b34">(Grover, 1996)</ref>, capable of searching preimages in an asymptotic square root time. This is, for instance, the case of MAC functions whose primitive security (i.e. hash functions) could be degraded to half of their current strength <ref type="bibr" target="#b60">(Preston, 2022)</ref>.</p><p>To face the threats of quantum computing, several entities are developing cryptographic algorithms resistant against quantum adversaries. The most recognized standardization process is the Post-Quantum Cryptography (PQC) competition hosted by the National Institute of Standards and Technology (NIST) <ref type="bibr">(Computer Security Division, 2017a)</ref>. There are also other projects addressing the transition to <ref type="bibr">Quantum-Safe Cryptography (Dahmen-Lhuissier, n.d.)</ref>.</p><p>According to Mosca's theorem <ref type="bibr" target="#b49">(Mosca, 2018)</ref>, to ensure the security of information systems, it must be taken into account, not only the time until the maturity of quantum computers but also the period that the update of current information systems will take. It is also important to remark that, today's confidentiality of information, will also be at risk against the "store-now, decrypt-later" strategy <ref type="bibr" target="#b40">(Joseph et al., 2022)</ref>. The development of Post-Quantum capabilities is essential for the prevention of vulnerabilities in communication networks <ref type="bibr" target="#b45">(Lopez et al., 2022)</ref>, but this transition is not trivial and arises conflicts over information systems' requisites: e.g. resources consumption, size of cryptographic data <ref type="bibr" target="#b69">(Westerbaan, 2021)</ref>, etc. The security of the new-fangled PQC algorithms has not been tested enough yet, and the changes required to be implemented can collide with current standards.</p><p>Furthermore, some applications, such as timestamp digital signatures, or certificates emitted by Certificate Authorities (CA), should remain trustable for decades. However, the keys employed for these purposes face the risk to become insecure within this period: e.g. the Global Sign Root CA certificate must remain valid for 30 years, from 1/9/1998 to 28/1/2028, and there even exist TLS root certificates valid up to 2060 <ref type="bibr" target="#b39">(Inc, 2022)</ref>. The EU has evidenced that space-based development solutions have reached a high level of implantation in society, and their degradation could derive in a threat to civil security. Even though it could seem remote, developing security strategies to address the implications of space-related risks is strategic to achieve resiliency <ref type="bibr">(Commision, n.d.)</ref>. This research aims to provide an assessment of the options to implement PQC in Galileo's OSNMA service, setting foundations to adopt the findings in other EU Space Projects.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.">Research questions</head><p>The present research aims to answer the following questions:</p><p>1. Is it possible to make OSNMA quantum-resistant assuming its current design?</p><p>(a) What is the maximum size available for a public key in the OSNMA message?</p><p>i. If it stands as a limitation, is over-the-air rekeying (OTAR) expendable?</p><p>(b) What is the maximum size available for tags/signatures in the OSNMA message?</p><p>2. Would it be necessary to change the design of OSNMA in a post-quantum scenario?</p><p>(a) Could it be implemented in a full public-key system (e.g. leaving out TESLA)?</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">Objectives</head><p>The main objective of our work is to analyse and assess the possibilities to implement secure PQC algorithms in OSNMA and establish a framework for analysis and discussion for future Galileo System Builds and other projects with similar characteristics (e.g. satellite-based, low bandwidth, limited resources, etc.). We are aiming 1. To review and document the current OSNMA design, as knowledge support for future researching.</p><p>2. To select those OSNMA parameters that would make feasible a cryptographic agility strategy.</p><p>3. To identify limitations of PQC implementations regarding satellite communication channels.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.">Outline</head><p>This paper is structured as follows:</p><p>1. Section II documents the background needed to follow our study related to the Galileo system, the OSNMA service and PQC.</p><p>2. Section III explains the methodology designed to fulfil our objectives and answers the research questions.</p><p>3. In Section IV we perform an overview of the OSNMA processing logic, and the PQC algorithms that are being selected for standardization, to identify the key elements that would have an impact on the transition process.</p><p>4. In Section V the system's elements are analyzed, evaluating the characteristics, requisites and constraints of the OSNMA system.</p><p>5. Section VII discusses the results, leading to the assessment of how PQC could be implemented.</p><p>6. Section VII concludes the document by presenting the findings, and raising open questions that could lead to future lines of research.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. BACKGROUND</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.">Galileo</head><p>Galileo, the European GNSS program, declared its Initial Services in December 2016. Since then, the performance of Galileo has been gradually improving thanks to the addition of satellites to the constellation, the evolution of the ground segment's infrastructure and the deployment of new services. Upon completion, users will benefit from its full first-class performance, reliability and coverage, providing the following services (Authority., 2021b):</p><p>• Open Service (OS): "Open and free of charge service, interoperable with its other GNSS counterparts <ref type="bibr" target="#b29">(Gaglione et al., 2015)</ref>, for positioning and timing provision" <ref type="bibr">(Centre, n.d.)</ref>.</p><p>• Open Service Navigation Message Authentication (OSNMA): "Free access service complementing the OS by delivering authenticated data, assuring users that the received Galileo navigation message is coming from the system itself and has not been modified".</p><p>• Public Regulated Service (PRS): "Service restricted to government-authorised users, for sensitive applications that require a high level of service continuity" <ref type="bibr" target="#b55">(Parliament, 2011)</ref>.</p><p>• High Accuracy Service (HAS): "A free access service complementing the OS by delivering high accuracy data and providing better-ranging accuracy, enabling users to achieve sub-meter level positioning accuracy" <ref type="bibr" target="#b23">(Fernandez-Hernandez, Chamorro-Moreno, et al., 2022)</ref>.</p><p>• Commercial Authenticated Service (CAS): "A service complementing the OS, providing a controlled access and authentication function to users" ("Galileo Services -EU Agency for the Space Programme", n.d.).</p><p>• Search and Rescue Service (SAR): "Europe's contribution to the international satellite-based search and rescue distress alert detection system COSPAS-SARSAT" <ref type="bibr" target="#b70">(Zurabov et al., 1998)</ref>, which enhances the coverage of the system and includes a return link.</p><p>The Galileo OS navigation message I/NAV, described in the Signal in Space (SiS) Interface Control Document (ICD) (Authority., 2021a), is broadcasted through the E1 (E1-B signal) and E5b (E5b-I signal) bands, and encoded in the following format (see Figure <ref type="figure">1</ref>):</p><p>• Pages are the basic elements of the I/NAV. There are two types of Pages, even and odd ones, being transmitted every 2 seconds and comprising 120 bits each. The OSNMA information is transmitted only in the odd Pages of the E1-B signal, specifically using a 40-bit reserved field.</p><p>• A Sub-frame is transmitted every 30 seconds, and it is composed of 15 Pages. Each Sub-frame contains an OSNMA complete message.</p><p>• The full OS message is broadcasted in Frames (decomposed in 24 subframes), every 720 seconds.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">Galileo OSNMA</head><p>With OSNMA, Galileo provides an authentication mechanism that works not only for validating its own OS messages but also for other satellite navigation systems, like NAVSTAR GPS <ref type="bibr" target="#b52">(Nicola et al., 2021)</ref>. OSNMA is implemented by taking advantage of the 40-bit reserved field available in the OS I/NAV message, as it is shown in Figure <ref type="figure">2</ref>. This cross-validation relies on a hybrid cryptosystem (i.e. using both symmetric and asymmetric cryptography).</p><p>The key generation process in TESLA <ref type="bibr" target="#b57">(Perrig et al., 2005)</ref> consists of a chain of subkeys derived by a one-way function. These keys feed, in reverse order, a symmetric-key-based authentication function that signs the message. The signing operation in OSNMA is performed using Hash-Based Message Authentication Codes (HMAC) <ref type="bibr" target="#b42">(Krawczyk et al., 1997)</ref>, and the resulting message authentication code is truncated to obtain a short-length tag. Figure 2: Allocation of odd OSNMA data within the I/NAV (Authority., 2021a)</p><p>The Root key (i.e. the last element derived in the chain generation, as shown in Figure <ref type="figure" target="#fig_1">3</ref>, acts as a validation key that is securely distributed at the beginning of a chain period, signed with the public elliptic curve key <ref type="bibr" target="#b59">(Pornin, 2013)</ref>. This Root key is never used to sign messages. Rather, future keys shall be hashed, using the TESLA chain generation algorithm, until the user reaches the Root key again. This one-way mechanism prevents revealing any information that compromises future keys from present ones, allowing forward validation.</p><p>The elliptic curves used in the current OSNMA implementation are ECDSA P-256 and ECDSA P-521, and the corresponding public keys are verifiable through a Merkle Tree publicly available on the program webpage (European GNSS Supervisory Authority., 2021). </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.">Galileo OSNMA Message</head><p>As described earlier, a complete authentication message is split among several OS Pages, taking advantage of a reserved 40-bit field. The OSNMA message is documented in its own SiS ICD (European GNSS Supervisory Authority., 2022), at both Page and Sub-frame levels (i.e. joining 15 Pages). This message would be broadcast by several satellites at the same time, but not by the whole constellation. Each Sub-frame contains two types of OSNMA information, evenly distributed throughout the Pages (as shown in Table <ref type="table">4</ref>):</p><p>• HKROOT: distributing the asymmetric cryptographic material needed to validate authentication information and TESLA keys.</p><p>• MACK: distributing the information needed to validate the I/NAV, and the previous OSNMA messages (i.e. TESLA keys).</p><p>Therefore, even though it will not be reliable until the validation keys are broadcasted 30s later, the user would retrieve almost all the information needed to authenticate the I/NAV. Table 2: MACK message specification a) HKROOT (per subframe)</p><p>Every HKROOT message contains, in turn, a Data Signature Message (DSM) Block. The DSM will distribute the Root key of the TESLA chain in force (DSM-KROOT), or the elliptic curve public keys for its authentication (DSM-PKR). In the "NMA Header" (see Table <ref type="table" target="#tab_0">1</ref>) there are two relevant fields: "Chain ID" (CID), updated every time the TESLA chain in force changes; and "Chain and Public Key Status" (CPKS) which indicates when there is a change in any cryptographic asset.</p><p>The DSM ID field specifies which type of DSM is being broadcasted. To build the complete DSM message, several DSM Blocks must be retrieved; but as the length of the DSM Block ID parameter that is present in the HKROOT DSM Header, is 4 bits long, all the information must be allocated in 16 DSM Blocks at most.</p><p>On one hand, the DSM-PKR message, with a length of l DP bits (for clarity, Appendix A contains a summary of the variables used in OSNMA), has two fields that are relevant to our study:</p><p>• NPKT (4 bit): specifies the New Public Key Type. Only 1, 3, and 4 are assigned, so the 13 remaining values, marked as reserved in the ICD, could be used.</p><p>• NPK (l N P K bit): the actual New Public Key broadcasted.</p><p>On the other hand, the DSM-KROOT (l DK bit) message contains this information:</p><p>• HF (2 bit): Hash Function used for building the TESLA chain, which could be either SHA-256 or SHA3-256.</p><p>• MF (2 bit): MAC function used for signing the navigation information, to be chosen between HMAC-SHA256 or CMAC-AES.</p><p>• KS (4-bit): an integer that specifies l K , i.e. the length of the chain Keys. Values from 9 to 15 are reserved, so they could be used later.</p><p>• TS (4 bit): an integer that specifies the size of the message signatures lT (i.e. Tags). Values from 0 to 4, and from 10 to 15, are also reserved.</p><p>• KROOT (l K bit): Root key of the TESLA chain in force.</p><p>• DS (l DS bit): The Digital Signature of KROOT.</p><p>The election of specific algorithms and parameters applied to a message are specified using the MACLT field. This field is present in DSM-KROOT but is not documented here because of its lack of relevance to our study. The strategy specified by MACLT is known as "Authentication Data and Key Delay" (ADKD) and will be finally materialized into the MACK message.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>b) MACK (per subframe)</head><p>With the cryptographic elements provided by the DSM in our possession, now we have to validate the signatures of the navigation message. The information needed for this authentication process is broadcasted within the MACK message. As Table <ref type="table">2</ref> illustrates, MACK will contain the signatures and the keys necessary to validate earlier distributed signatures ensuring, with this delay, protection against spoofing.</p><p>The Tags section contains nT signatures followed by some metadata. More precisely, each Tag would contain the signature (i.e. HMAC) of the part of the navigation message specified, either by KROOT's MACLT or by a specific ADKD value set up in the Tag Info field. ADKD indicates whether ephemeris, time, or which other data is being authenticated, and should be coherent with MACLT. Moreover, the Tag contains a field (i.e. Data Cut-Off Point, COP), that indicates the elapsed time between the signature, and the data authenticated.</p><p>Finally, the Key is the element used to generate the preceding MACK message signatures. There is usually a delay of one MACK message (i.e. 30 seconds) between the Tags and the key used to generate them. However, a special dedicated ADKD strategy can also be employed, where this offset consists of 10 subframes to allow a slow validation (i.e. after 5 minutes).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.">Post-quantum cryptography</head><p>Cryptographic security relies on the computational complexity of some mathematical problems. This complexity is usually expressed as the asymptotic time that a computer requires to solve it when the size of the problem grows (e.g. when increasing the number of bits of a number that must be factorized). If the problem cannot be solved in polynomial time, it serves as a proof of hardness that enables its usage for cryptographic algorithms. However, the classical complexity classes that characterize this hardness have always been linked to the classical computational paradigm and are not always resistant enough against the new quantum-based computers.</p><p>To face this threat, there are several mathematical problems that by now have proven to present enough complexity against classical and quantum adversaries. A secure algorithm relies on the assumption that breaking its encryption mechanism is equivalent to solving one of these hard mathematical problems. In this sense, the most relevant primitives for our study are:</p><p>• Lattice-based problems: the most prolific approach, in terms of the number of proposed post-quantum algorithms (Computer Security Division, 2022), is based on hardness assumptions over discrete vector spaces, e.g. Shortest Vector Problem, Learning With Errors, etc. These problems are also in the spotlight due to their usefulness in the homomorphic encryption area <ref type="bibr">(Lyubashevsky et al., n.d.)</ref>.</p><p>• Hash-based problems: they stand for algorithms supported by one-way functions, so they are especially focused on digital signatures. There are constraints related to the times the same key can be used, so in some schemes, keeping track of the operations performed is mandatory. Therefore, this family of problems is divided into two categories: stateful and stateless algorithms. The first one has been handled in a separate competition by NIST (Computer Security Division, 2018), XMSS <ref type="bibr" target="#b37">(Huelsing et al., 2018)</ref> and LMS <ref type="bibr" target="#b48">(McGrew et al., 2019)</ref> were approved as secure post-quantum algorithms. However, in contrast with some stateless proposals, the stateful approaches do not fit with performance requirements, and they haven't been included in the PQC competition.</p><p>There are also promising families of problems based on multivariate polynomials (for Information Security (BSI), n.d.), and also on isogenies of elliptic curves <ref type="bibr" target="#b30">(Galbraith and Vercauteren, 2018)</ref>. Still, none of the proposals have stood the test of time and some have even failed against classical computers <ref type="bibr" target="#b8">(Castryck and Decru, 2022)</ref>.</p><p>The cryptography that implements these quantum-resistant problems, is known as Post-Quantum Cryptography (PQC), and the most acknowledged process of PQC standardization is the one that has been developed by NIST since 2017 (Computer Security Division, 2017a). We can segregate this process into two families of algorithms: Key Encryption Mechanisms (KEM) and Digital Signature Algorithms (DSA).</p><p>Even though they are still looking for new proposals (Computer Security Division, 2017b), some algorithms have already been selected for standardization <ref type="bibr">(Computer Security Division, 2017c)</ref>. In this regard, the DSA algorithms accepted by NIST are:</p><p>• CRYSTALS-Dilithium <ref type="bibr" target="#b3">(Bai et al., 2021)</ref>: together with its counterpart in KEM (i.e. CRYSTALS-Kyber <ref type="bibr" target="#b2">(Avanzi et al., 2021)</ref>), this scheme works under the lattice-based problems hardness assumptions <ref type="bibr" target="#b46">(Lyubashevsky, 2009)</ref>.</p><p>• Falcon <ref type="bibr" target="#b27">(Fouque et al., 2020)</ref>: based on the well-known lattice scheme NTRU <ref type="bibr" target="#b35">(Hoffstein et al., 1998)</ref>, it stands out for its speed and compactness.</p><p>• SPHINCS+ <ref type="bibr" target="#b1">(Aumasson et al., 2022</ref>): a hash-based scheme, that makes use of Winternitz One Time Signatures <ref type="bibr" target="#b38">(Hülsing, 2017)</ref> combined with hypertrees to obtain a stateless signature system.</p><p>One of the major challenges of these schemes, apart from the security, is the usability. Albeit the cryptographic management remains similar to the classic public key schemes, the size of crypto messages (e.g. signatures) has become larger, and it doesn't fit for most of the current applications' boundaries.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.">PQC challenges</head><p>The replacement of classical cryptographic algorithms with new quantum-resistant ones is not a trivial task. Regardless of the standardization and testing process, once an algorithm proves to be reliable, there is always the possibility of finding new vulnerabilities. The mathematical areas of the current proposals are too complex for a wide understanding, so their audit is restricted to certain people with a strong mathematical background.</p><p>For this reason, the consensus proposes the use of hybrid approaches <ref type="bibr">(Stebila et al., 2023)</ref> (i.e. combining classical and PQC schemes), and the implementation of a dynamic selection of algorithms in the protocols, coining the term "crypto agility" <ref type="bibr">(Ott et al., 2019)</ref> to refer to that.</p><p>Moreover, regardless of the initiatives for avoiding implementation failures, especially related to the election of parameters (e.g. CIRCL (Faz-Hernández and Kwiatkowski, 2019), Open Quantum Safe ("Open Quantum Safe", n.d.), etc.), it must be taken into account that other types of issues, such as side-channel attacks ("A Survey of Microarchitectural Side-channel Vulnerabilities, Attacks, and Defenses in Cryptography -ACM Computing Surveys", n.d.), could come out.</p><p>However, the main challenges of the transition to PQC are related to fitting the cryptographic elements into the protocols most used today. The sizes of the cryptographic elements proposed in PQC algorithms are significantly larger than the old ones <ref type="bibr" target="#b69">(Westerbaan, 2021)</ref>, and not all the network protocols support them: e.g. the use of "Maximum Segment Size" or "Maximum Transfer Unit" fields of TCP <ref type="bibr" target="#b9">(Celi, 2022)</ref>, the fields in X.509 public key certificates <ref type="bibr" target="#b6">(Boeyen et al., 2008)</ref>, etc.</p><p>Computational resource consumption is another element to consider when implemented in a server, as it should attend to multiple clients' demands in a finite time. Some researches address the implementation of PQC in the Internet's building blocks <ref type="bibr">(Stebila and Mosca, n.d.)</ref>, and the most used secure protocols like TLS <ref type="bibr">(Stebila et al., 2023)</ref> or SSH <ref type="bibr" target="#b64">(Sikeridis et al., 2020)</ref>, validating the suitability of the PQC standardized algorithms but always focusing on endowing the protocols of crypto agility through the hybridization on cryptographic controls. From the industry side, Google and Cloudflare have carried out experiments in this regard, showing that it is feasible to implement PQC in public-testing environments <ref type="bibr" target="#b43">(Kwiatkowski and Valenta, 2019)</ref>.</p><p>In the key exchange area, there are alternative approaches on the table, like Quantum Key Distribution (QKD) (), but nowadays the software transition is a priority (for Information Security (BSI), n.d.). Particularly in the establishment of security parameters when tunnelling a connection (e.g. IKEv2 on IPsec, one of the most enabler protocols for building secure architectures), there exist successful proposals for implementing PQC <ref type="bibr" target="#b56">(Pazienza et al., 2022)</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. METHODOLOGY</head><p>This assessment requires the analysis of several technologies and documents, that cover diverse areas of the OSNMA system: from the highest levels of the protocol, to the roots of the cryptographic primitives. To perform our study, the next steps will be followed:</p><p>1. To develop an analysis of the relevant fields of the OSNMA message, to detect which could suffer the most impact due to the implementation of PQC. For this task, we will analyse the official documentation for both OS and OSNMA, in particular, the OSNMA SiS ICD (European GNSS Supervisory Authority., 2022). Aligned with the first research objective, this task allows to detection of the OSNMA message fields susceptible to holding the PQC material and answering research questions 1(a) and 1(b).</p><p>2. To review available PQC algorithms and their characteristics. Once identified which algorithms have been formally tested and are widely accepted, we will analyse the technical specifications of each of them. This process allows us to get the basic information necessary to evaluate how they fit in the previously analysed ONSMA fields, covering the second research objective.</p><p>3. To relate the results of the previous analysis steps to perform an assessment and discuss the key findings that lead to conclusions about how PQC can be implemented, or not, within the current design of OSNMA. It will lead to cover the third objective of the present paper and provide answers to research question 2.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. TRADE-OFFS</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.">OSNMA characteristics</head><p>The evaluation of the different approaches available for implementing PQC at OSNMA requires the previous analysis of the authentication lifecycles, considering the constraints that they could be subject to. The process for authenticating navigation messages has a different lifecycle (see Figure <ref type="figure">5</ref>) depending on the cryptographic material that is focused, namely: Merkle Tree (MT), Elliptic Curve (EC), TESLA Keychain's Root key (KR), and TESLA Key (K).</p><p>At the beginning of the OSNMA project, 16 EC key pairs were generated. These keys that, in nominal conditions, should never be changed, act as leaves for building the MT. In the case of an incident enforces to revoke them, there is a mechanism for notifying the clients through the SiS, using a CPKS special value.</p><p>Both MT and the EC keys can be retrieved from the Galileo Service Centre (GSC) portal, as shown in Figure <ref type="figure">6</ref>. While the MT must be installed manually into the receivers (i.e. navigation devices), the EC keys would be also distributed through the SiS.</p><p>When the EC keys are broadcasted over the air, into the DSM-PKR message, they can be validated using the previously downloaded MT information. This dissemination occurs every 6 hours, for a duration of 30 minutes. The EC keys can be in force for several years and when they must be updated, it is notified using the CPKS field. Figure 6: OSNMA portal at GSC website (<ref type="url" target="https://www.gsc-europa.eu">https://www.gsc-europa.eu</ref>) Once the public key material is generated, the basis for the symmetric key authentication is set up. With a minimum period of once per day and a maximum of once per hour, a new TESLA key chain is generated and the change is also notified via CPKS. The new KR is distributed into the DSM-KROOT message, being signed with the EC key in force.</p><p>Depending on the ADKD value, a part of the navigation message is signed using HMAC (or the function specified at this moment) and the correspondent key K from the TESLA chain, as illustrated in Figure <ref type="figure">5</ref>. The signature is truncated to fit lT, and distributed into a MACK message. This key K, used for generating the signature is distributed in the following MACK message, that is to say, 30s later. Finally, any Ki can be verified using other Kj authenticated before (i.e. following the key chain) till KR. Table 4: PQC algorithms characterization</p><p>Thus, as the constraints present in ONSMA are mainly motivated by the bandwidth, at the time of analysing cryptographic changes, there are two main aspects to consider: the size of the keys, and the time they stay in the SiS (i.e. periodicity, the sum of necessary messages to encode all the data, etc.). Table <ref type="table" target="#tab_2">3</ref> provides a summary of these elements to clarify the later discussion.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">Cryptographic specifications</head><p>Depending on the desired security confidence level, among other considerations, the parameters of cryptographic primitives can be tuned. While in some cases the election of these parameters is related to mathematical properties () or implementation techniques <ref type="bibr" target="#b51">(Nemec et al., 2017)</ref>, the last step usually moves the discussion to a trade-off between security and size.</p><p>The current system uses two different public key algorithms to sign the TESLA Root Keys, both based on elliptic curve cryptography: "ECDSA P-256/SHA-256" and "ECDSA P-521/SHA-512". The security of these algorithms relies on two NIST-selected curves (i.e. P-256 and P-521), and depending on the election, the lengths of the signatures is 512 or 1056 bits, respectively. This signature is settled in the DS field of the DSM-KROOT message.</p><p>On the PQC side, all the algorithms selected by NIST, and the vast majority of the proposed, suffer from the same problem: both signature and public key sizes are larger than the classic ones. The documentation of the NIST finalists specifies their parameters attending to NIST security levels ("Request for Comments on Post-Quantum Cryptography Requirements and Evaluation Criteria", 2016). For each of the previously referenced algorithms, Table <ref type="table">4</ref> shows the minimum size requirements of their less demanding specification, namely: Dilith2 for the NIST's level 2 approach of Dilithium, Falcon-512 for the Falcon level 1, and SPHINCS+-128s, for the SPHINCS+ security level 1 parameter set.</p><p>On the other side, the stateful hash-based alternatives have even larger sizes, either for the signature or the public keys.</p><p>Even though this family of algorithms has been recognized by NIST as secure against quantum computers, the management complexity necessary to achieve security using them discourages its use and has led to standardizing them in an independent project <ref type="bibr">(Computer Security Division, 2018)</ref>. Regardless of their security level, just for illustrative purposes, Table <ref type="table">5</ref> presents the parameter combinations that achieve shorter signatures and keys in XMSS and LMS schemes.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.">Synthesis recapitulation</head><p>With Figure <ref type="figure" target="#fig_4">7</ref> we aim to provide the reader with a high-level view of how ONSMA operates. It describes the cryptographic relation between the most important elements of the navigation message authentication: the navigation data, the HMAC tag that authenticates this data, the TESLA key used to generate HMAC tags, the TESLA Root Key that validates all the TESLA chain, and the Public Key used to authenticate the TESLA Root Key. A security breach in the I/NAV authentication protocol can be feasible by three key points:</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.">Authentication tag</head><p>The navigation message is distributed with an authentication tag, which allows to verify the navigation data has been generated in a genuine satellite. A vulnerability in the function used to sign the navigation data, both in the implementation and the relying hash function, would lead to a collision. The current implementation relies on the fact that a user will get the signed navigation message before an adversary gets the signing key so that a spoofing attack can be detected. However, if these tags are not long enough, an exhaustive attack (i.e. sending a faked message with several tags until a collision is found) may be possible. It does not protect, also, against meaconing, or offline recordings.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">TESLA Chain</head><p>Each authentication tag is generated hashing navigation data with a key. This key is not distributed along with the tag but in a later message. As Figure <ref type="figure" target="#fig_1">3</ref> shows, a user can verify that any key is part of the current TESLA chain, using the TESLA derivation function well until a previously known key is found, or the proper TESLA Root Key. A vulnerability in the TESLA chain generation would imply a vulnerability of the hash function in use.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.">Public key cryptography</head><p>Finally, TESLA bootstrapping authenticates the Root Key using public key cryptography in two steps: 1. an elliptic curve public key authenticates the TESLA Root Key, and 2. this public key is authenticated by a Merkle tree. It implies that a failure in the public key cryptography part would imply breaking the whole authentication process. An eventual quantum or classical computing vulnerability in public key cryptography would make feasible the distribution of false public keys (i.e. if the vulnerability was found in the Merkle tree cryptography) or would give an adversary access to the elliptic curve private keys, letting him create false TESLA key chains. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. ANALYSIS</head><p>Even though there is still room for scientific contributions <ref type="bibr" target="#b36">(Hosoyamada and Sasaki, 2018)</ref>, the quantum algorithms available for breaking the security of symmetric key schemes do not represent a threat nowadays. Merkle Tree cryptography relies on hash-based principles, so it is also safe against quantum computers <ref type="bibr" target="#b7">(Buchmann et al., 2008)</ref>. However, elliptic curves would be deeply vulnerable against Shor's algorithm, becoming the link that would risk the whole authentication chain. If an adversary had access to a stable quantum computer with enough resources to implement Shor's algorithm he could retrieve OSNMA private keys from the public ones. There are also novel research paths approaching the algorithm's implementation over noisy equipment <ref type="bibr" target="#b32">(Gidney and Ekerå, 2021)</ref>. This would lead him to forge a navigation message that would be valid in terms of authentication, placing the users in a spoofing risk scenario.</p><p>Regarding the taxonomy proposed by Celi <ref type="bibr" target="#b9">(Celi, 2022)</ref>, the main challenge at OSNMA is the limited available bandwidth and the implications it would have if a user had to wait for a larger key or signature. Additionally, a major change in the protocol or the fields of the message would lead to leaving inoperative many critical or embedded devices that make use of OSNMA but cannot be updated easily. So any proposed upgrade has to fit with the current configuration of the SiS.</p><p>Finally, in the absence of specific requirements, the computational overload of the cryptographic operations is not a major concern for the performance of the system. The main issue in the protocols documented earlier (e.g. TLS, SSH, etc.) is the role of the servers as meeting points of several clients at the same time, but the satellites' workload does not depend on the number of receivers.</p><p>Regarding cryptographic agility, the use of new cryptographic methods raises additional risks. As it is discussed in <ref type="bibr" target="#b23">(Fernandez-Hernandez, Hirokawa, et al., 2023)</ref>, vulnerabilities due to the lack of testing or even failures in the implementation can emerge over these novel approaches. Through cryptographic agility, these risks can be mitigated. It can be accomplished by designing the systems so they can switch dynamically the set of algorithms and cryptographic primitives in use. To achieve this goal in OSNMA, the field NPKT at DSM could be used, assigning the currently free values (i.e. 0, 2 and from 5 to 15) to different combinations of algorithms.</p><p>The most popular approach to achieve cryptographic agility is hybridization (i.e. combining and overlapping classic and quantum-resistant algorithms), but the key point in OSNMA is the optimization of the bandwidth. The constraint here is that any proposed algorithm must be characterized and mapped with the currently available fields of the message. For this reason, the size of the new public keys is relevant, but the size of the TESLA Root Keys signatures is even more worthy of attention.</p><p>While the public keys are rarely updated, and ultimately they can be sent by other means (e.g. over the Internet), the TESLA Root Keys are updated frequently.</p><p>As Figure <ref type="figure" target="#fig_5">8</ref> shows, in contrast with the classical approaches (e.g. the RSA larger approach recommended by NIST is 3072-bit length <ref type="bibr" target="#b5">(Barker and Dang, 2015)</ref>), PQC keys are quite large. Pondering between key and signature sizes, the average smallest PQC implementation is Falcon and almost doubles the key size compared to its EC predecessors. Besides that, SPHINCS+ keys are even shorter than any other, but it has an issue with signatures. As previously exposed in Table <ref type="table">4</ref>, SPHINCS+ signatures are around 238 times larger than ECDSA P-264 ones so, for clarity, they haven't been included in Figure <ref type="figure" target="#fig_6">9</ref>; where both EC and PQC signatures are included. Regarding the signature, Falcon is again the best quantum-resistant approach in size terms, yet it is nearly 5 times bigger than ECDSA P-521. Moreover, the Falcon keys exceed the ECDSA P-521 by approximately 13 points to one.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VI. DISCUSSION</head><p>Considering the OSNMA design, there is the option of taking advantage of the 13 free values of the NPKT field, of the DSM-PKR message, to implement several authentication schemes. Therefore, it is unnecessary to modify the protocol to provide cryptographic agility.</p><p>A cryptographic failure could lead an adversary to take control of the users' confidence in the genuine system: even though the presence of the Merkle Tree signature ensures the authenticity of EC keys if these keys were broken with future quantum techniques, a new fake TESLA chain could be generated and loaded in the users' devices through the DSM-KROOT message, at least for an hour.</p><p>Besides these two general findings, two specific findings have also been obtained as explained below. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.">TESLA implementation drawbacks</head><p>The MACK message contains several Tags that authenticate different parts of the message and even cross-authenticate other GNSS systems' information. As the bandwidth is limited, sending more than one tag has the following drawbacks: a) it enforces the truncation of the Tag, weakening the signature; and, b) it limits the likelihood to implement other approaches (e.g. public-key-based signatures). Especially, as argued in Section IV.3, the possibility of setting tag lengths to 20-bit raises many concerns about the feasibility of an exhaustive search attack (i.e. brute-forcing until finding a valid tag for a false message).</p><p>Regarding quantum, the implementation of Grover's algorithm could weaken the hash algorithms, allowing the retrieval of the complete TESLA key chain from the Root Key. Nevertheless, this algorithm is not as effective against symmetric cryptography as Shor's is against the asymmetric one, so doubling the keys' length would neutralize quantum adversaries.</p><p>If the space reserved for the several tags were just for one public key signature, it would be less versatile but more secure, and the message could be self-authenticated without depending on information from a future message. There are several fields, such as HF or MF of the DSM-KROOT message, whose existence wouldn't be necessary if the full system were implemented using public key cryptography (i.e. without TESLA). Any change in the protocol should take this fact into account as it would improve the bandwidth.</p><p>In addition, it must be noted that the open distribution of TESLA keys makes them inappropriate for other long-term uses not related to live navigation. For instance, any process based on analyzing a signal recording (e.g. to authenticate the logs recorded in a digital tachograph) would be vulnerable to a forged signal with false navigation data.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">Post-quantum cryptography implementation</head><p>Given the criticism of public key cryptography in the OSNMA protocol, analysed in Section IV.3, and the presence of algorithms susceptible to being broken by quantum computers (e.g. elliptic curve), the PQC transition should be prioritised. According to literature sosnowski˙performance˙2023, as performance should not fall, we focus on bandwidth.</p><p>The fourth round of the NIST PQC competition already beholds the evaluation of KEM algorithms, so it is not foreseeable the standardisation of a new quantum-resistant digital signature algorithm in the short term. Therefore, even while NIST is still considering other algorithms, the characterization documented in Section II.4 will remain valid.</p><p>Stateful hash-based algorithms are not valid for the system due to signature size reasons. It would be possible to use the XMSS configuration documented in Table <ref type="table">5</ref> for the signature of the messages, as it would be just 4 times longer than the current EC signatures. However, as a stateful hash-based algorithm, its public keys must be updated frequently, and the time to transfer that GB over the air would be completely unacceptable.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.">Assessment conclusion</head><p>In conclusion, the most suitable algorithm to replace EC would be Falcon. However, its elements do not meet the requirements to be transmitted over the air, neither for the distribution of the public keys nor for the broadcasting of the signatures.</p><p>Starting from the assumption that the 4-bit field reserved for DSM Block ID (BID only admits the transmission of 16 DSM Blocks, and Algorithm Parameters Signature size (bit/B) Public key size (bit/B) XMSS w = 32, h = 8 2560 / 320 256 * 10 9 / 2 35 LMS h = 512 131072 / 16384 2 12 / 2 9</p><p>Table 5: Stateful Hash-based algorithms characteristics</p><p>each one is 104 bits long, we have 1664 bits available for these two use cases:</p><p>• Use case 1: transmission of New Public Keys in DSM-PKR Discarding the 16 bits of metadata, there are available 1632 bits for cryptographic material. As the Merkle Signature fills 1024 bits, there are 608 free bits for the public key (i.e. 32 bits per DSM Block). Nowadays, the Merkle Signature is the lightest quantum-resistant signature that can be implemented. Furthermore, if we were dispensed with it, even though we would save 10 DSM Blocks, we would lose the possibility to authenticate the new PK. The shortest Falcon public keys take 7176 bits, so they would need 71 DSM Blocks to be transmitted.</p><p>• Use case 2: signature of TESLA Root Key in DSM-KROOT Using the larger TESLA keys, of 256-bit length, and discarding the 104 bits of metadata, the maximum space available for the DS field (i.e. the one that holds the TESLA Root Key signature) would be 1727 bits, 79 bits per DSM Block. As the shortest Falcon signature is 5328 bits long, there would be necessary 67 DSM Blocks to cover the full authentication.</p><p>To increase the size of the PK (i.e. l N P K ) it would be necessary to increase the number of blocks that comprise the DSM-PKR, which would also impact the bits necessary to identify these blocks at the DSM Header. It occurs the same with the signatures of DSM-KROOT. The only feasible solution would be to enlarge BID to 7 bits, getting the possibility to send up to 13312-bit long DSM messages, so the 4 necessary bits to extend BID could be subtracted from the DSM Block itself. However, it would imply that the transmission of the complete message would last 142s instead of 30s, but, as this transmission is performed at the DSM message, it will not have any overload for the authentication of the navigation data, transmitted through the MACK message.</p><p>In any case, the transmission of the digital signatures (i.e. DS at DSM-KROOT), must be prioritised over the public keys themselves (i.e. NPK at DSM-PKR). The TESLA digital signatures are sent very often, while the public keys do not usually change, and can be updated using out-of-band channels, like the Internet. However, in a full PQC approach, i.e. where the navigation message is signed using PKC instead of TESLA, it would also have an impact on the MACK message, making it longer.</p><p>In conclusion, the only quantum-resistant approach feasible nowadays, without modifying the OSNMA SiS specification, is the authentication of the message out of band. The transmission of large signatures or public keys (i.e. belonging to the documented PQC algorithms) could be performed through the Internet, or alternative channels like is done at the present with the Merkle tree, so there could exist a reliable source for validating the navigation messages. Receivers would perform the authentication as before, but using the new PQC schemas. Even though it would not be implemented in disconnected devices, it could open the door to mitigate cryptographic risks in the connected ones.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VII. CONCLUSION AND FUTURE WORK</head><p>In this paper an analysis of the OSNMA authentication procedures, to provide an assessment of how to make it quantumresistant, has been developed. To achieve it, we have analysed both the OSNMA specifications as well as the state-of-the-art about post-quantum cryptography; obtaining as an indirect contribution a well-documented summary of the whole OSNMA authentication process from different perspectives. This analysis has led to findings related to weaknesses of the system, like the ones related to the TESLA implementation.</p><p>Our study reveals that the current OSNMA design, even though it has elements that could enable cryptographic agility, is not ready for implementing the PQC algorithms that are currently available. One of the most critical points is the size of the new keys and signatures, which would slow down key distribution, but not the authentication process, as it is performed using TESLA. However, the data fields available in the current system do not have enough capacity ("Shannon Capacity -an overview -ScienceDirect Topics", n.d.) to cover the number of messages necessary to broadcast these new elements. Although it could be done with some slight changes, these modifications might be highly disruptive for the current requirements of Galileo and would thus be unfeasible.</p><p>Nevertheless, until major changes can be performed in the system, there exist alternatives to mitigate the quantum risks. For instance, some of the signatures could be delivered to the receivers by an alternative channel (e.g. over the Internet). In addition, though it is not likely to take into account the state of standardization processes, there could appear new PQC algorithms more efficient in size terms shortly.</p><p>In any case, a transition to a quantum-resistant design has to be performed. Not doing so would imply in a few years, as stated by the National Quantum Programs <ref type="bibr" target="#b58">(Petrenko et al., 2021)</ref>, an unacceptable risk for the system, and the de facto nullification of OSNMA.</p><p>This research opens the door not only to new research about PQC implementation but also to prevent some of the detected flaws in the current design:</p><p>• Any change in the PQC state of the art could provide opportunities to implement a quantum-resistant scheme following the characterization performed in our study. Furthermore, the assessment of algorithms that are not covered by the NIST competition, or that have been dismissed for reasons not related to size or security requirements, could also provide valid alternatives.</p><p>• Although the TESLA approach is a clever manner to overcome the Galileo bandwidth limitations, as it has been already exposed, it introduces weaknesses in the system, and the revelation of the signing key can be a barrier for use cases where a long-term authentication is necessary (e.g. when authenticated audit logs must be preserved <ref type="bibr" target="#b4">(Baldini et al., 2018)</ref>). Therefore, the replacement by a full quantum-resistant public key system should be assessed.</p><p>• Some of the OSNMA configurations seem to be insufficient to provide a robust authentication (e.g. the 20-bit Tags could be brute-forced). Research in this direction could help to clarify the level of risk that it implies.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Figure 1 :Figure 2 :</head><label>12</label><figDesc>Figure 1: I/NAV Message Structure (Authority., 2021a)</figDesc><graphic coords="4,181.28,72.00,249.47,207.97" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Figure 3 :</head><label>3</label><figDesc>Figure 3: TESLA high level processing logic</figDesc><graphic coords="5,93.40,72.00,425.18,239.17" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>Figure 4 :</head><label>4</label><figDesc>Figure 4: OSNMA information distribution</figDesc><graphic coords="5,93.40,422.39,425.21,143.93" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>Figure 5 :Figure 6 :</head><label>56</label><figDesc>Figure 5: OSNMA processing logic (European GNSS Supervisory Authority., 2022)</figDesc><graphic coords="9,93.40,72.00,425.20,256.40" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head>Figure 7 :</head><label>7</label><figDesc>Figure 7: Block structure of OSNMA cryptographic elements</figDesc><graphic coords="11,49.47,217.63,513.09,244.48" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><head>Figure 8 :</head><label>8</label><figDesc>Figure 8: Size of the public keys (bits/algorithm). Grey columns represent PQC elements, green columns are the current elliptic curve ones.</figDesc><graphic coords="12,93.40,272.43,425.19,208.25" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><head>Figure 9 :</head><label>9</label><figDesc>Figure 9: Size of the signatures (bits/algorithm). Grey columns represent PQC elements, green columns are the current elliptic curve ones.</figDesc><graphic coords="13,93.40,72.00,425.20,184.24" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0"><head>Table 1 :</head><label>1</label><figDesc>HKROOT Message format</figDesc><table><row><cell></cell><cell></cell><cell cols="2">DSM Header</cell><cell></cell><cell></cell></row><row><cell cols="7">NMA Header DSM ID DSM Block ID DSM Block n Total</cell></row><row><cell>Size(bit)</cell><cell>8</cell><cell>4</cell><cell>4</cell><cell cols="2">104</cell><cell>120</cell></row><row><cell>Header</cell><cell></cell><cell>Tags</cell><cell></cell><cell>Key</cell><cell></cell><cell>Padding</cell><cell>Total</cell></row><row><cell cols="4">Size (bit) 36 to 56 (depending on lT ) 224 to 360 (depending on nT )</cell><cell>l K</cell><cell cols="2">Remaining to "Total"</cell><cell>480</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2"><head>Table 3 :</head><label>3</label><figDesc>OSNMA constraints</figDesc><table><row><cell></cell><cell>Size</cell><cell>Life period</cell><cell>Broadcast Periodicity</cell><cell>Distributed in</cell></row><row><cell>MT</cell><cell>N/A</cell><cell>Lifetime</cell><cell>N/A</cell><cell>GSC OSNMA Server</cell></row><row><cell cols="2">EC l N P K ≤ 536 bits</cell><cell>Years</cell><cell>6 hours</cell><cell>GSC OSNMA Server, DSM-PKR</cell></row><row><cell>KR</cell><cell>l K ≤ 512 bits</cell><cell>1 hour -1 day</cell><cell>1 hour -1 day</cell><cell>DSM-KROOT</cell></row><row><cell>K</cell><cell>l T ≤ 40 bits</cell><cell>30 s</cell><cell>30 s</cell><cell>MACK</cell></row><row><cell></cell><cell>Algorithm</cell><cell cols="3">Specification Signature size (bit/B) Public key size (bit/B)</cell></row><row><cell></cell><cell>Dilithium</cell><cell>Dilith2</cell><cell>19360 / 2420</cell><cell>10496 / 1312</cell></row><row><cell></cell><cell>Falcon</cell><cell>Falcon-512</cell><cell>5328 / 666</cell><cell>7176 / 897</cell></row><row><cell></cell><cell cols="2">SPHINCS+ SHAKE-128s</cell><cell>62848 / 7856</cell><cell>256 / 32</cell></row></table></figure>
+		</body>
+		<back>
+
+			<div type="availability">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>See <ref type="url" target="https://navi.ion.org/content/71/2/navi.648">https://navi.ion.org/content/71/2/navi.648</ref> </p></div>
+			</div>
+
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Appendices</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. OSNMA VARIABLES</head></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">CARAMUEL: The future of Space Quantum Key Distribution in GEO</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Alvaro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Pascual</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Abad</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Pinto</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Alvarez-Herrero</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Belenguer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Miravet</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Campo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">F</forename><surname>Rodriguez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Reyes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Socas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Bermejo</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/ICSOS53063.2022.9749720</idno>
+		<ptr target="https://doi.org/10.1109/ICSOS53063.2022.9749720" />
+	</analytic>
+	<monogr>
+		<title level="m">IEEE International Conference on Space Optical Systems and Applications (ICSOS)</title>
+		<imprint>
+			<date type="published" when="2022">2022. 2022</date>
+			<biblScope unit="page" from="57" to="65" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">SPHINCS+. Submission to the NIST post-quantum project, v.3.1 (tech. rep.)</title>
+		<author>
+			<persName><forename type="first">J.-P</forename><surname>Aumasson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">J</forename><surname>Bernstein</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Beullens</surname></persName>
+		</author>
+		<ptr target="https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SDDv1.2.pdf" />
+	</analytic>
+	<monogr>
+		<title level="j">Interface Control Document Issue</title>
+		<editor>
+			<persName><forename type="first">E</forename><forename type="middle">G S</forename></persName>
+		</editor>
+		<imprint>
+			<date type="published" when="2021-03-31">2022. March 30, 2023. 2021a. March 31, 2023</date>
+		</imprint>
+	</monogr>
+	<note>European GNSS (Galileo) Open Service Signal-In space ICD v2. 0.pdf Authority., E. G. S. (2021b</note>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<monogr>
+		<author>
+			<persName><forename type="first">R</forename><surname>Avanzi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Bos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Ducas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Kiltz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Lepoint</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Lyubashevsky</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">M</forename><surname>Schanck</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Schwabe</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Seiler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Stehlé</surname></persName>
+		</author>
+		<title level="m">CRYSTALS-Kyber. Algorithm Specifications And Supporting Documentation</title>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+	<note>tech. rep.</note>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<monogr>
+		<title level="m" type="main">CRYSTALS-Dilithium. Algorithm Specifications and Supporting Documentation</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Ducas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Kiltz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Lepoint</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Lyubashevsky</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Schwabe</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Seiler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Stehlé</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+	<note>Version 3.1) (tech. rep.</note>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Regulated applications for the road transportation infrastructure: The case study of the smart tachograph in the European Union</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Baldini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Sportiello</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Chiaramello</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Mahieu</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.ijcip.2018.02.001</idno>
+		<ptr target="https://doi.org/10.1016/j.ijcip.2018.02.001" />
+	</analytic>
+	<monogr>
+		<title level="j">International Journal of Critical Infrastructure Protection</title>
+		<imprint>
+			<biblScope unit="volume">21</biblScope>
+			<biblScope unit="page" from="3" to="21" />
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<monogr>
+		<title level="m" type="main">Recommendation for Key Management Part 3: Application-Specific Key Management Guidance</title>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">B</forename><surname>Barker</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Q</forename><forename type="middle">H</forename><surname>Dang</surname></persName>
+		</author>
+		<idno type="DOI">10.6028/NIST.SP.800-57Pt3r1</idno>
+		<ptr target="https://doi.org/10.6028/NIST.SP.800-57" />
+		<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+		<respStmt>
+			<orgName>National Institute of Standards and Technology</orgName>
+		</respStmt>
+	</monogr>
+	<note>tech. rep. No. NIST SP 800-57Pt3r1 Pt3r1</note>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile (Request for Comments No. RFC 5280) (Num Pages: 151)</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Boeyen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Santesson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Polk</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Housley</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Farrell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Cooper</surname></persName>
+		</author>
+		<idno type="DOI">10.17487/RFC5280</idno>
+		<ptr target="https://doi.org/10.17487/RFC5280" />
+	</analytic>
+	<monogr>
+		<title level="m">Internet Engineering Task Force</title>
+		<imprint>
+			<date type="published" when="2008">2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Merkle Tree Traversal Revisited</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Buchmann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Dahmen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Schneider</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/978-3-540-88403-3_5</idno>
+		<ptr target="https://doi.org/10.1007/978-3-540-88403-35" />
+	</analytic>
+	<monogr>
+		<title level="m">Post-Quantum Cryptography</title>
+		<editor>
+			<persName><forename type="first">J</forename><surname>Buchmann</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">J</forename><surname>Ding</surname></persName>
+		</editor>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2008">2008</date>
+			<biblScope unit="page" from="63" to="78" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<monogr>
+		<title level="m" type="main">An efficient key recovery attack on SIDH</title>
+		<author>
+			<persName><forename type="first">W</forename><surname>Castryck</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Decru</surname></persName>
+		</author>
+		<idno>Number: 975</idno>
+		<ptr target="https://eprint.iacr.org/2022/975" />
+		<imprint>
+			<date type="published" when="2022-03-31">2022. March 31, 2023</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">Report</note>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<monogr>
+		<title level="m" type="main">The post-quantum state: A taxonomy of challenges</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Celi</surname></persName>
+		</author>
+		<ptr target="http://blog.cloudflare.com/post-quantum-taxonomy/" />
+		<imprint>
+			<date type="published" when="2022-03-30">2022. March 30, 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<monogr>
+		<title level="m" type="main">Services -European GNSS Service Centre</title>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">G</forename><surname>Centre</surname></persName>
+		</author>
+		<ptr target="https://www.gsc-europa.eu/galileo/services" />
+		<imprint>
+			<date type="published" when="2023-05-03">May 3, 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<author>
+			<persName><forename type="first">X</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Luo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Yuan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Wu</surname></persName>
+		</author>
+		<idno type="DOI">10.3390/rs15051462</idno>
+		<ptr target="https://doi.org/10.3390/rs15051462" />
+	</analytic>
+	<monogr>
+		<title level="m">Satellite Navigation Signal Authentication in GNSS: A Survey on Technology Evolution, Status, and Perspective for BDS</title>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="page">1462</biblScope>
+		</imprint>
+	</monogr>
+	<note>Number: 5 Publisher: Multidisciplinary Digital Publishing Institute</note>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<monogr>
+		<title level="m" type="main">EU Space Strategy for Security and Defence</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Commision</surname></persName>
+		</author>
+		<ptr target="https://defence-industry-space.ec.europa.eu/eu-space-strategy-security-and-defenceen" />
+		<imprint>
+			<date type="published" when="2023-03-31">March 31, 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<monogr>
+		<ptr target="https://csrc.nist.gov/Projects/post-quantum-cryptography/post-quantum-cryptography-standardization" />
+		<title level="m">Post-Quantum Cryptography Standardization -Post-Quantum Cryptography -CSRC -CSRC</title>
+		<editor>
+			<persName><forename type="first">I</forename><forename type="middle">T L</forename></persName>
+		</editor>
+		<imprint>
+			<date type="published" when="2017-03-29">2017. March 29, 2023</date>
+		</imprint>
+		<respStmt>
+			<orgName>Computer Security Division</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Round 4 Submissions -Post-Quantum Cryptography -CSRC -CSRC</title>
+		<author>
+			<persName><forename type="first">I</forename><forename type="middle">T L</forename></persName>
+		</author>
+		<ptr target="https://csrc.nist.gov/projects/post-quantum-cryptography/selected-algorithms-2022" />
+	</analytic>
+	<monogr>
+		<title level="m">Selected Algorithms 2022 -Post-Quantum Cryptography -CSRC -CSRC</title>
+		<imprint>
+			<date type="published" when="2017-03-29">2017. March 29, 2023. 2017. March 29, 2023</date>
+		</imprint>
+		<respStmt>
+			<orgName>Computer Security Division</orgName>
+		</respStmt>
+	</monogr>
+	<note>Computer Security Division, I. T. L</note>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<monogr>
+		<title level="m" type="main">Stateful Hash-Based Signatures -CSRC -CSRC</title>
+		<author>
+			<persName><forename type="first">I</forename><forename type="middle">T</forename></persName>
+		</author>
+		<ptr target="https://csrc.nist.gov/projects/stateful-hash-based-signatures" />
+		<imprint>
+			<date type="published" when="2018-04-17">2018. April 17, 2023</date>
+		</imprint>
+		<respStmt>
+			<orgName>Computer Security Division</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<monogr>
+		<title level="m" type="main">Announcing PQC Candidates to be Standardized, Plus Fourth Round Candidates -CSRC</title>
+		<author>
+			<persName><forename type="first">I</forename><forename type="middle">T L</forename></persName>
+		</author>
+		<ptr target="https://csrc.nist.gov/News/2022/pqc-candidates-to-be-standardized-and-round-4" />
+		<imprint>
+			<date type="published" when="2022-04-12">2022. April 12, 2023</date>
+		</imprint>
+		<respStmt>
+			<orgName>Computer Security Division</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<monogr>
+		<title level="m" type="main">Quantum-Safe Cryptography (QSC)</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Dahmen-Lhuissier</surname></persName>
+		</author>
+		<ptr target="https://www.etsi.org/technologies/quantum-safe-cryptography" />
+		<imprint>
+			<date type="published" when="2023-03-31">March 31, 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<monogr>
+		<title level="m" type="main">Empirical Studies of TESLA Protocol: Properties, Implementations, and Replacement of Public Cryptography Using Biometric Authentication</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Eledlebi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">Y</forename><surname>Yeun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Damiani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Al-Hammadi</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+	<note>Conference Name: IEEE Access</note>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<monogr>
+		<title/>
+		<idno type="DOI">10.1109/ACCESS.2022.3152895</idno>
+		<ptr target="https://doi.org/10.1109/ACCESS.2022.3152895" />
+		<imprint>
+			<publisher>IEEE Access</publisher>
+			<biblScope unit="volume">10</biblScope>
+			<biblScope unit="page" from="21941" to="21954" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<monogr>
+		<title level="m" type="main">GALILEO Open Service Navigation Message Authentication (OSNMA) receiver guidelines for the test phase: Issue 1.0, November 2021. Publications Office</title>
+		<idno type="DOI">10.2878/230609</idno>
+		<ptr target="https://data.europa.eu/doi/10.2878/230609" />
+		<imprint>
+			<date type="published" when="2021-04-11">2021. April 11, 2023</date>
+			<publisher>European GNSS Supervisory Authority</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<monogr>
+		<title level="m" type="main">Galileo Open Service Navigation Message Authentication (OSNMA): Signal in Space Interface Control Document (SIS ICD) : Issue 1.0, December 2022. Publications Office</title>
+		<idno type="DOI">10.2878/594840</idno>
+		<ptr target="https://data.europa.eu/doi/10.2878/594840" />
+		<imprint>
+			<date type="published" when="2022-04-28">2022. April 28, 2023</date>
+			<publisher>European GNSS Supervisory Authority</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Introducing CIRCL: An Advanced Cryptographic Library</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Faz-Hernández</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Kwiatkowski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Cancela</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Terris-Gallego</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Seco-Granados</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">A</forename><surname>López-Salcedo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>O'driscoll</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Winkel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">D</forename><surname>Chiara</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Sarto</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Rijmen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Blonski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>De Blas</surname></persName>
+		</author>
+		<idno type="DOI">10.48550/arXiv.2204.14026</idno>
+		<idno type="arXiv">arXiv:2204.14026</idno>
+		<ptr target="https://doi.org/10.48550/arXiv.2204.14026" />
+	</analytic>
+	<monogr>
+		<title level="m">Semi-Assisted Signal Authentication based on Galileo ACAS</title>
+		<editor>
+			<persName><forename type="first">Cloudflare</forename><surname>Fernandez-Hernandez</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">I</forename></persName>
+		</editor>
+		<imprint>
+			<date type="published" when="2019">2019. 2022</date>
+		</imprint>
+	</monogr>
+	<note>cs, eess</note>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Galileo high accuracy service: Initial definition and performance</title>
+		<author>
+			<persName><forename type="first">I</forename><surname>Fernandez-Hernandez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Chamorro-Moreno</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Cancela-Diaz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">D</forename><surname>Calle-Calle</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Zoccarato</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Blonski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Senni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><forename type="middle">J</forename><surname>De Blas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Hernández</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Simón</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Mozo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Fernandez-Hernandez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Hirokawa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Rijmen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Aikawa</surname></persName>
+		</author>
+		<idno type="DOI">10.33012/navi.579</idno>
+		<ptr target="https://doi.org/10.33012/navi.579" />
+	</analytic>
+	<monogr>
+		<title level="j">Journal of the Institute of Navigation</title>
+		<imprint>
+			<biblScope unit="volume">26</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page">65</biblScope>
+			<date type="published" when="2022">2022. 2023</date>
+		</imprint>
+	</monogr>
+	<note>PPP/PPP-RTK Message Authentication. NAVIGA-TION GPS Solutions</note>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<author>
+			<persName><forename type="first">I</forename><surname>Fernandez-Hernandez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Winkel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>O'driscoll</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Cancela</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Terris-Gallego</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">A</forename><surname>López-Salcedo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Seco-Granados</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">D</forename><surname>Chiara</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Sarto</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Blonski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">D</forename><surname>Blas</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/TAES.2023.3243587</idno>
+		<ptr target="https://doi.org/10.1109/TAES.2023.3243587" />
+	</analytic>
+	<monogr>
+		<title level="m">Semi-Assisted Signal Authentication for Galileo: Proof of Concept and Results [Conference Name: IEEE Transactions on Aerospace and Electronic Systems</title>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="1" to="13" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Analysis and recommendations for MAC and key lengths in delayed disclosure GNSS authentication protocols</title>
+		<author>
+			<persName><forename type="first">I</forename><surname>Fernández-Hernández</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Ashur</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Rijmen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Aerospace and Electronic Systems</title>
+		<imprint>
+			<biblScope unit="volume">57</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="1827" to="1839" />
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+	<note>Publisher: Institute of Electrical and Electronics Engineers</note>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<monogr>
+		<title level="m" type="main">Quantum-safe cryptography -fundamentals, current developments and recommendations</title>
+		<author>
+			<persName><forename type="first">F</forename><forename type="middle">O</forename><surname>Bsi)</surname></persName>
+		</author>
+		<ptr target="https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Publications/Brochure/quantum-safe-cryptography.html" />
+		<imprint>
+			<publisher>for Information Security</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<monogr>
+		<author>
+			<persName><forename type="first">P.-A</forename><surname>Fouque</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Hoffstein</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Kirchner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Lyubashevsky</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Pornin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Prest</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Ricosset</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Seiler</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Whyte</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Zhang</surname></persName>
+		</author>
+		<title level="m">Falcon: Fast-Fourier Lattice-based Compact Signatures over NTRU</title>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+	<note>tech. rep.</note>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Bootstrapping Timed Efficient Stream Loss-Tolerant Authentication (TESLA) (Request for Comments No</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Fries</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Tschofenig</surname></persName>
+		</author>
+		<idno type="DOI">10.17487/RFC4442</idno>
+		<ptr target="https://doi.org/10.17487/RFC4442" />
+	</analytic>
+	<monogr>
+		<title level="m">Num Pages: 18). Internet Engineering Task Force</title>
+		<imprint>
+			<date type="published" when="2006">2006</date>
+			<biblScope unit="volume">4442</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Benefit of GNSS multiconstellation in position and velocity domain</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Gaglione</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Angrisano</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Freda</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Innac</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Vultaggio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Crocetto</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/MetroAeroSpace.2015.7180618</idno>
+		<ptr target="https://doi.org/10.1109/MetroAeroSpace.2015.7180618" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Metrology for Aerospace (MetroAeroSpace)</title>
+		<imprint>
+			<biblScope unit="page" from="9" to="14" />
+			<date type="published" when="2015">2015. 2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Computational problems in supersingular elliptic curve isogenies</title>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">D</forename><surname>Galbraith</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Vercauteren</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/s11128-018-2023-6</idno>
+		<ptr target="https://doi.org/10.1007/s11128-018-2023-6" />
+	</analytic>
+	<monogr>
+		<title level="j">Quantum Information Processing</title>
+		<imprint>
+			<biblScope unit="volume">17</biblScope>
+			<biblScope unit="issue">10</biblScope>
+			<biblScope unit="page">265</biblScope>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<monogr>
+		<ptr target="https://www.euspa.europa.eu/galileo/services" />
+		<title level="m">Galileo Services -EU Agency for the Space Programme</title>
+		<imprint>
+			<date type="published" when="2023-05-12">May 12, 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<monogr>
+		<author>
+			<persName><forename type="first">C</forename><surname>Gidney</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Ekerå</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1905.09749</idno>
+		<title level="m">How to factor 2048 bit RSA integers in 8 hours using 20 million noisy qubits</title>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+	<note>quant-ph</note>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<monogr>
+		<title/>
+		<author>
+			<persName><surname>Quantum</surname></persName>
+		</author>
+		<idno type="DOI">10.22331/q-2021-04-15-433</idno>
+		<ptr target="https://doi.org/10.22331/q-2021-04-15-433" />
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="page">433</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<monogr>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">K</forename><surname>Grover</surname></persName>
+		</author>
+		<idno type="DOI">10.48550/arXiv.quant-ph/9605043</idno>
+		<idno type="arXiv">arXiv:quant-ph/9605043</idno>
+		<ptr target="https://doi.org/10.48550/arXiv.quant-ph/9605043" />
+		<title level="m">A fast quantum mechanical algorithm for database search</title>
+		<imprint>
+			<date type="published" when="1996">1996</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<analytic>
+		<title level="a" type="main">NTRU: A ring-based public key cryptosystem</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Hoffstein</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Pipher</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">H</forename><surname>Silverman</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/BFb0054868</idno>
+		<ptr target="https://doi.org/10.1007/BFb0054868" />
+	</analytic>
+	<monogr>
+		<title level="m">Algorithmic Number Theory</title>
+		<editor>
+			<persName><forename type="first">J</forename><forename type="middle">P</forename><surname>Buhler</surname></persName>
+		</editor>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="1998">1998</date>
+			<biblScope unit="page" from="267" to="288" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<analytic>
+		<title level="a" type="main">Cryptanalysis Against Symmetric-Key Schemes with Online Classical Queries and Offline Quantum Computations</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Hosoyamada</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Sasaki</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/978-3-319-76953-0_11</idno>
+		<ptr target="https://doi.org/10.1007/978-3-319-76953-011" />
+	</analytic>
+	<monogr>
+		<title level="m">Topics in Cryptology -CT-RSA 2018</title>
+		<editor>
+			<persName><forename type="first">N</forename><forename type="middle">P</forename><surname>Smart</surname></persName>
+		</editor>
+		<imprint>
+			<publisher>Springer International Publishing</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="198" to="218" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<monogr>
+		<title level="m" type="main">XMSS: eXtended Merkle Signature Scheme</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Huelsing</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Butin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S.-L</forename><surname>Gazdag</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Rijneveld</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Mohaisen</surname></persName>
+		</author>
+		<idno type="DOI">10.17487/RFC8391</idno>
+		<ptr target="https://doi.org/10.17487/RFC8391" />
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+	<note>Issue: 8391 Num Pages: 74 Series: Request for Comments Published: RFC 8391</note>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<monogr>
+		<title level="m" type="main">WOTS+ -Shorter Signatures for Hash-Based Signature Schemes</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Hülsing</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+	<note>Report Number: 965</note>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<monogr>
+		<title level="m" type="main">GlobalSign Root Certificates : retrieved March 31</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Inc</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Internet</forename><surname>Gmo</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Group</surname></persName>
+		</author>
+		<ptr target="https://support.globalsign.com/ca-certificates/root-certificates/globalsign-root-certificates" />
+		<imprint>
+			<date type="published" when="2022">2022. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<monogr>
+		<author>
+			<persName><forename type="first">D</forename><surname>Joseph</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Misoczki</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Manzano</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Tricot</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><forename type="middle">D</forename><surname>Pinuaga</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Lacombe</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Leichenauer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Hidary</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Venables</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Hansen</surname></persName>
+		</author>
+		<idno>Number: 7909 Publisher</idno>
+		<title level="m">Transitioning organizations to post-quantum cryptography</title>
+		<imprint>
+			<publisher>Nature Publishing Group</publisher>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b41">
+	<analytic>
+		<title/>
+		<idno type="DOI">10.1038/s41586-022-04623-2</idno>
+		<ptr target="https://doi.org/10.1038/s41586-022-04623-2" />
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="issue">7909</biblScope>
+			<biblScope unit="page" from="237" to="243" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b42">
+	<analytic>
+		<title level="a" type="main">HMAC: Keyed-Hashing for Message Authentication</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Krawczyk</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Bellare</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Canetti</surname></persName>
+		</author>
+		<idno type="DOI">10.17487/RFC2104</idno>
+		<ptr target="https://doi.org/10.17487/RFC2104" />
+	</analytic>
+	<monogr>
+		<title level="m">Num Pages: 11). Internet Engineering Task Force</title>
+		<imprint>
+			<date type="published" when="1997">1997</date>
+		</imprint>
+	</monogr>
+	<note>Request for Comments No. RFC 2104</note>
+</biblStruct>
+
+<biblStruct xml:id="b43">
+	<monogr>
+		<title level="m" type="main">TLS Post-Quantum Experiment</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Kwiatkowski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Valenta</surname></persName>
+		</author>
+		<ptr target="http://blog.cloudflare.com/the-tls-post-quantum-experiment/" />
+		<imprint>
+			<date type="published" when="2019-03-30">2019. March 30, 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b44">
+	<analytic>
+		<title level="a" type="main">Introduction to GNSS</title>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">B</forename><surname>Langley</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">J</forename><surname>Teunissen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Montenbruck</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/978-3-319-42928-1_1</idno>
+		<ptr target="https://doi.org/10.1007/978-3-319-42928-11" />
+	</analytic>
+	<monogr>
+		<title level="m">Springer Handbook of Global Navigation Satellite Systems</title>
+		<editor>
+			<persName><forename type="first">P</forename><forename type="middle">J</forename><surname>Teunissen</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">O</forename><surname>Montenbruck</surname></persName>
+		</editor>
+		<imprint>
+			<publisher>Springer International Publishing</publisher>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="3" to="23" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b45">
+	<analytic>
+		<title level="a" type="main">New Barriers on 6G Networking: An Exploratory Study on the Security, Privacy and Opportunities for Aerial Networks</title>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">A</forename><surname>Lopez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">N N</forename><surname>Barbosa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">M F</forename><surname>Mattos</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/6GNet54646.2022.9830402</idno>
+		<ptr target="https://doi.org/10.1109/6GNet54646.2022.9830402" />
+	</analytic>
+	<monogr>
+		<title level="m">2022 1st International Conference on 6G Networking (6GNet)</title>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="1" to="6" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b46">
+	<analytic>
+		<title level="a" type="main">Fiat-Shamir with Aborts: Applications to Lattice and Factoring-Based Signatures</title>
+		<author>
+			<persName><forename type="first">V</forename><surname>Lyubashevsky</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/978-3-642-10366-7_35</idno>
+		<ptr target="https://doi.org/10.1007/978-3-642-10366-735" />
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Cryptology -ASIACRYPT 2009</title>
+		<editor>
+			<persName><forename type="first">M</forename><surname>Matsui</surname></persName>
+		</editor>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2009">2009</date>
+			<biblScope unit="page" from="598" to="616" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b47">
+	<monogr>
+		<title level="m" type="main">On Ideal Lattices and Learning with Errors Over Rings</title>
+		<author>
+			<persName><forename type="first">V</forename><surname>Lyubashevsky</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Peikert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Regev</surname></persName>
+		</author>
+		<ptr target="https://eprint.iacr.org/undefined/undefined" />
+		<imprint>
+			<date type="published" when="2023-04-17">April 17, 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b48">
+	<monogr>
+		<author>
+			<persName><forename type="first">D</forename><surname>Mcgrew</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Curcio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Fluhrer</surname></persName>
+		</author>
+		<idno type="DOI">10.17487/RFC8554</idno>
+		<ptr target="https://doi.org/10.17487/RFC8554" />
+		<title level="m">Leighton-Micali Hash-Based Signatures</title>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+	<note>Issue: 8554 Num Pages: 61 Series: Request for Comments Published: RFC 8554</note>
+</biblStruct>
+
+<biblStruct xml:id="b49">
+	<analytic>
+		<title level="a" type="main">Cybersecurity in an Era with Quantum Computers: Will We Be Ready?</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Mosca</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/MSP.2018.3761723</idno>
+		<ptr target="https://doi.org/10.1109/MSP.2018.3761723" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Security &amp; Privacy</title>
+		<imprint>
+			<biblScope unit="volume">16</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="38" to="41" />
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+	<note>Conference Name: IEEE Security &amp; Privacy</note>
+</biblStruct>
+
+<biblStruct xml:id="b50">
+	<monogr>
+		<title level="m" type="main">Parameter Selection for the TESLA Keychain</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Neish</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Walter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Enge</surname></persName>
+		</author>
+		<idno type="DOI">10.33012/2018.15852</idno>
+		<ptr target="https://doi.org/10.33012/2018.15852" />
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="2155" to="2171" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b51">
+	<analytic>
+		<title level="a" type="main">The Return of Coppersmith&apos;s Attack: Practical Factorization of Widely Used RSA Moduli</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Nemec</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Sys</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Svenda</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Klinec</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Matyas</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3133956.3133969</idno>
+		<ptr target="https://doi.org/10.1145/3133956.3133969" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2017 ACM SIGSAC Conference on Computer and Communications Security</title>
+		<meeting>the 2017 ACM SIGSAC Conference on Computer and Communications Security</meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="1631" to="1648" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b52">
+	<monogr>
+		<author>
+			<persName><forename type="first">M</forename><surname>Nicola</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Motella</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">T</forename><surname>Gamba</surname></persName>
+		</author>
+		<idno type="DOI">10.33012/2021.18127</idno>
+		<ptr target="https://doi.org/10.33012/2021.18127" />
+		<title level="m">GPS Chimera: A Software Receiver Implementation</title>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="4264" to="4273" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b53">
+	<analytic>
+		<title level="a" type="main">Entanglement-based QKD over LEO satellite-to-ground time-varying atmospheric channel</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ntanos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><forename type="middle">K</forename><surname>Lyras</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Stathis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Zavitsanos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Giannoulis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">D</forename><surname>Panagopoulos</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Avramopoulos</surname></persName>
+		</author>
+		<idno type="DOI">10.1117/12.2649702</idno>
+		<ptr target="https://doi.org/10.1117/12.2649702" />
+	</analytic>
+	<monogr>
+		<title level="j">Free-Space Laser Communications XXXV</title>
+		<imprint>
+			<biblScope unit="volume">12413</biblScope>
+			<biblScope unit="page" from="476" to="488" />
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b54">
+	<analytic>
+		<title level="a" type="main">&amp; participants other workshop</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Peikert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename></persName>
+		</author>
+		<idno type="DOI">10.48550/arXiv.1909.07353</idno>
+		<idno type="arXiv">arXiv:1909.07353</idno>
+		<ptr target="https://doi.org/10.48550/arXiv.1909.07353" />
+	</analytic>
+	<monogr>
+		<title level="m">Identifying Research Challenges in Post Quantum Cryptography Migration and Cryptographic Agility</title>
+		<imprint>
+			<date type="published" when="2019">March 31, 2023. 2019</date>
+		</imprint>
+	</monogr>
+	<note>Open Quantum Safe</note>
+</biblStruct>
+
+<biblStruct xml:id="b55">
+	<monogr>
+		<title level="m" type="main">Decision no 1104/2011/eu of the european parliament and of the council of 25 october 2011 on the rules for access to the public regulated service provided by the global navigation satellite system established under the galileo programme</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Parliament</surname></persName>
+		</author>
+		<ptr target="https://eur-lex.europa.eu/eli/dec/2011/1104/oj" />
+		<imprint>
+			<date type="published" when="2011-04-10">2011. April 10, 2023</date>
+		</imprint>
+	</monogr>
+	<note>Legislative Body: EP, CONSIL</note>
+</biblStruct>
+
+<biblStruct xml:id="b56">
+	<analytic>
+		<title level="a" type="main">Analysis of Network-level Key Exchange Protocols in the Post-Quantum Era</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Pazienza</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E</forename><surname>Lella</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Noviello</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Vitulano</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/WOLTE55422.2022.9882818</idno>
+		<ptr target="https://doi.org/10.1109/WOLTE55422.2022.9882818" />
+	</analytic>
+	<monogr>
+		<title level="m">IEEE 15th Workshop on Low Temperature Electronics (WOLTE)</title>
+		<imprint>
+			<date type="published" when="2022">2022. 2022</date>
+			<biblScope unit="page" from="1" to="4" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b57">
+	<analytic>
+		<title level="a" type="main">Timed Efficient Stream Loss-Tolerant Authentication (TESLA): Multicast Source Authentication Transform Introduction</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Perrig</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Canetti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Tygar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Briscoe</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal Abbreviation: Internet Requests for Comments Publication</title>
+		<imprint>
+			<biblScope unit="volume">4082</biblScope>
+			<date type="published" when="2005">2005</date>
+		</imprint>
+	</monogr>
+	<note>Internet Requests for Comments</note>
+</biblStruct>
+
+<biblStruct xml:id="b58">
+	<monogr>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">S</forename><surname>Petrenko</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">S</forename><surname>Petrenko</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">A</forename><surname>Makoveichuk</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">V</forename><surname>Olifirov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Krachunov</surname></persName>
+		</author>
+		<title level="m">Security Threat Model Based on Analysis of Foreign National Quantum Programs</title>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b59">
+	<analytic>
+		<title level="a" type="main">Deterministic Usage of the Digital Signature Algorithm (DSA) and Elliptic Curve Digital Signature Algorithm (ECDSA) (Request for Comments No</title>
+		<author>
+			<persName><forename type="first">T</forename><surname>Pornin</surname></persName>
+		</author>
+		<idno type="DOI">10.17487/RFC6979</idno>
+		<ptr target="https://doi.org/10.17487/RFC6979" />
+	</analytic>
+	<monogr>
+		<title level="m">Num Pages: 79). Internet Engineering Task Force</title>
+		<imprint>
+			<date type="published" when="2013">2013</date>
+			<biblScope unit="volume">6979</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b60">
+	<analytic>
+		<title level="a" type="main">Applying grover&apos;s algorithm to hash functions: A software perspective</title>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">H</forename><surname>Preston</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/TQE.2022.3233526</idno>
+		<ptr target="https://doi.org/10.1109/TQE.2022.3233526" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Quantum Engineering</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page" from="1" to="10" />
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b61">
+	<monogr>
+		<ptr target="https://www.federalregister.gov/documents/2016/08/02/2016-18150/request-for-comments-on-post-quantum-cryptography-requirements-and-evaluation-criteria" />
+		<title level="m">Request for Comments on Post-Quantum Cryptography Requirements and Evaluation Criteria</title>
+		<imprint>
+			<date type="published" when="2016-04-17">2016. April 17, 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b62">
+	<monogr>
+		<title level="m" type="main">Are &apos;Strong&apos; Primes Needed for RSA? Shannon Capacity -an overview -ScienceDirect Topics</title>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">L</forename><surname>Rivest</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">D</forename><surname>Silverman</surname></persName>
+		</author>
+		<ptr target="https://www.sciencedirect.com/topics/engineering/shannon-capacity" />
+		<imprint>
+			<date type="published" when="2023-04-27">April 27, 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b63">
+	<analytic>
+		<title level="a" type="main">Algorithms for quantum computation: Discrete logarithms and factoring</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Shor</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/SFCS.1994.365700</idno>
+		<ptr target="https://doi.org/10.1109/SFCS.1994.365700" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings 35th Annual Symposium on Foundations of Computer Science</title>
+		<meeting>35th Annual Symposium on Foundations of Computer Science</meeting>
+		<imprint>
+			<date type="published" when="1994">1994</date>
+			<biblScope unit="page" from="124" to="134" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b64">
+	<analytic>
+		<title level="a" type="main">Assessing the overhead of post-quantum cryptography in TLS 1.3 and SSH</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Sikeridis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Kampanakis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Devetsikiotis</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3386367.3431305</idno>
+		<ptr target="https://doi.org/10.1145/3386367.3431305" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 16th International Conference on emerging Networking EXperiments and Technologies</title>
+		<meeting>the 16th International Conference on emerging Networking EXperiments and Technologies</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="149" to="156" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b65">
+	<monogr>
+		<title level="m" type="main">Hybrid key exchange in TLS 1.3 (Internet Draft No. draft-ietf-tls-hybrid-design-06) (Num Pages: 22)</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Stebila</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Fluhrer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Gueron</surname></persName>
+		</author>
+		<ptr target="https://datatracker.ietf.org/doc/draft-ietf-tls-hybrid-design" />
+		<imprint>
+			<date type="published" when="2023-03-30">2023. March 30, 2023</date>
+		</imprint>
+	</monogr>
+	<note>Internet Engineering Task Force</note>
+</biblStruct>
+
+<biblStruct xml:id="b66">
+	<monogr>
+		<title level="m" type="main">Post-Quantum Key Exchange for the Internet and the Open Quantum Safe Project</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Stebila</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Mosca</surname></persName>
+		</author>
+		<ptr target="https://eprint.iacr.org/undefined/undefined" />
+		<imprint>
+			<date type="published" when="2023-03-31">March 31, 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b67">
+	<analytic>
+		<title level="a" type="main">On the Security of RSA with Primes Sharing Least-Significant Bits</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Steinfeld</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zheng</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/s00200-004-0164-6</idno>
+		<ptr target="https://doi.org/10.1007/s00200-004-0164-6" />
+	</analytic>
+	<monogr>
+		<title level="j">Applicable Algebra in Engineering, Communication and Computing</title>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="179" to="200" />
+			<date type="published" when="2004">2004</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b68">
+	<monogr>
+		<idno type="DOI">10.1145/3456629</idno>
+		<ptr target="https://dl.acm.org/doi/abs/10.1145/3456629" />
+		<title level="m">A Survey of Microarchitectural Side-channel Vulnerabilities, Attacks, and Defenses in Cryptography -ACM Computing Surveys</title>
+		<imprint>
+			<date type="published" when="2023-04-12">April 12, 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b69">
+	<monogr>
+		<title level="m" type="main">Sizing Up Post-Quantum Signatures</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Westerbaan</surname></persName>
+		</author>
+		<ptr target="http://blog.cloudflare.com/sizing-up-post-quantum-signatures/" />
+		<imprint>
+			<date type="published" when="2021-03-30">2021. March 30, 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b70">
+	<monogr>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zurabov</surname></persName>
+			<affiliation>
+				<orgName type="collaboration">IEEE Cat</orgName>
+			</affiliation>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Ivanov</surname></persName>
+			<affiliation>
+				<orgName type="collaboration">IEEE Cat</orgName>
+			</affiliation>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kuropyatnikov</surname></persName>
+			<affiliation>
+				<orgName type="collaboration">IEEE Cat</orgName>
+			</affiliation>
+		</author>
+		<idno type="DOI">10.1109/ICSC.1998.741402</idno>
+		<ptr target="https://doi.org/10.1109/ICSC.1998.741402" />
+		<title level="m">COSPAS-SARSAT satellite system. 3rd International Conference on Satellite Communications</title>
+		<imprint>
+			<date type="published" when="1998">1998</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="156" to="158" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

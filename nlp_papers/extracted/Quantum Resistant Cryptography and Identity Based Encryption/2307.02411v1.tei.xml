@@ -1,0 +1,2156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main"></title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><roleName>Prof. C</roleName><forename type="middle">P</forename><surname>Dean</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">School of Computer and System Science</orgName>
+								<orgName type="institution">Jawaharlal Nehru University</orgName>
+								<address>
+									<settlement>New</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><surname>Katti</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">School of Computer and System Science</orgName>
+								<orgName type="institution">Jawaharlal Nehru University</orgName>
+								<address>
+									<settlement>New</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Mr</forename><forename type="middle">J K</forename><surname>Verma</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">School of Computer and System Science</orgName>
+								<orgName type="institution">Jawaharlal Nehru University</orgName>
+								<address>
+									<settlement>New</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><roleName>Mr</roleName><forename type="first">R</forename><forename type="middle">A</forename><surname>Haidri</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">School of Computer and System Science</orgName>
+								<orgName type="institution">Jawaharlal Nehru University</orgName>
+								<address>
+									<settlement>New</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><roleName>Mr</roleName><forename type="first">Ashok</forename><surname>Kumar</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">School of Computer and System Science</orgName>
+								<orgName type="institution">Jawaharlal Nehru University</orgName>
+								<address>
+									<settlement>New</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><roleName>Mr</roleName><forename type="first">Vineet</forename><surname>Anand</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">School of Computer and System Science</orgName>
+								<orgName type="institution">Jawaharlal Nehru University</orgName>
+								<address>
+									<settlement>New</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Pankaj</forename><surname>Kumar</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">School of Computer and System Science</orgName>
+								<orgName type="institution">Jawaharlal Nehru University</orgName>
+								<address>
+									<settlement>New</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Mr</forename><surname>Kunal Bhaskar</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">School of Computer and System Science</orgName>
+								<orgName type="institution">Jawaharlal Nehru University</orgName>
+								<address>
+									<settlement>New</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Mr</forename><surname>Kashif Nawaz</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">School of Computer and System Science</orgName>
+								<orgName type="institution">Jawaharlal Nehru University</orgName>
+								<address>
+									<settlement>New</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Mr</forename><surname>Ravi</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">School of Computer and System Science</orgName>
+								<orgName type="institution">Jawaharlal Nehru University</orgName>
+								<address>
+									<settlement>New</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><roleName>Mr</roleName><forename type="first">Shankar</forename><surname>Soni</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">School of Computer and System Science</orgName>
+								<orgName type="institution">Jawaharlal Nehru University</orgName>
+								<address>
+									<settlement>New</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><roleName>Mr</roleName><forename type="first">Bhaskar</forename><surname>Prasad</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">School of Computer and System Science</orgName>
+								<orgName type="institution">Jawaharlal Nehru University</orgName>
+								<address>
+									<settlement>New</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><roleName>Ms</roleName><forename type="first">Mayank</forename><surname>Gupta</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">School of Computer and System Science</orgName>
+								<orgName type="institution">Jawaharlal Nehru University</orgName>
+								<address>
+									<settlement>New</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Neha</forename><surname>Anand</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">School of Computer and System Science</orgName>
+								<orgName type="institution">Jawaharlal Nehru University</orgName>
+								<address>
+									<settlement>New</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Mr</forename><surname>Tarun</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">School of Computer and System Science</orgName>
+								<orgName type="institution">Jawaharlal Nehru University</orgName>
+								<address>
+									<settlement>New</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><roleName>Mr</roleName><forename type="first">Kumar</forename><surname>Gupta</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">School of Computer and System Science</orgName>
+								<orgName type="institution">Jawaharlal Nehru University</orgName>
+								<address>
+									<settlement>New</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><roleName>Mr</roleName><forename type="first">Sunil</forename><surname>Kumar</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">School of Computer and System Science</orgName>
+								<orgName type="institution">Jawaharlal Nehru University</orgName>
+								<address>
+									<settlement>New</settlement>
+								</address>
+							</affiliation>
+						</author>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date/>
+						</imprint>
+					</monogr>
+					<idno type="MD5">0379677E6025BCB30965001B24866EC5</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-28T12:44+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Delhi, for his excellent guidance, caring, patience, and encouragement.</p><p>He has been an inspiration to a great teacher and me. I would like to be very grateful towards him for providing me with an excellent atmosphere for doing research.</p><p>Completing this dissertation without his valuable support and patience would have been impossible.</p><p>Secondly, I would like to thank Prof. P.C. Saxena (Emeritus), School of Computer and System Science, Jawaharlal Nehru University, New Delhi, who let me experience the research of freshwater mussels in the field and practical issues beyond the textbooks, patiently corrected my writing and motivationally supported my research.</p><p>Thirdly, I would like to thank my lab mates for their fruitful support and encouragement thought-out my M. Tech dissertation. Thanks to</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Table 2. 1 RSA Key length of Some Organization ..................................................... Table 2. 2 RSA and ECC key Sizes ............................................................................ Table 3. 1 Level of trust to PKG ................................................................................. Table 3. 2 Comparison of Computation Cost of variant of Public Key encryption which avoids key escrow problem .................................................................................... Table 3. 3 Comparison of public information and trust level to PKG of different scheme............................................................................................................................... Table 5. 1 Comparison of Computation Cost of proposed scheme with existing scheme ........................................................................................................................................... Table 5. 2 Comparison of public information and trust level to PKG of proposed scheme with existing scheme ............................................................................................ Figure 2. Rational points on line over elliptic curve. ................................................. 13 Figure 3. Public Key Cryptography. ...........................................................................22 Figure 3. Identity-based encryption ........................................................................... 24 Figure 3. Key Escrow Problem in Identity-based encryption .................................... 31 Figure 3. Hierarchy of Private Key Generators ..........................................................34 Figure 4. Steps for Private Key Issue .........................................................................41 LIST OF FIGURES viii 𝑀 Message C Ciphertext 𝑍 𝑛 Set of integers Mod n (G  +) Algebraic group with respect to the set G and the binary operation (G , +, ×) Cyclic Group with respective to the set G and two binary operation G Group (G  +)  Subgroup of Group G R Ring (R , +, ×) F Field (F , +, ×) +, and × Binary operations 𝐺𝐹(𝑝) Finite field of order prime 𝑝 𝐻(𝑤) Hash function with bit sequence 𝑤 as input 𝑆𝑖𝑔𝑛(𝑀) Signature on message 𝑀 𝑒: 𝐺 1 × 𝐺 2 -&gt; 𝐺 𝑇 Bilinear map from the group 𝐺 1 and 𝐺 2 and 𝐺 𝑇 x ⊕ y Bitwise XOR operation between string 𝑥 and 𝑦 ┴ Invalid output 𝐸𝑛𝑐 𝑘 (𝑀) Symmetric encryption of the message 𝑀 under session key 𝑘 𝐷𝑒𝑐 𝑘 (𝐶) Symmetric decryption of the ciphertext 𝐶 under session key 𝑘</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>LIST OF TABLES</head><note type="other">vii</note></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>LIST OF SYMBOLS AND NOTATIONS</head><note type="other">𝑥||𝑦</note><p>Concatenation of bit strings x and y {0,1} 𝑛 Binary bit sequence of length n {0,1} * Binary bit sequence of variable length 𝑢𝑠𝑘 𝑃𝑟 User's generated private key 𝑢𝑠𝑘 𝑃𝑢𝑏 User's generated public key 𝑝𝑘𝑔 𝑃𝑟 PKG's generated private key 𝑝𝑘𝑔 𝑃𝑢𝑏 PKG's generated public key 𝑝𝑘𝑃𝑜 𝑃𝑟 PKPO's generated private key 𝑝𝑘𝑝𝑜 𝑃𝑢𝑏 PKPO's generated public key 𝐷 𝐼𝐷 Decryption key for the user with identity ID. 𝑘 Security parameter 𝑝𝑎𝑟𝑎𝑚𝑠 Publicly published parameters adv Advantage for the adversary to win the game. Є Negligible function 𝐶𝑒𝑟𝑡 𝐼𝐷 Certificate issued by PKG to the user whose identity ID CA Certification Authority 𝐴𝑑𝑣 𝐼 Type I IND-CPA adversary 𝐴𝑑𝑣 𝐼𝐼 Type II IND-CPA adversary ID User's Identity IBE Identity based encryption IBS Identity based encryption PKG private Key Generation HIBE Hierarchical IBE DLP Discrete Logarithm problem DDHP Decision Diffie-Hellman problem BDHP Bilinear Diffie-Hellman problem CDHP Computational Diffie-Hellman problem GDHP Gap Diffie-Hellman problem PKI Public key infrastructures IND-CPA Indistinguisablity chosen ciphertext attack IND-CCA Indistinguisablity chosen palintext attack ECC Elliptic Curve Cryptography RSA Rivest Shamir Adleman Algorithm DKG Distributed key Generation SSN Social Security Number ANO-IBE Anonymous Identity-Based Encryption ANO-CCA Anonymous chosen ciphertext attack LIST OF ABBREVATIONS xi CL-PKC Certificate-less Public Key Cryptosystem CB-PKC Certificate-based Public Key Cryptosystem SCS Self Certified Scheme V-IBE Variant of Identity based encryption M-IBE Modified Identity based encryption free from key escrow problem PKPO Private Key Privacy organization KeyGen Key Generation ROM Random Oracle Model BasicM-IBE Proposed Basic model of Identity-based encryption free from key escrow problems, secure against IND-CPA attack FullM-IBE Proposed Full model of Identity-based encryption free from Key Escrow Problems secure against IND-CCA attack.</p><p>One of the significant challenges in cryptography is the key distribution over a public network. It is essential to securely distribute keys to ensure the confidentiality, integrity, and authenticity of messages transmitted over a network <ref type="bibr">[4,</ref><ref type="bibr" target="#b68">16,</ref><ref type="bibr" target="#b87">35]</ref>. If keys are compromised or intercepted by attackers, the entire communication system can be compromised. This is why various encryption schemes have been developed to securely distribute keys, including identity-based cryptosystem (IBC), which uses an individual's identity, such as an email address, as a public key. IBC is a promising approach to publickey cryptography that simplifies key management and distribution <ref type="bibr" target="#b59">[7,</ref><ref type="bibr" target="#b70">18,</ref><ref type="bibr" target="#b73">21,</ref><ref type="bibr" target="#b75">23,</ref><ref type="bibr" target="#b76">24,</ref><ref type="bibr" target="#b81">29,</ref><ref type="bibr" target="#b93">41,</ref><ref type="bibr" target="#b95">43]</ref>. However, its adoption is still limited due to the key escrow problem and the need for further research to address its security and privacy implications.</p><p>At the same time, the key escrow problem is also a concern in cryptography that arises when a trusted third party holds a copy of a user's private key. This can occur when a government or other entity requires backdoor access to encrypted data or communication for law enforcement or national security purposes. The key escrow problem is controversial because it poses a significant risk to the privacy and security of individuals and organizations who rely on encryption to protect sensitive information. If the trusted third party is compromised or forced to disclose the private key, unauthorized parties can</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Introduction</head><p>Chapter and certificate-less cryptography <ref type="bibr" target="#b83">[31,</ref><ref type="bibr" target="#b91">39]</ref>, where the user generates their own public and private keys without the involvement of a trusted third-party Certificate Authority.</p><p>Despite efforts to address the key escrow problem, it remains a controversial issue in cryptography and information security. There is an ongoing debate about the trade-offs between privacy and national security and the role trusted third parties should play in securing encrypted data and communication.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.1">Problem Statements</head><p>In modern cryptographic algorithms <ref type="bibr">[4,</ref><ref type="bibr">5]</ref>, the user generates his key pair using public and private keys. The public key is publically available to everyone in the network and is used to encrypt the message. Alternate to the public key, the private key keeps as a secret to him and is used to decrypt the message. The PKI manages each user's public key along with his identity. No one other than the user can ever decrypt the message. So, the user has guaranteed to obtain his secret information in communication. At the same time, the user can also use encryption to encrypt criminal activity. So we can say that there are two main problems with public key encryption. The first one requires PKI to manage the certification certifying that the public key is the claimed user with an identity ID. And the second is a malicious user can encrypt criminal information.</p><p>An ID-based encryption scheme <ref type="bibr">[5,</ref><ref type="bibr" target="#b59">7,</ref><ref type="bibr" target="#b70">18]</ref> tackles the first problem to solve the certificate management problem in PKC. Instead of using the public key, it uses the user's identity as the public key. Therefore, there is no need for a certificate to certify that the public key is the real public key of the user with identity ID. A trusted third authority called Private Key Generator generates the private key corresponding to the identity ID; one copy is sent to the user, and the other is stored in its storage. In future, PKG may decrypt the doubtful message encrypted by the user over public communication. Thus, the second issue with PKC can be solved by monitoring the PKG's suspicious message with the help of a copy of the user's private key stored in its storage.</p><p>Malicious PKG may also decrypt the encrypted message as PKG generates the user's private key. Thus, with advantages over the public key encryption system, IDbased encryption suffers from two issues: 1) key escrow problem and 2) secure key issuing between the PKG and the user. These issues motivate the need for an efficient model to avoid such problems. Several approaches have been proposed to remove the key escrow problem <ref type="bibr" target="#b74">[22,</ref><ref type="bibr" target="#b83">31,</ref><ref type="bibr" target="#b91">39,</ref><ref type="bibr" target="#b96">44,</ref><ref type="bibr" target="#b97">45,</ref><ref type="bibr" target="#b98">46,</ref><ref type="bibr" target="#b99">47]</ref>, either by secure key issuing or user-chosen information. Nevertheless, the advantages come with some drawbacks. Each approach comes with new disadvantages. However, every scheme solved the key escrow problem differently. But it has become a new issue in the crypto world. These schemes discussed above show that each scheme gives full control over its private key. Indeed, giving full control over the private key to the user is also a disadvantage. User Privacy has induced two new penalties; PKG or government has no control over the user's private key, and they take no action against the user's unlawful message. Today, one hot topic in cryptography is balancing control of the Private Key for both the user and the PKG.</p><p>Thus, the user has a right to privacy on their lawful message, and Government has the right to monitor the unlawful message of the user.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.2">Recent Solutions</head><p>In the previous section, we have seen the limitations of PKE and IBE. Here, we discussed the existing solution of the key escrow problem in IBE and the existing solution of PKC.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.2.1">Existing Solutions to key escrow Problem</head><p>Several kinds of researchers on ID-based encryption schemes have proposed avoiding key escrow problems. Boneh-Franklin <ref type="bibr" target="#b59">[7]</ref> uses the technique of threshold cryptography <ref type="bibr" target="#b102">[50]</ref> to distribute the master key to multiple PKG instead of one, discussed in chapter 4.</p><p>Due to the massive infrastructure for managing multiple PKG, this scheme did not work so efficiently. At the same time, the HIBE scheme <ref type="bibr" target="#b61">[9,</ref><ref type="bibr" target="#b64">12]</ref> attempts to solve the issue, but the problem remains the same extensive infrastructure to manage the multiple PKG. In 2003, Gentry <ref type="bibr" target="#b97">[45]</ref> introduced certificate-based Public Key encryption, but it needs a certificate authority to certify the user's identity and manage those certificates. To tackle this issue, certificate-less public key encryption <ref type="bibr" target="#b98">[46]</ref> was introduced, which provides implicit authentication to the public key with user-chosen information. A new variant of IBE <ref type="bibr" target="#b83">[31]</ref> was proposed, which uses a combination of the key issue by PKG and some information chosen by the user as a private key.</p><p>However, the most unattractive property of all solutions is each scheme is proposed to tackle the problem of key escrow with different techniques. Each scheme is supposed to have an advantage over others. By removing the key escrow problem in the existing scheme, PKG has no control over the private key in each scheme. Thus, the user may get the chance to use it privately in some criminal activity since there is no authority to monitor the user's communication.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.2.2">Existing solution to key escrow</head><p>In 1993, the U. S. government declared an escrow encryption standard <ref type="bibr" target="#b103">[51]</ref>. This scheme is based on the tamper-resistant hardware encryption device called the Clipper chip. This chip has two properties <ref type="bibr" target="#b116">[64]</ref>:</p><p>1. SKIPJACK algorithm provides secret encryption.</p><p>2. Provide a "backdoor" for law enforcement to monitor unlawful commutation.</p><p>Since then, key escrow has been less attractive because the issue with this scheme is how to balance these two properties in a single approach. As we saw in ID-based encryption, the user's private key completely depends on the trusted third party. In 1995, Shamir <ref type="bibr" target="#b115">[63]</ref> indicated:</p><p>"Nowadays, even if the escrowed agent is reliable, In future, other dishonest agencies may replace it; these dishonest agencies will likely decrypt escrowed key of all users suddenly and monitor user's communication for their stake."</p><p>Many approaches explore the problem. Shamir <ref type="bibr" target="#b92">[40]</ref> introduced partial key escrow approaches, Micali and Ney <ref type="bibr" target="#b105">[53]</ref> put forward a shared random function and key escrow scheme, and another improved scheme <ref type="bibr" target="#b84">[32]</ref> which is more advantageous than the previous one.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.3">Motivation</head><p>To remove the key escrow problem from ID-based encryption, several schemes have been discussed in Chapter 3. HIBE <ref type="bibr" target="#b61">[9,</ref><ref type="bibr" target="#b64">12]</ref> and threshold key issuing <ref type="bibr" target="#b59">[7]</ref> need extra storage and computation time infrastructure. So it consumes a lot of machine cycles and is slower than other existing schemes. Certificate-based encryption <ref type="bibr" target="#b97">[45]</ref> has the disadvantage of key revocation of the certificate. Thus, it requires a large amount of storage for the certificate and computational time for verifying those certificates.</p><p>Therefore, this scheme lost the advantage of identity-based encryption. Like certificatebased encryption, Certificate-less encryption <ref type="bibr" target="#b98">[46]</ref> uses user-chosen information but only has implicit authentication with the public key. The sender will never ensure the receiver's public key is original until communication succeeds. In contrast to an existing scheme, VIBE <ref type="bibr" target="#b83">[31]</ref> used the user-chosen secret information and combined his confidential information and partial private generated by PKG to encrypt the message. As a result, the encryption algorithm becomes more complex. Thus, there will be a need to construct identity-based encryption, a partial key escrow problem, and monitor unlawful communication.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.4">Objective of thesis</head><p>The primary objective of this thesis is to develop an efficient democratic model for identity-based cryptosystems that strikes a balance between government monitoring and user privacy. Specifically, we propose a straightforward model for transforming traditional identity-based encryption into a democratic scheme <ref type="bibr" target="#b114">[62]</ref> that preserves the rights of both the government and the people.</p><p>1. Government rights to monitor: In the democratic model, the government can monitor communications through a "backdoor" mechanism, which enables authorized agencies to intercept suspicious messages and detect criminal activities. At the same time, the user's right to privacy is protected, ensuring that their personal information remains confidential and secure.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">User's right to privacy:</head><p>To provide the right to the user that they cannot compromise their privacy.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.5">Structure of thesis</head><p>The structure of this thesis is organized as follows:</p><p>Chapter 2 gives the mathematical background required to comprehend the proposed cryptographic model. It begins by defining fundamental mathematical concepts such as modular arithmetic, algebraic groups, finite fields, and number-theoretic assumptions.</p><p>The chapter further elaborates on the concept of elliptic curves and their significance in cryptography. The chapter also introduces the notion of cryptographic hash functions and random oracles, which are essential for understanding one-way hash functions. Chapter 6 concludes this thesis with a summary of earlier research results and our current solution's limitations. Finally, we conclude the thesis by highlighting that might be the subject of future work.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Mathematical Backgrounds</head><p>This chapter briefly covers the mathematical background to understand cryptographic algorithms presented in the later section. This chapter represents the fundamental of cryptography concepts.</p><p>Note that this chapter only covers the cryptographic fundamentals required to understand the remainder of the thesis. Definitions and theorems are always provided without t proof. For a more in-depth discussion on algebraic topics in this chapter, the reader is referred to <ref type="bibr" target="#b66">[14]</ref>. More information on elliptic curves, Diffie-Hellman assumptions, and pairing-based cryptography can be found in <ref type="bibr" target="#b53">[1]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.1">Mathematics of Cryptography</head><p>In this chapter, we will be ready to understand the mathematics description by discussing the various mathematical tools and properties of cryptography. Some useful functions like field, ring, group, bilinear pairing, and the elliptic curve will be discussed here.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.1.1">Modular Arithmetic</head><p>For any given positive integer 𝑞 and any nonnegative integer 𝑥, if we divide 𝑝 by 𝑛, then we get an integer quotient 𝑞 and an integer remainder 𝑟 that satisfies the following equation:</p><formula xml:id="formula_0">𝑥 = 𝑞𝑛 + 𝑟; 0 ≤ r ≤ n; q = x n</formula><p>Where 𝑛 is the largest integer less than or equal to 𝑛, the remainder 𝑟 is also known as residue or 𝑥 mod 𝑛. The integer 𝑛 is known as the modulus (Mod). Two</p><p>2 Chapter integers 𝑥 and 𝑦 are said to be congruent Mod 𝑛; if 𝑥(𝑀𝑜𝑑𝑛) = 𝑦(𝑀𝑜𝑑𝑛), which can be written as 𝑥 = 𝑦(𝑀𝑜𝑑𝑛). Properties of modular arithmetic 1. [𝑥(𝑀𝑜𝑑𝑛) + 𝑦(𝑀𝑜𝑑𝑛)]𝑀𝑜𝑑𝑛 = (𝑥 + 𝑦)𝑀𝑜𝑑𝑛 2. [𝑥(𝑀𝑜𝑑𝑛) -𝑦(𝑀𝑜𝑑𝑛)]𝑀𝑜𝑑𝑛 = (𝑥 -𝑦)𝑀𝑜𝑑𝑛 3. [𝑥(𝑀𝑜𝑑𝑛) * 𝑦(𝑀𝑜𝑑𝑛)]𝑀𝑜𝑑𝑛 = (𝑥 * 𝑦)𝑀𝑜𝑑𝑛 Set of Residues (𝑍 𝑛 ): In modular arithmetic, the residue of an integer 𝑎 modulo 𝑛 is the remainder obtained when 𝑎 is divided by 𝑛. For example, the residue of 17 modulo 5 is 2, because 17 divided by 5 leaves a remainder of 2. Additive Inverse: Suppose 𝑥 and 𝑦 are two numbers in 𝑍 𝑛 , it is called the additive inverse of one another if 𝑥 + 𝑦 = 0(𝑀𝑜𝑑𝑛). For example: In 𝑍 13 , 6 is the additive inverse of 7. Multiplicative Inverse: Two numbers 𝑥 and 𝑦 are multiplicative inverse to each other if 𝑥 * 𝑦 = 1(𝑀𝑜𝑑𝑛); for example, in 𝑍 13 , the multiplicative inverse of 6 is 11. The integer 𝑥 in 𝑍 𝑛 has a multiplicative inverse that exists only if gcd(𝑥, 𝑛) = 1.</p><p>Some more sets:</p><p>• 𝑍 𝑛 * : It is the subset of 𝑍 𝑛 , and contains only those integers for which multiplicative inverse exists. In 𝑍 𝑛 , each member contains additive inverse, but only a few contain multiplicative inverse. For example, 𝑍 6 = {0,1,2,3,4,5} and 𝑍 6 * = {1,5}.</p><p>• 𝑍 𝑝 : It is similar to 𝑍 𝑝 where 𝑛 is the prime number 𝑝. 𝑍 𝑝 contains all integers between 0 to 𝑝 -1 . Each element that belongs to 𝑍 𝑝 has an additive inverse, and all components have a multiplicative inverse excluding 0. For example: 𝑍 13 = {0,1,2,3,4,5,6, 7, 8, 9, 10, 11, 12}.</p><p>• 𝑍 𝑝 * : It is similar to 𝑍 𝑛 * , where n is the prime number p and the subset of 𝑍 𝑝 . In 𝑍 𝑝 , only some elements have a multiplicative inverse, but in 𝑍 𝑝 * all members have multiplicative inverse excluding 0. 𝑍 𝑝 * contain all integers from 1 to 𝑝 -1 . For example 𝑍 13 * = {1,2,3,4,5,6, 7, 8, 9, 10, 11, 12}.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.1.2">Mathematics of Symmetric Key Cryptography</head><p>The requirements of cryptography are the sets of integers and different operations performed on those sets. The operations applied to the elements of the combination of the different sets are called an algebraic structure. This section will briefly discuss three common algebraic structures: groups, rings, and fields.</p><p>• Group: A group is the set of an element that contains the operation of binary + and satisfies four functions. The properties are as follows:</p><p>1. Closure: If 𝑥 and 𝑦 are the elements of 𝐺, then 𝑧 = 𝑥 + 𝑦 is also the element of 𝐺, meaning if we apply any operation to any group element, the result will also belong to a group 𝐺.</p><p>2. Associativity: If 𝑥, 𝑦 and 𝑧 are the elements of the group 𝐺, then</p><formula xml:id="formula_1">(𝑥 + 𝑦) + 𝑧 = 𝑥 + (𝑦 + 𝑧)</formula><p>3. Existence of identity element: For all x in a group, 𝐺 there exists an identity element '𝑒' such that</p><formula xml:id="formula_2">𝑒 + 𝑥 = 𝑥 + 𝑒 = 𝑥 4.</formula><p>Existence of inverse: For each x in a group, 𝐺 there exists an element '𝑒' such that</p><formula xml:id="formula_3">𝑥 + 𝑥 -1 = 𝑥 -1 + 𝑥 = 𝑒</formula><p>An Abelian group consists of a set of elements and a binary operation that satisfies the commutative, associative, and distributive properties.</p><p>5. Commutativity: If 𝑥 and 𝑦 belong to a group, 𝐺 then 𝑥 + 𝑦 = 𝑦 + 𝑥.</p><p>• Finite Group: A group, 𝐺 is called finite if it contains a finite number of elements; otherwise, it is called an infinite group.</p><p>• Order of Group: The number of unique elements present in the group is known as the group's order. If the number of an element is finite, then it is called finite order; otherwise infinite order.</p><p>• Subgroup: A subset 𝐻 is called the subgroup of a group 𝐺 if 𝐻 it is a group concerning the operation on 𝐺. In other words, if 𝐺 =&lt; 𝑥, +&gt; is a group and 𝐻 =&lt; 𝑦, +&gt; is a group under the same operation, and 𝑦 is a non-empty subset of 𝑥, then 𝐻 is called a subgroup of 𝐺. This definition yields:</p><p>1. If 𝑥 and 𝑦 are the members of both groups, then 𝑧 = 𝑥 + 𝑦 is also the member of both groups.</p><p>2. The same identity element exists for both.</p><p>3. If 𝑥 belongs to both groups, then the inverse of 𝑥 also belongs to both groups.</p><p>4. Each group is itself a subgroup.</p><p>• Cyclic Subgroup: A subgroup is said to be cyclic if the power of an element of the group can generate it.</p><formula xml:id="formula_4">𝑥 𝑛 = 𝑥 + 𝑥 + ⋯ … . . +𝑥</formula><p>• Cyclic Group: It is the group that contains its own Cyclic Subgroup. The Component that can generate a cyclic subgroup can also produce the whole group itself; that component is called the generator of the group. If 𝑔 is a generator, then the elements in the finite cyclic group can be written as • Field: A field 𝐹 =&lt; {. . }, +, × &gt; is a type of commutative ring in which the second operation satisfies all five properties defined for the first operation, except that the identity of the first operation has no inverse.</p><formula xml:id="formula_5">{𝑔 0 , 𝑔 1 , … 𝑔 𝑛-1 }, 𝑤ℎ𝑒𝑟𝑒 𝑔 𝑛 =</formula><p>• Finite Fields: A field with a finite number of an element is called a finite field.</p><p>Galois demonstrated that the field has a finite number of the component that must be 𝑝 𝑘 , where 𝑝 is a prime number and 𝑘 area is a positive integer. A Galois field, 𝐺𝐹(𝑝 𝑛 ), is a finite field with 𝑝 𝑛 elements. While 𝑛 = 1, we have 𝐺𝐹(𝑝) field.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2">Elliptic-Curve Cryptosystem</head><p>The properties and functions of elliptic curves have been studied in mathematics for 150 years. In 1985 Victor Miller <ref type="bibr" target="#b108">[56]</ref> and Neal Koblitz <ref type="bibr" target="#b107">[55]</ref> suggested an elliptic curve as a mathematical tool in cryptography known as the elliptic-curve cryptosystem.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2.1">Definition of Elliptic Curve</head><p>An Elliptic-curve over a finite field is a smooth non-singular cubic projective curve of genus one defined over 𝑘 with distinguished 𝑘 rational points. By, non-singular means all three roots of EC must be distinct. Over any field 𝐹, an irreducible projective curve is a compact manifold that is topological as a sphere with handles.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2.2">The general form of the Elliptic Curve</head><p>The following equation can define any elliptic curve:</p><formula xml:id="formula_6">𝑦 2 = 𝑥 3 + 𝑎𝑥 + 𝑏</formula><p>Where 𝑥 is not a continuous point that is chosen from a particular field 𝐺𝐹(𝑃) or 𝐺𝐹(2 𝑘 ), figure 2.1 shows the elliptic curve <ref type="bibr" target="#b60">[8]</ref> of the equation 𝑦 2 = 𝑥 3 -𝑥 + 1. Let 𝐸 be an elliptic curve over 𝐹 defined by the Weierstrass equation as follow: 𝑦 2 + a 1 xy + a 3 y = 𝑥 3 + a 2 𝑥 2 + a 4 𝑥 + 𝑎 5</p><p>If P is a rational point on elliptic curve 𝐸 and 𝑙 is a line through 𝑃 with a rational slope, it is not necessarily true that 𝑙 intersects 𝐸 in another rational point. However, if 𝑃 and 𝑄 are two rational points on the elliptic curve 𝐸, then the line 𝑃𝑄 intersects 𝐸 in a third rational point 𝑅. This permits us to generate many new rational points from old ones. And also permits us to define a group operation on 𝐸(𝑘) for any elliptic curve defined over any field 𝑘.  should be zero <ref type="bibr" target="#b69">[17]</ref>. Here, zero is a point at infinity. The evaluation of 𝑃 + 𝑄 = 𝑅 is purely algebraic. The coordinates of R are rational functions of the coordinates of 𝑃 and 𝑄, and can be computed over any field. By adding a point to itself repeatedly, we can compute 𝑛𝑃 = 𝑃 + 𝑃 + ⋯ + 𝑃 for any positive 𝑛. We also define 0𝑃 = 0and (-𝑛)𝑃 = -𝑛𝑃. Thus, we can perform scalar multiplication by any integer 𝑛.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2.3">Why Elliptic Curve Cryptography?</head><p>Elliptic curve cryptography (ECC) is a modern public-key technique based on elliptic curve theory. It has gained popularity recently due to its robustness, speed, and efficiency. One of the main advantages of using ECC is the ability to create smaller and faster keys than traditional methods, such as RSA. ECC generates a pair of keys using an elliptic curve equation, a mathematical formula describing a curve on a plane. The keys consist of public and private keys used for encryption and decryption, respectively. The security of the keys is based on the difficulty of solving a mathematical problem related to the elliptic curve equation.</p><p>Compared to RSA, which requires a 1024-bit key for a certain level of security, ECC can provide an equivalent level with only a 164-bit key. ECC is much more efficient in computation power and battery resource usage, making it particularly well-suited for mobile applications. Moreover, the key size of ECC doubles every ten years, which means that traditional methods cannot be used due to the large key size required for maintaining security. ECC offers a practical solution to this problem by allowing for smaller key sizes without compromising security. Table 2.1 shows some currently used RSA key lengths by some organizations. If the key size increase, it increases security, but it causes a severe problem. Decryption will be eight times slower if we double the RSA key length. Table 2.1 gives the RSA key length of some organizations, and Table 2.2 gives the security level of ECC and RSA. Ciphertext size also becomes large. The encryption speed is also infected with a large key length, which is slower by a factor of 4. Table 3.2 gives the security level of the ECC and RSA scheme. Tables 2.1 and 2.2 clearly show that ECC takes less key length than RSAit is more efficient. Application of ECC: ECC has a wide range of applications in various fields, from secure communication to cryptocurrency and IoT devices. Its efficiency, scalability, and strong security guarantees make it an ideal choice for modern cryptography applications.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.3">Cryptographic Hash Function</head><p>A cryptographic hash function <ref type="bibr" target="#b109">[57]</ref> is a function that takes a variable-length string as an input and gives a Fixed-length string, i.e. message digest. 𝐻: {0,1} * → {0,1} 𝑘 where, 𝑘 is the length of a message digest. Let's take a function 𝑓(𝑥) = 𝑦 that maps 𝑥 to the image 𝑦.</p><p>𝑥 is called a pre-image of 𝑦. The output is called hash value or message digests. Here we use 𝑦 = 𝐻(𝑥), which denotes applying the hash function into variable-length message 𝑥 and gives fixed length digest 𝑦. The hash function should follow some characteristics:</p><p>1. 𝑥 should be variable length, and 𝑦 is fixed length.</p><p>2. For given 𝑥, it's easy to compute 𝑦, but vice versa should be very tough, which means the hash function should be the one-way function.</p><p>3. Two messages don't have the same message digest. Hash functions are helpful in a wide range of practical applications. For example, hash functions act as one-way functions in password databases to lighten the sensitivity of the stored content. Besides, hash functions are also valuable tools for data authentication and integrity checking.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.3.1">Random Oracle model</head><p>The Random Oracle model (ROM) was introduced in 1993 by Bellare and Rogaway <ref type="bibr" target="#b110">[58]</ref>.</p><p>A Random Oracle is a theoretical black box that gives a uniformly Randomly chosen result from its output domain for each unique query. A Random Oracle is deterministic, i.e. given a particular input, it will always produce the same output.</p><p>The behaviour of this model is given as follows:</p><p>1. When any new message comes, Oracle creates a fixed size of the digest for that message and saves the message and digest in the Oracle record.</p><p>2. When any message exists, and digest exists for that message, then Oracle puts the message digest on their record.</p><p>3. The digest for any new information is independently chosen from the previous digest.</p><p>In an ideal model, hash functions can be considered random oracles. The hash function output will look like perfect random bit sequences if the hash function is ideal.</p><p>Therefore, hash functions are often examined as Random Oracles in security proofs. Such security proofs are called proven secure in ROM. The next step of these security proofs is replacing the Random Oracle access with the computation of an appropriately chosen (hash) function <ref type="bibr" target="#b110">[58]</ref>. Algorithms that are not requiring such a system in their security proof are said to be proven secure in the standard model.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.3.2">Pigeonhole principle</head><p>The Pigeonhole principle is a fundamental concept in mathematics that states that if there are more objects than containers to put them in, then at least one container must contain more than one object. In other words, if n+1 or more objects are placed into n containers, then at least one container must contain more than one object. The principle is often used to prove various theorems in combinatorics, number theory, and other fields of mathematics. It can be applied in various contexts, such as counting problems, graph theory, and probability theory.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.4">Pairing-Based Cryptography</head><p>The main idea of pairing-based cryptography <ref type="bibr" target="#b53">[1,</ref><ref type="bibr">3]</ref> is to map between two essential groups. It allows a new scheme based on reducing one problem to another, which means reducing the hard problem from one group to the problem more accessible than the first one in another group.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.4.1">Bilinear Maps</head><p>Bilinear Map <ref type="bibr">[6]</ref> allows mapping between different groups. Let 𝐺 1 be the cyclic additive group with generator p. The bilinear map is also called pairing because it allows a pair of elements from 𝐺 1 and 𝐺 2 to another group 𝐺 𝑇 . Suppose 𝐺 1 , 𝐺 2 , and 𝐺 𝑇 are cyclic groups with large prime order 𝑞. Generally, 𝐺 1 , and 𝐺 2 are the additive group, and 𝐺 𝑇 is the multiplicative group. A bilinear pairing is described as 𝑒: 𝐺 1 × 𝐺 2 → 𝐺 𝑇 that satisfy the bilinear property: 𝑒(𝑥𝑃, 𝑦𝑄) = 𝑒(𝑃, 𝑄) 𝑥𝑦 𝑓𝑜𝑟 𝑎𝑙𝑙 𝑃 ∈ 𝐺 1 , 𝑄 ∈ 𝐺 2 𝑎𝑛𝑑 𝑎𝑙𝑙 𝑥, 𝑦 ∈ 𝑍 𝑝 It means if 𝑃 is the generator of 𝐺 1 and 𝑃 is the generator of 𝐺 2 , then 𝑒(𝑃, 𝑄) is the generator of 𝐺 𝑇 . The mapping is computable if some algorithm can efficiently compute 𝑒(𝑃, 𝑄) for 𝑃, 𝑄 ∈ G 1 . If 𝐺 1 = 𝐺 2 pairing is called symmetric otherwise, pairing is known as asymmetric. If 𝐺 1 = 𝐺 2 = 𝐺 𝑇 , pairing is called a self-bilinear map. 2.4.2 Bilinear pairing Suppose 𝐺 1 is a cyclic additive group, 𝐺 2 is a cyclic multiplicative group of the same order 𝑞, and 𝑃 is a generator of 𝑍 𝑞 . A bilinear pairing is a map 𝑒: 𝐺 1 × 𝐺 2 → 𝐺 𝑇 that satisfies the following properties: 1. Bilinearity: For every 𝑃, 𝑄, 𝑅 ∈ G 1 , 𝑒(𝑃, 𝑄 + 𝑅) = 𝑒(𝑃, 𝑄)𝑒(𝑃, 𝑅) 𝑒(𝑃 + 𝑄, 𝑅) = 𝑒(𝑃, 𝑅)𝑒(𝑄, 𝑅) for any 𝑥, 𝑦 ∈ 𝑍 𝑞 𝑒(𝑥𝑃, 𝑦𝑄) = 𝑒(𝑃, 𝑄) 𝑥𝑦 = 𝑒(𝑥𝑦𝑃, 𝑄) 2. Non-Degeneracy: If everything maps to identity, then it is undesirable; if 𝑃 is a generator of 𝐺 1 , then 𝑒(𝑃, 𝑃) is a generator of 𝐺 𝑇 , that means if there exists 𝑃 ∈ 𝐺 1 such that 𝑒(𝑃, 𝑃) ≠ 1, where 1 is the identity element of 𝐺 𝑇 . 3. Computability: An algorithm must efficiently compute 𝑒(𝑃, 𝑄) for every 𝑃, 𝑄 ∈ 𝐺 1 .</p><p>Here, 𝐺 1 and 𝐺 2 are as an additive notation and 𝐺 𝑇 with a multiplicative notation. In general, 𝐺 1 and 𝐺 2 are the groups of points on an elliptic curve, and 𝐺 𝑇 will denote the multiplicative subgroup of the finite field. Map 𝑒 will be Tate pairing or Weil pairing on an elliptic curve over a finite field.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.4.3">Mathematical problem</head><p>Now, we are ready to describe some mathematical problems.</p><p>1. Discrete Logarithm (DLP) problem: Given two random integers 𝑃 ∈ 𝐺 1 and 𝑃 ∈ 𝐺 2 , compute an integer 𝑥, such that 𝑄 = 𝑥𝑃, where 𝑥 ∈ 𝑍 𝑞 . The security of these algorithms relies on the assumption that the DLP is hard to solve.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">Bilinear Diffie-Hellman (BDH) problem:</head><p>Given 𝑥, 𝑦, 𝑧 ∈ 𝑍 𝑞 , and &lt; 𝑃, 𝑥𝑃, 𝑦𝑃, 𝑧𝑃 &gt; compute 𝑒(𝑃, 𝑃) 𝑥𝑦𝑧 ∈ 𝐺 𝑇 . The security of these algorithms relies on the assumption that the BDH is hard to solve.</p><p>3. Computational Diffie-Hellman (CDH) problem: Given 𝑥, 𝑦 ∈ 𝑍 𝑞 and &lt; 𝑃, 𝑥𝑃, 𝑦𝑃 &gt; , compute 𝑥𝑦𝑃 . The security of these algorithms relies on the assumption that the CDH is hard to solve.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.">Decision Diffie-Hellman (DDH) problem [11]:</head><p>Given 𝑥, 𝑦, 𝑧 ∈ 𝑍 𝑞 , and &lt; 𝑃, 𝑥𝑃, 𝑦𝑃, 𝑧𝑃 &gt; check whether 𝑧 = 𝑥𝑦𝑀𝑜𝑑𝑞. The security of these algorithms relies on the assumption that the DDH is hard to solve.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.">Gap Diffie-Hellman (GDH) problem:</head><p>A group of problems where DDHP is easy while CDHP is hard.</p><p>The security of the proposed model discussed in this dissertation is based on the GDH problem.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.5">Security Gaols</head><p>This section defines primary security goals and their notation applied throughout the remaining part of the dissertation.</p><p>1. Confidentiality: This concept ensures that only authorized individuals or entities can access sensitive information. It is essential to keep the information confidential to prevent unauthorized disclosure, misuse, or information theft. 2. Integrity: This concept ensures that information is not altered, tampered with, or destroyed without authorization. Integrity ensures data remains accurate, consistent, and trustworthy throughout its lifecycle. 3. Authentication: This concept ensures that individuals or entities claiming to be who they are have been authenticated and are authorized to access the information. Authentication can be achieved through various means, such as passwords, biometrics, or digital certificates.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.">Authenticity:</head><p>This concept ensures that the information received is from the claimed entity and has not been tampered with or modified in transit. Authenticity is important to prevent data tampering, impersonation, or fraud.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.">Non-repudiation:</head><p>This concept ensures that the sender of a message cannot deny sending the message once it has been sent. Non-repudiation assures that the information received is authentic and has not been modified during transit. It is essential for legal and regulatory compliance.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.6">Summary</head><p>This chapter provided an overview of the basic mathematical concepts required to understand the cryptographic model described in Chapter 3. The chapter began with an introduction to modular arithmetic, algebraic structures, groups, rings, and fields, which </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Cryptographic Building Blocks</head><p>This chapter provides an overview of the essential cryptography components employed in  3 Chapter Consequently, a receiver decrypts/verifies the encrypted/ signed message with his Private Key. One of the good things about this cryptosystem is that the private key must not be transmitted or revealed to anyone. Thus, security increased. It gives the facility a digital signature so the user can never deny its existence. From a security point of view, PKI believed in trusting the user's key rather than theirs. Suppose Eve has made the PKI, who ensures that his Public Key is identified as Alice's Public Key. So, Eve can modify all of Alice's communication as he has Alice's Public Key corresponding to Alice's Private</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1">Public Key Cryptosystem</head><p>Key. Thus, the Public Key system is required depending on the infrastructure that authenticates whether key pairs belong to claimed user. In the real world, this can be achieved with the help of the certificate authority. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1.1">Certification Authority</head><p>In a Public Key Infrastructure (PKI), a Certificate Authority (CA) is a trusted entity that issues digital certificates to entities (such as individuals, organizations, or devices) to verify their identity. A digital certificate is an electronic document containing a public key, the identity of the entity to which the certificate is issued, and other information such as the CA's digital signature, which validates the certificate's authenticity <ref type="bibr" target="#b112">[60]</ref>. A CA acts as a trusted third party that verifies the identity of entities and issues digital certificates that attest to their identity. The CA's digital signature on the certificate ensures that the certificate is authentic and has not been tampered with. When a user wants to establish a secure communication channel with another entity, they can use the digital certificate to verify that entity's identity and encrypt and authenticate their communication.</p><p>In a PKI, there can be one or more CAs that issue digital certificates. A hierarchical structure is often used in which a root CA issues certificates to intermediate CAs, which issue certificates to end entities. This structure allows for scalability and the ability to delegate certificate issuance to different organizations. A CA's role in a PKI is critical, as the trustworthiness of the entire system depends on the trustworthiness of the CA.</p><p>Therefore, CAs are subject to strict security and operational requirements, including the use of secure cryptographic algorithms, regular audits, and secure storage of private keys.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2">Identity-based Cryptosystem</head><p>The concept of identity-based encryption first introduces by Adi Shamir <ref type="bibr">[5]</ref>, co-inventor of the RSA system, in 1984. It uses the user identity as a Public Key instead of the digital signature for encryption and signature verification. User identity can be anything they can uniquely identify, such as email-id, phone number, SSN, etc. Shamir's innovation was to eliminate the need for generating and managing the users' certificates. This feature reduces the complexity of the cryptosystem. This makes it more efficient to provide cryptography for novice users. Shamir's scheme <ref type="bibr">[5]</ref> is based on the integer factorization of RSA. This scheme is built only for signature and verification. It becomes an open challenge for all researchers. Since then, many ID-based encryption schemes <ref type="bibr" target="#b74">[22,</ref><ref type="bibr" target="#b83">31,</ref><ref type="bibr" target="#b91">39,</ref><ref type="bibr" target="#b96">44,</ref><ref type="bibr" target="#b97">45,</ref><ref type="bibr" target="#b98">46,</ref><ref type="bibr" target="#b99">47]</ref> have been introduced. In 2001, Boneh and Franklin <ref type="bibr" target="#b59">[7]</ref> were the first to propose an identity-based encryption scheme based on bilinear pairing. Moreover after, Lynn <ref type="bibr" target="#b94">[42]</ref> and cocks <ref type="bibr" target="#b86">[34]</ref> were also two of several Identity-based encryption schemes.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2.1">Definition</head><p>This scheme consists of four algorithms (Setup, Extract, Encrypt, and Decrypt) as shown in figure <ref type="figure" target="#fig_22">1</ref>.2 and runs as follows:</p><p>• Setup: On input of a security parameter 𝑘, outputs a master secret 𝑚𝑠𝑘 𝑃𝑟 and public parameters 𝑝𝑎𝑟𝑎𝑚𝑠.</p><p>• Extract: Takes public parameters 𝑝𝑎𝑟𝑎𝑚𝑠, the master secret 𝑚𝑠𝑘 𝑃𝑟 , and an 𝐼𝐷 as input and returns the private key 𝑢𝑠𝑘 𝑃𝑟 corresponding to 𝐼𝐷.</p><p>• Encryption: Returns the encryption 𝐶 of the plaintext message 𝑀 on the input of the public parameters 𝑝𝑎𝑟𝑎𝑚𝑠, 𝐼𝐷, and the arbitrary length message 𝑀.</p><p>• Decryption: Decrypts the Ciphertext 𝐶, back to the plaintext message 𝑀 on the input of the private key, 𝐷 𝐼𝐷 corresponding to the receiving identity ID. 3.2.2 IBE vs PKC Public Key Cryptography (PKC) and Identity-Based Encryption (IBE) are two cryptographic systems used for secure internet communication. The main difference</p><p>between the two lies in their approach to generating and verifying key pairs <ref type="bibr" target="#b67">[15]</ref>. PKC and IBE differ in their approach to generating and verifying key pairs. PKC relies on users developing their key pairs and verifying public keys through digital certificates. At the same time, IBE uses identity information to derive public keys and relies on a trusted authority to generate and distribute private keys.</p><p>Advantage: When compared to the traditional PKC, IBC has the following benefits:</p><p>• System complexity: PKI systems are complex infrastructure due to the support of revocation lists and hierarchical organization of CA. On the other hand, the IBE scheme has only one PKG that serves to understand fully the IBE scheme that lightens complex infrastructure requirements.</p><p>• User Friendly: Users with no knowledge of cryptographic primitives no longer have to make aware of the decision on the key length of their key. The Public Key in an IBE scheme is formulated to be transparent to users without knowledge of cryptography. Thus, on average, for any user, it is easy to memorize the username or e-mail address rather than authenticating the Public Key.</p><p>• Certificate Management: In traditional PKI, there is a large number of users who get certifications from a trusted authority. As shown in the previous section,</p><p>we have seen that it is challenging for management and distribute the user's certificate. While this could be avoided in the IBE scheme with the help of PKG, which generates the user's Private Key, using their unique identification entity, on user request.</p><p>Disadvantage: When compared to the traditional PKC cryptosystem, the IBC has the following disadvantages:</p><p>• Single point failure: Every user's Private Key is generated by the PKG in the system, consequently suffering the single point of failure. A new user can no longer get their Private Key if PKG disconnects the communication due to many extraction requests.</p><p>• Key escrow: The PKG extracted and stored the user's private key. A malicious PKG can use this information to tap on the insecure channel between two users.</p><p>The inherent property in ID-based encryption that Private Keys have to share with PKG is called key escrow <ref type="bibr" target="#b72">[20]</ref>. On the contrary, traditional PKI only authenticates private and public keys; it does not have key escrow.</p><p>• Public Key revocation: The generic IBE scheme does not support the revocation of Public Keys. Although, if the recipient is hasty towards his private key's privacy, his Private Key can get compromised. Indeed, several researchers have worked on the same issue <ref type="bibr" target="#b62">[10,</ref><ref type="bibr" target="#b77">25]</ref>. It requires an extra infrastructure that makes the generic IBE system more complex. The main disadvantage of revoking of receiver key is that he can no longer receive an encrypted message. Thus, the practical solution to this problem in <ref type="bibr" target="#b59">[7]</ref> is to append the expiration date along with the Public Key so that Public Key will have no use after the expiration date.</p><p>Similarly, traditional PKI publishes revocation lists for a solution to the same issue, but this list makes PKI more complex.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2.3">Application of Identity-based encryption</head><p>Apart from Data encryption, digital signature, and key management, several other practical applications exist. Boneh and Franklin <ref type="bibr" target="#b59">[7]</ref> show some applications:</p><p>• Public Key Revocation: In an IBE scheme, it is easy to make key expiration by encrypting the message using the Public Key "receiver-ID||current-time". Unlike PKC, the receiver will query the PKG to obtain the new Private Key instead of getting new certificates eve time. Thus, the IBE scheme is a very efficient and powerful way of implementing ephemeral Public Keys. This proposal can also help send messages in the future since the receiver cannot decrypt the message until he obtains the Private Key for the date specified by the sender from the PKG.</p><p>• Managing user credential: encrypt the message using the Public Key "receiver-ID||current-time||Clearance-level" so that the receiver can decrypt the message only if he has given Clearance. Consequently, PKG grants and revokes the user credential.</p><p>• Delegation of the Private Key: Suppose a manager acts as a Private Key</p><p>Generator in a company and has several assistants responsible for different jobs.</p><p>The manager gives his assistants the Private Key corresponding to their responsibilities. So, according to his responsibility, each assistant can decrypt the message but cannot decrypt the message to another assistant because the manager has his master key so that he can decrypt all messages.</p><p>• Forward secure encryption: In a forward-secure encryption scheme <ref type="bibr" target="#b101">[49]</ref>, each time the receiver's Private Key regularly evolves so that the Private Key of a particular period is compromised, every message encrypted in the past will be secure.</p><p>chosen plaintext attacks, where an adversary can manipulate the plaintexts to learn about the encryption key or other sensitive information. More formally, an IBE system is IBE-IND-CPA secure if, for every adversary with an advantage Adv in winning the IBE-IND-CPA game illustrated in Game 1; there exists a negligible function є such that 𝐴𝑑𝑣 ≤ є. Aim: An adversary is challenged to check the IND-CPA security of an IBE scheme by a game. Output: This IBE-IND-CPA Game helps to define the concept of IND-CPA security for IBE schemes. 1. The challenger runs &lt; 𝑚𝑠𝑘 𝑃𝑟 , 𝑝𝑎𝑟𝑎𝑚𝑠 &gt; &lt; -𝑆𝑒𝑡𝑢𝑝(1 𝑘 ) and returns 𝑝𝑎𝑟𝑎𝑚𝑠 to the adversary. 2. The adversary can start querying an Oracle 𝑂 𝑒𝑥𝑡𝑟𝑎𝑐𝑡 (𝐼𝐷 𝑖 ) that returns a private key 𝐷 𝐼𝐷 &lt; -𝐸𝑥𝑡𝑟𝑎𝑐𝑡(𝑝𝑎𝑟𝑎𝑚𝑠, 𝑚𝑠𝑘 𝑝𝑟 , 𝐼𝐷 𝑖 ) corresponding to an adversarydefined identity 𝐼𝐷 𝑖 . 3. The adversary picks two equal-length plaintext messages 𝑀 0 and 𝑀 1 and an identity 𝐼𝐷 𝐶ℎ𝑎𝑙 . The adversary honestly passes &lt; 𝑀 0 , 𝑀 1 , 𝐼𝐷 𝐶ℎ𝑎𝑙 &gt; to the challenger. 4. The challenger picks a Random bit 𝑏 and executes 𝐶 &lt; -𝐸𝑛𝑐𝑟𝑦𝑝𝑡(𝑝𝑎𝑟𝑎𝑚𝑠, 𝑀 𝑏 , 𝐼𝐷 𝑐ℎ𝑎𝑙 ). The challenger gives C to the adversary. 5. The adversary continues querying the Oracle 𝑂 𝑒𝑥𝑡𝑟𝑎𝑐𝑡 (𝐼𝐷 𝑖 ) adaptively. To formally define IND-CCA, we again consider a game between an adversary and a challenger. The adversary is given access to a decryption oracle and can make a polynomial number of queries to this oracle. The challenger selects a random key pair and encrypts a random message, except for a challenge ciphertext. The adversary's goal is to correctly guess the bit that was used to randomly determine the encryption key, which is concealed in the challenge ciphertext. The adversary can submit ciphertexts to the decryption oracle to obtain the corresponding plaintexts.</p><p>A secure encryption scheme is said to satisfy IND-CCA if the adversary's success probability in this game is negligibly close to 0.5. This means the adversary cannot distinguish between the encryption of the two possible messages, even when given access to a decryption oracle that allows them to obtain plaintexts for any ciphertext except the challenge ciphertext.</p><p>IND-CCA is a stronger notion of security than IND-CPA and is typically required in applications where the adversary can obtain the decryption of ciphertexts of their choice.</p><p>Examples of such applications include digital signatures and hybrid encryption schemes.</p><p>In the non-adaptive case, steps 6 and 7 from Game 2 are prohibited. More precisely, an IBE scheme that satisfies Game 2 is considered IND-CCA2 secure. to the adversary.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Goal</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">The adversary can start querying an</head><p>Oracle 𝑂 𝑒𝑥𝑡𝑟𝑎𝑐𝑡 (𝐼𝐷 𝑖 ) that returns a private key 𝐷 𝐼𝐷 &lt; -𝐸𝑥𝑡𝑟𝑎𝑐𝑡(𝑝𝑎𝑟𝑎𝑚𝑠, 𝑚𝑠𝑘 𝑝𝑟 , 𝐼𝐷 𝑖 ) corresponding to an adversarydefined identity 𝐼𝐷 𝑖 . 3. The adversary can start querying another Oracle 𝑂 𝐷𝑒𝑐𝑟𝑦𝑝𝑡 (𝐷 𝐼𝐷𝑖 , 𝐶 𝑗 ) that returns a plaintext 𝑀 𝑗 &lt; -𝐷𝑒𝑐𝑟𝑦𝑝𝑡(𝐷 𝐼𝐷𝑖 , 𝐶 𝑗 ) corresponding to an adversary-defined Ciphertext 𝐶 𝑗 and identity 𝐼𝐷 𝑖 . 4. The adversary picks two equal-length plaintext messages 𝑀 0 and 𝑀 1 and an identity 𝐼𝐷 𝐶ℎ𝑎𝑙 . The adversary honestly passes &lt; 𝑀 0 , 𝑀 1 , 𝐼𝐷 𝐶ℎ𝑎𝑙 &gt; to the challenger. 5. The challenger picks a Random bit 𝑏 and executes 𝐶 &lt; -𝐸𝑛𝑐𝑟𝑦𝑝𝑡(𝑝𝑎𝑟𝑎𝑚𝑠, 𝑀 𝑏 , 𝐼𝐷 𝑐ℎ𝑎𝑙 ). The challenger gives C to the adversary. 6. The adversary continues querying the Oracle 𝑂 𝑒𝑥𝑡𝑟𝑎𝑐𝑡 (𝐼𝐷 𝑖 ) adaptively. 7. The adversary continues querying the Oracle 𝑂 𝑑𝑒𝑐𝑟𝑦𝑝𝑡 (𝐷 𝐼𝐷𝑖 , 𝐶 𝑗 ) adaptively. or step 7, the adversary also loses the game.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3">Key escrow</head><p>As we have seen, the user's identity (ID) is directly used as the Public Key, and the corresponding Private Key is generated by the PKG and stored in it. Therefore, an unusual property is inherent in the proposed IBE scheme. This property is called "key  The trusted authority (PKG) is the one who never has pre-enrolled and wants to share a secret over an authenticated physical medium between all users joined to the same network. That means if two users or confidential channels. They may set up the required channel if both users trust this authority. However, what does "trust" mean here? What parameters are there which define how much possible for a user to trust the authority?</p><p>The Girault proposed in the scheme <ref type="bibr" target="#b74">[22]</ref> defines the levels of trust in PKG into three categories. As shown in Table <ref type="table" target="#tab_6">2</ref>.1, level 1 refers to those PKG who can easily compute a user's private key to impersonate any user without being detected, e.g. IBE. Level 2 refers to PKG, which cannot compute a user's private key but still can impersonate the user by generating fraud certificates, e.g. certificates signature scheme. That is why it requires level 3, in which PKG cannot find computer users' private keys and cannot impersonate any user without being recognized. Level 3 is the most advantageous one.</p><p>The certificate-based scheme is the one which achieved Level 3. By the logic behind the PKC, the Private Key is secret to the user and the Public Key, publicly distributed over the network, need not be protected for confidentiality. It will make them subjected to several active attacks (such as the substitution of a "false"</p><p>Public Key for a "true" one in a PKI directory). That is why, with the key pair and user's identity (ID), it is required to have the user's attribute (G), which guarantees that 𝑢𝑠𝑘 𝑃𝑟 is the original Public Key of the user.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.4">Related work</head><p>This section includes the literature on approaches to solving the key escrow problem in Public Key encryption.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.4.1">Threshold Key Issuing</head><p>Threshold Key Issuing (TKI) allows multiple parties to jointly generate and distribute a secret key without one party having full knowledge <ref type="bibr" target="#b59">[7]</ref>. The idea behind TKI is to split the secret key into multiple shares, such that a certain number of shares are required to reconstruct the key. This number is known as the threshold and is typically chosen such that it is less than the total number of shares but greater than or equal to half of the shares.</p><p>The shares are distributed to the participating parties, and any subset of parties with the threshold number of shares can reconstruct the secret key <ref type="bibr" target="#b114">[62]</ref>. TKI can be implemented using various mathematical techniques, such as Shamir's Secret Sharing or Polynomial Secret Sharing. These techniques involve generating a polynomial over a finite field, with the secret key as the constant coefficient <ref type="bibr" target="#b106">[54]</ref>. The polynomial is then evaluated at different points to obtain the shares distributed to the parties. TKI has several advantages over traditional key distribution methods, such as eliminating the need for a trusted third party to generate and distribute the key and improving the security of the key by distributing it among multiple parties. TKI is commonly used in applications that require high levels of security, such as in financial transactions, military communication, and secure multi-party computation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.4.2">Certificate-Based Cryptosystem</head><p>A Certificate-Based Cryptosystem (CBC) is a public key cryptography scheme in which the identity of a user is verified by a trusted third-party certificate authority (CA) using digital certificates <ref type="bibr" target="#b96">[44,</ref><ref type="bibr" target="#b97">45]</ref>. In a CBC, each user is assigned a public key by the CA, which is included in a digital certificate digitally signed by the CA. The digital certificate contains the user's identity, public key, and CA's digital signature. To send a message to another user, the sender encrypts the message using the recipient's public key, obtained from the recipient's digital certificate. The recipient can then decrypt the message using their private key, which is kept secret.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.4.3">Certificate-Less Public Key Cryptosystem</head><p>Certificate-less Cryptosystems (CLC) are public key cryptography that addresses the key escrow problem by eliminating the need for digital certificates and trusted third-party Certificate Authorities (CAs) <ref type="bibr" target="#b98">[46]</ref>. In CLC, users generate their own public and private keys without the involvement of a CA. The public key is derived from the user's identity information, such as an email address or a username, and a secure hash function. The user generates the private key using a random number generator or another secure process.</p><p>The user's identity information and their public key are then distributed to other users who wish to communicate with them. By eliminating the need for digital certificates and trusted third-party CAs, CLC removes the possibility that a government or other entity may force a trusted third party to divulge a user's private key. Additionally, since the user generates the private key, there is no risk of a third-party holding a copy of the key.</p><p>However, there are some limitations to CLC. One of the main limitations is the difficulty of key distribution since the public key must be distributed through other secure channels, such as email or in-person exchange. Additionally, since there is no centralized authority to verify identities, there is a risk of spoofing or impersonation. Despite these limitations, CLC is becoming an increasingly popular option for secure communication and data sharing in situations where traditional certificate-based systems may not be feasible or desirable, such as in peer-to-peer networks or in situations where there is a lack of trust in centralized authorities.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.4.4">Hierarchical Identity-Based Cryptosystem</head><p>Horwitz and Lynn <ref type="bibr" target="#b85">[33]</ref> suggested a hierarchy of PKGs in identity-based encryption. First, they introduce the 2 Level hierarchical IBE, where total collusion resistance is obtained at the first level and partial collusion resistance at the second Level. So, it has only limited resistance to user collusion. In scheme <ref type="bibr" target="#b91">[39]</ref>, Gentry and Silverberg extend the Boneh and</p><p>Franklin scheme <ref type="bibr" target="#b59">[7]</ref> to construct the fully flexible Hierarchical ID-based encryption scheme. PKGs generate Private Keys only for the users immediately below them in the hierarchy, as shown in figure <ref type="figure">3</ref>.4. Threshold key issue ID Level 1 CB-PKC ID, 𝑢𝑠𝑘 𝑃𝑢𝑏 Level 3 CL-PKC ID, 𝑢𝑠𝑘 𝑃𝑢𝑏 , C Level 2 HIBE 𝐼𝐷 𝑖 Level 1</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.6">Summary</head><p>This chapter summarises the fundamental building blocks of cryptography after presenting the basic mathematics in chapter 2. The first section of the chapter introduces public key encryption and its advantages and disadvantages, particularly in managing user certificates. The second section focuses on the thesis's main topic, identity-based encryption. It defines the basic concept of identity-based encryption and compares it with Public Key Infrastructure (PKI). It also discusses the applications, advantages, disadvantages, and security definition of identity-based encryption. The key escrow problem is introduced in the following section, along with a detailed discussion of some related literature on the subject. Finally, the chapter compares the existing schemes for solving the key escrow problem.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Secure Key Issue</head><p>This chapter expertly designs an ID-based encryption scheme that serves as a fair balance between the users and government agencies. Here, "Fair balance" means the user has the right to privacy, and the government can monitor the user's criminal activity over secure communication. In the first section (section 4.1), we define some existing solutions regarding the key escrow problem that will be useful for describing the given proposed model. Section 4.2 describes the proposed scheme by defining cryptographic goals based on the earlier threat model. In the following section, we design decisions on achieving these objectives and how this impacts our model. Section 4.2 concludes with a concrete proposal in the form of an algorithm and an evaluation section motivating why our cryptographic design goals were successfully met. In the next section (section 4.3),</p><p>we define the security model for our scheme, which includes IND-CCA Type I and Type II attacks. The mathematical implementation of our model is applied in section 4.4.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1">Models of existing solution</head><p>We already discuss several approaches <ref type="bibr" target="#b74">[22,</ref><ref type="bibr" target="#b83">31,</ref><ref type="bibr" target="#b91">39,</ref><ref type="bibr" target="#b96">44,</ref><ref type="bibr" target="#b97">45,</ref><ref type="bibr" target="#b98">46,</ref><ref type="bibr" target="#b99">47,</ref><ref type="bibr" target="#b100">48]</ref> that avoid the Key escrow problem inherited in the generic IBE scheme <ref type="bibr">[5]</ref> in section 3.4. The most common work on Identity-based encryption to avoid key escrow problems is introduced by the Boneh-Franklin <ref type="bibr" target="#b59">[7]</ref> using the threshold cryptography technique <ref type="bibr" target="#b102">[50]</ref>. But it requires a large amount of infrastructure and more computational cost to implement such a scheme. Likewise, the same drawbacks exist with the hierarchal IBE <ref type="bibr" target="#b61">[9,</ref><ref type="bibr" target="#b64">12]</ref>, where the tuple of identities identifies the public key user from roots to him. Certification-based 4</p><p>Chapter encryption <ref type="bibr" target="#b97">[45]</ref> does not preserve the identity-based encryption property. The public key revocation is additionally a significant disadvantage. However, the public key revocation is not a big issue; it can be removed by managing the key revocation list. That becomes a new problem and may require a high volume of space to store the certificates and computational time to verify those certificates. To solve the problem of managing revocation list, certificate-less encryption <ref type="bibr" target="#b98">[46]</ref> was introduced. Indeed, this public key encryption variant solves many problems: key escrow problem, public key revocation, management of certificates, etc. it provides only implicit authentication to the public key.</p><p>That means the sender will never know whether the given public key is the original public key of the recipient.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Proposed Model: M-IBE</head><p>This section describes the cryptographic requirements for designing the proposed model.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.1">Security Goals</head><p>The standard general goals stated that the proposed scheme should be user-friendly and efficient. In addition to these generals' goals, it is also to define some cryptographic goals. A well-made encryption scheme should be able to achieve the following cryptographic goals:</p><p>• Authenticity: The recipient has reasonable assurance that the claimed sender sends the message.</p><p>• Confidentiality: The message is protected from disclosure by unauthorized persons.</p><p>• Integrity: The message is protected from being modified by unauthorized users.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>•</head><p>No key escrow: The user's private keys are only disclosed to the owner of the claimed identity. No other user should be able to retrieve the private key.</p><p>• Key validation: Each user in the system should be able to verify the correctness of their private key.</p><p>• Limited key validity: The user's private key should not be valid for a limited period.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.2">Design to Achieve Goals</head><p>In this section, our model is modified according to achieving the following cryptographically goals:</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Authenticity:</head><p>Authenticity can be achieved by depending on authenticated encryption scheme. The authentication mechanism still depends on the security guarantees of the IBE scheme.</p><p>Since a trusted third party, known as a private key generator, verifies the user's unique identifier corresponding to their public key. Accordingly, such an IBE confirms that a message encrypted with a public identifier can only be seen by the corresponding private key. If the authentication mechanism is insufficient, thus anyone could use it to impersonate the user. Our proposal is based on the Boneh-Franklin IBE scheme.</p><p>Therefore, the scheme achieves authenticity.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Confidentiality:</head><p>Confidentiality can be achieved by applying an encryption scheme before sending a message. Identity-based encryption (IBE) can reach confidentiality and the general design goals of usability and applicability. During the design of our scheme, we can consider having several IBE schemes: Boneh and Franklin IBE <ref type="bibr" target="#b59">[7]</ref>, Sakai and Kasahara IBE <ref type="bibr" target="#b111">[59]</ref> and Gentry IBE <ref type="bibr" target="#b89">[37]</ref>. For the convenience of the desirable issue, we use the Boneh-Franklin IBE scheme as the encryption scheme.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Integrity:</head><p>Similar to authenticity, integrity can also be achieved depending on the security guarantees of the IBE scheme. If the scheme is sufficiently authenticated, no one can impersonate the user. As discussed in our proposal, our proposed scheme is derived from the Boneh-Franklin scheme.</p><p>No Key Escrow:</p><p>The IBE scheme inherently implies a property known as key escrow, which is undesired in the most practical system. To bypass the key escrow problem, multiple PKG was implemented as a distributed key generation system for IBE and several other schemes discussed in Section 3.4. To avoid the key escrow problem, we have proposed a scheme that will be discussed in section 4.2.4. Definition 4.4: (Private Key Privacy Organization) A single key privacy agency is a Non-Government Organization who has works between the user and PKG (Government agency) for the sake of users. PKPO is introduced to provide the privacy service to the private key by providing their signature in a confused manner.</p><p>mapping, 𝐻 1 : {0,1} * → 𝐺 * , 𝐻 2 : 𝐹 * → {0,1} 𝑙 , 𝐻 3 : {0,1} 𝑛 × {0,1} 𝑛 → 𝑍 𝑞 , 𝐻 4 : {0,1} 𝑛 → {0,1} 𝑛 , and 𝐻 5 : 𝐺 2 → 𝑍 𝑞 are five hash functions, where 𝑙 denotes the length of a message. The PKG randomly chooses a master key 𝑝𝑘𝑔 𝑃𝑟 ∈ q and generate his public key 𝑝𝑘𝑔 𝑃𝑢𝑏 = 𝑝𝑘𝑔 𝑃𝑟. 𝑃 . And then, KPA randomly chooses a key 𝑝𝑘𝑝𝑜 𝑃𝑟 ∈ Z q and create his public key 𝑝𝑘𝑝𝑜 𝑃𝑢𝑏 = 𝑝𝑘𝑝𝑜 𝑃𝑟. 𝑝𝑘𝑔 𝑃𝑢𝑏 . Now, publicly distribute the parameter &lt; 𝐺, 𝐹, 𝐻 1 , 𝐻 2 , 𝐻 3 , 𝐻 4 , 𝐻 5 , 𝑝𝑘𝑔 𝑃𝑢𝑏 , 𝑝𝑘𝑝𝑜 𝑃𝑢𝑏 &gt;. 2. Key Extract: As shown in figure 4.1, three entities (user, PKG, and PKPO) are participating in issuing a private key. This process includes the following three stages: ▪ Partial Key Supply: The user chooses 𝑢𝑠𝑘𝑔 𝑃𝑟 ∈ Z q and generate his public key 𝑢𝑠𝑘 𝑃𝑢𝑏 = 𝑢𝑠𝑘 𝑃𝑟 𝑃 and request PKG to provide a partial private key by giving 𝑢𝑠𝑘𝑔 𝑃𝑢𝑏 and ID as follows: ▪ Check the identification of users ▪ Compute the public key of a user as 𝑄 𝐼𝐷 = 𝐻 1 (𝐼𝐷, 𝑃 0 , 𝑃 1 ) ▪ Compute Partial private key 𝑄 𝑝𝑘𝑔 = 𝑝𝑘𝑔 𝑝𝑟 𝑄 𝐼𝐷 𝐻 5 (𝑒(𝑝𝑘𝑔 𝑃𝑟 𝑢𝑠𝑘 𝑃𝑢𝑏 , 𝑝𝑘𝑔 𝑃𝑢𝑏 )) 𝑇 𝑝𝑘𝑔 = pkg Pr Q pkg ▪ Moreover, it sends it to the user ▪ Key Securing: The user requests PKPO to provide key privacy service by sending ID, 𝑢𝑠𝑘 𝑃𝑢𝑏 , 𝑇 𝑝𝑘𝑔 and 𝑄 𝑝𝑘𝑔 ▪ Check 𝑒( 𝑇 𝑝𝑘𝑔 , 𝑃) == 𝑒(Q pkg , pkg Pub ) ▪ Compute Q pkpo = pkpo Pr Q pkg H 5 (e(pkpo Pr usk Pub , pkg Pub )) 𝑇 𝑝𝑘𝑝𝑜 = pkpo Pr Q pkpo . ▪ Send 𝑇 𝑝𝑘𝑝𝑜 and Q pkpo to the user. ▪ Key Fetching: The user retrieves his private key 𝐷 𝐼𝐷 = 𝑄 𝑝𝑘𝑝𝑜 H 5 (e(pkg Pub, pkg Pub ) usk Pr ). H 5 (e(pkpo Pub, pkpo Pub ) usk Pr ) 𝐷 𝐼𝐷 = pkg Pr . pkpo Pr 𝑄 𝐼𝐷</p><p>The user can check the correctness of his private key by e(QID, pkg Pub ) ?= e(DID, P).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3">Security Model</head><p>Now, we are ready to define the adversaries for the M-IBE scheme.</p><p>The general security definition for IBE requires the indistinguishability of encryptions against a fully-adaptive chosen ciphertext attacker (IND-CCA). By this definition, we have two entities, the adversary 𝐴𝑑𝑣 and the challenger . After presenting the random public key, the adversary controls it in three phases. In phase 1, 𝐴𝑑𝑣 randomly constructs decryption queries on the Ciphertext. In the challenge phase, 𝐴𝑑𝑣 choose 𝑀 0 , 𝑀 1 and C* for messages 𝑀 𝑏 given by the challenger, where 𝑀 0 , and 𝑀 1 are two random messages and C* is challenged Ciphertext. Phase 2 continues constructing more decryption queries; indeed, it cannot have info for the decryption of C*. Finally, 𝐴𝑑𝑣 guess bit 𝑏 ′ corresponds to 𝑏. The 𝐴𝑑𝑣 's advantage is defined to be</p><formula xml:id="formula_7">𝐴𝑑𝑣(𝐴𝑑𝑣) = 2 (𝑃𝑟[𝑏 ′ = 𝑏] -<label>1 2 )</label></formula><p>Here, we explore the BF model to permit adversaries to extract the partial private keys, or private keys, or both, for random Identities and replace the public key with identity with a random value.</p><p>A list of activities that an adversary can take against an M-IBE scheme is given below:</p><p>• Partial Key Supply: To derive the partial key &lt; 𝑄 0 , 𝑇 0 &gt; for user 𝐴𝑑𝑣 ,  provides the output by running the algorithm Partial-key-supply.</p><p>• Key securing: To acquire the mystified private key 𝑄 1 for user 𝐴𝑑𝑣,  gives output by running the algorithm key-securing.</p><p>• Key obtaining: 𝐴𝑑𝑣 requests the user's private key. To compute the actual private key  , the algorithm key extracts if the corresponding public key is not changed.</p><p>• Request public key: Suppose 𝐴𝑑𝑣 has public keys. To calculate the public key PA for user 𝐴𝑑𝑣, C runs the algorithm set-public-key and responds to 𝐴𝑑𝑣.</p><p>• Replace public key: 𝐴𝑑𝑣 can adaptively replace the public key PA for user 𝐴𝑑𝑣 with any random P'A.</p><p>• Decryption query: To get private key SA,  runs the algorithm Set-Private-Key and then the decryption algorithm and respond to 𝐴𝑑𝑣, if 𝐴𝑑𝑣 has not substituted the user's public key. Otherwise,  could not decrypt. However, our need is that  decrypts Ciphertexts for those public keys have been substituted. However, 𝐴𝑑𝑣 is permissible to substitute the public key for 𝐼𝐷 𝑐ℎ with a new ID and then request a decryption of C*. We assumed that adversaries who have master-key were not permitted to substitute public keys. Here, we will try our PKG to achieve the same level of trust as CA in a traditional PKI. So we will classify adversaries into two types with different potentials: M-IBE Type I Adversary: Denoted as  I , such adversaries do not have master-key. Indeed,  I can request public keys and substitute them with new values of its choice, extract partial private and private keys and constructs decryption queries for each identity of its choice. Additionally, some limitations on adversary 𝐴𝑑𝑣 𝐼 are: 1. Given 𝐼𝐷 𝑐ℎ , 𝐴𝑑𝑣 𝐼 cannot extract the private key. 2. If the user's public key has already been substituted, 𝐴𝑑𝑣 𝐼 cannot request the private key for any identity. 3. Before the challenge phase, 𝐴𝑑𝑣 𝐼 do not allow substituting the public key for the challenge identity 𝐼𝐷 𝑐ℎ and extracting the partial private key. 4. In Phase 2, 𝐴𝑑𝑣 𝐼 does not allow the construction of a decryption query on the challenge Ciphertext 𝐶 𝑐ℎ with an identity 𝐼𝐷 𝑐ℎ and public key 𝑃 𝑐ℎ . M-IBE Type II Adversary: Denoted as 𝐴𝑑𝑣 𝐼𝐼 , such adversaries have master-key. Indeed, 𝐴𝑑𝑣 𝐼 cannot substitute the public key. Using the master key, Adversary 𝐴𝑑𝑣 𝐼𝐼 can compute partial private keys. Additionally, some limitations on adversary 𝐴𝑑𝑣 𝐼 are: 1. 𝐴𝑑𝑣 𝐼𝐼 does not allow substituting public keys. 2. 𝐴𝑑𝑣 𝐼𝐼 does not allow extracting the private key for 𝐼𝐷 𝑐ℎ . 3. In Phase 2, 𝐴𝑑𝑣 𝐼 do not allow the construction of a decryption query on the challenge Ciphertext 𝐶 𝑐ℎ with an identity 𝐼𝐷 𝑐ℎ and the public key 𝑃 𝑐ℎ . Chosen Ciphertext security for M-IBE M-IBE scheme is semantically secure against an adaptive chosen Ciphertext attack ('IND-CCA secure") if no polynomial bounded adversary of Type I or Type II has a non-negligible advantage against the challenger in the following game: • Setup: For security parameter K, Challenger  runs the Setup algorithm. It responds 𝐴𝑑𝑣 to the output of system parameters 𝑝𝑎𝑟𝑎𝑚𝑠. Challenger  keeps the master key for Type I adversary. Otherwise, it gives to 𝐴𝑑𝑣. • Phase 1: 𝐴𝑑𝑣 provides the number of requests. Each request for partial private key extraction, a private key extraction, a public key, a substitute public key or a decryption query for an individual user. According to the rules defined above, these queries can be run adaptively. • Challenge Phase: 𝐴𝑑𝑣 responds to the challenge identity 𝐼𝐷 𝑐ℎ and two equallength message 𝑀 0 and 𝑀 1 . The Challenger randomly chose a bit b ∈ {0, 1} and computes 𝐶 𝑐ℎ . If encryption gives ┴, then 𝐴𝑑𝑣 lose the game. Otherwise, 𝐶 𝑐ℎ is given to 𝐴𝑑𝑣.</p><p>• Phase 2: According to the rule defined above,  provides a second sequence of requests similar to Phase 1.</p><p>• Guess: A response with a guess 𝑏 ′ ∈ {0, 1} . If 𝑏 ′ = 𝑏, 𝐴𝑑𝑣 wins the game with</p><formula xml:id="formula_8">an advantage 𝐴𝑑𝑣(𝐴) = 2 (𝑃𝑟[𝑏 ′ = 𝑏] -<label>1 2</label></formula><p>)</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.4">M-IBE schemes from Pairing</head><p>In this section, we implement identity-based encryption free from key escrow problems based on our proposed model. The first scheme, BasicM-IBE, is identical to the BasicIdent scheme of <ref type="bibr" target="#b59">[7]</ref> and contains the basis of our most important scheme FullM-IBE. The master scheme is identical to the scheme FullIdent of <ref type="bibr" target="#b59">[7]</ref>. Assuming the difficulty of GBDHP, our scheme is IND-CCA secure.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.4.3">Basic M-IBE scheme</head><p>Here, we describe the four algorithms required to understand the fundamental ideas underlying our scheme that is identical to BasicIdent <ref type="bibr" target="#b59">[7]</ref>.</p><p>Bob can decrypt the message.</p><p>Output: Alice sends an encrypted Ciphertext C that Bob successfully decrypts without losing confidentiality.</p><p>1. Setup: This phase is identical to the Setup phase of Algorithm 4.1.</p><p>2. Key extract: Identical to the KeyExtract phase in algorithm 4.1.</p><p>3. Encrypt: Alice randomly chooses 𝑟 ∈ Z q and may encrypt her message using Bob's identity ID by</p><p>• Compute 𝑟 = H 3 (𝑧, 𝑀), where 𝑧 ∈ {0,1} * • 𝑄 𝐼𝐷 = 𝐻 1 (𝐼𝐷, 𝑝𝑘𝑔 𝑃𝑢𝑏 , 𝑝𝑘𝑝𝑜 𝑃𝑢𝑏 ) and 𝑔 = 𝐻 2 (𝑒(𝑄 𝐼𝐷 , 𝑝𝑘𝑝𝑜 𝑃𝑢𝑏 )) • The resulting Ciphertext 𝐶 =&lt; 𝑈, 𝑉, 𝑊 &gt;=&lt; 𝑟𝑃, 𝑧 ⊕ 𝐻 2 (𝑔 𝑟 ), 𝑀 ⊕ 𝐻 4 (𝑧) &gt; • C Sent to Bob. 4. Decrypt: Bob can decrypt C by computing</p><p>• 𝑔′ = 𝑒(𝑈, 𝐷 𝐼𝐷 ) and 𝑧 ′ = 𝑉 ⊕ 𝐻 2 (𝑔′)   • 𝑀 ′ = 𝑊 ⊕ 𝐻 4 (𝑧′) and 𝑟 = 𝐻 4 (𝑧 ′ , 𝑀)</p><p>Return the message 𝑀 ′ if U= 𝑟′𝑃.</p><p>The scheme's consistency will be discussed in the next chapter, and we analyze that in decryption, z' and encryption z are equals. This completes the FullM-IBE scheme.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.5">Summary</head><p>This chapter presents the implementation of the scheme proposed in section 1.1, which aims to address the key escrow problem in cryptographic systems. Firstly, a review of the related scheme model is provided. Subsequently, cryptographic objectives that must be achieved in the proposed scheme are defined, and a model is designed to meet these objectives. In the subsequent section, an algorithm for the proposed scheme is described, and BasicM-IBE and FullM-IBE are implemented, which are similar to BasicIden and FullIden as presented in <ref type="bibr" target="#b59">[7]</ref>. The Full-IBE is designed to be secure against IND-CCA adversaries.</p><p>a)  outputs 𝑄 1 (𝐼𝐷) = 𝑄 𝑖 if ID found in the 𝐻 1 list, b)  Randomly chooses 𝑏 𝐼 from 𝑍 𝑞 , gives 𝐻 1 (𝐼𝐷) = 𝑏 𝐼 𝑄 and adds the tuple &lt; 𝐼𝐷 𝑖 , 𝑄, 𝑏 𝐼 , ┴, ┴ , 𝑥 𝑖 , 𝑦 𝑖 , 𝑃 0 , 𝑃 1 , 𝑃 2 &gt; to the 𝐻 1 list, if ID does not find in the 𝐻 1 list such that ID is I-th distinct 𝐻 1 query made by 𝐴𝑑𝑣 𝐼 . c) Otherwise, when ID does not exist in the list and ID is the i-th distinct 𝐻 1 query made by 𝐴𝑑𝑣 𝐼 where i ≠I,  randomly chooses bi, xi and yi from Zq, givesH(ID) = bi.P and adds &lt;ID, bi.P, bi, xi, yi, xi.P, xi.P0, yi.P&gt; to the H1 list if ID does not find in list where ID is the i-th H1 query such that I ≠ i. After the definition of H1, the FullM-IBE partial Private Key for IDi = bi.P0 such that i ≠ I. Thus, the Public Key is &lt;xi.P, xi.P0&gt;, and the Private Key is &lt;xi.bi.P0&gt; for IDi when c = 0. Otherwise,  can compute s0.bI.Q, the partial Private Key of IDI.</p><p>• H2 and H4 queries:  I makes H2 queries and passed them to the challenger .</p><p>Adversary I makes H4 query and  passes this query to , indeed, keeps list &lt;σ'i,H4,i&gt; and 's answer to them.</p><p>• H3 queries:</p><p>1) Adversary  I makes H4 query and  passes this query to , indeed, keeps list &lt;σ'i.Mj, H3,j&gt; and C's answer to them.</p><p>2)  manages a list of tuples &lt; Q, bi, xi, yi, N1i, N2i&gt; which is initially empty.</p><p>• H5 queries:</p><p>Let Zi= e(xi.yi.P, -xi.bi.P) When I queriesH5, responds as follows: Phase 1: I receives params from  and make many requests for a user, including a partial Private Key extraction, a private key extraction, a request for a public key, a substitution a Public Key or a decryption query.  replies to these requests as follows: • Partial Private Key Extraction: Let I request IDi. One of the three cases will occur: ▪  outputs with biP0, if i ≠I. ▪  aborts, if i = I and c = 0. ▪  outputs with s.bI.Q, if i = I and c = 1. • Private Key Extraction: Let AI make the request on IDi. Let the Public Key for IDi has not been the substitute. One of the two cases will occur: ▪ Brespondsxi.bi.P0, if i ≠ I. ▪ Otherwise, B aborts. • Request for Public Key: Let I request IDi. returns &lt;xi.P, xi.P0&gt; by obtaining the H1 list. Finally, now we examine the probability that  in decryption query phase correctly controls all qD decryption queries of 𝐴𝑑𝑣 𝐼 . Thus, 's advantage is at least є 2q 1 q 5 λ q D . It follows that either 's advantage as a Type I adversary or 's advantage as a Type II adversary at least one public information share on the communication network. At the same time, CL-PKC takes three public pieces of information.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.3.3">Compared with other schemes</head><p>Compared with CB-PKC, our scheme preserves the advantage of ID-based cryptography and has one number of public information on the network. At the same time, CB-PKC has two numbers of public information, as shown in Table <ref type="table">5</ref>.2. Both schemes achieve the third level of trust on PKG. From a computational point of view, our scheme is faster in encryption and decryption. At the same time, our scheme is slightly slower than another scheme in the key issuing process.</p><p>Compared to VIBE, as shown in Tables 5.1 and 5.2, our scheme is performed well and faster in encryption algorithm and has a minimum number of public information shared on the network. Here, we analyze that our scheme is the most advantageous variant of the generic IBE scheme that removes the inherited key escrow problem with the following advantage:</p><p>• Minimum of public information shared on the network • Achieve trust level 3 on PKG</p><p>• Preserve the advantage of the ID-based cryptosystem.</p><p>Moreover, with the minimum computational cost of encryption and decryption, our scheme will be more efficient for low-power consumption devices, where key issuing overload dominates the server side.  CLAIM 4: Key recovery. In the case of PKG compromising the Private Key by the PKG, the user and the PKPO may claim that the Private Key DID has been compromised by PKG and file a legal case against the PKG in court. Consequently, PKG will be present in the Court for their punishment. In the case of the malicious user, PKPO may claim on the victim's request that the user may be malicious and acting in a mischievous activity.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.4">Claim</head><p>Consequently, all three entities (PKG, PKPO, and user) will present in court on-a legal court order and release their master key to derive the user Private Key DID. Thus, the judge may recover the Private Key and decrypt the malicious message.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.5">Summary</head><p>This chapter demonstrates the consistency of the encryption and decryption algorithms 4.2 and 4.3. Furthermore, we prove that our scheme is secure against IND-CCA1 of type I and Type II attacks, as stated in Theorem 1, supported by Lemma 2 through Lemma 7.</p><p>In the subsequent section, we perform a comparative analysis of our scheme with HIBE, VIBE, threshold key issuing, CL-PKC, and CB-PKC. Based on the results in Tables 5.1</p><p>and 5.2, our scheme outperforms the others. Finally, we assert that our scheme of transforming a generic IBE into a fair ID-based cryptosystem is consistent with the objective stated in Chapter 1 (Section 1.4). applications in various domains, such as healthcare, finance, and education, warrant further investigation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.1">Applications and Future Scope</head><p>The resulting infrastructure, designed for low computation on the client side and overload shifted to the server side (PKG) on the cloud, is environment-friendly, practical, and instantly ready to use.</p><p>• The infrastructure is instantly ready to use, eliminating the need for additional steps once the user joins the network and issues their private key. The encryption and decryption process requires minimal computation cost and the lowest number of public information sharing on the network, providing a user-friendly and efficient solution.</p><p>• Moreover, the proposed scheme is environment-friendly, as compared to previous approaches. It balances the user's right to privacy with the government's right to monitor unlawful messages, utilizing a server-side approach to reduce computation on the client side.</p><p>• The infrastructure is also practical, as wireless devices increasingly influence daily life, with applications expected to increase daily. The proposed solution shifts the maximum computation operation to the server side, reducing the computations required on the client side. Thus, the proposed solution is applicable for encryption and decryption in low-computation devices like mobiles, laptops, and tablets on the customer side.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>1 . 4 1. 3 4 1. 4 5 1. 5 5 2. 8 2. 1</head><label>1434455581</label><figDesc>Introduction ..........................................................................................................12 1.1 Problem Statements ......................................................................................................................... 2 1.2 Recent Solutions .............................................................................................................................. 3 1.2.1 Existing Solutions to key escrow Problem ............................................................................ 3 1.2.2 Existing solution to key escrow ............................................................................................. Motivation ........................................................................................................................................ Objective of thesis............................................................................................................................ Structure of thesis ............................................................................................................................ Mathematical Backgrounds ........................................................................................................ Mathematics of Cryptography ......................................................................................................... 8 2.1.1 Modular Arithmetic ............................................................................................................... 8 2.1.2 Mathematics of Symmetric Key Cryptography ................................................................... 10 2.2 Elliptic-Curve Cryptosystem ........................................................................................................... 12 CONTENTS vi</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Figure 2 . 12 Figure 2 . 13 Figure 3 . 22 Figure 3 . 24 Figure 3 . 31 Figure 3 . 34 Figure 4 .</head><label>2122133223243313344</label><figDesc>Figure 2. Graphical representation of elliptic curve y 2 = x 3 -x + 1 ............................. 12</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>Additionally, bilinear mapsChapter 4 Chapter 5</head><label>45</label><figDesc>are presented as a response to different variants of the Diffie-Hellman assumption. The concept of bilinear maps enables the derivation of critical cryptographic problems such as the Bilinear Diffie-Hellman problem (BDH), Computational Diffie-Hellman problem (CDH), and Gap Diffie-Hellman problem (GDH), which ensure the security of the proposed constructions. Chapter 3 of the dissertation focuses on the building blocks of cryptography and their relevance to the proposed solution. The chapter begins with a review of traditional Public Key Infrastructures (PKI) and their limitations. The following section elaborates on the Identity-Based Encryption (IBE) concept and its advantages over PKI. Subsequently, the chapter compares IBE with PKI, highlighting the security aspects of IBE, including IND-CPA, IND-CCA, and ANO-IBE. The chapter also explores related work in the field of IBE, discussing various schemes that have been proposed and their relative strengths and weaknesses. of the dissertation presents the design of a novel ID-based encryption scheme free from key escrow problems. The chapter begins by defining a model that describes the solution to avoid key escrow. This model identifies the current security threats, potential adversaries, and realistic assumptions about their capabilities. Subsequently, the chapter defines various cryptographic design goals to address the security threats identified earlier. These design goals serve as a guideline to construct a practical algorithm based on the cryptographic building blocks introduced in Chapter 3. Towards the end of the chapter, the proposed model is explored to implement various cryptographic protocols, including ID-based encryption, ID-based signature, and authenticated ID-based key exchange protocols. The chapter provides a detailed analysis of the proposed model's strengths and weaknesses and compares it with existing schemes in the literature. By presenting a novel ID-based encryption scheme that is free from key escrow problems, the chapter contributes to the advancement of secure and efficient cryptographic protocols. The proposed design goals and practical algorithm provide a framework for implementing practical solutions that address the security threats associated with key escrow.of the dissertation provides a detailed analysis of the security and performance of the proposed ID-based encryption, ID-based signature, and authenticated key agreement protocols. The chapter begins by presenting formal proof of the security of the proposed model, demonstrating that it satisfies the required security properties, such as confidentiality, integrity, and authenticity. Subsequently, the chapter analyzes the performance of the proposed protocols in terms of point addition, exponentiation, and scalar multiplication, comparing them with existing protocols in the literature. This analysis provides insights into the efficiency of the proposed protocols and demonstrates their practicality for real-world applications.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><figDesc>𝑒 Note: A cyclic group can have many generators. Example: The group 𝐺 =&lt; 𝑍 * , +, × &gt; is a cyclic group with two generators, 𝑔 = 3 and 𝑔 = 7. • Ring: A ring 𝑅 =&lt; {. . }, +, ×&gt; is an algebraic structure with two operations. The first operation (+) satisfies all five properties of the abelian group: Closure, Associativity, Commutativity, Existence of inverse and Existence of identity. The second operation (×) is distributed over the first operation and satisfies only the two properties: Closure and Associativity. The ring in which the second operation satisfies the commutative property is called a commutative ring.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head>Figure 2 . 1</head><label>21</label><figDesc>Figure 2.1 Graphical representation of the elliptic curve 𝒚 𝟐 = 𝒙 𝟑 -𝒙 + 𝟏</figDesc><graphic coords="29,178.50,388.27,253.85,177.25" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><head>Figure 2 . 2</head><label>22</label><figDesc>Figure 2.2 Rational points on line over an elliptic curve.</figDesc><graphic coords="30,112.98,147.31,422.19,154.91" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><head>Figure 2 .</head><label>2</label><figDesc>Figure 2.2 denote that the sum of three rational points on line 𝑙 over elliptic curve 𝐸</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7"><head>4 . 3 . 4 .</head><label>434</label><figDesc>The hash function must be easy to compute. Suppose x and y are messages; then 𝐻(𝑥) = 𝐻(𝑦) is infeasible. Today, the Hash function is used in various cryptographic techniques like message authentication code (MAC), digital signature, Random sequence generators used in key agreements, authentication protocol, etc. Hash function needs to satisfy the four main properties:1. Pre-image Resistance: Given a digest 𝑦 = 𝐻(𝑥), it is computationally infeasible to compute x. That is, the computational cost of getting the input 𝑥 must be ≥ 2k, where 𝐻(𝑥) = 𝑦 and |𝑦| = 𝑘.2. Pre-image resistance is the hash function for which pre-image can't be solved efficiently.Second pre-image resistance: Given message 𝑥, it is computationally infeasible to compute a different message 𝑥 0 with the same message digest, i.e. 𝐻(𝑥) = 𝐻(𝑥 0 ) is infeasible. It is called second pre-image resistance.Collision resistance: Finding two messages with the same message digest is impossible. That means if 𝑥 and 𝑥 0 are two different messages, then 𝐻(𝑥) = 𝐻(𝑥 0 ) is incomprehensible. This property is known as collision resistance.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8"><figDesc>were fundamental to cryptography. The section then covered elliptic curve cryptography, including elliptic curve definitions, graphical representations, and applications. The chapter also discussed hash functions and random oracles and the differences in security between random oracle assumptions and the standard model. It introduced various versions of the Diffie-Hellman problem, starting from the discrete logarithm assumption and leading to the Gap Diffie-Hellman assumption. Finally, the chapter concluded with an overview of basic cryptographic terminology, providing a comprehensive understanding of the cryptographic concepts and techniques necessary for the following chapters.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9"><figDesc>constructing a fair model of ID-based encryption free from key escrow issues. It introduces Public Key Infrastructures (PKIs) and their associated constraints. Subsequently, the chapter delves into Identity-Based Encryption (IBE), an alternative to conventional PKIs, and examines its benefits and drawbacks. Additionally, various solutions to the key escrow problem are presented. The chapter also outlines different security definitions. Finally, Distributed Key Generation (DKG) is discussed as a possible solution to IBE's inherent key escrow challenge.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10"><head>A</head><figDesc>class of asymmetric cryptosystems based on an algorithm takes two different keys; one for encryption and another for decryption. The user generates the key pair (𝑢𝑠𝑘 𝑃𝑟 , 𝑢𝑠𝑘 𝑃𝑢𝑏 ). The private key is kept secret to himself; on the other hand, the Public Key is publicly available to everyone. The pair of private and public keys allows secure communication between two never met parties. To verify the linking of a Public Key to the corresponding user, a trusted authority must prevent an impersonation attack. All Public Keys are authenticated by the infrastructure known as Public Key Infrastructure (PKI). The sender requests the CA to issue the received public key whenever needed. On receiving the request, the CA provides the receiver with a public key if only the sender's identity is valid. Now, the sender encrypts/signs the message with a public key, yields the ciphertext and sends it to the receiver over the insecure medium.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11"><head>Figure 3 . 1</head><label>31</label><figDesc>Figure 3.1 Public Key Cryptography</figDesc><graphic coords="39,131.70,290.98,386.10,167.60" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_12"><head>Figure 3 . 2</head><label>32</label><figDesc>Figure 3. 2 Identity-based encryption</figDesc><graphic coords="41,109.50,157.73,426.75,291.75" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_13"><head>6 . 1 :</head><label>61</label><figDesc>The adversary outputs a bit 𝑏 ′ based on the Ciphertext C. If 𝑏 = 𝑏 ′ adversary wins the game. If 𝑏 ≠ 𝑏 ′ or if the adversary queried the Oracle 𝑂 𝑒𝑥𝑡𝑟𝑎𝑐𝑡 (𝐼𝐷 𝑖 ) with 𝐼𝐷 𝑖 = 𝐼𝐷 𝑐ℎ𝑎𝑙 during step 2 or step 5, the adversary loses the game.Indistinguishability Under Chosen Ciphertext AttackIndistinguishability under Chosen Ciphertext Attack (IND-CCA) is a stronger security notion than IND-CPA used to evaluate the strength of encryption schemes, particularly inGameGeneric IBE-IND-CPA[2]   public-key encryption. Like IND-CPA, IND-CCA ensures that an adversary cannot distinguish between two encryptions of plaintexts of their choice. However, it also considers the scenario where an adversary has access to a decryption oracle, which allows them to obtain the decryption of any ciphertext of their choice, except for the challenge ciphertext used in the security game.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_14"><head>: 2 :</head><label>2</label><figDesc>An adversary is challenged to check the IND-CCA security of an IBE scheme by a game. Result: This IBE-IND-CCA Game helps to define the concept of IND-CPA security for IBE schemes. 1. The challenger runs &lt; 𝑚𝑠𝑘 𝑃𝑟 , 𝑝𝑎𝑟𝑎𝑚𝑠 &gt; &lt; -𝑆𝑒𝑡𝑢𝑝(1 𝑘 ) and returns 𝑝𝑎𝑟𝑎𝑚𝑠GameGeneric IBE-IND-CCA[2]   </figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_15"><head>8 .</head><label>8</label><figDesc>The adversary outputs a bit 𝑏 ′ based on the Ciphertext C. If 𝑏 = 𝑏 ′ adversary wins the game. Otherwise, the adversary loses the game. If the adversary queried the Oracle 𝑂 𝑒𝑥𝑡𝑟𝑎𝑐𝑡 (𝐼𝐷 𝑖 ) with 𝐼𝐷 𝑖 = 𝐼𝐷 𝑐ℎ𝑎𝑙 during step 2 or step 6 or if the adversary queried the Oracle 𝑂 𝑑𝑒𝑐𝑟𝑦𝑝𝑡 (𝐷 𝐼𝐷𝑖 , 𝐶 𝑗 ) with 𝐶 𝑗 = 𝐶 during step 3</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_16"><figDesc>escrow."Moreover, the second is after the extraction of a user's Private Key, the PKG sends it over the secure channel, making the channel secure is difficult. Key escrow is a situation in which an authorized party stores the users' Private Keys. Under a certain criminal condition, the authorized party may access those keys and decrypt the private communication. These authorized parties might include government or any commercial department that may wish to tap the users' secret communication. However, what happens when these authorized parties impersonate the users by revealing their private keys to criminals? This situation is known as the key escrow problem, which may create a serious issue for users in certain situations, as shown in Figure3.3.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_17"><head>Figure 3 . 3</head><label>33</label><figDesc>Figure 3. 3 Key Escrow Problem in Identity-based encryption</figDesc><graphic coords="48,125.73,144.10,398.05,256.34" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_18"><head>Figure 3 . 4</head><label>34</label><figDesc>Figure 3.4 Hierarchy of Private Key GeneratorsA hierarchical identity-based cryptosystem (HIBC) enables the creation of a hierarchical structure for cryptographic keys. This structure allows for the delegation of authority within an organization or community, where individuals with higher levels of authority can access information protected by lower levels of authority. In a hierarchical identitybased cryptosystem, each user is identified by a hierarchical name that reflects their position in the organization. For example, a user might be identified as "John.Smith@Department1.Company.com". The user's hierarchical name derives the public key associated with this identity.</figDesc><graphic coords="51,150.23,320.98,347.55,193.65" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_19"><head>Figure 4 . 1</head><label>41</label><figDesc>Figure 4. 1 Steps for Private Key Issue Definition 4.3: (Private Key Generator) A single PKG to check the user's identification and provide a partial private key to the user.</figDesc><graphic coords="58,126.75,72.00,404.64,414.60" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_20"><figDesc>a) If Z find in the H5 list in tuple &lt;Zi, Qi, bi, xi, yi, N1i, N2i&gt;, then responds with H5(Z) = Qi ∈ 𝐺 1 * . b) If Z does not find in the list and Z is the I-th distinct H1 query made by I , then  picks bIat Random from Zq, outputs H(Z) = bI.Q and adds the entry &lt;ID, bI.Q, bI, ┴, ┴ , N1, N2&gt;to the H1 list. c) Otherwise,  picks bI, xI and yI at random from Zq, output N1= xI.bI.Q and N2= xI.yI.P and adds the entry &lt;ID, bI.Q, bI, ┴, ┴ , N1, N2&gt; to the H5 list.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_21"><head>• 1 2q 1 q 5</head><label>15</label><figDesc>Replace Public Key: Let I request IDi to substitute the Public Key with value &lt;P'0i, P'1i&gt;. One of the two cases will occur: ▪  aborts, if i = I and c = 1.▪ Otherwise, the existing entries P0i and P1iin the H1 list is substituted with the new entries &lt;P'0i, P'1i&gt; and  requests  to substitute the Public Key &lt;P'0, P'1&gt; inKpub with new values &lt;P'0i, P'1i&gt;, if i = I.• Decryption Queries: Let I request to decrypt the Ciphertext &lt; U, V, W &gt; for IDl, As  is pretending as an IND-CPA adversary, so he will not use the challenger  to reply to the query ( I = l ). Alternatively, for existing Public Key &lt; P0l, P1l &gt; of IDi and a ciphertext C = &lt;U, V, W&gt;,  responds to each decryption query with an advantage at least λ, where λ is proved in Lemma 7.  responds to each decryption queries as follows: i.  search tuple &lt; σj, Mj H3,j&gt; on the H3 list. Accumulate these tuples in a list S1. If S1 is empty, output ┴and halt. • When c = 1 and the event 1 occurs, denoted as 1 • Because  I made a Private Key extraction on IDI at some point represented as 2 • When  I chose IDch ≠ IDI, denoted as 3 • Or  I chose Zch ≠ ZI, denoted as 4 The probability that IDch = IDI is equal to 1/q1 because  I construct q1 queries of H1 and  have a choice to choose I from the set of q1 queries. Hence Pr[] =Pr[3] = 1/q1. Similarly,  I construct q5 queries of H5 and B can choose I from the set of the q5 query. Thus, the probability that Zch = ZI is equal to 1/q5. Hence Pr[4] = 1/q5. As we know, if I choose IDch = IDI, then no Private Key extraction on IDI will be permitted. From all this information: Pr[does not abort] = Pr[⌐0^ ⌐1^⌐2^ ⌐3^ ⌐4] = Pr[0 ^ 1 | ] Because two events H0 and H1 are mutually exclusive. So we can write Pr[0^1|] = 1-Pr[0|] -Pr[i|] And because the event i|is independent of the event c = I Pr[i|]= Pr[(c = i) ^ i|] = rules subjected to the adversary described in the security model, an adversary cannot allow extracting the partial private key or substitute the public key. So, we have Pr[0^ 1|] = 0.This implies that Pr[0|]+Pr[1|] ≤1. Hence, we realize that Pr[ does not abort] ≥</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_22"><head>є 4𝑞 1</head><label>1</label><figDesc>𝑞 5 𝜆 𝑞 𝐷 . This completes the proof. Proof of Lemma 3: This Proof is similar to the Proof of Lemma 10 of [53], modified by adding query 𝑞 5 .</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_23"><head>CLAIM 1 :</head><label>1</label><figDesc>No Key Escrow Problem. An adversary cannot decrypt the encrypted message without the knowledge of PKPO's Private Key 𝑝𝑘𝑝𝑜 𝑝𝑟 ; even if they know the master keypkg pr . This claim follows from Theorem 1 in Section 5.2.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_24"><head>CLAIM 2 :CLAIM 3 :</head><label>23</label><figDesc>Partial key escrow. An adversary cannot decrypt the encrypted message without the knowledge of PKPO's private key 𝑝𝑘𝑝𝑜 𝑝𝑟 ; even if they know the master key pkg pr .This claim also follows from Theorem 1 in Section 5.2.Preserve ID-based cryptosystem. Compared to certificate-based encryption,where a certificate is required to obtain the Public Key, the user's identity ID is used to generate the Public Key.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_6"><head>Table 2 .</head><label>2</label><figDesc>1 RSA key length of Some Organisation</figDesc><table><row><cell>Organization</cell><cell>RSA key length(in bits)</cell></row><row><cell>ICICI Bank</cell><cell>1024</cell></row><row><cell>Amazon</cell><cell>2048</cell></row><row><cell>eBay</cell><cell>2048</cell></row><row><cell>Online SBI</cell><cell>2048</cell></row><row><cell>Facebook</cell><cell>1024</cell></row><row><cell>Canara Bank</cell><cell>2048</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_8"><head>Table 2 .</head><label>2</label><figDesc>2 RSA and ECC key Sizes<ref type="bibr" target="#b117">[65]</ref> </figDesc><table><row><cell>Key Size (in bits)</cell><cell>80</cell><cell>112</cell><cell>120</cell><cell>128</cell><cell>256</cell></row><row><cell>ECC</cell><cell>160</cell><cell>185</cell><cell>237</cell><cell>256</cell><cell>512</cell></row><row><cell>RSA</cell><cell>1024</cell><cell>2048</cell><cell>2560</cell><cell>3072</cell><cell>15360</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_15"><head>Table 3 .</head><label>3</label><figDesc>1 Level of trust to PKG</figDesc><table><row><cell>Level</cell><cell>Can PKG compute</cell><cell>Can PKG impersonate</cell><cell>Example</cell></row><row><cell></cell><cell>user's secret key?</cell><cell>With another user?</cell><cell></cell></row><row><cell>Level 1</cell><cell>Yes</cell><cell>Yes</cell><cell>IBE</cell></row><row><cell>Level 2</cell><cell>No</cell><cell>Yes</cell><cell>CL-PKC</cell></row><row><cell>Level 3</cell><cell>No</cell><cell>No</cell><cell>CB-PKC</cell></row><row><cell>Level 4</cell><cell>No</cell><cell>No</cell><cell>SCS</cell></row></table></figure>
+		</body>
+		<back>
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>• Authenticated Key Agreement: Diffie-Hellman <ref type="bibr">[4]</ref> was the first who establish the first feasible approach for constructing a shared secret over an insecure communications network, but no user authentication is there. Several systems <ref type="bibr" target="#b78">[26,</ref><ref type="bibr" target="#b80">28,</ref><ref type="bibr" target="#b104">52,</ref><ref type="bibr" target="#b100">48]</ref> are introduced for user authentication. Nan Li proposed that the scheme <ref type="bibr" target="#b65">[13]</ref> provides user authentication with the help of an authentication server and the hash algorithm. M. Kumar et al. <ref type="bibr" target="#b90">[38]</ref> introduce the ID-based authenticated key exchange protocol and remove the attack subjected to the DH scheme.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2.4">Security of IBE</head><p>Unlike the Public Key system, IBE also follows the same security aspects. Therefore, definitions of security are often discussed. In literature, the most favourable security aspects are indistinguishability under chosen plaintext attack (IND-CPA) and indistinguishability under chosen Ciphertext attack (IND-CCA).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Indistinguishability under Chosen Plaintext Attack</head><p>Indistinguishability under Chosen Plaintext Attack (IND-CPA) is a security notion used to evaluate the strength of encryption schemes, particularly in symmetric-key encryption.</p><p>IND-CPA means that an adversary cannot distinguish between two encryptions of plaintexts of their choice, even if they have access to the encryption algorithm and can perform chosen plaintext attacks. In other words, the adversary should not be able to learn any information about the plaintext just by observing the ciphertexts.</p><p>To formally define IND-CPA, we consider a game between an adversary and a challenger. The adversary selects two plaintexts of their choice and sends them to the challenger. The challenger randomly selects one of the plaintexts, encrypts it, and sends the resulting ciphertext back to the adversary. The adversary's goal is to identify which plaintext was encrypted correctly. A secure encryption scheme is said to satisfy IND-CPA if the adversary's success probability in this game is negligibly close to 0.5, i.e., the adversary is essentially guessing at random and cannot learn any information about the plaintexts from the ciphertexts. IND-CPA is a strong notion of security for encryption schemes and is considered a minimum requirement for most practical applications.</p><p>Suppose an encryption scheme is not IND-CPA secure. In that case, it is vulnerable to</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.5">Comparison of existing ID-based encryption scheme</head><p>Boneh and Franklin proposed a solution to key escrow in which a master key is derived from the number of different Private Key Generators (PKG) so that each PKG only knows a partial secret of the Private Key, and no single PKG has complete knowledge of it <ref type="bibr" target="#b59">[7]</ref>. However, this approach requires a significant amount of infrastructure and computational cost. Similarly, hierarchical identity-based and certificate-based encryption requires extra infrastructure and computational costs <ref type="bibr" target="#b85">[33,</ref><ref type="bibr" target="#b91">39]</ref>. To address the problem of key revocation, Al-Riyami et al. <ref type="bibr" target="#b98">[46]</ref> successfully eliminated the certificate requirement in their scheme. However, their scheme only provides implicit authentication of the Public Key, which means that the sender cannot know for certain whether the Public Key is the real Public Key of the receiver. In VIBE <ref type="bibr" target="#b83">[31]</ref>, another Public Key and Private Key pair is used to solve the key escrow problem. Still, this scheme is slightly slower than certificate-less Public Key encryption due to the extra point addition operation it requires. Tables 3.2 and 3.3 compare Public Key encryption schemes that avoid key escrow problems based on computation cost and trust level.  </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Scheme Public information Trust level</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Key validation:</head><p>Key validation can be achieved by using the secret information to lock the partial private key on a trusted third party and unlock it using his secret information. Each can verify the private key with the use of some parameter, as shown in Algorithm 4.1</p><p>Limited key validity IBE scheme does not provide the revocation of the public key facility in the generic scheme. To attain the revocation of the public key, we can embed an expiration date along with the user identity ID. Thus, as a part of the public key, the expiration date should be publically available to everyone.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.3">Proposed Model</head><p>To bypass the key escrow problem inherited in the IBE scheme, an additional entity known as a private key privacy organization (PKPO) is added to our model. For convenience, we call our model M-IBE. Before explaining the model, some definition should be required to understand our model. 1. PKG to use the user's private key in a mischievous activity without their permission and pretend as a user.</p><p>2. The user may deny that message is not sent by him and claim to PKG.</p><p>This situation is called the key escrow problem. Assumption: Here, we assume that PKG and PKPO are never colluding so that malicious PKG and PKPO can never use their private key.</p><p>This Model consists of two algorithms (Setup and Key Extract). Further, the KenGen algorithm is divided into three processes (Partial key issuing, Key securing process and Key Fetching). First, PKG runs the Setup algorithm to create the &lt;𝑝𝑘𝑔 𝑃𝑟 , 𝑝𝑘𝑔 𝑃𝑢𝑏 &gt;, sequentially PKPO generates his key pair &lt; 𝑝𝑘𝑝𝑜 𝑃𝑟 , 𝑝𝑘𝑝𝑜 𝑃𝑢𝑏 &gt; and publish public parameters keeping their secret key to themself. To get the partial key, the user requests PKG by sending his identity and hash of his secret info as a confusing factor. PKG checks the user identity and provides the partial private to the user in a confused manner if and only if the user is legitimate. Now, the user requests PKPO to provide privacy service, and PKPO returns the original private key. Only the legitimate user with a secret key for a confusing factor unlocks the message to get the original private key. The user fetches the original private key if he has a secret key corresponding to unlocking the confusing factor. For a given user identity and message, the user encrypts/signs the message. The user can decrypt the message for a particular Ciphertext and his private key.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.4">Secure Key Scheme</head><p>This section proposes a model for Identity-based encryption free from key escrow problems, as shown in Algorithm 4.1. This model consists of four algorithms (Setup, Key Extract, Encrypt, and Decrypt).</p><p>Aim: Alice wants to request the PKG to acquire his private key securely.</p><p>Result: PKG and PKPO are issuing a private key. The scheme's consistency will be discussed in the next chapter, and we will analyze the value 𝑔 𝑟 in encryption is similar to the 𝑒(𝑈, 𝐷 𝐼𝐷 ) in decryption. This completes the BasicM-IBE scheme.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.4.4">Full M-IBE scheme</head><p>To convert the BasicM-IBE scheme to the FullM-IBE scheme, this is a chosen Ciphertext secure IBE system in the ROM <ref type="bibr" target="#b110">[58]</ref>. adversary attacks. In the following section, we compared our scheme with the existing scheme. Finally, we claim that our scheme fulfils the property discussed in section 5.4.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1">Consistency of the M-IBE scheme</head><p>Here, we prove the correctness of the encryption and decryption stage of Algorithm 4.1 and Algorithm 4.2</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1.1">BasicM-IBE scheme</head><p>The consistency of the scheme is verified as follows:</p><p>We know that 𝑔 = 𝑒(𝑄 𝐼𝐷 , 𝑝𝑘𝑝𝑜 𝑃𝑢𝑏 ) 5</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Chapter</head><p>Here, we notice that the value 𝑔 𝑟 in encryption is similar to the 𝑒(𝐷 𝐼𝐷 , 𝑈) in decryption.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1.2">FullM-IBE scheme</head><p>The consistency of the protocol easily verified from </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2">Secure against IND-CCA.</head><p>This section proves that our scheme is secure against the IND-CCA type I and II attacks.</p><p>Public Key encryption scheme HybridPub <ref type="bibr" target="#b98">[46]</ref> will be used as a tool in security proof of FullM-IBE. </p><p>The advantage of any type I or Type II is at least є OWE (𝑇, 𝑞′), runs in time 𝑇 and constructs 𝑞 ′ queries to 𝐻 2 , and the advantage of any algorithm to solve GBDHP is at least є GBDHP (T). Here, 𝑡′ is the running time of the BasicM-IBE encryption algorithm. Lemma 4: Consider 𝐻 2 is a Random Oracle, and there is 𝐴𝑑𝑣 𝐼 and 𝐴𝑑𝑣 𝐼𝐼 of Type I and Type II OWE adversary that has an advantage є against BasicPub, constructs at most 𝑞 2 &gt; 0 queries to H2. Then there is an adversary  to solve the GBDHP has the advantage at least (є -1 2 n )/q 2 . Its running time is 𝑂(𝑡𝑖𝑚𝑒(𝐴𝑑𝑣 𝐼 )) and 𝑂(𝑡𝑖𝑚𝑒(𝐴𝑑𝑣 𝐼𝐼 )), respectively. . ((є + 1)(1 -𝑞 -1 -2 aborts 𝑋 𝐼 where 𝑋 𝐼𝐼 passes  with a public key 𝐾 𝑝𝑢𝑏 along with the value 𝑠 0 and 𝑠 1 such that 𝑃 0 = 𝑠 0 𝑃 and 𝑃 1 = 𝑠 0 𝑠 1 𝑃. Let the event that 𝐴𝑑𝑣 𝐼 picks 𝐼𝐷 𝐼 such that 𝐼𝐷 𝐼 = 𝐼𝐷 𝑐ℎ is denoted by 𝐻, the event that 𝐴𝑑𝑣 𝐼 extract the partial private key for user 𝐼𝐷 𝐼 be 0 and the event that  I substitute the public key of user 𝐼𝐷 𝐼 denoted as 1.</p><p>Here, 𝐻 1 is a Random Oracle that will be ruled by  and managed as follows:</p><p>• 𝐻 1 queries:  manages a list for 𝐻 1 of tuples &lt; 𝐼𝐷 𝑖 , 𝑄, 𝑏 𝑖 , 𝑥 𝑖 , 𝑦 𝑖 , 𝑃 0𝑖 , 𝑃 1𝑖 , 𝑃 2𝑖 &gt; , empty in initially. When 𝐴𝑑𝑣 𝐼 make queries 𝐻 1 on input 𝐼𝐷,  outputs as follows:</p><p>ii.  search every pairs &lt; σ'i, H4,i&gt; in the H4 list, for every tuple &lt; σj, Mj H3,j&gt;in S1. If σj = σ'I, add tuple &lt; σj, Mj, H3,j, H4,i&gt; inS2 list. If S2 is empty, then output ┴ and halt.</p><p>iii. For W = Mj⊕H4,i.,  find in S2 for such an entry. If it exists, it responds Mj as the result of &lt;U, V, W&gt;. Otherwise, responds ┴.</p><p>Challenge Phase:  response to the challenge identity IDch and two equal length messagem0, m1∈ M. Let  I not allow extracting the Private Key for identity IDch. The algorithm responds as follows:</p><p>•  aborts, if IDch ≠ IDI.</p><p>• Otherwise, IDch = IDI and gives the pair m0, m1 as the messages on which it wishes to be challenged. Proof of Lemma 6: This lemma can be proven through theorem 14 of <ref type="bibr" target="#b105">[53]</ref>, assuming that mskPr can be made available to Type II adversaries.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.3">Performance</head><p>In chapter 4, we proposed the M-IBE scheme. Indeed, our approach is modifying the key generation process of the Boneh-Franklin scheme <ref type="bibr" target="#b59">[7]</ref>. Table <ref type="table">5</ref>.1 shows the comparisons of our scheme with the existing scheme based on computation cost. According to the level of trust in PKG in Girault <ref type="bibr" target="#b74">[22]</ref>, Table <ref type="table">5</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">compares our scheme with different</head><p>Public Key encryption schemes. Here, we conclude that our scheme achieves Level 3. Besides our scheme, each scheme needs at most four hash functions, but our scheme needs one more extra hash function. However, the computational time of the hash function is not a big issue as it is swift compared to the pairing computation or scalar operation. So, we ignore the computational time of the hash operation and point addition because the number of hash operations is almost equal in all schemes and point addition is lightweight compared to other heavy operations. Based on tables 5.1 and 5.2, we compared our scheme with the existing scheme as follows:</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.3.1">Comparison with Boneh-Franklin</head><p>By including a Non-government organization (PKPO) between the user and PKG, we modify Boneh-Franklin's IBE scheme to remove the Key escrow Problem. PKPO provides key privacy to the user. The computation cost of our scheme's encryption and decryption algorithm equals the Boneh-Franklin scheme <ref type="bibr" target="#b59">[7]</ref>. While in terms of Private Key issuing, our scheme needs two extra point multiplications, one pairing operation, and one exponentiation. Thus, for key issuing, our scheme is slightly slower. As compared to the solution of the key escrow problem solved by the Boneh-Franklin, our scheme is speedy in issuing the private key, as shown in Table <ref type="table">5</ref>.1. Compared with the BF approach, our scheme achieves level 3 of the trust level, as shown in Table <ref type="table">5</ref>.2.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.3.2">Comparison with CL-PKC</head><p>Compared to CL-PKC, our scheme is slightly slower in the key issuing process but takes equal computation time in encryption and decryption. In our scheme, the user's secret information is used only to secure extracting the Private Key. Therefore, our scheme provides implicit and explicit authentication compared to CL-PKC, which only provides implicit authentication. Moreover, our scheme achieves level 3; conversely, CL-PKC achieves level 2 of trust level to PKG. From Table <ref type="table">5</ref>.2, we conclude that our scheme has</p><p>This chapter provides a comprehensive review of the discussed topics and the outcome of the proposed scheme. Additionally, the limitations of our solution, possible future directions, and other domains in which our scheme is fruitful are summarized.</p><p>Implementing the proposed IBE approach successfully balances the user's right to privacy and the government's right to monitor unlawful messages. The security model's definition describes all entities considered in the model. We demonstrate that the proposed model is secure against IND-CCA of Type I and Type II adversary attacks with their proofs. The defined model served as a framework for stating cryptographic design goals, which were achieved by relying on earlier specified cryptographic building blocks.</p><p>The proposed scheme is slightly slower than the previous solution, requiring extra pairing computation and exponential operation during the key issuing algorithm.</p><p>Nevertheless, since the key issuing process is an algorithm executed once on the server side while the user joins the network, this limitation is not a significant issue. Another limitation is that the scheme assumes that PKG and PKPO never collude with each other.</p><p>However, the user's Private Key may be compromised if such collusion occurs.</p><p>Nonetheless, if there is doubt about an unlawful message, the genuine entity from the three entities (PKG, PKPO, and User) may file a case against the malicious entity.</p><p>Ultimately, the judge may catch a suspected entity out of the three.</p><p>In conclusion, the proposed scheme balances privacy and surveillance while ensuring security against adversary attacks. Future research may explore optimizing the key issuing algorithm and addressing the collusion limitation. Our scheme's potential 6</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Conclusion and Future Work</head><p>Chapter</p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">Definition of Elliptic Curve .................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<monogr>
+		<title level="m" type="main">The general form of the</title>
+		<author>
+			<orgName type="collaboration">Elliptic Curve ...............................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">2.3 Why Elliptic Curve Cryptography? .....................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">3 Cryptographic Hash Function ........................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">Random Oracle model .......................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">2 Pigeonhole principle ..........................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">Pairing-Based Cryptography .........................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">Bilinear Maps .....................................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">2 Bilinear pairing ...................................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">3 Mathematical problem ......................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">5 Security Gaols ...............................................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">6 Summary .......................................................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">Cryptographic Building Blocks ...............................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">1 Public Key Cryptosystem .............................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">Certification Authority .......................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">2 Identity-based Cryptosystem ........................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">Definition............................................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">2.2 IBE vs PKC ...........................................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">2.3 Application of Identity-based encryption ..........................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">2.4 Security of IBE ....................................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">3 Key escrow ....................................................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">4 Related work .................................................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">Threshold Key Issuing .........................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">2 Certificate-Based Cryptosystem .........................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">3 Certificate-Less Public Key Cryptosystem ..........................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">4 Hierarchical Identity-Based Cryptosystem .........................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">5 Comparison of existing ID-based encryption scheme ..................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">6 Summary .......................................................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">Secure Key Issue ................................................................................................</orgName>
+		</author>
+		<imprint>
+			<biblScope unit="page">37</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">1 Models of existing solution ...........................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">2 Proposed Model: M-IBE ...............................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">2.1 Security Goals .....................................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">2 Design to Achieve Goals .....................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">2.3 Proposed Model .................................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">2.4 Secure Key Scheme ............................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">3 Security Model ..............................................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">M-IBE schemes from Pairing .......................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">Basic M-IBE scheme ...........................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">Full M-IBE scheme ..............................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">5 Summary .......................................................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">Consistency, Security Proof, and Performance Analysis ......................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b41">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">1 Consistency of the M-IBE scheme ...............................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b42">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">BasicM-IBE scheme ............................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b43">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">FullM-IBE scheme ...............................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b44">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">2 Secure against IND-CCA. .............................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b45">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">3 Performance ................................................................................................................................... 5.3.1 Comparison with Boneh-Franklin ......................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b46">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">2 Comparison with CL-PKC ....................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b47">
+	<monogr>
+		<title level="m" type="main">Compared with other schemes</title>
+		<author>
+			<orgName type="collaboration">..........................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b48">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">4 Claim .............................................................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b49">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">5 Summary .......................................................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b50">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">Conclusion and Future Work ...................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b51">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">1 Applications and Future Scope .....................................................................................................</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b52">
+	<monogr>
+		<title/>
+		<author>
+			<orgName type="collaboration">References ..................................................................................................................................... References</orgName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b53">
+	<monogr>
+		<title level="m" type="main">On the implementation of pairing-based cryptography</title>
+		<author>
+			<persName><forename type="first">Ben</forename><surname>Lynn</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2007">2007</date>
+			<pubPlace>Stanford</pubPlace>
+		</imprint>
+	</monogr>
+	<note>Master&apos;s thesis</note>
+</biblStruct>
+
+<biblStruct xml:id="b54">
+	<monogr>
+		<title level="m" type="main">Cryptography &amp; Network Security</title>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">A</forename><surname>Forouzan</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2007">2007</date>
+			<publisher>McGraw-Hill, Inc</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b55">
+	<analytic>
+		<title level="a" type="main">Pairing-Based Cryptography</title>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Cao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Zhang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Pairing 2013 -6th International Conference</title>
+		<title level="s">Lecture Notes in Computer Science</title>
+		<meeting><address><addrLine>Beijing, China</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2013">November 22-24, 2013. 2014</date>
+			<biblScope unit="volume">8365</biblScope>
+		</imprint>
+	</monogr>
+	<note>RevisedSelected Papers</note>
+</biblStruct>
+
+<biblStruct xml:id="b56">
+	<analytic>
+		<title level="a" type="main">New directions in cryptography</title>
+		<author>
+			<persName><forename type="first">W</forename><surname>Diffie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Hellman</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Information Theory, IT</title>
+		<imprint>
+			<biblScope unit="volume">22</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="644" to="654" />
+			<date type="published" when="1976">1976</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b57">
+	<monogr>
+		<title level="m" type="main">Identity-based cryptosystem and signature scheme</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Shamir</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1984">1984</date>
+			<biblScope unit="volume">84</biblScope>
+			<biblScope unit="page" from="47" to="53" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b58">
+	<monogr>
+		<title level="m" type="main">Bilinear pairings on elliptic curves</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Enge</surname></persName>
+		</author>
+		<idno type="arXiv">arXivpreprintarXiv:1301.5520</idno>
+		<imprint>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b59">
+	<analytic>
+		<title level="a" type="main">IdentitybasedencryptionfromtheWeilpairing</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">K</forename><surname>Bonehandm</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Franklin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IACRCryptology ePrintArchive</title>
+		<imprint>
+			<biblScope unit="page">90</biblScope>
+			<date type="published" when="2001">2001. 2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b60">
+	<monogr>
+		<ptr target="http://arstechnica.com/security/2013/10/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography/" />
+		<title level="m">Elliptic curve of equation y 2 = x 3 -x + 1</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b61">
+	<analytic>
+		<title level="a" type="main">Anonymous hierarchical identity-based encryption (without random oracles)</title>
+		<author>
+			<persName><forename type="first">X</forename><surname>Boyen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Waters</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="s">Lecture Notes in Computer Science</title>
+		<editor>
+			<persName><forename type="first">C</forename><forename type="middle">D</forename><surname>Work</surname></persName>
+		</editor>
+		<imprint>
+			<biblScope unit="volume">4117</biblScope>
+			<biblScope unit="page" from="290" to="307" />
+			<date type="published" when="2006">2006</date>
+			<publisher>Springer</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b62">
+	<analytic>
+		<title level="a" type="main">Identity-based encryption with efficient revocation</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Boldyreva</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Goyal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Kumar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IACR Cryptology ePrint Archive</title>
+		<imprint>
+			<biblScope unit="page">52</biblScope>
+			<date type="published" when="2012">2012. 2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b63">
+	<analytic>
+		<title level="a" type="main">The decision Diffie-Hellman problem</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Boneh</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="s">Lecture Notes in Computer Science</title>
+		<editor>
+			<persName><forename type="first">J</forename><surname>Buhler</surname></persName>
+		</editor>
+		<imprint>
+			<biblScope unit="volume">1423</biblScope>
+			<biblScope unit="page" from="48" to="63" />
+			<date type="published" when="1998">1998</date>
+			<publisher>Springer</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b64">
+	<analytic>
+		<title level="a" type="main">Hierarchical identity based encryption with constant size ciphertext</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Boneh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Boyen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">E.-J</forename><surname>Goh</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="s">Lecture Notes in Computer Science</title>
+		<editor>
+			<persName><forename type="first">R</forename><surname>Cramer</surname></persName>
+		</editor>
+		<imprint>
+			<biblScope unit="volume">3494</biblScope>
+			<biblScope unit="page" from="440" to="456" />
+			<date type="published" when="2005">2005</date>
+			<publisher>Springer</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b65">
+	<analytic>
+		<title level="a" type="main">Research on Diffie -Hellman Key Exchange Protocol</title>
+		<author>
+			<persName><forename type="first">Nan</forename><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Computer Engineering and Technology</title>
+		<imprint>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="634" to="637" />
+			<date type="published" when="2003">2010. 2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b66">
+	<monogr>
+		<title level="m" type="main">Handbook of Applied Cryptography</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Menezes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">C</forename><surname>Van Oorshot</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">A</forename><surname>Vanstone</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1997">1997</date>
+			<publisher>CRC Press</publisher>
+			<pubPlace>New York, USA</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b67">
+	<analytic>
+		<title level="a" type="main">A comparison between traditional Public Key Infrastructures and Identity-Based Cryptography</title>
+		<author>
+			<persName><forename type="first">G</forename><surname>Kenneth</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Geraint</forename><surname>Paterson</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Price</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Information Security Technical Report</title>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="57" to="72" />
+			<date type="published" when="2003">2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b68">
+	<analytic>
+		<title level="a" type="main">A Method for Obtaining Digital Signatures and Public-Key Cryptosystems</title>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">L</forename><surname>Rivest</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Shamir</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Adleman</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Communications of the A.C.M</title>
+		<imprint>
+			<biblScope unit="issue">21</biblScope>
+			<biblScope unit="page" from="120" to="126" />
+			<date type="published" when="1978">1978</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b69">
+	<monogr>
+		<ptr target="http://www.cs.mcgill.ca/~rwest/link-suggestion/wpcd_2008-09_augmented/wp/e/Elliptic_curve.htm" />
+		<title level="m">Rational points on line over elliptic curve</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b70">
+	<analytic>
+		<title level="a" type="main">Non-interective public-key cryptography</title>
+		<author>
+			<persName><forename type="first">U</forename><surname>Maurer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Yacobi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. Of Eurocrypto &apos;91, Lecture Nores in Computer Sciences</title>
+		<meeting>Of Eurocrypto &apos;91, Lecture Nores in Computer Sciences</meeting>
+		<imprint>
+			<publisher>Springer-Verlag</publisher>
+			<date type="published" when="1992">1992</date>
+			<biblScope unit="volume">547</biblScope>
+			<biblScope unit="page" from="498" to="507" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b71">
+	<analytic>
+		<title level="a" type="main">Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Shor</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SICOMP</title>
+		<imprint>
+			<biblScope unit="volume">26</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="1484" to="1509" />
+			<date type="published" when="1997">1997</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b72">
+	<analytic>
+		<title level="a" type="main">The risks of key recovery, key escrow, and trusted third-party encryption</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Abelson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Anderson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">M</forename><surname>Bellovin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Benalob</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Blaze</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Diffie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Gilmore</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">G</forename><surname>Neumann</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">L</forename><surname>Rivest</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">I</forename><surname>Schiller</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Schneier</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">World Wide Web J</title>
+		<imprint>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="241" to="257" />
+			<date type="published" when="1997">1997</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b73">
+	<analytic>
+		<title level="a" type="main">Public-key Systems based on the Difficulty of Tampering</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Desmedt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Quisquater</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of Crypto &apos;86</title>
+		<title level="s">Lecture Notes in Computer Sciences</title>
+		<meeting>of Crypto &apos;86</meeting>
+		<imprint>
+			<publisher>Springer-Verlag</publisher>
+			<date type="published" when="1987">1987</date>
+			<biblScope unit="page" from="111" to="117" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b74">
+	<analytic>
+		<title level="a" type="main">Self-certified public keys</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Girault</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">EUROCRYPT &apos;91</title>
+		<title level="s">LNCS</title>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="1991">1991</date>
+			<biblScope unit="volume">547</biblScope>
+			<biblScope unit="page" from="490" to="497" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b75">
+	<analytic>
+		<title level="a" type="main">A realization scheme for the identity-based cryptosystem</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Tanaka</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of Crypto &apos;87</title>
+		<title level="s">Lecture Notes in Computer Sciences</title>
+		<meeting>of Crypto &apos;87</meeting>
+		<imprint>
+			<publisher>Springer-Verlag</publisher>
+			<biblScope unit="page" from="341" to="349" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b76">
+	<analytic>
+		<title level="a" type="main">Cryptosystems based on pairing</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Sakai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Ohgishi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Kasahara</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of SCIS &apos;00</title>
+		<meeting>of SCIS &apos;00<address><addrLine>Okinawa, Japan</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2001">Jan. pp 26-28, 2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b77">
+	<analytic>
+		<title level="a" type="main">A method for fast revocation of public key certificates and security capabilities</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Boneh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Ding</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Tsudik</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C.-M</forename><surname>Wong</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">USENIX Security Symposium. USENIX</title>
+		<editor>
+			<persName><forename type="first">D</forename><forename type="middle">S</forename><surname>Wallach</surname></persName>
+		</editor>
+		<imprint>
+			<date type="published" when="2001">2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b78">
+	<analytic>
+		<title level="a" type="main">An authenticated key agreement without using one-way hash functions</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Harn</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H.-Y</forename><surname>Lin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. 8th Nat. Conf. on Information Security</title>
+		<meeting>8th Nat. Conf. on Information Security<address><addrLine>Kaohsiung, Taiwan</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="1998">1998</date>
+			<biblScope unit="page" from="155" to="160" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b79">
+	<analytic>
+		<title level="a" type="main">E-Voting: A New Approach Using Double-Blind identity-Based Encryption</title>
+		<author>
+			<persName><forename type="first">David</forename><surname>Gray</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Caroline</forename><surname>Sheedy</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/978-3-642-22633-5_7</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Public Key Infrastructures, Services and Applications</title>
+		<imprint>
+			<date type="published" when="2011">2011</date>
+			<biblScope unit="page" from="93" to="108" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b80">
+	<analytic>
+		<title level="a" type="main">An identity-based signature from gap Diffie-Hellman groups</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Cha</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Cheon</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. PKC&apos;2003</title>
+		<title level="s">Lecture Notes in Computer Science</title>
+		<meeting>PKC&apos;2003</meeting>
+		<imprint>
+			<date type="published" when="2003">2003</date>
+			<biblScope unit="volume">2567</biblScope>
+			<biblScope unit="page" from="18" to="30" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b81">
+	<analytic>
+		<title level="a" type="main">A paradoxical indentity-based signature scheme resulting from zero knowledge</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Guillou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Quisquater</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. CRYPTO&apos;88</title>
+		<title level="s">Lecture Notes in Computer Science</title>
+		<meeting>CRYPTO&apos;88</meeting>
+		<imprint>
+			<date type="published" when="1990">1990</date>
+			<biblScope unit="volume">403</biblScope>
+			<biblScope unit="page" from="216" to="231" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b82">
+	<analytic>
+		<title level="a" type="main">Zero knowledge proofs of identity</title>
+		<author>
+			<persName><forename type="first">U</forename><surname>Feige</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Fiat</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">"</forename><forename type="middle">A</forename><surname>Shamir</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of STOC 1987</title>
+		<meeting>STOC 1987</meeting>
+		<imprint>
+			<date type="published" when="1987">1987</date>
+			<biblScope unit="page" from="210" to="217" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b83">
+	<analytic>
+		<title level="a" type="main">Remove Key Escrow from the Identity-Based Encryption System</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Comley</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Vasiu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Foundations of Information Technology in the Era of Network and Mobile Computing</title>
+		<meeting><address><addrLine>Paris, France</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2004-08">August, 2004</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b84">
+	<analytic>
+		<title level="a" type="main">A new secret sharing threshold scheme and key escrow system</title>
+		<author>
+			<persName><forename type="first">Yang</forename><surname>Bo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ma</forename><surname>Wenping</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Wang</forename><surname>Yumin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Acta Electronic sinica</title>
+		<imprint>
+			<biblScope unit="volume">26</biblScope>
+			<biblScope unit="issue">10</biblScope>
+			<date type="published" when="1998">1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b85">
+	<analytic>
+		<title level="a" type="main">Toward Hierarchical Identity-Based Encryption</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Horwitz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Lynn</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of EUROCRYPT 2002</title>
+		<meeting>EUROCRYPT 2002</meeting>
+		<imprint>
+			<publisher>Springer-Verlag</publisher>
+			<date type="published" when="2002">2002</date>
+			<biblScope unit="volume">2332</biblScope>
+			<biblScope unit="page" from="466" to="481" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b86">
+	<analytic>
+		<title level="a" type="main">An Identity-based Encryption Scheme Based on Quadratic Residues</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Cocks</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Cryptography and Coding -Institute of Mathematics and Its Applications International Conference on Cryptography and Coding -Proceedings of IMA 2001</title>
+		<imprint>
+			<publisher>Springer-Verlag</publisher>
+			<date type="published" when="2001">2001</date>
+			<biblScope unit="volume">2260</biblScope>
+			<biblScope unit="page" from="360" to="363" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b87">
+	<analytic>
+		<title level="a" type="main">A public key cryptosystem and a signature scheme based on discrete logarithms</title>
+		<author>
+			<persName><forename type="first">Taher</forename><surname>Elgamal</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Inform. Theory</title>
+		<imprint>
+			<biblScope unit="volume">31</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="469" to="472" />
+			<date type="published" when="1985">1985</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b88">
+	<analytic>
+		<title level="a" type="main">A survey of identity-based cryptography</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Baek</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Newmarch</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Safavi-Naini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Susilo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of Australian Unix Users Group Annual Conference</title>
+		<meeting>of Australian Unix Users Group Annual Conference</meeting>
+		<imprint>
+			<date type="published" when="2004">2004</date>
+			<biblScope unit="page" from="95" to="102" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b89">
+	<analytic>
+		<title level="a" type="main">Practical identity-based encryption without random oracles</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Gentry</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="s">Lecture Notes in Computer Science</title>
+		<editor>
+			<persName><forename type="first">S</forename><surname>Vaudenay</surname></persName>
+		</editor>
+		<imprint>
+			<biblScope unit="volume">4004</biblScope>
+			<biblScope unit="page" from="445" to="464" />
+			<date type="published" when="2006">2006</date>
+			<publisher>Springer</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b90">
+	<analytic>
+		<title level="a" type="main">An ID-based Authenticated Key Exchange Protocol</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Kumar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">P</forename><surname>Katti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">C</forename><surname>Saxena</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">International Journal of Advance study in computer science and engg</title>
+		<imprint>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="11" to="25" />
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b91">
+	<analytic>
+		<title level="a" type="main">Hierarchal ID-based Cryptography</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Gentry</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Silverberg</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Asiacrypt 20023</title>
+		<imprint>
+			<date type="published" when="2002">2501. 2002</date>
+			<biblScope unit="page" from="548" to="566" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b92">
+	<monogr>
+		<title level="m" type="main">A Partial Key escrow: a new approach to key escrow conference</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Shamir</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1995-08">August 1995</date>
+		</imprint>
+	</monogr>
+	<note>Private communication made at Crypto 95</note>
+</biblStruct>
+
+<biblStruct xml:id="b93">
+	<analytic>
+		<title level="a" type="main">ID-Based signature from pairings on elliptic curve</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Peterson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Electronic Letter</title>
+		<imprint>
+			<biblScope unit="volume">38</biblScope>
+			<biblScope unit="issue">18</biblScope>
+			<biblScope unit="page" from="1025" to="1026" />
+			<date type="published" when="2002">2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b94">
+	<monogr>
+		<title level="m" type="main">Authenticated Identity-based encryption</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Lynn</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2002">2002/072, 2002</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">Report</note>
+	<note>cryptology ePrint archive</note>
+</biblStruct>
+
+<biblStruct xml:id="b95">
+	<monogr>
+		<title level="m" type="main">Identity-based Signcryption</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Malone-Lee</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2002">2002/072, 2002</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">Report</note>
+	<note>cryptology ePrint Archive</note>
+</biblStruct>
+
+<biblStruct xml:id="b96">
+	<monogr>
+		<title level="m" type="main">Certificate-Based Signature Schemes without Pairings or Random OraCL-PKCs</title>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">Et</forename><surname>Joseph</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2008">2008</date>
+			<publisher>Springer Verlag</publisher>
+		</imprint>
+	</monogr>
+	<note>11th Information Security Conference (ISC&quot;08</note>
+</biblStruct>
+
+<biblStruct xml:id="b97">
+	<analytic>
+		<title level="a" type="main">Certificate-based encryption and certificate revocation problem</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Gentry</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">EUROCRYPT 2003</title>
+		<title level="s">LNCS</title>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2003">2003</date>
+			<biblScope unit="volume">2656</biblScope>
+			<biblScope unit="page" from="272" to="293" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b98">
+	<analytic>
+		<title level="a" type="main">Certificate-less public key cryptography</title>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">S</forename><surname>Al-Riyami</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">G</forename><surname>Paterson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ASIACRYPT 2003</title>
+		<title level="s">LNCS</title>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2003">2003</date>
+			<biblScope unit="volume">2894</biblScope>
+			<biblScope unit="page" from="452" to="473" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b99">
+	<analytic>
+		<title level="a" type="main">Removing Escrow from Identity-based Encryption</title>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">M</forename><surname>Sherman</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Chow</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Public Key Cryptography</title>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2009">2009</date>
+			<biblScope unit="volume">5443</biblScope>
+			<biblScope unit="page" from="256" to="276" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b100">
+	<analytic>
+		<title level="a" type="main">A mutual authentication and key exchange scheme from bilinear pairings for low power computing devices</title>
+		<author>
+			<persName><forename type="first">Yuh-Min</forename><surname>Tseng</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE, Computer Software and Applications Conference</title>
+		<imprint>
+			<date type="published" when="2007">2007. 2007. 2007</date>
+			<biblScope unit="page" from="700" to="710" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b101">
+	<analytic>
+		<title level="a" type="main">A forward-secure public-key encryption scheme</title>
+		<author>
+			<persName><forename type="first">Ran</forename><surname>Canetti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shai</forename><surname>Halevi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jonathan</forename><surname>Katz</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 22nd international conference on Theory and applications of cryptographic techniques</title>
+		<meeting>the 22nd international conference on Theory and applications of cryptographic techniques<address><addrLine>Warsaw, Poland</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2003-08">May 04-08, 2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b102">
+	<analytic>
+		<title level="a" type="main">An introduction to threshold cryptography</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Gammell</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">RSA Laboratories</title>
+		<imprint>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="issue">7</biblScope>
+			<date type="published" when="1997">1997</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b103">
+	<analytic>
+		<title level="a" type="main">Federal registration</title>
+	</analytic>
+	<monogr>
+		<title level="m">A proposed federal information processing Standard for an Escrowed Encryption standard (EES)</title>
+		<imprint>
+			<date type="published" when="1993-07-30">July 30, 1993</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b104">
+	<analytic>
+		<title level="a" type="main">An identity-based Authenticated Key Agreement Protocol based on weil pairing</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Smart</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Electronic Letter</title>
+		<imprint>
+			<biblScope unit="volume">38</biblScope>
+			<biblScope unit="page" from="630" to="632" />
+			<date type="published" when="2002">2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b105">
+	<analytic>
+		<title level="a" type="main">Secure integration of asymmetric and symmetric encryption scheme</title>
+		<author>
+			<persName><forename type="first">E</forename><surname>Fujisaki</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Okamoto</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. CRYPTO 1999</title>
+		<editor>
+			<persName><forename type="first">M</forename><forename type="middle">J</forename><surname>Wiener</surname></persName>
+		</editor>
+		<meeting>CRYPTO 1999</meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="1999">1999</date>
+			<biblScope unit="volume">1666</biblScope>
+			<biblScope unit="page" from="537" to="554" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b106">
+	<analytic>
+		<title level="a" type="main">How to Share a Secret</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Shamir</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Communications of the ACM</title>
+		<imprint>
+			<biblScope unit="volume">22</biblScope>
+			<biblScope unit="page" from="612" to="613" />
+			<date type="published" when="1979">1979</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b107">
+	<monogr>
+		<author>
+			<persName><forename type="first">N</forename><surname>Koblitz</surname></persName>
+		</author>
+		<title level="m">A course in number theory and cryptography</title>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="1994">1994</date>
+			<biblScope unit="volume">114</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b108">
+	<monogr>
+		<title level="m" type="main">Short programs for functions on curves</title>
+		<author>
+			<persName><forename type="first">V</forename><surname>Miller</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1986">1986</date>
+			<biblScope unit="volume">97</biblScope>
+			<biblScope unit="page" from="101" to="102" />
+		</imprint>
+	</monogr>
+	<note>Unpublished manuscript</note>
+</biblStruct>
+
+<biblStruct xml:id="b109">
+	<analytic>
+		<title level="a" type="main">Cryptographic hash functions</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Preneel</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">European Transactions on Telecommunications</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="431" to="448" />
+			<date type="published" when="1994">1994</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b110">
+	<analytic>
+		<title level="a" type="main">Random Oracles are Practical: A Paradigm for Designing Efficient Protocols</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Bellare</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Rogaway</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">1st Conference on Computer and Communications Security</title>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="1993">1993</date>
+			<biblScope unit="page" from="62" to="73" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b111">
+	<analytic>
+		<title level="a" type="main">ID-based cryptosystems with pairing on elliptic curve</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Sakai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Kasahara</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IACR Cryptology ePrint Archive</title>
+		<imprint>
+			<biblScope unit="page">54</biblScope>
+			<date type="published" when="2003">2003. 2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b112">
+	<analytic>
+		<title level="a" type="main">Public Key Infrastructure: Certification Path Building</title>
+		<author>
+			<persName><forename type="first">M</forename><surname>Cooper</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Dzambasow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Hesse</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Joseph</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Nicholas</surname></persName>
+		</author>
+		<idno>Internet X.509</idno>
+	</analytic>
+	<monogr>
+		<title level="j">RFC</title>
+		<imprint>
+			<biblScope unit="volume">4158</biblScope>
+			<date type="published" when="2005-09">Sept. 2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b113">
+	<analytic>
+		<title level="a" type="main">Efficient selective-id secure identity-based encryption without random oracles</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Boneh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">X</forename><surname>Boyen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="s">Lecture Notes in Computer Science</title>
+		<editor>
+			<persName><forename type="first">C</forename><surname>Cachin</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">J</forename><surname>Camenisch</surname></persName>
+		</editor>
+		<imprint>
+			<biblScope unit="volume">3027</biblScope>
+			<biblScope unit="page" from="223" to="238" />
+			<date type="published" when="2004">2004</date>
+			<publisher>Springer</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b114">
+	<monogr>
+		<author>
+			<persName><forename type="first">Silvio</forename><surname>Micali</surname></persName>
+		</author>
+		<title level="m">Proceedings of the 12th Annual International Cryptology Conference on Advances in Cryptology</title>
+		<meeting>the 12th Annual International Cryptology Conference on Advances in Cryptology</meeting>
+		<imprint>
+			<publisher>Fair Public-Key Cryptosystems</publisher>
+			<date type="published" when="1992">August 16-20, 1992</date>
+			<biblScope unit="page" from="113" to="138" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b115">
+	<monogr>
+		<title level="m" type="main">Partial key escrow. Manuscript</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Micali</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Shamir</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1996-02">February 1996</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b116">
+	<analytic>
+		<title level="a" type="main">A threshold key escrow scheme based on public key cryptosystem</title>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Cao</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Sci China Ser E-Tech Sci</title>
+		<imprint>
+			<biblScope unit="volume">44</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="441" to="448" />
+			<date type="published" when="2001">2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b117">
+	<analytic>
+		<title level="a" type="main">Comparing Elliptic Curve Cryptography and RSA on 8-bit CPUs</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Gura</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Patel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Wander</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Eberle</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">C</forename><surname>Shantz</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">6th International Workshop on Cryptographic Hardware and Embedded Systems</title>
+		<meeting><address><addrLine>Boston, Massachusetts</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2004-08">August 2004</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

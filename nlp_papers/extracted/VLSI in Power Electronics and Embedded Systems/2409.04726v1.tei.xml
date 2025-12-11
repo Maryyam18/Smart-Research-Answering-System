@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Physical Design: Methodologies and Developments</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability  status="unknown">
+					<licence/>
+				</availability>
+				<date type="published" when="2024-09-07">7 Sep 2024</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Abhay</forename><surname>Chopde</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Dept. of Electronics and Telecommunication Engineering</orgName>
+								<orgName type="institution">Vishwakarma Institute of Technology</orgName>
+								<address>
+									<settlement>Pune</settlement>
+									<country key="IN">India</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><roleName>Fellow, IEEE</roleName><forename type="first">Atharva</forename><forename type="middle">M</forename><surname>Kulkarni</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Dept. of Electronics and Telecommunication Engineering</orgName>
+								<orgName type="institution">Vishwakarma Institute of Technology</orgName>
+								<address>
+									<settlement>Pune</settlement>
+									<country key="IN">India</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Physical Design: Methodologies and Developments</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2024-09-07">7 Sep 2024</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">7DEE19369E8DB282036F33F6B3C6ADF9</idno>
+					<idno type="arXiv">arXiv:2409.04726v1[eess.SY]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.8.2" ident="GROBID" when="2025-11-28T12:51+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<label type="revision">a91ee48</label>
+					<label type="parameters">startPage=-1, endPage=-1, consolidateCitations=0, consolidateHeader=0, consolidateFunders=0, includeRawAffiliations=false, includeRawCitations=false, includeRawCopyrights=false, generateTeiIds=false, generateTeiCoordinates=[], sentenceSegmentation=false, flavor=null</label>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Power</term>
+					<term>Performance</term>
+					<term>Area</term>
+					<term>heirarchical flow</term>
+					<term>synthesis</term>
+					<term>back end flow</term>
+					<term>physical layout</term>
+					<term>GDSII</term>
+					<term>floor planning</term>
+					<term>placement</term>
+					<term>routing</term>
+					<term>verification</term>
+					<term>static timing analysis</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>The design and production of VLSI chips is a multilevel heirarchical process. As the demand for reduced diearea and technology nodes becomes prevalent, it gets increasingly challenging to optimize Power, Performance and Area (PPA) parameters to accommodate for the ever-increasing core logic on a chip. A well defined heirarchical flow is thus quintessential when it comes to VLSI design process. A robust heirarchical flow should encompass all stages, right from Gate-level RTL Synthesis (Front End Design) to Logic Placement and Verification (Back End Physical Design) and finally culminating with tapeout / production. Physical Design in this aforementioned flow is the process of translating logical circuit description into physically realizable GDSII form. This involves defining the best possible placement and routing for standard cells, macros and I/Os in the design to optimize PPA for any given netlist. This paper helps capture the nitty-gritty of methodologies and algorithms that are pertinent to the building and optimization of an efficient and robust physical design flow in VLSI chip-designing process.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>Very-large-scale Integration (VLSI) technology revolves around designing Generic or Application Specific Integrated Circuits (ASICs) with the core logic sometimes comprising of billions and even trillions of transistors, all embedded within a single small chip. Monumental developments in the field of VLSI date back to the 1970s when we were experiencing a new dawn in semiconductor physics and its application in building System-on-chip (SoCs), faster Processors and communication technologies. <ref type="bibr" target="#b0">[1,</ref><ref type="bibr" target="#b1">2]</ref> Prior to all these technological enhancements, most ICs and processors could perform just a handful of operations with limited logic and instruction sets. With the help of developments in VLSI field however, it has become possible to implement circuits displaying desired levels of performance parameters based on industry requirements. Such designs may contain billions of standard and physical cells, I/O pins, macros, analog IPs, PLLs, data generators and numerous other blocks. The trend in VLSI technologies was observed and documented by Gordon E. Moore as early as 1965. The famed Moore's law states "The number of transistors in a microchip doubles every two years, though the cost of computers is halved". <ref type="bibr" target="#b0">[1,</ref><ref type="bibr" target="#b1">2]</ref> However, we now have entered an era wherein this law may no longer hold validity owing to the complexities involved while working at lower process nodes. Despite these complexities, the cuttingedge EDA tools developed by Cadence Design Systems® and Synopsys have been aiding Design Engineers to produce chips showing desired characteristics, applications, processing parameters and portability.</p><p>Physical Design is the process of translating the gate-level RTL logical functionality of a design (.vg) into a physical geometricized form (GDSII) which can be taped-out for production / packaging.</p><p>Need for Physical Design:</p><p>• Current IC designs have millions of transistors and other complex logic which is routed within each other along with several layers of metal in a given metal stack.</p><p>• Such designs furthermore need to be optimized for Power, Performance, Timing and Area so as to ensure the best possible performance output with lesser setbacks. • Manually optimizing the Placement and Routing of all components in a design has become a Herculean task being time consuming and error-prone. As a result, Automation in EDA industry is quintessential to carry out such an arduous task. • Thus, a well-defined robust PD flow enhances our time to market capability and get more work done. Physical Design in itself is a complex multi-domain process. As a result, it is broken down into simpler sequential heirarchies to expedite the design process:</p><p>Partitioning breaks up a complex top-level circuit into smaller blocks or modules which can each be designed, optimized and analyzed in isolation, before merging them back into top-level analysis. Floor Planning determines the block dimensions, upsizing of HIC cells; assignment of pins, boundary and well-tap cells along with preplacement of any critical logic in the design.</p><p>Power Planning often done in conjunction with floor planning, distributes power rings, rails and subsequent VDD, VSS, VDDQ, VDDR etc power domains across the design. Power stripes are added in accordance with the metal stack approved by the industry. Placement is done following the floor planning stage, where the tool automates the placement of core logic, macros and decap cells within the die area. Clock Tree Synthesis involves building and routing clock architecture throughout the design. Critical parameters like Root pin, Through pin, Unsync pin and splits need to be defined prior to this stage, to balance skews and slack timings in the clock path. Routing is done to define metal fill and connectivity between all the logic implemented in a design. Metal layers and corresponding vias are dropped into the placed logic in accordance with the metal stack and sub-circuit requirement. Timing Closure helps optimize timing measures like clock skew, delay skew, max-trans, setup and hold slack in clock as well as data paths. Timing closure is critical as failure to meet timing requirements can cause corruption in data or on-chip instruction sets.</p><p>Verification stages include:</p><p>• Static Timing Analysis (STA) -Setup and hold check -DRVs (max tran, max cap, fanout) check -Clock and Data skew check • Power Distribution Network Analysis (PDN) • Physical Verification (PV) -SI noise and Antenna check -Design Rule Checks (DRCs) -Layout vs Schematic (LVS) -DFM, LPA Analysis • Formal Verification (FV) • Low Power Verification (CLP)</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. LITERATURE SURVEY</head><p>Application Specific Integrated Circuits (ASIC) design, as the name suggests tends to cater to specific design purpose sought out by the industry. Such specific purposes may be pertaining to chip performance, clocking frequency, data requirement or process node, to name a few. The term "Technology Node" or "Process Node" is held in high regard in the semiconductor industry. Process node denotes the size of the smallest gate being implemented in the chip. Smaller the process node, smaller will be the gate size, greater will be the gate density per micron, thereby resulting in greater scope to implement logic onto the chip. For example, a 7nm process node itself can have approximately one-tenth billion transistors per sq. mm. <ref type="bibr" target="#b2">[3,</ref><ref type="bibr" target="#b3">4]</ref> In 2021, Intel has revealed its plans to launch technologies based on 2nm process node as early as in the year 2024. <ref type="bibr" target="#b4">[5]</ref> Although, greater gate density gives more power to designers to implement logic, it complicates the process of design furthermore leading to difficulties in closing timing and optimizing PPA. Lower process nodes (especially below 32nm) inherently add a layer of complexity especially in terms of DRCs and congestion hotspots. Inamul Hussain and Saurabh Chaudhury published some research in 2020 discussing the prominence of power dissipation and leakage problems at such process nodes. Selection of appropriate logic family is therefore deemed critical at the start of designing any functional chip. As far as static logic families go, their research claims that CNTFETs (Carbon Nanotube Field-Effect Transistors) surpass MOSFETs (Metal Oxide Semiconductor Field-Effect Transistors) owing to their lower static power and leakage levels at lower technology nodes. <ref type="bibr" target="#b5">[6]</ref> Developments in the EDA industry have been critical in overcoming these challenges. With hi-tech EDA tools offered by prominent benefactors to the silicon industry in Cadence Design Systems and Synopsys Inc, it is possible to optimize results for majority of the designs and logic families, even MOSFETs. These tools are compatible with representing data from all major foundries including Samsung, TSMC, Intel etc. ; reading in multiple design inputs like timing libraries, derate values, LEFs and metal stacks ; synthesizing the apt netlist and constraints to serve chip functionality ; carrying out placement and routing of all cells and logic in the design ; implementing verification mechanics for timing parameters, LVS, DRCs etc. <ref type="bibr" target="#b6">[7]</ref>. Recently, Cadence Design Systems has even been able to integrate Artificial Intelligence into chipdesigning with the development of its "Cerebrus" AI-oriented EDA solution. Rest assured, the EDA industry is always on the move to provide better and more robust solutions to the challenges faced by the ever-changing silicon market.</p><p>The solutions offered by EDA tools are gauged with the aid of several industry metrics to ensure accurate outputs and eradication of bottlenecks when the chip is out for silicon testing, fabrication and packaging. Considering the everincreasing demands in the near future in terms of processing power, supercomputing combined with the desire to implement greater logic on a smaller area, Aaron NG and Igor Markov have proposed a robust benchmark mechanic to test the performance of EDA tools. Such a benchmark helps gauge the tool in terms of accuracy, possibilities of failure, computing capacity, ability to extrapolate graphical and tabular results, Pareto Regression Analysis to compare Quality of Results (QoR) with similar tools or previous versions, ability to control the instruction flow etc. <ref type="bibr" target="#b7">[8]</ref> Cutting-edge EDA tools provide us with high level design automation to help meet design requirements and constraints with minimal manual work. However, it is quintessential that we provide these tools with robust design methodologies and flows so as to get the best possible results. Three design architectures were predominantly in use in the early 1970s all the way upto the 90s to propose semiconductor designs for embedded CMOS applications, namely ASIC, DSP and RISC. <ref type="bibr" target="#b8">[9]</ref> However, since the dawn of this century, owing to the heaps of progress made in the silicon frame pertaining to chip size and on-chip computation, ASIC architecture has been at the heart of nearly all proposed VLSI designs. A standard ASIC flow covers all steps right from RTL synthesis to optimal Physical Design and Verification to finally culminating with production (tapeout). All stages in this process are critical. Failure to meet design constraints in any of these stages may cause hiccups like data corruption, false outputs or even worse, chip failure. As a result, it is equally critical to maintain a well defined flow which ensures that performance during all the aforementioned stages is met as per desired requirements. Such ASIC flows can be implemented on FPGAs or CPLDs depending upon the dimensions and magnitude of proportions of the design along with functionality and re-programmability. FPGAs generally supprt larger designs than CPLDs as they can host a large number of sequential flops and registers. Being RAM-based or volatile in nature, FPGAs offer more flexibility at the cost of a slightly higher booting or configuration time. Once configured however, FPGAs are capable of fast-computing on-chip signals. CPLDs being ROM-based however are able to load up memories immediately on booting up, but are slower in computational capability in the longer run. <ref type="bibr" target="#b9">[10,</ref><ref type="bibr" target="#b10">11]</ref> Traian Tulbure has published some of his work on the reconfigurable nature of CPLD logic and its viability in ASIC implementation in 2011. His research talks about the dynamic reconfigurable nature of CPLDs and how it could have an edge over SRAM-based implementation for smaller designs. Satisfactory results were obtained from a timing point of view over the course of this research. <ref type="bibr" target="#b9">[10]</ref> In the ASIC Design flow discussed earlier, Physical Design is the process following Gate-level RTL synthesis and involves representation of gates defined in the synthesis verilog netlists into their geometricized forms complete with physical connectivity provided using appropriate metal layers. This geometric representation is in GDSII form which is easily realizable for masking and tape-out during production stage. As we look deeper into the Physical Design flow and all the methodologies that accompany it, we realize that it follows a sequential heirarchy consisting of several sub-stages involving layout, timing and verification of the layout. The new age IC design flow consists of three most critical sub-sections.</p><p>• RTL Synthesis (Front End Design) -This step involves synthesizing a verilog netlist and constraints in Hardware Description Language (HDL) and Synthesis EDA tools in accordance with the die area, process node, performance, chip functionality and metal stack amongst numerous other requirements set by the Foundry.</p><p>• Physical Design (Back End Design) -As discussed earlier, Physical Design takes the Synthesis .vg and constraints as input and translates it to physical geometries to be implemented on the chip. Throughout this process, the goal is to optimize the design from timing and PPA point-of-view.</p><p>• Physical Verification -The objective of Physical Verification is to check the design for any opens, shorts, unconnected pins and Design Rule checks set by the foundry as well as validating the physical layout of our design against the schematic obtained from the foundry. After the design is validated from verification point of view, it is then sent out for Tape-out and fabrication, followed by packaging. This post-verification process involving masking and chip production is handled by the Wafer Fabrication Houses before being packaged, tested and implemented as ICs. All these stages in ASIC design flow possess their own different methodologies and architecture which offers ease of interface for EDA tools as well as better conductivity of tasks. Along with the verilog netlists (.vg) and constraints generated during Synthesis stage, there is some additional foundry data which needs to be provided as input to the Physical Design stage. This data is commonly known as "foundry collaterals" or "process collaterals" and contains information regarding attributes such as leakage power, area and functionality of standard cells with respect to different PVT corners, abstract view for the design and definition of metal layers. In combinational logic synthesis, instructions are provided to try optimizing critical paths by working around the value of P and other combinational logic. Sequential logic synthesis deals with optimizing false and multicycle paths in the design and tampering with flops and other sequential components in the design. <ref type="bibr" target="#b11">[12]</ref> Research work done by Satoshi Ohtake et al. further elaborates on accurately identifying false paths in a RTL design. They have proposed a novel methodology titled 'Mapping Point Preserving-Logic Synthesis (MPP-LS)' which maps path-to-path logical connectivity between the sequential logic in a circuit and distinguishes actual logical paths from redundant ones. <ref type="bibr" target="#b12">[13]</ref> Front End Design further encompasses the following design processes:</p><p>Design entry: Each chip or IC is designed for a specific purpose set by the industry. This purpose is defined in the form of implementation logic on the chip. The objective of this stage is to identify this core logic and process settings along with the list of collaterals and desired requirements specified by the industry. Foundry collaterals for this stage typically include architectural recommendations, target frequency for the design, timing windows and corresponding waveforms, MMMC corners etc.</p><p>Logic Synthesis: The functionality defined in the previous stage is put into code during Logic Synthesis. This code is written in any Hardware Description Language (HDL) such as Verilog or VHDL. This RTL logic is passed over to EDA Synthesis tools such as Genus™ by Cadence® to obtain the Gate-level netlist as output.</p><p>Gate level Simulation: This is a post-synthesis validation procedure to verify the functionality of generated verilog with industry expectations. This stage also involves generation and analysis of power, timing and density reports for the synthesized netlist and corresponding constraints. Pre Layout Simulation: The logic design extracted in the previous step is validated before moving forward to the layout stage. The simulation involves verification of the synthesized netlist with schematic provided by the foundry with the help of Cadence® Ultraism EDA tool.</p><p>Design Layout: After the logical equivalence of synthesized netlist is verified, the design is ready to enter layout stage. The Innovus™ and IC Compiler II EDA tools developed by Cadence® and Synopsys respectively are widely used for layout and subsequent optimization. The layout stage pans the following sequential methodologies:</p><formula xml:id="formula_0">• Floor Planning • Power Planning • Placement • Clock Tree Synthesis • Routing • Timing Optimization</formula><p>Extracted Simulation: The design obtained from first-cut P&amp;R needs to be optimized for power, performance, timing and area while also being wary of the timing and physical violations present in the design. Quantus™ which is an extraction engine developed by Cadence® aids in extraction of resistive and capacitive parasitics arising due to interconnect wires added to the layout while routing. This net delay information is stored in Standard Parasitic Exchange Format (SPEF) files and is further used for timing analysis. While clearing violating paths occurring in timing report, it is typical for designers to try and optimize cell and net delay values in the layout.</p><p>The Journal "Fundamentals of Layout Design for Electronic Circuits" (Springer 2020) authored by J. Lienig and J. Scheible talks in depth about various library interfaces, design rule checks and resulting violations. Extensive research that has been done into different EDA tools along with different heirarchies and flows followed by each tool is another highlight from this journal. <ref type="bibr" target="#b14">[15]</ref> III. BACK END FLOW</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Physical Design</head><p>A 2021 research by Dmitry Bulakh et al. published at the International Seminar on Electron Devices Design and Production was aimed at developing a Graphical User Interface (GUI) to visualize, control and interpret the various stages of Physical Design. The framework was developed in C++ using a few inherited classes from a cross-platform Qt library. Some .hpp, .dll and lib files can been provided as input along with layer map files, and the framework would then render a GDSII file as output. <ref type="bibr" target="#b16">[17]</ref> The main steps in Physical Design flow are:</p><p>• Post-synthesis Netlist Optimization</p><p>• Floor Planning • Power Planning • Placement (Pre-CTS) • Clock Tree Synthesis (CTS) • Routing • Post Route Timing Optimization Fig. 2. ASIC Design Flow • Physical Verification . B. Design Collaterals Gate Level Netlist (.vg) This is the output file generated after synthesis. It is the gate level representation of the design. Technology file (.tech) This file is provided by foundry / fabrication team. It provides technology specific information like physical and electrical characteristics of metal layers, vias and metal widths, spacing, pitch and routing design rules Logical libraries / Liberty files (.lib) This file is provided by process foundry. It contains information regarding PVT requirements, net delays, cell delays, transition, recovery, removal, setup and hold time requirements. It also contains information about area of cell, leakage power, capacitance etc. LIB files are generated using either of Composite Current Source (CCS) or Non-linear Delay Model (NLDM) or ECSM methodologies. For smaller technology nodes, CCS is being preferred. The design needs to be validated for certain PVT (Process, Voltage and Temperature) corners to ensure seamless functionality under even the harshest of conditions. Timing is different for different analysis views and corners. Hence, there is a .lib file for every PVT corner. Library Exchange Format (.lef) This is provided by the foundry itself. The LEF is an abstract view of the cells It contains information about cell geometries, routing and via placements. . System Design Constraints file (.sdc)</p><p>Constraint files are generated during synthesis phase in accordance with foundry requirements pertaining to timing, power, performance and area requirements of the design. These files also define the following: operating conditions, DRVs (max trans, fanout and capacitance), frequencies of source and generated clocks along with clock uncertainty and latency, multicycle and false paths etc. along with numerous other constraints.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Table Look Up (TLU)</head><p>TLU is a binary file used for RC estimation and extraction, although header is in ASCII format. TLU contains wire capacitance at different spacing and width in the form of a look-up table which provides high accuracy and runtime benefits. This file provides RC parasitic of metals per unit length which is subsequently used to calculate net delay.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Floor Planning</head><p>As the name suggests Floor Planning helps create a skeletal level framework for spatial locations of standard cells, macros, analog IPs and all other blocks on a circuit. The goal is to optimize design layout on the given die area while keeping close tabs on probable congestion and density violations. Typically floor planning is done to make the layout compact wherein logically connected instances are placed in close proximity to each other as well as everything else. This is done to make effective use of the routing resources available. • Polish Polish notation is widely used in the world of computing to read and express logic embedded in data structures, but most prominently binary trees in the form of equations. Such a notation is used to read the information conveyed by the sliced up floorplan binary tree in post-fix form. It makes use of ordered weighted binary tree, the root of which is located at the bottom left corner of the placement area at the coordinate (0,0).Once the root is fixed, the rest of the tree is built recursively, first populating the left branch and then the right. . Optimization Once the initial Floorplan notation is decided upon, then begins the process of optimizing the layout to have the smallest area with the most optimum core utilization. <ref type="bibr" target="#b17">[18]</ref> • Simulated Annealing Simulated Annealing is the oldest Floorplanning algorithm and has been extensively used over the years. It can be used effectively with slicing as well as compacted notations like Polish, B*Tree etc. This algorithm can converge to a fairly optimal solution but is irregular in doing so. In modern day, this algorithm is used as a preliminary benchmark for researchers to test newer algorithms on. <ref type="bibr" target="#b17">[18]</ref> • Genetic Algorithm Soon after the success of Simulated Annealing algorithm, the Genetic Algorithm (GA) was developed. GA optimization begins with arbitrary placement of blocks on the pre-defined die area. The Cost Function of this initial floorplan is calculated using some distance metrics. Then any two of the blocks are spatially swapped and a new revised cost function is deduced. This is then compared with the initial value and a decision is made whether the swapping has affected the layout positively or adversely. This process is recursively carried out until the most optimum value is obtained for the cost function. <ref type="bibr">[</ref>18] • Partical Swarm Optimization (PSO) In PSO, each block is treated as an individual entity with the same weight. The premise of this algorithm is to spatially change the position of these individual blocks so as each block determines its own best position with respect to its nearest neighbours in the design. A research published in 2019 by S.B.Vinay Kumar et al. proposed an Adaptive PSO model which tunes the PSO model further by adding a weight factor to the block. All blocks are defined weight values at the initial stage.</p><p>Over successive iterations as the block gets closer and closer to determining its optimum posititon, its weight and hence priority for optimization keeps on reducing. So all blocks will start with a high inertia value and end at a smaller value towards the completion of the optimization process. Such an adaptive architecture is more likely to give better results than GA and traditional PSO models, as claimed by the study. <ref type="bibr" target="#b19">[20]</ref> As all the above discussed algorithms point out, optimization is a recursive process and hence may take up a lot of time to converge on an optimal floorplan. To reduce the time taken by traditional floorplan algorithms, Yanling Zhou et al. have proposed a quicker floorplanning method which involves breaking the full initial netlist into smaller parts and carrying out floorplanning for each individual sub-netlist in a parallel threaded manner thereby saving time on converging to the optimal floorplan. <ref type="bibr" target="#b20">[21]</ref> As discussed earlier, floor plan lays out a framework for the physical design to be built upon. While the process of defining a floor plan may be entirely different for designs with different level of heirarchies, there are a few common fields to be defined to ensure an efficient design layout. To begin with, floor plan defines the block dimensions thereby setting the die area. To make optimum use of this die area, it is critical to identify all the logic, IPs, macros, I/Os and memories which need to be placed in the design. For placement of all the aforementioned components, floor plan should take into account the possibility of cell density issues or routing congestion that may arise owing to poor or incorrect placement. The designer should also aim to make the layout compact so as to use routing resources efficiently as well as to avoid wastage of die area. Core area utilization should also be taken into account while define floor plan. Most industries target 60-70% initial core utilization to generate margin for timing optimization at a later stage. A compact floor plan presents a few advantages related to speed of operation of the chip, reason being, the more compact our design, closer will be the placement of on-chip components, lesser will be the routing resources used, lesser will be the interconnect length and subsequent net delay, thereby reducing net latency and increasing the speed of operations. This gives rise to an active trade-off between speed of design and resulting routing congestion.</p><p>Common steps panning the Floor Plan stage include:</p><p>• Partitioning • Defining Block Dimensions</p><p>• Pin Placement • Adding Decap, Tap and End Cap cells Fig. 6. Power Planning</p><p>Power Planning is a very critical stage in Physical Design as it defines the Power/Ground mesh for any layout. The mesh needs to be built considering power requirement for all pins and macros in the design ; standard cell placement and the possibilty of congestion or high IR drop must also be taken into consideration while doing power and bump planning for any design. Any high voltage drop in the layout caused by EM/IR imbalance may cause circuital failure. Zhu Qing et al. in their publication titled "Simulation and Planning Method for On-Chip Power Distribution -An Industry Perspective" have studied the different parameters affecting power distribution and have come up with a set of steps to be followed while power planning to minimize the chances of fatal voltage drop across the design. <ref type="bibr" target="#b21">[22]</ref> The proposed steps are as follows:</p><p>• Categorize all standard cells in the design into one of the two groups: those giving rise to severe IR drop and those with nominal IR drop. • Based on the IR drop metrics obtained in the previous step, draw a schematic for the power grid, with the horizontal and vertical layers being represented by a metal resistor. Compute the total RC parasitic offered by this schematic grid arrangement. For better accuracy, we may even include via parasitics in the calculation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Fig. 7. Schematic Power Grid</head><p>• Add a current source to each cell of the mesh, to compute the magnitude of switching current originating from that cell. • The RC parasitic and switching current information thus obtained is used to calculate dynamic power dissipation for the schematic. • If the Power dissipation numbers are below a pre-defined threshold, we can realize the schematic grid using VDD and VSS stripes. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>E. Placement</head><p>Based on the ground-work defined in Floor Plan stage, the objective of Placement stage is to optimize timing and routing within the design. Timing for any block is a function of the cell and net delay between all logically connected paths in the design. Cell delay is a property of the cell. By manipulating the VT flavor of an instance, its cell delay can be changed. Lower the Voltage Threshold (VT), lower the cell delay for the instance. Net delay on the other hand, is a function of the parasitics corresponding to interconnects in the design. These RC Parasitics either be derived from Wire Load Models (WLMs) which are in the form of lookup tables provided by the foundry or from Virtual Route (VR) parameters. Virtual Route model tends to provide more accurate parasitic extraction than WLM models leading to more refined timing calculations.</p><p>Need for placement: Key factor in determining performance of the circuit: As it indirectly dictates the routing length of wires, it plays a role in determining the delay associated with each wire.</p><p>Determines routing ability of the design: A well placed design will have no problems with routing.</p><p>Decides distribution of heat on the die surface ; uneven temperature profiles can lead to reliability and timing issues Power consumption also gets affected by placement Goal for placement stage:</p><p>• optimize routing resources • optimize die utilization • reduce routing congestion and hotspots</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>F. Clock Tree Synthesis</head><p>Once all the core logic has been placed during the previous stage, we start building paths for transmission of clock signal throughout the block. Clock Tree Synthesis is a very critical process owing to the numerous functional failures that may arise out of incorrectly built clock architectures. Misalignment in clock paths may cause setbacks such as failure to meet timing and skews, false outputs, data corruption or even chipfailure. CTS involves building of accurate clock paths and addition of buffers to balance these clock paths by minimizing clock skew. These addition of buffers also aids in reducing hold slack value. At the timing of defining clock tree, signal is derived from source clock for the block and traversed across numerous splits in the tree to ultimately reach the CK pins of flops. If any of these CK endpoint pins are defined to be 'Don't touch' or 'ignore pins', then they are bypassed during clock tree synthesis. Alternatively if any pin is defined to be a 'through pin', it is assumed that the clock path is already built and signal input to the pin is provided.</p><p>Types of skews:</p><p>• Global skew achieves zero skew between two synchronous pins without considering logic relationship.</p><p>• Local skew achieves zero skew between two synchronous pins while considering logic relationship.</p><p>• If clock is skewed intentionally to improve setup slack then it is known as useful skew.</p><p>. Inputs to CTS stage:</p><p>• Placement Data • Clock Specification File -Maximum and Minimum insertion delay -Target Skew -Maximum transition value -Non Default Rules (NDR) -Auto CTS root pin -Preferred metal layers for clock -Type of buffers -Latency -Maximum fanout -Maximum capacitance value , etc. . Steps involved in CTS: • Synthesize the Clock Tree • Optimize the Clock tree. This is done by -Buffer relocation -Buffer sizing -Gate relocation -Gate sizing -Improve skew -Delay insertion</p><p>• Perform inter-clock balancing -Between 2 flip flop delay balancing has to be done -Clock group between which balancing has to be specified While working on lower process nodes, it is observed that with the increase in sequential logic coupled with shorter and more dominant wire delays, it becomes increasingly complex and critical to balance clock skew. While building clock architecture, we generally have a source clock which distributes clock signal throughout the block via clock nets defined using CTS root pins. Clock specifications like max capacitance, max transition constraints along with max and/or min insertion delays are defined for every root pin and are thus implemented across all clock nets originating from the pin. Guirong Wu et al. in the year 2009, have proposed a more efficient clock splitting methodology to build better clock architectures. The proposed methodology talks about splitting the main source clock into multiple pseudo clock sources at transistor level based on the number of fanouts for every split. This would ultimately help with DRVs as well owing to the split distribution of fanouts, along with more balanced clock skew. <ref type="bibr" target="#b24">[25]</ref> Siong Kiong Teng et al. have proposed another "Regional Clock-Splitting" methodology in their 2010 publication titled "Regional Clock Gate Splitting Algorithm for Clock Tree Synthesis". <ref type="bibr" target="#b25">[26]</ref> The said methodology involves the following steps:</p><p>• Clock Gate Marking Upon placement of standard cells, macros and other physical cells in the layout, all Clock Gating (asynchronous) cells are identified. Each of these Clock Gating (CG) cells are allotted a bounding box that encompasses all direct fanouts related to that cell. This bounding box is demarcated to compare the skews across clock nets affiliated to each of these cells. Simply put, a larger bounding box area implies that the fanouts are located farther away from the CG cell thereby drawing additional interconnect wire length and giving rise to higher skew.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>• Clock Gate Splitting</head><p>In the event where any CG cell is associated with any setup violations along with the area encompassed by the corresponding bounding box being greater than a pre-defined threshold, the clock gate cell will undergo splitting. While splitting, the bounding box will split at half the original length in its dominant direction i.e if any bounding box is horizontally oriented, it will split at X/2 distance keeping its Y metric stable, and vice-versa. This splitting is recursively carried out until bounding box area meets the threshold criteria defined earlier. Once such a stage is achieved, the parent clock gate will split 'n' times, where 'n' is the number of times the corresponding bounding box had split in order to meet threshold. The study claims to have achieved reduced post-split insertion delay along with a robust clock architecture with balanced skews. <ref type="bibr" target="#b25">[26]</ref> G. Routing</p><p>The Physical Design flow should have completed placement of standard cells, IPs, macros, physical cells and built the entire clock architecture before going for routing. Simply put, routing provides net or wire connectivity between all instances on the layout. Routing creates a grid for transmission of all signals throughout the design. Hence the interconnect nets it creates are also called "signal nets". Similarly CTS stage creates "clock nets" and Power Planning generates "power nets". The aim of routing is to facilitate appropriate connectivity between instances in the design in accordance with the metal stack approved by industry, while also trying to optimize design with respect to possible congestion hotspots. There are two stages within routing methodology:</p><p>• Global Routing Global Routing, also called Early Routing in some cases is the stage wherein routing metal is allocated to appropriate layers along with channel track alignment. It helps build a general topology for the resources to be used during Detailed Routing. Steiner Tree is an extension of the Minimum Spanning Tree problem that is commonly used in processing methodologies. The objective of this algorithm is to optimize the routing graph or network to have minimum traversal cost. All vertices in the said graph that constitute the minimum cost tree are referred to as "demand points". All such demand points are connected via horizontal and vertical lines on a mesh referred to as the "underlying graph". <ref type="bibr" target="#b26">[27,</ref><ref type="bibr" target="#b27">28]</ref> The 1-Steiner optimization is further implemented on these underlying graphs, wherein a few common points are identified as "1-Steiner Points". These 1-Steiner points is chosen such as to minimize the routing distance (horizontal and vertical) between the dominant points. <ref type="bibr" target="#b27">[28]</ref> Just like the Steiner Tree algorithm, other minimum distance algorithms like PRIM, Bounded PRIM, Bounded Radius Spanning Tree have also been implemented to optimize routing for a layout. <ref type="bibr" target="#b27">[28]</ref> . Inputs to Routing stage: Fig. 10. Identification of 1-Steiner points • Netlist with location of blocks and location of pins (after CTS has been completed) • Timing budget for critical net • Technology File • TLU+ File (Commonly included along with the Technology File .tf) • SDC . Checklist before Routing:</p><p>• Placement completed • CTS completed • Power and ground nets routed • Estimated congestion is acceptable • Estimated Timing -acceptable ( 0 ns slack ) • Estimated max cap/trans -no violations Routing Congestion: When designing chips on lower process nodes and critical utilization factors, it just may happen that routing resources would get crowded in a certain area. Such congestions may have been caused due to lack of routing resources or tracks or simply lack of adequate area to establish the routes. This is a common cause for Density-related DRCs and even EM-IR failures on-chip.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>H. Physical Verification</head><p>Physical verification is a process whereby complete Layout design is verified via EDA software tools to ensure correct logical functionality and manufacturability Physical Verification involves the following validation checks:</p><p>• Design Rule Check DRCs are of two kinds: Base DRCs and Metal layer DRCs ; of which Base DRCs need to be cleared in the floorplan or placement stage of the flow. These may include placement legalization issues, track misalignment violations, density and utilization requirements not being met, incorrect instance orientation and physical cell violations. Metal layer DRCs on the other hand can be cleared in the Post-Route database as well. These issues range from overlapping vias to metal shorts to even minimum spacing violations between instances and nets.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>• Layout versus Schematic</head><p>In this process, the final streamout layout GDS is compared against the golden schematic netlist to check for any mismatches or missing instances. All connectivity issues (i.e opens and shorts) are also checked and fixed during cleaning LVS for a design.</p><p>• Antenna Check • Electrical Rule Check </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>CONCLUSION</head><p>In this paper, we have garnered and compiled a comprehensive study on all the different aspects and methodologies encompassing any robust ASIC Back End Flow. As we move further onto a path that supersedes Moore's Law, it is observed to be increasingly complex to develop even lower process nodes owing to the difficulties in power management, timing closure and conservative routing versus congestion trade-off. <ref type="bibr" target="#b28">[29]</ref> While automation aided by EDA tools plays a key role in simplifying and accomplishing design scope, their optimization could be hindered by the aforementioned challenges. Research work compiled by Inamul Hussain et al. captures the gist of these challenges and points towards the use of CNTFETs logic family to design chips at lower technology nodes. <ref type="bibr" target="#b4">[5]</ref> However, the ever-developing EDA tools prominently aided by Cadence Design Systems and Synopsys Inc. are able to provide adequate coverage to even use MOS-FETs at such lower processes. N.G Aaron et al. have proposed a benchmark for gauging the accuracy and QoR obtained from these EDA tools, which measures the tool performance as well as post-optimzation utility in formulating and displaying results. <ref type="bibr" target="#b7">[8]</ref> However, throughout our study it was observed that a well-curated Physcial Design flow is as important as the computational calibre of EDA tools to achieve optimum results and desired functionality. <ref type="bibr" target="#b29">[30,</ref><ref type="bibr" target="#b30">31]</ref> The input to such a flow is in the form of a synthesized verilog netlist supported by a set of design constraints. Research proposed by Cortadella et al. and Satoshi Ohtake et al. captures the different ways of optimizing the synthesis process with critical path targetting methodologies like Highlevel Synthesis and Mapping Point Preserving-Logic Synthesis respectively. <ref type="bibr" target="#b11">[12,</ref><ref type="bibr" target="#b12">13]</ref> These synthesized .vg, .sdc files along with foundry collaterals like timing libraries, lef files etc are provided as input to the PD flow which is covered in great detail by A. Kahng et al. in their publication titled "VLSI Physical Design: From Graph Partitioning to Timing Closure". <ref type="bibr" target="#b13">[14]</ref> The introductory stage to Physical Design is Floor Planning. Floor planning involves laying a groundwork for the instances to be placed upon. There are a few different ways to represent a floorplan of which the O-Tree and B*Tree are widely regarded as the most efficient. Naushad Manzoor Laskar et al. have compiled a comprehensive survey on all the different Floor Plan representations and algorithms like Simulated Annealing (SA), Genetic Algorithm (GA) and Particle Swarm Optimization (PSO) that are used for optimizing floorplan for the said representations. <ref type="bibr" target="#b17">[18]</ref> Researchers have also tried integration of the Power Planning stage into Floor Plan optimization. Once the floorplan is decided upon and the Power/Ground (PG) mesh is generated, the design enters P&amp;R stage which comprises of Placement, Clock Tree Synthesis (CTS) and Routing. Based on the ground-work defined in Floor Plan stage,the objective of Placement stage is to optimize timing androuting within the design. In CTS, the clock heirarchies are defined throughout the design for timely and balanced propagation of clock signal. However, balancing clock skews at lower process nodes is a complex yet critical task which even some EDA tools may find challenging to optimize. Siong Kiong Teng et al. have proposed an efficient "Clock Gate Splitting" algorithm to allow a more robust clock architecture with balanced skews and insertion delays. <ref type="bibr" target="#b25">[26]</ref> Once the clock heirarchy is established, the design is ready to enter Routing phase wherein interconnects between on-chip instances are established in a two step process: the superficial Global Routing and the more in-depth Detailed Routing. As the main aim of routing phase is to optimize and conserve the routing resources throughout the design, a fair few minimum distance optimization algorithms come to the fray. Of these, the Steiner Tree Algorithm has been studied and documented in detail during the course of this survey.</p><p>The design methodologies, optimization algorithms and ASIC flow information garnered and documented in this review may serve as a comprehensive knowledge-point for improving upon the existing methodologies and practices.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Fig. 1 .</head><label>1</label><figDesc>Fig. 1. Performance Equation for Synthesis Algorithms refers to number of cycles required to carry out instruction set and P denotes the time period for each of the N cycles.In combinational logic synthesis, instructions are provided to try optimizing critical paths by working around the value of P and other combinational logic. Sequential logic synthesis deals with optimizing false and multicycle paths in the design and tampering with flops and other sequential components in the design.<ref type="bibr" target="#b11">[12]</ref> Research work done by Satoshi Ohtake et al. further elaborates on accurately identifying false paths in a RTL design. They have proposed a novel methodology titled 'Mapping Point Preserving-Logic Synthesis (MPP-LS)' which maps path-to-path logical connectivity between the sequential logic in a circuit and distinguishes actual logical paths from redundant ones.<ref type="bibr" target="#b12">[13]</ref> Front End Design further encompasses the following design processes:Design entry: Each chip or IC is designed for a specific purpose set by the industry. This purpose is defined in the form of implementation logic on the chip. The objective of this stage is to identify this core logic and process settings along with the list of collaterals and desired requirements specified by the industry. Foundry collaterals for this stage typically include architectural recommendations, target frequency for the design, timing windows and corresponding waveforms, MMMC corners etc.Logic Synthesis: The functionality defined in the previous stage is put into code during Logic Synthesis. This code is written in any Hardware Description Language (HDL) such as Verilog or VHDL. This RTL logic is passed over to EDA Synthesis tools such as Genus™ by Cadence® to obtain the Gate-level netlist as output.Gate level Simulation: This is a post-synthesis validation procedure to verify the functionality of generated verilog with industry expectations. This stage also involves generation and analysis of power, timing and density reports for the synthesized netlist and corresponding constraints. Authors A. Kahng, J. Lienig et al. in their 2011 Springer publication titled "VLSI Physical Design: From Graph Partitioning to Timing Closure" have garnered a comprehensive research base on Back End VLSI Flow. Their work encompasses detailed study on the following Physical Design methodologies. The back-end design includes following steps.[14] Schematic Entry: Similar to the Design Entry stage in Front End flow, this stage involves reading-in the logic design needed.</figDesc><graphic coords="3,360.39,96.78,154.23,69.74" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><figDesc>Authors A. Kahng, J. Lienig et al. in their 2011 Springer publication titled "VLSI Physical Design: From Graph Partitioning to Timing Closure" have garnered a comprehensive research base on Back End VLSI Flow. Their work encompasses detailed study on the following Physical Design methodologies. The back-end design includes following steps.[14] Schematic Entry: Similar to the Design Entry stage in Front End flow, this stage involves reading-in the logic design needed.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>Fig. 3 .</head><label>3</label><figDesc>Fig. 3. Example of efficient floor plan Goals for Floor Planning: • Minimize the total chip area and dead space • Minimize total wire length • Minimize Interconnection complexity • Improve the performance by minimize delay Naushad Manzoor Laskar et al. have documented a comprehensive study of all the prominent Floorplan Representations and the means of achieving them in their 2015 publication titled "A Survey on VLSI Floorplanning: Its Representation and Modern Approaches of Optimization". This detailed research covers all aspects of floorplan and floorplanning algorithms starting with all different ways of denoting a floorplan.[18] Different ways of representing a floor plan are as follows:</figDesc><graphic coords="5,45.98,400.89,257.05,130.64" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>Fig. 4 .</head><label>4</label><figDesc>Fig. 4. Non-slicing v Slicing Floor Plan • Sequence Pair • Bounded Slicing Grid (BSG) • TCG • O-Tree The O-Tree algorithm is one of the least computationally expensive algorithms with a complexity of O(n). It is a local-search algorithms and hence deterministic by nature. Being deterministic means that this algorithm will try to optimize the layout on the basis of immediate short term solutions in contrast to a few greedy algorithms which are a bit more experimental in their approach and tend to be better at optimizing. Despite being one of the most computationally efficient algorithm, O-Tree based approach may not always find the best possible solution owing to its deterministic nature. A research done in 2005 by Maolin Tang and Alvin Sebastian addresses this very issue and proposes a more greedy Genetic Algorithm (GA) to optimize Floor Plan based on O-Tree representation.[19] • B* Tree Similar to O-Tree, the B* algorithm showcases a computational complexity of O(n). It is widely regarded as one of the most efficient and flexible Floor Plan notations to optimize upon.It makes use of ordered weighted binary tree, the root of which is located at the bottom left corner of the placement area at the coordinate (0,0).Once the root is fixed, the rest of the tree is built recursively, first populating the left branch and then the right. . Optimization Once the initial Floorplan notation is decided upon, then begins the process of optimizing the layout to have the smallest area with the most optimum core utilization.<ref type="bibr" target="#b17">[18]</ref> • Simulated Annealing Simulated Annealing is the oldest Floorplanning algorithm and has been extensively used over the years. It can be used effectively with slicing as well as compacted notations like Polish, B*Tree etc. This algorithm can converge to a fairly optimal solution but is irregular in doing so. In modern day, this algorithm is used as</figDesc><graphic coords="5,334.69,133.11,205.63,76.76" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head>Fig. 5 .Fig. 6 .</head><label>56</label><figDesc>Fig. 5. Adding Decap cells • Macro Placement • Adding Routing and Placement blockages • Adding IO buffers D. Power Planning Power Planning is the process involving power grid creation to facilitate equal distribution of energy to all parts of the design. What creates the Power Grid? There are 3 levels of power distribution involved: 1. Rings: Carries VDD and VSS around the chip 2. Stripes: Carry VDD and VSS from the Rings around the chip 3. Rails: Connect VDD and VSS from chip level to standard cell levelSteps involved in this stage:</figDesc><graphic coords="6,308.99,269.45,257.05,151.28" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><head>Fig. 8 .</head><label>8</label><figDesc>Fig. 8. Power Dissipation Researchers have also tried integrating Power Planning into the Floor Planning stage thereby letting the optimizing algorithms to optimize the floor plan while taking into consideration the parallel creation of an apt power mesh.[23,24] Shuo Zhou et al. have documented the integration of power planning with the Bounded Slicing Grid (BSG) floorplan representation as early as the year 2001. The proposed algorithm was aimed to complete the two planning stages simultaneously on a BSG representation with a view to optimize placement area and power resources.[23] Han Liying et al. in the year 2009 have documented an integrated power and floor planning algortihm based on the Genetic Algorithm (GA) method of optimization.</figDesc><graphic coords="7,308.99,170.54,257.05,129.45" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><figDesc>• Detailed Routing Detailed Routing, also known as Nano Route in some cases makes use of the foundation laid down by Early routing, to actually route all interconnects in the design. Detailed routing weighs the trade-off between conservation of routing resources and LPA congestions, and optimizes its function accordingly. DFM and congestion checks are carried out for the same purpose. Hao Tang et al. have published a comprehensive survey on the Steiner Tree Algorithm for Global Routing in their 2020 research work titled "A Survey on Steiner Tree Construction and Global Routing for VLSI Design".</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7"><head>Fig. 9 .</head><label>9</label><figDesc>Fig. 9. Dominant Points and the Underlying Graph</figDesc><graphic coords="9,334.69,50.54,205.63,98.90" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8"><head>Fig. 11 .</head><label>11</label><figDesc>Fig. 11. Back End Flow</figDesc><graphic coords="10,45.98,327.69,257.04,122.22" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0"><graphic coords="4,308.99,50.54,257.04,219.18" type="bitmap" /></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0"><p>• Width, pitch and offset dimensions of power stripes wrt each metal layer in accordance with provided metal stack. • Block and I/O Power connection at top level using power rings, bumps and stripes.• PG connection at standard cell and block level via power rails.</p></note>
+		</body>
+		<back>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Moore&apos;s law: past, present and future</title>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">R</forename><surname>Schaller</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Spectrum</title>
+		<imprint>
+			<biblScope unit="volume">34</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="52" to="59" />
+			<date type="published" when="1997">1997</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">Ethan</forename><forename type="middle">R</forename><surname>Mollick</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Annals of the History of Computing</title>
+		<imprint>
+			<biblScope unit="volume">28</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="62" to="75" />
+			<date type="published" when="2006-08">August 2006</date>
+		</imprint>
+	</monogr>
+	<note>Establishing Moore&apos;s Law</note>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Case Study of 32nm, 22nm, 14nm and 10nm Semiconductor Process Technologies</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Vishesh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Manu</forename><surname>Srinath</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">International Journal of Advanced Research in Computer and Communication Engineering</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<date type="published" when="2017-04">April 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">K</forename><surname>Lorenz</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Process Variability for Devices at and beyond the 7 nm Node</title>
+		<meeting>ess Variability for Devices at and beyond the 7 nm Node</meeting>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="volume">7</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">IEEE Spectrum Article 06MAY 2021. IBM Introduces the World&apos;s First 2-nm Node Chip New chip</title>
+		<author>
+			<persName><forename type="first">Dexter</forename><surname>Johnson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Milestone offers greater efficiency and performance</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">A comparative study on the effects of technology nodes and logic styles for low power high speed VLSI applications</title>
+		<author>
+			<persName><forename type="first">Inamul</forename><forename type="middle">;</forename><surname>Hussain</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Saurabh</forename><surname>Chaudhury</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">International Journal of Nanoparticles</title>
+		<imprint>
+			<biblScope unit="page">12</biblScope>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Progress Toward VLSI-Capable EDA Tools for Superconductive Digital Electronics</title>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">R</forename><surname>Whiteley</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Kawa</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE</title>
+		<imprint>
+			<date type="published" when="2019">2019. 2019</date>
+		</imprint>
+	</monogr>
+	<note>ISEC</note>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<monogr>
+		<author>
+			<persName><forename type="first">A</forename><surname>Ng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><forename type="middle">L</forename><surname>Markov</surname></persName>
+		</author>
+		<title level="m">Sixth International Symposium on Quality of Electronic Design (ISQED&apos;05) -Toward Quality EDA Tools and Tool Flows Through High-Performance Computing</title>
+		<meeting><address><addrLine>San Jose, CA, USA</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2005-03">2005. March 2005</date>
+			<biblScope unit="page" from="21" to="23" />
+		</imprint>
+	</monogr>
+	<note>Sixth International Symposium on Quality of Electronic Design (ISQED&apos;05</note>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<monogr>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">C</forename><surname>Campbell</surname></persName>
+		</author>
+		<title level="m">Proceedings of the First Merged International Parallel Processing Symposium and Symposium on Parallel and Distributed Processing -Evaluating ASIC, DSP, and RISC architectures for embedded applications</title>
+		<meeting>the First Merged International Parallel Processing Symposium and Symposium on Parallel and Distributed Processing -Evaluating ASIC, DSP, and RISC architectures for embedded applications<address><addrLine>Orlando, FL, USA</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="1998-03-30">1998. 30 March-3 April 1998</date>
+		</imprint>
+	</monogr>
+	<note>Soc First Merged International Parallel Processing Symposium and Symposium on Parallel and Distributed Processing</note>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<monogr>
+		<author>
+			<persName><forename type="first">Traian</forename><surname>Tulbure</surname></persName>
+		</author>
+		<title level="m">A Dynamic Reconfigurable CPLD Architecture for Structured ASIC Technology. International Symposium on Applied Reconfigurable Computing ARC 2011: Reconfigurable Computing: Architectures, Tools and Applications pp</title>
+		<imprint>
+			<date type="published" when="2011">2011</date>
+			<biblScope unit="page" from="296" to="301" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<monogr>
+		<author>
+			<persName><forename type="first">A</forename><surname>Balboni</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Valenti</surname></persName>
+		</author>
+		<title level="m">A unified design methodology applied to different technologies. Field-Programmable Logic Smart Applications, New Paradigms and Compilers</title>
+		<imprint>
+			<date type="published" when="1996">1996</date>
+		</imprint>
+	</monogr>
+	<note>ASIC design and FPGA design</note>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<monogr>
+		<author>
+			<persName><forename type="first">Jordi</forename><forename type="middle">;</forename><surname>Cortadella</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Marc</forename><forename type="middle">;</forename><surname>Galceran-Oms</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mike</forename><forename type="middle">;</forename><surname>Kishinevsky</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Sapatnekar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Sachin</surname></persName>
+		</author>
+		<title level="m">RTL Synthesis: From Logic Synthesis to Automatic Pipelining. Proceedings of the IEEE</title>
+		<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<monogr>
+		<author>
+			<persName><forename type="first">Satoshi</forename><forename type="middle">;</forename><surname>Ohtake</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Iwata</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">;</forename><surname>Hiroshi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hideo</forename><surname>Fujiwara</surname></persName>
+		</author>
+		<title level="m">IEEE 13th IEEE Symposium on Design and Diagnostics of Electronic Circuits and Systems</title>
+		<meeting><address><addrLine>Vienna, Austria</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<monogr>
+		<title level="m" type="main">VLSI Physical Design: From Graph Partitioning to Timing Closure</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kahng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Lienig</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Markov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Hu</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2011">2011</date>
+			<publisher>Springer</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Chap. 3.3: Mask Data: Layout Post Processing</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Lienig</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Scheible</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Fundamentals of Layout Design for Electronic Circuits</title>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Design flow and methodology for 50M gate ASIC</title>
+		<author>
+			<persName><forename type="first">Alok</forename><forename type="middle">;</forename><surname>Mehrotra</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Van Ginneken</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P P P;</forename><surname>Lukas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yatin</forename><surname>Trivedi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE Conference Publications</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">An Academic Framework for IC Physical Design Algorithms Development</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Bulakh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Korshunov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Datsuk</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">International Seminar on Electron Devices Design and Production</title>
+		<imprint>
+			<biblScope unit="issue">SED</biblScope>
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<monogr>
+		<author>
+			<persName><forename type="first">Naushad</forename><surname>Manzoor Laskar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">;</forename><surname>Sen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">K</forename><surname>Rahul; Paul</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><forename type="middle">L</forename><surname>Baishnab</surname></persName>
+		</author>
+		<title level="m">2015 International Conference on Innovations in Information, Embedded and Communication Systems (ICIIECS) -A survey on VLSI Floorplanning: Its representation and modern approaches of optimization</title>
+		<meeting><address><addrLine>India</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="1920">2015. 2015.3.19-2015.3.20</date>
+		</imprint>
+	</monogr>
+	<note>IEEE 2015 International Conference on Innovations in Information,Embedded and Communication Systems (ICIIECS) -Coimbatore</note>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<monogr>
+		<title level="m" type="main">A Genetic Algorithm for VLSI Floorplanning Using O-Tree Representation. Workshops on Applications of Evolutionary Computation EvoWorkshops</title>
+		<author>
+			<persName><forename type="first">Maolin</forename><surname>Tang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alvin</forename><surname>Sebastian</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2005">2005</date>
+			<publisher>Applications of Evolutionary Computing</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Optimal floor planning in VLSI using improved adaptive particle swarm optimization</title>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">B</forename><surname>Vinay Kumar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">V</forename><surname>Rao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Manoj</forename><surname>Singh</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Kumar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Evolutionary Intelligence</title>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<monogr>
+		<author>
+			<persName><forename type="first">Yanling</forename><forename type="middle">;</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">;</forename><surname>Yunyao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Wei</forename><surname>Yan</surname></persName>
+		</author>
+		<title level="m">2017 IEEE 12th International Conference on ASIC (ASI-CON) -A method to speed up VLSI hierarchical physical design in floorplanning</title>
+		<imprint>
+			<date type="published" when="2017">2017. 2017.10.25-2017.10.28</date>
+		</imprint>
+	</monogr>
+	<note>IEEE 2017 IEEE 12th International Conference on ASIC (ASICON) -Guiyang</note>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<monogr>
+		<author>
+			<persName><forename type="first">Qing</forename><forename type="middle">K</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Bars</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Vincent</surname></persName>
+		</author>
+		<idno>04.15-2009.04.17)] 2009 12</idno>
+		<title level="m">th International Symposium on Design and Diagnostics of Electronic Circuits &amp; Systems -Simulation and planning method for on-chip power distribution -An industry perspective</title>
+		<meeting><address><addrLine>Liberec, Czech Republic</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2009">2009. 2009</date>
+		</imprint>
+	</monogr>
+	<note>IEEE 2009 12th International Symposium on Design and Diagnostics of Electronic Circuits &amp; Systems</note>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<monogr>
+		<author>
+			<persName><forename type="first">Shuo</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sheqin</forename><surname>Dong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">; Xiaohai</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xianlong</forename><surname>Hong</surname></persName>
+		</author>
+		<idno>ASICON 2001. 2001</idno>
+		<title level="m">4th International Conference on ASIC Proceedings</title>
+		<editor>
+			<persName><forename type="first">China</forename><surname>Asic -Shanghai</surname></persName>
+		</editor>
+		<imprint>
+			<date type="published" when="2001-10-25">2001. 23-25 Oct. 2001</date>
+		</imprint>
+	</monogr>
+	<note>Cat. No.01TH8549 Integrated floorplanning and power supply planning</note>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<monogr>
+		<author>
+			<persName><forename type="first">Han</forename><forename type="middle">;</forename><surname>Liying</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Hongmei</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Tang; Ruoyan</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Zhang; Cunshan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">;</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Hongdong</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Zhao</surname></persName>
+		</author>
+		<title level="m">IEEE 2009 International Conference on Computer and Communications Security (ICCCS) -Hong Kong</title>
+		<imprint>
+			<date type="published" when="2009">2009. 2009</date>
+		</imprint>
+	</monogr>
+	<note>Hong Kong (2009.12.5-2009.12.6)</note>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">and Solid-State Circuits (EDSSC) -An efficient clock tree synthesis method in physical design Optimization Method for</title>
+		<author>
+			<persName><forename type="first">Guirong</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Song</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuan</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ganggang</forename><surname>Zhang</surname></persName>
+		</author>
+		<idno>12.25-2009.12.27</idno>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE 2009 IEEE International Conference of Electron Devices and Solid-State Circuits (EDSSC 2009) -Xi&apos;an</title>
+		<imprint>
+			<date type="published" when="2009">2009. 2009</date>
+		</imprint>
+	</monogr>
+	<note>2009 IEEE International Conference of Electron Devices</note>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<monogr>
+		<author>
+			<persName><forename type="first">Siong</forename><surname>Teng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">;</forename><surname>Kiong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Norhayati</forename><surname>Soin</surname></persName>
+		</author>
+		<idno>06.28-2010.06.30</idno>
+		<title level="m">2010 IEEE International Conference on Semiconductor Electronics (ICSE2010) -Regional clock gate splitting algorithm for clock tree synthesis</title>
+		<meeting><address><addrLine>Malaysia</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2010">2010. 2010</date>
+		</imprint>
+	</monogr>
+	<note>IEEE 2010 IEEE International Conference on Semiconductor Electronics (ICSE) -Malacca</note>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<monogr>
+		<title level="m" type="main">A Survey on Steiner Tree Construction and Global Routing for VLSI Design</title>
+		<author>
+			<persName><forename type="first">Hao</forename><forename type="middle">;</forename><surname>Tang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Genggeng;</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xiaohua</forename><forename type="middle">;</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Naixue</forename><surname>Xiong</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<publisher>IEEE</publisher>
+			<pubPlace>Access</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">STEINER TREE PROBLEMS</title>
+		<author>
+			<persName><forename type="first">D</forename><forename type="middle">Z</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Ngo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><forename type="middle">M</forename><surname>Pardalos</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/0-306-48332-7</idno>
+		<ptr target="https://doi.org/10.1007/0-306-48332-7" />
+	</analytic>
+	<monogr>
+		<title level="m">Encyclopedia of Optimization</title>
+		<editor>
+			<persName><forename type="first">C</forename><forename type="middle">A</forename><surname>Floudas</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">P</forename><forename type="middle">M</forename><surname>Pardalos</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Boston, MA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2001">2001</date>
+			<biblScope unit="page">489</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Analysis, Physical Design and Power Optimization of Design Block at Lower Technology Node</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Ganesh Prasad</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">R</forename><surname>Karbari</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">K</forename><surname>Bellal</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/RTE-ICT42901.2018.9012556</idno>
+	</analytic>
+	<monogr>
+		<title level="m">2018 3rd IEEE International Conference on Recent Trends in Electronics, Information &amp; Communication Technology (RTEICT)</title>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="732" to="737" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">A method to speed up VLSI hierarchical physical design in floorplanning</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Yan</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/ASI-CON.2017.8252484</idno>
+	</analytic>
+	<monogr>
+		<title level="m">2017 IEEE 12th International Conference on ASIC (ASICON)</title>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="347" to="350" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Physical Design and Validation</title>
+		<author>
+			<persName><forename type="first">J</forename><surname>Jess</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/978-1-4020-6488-325</idno>
+		<ptr target="https://doi.org/10.1007/978-1-4020-6488-325" />
+	</analytic>
+	<monogr>
+		<title level="m">Design, Automation, and Test in Europe</title>
+		<editor>
+			<persName><forename type="first">R</forename><surname>Lauwereins</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">J</forename><surname>Madsen</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Dordrecht</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2008">2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>
