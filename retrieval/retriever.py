@@ -6,6 +6,7 @@ from config import settings
 from dotenv import load_dotenv
 load_dotenv()
 from langchain_community.tools.tavily_search import TavilySearchResults
+import numpy as np
 
 DOMAINS = {
     "NLP",
@@ -48,6 +49,12 @@ def make_ref(title, authors, year):
     a = authors[0] + (" et al." if len(authors) > 1 else "")
     return f"{title} by {a}, {year}"
 
+def cosine_similarity(vec1, vec2):
+    """Compute cosine similarity between two vectors."""
+    vec1 = np.array(vec1)
+    vec2 = np.array(vec2)
+    return np.dot(vec1, vec2) / (np.linalg.norm(vec1) * np.linalg.norm(vec2))
+
 def retrieve(q: str, domain: str = "all"):
     supabase = get_client()
 
@@ -76,7 +83,8 @@ def retrieve(q: str, domain: str = "all"):
         emb = r["embedding"]
 
         # compute cosine distance manually
-        dist = 1 - float(model.similarity(q_emb, emb))
+        similarity = cosine_similarity(q_emb, emb)
+        dist = 1 - similarity
 
         results.append([
             r["title"],
