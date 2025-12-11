@@ -120,6 +120,7 @@ async def answer_query(req):
             "mode": mode
         }
     web_content= await run_web_search(query)
+    print(web_content)
     # -------- SIMPLE MODE --------
     if mode == "simple":
         context = "\n\n".join([r[3] for r in results[:8]])
