@@ -128,7 +128,9 @@ async def answer_query(req):
 
     results = retrieve(query, domain)
 
-    if not results:
+    
+    web_content= await run_web_search(query)
+    if not web_content:
         return {
             "original_query": original_query,
             "corrected_query": corrected_query,
@@ -136,7 +138,6 @@ async def answer_query(req):
             "references": [],
             "mode": mode
         }
-    web_content= await run_web_search(query)
     print(web_content)
     # -------- SIMPLE MODE --------
     if mode == "simple":
