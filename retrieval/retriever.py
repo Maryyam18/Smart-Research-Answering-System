@@ -178,13 +178,14 @@ Answer:
     refs = []
     used = set()
 
-    for row in results:
-        pid = row[4]
-        if pid in used or len(refs) >= 4:
-            continue
-        used.add(pid)
-        context += row[3] + "\n\n"
-        refs.append(make_ref(row[0], row[1], row[2]))
+    if results:
+        for row in results:
+            pid = row[4]
+            if pid in used or len(refs) >= 4:
+                continue
+            used.add(pid)
+            context += row[3] + "\n\n"
+            refs.append(make_ref(row[0], row[1], row[2]))
 
     prompt = f"""
 You are an expert researcher.
