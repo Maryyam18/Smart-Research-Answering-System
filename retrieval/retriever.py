@@ -157,7 +157,7 @@ Answer:
 
         
         
-        llm= ChatGoogleGenerativeAI(model="gemini-2.5-flash")
+        llm= ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite")
         resp= llm.invoke(prompt)
 
         answer_text = resp.content
@@ -200,7 +200,7 @@ Answer in clear paragraphs.
 End with "References are listed below."
 """
 
-    llm= ChatGoogleGenerativeAI(model="gemini-2.5-flash")
+    llm= ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite")
     resp= llm.invoke(prompt)
 
     answer_text = resp.content
@@ -212,7 +212,7 @@ Answer:
 {answer_text}
 Summary:
 """
-    llm= ChatGoogleGenerativeAI(model="gemini-2.5-flash")
+    llm= ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite")
     resp= llm.invoke(summary_prompt)
 
     summary_text = resp.content
@@ -269,7 +269,7 @@ Answer:
 
         
         
-        llm= ChatGoogleGenerativeAI(model="gemini-2.5-flash")
+        llm= ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite")
         resp= llm.invoke(prompt)
 
         answer_text = resp.content
@@ -311,7 +311,7 @@ Answer in clear paragraphs.
 End with "References are listed below."
 """
 
-    llm= ChatGoogleGenerativeAI(model="gemini-2.5-flash")
+    llm= ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite")
     resp= llm.invoke(prompt)
 
     answer_text = resp.content
@@ -323,7 +323,7 @@ Answer:
 {answer_text}
 Summary:
 """
-    llm= ChatGoogleGenerativeAI(model="gemini-2.5-flash")
+    llm= ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite")
     resp= llm.invoke(summary_prompt)
 
     summary_text = resp.content
