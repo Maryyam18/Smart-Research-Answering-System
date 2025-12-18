@@ -16,10 +16,39 @@ def create_new_session(user_id: int):
 
     return result.data[0]["id"]
 
-
-def save_message(session_id: int, question: str, content: str):
+def isChatExists(session_id:str,user_id:str):
     supabase = get_client()
+    result = (
+        supabase.table("chat_messages")
+        .select("id")
+        .eq("session_id", session_id)
+        .execute()
+    )
 
+    return len(result.data) > 0
+
+
+def getChatTitle(query:str):
+     # Take first sentence or 60 chars
+    title = query.strip()
+    if '?' in title:
+        title = title.split('?')[0] + '?'
+    elif '.' in title:
+        title = title.split('.')[0]
+    
+    return title[:60] + "..." if len(title) > 60 else title
+    
+
+
+def save_message(session_id: int, question: str, content: str, user_id: str):
+    supabase = get_client()
+    if not isChatExists(session_id, user_id):
+        title = getChatTitle(question)
+        supabase.table("chat_sessions").update({
+        "title": title
+        }).eq("id", session_id).eq("user_id", user_id).execute()
+  
+   
     supabase.table("chat_messages").insert({
         "session_id": session_id,
         "question": question,
@@ -62,7 +91,7 @@ def get_chat_history(session_id: int, limit: int = 50):
     return [(row["question"], row["content"], row["created_at"]) for row in result.data]
 
 
-async def process_user_message(session_id: int, user_msg: str, mode: str = "simple"):
+async def process_user_message(session_id: int, user_msg: str, user_id:str,mode: str = "simple",):
     """
     Process a user message with optional mode:
     mode="simple" (default) or mode="deep"
@@ -81,7 +110,7 @@ async def process_user_message(session_id: int, user_msg: str, mode: str = "simp
     result = await answer_query({"query": prompt, "mode": mode})
     answer = result["answer"]
     # Save assistant message
-    save_message(session_id, user_msg, answer)
+    save_message(session_id, user_msg, answer,user_id)
 
     return answer
 

@@ -19,8 +19,9 @@ async def send_message(data: dict):
     session_id = data["session_id"]
     user_msg = data["message"]
     mode = data.get("mode", "simple")  # Default to simple
+    user_id = data["user_id"] # Default to empty string
 
-    answer = await process_user_message(session_id, user_msg, mode)
+    answer = await process_user_message(session_id, user_msg,user_id, mode)
     return {"answer": answer}
 
 
