@@ -1,34 +1,18 @@
 from fastapi import APIRouter, Depends, HTTPException, Header
 from auth.utils import verify_token
-from chat.service import create_new_session, process_user_message, get_chat_history, process_user_message_query
+from chat.service import create_new_session, process_user_message, get_chat_history, process_user_message_query,get_history_title_service
 
 router = APIRouter(prefix="/chat", tags=["Chat"])
 
-# Dependency to get current user from JWT in Authorization header
-def get_current_user(authorization: str = Header(...)):
-    """
-    Reads Authorization header in the format: "Bearer <token>"
-    Returns token payload if valid
-    """
-    if not authorization.startswith("Bearer "):
-        raise HTTPException(401, "Invalid token format")
-    
-    token = authorization.split(" ")[1]
-    try:
-        payload = verify_token(token)
-        return payload  # contains uid and sub (email)
-    except:
-        raise HTTPException(401, "Invalid or expired token")
-
 
 @router.post("/new")
-def new_chat(user=Depends(get_current_user)):
-    session_id = create_new_session(user["uid"])
+def new_chat(userId: str):
+    session_id = create_new_session(userId)
     return {"session_id": session_id}
 
 
 @router.post("/message")
-async def send_message(data: dict, user=Depends(get_current_user)):
+async def send_message(data: dict):
     if "session_id" not in data or "message" not in data:
         raise HTTPException(400, "session_id and message required")
 
@@ -38,6 +22,7 @@ async def send_message(data: dict, user=Depends(get_current_user)):
 
     answer = await process_user_message(session_id, user_msg, mode)
     return {"answer": answer}
+
 
 @router.post("/messageQuery")
 async def send_message(data: dict):
@@ -53,9 +38,14 @@ async def send_message(data: dict):
 
 
 @router.get("/history/{session_id}")
-def history(session_id: int, user=Depends(get_current_user)):
+def history(session_id: int):
     msgs = get_chat_history(session_id)
     return [
-        {"sender": m[0], "content": m[1], "time": m[2]}
+        {"question": m[0], "content": m[1], "time": m[2]}
         for m in msgs
     ]
+
+@router.get("/getHistoryTitle/{user_id}")
+def get_history_title(user_id: str):
+    titles = get_history_title_service(user_id)
+    return {"history": titles}

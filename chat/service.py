@@ -17,29 +17,49 @@ def create_new_session(user_id: int):
     return result.data[0]["id"]
 
 
-def save_message(session_id: int, sender: str, content: str):
+def save_message(session_id: int, question: str, content: str):
     supabase = get_client()
 
     supabase.table("chat_messages").insert({
         "session_id": session_id,
-        "sender": sender,
+        "question": question,
         "content": content
     }).execute()
 
 
+def get_history_title_service(user_id: str):
+
+    supabase = get_client()
+
+    result = (
+        supabase.table("chat_sessions")
+        .select("id, title, created_at")
+        .eq("user_id", user_id)
+        .order("created_at", desc=True)
+        .execute()
+    )
+
+    if not result.data:
+        return []
+
+    return [
+        {"session_id": row["id"], "title": row["title"], "created_at": row["created_at"]}
+        for row in result.data
+    ]
+    
 def get_chat_history(session_id: int, limit: int = 50):
     supabase = get_client()
 
     result = (
         supabase.table("chat_messages")
-        .select("sender, content, created_at")
+        .select("question, content, created_at")
         .eq("session_id", session_id)
-        .order("created_at", asc=True)
+        .order("created_at")
         .limit(limit)
         .execute()
     )
 
-    return [(row["sender"], row["content"], row["created_at"]) for row in result.data]
+    return [(row["question"], row["content"], row["created_at"]) for row in result.data]
 
 
 async def process_user_message(session_id: int, user_msg: str, mode: str = "simple"):
@@ -47,8 +67,6 @@ async def process_user_message(session_id: int, user_msg: str, mode: str = "simp
     Process a user message with optional mode:
     mode="simple" (default) or mode="deep"
     """
-    # Save user message
-    save_message(session_id, "user", user_msg)
 
     # Load chat history
     history = get_chat_history(session_id)
@@ -60,10 +78,10 @@ async def process_user_message(session_id: int, user_msg: str, mode: str = "simp
     prompt = context + f"USER: {user_msg}\nASSISTANT:"
 
     # Get answer from RAG with mode
-    answer = await answer_query({"query": user_msg, "mode": mode})["answer"]
-
+    result = await answer_query({"query": prompt, "mode": mode})
+    answer = result["answer"]
     # Save assistant message
-    save_message(session_id, "assistant", answer)
+    save_message(session_id, user_msg, answer)
 
     return answer
 
