@@ -220,9 +220,6 @@ Summary:
     summary_text = resp.content
     answer_text += f"\n\nConclusion:\n{summary_text}"
 
-    # Add references at the end for deep mode
-    answer_text += "\n\nReferences:\n" + "\n".join("• " + r for r in refs)
-
     return {
         "original_query": original_query,
         "corrected_query": corrected_query,
