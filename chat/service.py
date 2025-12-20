@@ -40,7 +40,7 @@ def getChatTitle(query:str):
     
 
 
-def save_message(session_id: int, question: str, content: str, user_id: str):
+def save_message(session_id: int, question: str, content: str, user_id: str,corrected_query:str,references:str):
     supabase = get_client()
     if not isChatExists(session_id, user_id):
         title = getChatTitle(question)
@@ -52,7 +52,9 @@ def save_message(session_id: int, question: str, content: str, user_id: str):
     supabase.table("chat_messages").insert({
         "session_id": session_id,
         "question": question,
-        "content": content
+        "content": content,
+        "corrected_query": corrected_query,
+        "references": references
     }).execute()
 
 
@@ -81,14 +83,14 @@ def get_chat_history(session_id: int, limit: int = 50):
 
     result = (
         supabase.table("chat_messages")
-        .select("question, content, created_at")
+        .select("question, content, created_at,corrected_query,references")
         .eq("session_id", session_id)
         .order("created_at")
         .limit(limit)
         .execute()
     )
 
-    return [(row["question"], row["content"], row["created_at"]) for row in result.data]
+    return [(row["question"], row["content"], row["created_at"],row["corrected_query"], row["references"]) for row in result.data]
 
 
 async def process_user_message(session_id: int, user_msg: str, user_id:str,mode: str = "simple",):
@@ -104,27 +106,15 @@ async def process_user_message(session_id: int, user_msg: str, user_id:str,mode:
     context = ""
     for sender, content, _ in history:
         context += f"{sender.upper()}: {content}\n"
-    prompt = context + f"USER: {user_msg}\nASSISTANT:"
+
 
     # Get answer from RAG with mode
-    result = await answer_query({"query": prompt, "mode": mode})
+    result = await answer_query({"context": context, "Actualquery":user_msg, "mode": mode})
     answer = result["answer"]
+    references = result.get("references", "")
+    corrected_query = result.get("corrected_query", "")
+    
     # Save assistant message
-    save_message(session_id, user_msg, answer,user_id)
+    save_message(session_id, user_msg, answer,user_id, corrected_query, references)
 
     return result
-
-async def process_user_message_query( user_msg: str, mode: str = "deep"):
-    """
-    Process a user message with optional mode:
-    mode="simple" (default) or mode="deep"
-    """
-    # Build prompt for RAG / LLM
-    context = ""
-    prompt = context + f"USER: {user_msg}\nASSISTANT:"
-
-    # Get answer from RAG with mode
-    result = await answer_query({"query": user_msg, "mode": mode})
-    answer = result["answer"]
-
-    return answer

@@ -116,16 +116,19 @@ def retrieve(q: str, domain: str = "all"):
     return good if good else None
 
 async def answer_query(req):
-    original_query = req["query"]
+    
+    original_query = req["Actualquery"]
     mode = req.get("mode", "simple").lower()
     domain = req.get("domain", "all")
+    context = req.get("context", "")
 
     # ===== AUTOCORRECT =====
     corrected_query = gemini_autocorrect(original_query)
     if corrected_query != original_query:
         print(f"[Retriever] Autocorrected: '{original_query}' → '{corrected_query}'")
-    query = corrected_query
-
+        query = context + f"USER: {corrected_query}\nASSISTANT:"
+    else:
+        query = context + f"USER: {original_query}\nASSISTANT:"
     results = retrieve(query, domain)
 
     
