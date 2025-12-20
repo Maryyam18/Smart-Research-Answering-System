@@ -168,7 +168,6 @@ Answer:
             "original_query": original_query,
             "corrected_query": corrected_query,
             "answer": answer_text,
-            "reference": make_ref(best[0], best[1], best[2]),
             "references": [make_ref(best[0], best[1], best[2])],
             "mode": "simple"
         }

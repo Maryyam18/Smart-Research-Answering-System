@@ -112,7 +112,7 @@ async def process_user_message(session_id: int, user_msg: str, user_id:str,mode:
     # Save assistant message
     save_message(session_id, user_msg, answer,user_id)
 
-    return answer
+    return result
 
 async def process_user_message_query( user_msg: str, mode: str = "deep"):
     """

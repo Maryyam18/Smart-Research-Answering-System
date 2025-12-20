@@ -22,7 +22,7 @@ async def send_message(data: dict):
     user_id = data["user_id"] # Default to empty string
 
     answer = await process_user_message(session_id, user_msg,user_id, mode)
-    return {"answer": answer}
+    return {answer}
 
 
 @router.post("/messageQuery")
