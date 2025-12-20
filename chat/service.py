@@ -104,7 +104,7 @@ async def process_user_message(session_id: int, user_msg: str, user_id:str,mode:
 
     # Build prompt for RAG / LLM
     context = ""
-    for sender, content, _ in history:
+    for sender, content, *_ in history:
         context += f"{sender.upper()}: {content}\n"
 
 
