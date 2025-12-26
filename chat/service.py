@@ -93,26 +93,6 @@ def get_chat_history(session_id: int, limit: int = 50):
     return [(row["question"], row["content"], row["created_at"],row["corrected_query"], row["references"]) for row in result.data]
 
 
-def delete_chat_session(session_id: str):
-    """
-    Delete a chat session and all its associated messages.
-    Deletes in order: chat_messages first, then chat_session
-    """
-    supabase = get_client()
-    session_check = supabase.table("chat_sessions").select("id").eq("id", session_id).execute()
-    if not session_check.data:
-        raise Exception(f"Chat session {session_id} not found")
-    
-    # First, delete all chat messages associated with this session
-    supabase.table("chat_sessions").delete().eq("id", session_id).execute()
-    
-    # Then, delete the chat session itself
-    supabase.table("chat_messages").delete().eq("session_id", session_id).execute()
-    
-    
-    return True
-
-
 async def process_user_message(session_id: int, user_msg: str, user_id:str,mode: str = "simple",):
     """
     Process a user message with optional mode:
@@ -124,8 +104,10 @@ async def process_user_message(session_id: int, user_msg: str, user_id:str,mode:
 
     # Build prompt for RAG / LLM
     context = ""
-    for sender, content, *_ in history:
-        context += f"{sender.upper()}: {content}\n"
+    for question, answer, created_at, corrected_query, references in history:
+        user_question = corrected_query if corrected_query else question
+        context += f"USER: {user_question}\n"
+        context += f"ASSISTANT: {answer}\n"
 
 
     # Get answer from RAG with mode
