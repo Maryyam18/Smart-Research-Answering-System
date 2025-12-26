@@ -137,7 +137,7 @@ async def answer_query(req):
         return {
             "original_query": original_query,
             "corrected_query": corrected_query,
-            "answer": "Sorry, I couldn't find relevant papers.",
+            "answer": "Sorry, I couldn't find relevant web content.",
             "references": [],
             "mode": mode
         }

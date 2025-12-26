@@ -43,7 +43,7 @@ def getChatTitle(query:str):
 def save_message(session_id: int, question: str, content: str, user_id: str,corrected_query:str,references:str):
     supabase = get_client()
     if not isChatExists(session_id, user_id):
-        title = getChatTitle(question)
+        title = getChatTitle(corrected_query if corrected_query else question)
         supabase.table("chat_sessions").update({
         "title": title
         }).eq("id", session_id).eq("user_id", user_id).execute()

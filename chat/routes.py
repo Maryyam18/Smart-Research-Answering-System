@@ -14,14 +14,18 @@ def new_chat(userId: str):
 
 @router.post("/message")
 async def send_message(data: dict):
-    if "session_id" not in data or "message" not in data:
-        raise HTTPException(400, "session_id and message required")
+    if "message" not in data:
+        raise HTTPException(400, "Query is required")
 
-    session_id = data["session_id"]
+    session_id = data.get("session_id")
     user_msg = data["message"]
     mode = data.get("mode", "simple")  # Default to simple
     user_id = data["user_id"] # Default to empty string
-
+    ##even if session id is not provided, we can create a new session if user_id is given
+    if not session_id:
+        if not user_id:
+            raise HTTPException(400, "user_id required when creating new session")
+        session_id = create_new_session(user_id)
     answer = await process_user_message(session_id, user_msg,user_id, mode)
     return answer
 
