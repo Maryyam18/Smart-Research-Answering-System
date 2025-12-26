@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, Header
 from auth.utils import verify_token
-from chat.service import create_new_session, process_user_message, get_chat_history,get_history_title_service
+from chat.service import create_new_session, process_user_message, get_chat_history,get_history_title_service, delete_chat_session
 
 router = APIRouter(prefix="/chat", tags=["Chat"])
 
@@ -10,6 +10,14 @@ def new_chat(userId: str):
     session_id = create_new_session(userId)
     return {"session_id": session_id}
 
+@router.delete("/delete/{session_id}")
+def delete_chat(session_id: str):
+    try:
+        result = delete_chat_session(session_id)
+        if result==True:
+            return {"success":"true","message": f"Chat session {session_id} deleted successfully"}
+    except Exception as e:
+        raise HTTPException(status_code=404, detail=str(e))
 
 
 @router.post("/message")
